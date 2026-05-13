@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naz-niaz.github.io/pppp_bangladesh/sitemap.xml
