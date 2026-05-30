@@ -4,11 +4,14 @@
   "short_name": "PPPP",
   "description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
 
-  "start_url": "/pppp_bangladesh/",
+  "start_url": "/pppp_bangladesh/?source=pwa",
   "scope": "/pppp_bangladesh/",
 
   "display": "standalone",
+
   "display_override": [
+    "window-controls-overlay",
+    "tabbed",
     "standalone",
     "minimal-ui",
     "browser"
@@ -21,6 +24,10 @@
 
   "lang": "en",
   "dir": "ltr",
+
+  "permissions": [
+    "periodic-background-sync"
+  ],
 
   "prefer_related_applications": false,
 
@@ -44,6 +51,25 @@
     }
   ],
 
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+
+  "tab_strip": {
+    "home_tab": {
+      "scope_patterns": [
+        "/pppp_bangladesh/*"
+      ]
+    },
+    "new_tab_button": {
+      "url": "/pppp_bangladesh/"
+    }
+  },
+
+  "note_taking": {
+    "new_note_url": "/pppp_bangladesh/notes/new"
+  },
+
   "protocol_handlers": [
     {
       "protocol": "web+pppp",
@@ -59,6 +85,28 @@
         "application/pdf": [".pdf"],
         "application/json": [".json"]
       }
+    }
+  ],
+
+  "share_target": {
+    "action": "/pppp_bangladesh/share/",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+
+  "widgets": [
+    {
+      "name": "PPPP News",
+      "short_name": "News",
+      "description": "Latest PPPP Bangladesh updates",
+      "tag": "pppp-news",
+      "template": "/pppp_bangladesh/widgets/news.html",
+      "ms_ac_template": "/pppp_bangladesh/widgets/news.html"
     }
   ],
 
