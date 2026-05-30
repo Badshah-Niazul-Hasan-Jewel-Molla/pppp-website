@@ -1,22 +1,94 @@
 {
-  "name": "People's Power & Peace Party",
-  "short_name": "PPPP",
-  "description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
-  "start_url": "/pppp_bangladesh/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "/pppp_bangladesh/web-app-manifest-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/pppp_bangladesh/web-app-manifest-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+"id": "/pppp_bangladesh/",
+"name": "People's Power & Peace Party",
+"short_name": "PPPP",
+"description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
+
+"start_url": "/pppp_bangladesh/",
+"scope": "/pppp_bangladesh/",
+
+"display": "standalone",
+"display_override": [
+"standalone",
+"minimal-ui",
+"browser"
+],
+
+"orientation": "portrait",
+
+"theme_color": "#ffffff",
+"background_color": "#ffffff",
+
+"lang": "en",
+"dir": "ltr",
+
+"prefer_related_applications": false,
+
+"categories": [
+"politics",
+"government",
+"news",
+"social",
+"education"
+],
+
+"screenshots": [
+{
+"src": "/pppp_bangladesh/screenshots/home.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Home Screen"
+},
+{
+"src": "/pppp_bangladesh/screenshots/about.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "About Page"
+},
+{
+"src": "/pppp_bangladesh/screenshots/leadership.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Leadership"
+},
+{
+"src": "/pppp_bangladesh/screenshots/membership.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Membership Registration"
+},
+{
+"src": "/pppp_bangladesh/screenshots/contact.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Contact Information"
+}
+],
+
+"related_applications": [
+{
+"platform": "play",
+"id": "com.pppp.bangladesh"
+}
+],
+
+"icons": [
+{
+"src": "/pppp_bangladesh/web-app-manifest-192x192.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any maskable"
+},
+{
+"src": "/pppp_bangladesh/web-app-manifest-512x512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any maskable"
+}
+]
 }
