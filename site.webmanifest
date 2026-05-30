@@ -34,9 +34,31 @@
 
   "iarc_rating_id": "e89d4f5a-0000-0000-0000-000000000000",
 
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+
   "scope_extensions": [
     {
       "origin": "https://ppppbangladesh.org"
+    }
+  ],
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+pppp",
+      "url": "/pppp_bangladesh/?url=%s"
+    }
+  ],
+
+  "file_handlers": [
+    {
+      "action": "/pppp_bangladesh/",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/pdf": [".pdf"],
+        "application/json": [".json"]
+      }
     }
   ],
 
@@ -45,37 +67,25 @@
       "name": "About PPPP",
       "short_name": "About",
       "description": "Learn about the People's Power & Peace Party",
-      "url": "/pppp_bangladesh/about/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/icons/about-192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/pppp_bangladesh/about/"
     },
     {
       "name": "Leadership",
       "short_name": "Leadership",
-      "description": "View party leadership",
-      "url": "/pppp_bangladesh/leadership/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/icons/leadership-192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "description": "View Party Leadership",
+      "url": "/pppp_bangladesh/leadership/"
     },
     {
       "name": "Membership",
       "short_name": "Join",
-      "description": "Register for membership",
-      "url": "/pppp_bangladesh/membership/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/icons/membership-192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "description": "Register for Membership",
+      "url": "/pppp_bangladesh/membership/"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Contact PPPP Bangladesh",
+      "url": "/pppp_bangladesh/contact/"
     }
   ],
 
@@ -115,7 +125,6 @@
       "form_factor": "narrow",
       "label": "Contact Information"
     },
-
     {
       "src": "/pppp_bangladesh/screenshots/desktop-home.png",
       "sizes": "1920x1080",
