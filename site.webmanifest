@@ -25,8 +25,11 @@
   "lang": "en",
   "dir": "ltr",
 
+  "gcm_sender_id": "103953800507",
+
   "permissions": [
-    "periodic-background-sync"
+    "periodic-background-sync",
+    "notifications"
   ],
 
   "prefer_related_applications": false,
