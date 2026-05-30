@@ -1,6 +1,10 @@
 {
   "name": "People's Power & Peace Party",
   "short_name": "PPPP",
+  "description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
+  "start_url": "/pppp_bangladesh/",
+  "display": "standalone",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/pppp_bangladesh/web-app-manifest-192x192.png",
@@ -14,6 +18,5 @@
     }
   ],
   "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "background_color": "#ffffff"
 }
