@@ -1,5 +1,5 @@
 ```javascript
-const CACHE_NAME = "pppp-cache-v1";
+const CACHE_NAME = "pppp-cache-v2";
 
 const urlsToCache = [
   "/pppp_bangladesh/",
@@ -39,23 +39,41 @@ self.addEventListener("activate", event => {
 
 /* Fetch - Offline First */
 self.addEventListener("fetch", event => {
+
+  /* Cache only GET requests */
+  if (event.request.method !== "GET") {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
+
         if (response) {
           return response;
         }
 
         return fetch(event.request)
           .then(networkResponse => {
-            return caches.open(CACHE_NAME)
+
+            if (!networkResponse || networkResponse.status !== 200) {
+              return networkResponse;
+            }
+
+            const responseClone = networkResponse.clone();
+
+            caches.open(CACHE_NAME)
               .then(cache => {
-                cache.put(event.request, networkResponse.clone());
-                return networkResponse;
+                cache.put(event.request, responseClone);
               });
+
+            return networkResponse;
           });
+
       })
-      .catch(() => caches.match("/pppp_bangladesh/index.html"))
+      .catch(() => {
+        return caches.match("/pppp_bangladesh/index.html");
+      })
   );
 });
 
@@ -65,7 +83,7 @@ self.addEventListener("sync", event => {
     event.waitUntil(
       fetch("/pppp_bangladesh/")
         .then(() => console.log("Background Sync Complete"))
-        .catch(err => console.error(err))
+        .catch(err => console.error("Background Sync Error:", err))
     );
   }
 });
@@ -76,13 +94,14 @@ self.addEventListener("periodicsync", event => {
     event.waitUntil(
       fetch("/pppp_bangladesh/")
         .then(() => console.log("Periodic Sync Complete"))
-        .catch(err => console.error(err))
+        .catch(err => console.error("Periodic Sync Error:", err))
     );
   }
 });
 
 /* Push Notifications */
 self.addEventListener("push", event => {
+
   let data = {
     title: "PPPP Bangladesh",
     body: "New update available",
@@ -90,7 +109,11 @@ self.addEventListener("push", event => {
   };
 
   if (event.data) {
-    data = event.data.json();
+    try {
+      data = event.data.json();
+    } catch (error) {
+      data.body = event.data.text();
+    }
   }
 
   event.waitUntil(
@@ -107,6 +130,7 @@ self.addEventListener("push", event => {
 
 /* Notification Click */
 self.addEventListener("notificationclick", event => {
+
   event.notification.close();
 
   event.waitUntil(
