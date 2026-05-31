@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Offline | PPPP Bangladesh</title>
+
+<meta name="theme-color" content="#ffffff">
 
 <style>
 body{
@@ -33,6 +36,21 @@ h1{
 p{
     max-width:500px;
     line-height:1.6;
+    margin-bottom:25px;
+}
+
+.retry-btn{
+    padding:12px 24px;
+    border:none;
+    border-radius:6px;
+    background:#0066cc;
+    color:#ffffff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.retry-btn:hover{
+    opacity:0.9;
 }
 </style>
 </head>
@@ -46,12 +64,14 @@ p{
 <h1>You are currently offline</h1>
 
 <p>
-Please check your internet connection
-and try again.
-The PPPP Bangladesh website will be available
-once your connection is restored.
-Thank You.
+Please check your internet connection and try again.
+The PPPP Bangladesh website will automatically become available when your connection is restored.
+Thank you for your patience.
 </p>
+
+<button class="retry-btn" onclick="location.reload()">
+  Try Again
+</button>
 
 </body>
 </html>
