@@ -148,49 +148,49 @@
 
   "screenshots": [
     {
-      "src": "/pppp_bangladesh/screenshots/home.png",
+      "src": "/pppp_bangladesh/home.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Home Screen"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/about.png",
+      "src": "/pppp_bangladesh/about.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "About Page"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/leadership.png",
+      "src": "/pppp_bangladesh/leadership.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Leadership"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/membership.png",
+      "src": "/pppp_bangladesh/membership.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Membership Registration"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/contact.png",
+      "src": "/pppp_bangladesh/contact.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Contact Information"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/desktop-home.png",
+      "src": "/pppp_bangladesh/desktop-home.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Desktop Home Screen"
     },
     {
-      "src": "/pppp_bangladesh/screenshots/desktop-about.png",
+      "src": "/pppp_bangladesh/desktop-about.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
