@@ -1,14 +1,17 @@
-const STATIC_CACHE = "pppp-static-v3";
-const RUNTIME_CACHE = "pppp-runtime-v3";
+const STATIC_CACHE = "pppp-static-v4";
+const RUNTIME_CACHE = "pppp-runtime-v4";
 
 const urlsToCache = [
   "/pppp_bangladesh/",
   "/pppp_bangladesh/index.html",
+  "/pppp_bangladesh/offline.html",
   "/pppp_bangladesh/site.webmanifest",
 
   "/pppp_bangladesh/web-app-manifest-192x192.png",
   "/pppp_bangladesh/web-app-manifest-512x512.png",
   "/pppp_bangladesh/icon-maskable-512.png",
+
+  "/pppp_bangladesh/offline.png",
 
   "/pppp_bangladesh/screenshots/home.png",
   "/pppp_bangladesh/screenshots/about.png",
@@ -93,7 +96,7 @@ self.addEventListener("fetch", event => {
         /* Offline page fallback */
         if (event.request.mode === "navigate") {
           return caches.match(
-            "/pppp_bangladesh/index.html"
+            "/pppp_bangladesh/offline.html"
           );
         }
 
@@ -102,9 +105,10 @@ self.addEventListener("fetch", event => {
           event.request.destination === "image"
         ) {
           return caches.match(
-            "/pppp_bangladesh/web-app-manifest-192x192.png"
+            "/pppp_bangladesh/offline.png"
           );
         }
+
       })
   );
 });
