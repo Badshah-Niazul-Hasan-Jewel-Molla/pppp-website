@@ -7,6 +7,10 @@
 <title>Offline | PPPP Bangladesh</title>
 
 <meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex">
+
+<link rel="icon"
+      href="/pppp_bangladesh/web-app-manifest-192x192.png">
 
 <style>
 body{
@@ -21,6 +25,7 @@ body{
     background:#ffffff;
     color:#222;
     padding:20px;
+    box-sizing:border-box;
 }
 
 .logo{
@@ -59,17 +64,23 @@ p{
 <img
   src="/pppp_bangladesh/offline.png"
   alt="PPPP Bangladesh Logo"
-  class="logo">
+  class="logo"
+  loading="eager"
+  decoding="async">
 
 <h1>You are currently offline</h1>
 
 <p>
 Please check your internet connection and try again.
-The PPPP Bangladesh website will automatically become available when your connection is restored.
+The PPPP Bangladesh website will automatically become available once your connection is restored.
 Thank you for your patience.
 </p>
 
-<button class="retry-btn" onclick="location.reload()">
+<button
+  class="retry-btn"
+  type="button"
+  aria-label="Retry connection"
+  onclick="location.reload()">
   Try Again
 </button>
 
