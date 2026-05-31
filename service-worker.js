@@ -1,19 +1,26 @@
-```javascript
-const CACHE_NAME = "pppp-cache-v2";
+const STATIC_CACHE = "pppp-static-v3";
+const RUNTIME_CACHE = "pppp-runtime-v3";
 
 const urlsToCache = [
   "/pppp_bangladesh/",
   "/pppp_bangladesh/index.html",
   "/pppp_bangladesh/site.webmanifest",
+
   "/pppp_bangladesh/web-app-manifest-192x192.png",
   "/pppp_bangladesh/web-app-manifest-512x512.png",
-  "/pppp_bangladesh/icon-maskable-512.png"
+  "/pppp_bangladesh/icon-maskable-512.png",
+
+  "/pppp_bangladesh/screenshots/home.png",
+  "/pppp_bangladesh/screenshots/about.png",
+  "/pppp_bangladesh/screenshots/leadership.png",
+  "/pppp_bangladesh/screenshots/membership.png",
+  "/pppp_bangladesh/screenshots/contact.png"
 ];
 
 /* Install */
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(STATIC_CACHE)
       .then(cache => cache.addAll(urlsToCache))
   );
 
@@ -23,11 +30,14 @@ self.addEventListener("install", event => {
 /* Activate */
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(cacheNames =>
+    caches.keys().then(keys =>
       Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
+        keys.map(key => {
+          if (
+            key !== STATIC_CACHE &&
+            key !== RUNTIME_CACHE
+          ) {
+            return caches.delete(key);
           }
         })
       )
@@ -37,34 +47,41 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-/* Fetch - Offline First */
+/* Fetch */
 self.addEventListener("fetch", event => {
 
-  /* Cache only GET requests */
   if (event.request.method !== "GET") {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
 
-        if (response) {
-          return response;
+    caches.match(event.request)
+      .then(cachedResponse => {
+
+        if (cachedResponse) {
+          return cachedResponse;
         }
 
         return fetch(event.request)
           .then(networkResponse => {
 
-            if (!networkResponse || networkResponse.status !== 200) {
+            if (
+              !networkResponse ||
+              networkResponse.status !== 200
+            ) {
               return networkResponse;
             }
 
-            const responseClone = networkResponse.clone();
+            const responseClone =
+              networkResponse.clone();
 
-            caches.open(CACHE_NAME)
+            caches.open(RUNTIME_CACHE)
               .then(cache => {
-                cache.put(event.request, responseClone);
+                cache.put(
+                  event.request,
+                  responseClone
+                );
               });
 
             return networkResponse;
@@ -72,34 +89,65 @@ self.addEventListener("fetch", event => {
 
       })
       .catch(() => {
-        return caches.match("/pppp_bangladesh/index.html");
+
+        /* Offline page fallback */
+        if (event.request.mode === "navigate") {
+          return caches.match(
+            "/pppp_bangladesh/index.html"
+          );
+        }
+
+        /* Offline image fallback */
+        if (
+          event.request.destination === "image"
+        ) {
+          return caches.match(
+            "/pppp_bangladesh/web-app-manifest-192x192.png"
+          );
+        }
       })
   );
 });
 
 /* Background Sync */
 self.addEventListener("sync", event => {
+
   if (event.tag === "pppp-background-sync") {
+
     event.waitUntil(
       fetch("/pppp_bangladesh/")
-        .then(() => console.log("Background Sync Complete"))
-        .catch(err => console.error("Background Sync Error:", err))
+        .then(() => {
+          console.log(
+            "Background Sync Complete"
+          );
+        })
+        .catch(error => {
+          console.error(error);
+        })
     );
   }
 });
 
 /* Periodic Background Sync */
 self.addEventListener("periodicsync", event => {
+
   if (event.tag === "pppp-periodic-sync") {
+
     event.waitUntil(
       fetch("/pppp_bangladesh/")
-        .then(() => console.log("Periodic Sync Complete"))
-        .catch(err => console.error("Periodic Sync Error:", err))
+        .then(() => {
+          console.log(
+            "Periodic Sync Complete"
+          );
+        })
+        .catch(error => {
+          console.error(error);
+        })
     );
   }
 });
 
-/* Push Notifications */
+/* Push Notification */
 self.addEventListener("push", event => {
 
   let data = {
@@ -111,32 +159,40 @@ self.addEventListener("push", event => {
   if (event.data) {
     try {
       data = event.data.json();
-    } catch (error) {
+    } catch {
       data.body = event.data.text();
     }
   }
 
   event.waitUntil(
-    self.registration.showNotification(data.title, {
-      body: data.body,
-      icon: "/pppp_bangladesh/web-app-manifest-192x192.png",
-      badge: "/pppp_bangladesh/web-app-manifest-192x192.png",
-      data: {
-        url: data.url
+    self.registration.showNotification(
+      data.title,
+      {
+        body: data.body,
+        icon:
+          "/pppp_bangladesh/web-app-manifest-192x192.png",
+        badge:
+          "/pppp_bangladesh/web-app-manifest-192x192.png",
+        data: {
+          url: data.url
+        }
       }
-    })
+    )
   );
 });
 
 /* Notification Click */
-self.addEventListener("notificationclick", event => {
+self.addEventListener(
+  "notificationclick",
+  event => {
 
-  event.notification.close();
+    event.notification.close();
 
-  event.waitUntil(
-    clients.openWindow(
-      event.notification.data?.url || "/pppp_bangladesh/"
-    )
-  );
-});
-```
+    event.waitUntil(
+      clients.openWindow(
+        event.notification.data?.url ||
+        "/pppp_bangladesh/"
+      )
+    );
+  }
+);
