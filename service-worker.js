@@ -1,5 +1,5 @@
-const STATIC_CACHE = "pppp-static-v4";
-const RUNTIME_CACHE = "pppp-runtime-v4";
+const STATIC_CACHE = "pppp-static-v5";
+const RUNTIME_CACHE = "pppp-runtime-v5";
 
 const urlsToCache = [
   "/pppp_bangladesh/",
@@ -24,7 +24,15 @@ const urlsToCache = [
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
-      .then(cache => cache.addAll(urlsToCache))
+      .then(cache =>
+        cache.addAll(urlsToCache)
+          .catch(error => {
+            console.error(
+              "Static cache failed:",
+              error
+            );
+          })
+      )
   );
 
   self.skipWaiting();
@@ -54,6 +62,17 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
 
   if (event.request.method !== "GET") {
+    return;
+  }
+
+  /* Do not cache external requests */
+  if (
+    new URL(event.request.url).origin !==
+    location.origin
+  ) {
+    event.respondWith(
+      fetch(event.request)
+    );
     return;
   }
 
@@ -94,7 +113,9 @@ self.addEventListener("fetch", event => {
       .catch(() => {
 
         /* Offline page fallback */
-        if (event.request.mode === "navigate") {
+        if (
+          event.request.mode === "navigate"
+        ) {
           return caches.match(
             "/pppp_bangladesh/offline.html"
           );
@@ -102,12 +123,22 @@ self.addEventListener("fetch", event => {
 
         /* Offline image fallback */
         if (
-          event.request.destination === "image"
+          event.request.destination ===
+          "image"
         ) {
           return caches.match(
             "/pppp_bangladesh/offline.png"
           );
         }
+
+        /* Default offline response */
+        return new Response(
+          "Offline",
+          {
+            status: 503,
+            statusText: "Offline"
+          }
+        );
 
       })
   );
@@ -116,7 +147,10 @@ self.addEventListener("fetch", event => {
 /* Background Sync */
 self.addEventListener("sync", event => {
 
-  if (event.tag === "pppp-background-sync") {
+  if (
+    event.tag ===
+    "pppp-background-sync"
+  ) {
 
     event.waitUntil(
       fetch("/pppp_bangladesh/")
@@ -126,64 +160,81 @@ self.addEventListener("sync", event => {
           );
         })
         .catch(error => {
-          console.error(error);
+          console.error(
+            "Background Sync Error:",
+            error
+          );
         })
     );
   }
 });
 
 /* Periodic Background Sync */
-self.addEventListener("periodicsync", event => {
+self.addEventListener(
+  "periodicsync",
+  event => {
 
-  if (event.tag === "pppp-periodic-sync") {
+    if (
+      event.tag ===
+      "pppp-periodic-sync"
+    ) {
 
-    event.waitUntil(
-      fetch("/pppp_bangladesh/")
-        .then(() => {
-          console.log(
-            "Periodic Sync Complete"
-          );
-        })
-        .catch(error => {
-          console.error(error);
-        })
-    );
-  }
-});
-
-/* Push Notification */
-self.addEventListener("push", event => {
-
-  let data = {
-    title: "PPPP Bangladesh",
-    body: "New update available",
-    url: "/pppp_bangladesh/"
-  };
-
-  if (event.data) {
-    try {
-      data = event.data.json();
-    } catch {
-      data.body = event.data.text();
+      event.waitUntil(
+        fetch("/pppp_bangladesh/")
+          .then(() => {
+            console.log(
+              "Periodic Sync Complete"
+            );
+          })
+          .catch(error => {
+            console.error(
+              "Periodic Sync Error:",
+              error
+            );
+          })
+      );
     }
   }
+);
 
-  event.waitUntil(
-    self.registration.showNotification(
-      data.title,
-      {
-        body: data.body,
-        icon:
-          "/pppp_bangladesh/web-app-manifest-192x192.png",
-        badge:
-          "/pppp_bangladesh/web-app-manifest-192x192.png",
-        data: {
-          url: data.url
-        }
+/* Push Notification */
+self.addEventListener(
+  "push",
+  event => {
+
+    let data = {
+      title: "PPPP Bangladesh",
+      body: "New update available",
+      url: "/pppp_bangladesh/"
+    };
+
+    if (event.data) {
+      try {
+        data = event.data.json();
+      } catch {
+        data.body =
+          event.data.text();
       }
-    )
-  );
-});
+    }
+
+    event.waitUntil(
+      self.registration
+        .showNotification(
+          data.title,
+          {
+            body: data.body,
+            icon:
+              "/pppp_bangladesh/web-app-manifest-192x192.png",
+            badge:
+              "/pppp_bangladesh/web-app-manifest-192x192.png",
+            data: {
+              url: data.url
+            }
+          }
+        )
+    );
+  }
+);
 
 /* Notification Click */
 self.addEventListener(
