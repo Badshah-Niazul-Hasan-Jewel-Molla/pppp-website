@@ -199,6 +199,7 @@ style="text-align:center; margin:40px 0; font-family:'Segoe UI', sans-serif;">
 <button id="installBtn"
       style="
         display:inline-block;
+        width:260px;
         padding:14px 28px;
         background:#009b77;
         color:white;
@@ -218,17 +219,22 @@ style="text-align:center; margin:40px 0; font-family:'Segoe UI', sans-serif;">
 <!-- DOWNLOAD APK BUTTON -->
 <a href="/pppp_bangladesh/PPPP.apk"
    download
+   id="downloadBtn"
    style="
       display:inline-block;
+      width:260px;
       padding:14px 28px;
-      background:#1565c0;
+      background:#009b77;
       color:white;
       text-decoration:none;
+      border:none;
       border-radius:10px;
       font-weight:bold;
       font-size:1.1em;
+      cursor:pointer;
       margin:10px;
       transition:0.3s;
+      box-sizing:border-box;
    ">
 ⬇️ Download PPPP.apk
 </a>
@@ -244,13 +250,9 @@ Office: PPPP Bangladesh
 </section>
 
 <style>
-#installBtn:hover {
+#installBtn:hover,
+#downloadBtn:hover {
   background:#007a5e;
-  transform:scale(1.05);
-}
-
-#PPPP-app a:hover {
-  background:#0d47a1 !important;
   transform:scale(1.05);
 }
 </style>
