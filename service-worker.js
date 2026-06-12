@@ -14,11 +14,13 @@ const urlsToCache = [
 
 "/pppp_bangladesh/offline.png",
 
-"/pppp_bangladesh/screenshots/home.png",
-"/pppp_bangladesh/screenshots/about.png",
-"/pppp_bangladesh/screenshots/leadership.png",
-"/pppp_bangladesh/screenshots/membership.png",
-"/pppp_bangladesh/screenshots/contact.png"
+"/pppp_bangladesh/home.png",
+"/pppp_bangladesh/about.png",
+"/pppp_bangladesh/leadership.png",
+"/pppp_bangladesh/membership.png",
+"/pppp_bangladesh/contact.png",
+"/pppp_bangladesh/desktop-home.png",
+"/pppp_bangladesh/desktop-about.png"
 ];
 
 /* INSTALL */
@@ -117,9 +119,8 @@ return;
 
 /* Cache First for Assets */
 event.respondWith(
-
 caches.match(event.request)
-  .then(cachedResponse => {
+.then(cachedResponse => {
 
     if (cachedResponse) {
       return cachedResponse;
@@ -209,7 +210,7 @@ event.waitUntil(
 }
 });
 
-/* PERIODIC SYNC */
+/* PERIODIC BACKGROUND SYNC */
 self.addEventListener(
 "periodicsync",
 event => {
@@ -233,6 +234,7 @@ if (
         );
       })
   );
+
 }
 
 }
@@ -250,37 +252,25 @@ let data = {
 };
 
 if (event.data) {
-
   try {
     data = event.data.json();
   } catch {
-
-    data.body =
-      event.data.text();
-
+    data.body = event.data.text();
   }
 }
 
 event.waitUntil(
-
-  self.registration
-    .showNotification(
-      data.title,
-      {
-        body: data.body,
-
-        icon:
-          "/pppp_bangladesh/web-app-manifest-192x192.png",
-
-        badge:
-          "/pppp_bangladesh/web-app-manifest-192x192.png",
-
-        data: {
-          url: data.url
-        }
+  self.registration.showNotification(
+    data.title,
+    {
+      body: data.body,
+      icon: "/pppp_bangladesh/web-app-manifest-192x192.png",
+      badge: "/pppp_bangladesh/web-app-manifest-192x192.png",
+      data: {
+        url: data.url
       }
-    )
-
+    }
+  )
 );
 
 }
@@ -294,12 +284,10 @@ event => {
 event.notification.close();
 
 event.waitUntil(
-
   clients.openWindow(
     event.notification.data?.url ||
     "/pppp_bangladesh/"
   )
-
 );
 
 }
