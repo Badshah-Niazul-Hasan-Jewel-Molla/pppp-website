@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block sensitive or system files (future-safe)
+Disallow: /assets/private/
+Disallow: /admin/
+Disallow: /config/
+
+# Sitemap
 Sitemap: https://naz-niaz.github.io/pppp_bangladesh/sitemap.xml
