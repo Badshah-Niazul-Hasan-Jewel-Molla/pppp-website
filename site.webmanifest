@@ -10,8 +10,6 @@
   "display": "standalone",
 
   "display_override": [
-    "window-controls-overlay",
-    "tabbed",
     "standalone",
     "minimal-ui",
     "browser"
@@ -19,10 +17,10 @@
 
   "orientation": "portrait",
 
-  "theme_color": "#ffffff",
+  "theme_color": "#0b3d2e",
   "background_color": "#ffffff",
 
-  "lang": "en",
+  "lang": "bn-BD",
   "dir": "ltr",
 
   "gcm_sender_id": "103953800507",
@@ -49,16 +47,16 @@
   },
 
   "scope_extensions": [
-  {
-    "origin": "https://ppppbangladesh.org"
-  },
-  {
-    "origin": "https://www.ppppbangladesh.org"
-  },
-  {
-    "origin": "https://naz-niaz.github.io"
-  }
-],
+    {
+      "origin": "https://ppppbangladesh.org"
+    },
+    {
+      "origin": "https://www.ppppbangladesh.org"
+    },
+    {
+      "origin": "https://naz-niaz.github.io"
+    }
+  ],
 
   "edge_side_panel": {
     "preferred_width": 400
@@ -120,59 +118,59 @@
   ],
 
   "shortcuts": [
-  {
-    "name": "About PPPP",
-    "short_name": "About",
-    "description": "Learn about the People's Power & Peace Party",
-    "url": "/pppp_bangladesh/about/",
-    "icons": [
-      {
-        "src": "/pppp_bangladesh/about-pppp.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Leadership",
-    "short_name": "Leadership",
-    "description": "View Party Leadership",
-    "url": "/pppp_bangladesh/leadership/",
-    "icons": [
-      {
-        "src": "/pppp_bangladesh/leadership-pppp.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Membership",
-    "short_name": "Join",
-    "description": "Register for Membership",
-    "url": "/pppp_bangladesh/membership/",
-    "icons": [
-      {
-        "src": "/pppp_bangladesh/membership-pppp.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Contact",
-    "short_name": "Contact",
-    "description": "Contact PPPP Bangladesh",
-    "url": "/pppp_bangladesh/contact/",
-    "icons": [
-      {
-        "src": "/pppp_bangladesh/contact-pppp.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ]
-  }
-],
+    {
+      "name": "About PPPP",
+      "short_name": "About",
+      "description": "Learn about the People's Power & Peace Party",
+      "url": "/pppp_bangladesh/about/",
+      "icons": [
+        {
+          "src": "/pppp_bangladesh/about-pppp.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Leadership",
+      "short_name": "Leadership",
+      "description": "View Party Leadership",
+      "url": "/pppp_bangladesh/leadership/",
+      "icons": [
+        {
+          "src": "/pppp_bangladesh/leadership-pppp.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Membership",
+      "short_name": "Join",
+      "description": "Register for Membership",
+      "url": "/pppp_bangladesh/membership/",
+      "icons": [
+        {
+          "src": "/pppp_bangladesh/membership-pppp.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Contact PPPP Bangladesh",
+      "url": "/pppp_bangladesh/contact/",
+      "icons": [
+        {
+          "src": "/pppp_bangladesh/contact-pppp.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
 
   "screenshots": [
     {
