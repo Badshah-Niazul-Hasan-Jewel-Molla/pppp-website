@@ -1,0 +1,111 @@
+:root {
+  --primary: #0b3d2e;
+  --secondary: #145a43;
+  --accent: #1dbf73;
+  --text: #1a1a1a;
+  --bg: #ffffff;
+  --light: #f5f7f6;
+  --border: #e6e6e6;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* HEADER */
+header {
+  background: var(--primary);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: var(--secondary);
+}
+
+nav a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* CONTAINER */
+.container {
+  width: min(95%, 1100px);
+  margin: auto;
+  padding: 20px;
+}
+
+/* BUTTONS */
+.pppp-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 10px 16px;
+  margin: 6px 0;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.pppp-btn:hover {
+  background: var(--accent);
+  color: black;
+}
+
+/* CARDS */
+.card {
+  background: var(--light);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* SECTION HEADINGS */
+h1, h2, h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--primary);
+  color: white;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
