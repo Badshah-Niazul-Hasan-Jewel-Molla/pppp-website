@@ -1,7 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 🏠 Core Pages -->
   <url>
     <loc>https://naz-niaz.github.io/pppp_bangladesh/</loc>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/about.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/manifesto.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/constitution.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/leadership.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 👥 Membership -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/join.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/membership.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/volunteer.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/donate.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/chapters.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 📰 News & Media -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/news.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/press.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/events.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/gallery.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/videos.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/publications.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 📱 Digital Services -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/app.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/download.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/search.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/newsletter.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 🌐 Contact & Community -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/contact.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/social-media.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/faq.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/feedback.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/complaint.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 🔒 Legal -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/privacy.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/terms.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/disclaimer.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/transparency.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/accessibility.html</loc>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- ⚠️ System Pages -->
+  <url>
+    <loc>https://naz-niaz.github.io/pppp_bangladesh/404.html</loc>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
