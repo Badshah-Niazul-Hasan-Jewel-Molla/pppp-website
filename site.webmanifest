@@ -1,254 +1,256 @@
 {
-  "id": "/pppp_bangladesh/",
-  "name": "People's Power & Peace Party",
-  "short_name": "PPPP",
-  "description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
+"id": "/pppp_bangladesh/",
+"name": "People's Power & Peace Party",
+"short_name": "PPPP",
+"description": "Official website of the People's Power & Peace Party (PPPP) Bangladesh. Power to the People, Peace for the People.",
 
-  "start_url": "/pppp_bangladesh/?source=pwa",
-  "scope": "/pppp_bangladesh/",
+"start_url": "/pppp_bangladesh/?source=pwa",
+"scope": "/pppp_bangladesh/",
 
-  "display": "standalone",
+"display": "standalone",
 
-  "display_override": [
-    "standalone",
-    "minimal-ui",
-    "browser"
-  ],
+"display_override": [
+"window-controls-overlay",
+"tabbed",
+"standalone",
+"minimal-ui",
+"browser"
+],
 
-  "orientation": "portrait",
+"orientation": "portrait",
 
-  "theme_color": "#0b3d2e",
-  "background_color": "#ffffff",
+"theme_color": "#0b3d2e",
+"background_color": "#ffffff",
 
-  "lang": "bn-BD",
-  "dir": "ltr",
+"lang": "bn-BD",
+"dir": "ltr",
 
-  "gcm_sender_id": "103953800507",
+"gcm_sender_id": "103953800507",
 
-  "permissions": [
-    "periodic-background-sync",
-    "notifications"
-  ],
+"permissions": [
+"periodic-background-sync",
+"notifications"
+],
 
-  "prefer_related_applications": false,
+"prefer_related_applications": false,
 
-  "categories": [
-    "politics",
-    "government",
-    "news",
-    "social",
-    "education"
-  ],
+"categories": [
+"politics",
+"government",
+"news",
+"social",
+"education"
+],
 
-  "iarc_rating_id": "e89d4f5a-0000-0000-0000-000000000000",
+"iarc_rating_id": "e89d4f5a-0000-0000-0000-000000000000",
 
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
+"launch_handler": {
+"client_mode": "focus-existing"
+},
 
-  "scope_extensions": [
-    {
-      "origin": "https://ppppbangladesh.org"
-    },
-    {
-      "origin": "https://www.ppppbangladesh.org"
-    },
-    {
-      "origin": "https://naz-niaz.github.io"
-    }
-  ],
+"scope_extensions": [
+{
+"origin": "https://ppppbangladesh.org"
+},
+{
+"origin": "https://www.ppppbangladesh.org"
+},
+{
+"origin": "https://naz-niaz.github.io"
+}
+],
 
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
+"edge_side_panel": {
+"preferred_width": 400
+},
 
-  "tab_strip": {
-    "home_tab": {
-      "scope_patterns": [
-        "/pppp_bangladesh/*"
-      ]
-    },
-    "new_tab_button": {
-      "url": "/pppp_bangladesh/"
-    }
-  },
+"tab_strip": {
+"home_tab": {
+"scope_patterns": [
+"/pppp_bangladesh/*"
+]
+},
+"new_tab_button": {
+"url": "/pppp_bangladesh/"
+}
+},
 
-  "note_taking": {
-    "new_note_url": "/pppp_bangladesh/notes/new"
-  },
+"note_taking": {
+"new_note_url": "/pppp_bangladesh/notes/new"
+},
 
-  "protocol_handlers": [
-    {
-      "protocol": "web+pppp",
-      "url": "/pppp_bangladesh/?url=%s"
-    }
-  ],
+"protocol_handlers": [
+{
+"protocol": "web+pppp",
+"url": "/pppp_bangladesh/?url=%s"
+}
+],
 
-  "file_handlers": [
-    {
-      "action": "/pppp_bangladesh/",
-      "accept": {
-        "text/plain": [".txt"],
-        "application/pdf": [".pdf"],
-        "application/json": [".json"]
-      }
-    }
-  ],
+"file_handlers": [
+{
+"action": "/pppp_bangladesh/",
+"accept": {
+"text/plain": [".txt"],
+"application/pdf": [".pdf"],
+"application/json": [".json"]
+}
+}
+],
 
-  "share_target": {
-    "action": "/pppp_bangladesh/share/",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  },
+"share_target": {
+"action": "/pppp_bangladesh/share/",
+"method": "GET",
+"enctype": "application/x-www-form-urlencoded",
+"params": {
+"title": "title",
+"text": "text",
+"url": "url"
+}
+},
 
-  "widgets": [
-    {
-      "name": "PPPP News",
-      "short_name": "News",
-      "description": "Latest PPPP Bangladesh updates",
-      "tag": "pppp-news",
-      "template": "/pppp_bangladesh/widgets/news.html",
-      "ms_ac_template": "/pppp_bangladesh/widgets/news.html"
-    }
-  ],
+"widgets": [
+{
+"name": "PPPP News",
+"short_name": "News",
+"description": "Latest PPPP Bangladesh updates",
+"tag": "pppp-news",
+"template": "/pppp_bangladesh/widgets/news.html",
+"ms_ac_template": "/pppp_bangladesh/widgets/news.html"
+}
+],
 
-  "shortcuts": [
-    {
-      "name": "About PPPP",
-      "short_name": "About",
-      "description": "Learn about the People's Power & Peace Party",
-      "url": "/pppp_bangladesh/about/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/about-pppp.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Leadership",
-      "short_name": "Leadership",
-      "description": "View Party Leadership",
-      "url": "/pppp_bangladesh/leadership/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/leadership-pppp.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Membership",
-      "short_name": "Join",
-      "description": "Register for Membership",
-      "url": "/pppp_bangladesh/membership/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/membership-pppp.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Contact",
-      "short_name": "Contact",
-      "description": "Contact PPPP Bangladesh",
-      "url": "/pppp_bangladesh/contact/",
-      "icons": [
-        {
-          "src": "/pppp_bangladesh/contact-pppp.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
+"shortcuts": [
+{
+"name": "About PPPP",
+"short_name": "About",
+"description": "Learn about the People's Power & Peace Party",
+"url": "/pppp_bangladesh/about/",
+"icons": [
+{
+"src": "/pppp_bangladesh/about-pppp.png",
+"sizes": "192x192",
+"type": "image/png"
+}
+]
+},
+{
+"name": "Leadership",
+"short_name": "Leadership",
+"description": "View Party Leadership",
+"url": "/pppp_bangladesh/leadership/",
+"icons": [
+{
+"src": "/pppp_bangladesh/leadership-pppp.png",
+"sizes": "192x192",
+"type": "image/png"
+}
+]
+},
+{
+"name": "Membership",
+"short_name": "Join",
+"description": "Register for Membership",
+"url": "/pppp_bangladesh/membership/",
+"icons": [
+{
+"src": "/pppp_bangladesh/membership-pppp.png",
+"sizes": "192x192",
+"type": "image/png"
+}
+]
+},
+{
+"name": "Contact",
+"short_name": "Contact",
+"description": "Contact PPPP Bangladesh",
+"url": "/pppp_bangladesh/contact/",
+"icons": [
+{
+"src": "/pppp_bangladesh/contact-pppp.png",
+"sizes": "192x192",
+"type": "image/png"
+}
+]
+}
+],
 
-  "screenshots": [
-    {
-      "src": "/pppp_bangladesh/home.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Home Screen"
-    },
-    {
-      "src": "/pppp_bangladesh/about.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "About Page"
-    },
-    {
-      "src": "/pppp_bangladesh/leadership.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Leadership"
-    },
-    {
-      "src": "/pppp_bangladesh/membership.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Membership Registration"
-    },
-    {
-      "src": "/pppp_bangladesh/contact.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Contact Information"
-    },
-    {
-      "src": "/pppp_bangladesh/desktop-home.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop Home Screen"
-    },
-    {
-      "src": "/pppp_bangladesh/desktop-about.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop About Page"
-    }
-  ],
+"screenshots": [
+{
+"src": "/pppp_bangladesh/home.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Home Screen"
+},
+{
+"src": "/pppp_bangladesh/about.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "About Page"
+},
+{
+"src": "/pppp_bangladesh/leadership.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Leadership"
+},
+{
+"src": "/pppp_bangladesh/membership.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Membership Registration"
+},
+{
+"src": "/pppp_bangladesh/contact.png",
+"sizes": "1080x1920",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Contact Information"
+},
+{
+"src": "/pppp_bangladesh/desktop-home.png",
+"sizes": "1920x1080",
+"type": "image/png",
+"form_factor": "wide",
+"label": "Desktop Home Screen"
+},
+{
+"src": "/pppp_bangladesh/desktop-about.png",
+"sizes": "1920x1080",
+"type": "image/png",
+"form_factor": "wide",
+"label": "Desktop About Page"
+}
+],
 
-  "related_applications": [
-    {
-      "platform": "play",
-      "id": "com.pppp.bangladesh"
-    }
-  ],
+"related_applications": [
+{
+"platform": "play",
+"id": "com.pppp.bangladesh"
+}
+],
 
-  "icons": [
-    {
-      "src": "/pppp_bangladesh/web-app-manifest-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/pppp_bangladesh/web-app-manifest-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/pppp_bangladesh/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ]
+"icons": [
+{
+"src": "/pppp_bangladesh/web-app-manifest-192x192.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "/pppp_bangladesh/web-app-manifest-512x512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "/pppp_bangladesh/icon-maskable-512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "maskable"
+}
+]
 }
