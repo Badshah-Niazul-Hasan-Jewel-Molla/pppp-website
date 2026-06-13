@@ -190,34 +190,7 @@
         </p>
 
     </section>
-
-    <style>
-    .pppp-btn{
-        display:inline-block;
-        width:260px;
-        padding:14px 28px;
-        background:#009b77;
-        color:white;
-        text-decoration:none;
-        border:none;
-        border-radius:10px;
-        font-weight:bold;
-        font-size:1.1em;
-        cursor:pointer;
-        margin:10px;
-        transition:0.3s;
-        box-sizing:border-box;
-        text-align:center;
-    }
-
-    .pppp-btn:hover{
-        background:#007a5e;
-        transform:scale(1.05);
-    }
-    </style>
-
-</section>
-<style>
+	<style>
 .logo-section {
     display: flex;
     align-items: center;
@@ -232,11 +205,12 @@
     height: auto;
 }
 
+/* Search Box একটির নিচে আরেকটি */
 .search-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
-    justify-content: center;
     margin: 25px 0;
 }
 
@@ -246,6 +220,7 @@
     border-radius: 15px;
     width: 100%;
     max-width: 450px;
+    box-sizing: border-box;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
@@ -277,8 +252,10 @@
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
 }
 
+/* Google Button */
 .google-btn {
     background: #4285F4;
     color: white;
@@ -286,15 +263,18 @@
 
 .google-btn:hover {
     background: #3367D6;
+    transform: scale(1.05);
 }
 
+/* PPPP Button */
 .pppp-btn {
-    background: #FFD700;
-    color: #333;
+    background: #009b77;
+    color: white;
 }
 
 .pppp-btn:hover {
-    background: #FFC107;
+    background: #007a5e;
+    transform: scale(1.05);
 }
 
 .search-note {
@@ -303,7 +283,9 @@
     color: #f0f0f0;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
+
     .logo-section {
         flex-direction: column;
     }
@@ -316,10 +298,15 @@
     .search-form button {
         width: 100%;
     }
+
+    .search-box {
+        max-width: 100%;
+    }
 }
 </style>
 
 <section style="background:olive; color:white; padding:30px 20px;">
+
     <div class="logo-section">
 
         <img src="/pppp_bangladesh/PPPP_Icon_Bangla.png"
@@ -342,6 +329,7 @@
 
                 <!-- Google Search -->
                 <div class="search-box">
+
                     <h3>🌐 Google Search</h3>
 
                     <form class="search-form"
@@ -364,10 +352,12 @@
                     <div class="search-note">
                         🔍 Google-এ যেকোনো তথ্য খুঁজুন
                     </div>
+
                 </div>
 
                 <!-- PPPP Search -->
                 <div class="search-box">
+
                     <h3>🏛️ PPPP Search</h3>
 
                     <form class="search-form"
@@ -394,6 +384,7 @@
                     <div class="search-note">
                         🔎 PPPP Bangladesh-এ যেকোনো তথ্য খুঁজুন
                     </div>
+
                 </div>
 
             </div>
@@ -404,6 +395,7 @@
              alt="PPPP Icon">
 
     </div>
+
 </section>
 <section style="background:green; color:white; padding:20px;">
 
