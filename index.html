@@ -190,21 +190,208 @@
         </p>
 
     </section>
-	<section style="background:olive; color:white">
+	<style>
+.logo-section{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+    text-align:center;
+    max-width:1200px;
+    margin:auto;
+}
+
+.logo-section img{
+    width:100px;
+    height:auto;
+}
+
+.search-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+    margin:20px 0;
+}
+
+.search-box{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:15px;
+    border-radius:8px;
+    width:100%;
+    max-width:500px;
+    box-sizing:border-box;
+}
+
+.search-box h3{
+    color:#ffffff;
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.search-form{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+}
+
+.search-form input[type="text"]{
+    flex:1;
+    min-width:220px;
+    padding:10px 14px;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:6px;
+    font-size:15px;
+    outline:none;
+    background:#ffffff;
+    color:#222;
+}
+
+.search-form button{
+    padding:10px 16px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.2s;
+}
+
+.google-btn{
+    background:#ffffff;
+    color:#0b4fae;
+}
+
+.google-btn:hover{
+    opacity:.9;
+}
+
+.pppp-btn{
+    background:#ffffff;
+    color:#0b4fae;
+}
+
+.pppp-btn:hover{
+    opacity:.9;
+}
+
+.search-note{
+    margin-top:8px;
+    font-size:13px;
+    color:rgba(255,255,255,0.8);
+}
+
+@media (max-width:768px){
+
+    .logo-section{
+        flex-direction:column;
+    }
+
+    .search-form{
+        flex-direction:column;
+    }
+
+    .search-form input,
+    .search-form button{
+        width:100%;
+    }
+
+    .search-box{
+        max-width:100%;
+    }
+}
+</style>
+
+<section style="background:#0b4fae;color:white;padding:35px 20px;">
+
+```
 <div class="logo-section">
-<img src="/pppp_bangladesh/PPPP_Icon_Bangla.png" alt="PPPP Icon Bangla">
-<div>
-<h2>Search the web</h2>
-<p>
-🔎পিপিপিপি🔍
-🔎জনশক্তি ও শান্তি পার্টি (পিপিপিপি)🔍
-🔎People's Power & Peace Party (PPPP)🔍
-🔎পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি)🔍
-🔎পাওয়ার টু দ্য পিপল, পিস ফর দ্য পিপল🔍
-🔎PPPP Bangladesh🔍
-</p>
-</div>
-<img src="/pppp_bangladesh/PPPP_Icon.png" alt="PPPP Icon">
+
+    <img src="/pppp_bangladesh/PPPP_Icon_Bangla.png"
+         alt="PPPP Icon Bangla">
+
+    <div style="flex:1; min-width:300px;">
+
+        <h2>Search the Web</h2>
+
+        <p>
+            🔎পিপিপিপি🔍<br>
+            🔎জনশক্তি ও শান্তি পার্টি (পিপিপিপি)🔍<br>
+            🔎People's Power & Peace Party (PPPP)🔍<br>
+            🔎পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি)🔍<br>
+            🔎পাওয়ার টু দ্য পিপল, পিস ফর দ্য পিপল🔍<br>
+            🔎PPPP Bangladesh🔍
+        </p>
+
+        <div class="search-container">
+
+            <div class="search-box">
+
+                <h3>🌐 Google Search</h3>
+
+                <form class="search-form"
+                      action="https://www.google.com/search"
+                      method="GET"
+                      target="_blank">
+
+                    <input type="text"
+                           name="q"
+                           placeholder="Google-এ খুঁজুন..."
+                           required>
+
+                    <button type="submit"
+                            class="google-btn">
+                        🔍 Google Search
+                    </button>
+
+                </form>
+
+                <div class="search-note">
+                    🔍 Google-এ যেকোনো তথ্য খুঁজুন
+                </div>
+
+            </div>
+
+            <div class="search-box">
+
+                <h3>🏛️ PPPP Search</h3>
+
+                <form class="search-form"
+                      action="https://www.google.com/search"
+                      method="GET"
+                      target="_blank">
+
+                    <input type="text"
+                           name="q"
+                           placeholder="PPPP Bangladesh-এ খুঁজুন..."
+                           required>
+
+                    <input type="hidden"
+                           name="sitesearch"
+                           value="naz-niaz.github.io/pppp_bangladesh">
+
+                    <button type="submit"
+                            class="pppp-btn">
+                        🔎 PPPP Search
+                    </button>
+
+                </form>
+
+                <div class="search-note">
+                    🔎 PPPP Bangladesh-এ যেকোনো তথ্য খুঁজুন
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <img src="/pppp_bangladesh/PPPP_Icon.png"
+         alt="PPPP Icon">
+
 </div>
 </section>
 <section style="background:green; color:white; padding:20px;">
