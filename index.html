@@ -32,66 +32,149 @@
   <link rel="manifest" href="/pppp_bangladesh/site.webmanifest">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      background: #fff;
-      color: #333;
-    }
+/* ==========================
+   Global Body Style
+========================== */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: #fff;
+    color: #333;
+}
 
-    /* Header Section */
+/* ==========================
+   Header / Logo Section
+========================== */
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    background-color: #004aad;
+    color: white;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.logo-section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.logo-section img:hover {
+    transform: scale(1.05);
+}
+
+.logo-section h1,
+.logo-section h2 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.logo-section p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+/* ==========================
+   General Section Style
+========================== */
+section {
+    padding: 30px 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+p {
+    white-space: pre-wrap;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* ==========================
+   PPPP Main Section
+========================== */
+.pppp-section {
+    text-align: center;
+    color: white;
+}
+
+.pppp-content {
+    margin: 40px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.pppp-note {
+    margin-top: 20px;
+    color: #e0f2f1;
+    font-size: 0.95em;
+}
+
+/* ==========================
+   PPPP Buttons
+========================== */
+.pppp-btn {
+    display: inline-block;
+    width: 260px;
+    padding: 14px 28px;
+    background: #009b77;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.pppp-btn:hover {
+    background: #007a5e;
+    transform: scale(1.05);
+}
+
+/* ==========================
+   Responsive Design
+========================== */
+@media (max-width: 768px) {
+
     .logo-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 30px;
-      background-color: #004aad; /* নীল ব্যাকগ্রাউন্ড, শক্তি ও শান্তির প্রতীক */
-      color: white;
-      flex-wrap: wrap;
-      text-align: center;
+        flex-direction: column;
     }
 
     .logo-section img {
-      width: 120px;
-      height: 120px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+        width: 100px;
+        height: 100px;
     }
 
-    .logo-section img:hover {
-      transform: scale(1.05);
-    }
-
-    .logo-section h1 {
-      margin: 0;
-      font-size: 1.8em;
-    }
-
-    .logo-section p {
-      margin: 5px 0 0 0;
-      font-size: 1.1em;
-      font-style: italic;
-    }
-
-    section {
-      padding: 30px 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      font-size: 1.8em;
+    .logo-section h1,
+    .logo-section h2 {
+        font-size: 1.5em;
     }
 
     p {
-      white-space: pre-wrap;
-      text-align: center;
-      font-size: 1.1em;
+        font-size: 1em;
     }
-  </style>
+
+    .pppp-btn {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+</style>
 </head>
 <body>
 
