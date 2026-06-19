@@ -191,24 +191,156 @@
         </p>
 
     </section>
-	<section style="background:olive; color:white">
+<section style="background:olive; color:white">
+
 <div class="logo-section">
+
 <img src="/pppp_bangladesh/PPPP_Icon_Bangla.png" alt="PPPP Icon Bangla">
+
 <div>
-<h2>Search the web</h2>
+
+<h2>Search the Web</h2>
+
 <p>
-🔎পিপিপিপি🔍
-🔎জনশক্তি ও শান্তি পার্টি (পিপিপিপি)🔍
-🔎People's Power & Peace Party (PPPP)🔍
-🔎পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি)🔍
-🔎পাওয়ার টু দ্য পিপল, পিস ফর দ্য পিপল🔍
+🔎পিপিপিপি🔍<br>
+🔎জনশক্তি ও শান্তি পার্টি (পিপিপিপি)🔍<br>
+🔎People's Power & Peace Party (PPPP)🔍<br>
+🔎পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি)🔍<br>
+🔎পাওয়ার টু দ্য পিপল, পিস ফর দ্য পিপল🔍<br>
 🔎PPPP Bangladesh🔍
 </p>
-<a href="https://www.google.com/search"class="pppp-btn"target="_blank">🔍 Google Search</a>
-<a href="/pppp_bangladesh/search.html" class="pppp-btn">🔍 PPPP Search</a>
+
+<input
+type="text"
+id="googleSearch"
+class="pppp-search-box"
+placeholder="🔍 Google Search..."
+onkeydown="if(event.key==='Enter')googleSearch()">
+
+<input
+type="text"
+id="ppppSearch"
+class="pppp-search-box"
+placeholder="🔍 PPPP Search..."
+onkeyup="searchPPPP()">
+
+<div id="searchResults"></div>
+
 </div>
+
 <img src="/pppp_bangladesh/PPPP_Icon.png" alt="PPPP Icon">
+
 </div>
+
+<style>
+.pppp-search-box{
+    display:block;
+    width:260px;
+    padding:14px;
+    margin:10px auto;
+    border:none;
+    border-radius:10px;
+    background:#009b77;
+    color:white;
+    font-size:1.1em;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+.pppp-search-box::placeholder{
+    color:white;
+}
+
+#searchResults{
+    width:260px;
+    margin:auto;
+    background:white;
+    color:black;
+    border-radius:10px;
+    overflow:hidden;
+    max-height:250px;
+    overflow-y:auto;
+}
+
+.result-item{
+    padding:12px;
+    cursor:pointer;
+    border-bottom:1px solid #ddd;
+}
+
+.result-item:hover{
+    background:#f2f2f2;
+}
+</style>
+
+<script>
+function googleSearch(){
+
+    const q =
+    document.getElementById("googleSearch")
+    .value.trim();
+
+    if(q){
+        window.open(
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(q),
+        "_blank"
+        );
+    }
+
+}
+
+function searchPPPP(){
+
+    const q =
+    document.getElementById("ppppSearch")
+    .value.toLowerCase().trim();
+
+    const results =
+    document.getElementById("searchResults");
+
+    results.innerHTML="";
+
+    if(!q) return;
+
+    document
+    .querySelectorAll("h2")
+    .forEach(h2=>{
+
+        if(
+        h2.textContent
+        .toLowerCase()
+        .includes(q)
+        ){
+
+            const item =
+            document.createElement("div");
+
+            item.className =
+            "result-item";
+
+            item.textContent =
+            h2.textContent;
+
+            item.onclick = ()=>{
+
+                h2.scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
+
+                results.innerHTML="";
+            };
+
+            results.appendChild(item);
+
+        }
+
+    });
+
+}
+</script>
+
 </section>
 <section style="background:green; color:white; padding:20px;">
 
