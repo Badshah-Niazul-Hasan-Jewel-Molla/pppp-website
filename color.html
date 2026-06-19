@@ -1,104 +1,381 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>125 Color Box System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors)</title><style>
+*{
+  box-sizing:border-box;
+}
 
-<style>
 body{
   margin:0;
-  background:#0f0f0f;
   font-family:Arial, sans-serif;
-  color:#ddd;
-}
-
-h1{
-  text-align:center;
-  padding:20px;
+  background:#0f0f0f;
   color:#fff;
+  transition:.3s;
 }
 
-.container{
+body.light{
+  background:#f5f5f5;
+  color:#111;
+}
+
+.header{
+  text-align:center;
+  padding:25px 15px;
+}
+
+.header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.header p{
+  max-width:900px;
+  margin:12px auto;
+  line-height:1.6;
+  color:#aaa;
+}
+
+body.light .header p{
+  color:#555;
+}
+
+.toolbar{
   display:flex;
-  flex-wrap:wrap;
   justify-content:center;
-  gap:6px;
-  padding:20px;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.toolbar input{
+  padding:10px;
+  width:240px;
+  border:none;
+  border-radius:8px;
+}
+
+.toolbar button{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.section-title{
+  margin:30px 20px 10px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  padding:0 20px 25px;
 }
 
 .box{
-  width:110px;
-  height:60px;
+  min-height:100px;
+  border-radius:10px;
+  padding:10px;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-  font-size:12px;
+  align-items:center;
   cursor:pointer;
-  color:#fff;
-  border-radius:6px;
-  box-shadow:0 0 6px rgba(0,0,0,0.4);
-  transition:0.2s;
+  font-weight:bold;
+  text-align:center;
+  text-shadow:0 1px 3px rgba(0,0,0,.6);
+  transition:.2s;
 }
 
 .box:hover{
-  transform:scale(1.05);
+  transform:scale(1.04);
 }
-</style>
-</head>
 
-<body>
+.hex{
+  font-size:14px;
+}
 
-<h1>125 Tone Color Grid</h1>
-<div class="container" id="grid"></div>
+.name{
+  font-size:12px;
+  margin-top:6px;
+}
 
-<script>
-const colors = [
-"#191919","#191938","#191957","#191976","#191995",
-"#193819","#193838","#193857","#193876","#193895",
-"#195719","#195738","#195757","#195776","#195795",
-"#197619","#197638","#197657","#197676","#197695",
-"#199519","#199538","#199557","#199576","#199595",
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#222;
+  padding:10px 14px;
+  border-radius:8px;
+  opacity:0;
+  transition:.3s;
+}
 
-"#381919","#381938","#381957","#381976","#381995",
-"#383819","#383838","#383857","#383876","#383895",
-"#385719","#385738","#385757","#385776","#385795",
-"#387619","#387638","#387657","#387676","#387695",
-"#389519","#389538","#389557","#389576","#389595",
+.toast.show{
+  opacity:1;
+}
 
-"#571919","#571938","#571957","#571976","#571995",
-"#573819","#573838","#573857","#573876","#573895",
-"#575719","#575738","#575757","#575776","#575795",
-"#577619","#577638","#577657","#577676","#577695",
-"#579519","#579538","#579557","#579576","#579595",
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
 
-"#761919","#761938","#761957","#761976","#761995",
-"#763819","#763838","#763857","#763876","#763895",
-"#765719","#765738","#765757","#765776","#765795",
-"#767619","#767638","#767657","#767676","#767695",
-"#769519","#769538","#769557","#769576","#769595",
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style></head><body><div class="header">
+<h1> 19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors) </h1><p>
+🎨 Overview<br>
+A mathematical color system generated using the repeating HEX pattern:
+19, 38, 57, 76, 95 — forming a structured palette of 125 unique colors.
+</p><div class="toolbar">
+<input type="text" id="search" placeholder="Search HEX or Name...">
+<button onclick="toggleTheme()">🌗 Theme</button>
+</div>
+</div><div id="app"></div><div class="toast" id="toast">Copied</div><script>
+const sections = [
 
-"#951919","#951938","#951957","#951976","#951995",
-"#953819","#953838","#953857","#953876","#953895",
-"#955719","#955738","#955757","#955776","#955795",
-"#957619","#957638","#957657","#957676","#957695",
-"#959519","#959538","#959557","#959576","#959595"
+{
+title:"🌑 Base / Dark Core System",
+items:[
+{hex:"#191919",name:"গাঢ় চারকোল কালো"},
+{hex:"#191938",name:"নীলাভ কালো"},
+{hex:"#191957",name:"গভীর ইন্ডিগো"},
+{hex:"#191976",name:"গাঢ় রয়্যাল ব্লু"},
+{hex:"#191995",name:"ইলেকট্রিক ইন্ডিগো"},
+
+{hex:"#193819",name:"ডার্ক অলিভ সবুজ"},
+{hex:"#193838",name:"শ্যাডো টিল"},
+{hex:"#193857",name:"গভীর নেভি নীল"},
+{hex:"#193876",name:"স্টিল হরাইজন"},
+{hex:"#193895",name:"ফ্রস্টেড নেভি"},
+
+{hex:"#195719",name:"গভীর জঙ্গল সবুজ"},
+{hex:"#195738",name:"ফরেস্ট মিস্ট"},
+{hex:"#195757",name:"মিউটেড এভারগ্রিন"},
+{hex:"#195776",name:"স্টিল ব্লু"},
+{hex:"#195795",name:"আর্কটিক ব্লু"},
+
+{hex:"#197619",name:"ফরেস্ট গ্রিন"},
+{hex:"#197638",name:"মস শ্যাডো"},
+{hex:"#197657",name:"ডিপ লিফ গ্রিন"},
+{hex:"#197676",name:"স্লেট নেচার"},
+{hex:"#197695",name:"স্লেট ব্লু"},
+
+{hex:"#199519",name:"নিয়ন ফরেস্ট স্পার্ক"},
+{hex:"#199538",name:"ব্রাইট মস গ্লো"},
+{hex:"#199557",name:"একোয়া গ্রিন পালস"},
+{hex:"#199576",name:"সফট সায়ান মিস্ট"},
+{hex:"#199595",name:"পেল একোয়া"}
+]
+},
+
+{
+title:"🌊 Ocean / Blue Spectrum",
+items:[
+{hex:"#381919",name:"গাঢ় মেরুন"},
+{hex:"#381938",name:"ডার্ক রোজ শ্যাডো"},
+{hex:"#381957",name:"ওয়াইন ডিপ"},
+{hex:"#381976",name:"বার্ন্ট ইন্ডিগো"},
+{hex:"#381995",name:"ডার্ক পার্পল টিন্ট"},
+
+{hex:"#383819",name:"আর্থ শ্যাডো ক্লে"},
+{hex:"#383838",name:"ডার্ক স্টোন গ্রে"},
+{hex:"#383857",name:"মিড নাইট স্টিল"},
+{hex:"#383876",name:"ডাস্টি ব্লু গ্রে"},
+{hex:"#383895",name:"ফ্রস্টেড নেভি গ্রে"},
+
+{hex:"#385719",name:"বার্ন্ট অলিভ"},
+{hex:"#385738",name:"মস ব্রাউন"},
+{hex:"#385757",name:"ডার্ক টিল-গ্রে"},
+{hex:"#385776",name:"স্টিল ব্লু গ্রে"},
+{hex:"#385795",name:"কুল ব্লু স্টিল"},
+
+{hex:"#387619",name:"রাস্টেড গ্রিন"},
+{hex:"#387638",name:"ডিপ সেজ"},
+{hex:"#387657",name:"ডার্ক গ্রিন গ্রে"},
+{hex:"#387676",name:"স্লেট মস"},
+{hex:"#387695",name:"ধূসরাভ নীল"},
+
+{hex:"#389519",name:"ফেইড এম্বার"},
+{hex:"#389538",name:"ডার্ক কপার"},
+{hex:"#389557",name:"রেডিশ ব্রাউন"},
+{hex:"#389576",name:"স্মোকি রোজ"},
+{hex:"#389595",name:"সি-গ্রিন টিল"}
+]
+},
+
+{
+title:"🌿 Nature / Green Flow System",
+items:[
+{hex:"#571919",name:"গভীর ওয়াইন শ্যাডো"},
+{hex:"#571938",name:"ডার্ক ব্রিক ওয়াইন"},
+{hex:"#571957",name:"বার্গান্ডি ডিপ"},
+{hex:"#571976",name:"রেড ইন্ডিগো"},
+{hex:"#571995",name:"ডার্ক প্লাম"},
+
+{hex:"#573819",name:"স্মোকি ব্রিক"},
+{hex:"#573838",name:"উষ্ণ ধূসর"},
+{hex:"#573857",name:"মিড ব্রাউন গ্রে"},
+{hex:"#573876",name:"ডার্ক স্টোন"},
+{hex:"#573895",name:"মভ গ্রে"},
+
+{hex:"#575719",name:"মিউটেড আর্থ ব্রাউন"},
+{hex:"#575738",name:"ডার্ক ক্লে"},
+{hex:"#575757",name:"মাঝারি ধূসর"},
+{hex:"#575776",name:"স্টোন ব্লু"},
+{hex:"#575795",name:"ডাস্টি ব্লু"},
+
+{hex:"#577619",name:"ডাস্টি ফরেস্ট গ্রে"},
+{hex:"#577638",name:"মস গ্রে"},
+{hex:"#577657",name:"কুল আর্থ গ্রে"},
+{hex:"#577676",name:"নিউট্রাল স্টোন"},
+{hex:"#577695",name:"ডাস্টি ব্লু"},
+
+{hex:"#579519",name:"সফট রোজ আর্থ"},
+{hex:"#579538",name:"ডার্ক রোজ গ্রে"},
+{hex:"#579557",name:"মিউটেড পিঙ্ক গ্রে"},
+{hex:"#579576",name:"ফেডেড মভ"},
+{hex:"#579595",name:"মিউটেড টিল"}
+]
+},
+
+{
+title:"🔥 Earth / Warm Core System",
+items:[
+{hex:"#761919",name:"ডার্ক ব্লাড উড"},
+{hex:"#761938",name:"ডার্ক চেরি ব্রাউন"},
+{hex:"#761957",name:"বার্ন্ট ওয়াইন উড"},
+{hex:"#761976",name:"ডার্ক রুবি"},
+{hex:"#761995",name:"ডিপ প্লাম উড"},
+
+{hex:"#763819",name:"রুস্টিক বার্ক ব্রাউন"},
+{hex:"#763838",name:"কফি ব্রাউন"},
+{hex:"#763857",name:"ডার্ক চকোলেট"},
+{hex:"#763876",name:"মোকা গ্রে"},
+{hex:"#763895",name:"ডার্ক কপার গ্রে"},
+
+{hex:"#765719",name:"আর্থ স্টোন ক্লে"},
+{hex:"#765738",name:"ডার্ক স্যান্ড স্টোন"},
+{hex:"#765757",name:"টোপ"},
+{hex:"#765776",name:"স্টোন গ্রে ব্লু"},
+{hex:"#765795",name:"কুল গ্রে ব্লু"},
+
+{hex:"#767619",name:"নিউট্রাল গ্রানাইট"},
+{hex:"#767638",name:"স্টোন গ্রে"},
+{hex:"#767657",name:"কুল গ্রে"},
+{hex:"#767676",name:"নিরপেক্ষ ধূসর"},
+{hex:"#767695",name:"সফট ব্লু গ্রে"},
+
+{hex:"#769519",name:"লাইট অ্যাশ স্টোন"},
+{hex:"#769538",name:"ফেইড স্টোন"},
+{hex:"#769557",name:"মিস্ট গ্রে"},
+{hex:"#769576",name:"লাইট স্লেট"},
+{hex:"#769595",name:"ধূসরাভ টিল"}
+]
+},
+
+{
+title:"🌫 Neutral / Final Layer System",
+items:[
+{hex:"#951919",name:"বারগান্ডি অ্যাশ"},
+{hex:"#951938",name:"ডার্ক রেড গ্রে"},
+{hex:"#951957",name:"ওয়াইন গ্রে"},
+{hex:"#951976",name:"ডিপ রেড ভেইল"},
+{hex:"#951995",name:"ডার্ক পিঙ্ক শ্যাডো"},
+
+{hex:"#953819",name:"রোজউড ক্লে"},
+{hex:"#953838",name:"ইট-লাল"},
+{hex:"#953857",name:"রেড ক্লে"},
+{hex:"#953876",name:"বার্ন্ট পিঙ্ক"},
+{hex:"#953895",name:"ডার্ক রোজ ব্রিক"},
+
+{hex:"#955719",name:"ডাস্টি রোজ আর্থ"},
+{hex:"#955738",name:"মিউটেড রোজ"},
+{hex:"#955757",name:"রোজ ব্রাউন"},
+{hex:"#955776",name:"পিঙ্ক স্টোন"},
+{hex:"#955795",name:"সফট রোজ গ্রে"},
+
+{hex:"#957619",name:"পেল মভ স্টোন"},
+{hex:"#957638",name:"মভ স্টোন"},
+{hex:"#957657",name:"লাইট মভ গ্রে"},
+{hex:"#957676",name:"মভ-গ্রে"},
+{hex:"#957695",name:"পেল ল্যাভেন্ডার গ্রে"},
+
+{hex:"#959519",name:"সফট মিস্ট গ্রে"},
+{hex:"#959538",name:"লাইট ফগ"},
+{hex:"#959557",name:"পেল স্টিল"},
+{hex:"#959576",name:"কুল লাইট গ্রে"},
+{hex:"#959595",name:"হালকা ধূসর"}
+]
+}
 ];
 
-function copyHex(hex){
-  navigator.clipboard.writeText(hex);
+function showToast(text){
+ const t=document.getElementById("toast");
+ t.innerText=text;
+ t.classList.add("show");
+ setTimeout(()=>t.classList.remove("show"),1200);
 }
 
-const grid = document.getElementById("grid");
+function render(){
+ const app=document.getElementById("app");
+ const q=document.getElementById("search").value.toLowerCase();
 
-colors.forEach(c=>{
-  const div = document.createElement("div");
-  div.className = "box";
-  div.style.background = c;
-  div.innerText = c;
-  div.onclick = () => copyHex(c);
-  grid.appendChild(div);
-});
-</script>
+ app.innerHTML="";
 
-</body>
+ sections.forEach(section=>{
+   const filtered=section.items.filter(item =>
+      item.hex.toLowerCase().includes(q) ||
+      item.name.toLowerCase().includes(q)
+   );
+
+   if(filtered.length===0) return;
+
+   const title=document.createElement("div");
+   title.className="section-title";
+   title.innerText=section.title;
+   app.appendChild(title);
+
+   const grid=document.createElement("div");
+   grid.className="grid";
+
+   filtered.forEach(item=>{
+      const box=document.createElement("div");
+      box.className="box";
+      box.style.background=item.hex;
+
+      box.innerHTML=`
+      <div class="hex">${item.hex}</div>
+      <div class="name">${item.name}</div>
+      `;
+
+      box.onclick=()=>{
+        navigator.clipboard.writeText(item.hex);
+        showToast("Copied: " + item.hex);
+      };
+
+      grid.appendChild(box);
+   });
+
+   app.appendChild(grid);
+ });
+}
+
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+
+document.getElementById("search").addEventListener("input",render);
+
+render();
+</script></body>
 </html>
