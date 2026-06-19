@@ -211,11 +211,13 @@
 </p>
 
 <input
-type="text"
+type="search"
 id="googleSearch"
 class="pppp-search-box"
 placeholder="🔍 Google Search..."
-onkeydown="handleGoogleSearch(event)">
+enterkeyhint="search"
+autocomplete="off"
+onkeypress="handleGoogleSearch(event)">
 
 <input
 type="text"
@@ -296,8 +298,11 @@ function handleGoogleSearch(event){
     if(event.key==="Enter"){
 
         event.preventDefault();
+        event.stopPropagation();
 
         googleSearch();
+
+        return false;
 
     }
 
@@ -305,18 +310,21 @@ function handleGoogleSearch(event){
 
 function googleSearch(){
 
-    const q=document
-    .getElementById("googleSearch")
-    .value
-    .trim();
+    const box=document.getElementById("googleSearch");
 
-    if(q){
+    const q=box.value.trim();
+
+    if(!q) return;
+
+    box.blur();
+
+    setTimeout(function(){
 
         window.location.href=
         "https://www.google.com/search?q="+
         encodeURIComponent(q);
 
-    }
+    },50);
 
 }
 
