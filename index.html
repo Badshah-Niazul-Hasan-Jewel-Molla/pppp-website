@@ -191,7 +191,7 @@
         </p>
 
     </section>
-<section style="background:olive; color:white">
+<section style="background:olive; color:white;">
 
 <div class="logo-section">
 
@@ -215,7 +215,7 @@ type="text"
 id="googleSearch"
 class="pppp-search-box"
 placeholder="🔍 Google Search..."
-onkeydown="if(event.key==='Enter')googleSearch()">
+onkeydown="handleGoogleSearch(event)">
 
 <input
 type="text"
@@ -233,103 +233,181 @@ onkeyup="searchPPPP()">
 </div>
 
 <style>
+
 .pppp-search-box{
     display:block;
     width:260px;
     padding:14px;
     margin:10px auto;
-    border:none;
+    border:2px solid #009b77;
     border-radius:10px;
-    background:#009b77;
-    color:white;
-    font-size:1.1em;
+    background:#fff;
+    color:#000;
+    font-size:1.05em;
     text-align:center;
     box-sizing:border-box;
+    outline:none;
 }
 
 .pppp-search-box::placeholder{
-    color:white;
+    color:#666;
+}
+
+.pppp-search-box:focus{
+    border-color:#007b5e;
+    box-shadow:0 0 8px rgba(0,123,94,.35);
 }
 
 #searchResults{
     width:260px;
-    margin:auto;
-    background:white;
-    color:black;
+    margin:8px auto;
+    background:#fff;
+    color:#000;
     border-radius:10px;
     overflow:hidden;
     max-height:250px;
     overflow-y:auto;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
 }
 
 .result-item{
-    padding:12px;
+    padding:10px 12px;
     cursor:pointer;
     border-bottom:1px solid #ddd;
+    text-align:left;
+    line-height:1.4;
+    font-size:.95em;
 }
 
 .result-item:hover{
     background:#f2f2f2;
 }
+
+.result-item:last-child{
+    border-bottom:none;
+}
+
 </style>
 
 <script>
+
+function handleGoogleSearch(event){
+
+    if(event.key==="Enter"){
+
+        event.preventDefault();
+
+        googleSearch();
+
+    }
+
+}
+
 function googleSearch(){
 
-    const q =
-    document.getElementById("googleSearch")
-    .value.trim();
+    const q=document
+    .getElementById("googleSearch")
+    .value
+    .trim();
 
     if(q){
-        window.open(
-        "https://www.google.com/search?q=" +
-        encodeURIComponent(q),
-        "_blank"
-        );
+
+        window.location.href=
+        "https://www.google.com/search?q="+
+        encodeURIComponent(q);
+
     }
 
 }
 
 function searchPPPP(){
 
-    const q =
-    document.getElementById("ppppSearch")
-    .value.toLowerCase().trim();
+    const q=document
+    .getElementById("ppppSearch")
+    .value
+    .toLowerCase()
+    .trim();
 
-    const results =
-    document.getElementById("searchResults");
+    const results=document
+    .getElementById("searchResults");
 
     results.innerHTML="";
 
     if(!q) return;
 
-    document
-    .querySelectorAll("h2")
-    .forEach(h2=>{
+    const elements=document.querySelectorAll(
+    "h1,h2,h3,h4,h5,h6,p,li,span,div"
+    );
+
+    const shown=new Set();
+    let found=0;
+
+    elements.forEach(function(el){
+
+        const text=(el.innerText||"").trim();
 
         if(
-        h2.textContent
-        .toLowerCase()
-        .includes(q)
+            !text ||
+            text.length<5 ||
+            shown.has(text)
+        ) return;
+
+        if(
+            text.toLowerCase().includes(q)
         ){
 
-            const item =
-            document.createElement("div");
+            shown.add(text);
 
-            item.className =
-            "result-item";
+            found++;
 
-            item.textContent =
-            h2.textContent;
+            const item=document.createElement("div");
 
-            item.onclick = ()=>{
+            item.className="result-item";
 
-                h2.scrollIntoView({
+            let preview=text;
+
+            if(preview.length>100){
+
+                preview=
+                preview.substring(0,100)+"...";
+
+            }
+
+            item.innerHTML=
+            "🔍 "+preview;
+
+            item.onclick=function(){
+
+                el.scrollIntoView({
+
                     behavior:"smooth",
-                    block:"start"
+
+                    block:"center"
+
                 });
 
+                const oldBg=
+                el.style.backgroundColor;
+
+                el.style.transition=
+                "background-color .3s";
+
+                el.style.backgroundColor=
+                "#ffff66";
+
+                setTimeout(function(){
+
+                    el.style.backgroundColor=
+                    oldBg;
+
+                },2000);
+
                 results.innerHTML="";
+
+                document
+                .getElementById("ppppSearch")
+                .value="";
+
             };
 
             results.appendChild(item);
@@ -338,7 +416,15 @@ function searchPPPP(){
 
     });
 
+    if(found===0){
+
+        results.innerHTML=
+        "<div class='result-item'>❌ No Results Found</div>";
+
+    }
+
 }
+
 </script>
 
 </section>
