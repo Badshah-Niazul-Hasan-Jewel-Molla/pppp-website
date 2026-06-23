@@ -1,120 +1,791 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PPPP Email Directory</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);background-size:400% 400%;animation:bg 15s infinite;padding:20px}
-@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-h1{text-align:center;color:#fff}
-input{width:100%;padding:14px;border-radius:12px;border:none;margin:15px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{padding:15px;border-radius:16px;color:white;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.2)}
-.email{font-weight:bold}
-.toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;padding:10px 15px;border-radius:8px;display:none}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    min-height:100vh;
+    color:white;
+    padding:20px;
+}
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:40px;
+}
+.search-box{
+    text-align:center;
+    margin-bottom:30px;
+}
+input{
+    width:80%;
+    max-width:700px;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    font-size:18px;
+    outline:none;
+}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+.card{
+    padding:20px;
+    border-radius:20px;
+    cursor:pointer;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.2);
+    transition:0.3s;
+}
+.card:hover{
+    transform:translateY(-5px) scale(1.02);
+}
+.card h3{
+    font-size:18px;
+    word-break:break-all;
+}
+.card p{
+    margin-top:10px;
+    font-size:14px;
+}
 </style>
 </head>
 <body>
+
 <h1>PPPP Official Email Directory</h1>
-<input id="search" placeholder="সার্চ করুন...">
-<div class="grid" id="grid"></div>
-<div id="toast" class="toast">Copied!</div>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search email or description..." onkeyup="searchCards()">
+</div>
+
+<div class="grid" id="grid">
+
+<div class="card" onclick="copyEmail('pppp.bangladesh@gmail.com')">
+<h3>pppp.bangladesh@gmail.com</h3>
+<p>প্রধান / অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.main@gmail.com')">
+<h3>pppp.main@gmail.com</h3>
+<p>কেন্দ্রীয় / হেডকোয়ার্টার</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.office@gmail.com')">
+<h3>pppp.office@gmail.com</h3>
+<p>প্রশাসনিক অফিস</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.info@gmail.com')">
+<h3>pppp.info@gmail.com</h3>
+<p>সাধারণ তথ্য ও তথ্যের অনুরোধ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.contact@gmail.com')">
+<h3>pppp.contact@gmail.com</h3>
+<p>যোগাযোগের জন্য</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.help@gmail.com')">
+<h3>pppp.help@gmail.com</h3>
+<p>সাধারণ সহায়তা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.internal@gmail.com')">
+<h3>pppp.internal@gmail.com</h3>
+<p>অভ্যন্তরীণ টিম যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.central@gmail.com')">
+<h3>pppp.central@gmail.com</h3>
+<p>কেন্দ্রীয় কার্যালয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.public@gmail.com')">
+<h3>pppp.public@gmail.com</h3>
+<p>জনসাধারণের যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.feedback@gmail.com')">
+<h3>pppp.feedback@gmail.com</h3>
+<p>মতামত, পরামর্শ ও জনমত গ্রহণ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.support@gmail.com')">
+<h3>pppp.support@gmail.com</h3>
+<p>সদস্য ও সাধারণ মানুষের সহায়তা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.inquiry@gmail.com')">
+<h3>pppp.inquiry@gmail.com</h3>
+<p>প্রশ্ন ও অনুসন্ধান</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.feedback@gmail.com')">
+<h3>pppp.feedback@gmail.com</h3>
+<p>মতামত, পরামর্শ ও জনমত গ্রহণ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.replies@gmail.com')">
+<h3>pppp.replies@gmail.com</h3>
+<p>অফিশিয়াল উত্তর প্রদান</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.helpdesk@gmail.com')">
+<h3>pppp.helpdesk@gmail.com</h3>
+<p>সেবাসংক্রান্ত কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.assistance@gmail.com')">
+<h3>pppp.assistance@gmail.com</h3>
+<p>বিশেষ সহায়তা</p>
+</div>
+<div class="card" onclick="copyEmail('pppp.media@gmail.com')">
+<h3>pppp.media@gmail.com</h3>
+<p>মিডিয়া সমন্বয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.press@gmail.com')">
+<h3>pppp.press@gmail.com</h3>
+<p>সাংবাদিক ও প্রেস যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.news@gmail.com')">
+<h3>pppp.news@gmail.com</h3>
+<p>সংবাদ বিজ্ঞপ্তি ও আপডেট</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.editorial@gmail.com')">
+<h3>pppp.editorial@gmail.com</h3>
+<p>সম্পাদকীয় কাজ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.publicity@gmail.com')">
+<h3>pppp.publicity@gmail.com</h3>
+<p>প্রচার ও প্রচারণা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.campaign@gmail.com')">
+<h3>pppp.campaign@gmail.com</h3>
+<p>নির্বাচনী ও অন্যান্য ক্যাম্পেইন</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.communications@gmail.com')">
+<h3>pppp.communications@gmail.com</h3>
+<p>অফিশিয়াল যোগাযোগ ব্যবস্থাপনা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.announcements@gmail.com')">
+<h3>pppp.announcements@gmail.com</h3>
+<p>গণবার্তা ও ঘোষণা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.members@gmail.com')">
+<h3>pppp.members@gmail.com</h3>
+<p>সদস্য নিবন্ধন ও সদস্যসেবা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.organization@gmail.com')">
+<h3>pppp.organization@gmail.com</h3>
+<p>সাংগঠনিক বিষয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.network@gmail.com')">
+<h3>pppp.network@gmail.com</h3>
+<p>নেটওয়ার্ক ও সমন্বয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.volunteer@gmail.com')">
+<h3>pppp.volunteer@gmail.com</h3>
+<p>স্বেচ্ছাসেবক কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.coordination@gmail.com')">
+<h3>pppp.coordination@gmail.com</h3>
+<p>সমন্বয় কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.secretariat@gmail.com')">
+<h3>pppp.secretariat@gmail.com</h3>
+<p>সচিবালয়ের অফিসিয়াল কাজ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.committees@gmail.com')">
+<h3>pppp.committees@gmail.com</h3>
+<p>কমিটি সংক্রান্ত যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.students@gmail.com')">
+<h3>pppp.students@gmail.com</h3>
+<p>ছাত্র শাখা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.youth@gmail.com')">
+<h3>pppp.youth@gmail.com</h3>
+<p>যুব শাখা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.women@gmail.com')">
+<h3>pppp.women@gmail.com</h3>
+<p>নারী শাখা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.doctors@gmail.com')">
+<h3>pppp.doctors@gmail.com</h3>
+<p>চিকিৎসক শাখা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.admin@gmail.com')">
+<h3>pppp.admin@gmail.com</h3>
+<p>প্রশাসনিক কাজ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.planning@gmail.com')">
+<h3>pppp.planning@gmail.com</h3>
+<p>ব্যবস্থাপনা ও পরিকল্পনা</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.accounts@gmail.com')">
+<h3>pppp.accounts@gmail.com</h3>
+<p>হিসাবরক্ষণ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.finance@gmail.com')">
+<h3>pppp.finance@gmail.com</h3>
+<p>অর্থ ও বাজেট</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.legal@gmail.com')">
+<h3>pppp.legal@gmail.com</h3>
+<p>আইনি বিষয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.archives@gmail.com')">
+<h3>pppp.archives@gmail.com</h3>
+<p>রেকর্ড ও আর্কাইভ সংরক্ষণ</p>
+</div>
+<div class="card" onclick="copyEmail('pppp.international@gmail.com')">
+<h3>pppp.international@gmail.com</h3>
+<p>বিদেশি সংগঠন ও প্রতিনিধিদের যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.global@gmail.com')">
+<h3>pppp.global@gmail.com</h3>
+<p>আন্তর্জাতিক যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.diplomacy@gmail.com')">
+<h3>pppp.diplomacy@gmail.com</h3>
+<p>কূটনৈতিক যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.foreignaffairs@gmail.com')">
+<h3>pppp.foreignaffairs@gmail.com</h3>
+<p>বিদেশবিষয়ক কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.bangladesh@gmail.com')">
+<h3>pppp.bangladesh@gmail.com</h3>
+<p>প্রধান / অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.main@gmail.com')">
+<h3>pppp.main@gmail.com</h3>
+<p>কেন্দ্রীয় / হেডকোয়ার্টার</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.office@gmail.com')">
+<h3>pppp.office@gmail.com</h3>
+<p>প্রশাসনিক অফিস</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.info@gmail.com')">
+<h3>pppp.info@gmail.com</h3>
+<p>তথ্য প্রদান</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.contact@gmail.com')">
+<h3>pppp.contact@gmail.com</h3>
+<p>সাধারণ যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.support@gmail.com')">
+<h3>pppp.support@gmail.com</h3>
+<p>সহায়তা ও অভিযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.press@gmail.com')">
+<h3>pppp.press@gmail.com</h3>
+<p>প্রেস ও সাংবাদিক</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.media@gmail.com')">
+<h3>pppp.media@gmail.com</h3>
+<p>মিডিয়া ও প্রচার</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.members@gmail.com')">
+<h3>pppp.members@gmail.com</h3>
+<p>সদস্য বিষয়ক</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.admin@gmail.com')">
+<h3>pppp.admin@gmail.com</h3>
+<p>প্রশাসনিক কাজ</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.legal@gmail.com')">
+<h3>pppp.legal@gmail.com</h3>
+<p>আইনি বিষয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.main@gmail.com')">
+<h3>pppp.main@gmail.com</h3>
+<p>কেন্দ্রীয় / হেডকোয়ার্টার</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.students@gmail.com')">
+<h3>pppp.students@gmail.com</h3>
+<p>ছাত্র পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.youth@gmail.com')">
+<h3>pppp.youth@gmail.com</h3>
+<p>যুব পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.farmers@gmail.com')">
+<h3>pppp.farmers@gmail.com</h3>
+<p>কৃষক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.workers@gmail.com')">
+<h3>pppp.workers@gmail.com</h3>
+<p>শ্রমিক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.volunteers@gmail.com')">
+<h3>pppp.volunteers@gmail.com</h3>
+<p>স্বেচ্ছাসেবক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.soldiers@gmail.com')">
+<h3>pppp.soldiers@gmail.com</h3>
+<p>সৈনিক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.teachers@gmail.com')">
+<h3>pppp.teachers@gmail.com</h3>
+<p>শিক্ষক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.artists@gmail.com')">
+<h3>pppp.artists@gmail.com</h3>
+<p>শিল্পী পিপিপিপি</p>
+</div>
+<div class="card" onclick="copyEmail('pppp.seniors@gmail.com')">
+<h3>pppp.seniors@gmail.com</h3>
+<p>প্রবীণ পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.expats@gmail.com')">
+<h3>pppp.expats@gmail.com</h3>
+<p>প্রবাসী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.doctors@gmail.com')">
+<h3>pppp.doctors@gmail.com</h3>
+<p>চিকিৎসক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.engineers@gmail.com')">
+<h3>pppp.engineers@gmail.com</h3>
+<p>প্রকৌশলী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.lawyers@gmail.com')">
+<h3>pppp.lawyers@gmail.com</h3>
+<p>আইনজীবী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.athletes@gmail.com')">
+<h3>pppp.athletes@gmail.com</h3>
+<p>খেলোয়াড় পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.women@gmail.com')">
+<h3>pppp.women@gmail.com</h3>
+<p>মহিলা পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenstudents@gmail.com')">
+<h3>pppp.womenstudents@gmail.com</h3>
+<p>ছাত্রী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.youngwomen@gmail.com')">
+<h3>pppp.youngwomen@gmail.com</h3>
+<p>যুব মহিলা পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenfarmers@gmail.com')">
+<h3>pppp.womenfarmers@gmail.com</h3>
+<p>কৃষাণী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenworkers@gmail.com')">
+<h3>pppp.womenworkers@gmail.com</h3>
+<p>মহিলা শ্রমিক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenvolunteers@gmail.com')">
+<h3>pppp.womenvolunteers@gmail.com</h3>
+<p>স্বেচ্ছাসেবিকা পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womensoldiers@gmail.com')">
+<h3>pppp.womensoldiers@gmail.com</h3>
+<p>মহিলা সৈনিক পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenteachers@gmail.com')">
+<h3>pppp.womenteachers@gmail.com</h3>
+<p>শিক্ষিকা পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('pppp.womenartists@gmail.com')">
+<h3>pppp.womenartists@gmail.com</h3>
+<p>মহিলা শিল্পী পিপিপিপি</p>
+</div>
+
+<div class="card" onclick="copyEmail('bpo.bangladesh@gmail.com')">
+<h3>bpo.bangladesh@gmail.com</h3>
+<p>BPO প্রধান অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('bpo.info@gmail.com')">
+<h3>bpo.info@gmail.com</h3>
+<p>তথ্য ও সাধারণ যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('bpo.peace@gmail.com')">
+<h3>bpo.peace@gmail.com</h3>
+<p>শান্তি কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('bpo.support@gmail.com')">
+<h3>bpo.support@gmail.com</h3>
+<p>সহায়তা ও সমন্বয়</p>
+</div>
+
+<div class="card" onclick="copyEmail('bpo.media@gmail.com')">
+<h3>bpo.media@gmail.com</h3>
+<p>মিডিয়া ও প্রেস</p>
+</div>
+
+<div class="card" onclick="copyEmail('bhf.bangladesh@gmail.com')">
+<h3>bhf.bangladesh@gmail.com</h3>
+<p>BHF প্রধান অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('bhf.info@gmail.com')">
+<h3>bhf.info@gmail.com</h3>
+<p>সাধারণ তথ্য</p>
+</div>
+
+<div class="card" onclick="copyEmail('bhf.dawah@gmail.com')">
+<h3>bhf.dawah@gmail.com</h3>
+<p>দাওয়াহ ও ইসলামী কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('bhf.support@gmail.com')">
+<h3>bhf.support@gmail.com</h3>
+<p>সদস্য ও সাধারণ সহায়তা</p>
+</div>
+
+<div class="card" onclick="copyEmail('bhf.media@gmail.com')">
+<h3>bhf.media@gmail.com</h3>
+<p>মিডিয়া ও প্রেস</p>
+</div>
+<div class="card" onclick="copyEmail('nao.bangladesh@gmail.com')">
+<h3>nao.bangladesh@gmail.com</h3>
+<p>NAO প্রধান অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.info@gmail.com')">
+<h3>nao.info@gmail.com</h3>
+<p>তথ্য ও সাধারণ যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.awards@gmail.com')">
+<h3>nao.awards@gmail.com</h3>
+<p>পুরস্কার সংক্রান্ত কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.nomination@gmail.com')">
+<h3>nao.nomination@gmail.com</h3>
+<p>মনোনয়ন গ্রহণ</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.selection@gmail.com')">
+<h3>nao.selection@gmail.com</h3>
+<p>বাছাই কমিটি</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.jury@gmail.com')">
+<h3>nao.jury@gmail.com</h3>
+<p>জুরি বোর্ড</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.ceremony@gmail.com')">
+<h3>nao.ceremony@gmail.com</h3>
+<p>পুরস্কার অনুষ্ঠান</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.media@gmail.com')">
+<h3>nao.media@gmail.com</h3>
+<p>মিডিয়া ও প্রেস</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.support@gmail.com')">
+<h3>nao.support@gmail.com</h3>
+<p>সহায়তা ও যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.office@gmail.com')">
+<h3>nao.office@gmail.com</h3>
+<p>প্রশাসনিক কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.global@gmail.com')">
+<h3>jao.global@gmail.com</h3>
+<p>JAO প্রধান অফিসিয়াল ইমেইল</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.info@gmail.com')">
+<h3>jao.info@gmail.com</h3>
+<p>তথ্য ও যোগাযোগ</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.awards@gmail.com')">
+<h3>jao.awards@gmail.com</h3>
+<p>গ্লোবাল পুরস্কার কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.nomination@gmail.com')">
+<h3>jao.nomination@gmail.com</h3>
+<p>মনোনয়ন গ্রহণ</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.selection@gmail.com')">
+<h3>jao.selection@gmail.com</h3>
+<p>বাছাই কমিটি</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.jury@gmail.com')">
+<h3>jao.jury@gmail.com</h3>
+<p>জুরি বোর্ড</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.ceremony@gmail.com')">
+<h3>jao.ceremony@gmail.com</h3>
+<p>পুরস্কার অনুষ্ঠান</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.media@gmail.com')">
+<h3>jao.media@gmail.com</h3>
+<p>মিডিয়া ও প্রেস</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.support@gmail.com')">
+<h3>jao.support@gmail.com</h3>
+<p>সহায়তা</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.office@gmail.com')">
+<h3>jao.office@gmail.com</h3>
+<p>প্রশাসনিক কার্যক্রম</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.peace@gmail.com')">
+<h3>nao.peace@gmail.com</h3>
+<p>শান্তি পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.literature@gmail.com')">
+<h3>nao.literature@gmail.com</h3>
+<p>সাহিত্য পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.research@gmail.com')">
+<h3>nao.research@gmail.com</h3>
+<p>গবেষণা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.innovation@gmail.com')">
+<h3>nao.innovation@gmail.com</h3>
+<p>উদ্ভাবন পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.humanity@gmail.com')">
+<h3>nao.humanity@gmail.com</h3>
+<p>মানবতা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.service@gmail.com')">
+<h3>nao.service@gmail.com</h3>
+<p>মানবসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.plants@gmail.com')">
+<h3>nao.plants@gmail.com</h3>
+<p>উদ্ভিদসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.birds@gmail.com')">
+<h3>nao.birds@gmail.com</h3>
+<p>পাখিসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.animals@gmail.com')">
+<h3>nao.animals@gmail.com</h3>
+<p>প্রাণীসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.food@gmail.com')">
+<h3>nao.food@gmail.com</h3>
+<p>খাদ্যসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.clothing@gmail.com')">
+<h3>nao.clothing@gmail.com</h3>
+<p>বস্ত্রসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.housing@gmail.com')">
+<h3>nao.housing@gmail.com</h3>
+<p>বাসস্থান সেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.education@gmail.com')">
+<h3>nao.education@gmail.com</h3>
+<p>শিক্ষাসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.health@gmail.com')">
+<h3>nao.health@gmail.com</h3>
+<p>চিকিৎসা সেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('nao.islamic@gmail.com')">
+<h3>nao.islamic@gmail.com</h3>
+<p>ইসলাম সেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.peace@gmail.com')">
+<h3>jao.peace@gmail.com</h3>
+<p>শান্তি পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.literature@gmail.com')">
+<h3>jao.literature@gmail.com</h3>
+<p>সাহিত্য পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.research@gmail.com')">
+<h3>jao.research@gmail.com</h3>
+<p>গবেষণা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.innovation@gmail.com')">
+<h3>jao.innovation@gmail.com</h3>
+<p>উদ্ভাবন পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.humanity@gmail.com')">
+<h3>jao.humanity@gmail.com</h3>
+<p>মানবতা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.service@gmail.com')">
+<h3>jao.service@gmail.com</h3>
+<p>মানবসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.plants@gmail.com')">
+<h3>jao.plants@gmail.com</h3>
+<p>উদ্ভিদসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.birds@gmail.com')">
+<h3>jao.birds@gmail.com</h3>
+<p>পাখিসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.animals@gmail.com')">
+<h3>jao.animals@gmail.com</h3>
+<p>প্রাণীসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.food@gmail.com')">
+<h3>jao.food@gmail.com</h3>
+<p>খাদ্যসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.clothing@gmail.com')">
+<h3>jao.clothing@gmail.com</h3>
+<p>বস্ত্রসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.housing@gmail.com')">
+<h3>jao.housing@gmail.com</h3>
+<p>বাসস্থান সেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.education@gmail.com')">
+<h3>jao.education@gmail.com</h3>
+<p>শিক্ষাসেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.health@gmail.com')">
+<h3>jao.health@gmail.com</h3>
+<p>চিকিৎসা সেবা পুরস্কার</p>
+</div>
+
+<div class="card" onclick="copyEmail('jao.islamic@gmail.com')">
+<h3>jao.islamic@gmail.com</h3>
+<p>ইসলাম সেবা পুরস্কার</p>
+</div>
+
+</div>
+
 <script>
-const emails=[
-["pppp.bangladesh@gmail.com","প্রধান / অফিসিয়াল ইমেইল"],
-["pppp.main@gmail.com","কেন্দ্রীয় / হেডকোয়ার্টার"],
-["pppp.office@gmail.com","প্রশাসনিক অফিস"],
-["pppp.info@gmail.com","সাধারণ তথ্য"],
-["pppp.contact@gmail.com","যোগাযোগ"],
-["pppp.help@gmail.com","সহায়তা"],
-["pppp.internal@gmail.com","অভ্যন্তরীণ যোগাযোগ"],
-["pppp.central@gmail.com","কেন্দ্রীয় কার্যালয়"],
-["pppp.public@gmail.com","জনসাধারণের যোগাযোগ"],
-["pppp.feedback@gmail.com","মতামত"],
-["pppp.support@gmail.com","সাপোর্ট"],
-["pppp.inquiry@gmail.com","অনুসন্ধান"],
-["pppp.replies@gmail.com","অফিশিয়াল উত্তর"],
-["pppp.helpdesk@gmail.com","হেল্পডেস্ক"],
-["pppp.assistance@gmail.com","বিশেষ সহায়তা"],
-["pppp.media@gmail.com","মিডিয়া"],
-["pppp.press@gmail.com","প্রেস"],
-["pppp.news@gmail.com","সংবাদ"],
-["pppp.editorial@gmail.com","সম্পাদকীয়"],
-["pppp.publicity@gmail.com","প্রচার"],
-["pppp.campaign@gmail.com","ক্যাম্পেইন"],
-["pppp.communications@gmail.com","যোগাযোগ ব্যবস্থাপনা"],
-["pppp.announcements@gmail.com","ঘোষণা"],
-["pppp.members@gmail.com","সদস্য"],
-["pppp.organization@gmail.com","সংগঠন"],
-["pppp.network@gmail.com","নেটওয়ার্ক"],
-["pppp.volunteer@gmail.com","স্বেচ্ছাসেবক"],
-["pppp.coordination@gmail.com","সমন্বয়"],
-["pppp.secretariat@gmail.com","সচিবালয়"],
-["pppp.committees@gmail.com","কমিটি"],
-["pppp.students@gmail.com","ছাত্র"],
-["pppp.youth@gmail.com","যুব"],
-["pppp.women@gmail.com","নারী"],
-["pppp.doctors@gmail.com","চিকিৎসক"],
-["pppp.admin@gmail.com","প্রশাসন"],
-["pppp.planning@gmail.com","পরিকল্পনা"],
-["pppp.accounts@gmail.com","হিসাব"],
-["pppp.finance@gmail.com","অর্থ"],
-["pppp.legal@gmail.com","আইনি"],
-["pppp.archives@gmail.com","আর্কাইভ"],
-["pppp.international@gmail.com","আন্তর্জাতিক"],
-["pppp.global@gmail.com","গ্লোবাল"],
-["pppp.diplomacy@gmail.com","কূটনীতি"],
-["pppp.foreignaffairs@gmail.com","বিদেশবিষয়ক"],
-["bpo.bangladesh@gmail.com","BPO"],
-["bpo.info@gmail.com","BPO Info"],
-["bpo.peace@gmail.com","Peace"],
-["bpo.support@gmail.com","Support"],
-["bpo.media@gmail.com","Media"],
-["bhf.bangladesh@gmail.com","BHF"],
-["bhf.info@gmail.com","Info"],
-["bhf.dawah@gmail.com","Dawah"],
-["bhf.support@gmail.com","Support"],
-["bhf.media@gmail.com","Media"],
-["nao.bangladesh@gmail.com","NAO"],
-["nao.info@gmail.com","Info"],
-["nao.awards@gmail.com","Awards"],
-["nao.nomination@gmail.com","Nomination"],
-["nao.selection@gmail.com","Selection"],
-["nao.jury@gmail.com","Jury"],
-["nao.ceremony@gmail.com","Ceremony"],
-["nao.media@gmail.com","Media"],
-["nao.support@gmail.com","Support"],
-["nao.office@gmail.com","Office"],
-["jao.global@gmail.com","JAO"],
-["jao.info@gmail.com","Info"],
-["jao.awards@gmail.com","Awards"],
-["jao.nomination@gmail.com","Nomination"],
-["jao.selection@gmail.com","Selection"],
-["jao.jury@gmail.com","Jury"],
-["jao.ceremony@gmail.com","Ceremony"],
-["jao.media@gmail.com","Media"],
-["jao.support@gmail.com","Support"],
-["jao.office@gmail.com","Office"]
-];
-const colors=["#ff6b6b","#6c5ce7","#00b894","#fdcb6e","#e17055","#0984e3","#e84393","#2d3436"];
-const grid=document.getElementById("grid");
-function render(list){
-grid.innerHTML="";
-list.forEach((e,i)=>{
-let d=document.createElement("div");
-d.className="card";
-d.style.background=colors[i%colors.length];
-d.innerHTML=`<div class=email>${e[0]}</div><div>${e[1]}</div>`;
-d.onclick=()=>{navigator.clipboard.writeText(e[0]);toast.style.display='block';setTimeout(()=>toast.style.display='none',1500)};
-grid.appendChild(d);
-});
+function copyEmail(email){
+    navigator.clipboard.writeText(email);
+    alert(email + " copied!");
 }
-render(emails);
-search.oninput=()=>{
-const q=search.value.toLowerCase();
-render(emails.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q)));
-};
+
+function searchCards(){
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "block" : "none";
+    });
+}
 </script>
+
 </body>
 </html>
