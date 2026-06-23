@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPPP Email Directory</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);background-size:400% 400%;animation:bg 15s infinite;padding:20px}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+h1{text-align:center;color:#fff}
+input{width:100%;padding:14px;border-radius:12px;border:none;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{padding:15px;border-radius:16px;color:white;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.email{font-weight:bold}
+.toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;padding:10px 15px;border-radius:8px;display:none}
+</style>
+</head>
+<body>
+<h1>PPPP Official Email Directory</h1>
+<input id="search" placeholder="সার্চ করুন...">
+<div class="grid" id="grid"></div>
+<div id="toast" class="toast">Copied!</div>
+<script>
+const emails=[
+["pppp.bangladesh@gmail.com","প্রধান / অফিসিয়াল ইমেইল"],
+["pppp.main@gmail.com","কেন্দ্রীয় / হেডকোয়ার্টার"],
+["pppp.office@gmail.com","প্রশাসনিক অফিস"],
+["pppp.info@gmail.com","সাধারণ তথ্য"],
+["pppp.contact@gmail.com","যোগাযোগ"],
+["pppp.help@gmail.com","সহায়তা"],
+["pppp.internal@gmail.com","অভ্যন্তরীণ যোগাযোগ"],
+["pppp.central@gmail.com","কেন্দ্রীয় কার্যালয়"],
+["pppp.public@gmail.com","জনসাধারণের যোগাযোগ"],
+["pppp.feedback@gmail.com","মতামত"],
+["pppp.support@gmail.com","সাপোর্ট"],
+["pppp.inquiry@gmail.com","অনুসন্ধান"],
+["pppp.replies@gmail.com","অফিশিয়াল উত্তর"],
+["pppp.helpdesk@gmail.com","হেল্পডেস্ক"],
+["pppp.assistance@gmail.com","বিশেষ সহায়তা"],
+["pppp.media@gmail.com","মিডিয়া"],
+["pppp.press@gmail.com","প্রেস"],
+["pppp.news@gmail.com","সংবাদ"],
+["pppp.editorial@gmail.com","সম্পাদকীয়"],
+["pppp.publicity@gmail.com","প্রচার"],
+["pppp.campaign@gmail.com","ক্যাম্পেইন"],
+["pppp.communications@gmail.com","যোগাযোগ ব্যবস্থাপনা"],
+["pppp.announcements@gmail.com","ঘোষণা"],
+["pppp.members@gmail.com","সদস্য"],
+["pppp.organization@gmail.com","সংগঠন"],
+["pppp.network@gmail.com","নেটওয়ার্ক"],
+["pppp.volunteer@gmail.com","স্বেচ্ছাসেবক"],
+["pppp.coordination@gmail.com","সমন্বয়"],
+["pppp.secretariat@gmail.com","সচিবালয়"],
+["pppp.committees@gmail.com","কমিটি"],
+["pppp.students@gmail.com","ছাত্র"],
+["pppp.youth@gmail.com","যুব"],
+["pppp.women@gmail.com","নারী"],
+["pppp.doctors@gmail.com","চিকিৎসক"],
+["pppp.admin@gmail.com","প্রশাসন"],
+["pppp.planning@gmail.com","পরিকল্পনা"],
+["pppp.accounts@gmail.com","হিসাব"],
+["pppp.finance@gmail.com","অর্থ"],
+["pppp.legal@gmail.com","আইনি"],
+["pppp.archives@gmail.com","আর্কাইভ"],
+["pppp.international@gmail.com","আন্তর্জাতিক"],
+["pppp.global@gmail.com","গ্লোবাল"],
+["pppp.diplomacy@gmail.com","কূটনীতি"],
+["pppp.foreignaffairs@gmail.com","বিদেশবিষয়ক"],
+["bpo.bangladesh@gmail.com","BPO"],
+["bpo.info@gmail.com","BPO Info"],
+["bpo.peace@gmail.com","Peace"],
+["bpo.support@gmail.com","Support"],
+["bpo.media@gmail.com","Media"],
+["bhf.bangladesh@gmail.com","BHF"],
+["bhf.info@gmail.com","Info"],
+["bhf.dawah@gmail.com","Dawah"],
+["bhf.support@gmail.com","Support"],
+["bhf.media@gmail.com","Media"],
+["nao.bangladesh@gmail.com","NAO"],
+["nao.info@gmail.com","Info"],
+["nao.awards@gmail.com","Awards"],
+["nao.nomination@gmail.com","Nomination"],
+["nao.selection@gmail.com","Selection"],
+["nao.jury@gmail.com","Jury"],
+["nao.ceremony@gmail.com","Ceremony"],
+["nao.media@gmail.com","Media"],
+["nao.support@gmail.com","Support"],
+["nao.office@gmail.com","Office"],
+["jao.global@gmail.com","JAO"],
+["jao.info@gmail.com","Info"],
+["jao.awards@gmail.com","Awards"],
+["jao.nomination@gmail.com","Nomination"],
+["jao.selection@gmail.com","Selection"],
+["jao.jury@gmail.com","Jury"],
+["jao.ceremony@gmail.com","Ceremony"],
+["jao.media@gmail.com","Media"],
+["jao.support@gmail.com","Support"],
+["jao.office@gmail.com","Office"]
+];
+const colors=["#ff6b6b","#6c5ce7","#00b894","#fdcb6e","#e17055","#0984e3","#e84393","#2d3436"];
+const grid=document.getElementById("grid");
+function render(list){
+grid.innerHTML="";
+list.forEach((e,i)=>{
+let d=document.createElement("div");
+d.className="card";
+d.style.background=colors[i%colors.length];
+d.innerHTML=`<div class=email>${e[0]}</div><div>${e[1]}</div>`;
+d.onclick=()=>{navigator.clipboard.writeText(e[0]);toast.style.display='block';setTimeout(()=>toast.style.display='none',1500)};
+grid.appendChild(d);
+});
+}
+render(emails);
+search.oninput=()=>{
+const q=search.value.toLowerCase();
+render(emails.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q)));
+};
+</script>
+</body>
+</html>
