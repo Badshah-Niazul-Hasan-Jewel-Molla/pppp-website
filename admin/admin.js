@@ -1,322 +1,132 @@
-// =============================================
+// ============================================
 // PPPP CHAT SYSTEM
 // admin.js
-// Final Version
+// Version 4.0
 // Part 1
-// =============================================
+// ============================================
 
 import {
     db,
+    auth,
     collection,
     query,
-    getDocs,
-    doc,
-    updateDoc,
-    addDoc,
     where,
     orderBy,
+    doc,
+    getDoc,
+    addDoc,
+    updateDoc,
     onSnapshot,
+    signOut,
     serverTimestamp
 } from "../chat/firebase.js";
 
-let selectedConversation = "";
-let selectedVisitor = "";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-const conversationList = document.getElementById("conversationList");
-const messageBox = document.getElementById("adminMessages");
-const messageInput = document.getElementById("adminMessage");
+// ============================================
+// Global Variables
+// ============================================
+
+let currentAdmin = null;
+let currentConversation = null;
+let unsubscribeMessages = null;
+
+// ============================================
+// DOM
+// ============================================
+
+const conversationList = document.getElementById("conversation-list");
+const messageBox = document.getElementById("admin-messages");
+const replyInput = document.getElementById("reply-text");
 const sendButton = document.getElementById("sendReply");
+const logoutButton = document.getElementById("logoutBtn");
+const visitorName = document.getElementById("visitor-name");
+const visitorStatus = document.getElementById("visitor-status");
+const typingIndicator = document.getElementById("typing-indicator");
 
-document.addEventListener("DOMContentLoaded", init);
+// ============================================
+// Auth Check
+// ============================================
 
-async function init(){
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        location.href = "login.html";
+        return;
+
+    }
+
+    const adminRef = doc(db, "admins", user.uid);
+
+    const adminSnap = await getDoc(adminRef);
+
+    if (!adminSnap.exists()) {
+
+        alert("Access Denied");
+
+        await signOut(auth);
+
+        location.href = "login.html";
+
+        return;
+
+    }
+
+    currentAdmin = user;
 
     loadConversations();
 
-    sendButton.addEventListener("click",sendReply);
+});
 
-    messageInput.addEventListener("keydown",e=>{
+// ============================================
+// Load Conversations
+// ============================================
 
-        if(e.key==="Enter"){
-
-            e.preventDefault();
-
-            sendReply();
-
-        }
-
-    });
-
-}
-
-// =====================================
-// Load Conversation List
-// =====================================
-
-function loadConversations(){
-
-    const q=query(
-
-        collection(db,"conversations"),
-
-        orderBy("updatedAt","desc")
-
-    );
-
-    onSnapshot(q,(snapshot)=>{
-
-        conversationList.innerHTML="";
-
-        snapshot.forEach((item)=>{
-
-            createConversationCard(item.id,item.data());
-
-        });
-
-    });
-
-}
-
-// =====================================
-// Conversation Card
-// =====================================
-
-function createConversationCard(id,data){
-
-    const div=document.createElement("div");
-
-    div.className="conversation";
-
-    div.innerHTML=`
-
-        <h4>
-
-            ${data.visitorId}
-
-        </h4>
-
-        <p>
-
-            ${data.lastMessage || "No Message"}
-
-        </p>
-
-    `;
-
-    div.onclick=()=>{
-
-        openConversation(id,data);
-
-    };
-
-    conversationList.appendChild(div);
-
-}
-
-// =====================================
-// Open Conversation
-// =====================================
-
-function openConversation(id,data){
-
-    selectedConversation=id;
-
-    selectedVisitor=data.visitorId;
-
-    document.getElementById("visitorName").innerHTML=
-
-        data.visitorId;
-
-    listenMessages();
-
-}
-// =============================================
-// PPPP CHAT SYSTEM
-// admin.js
-// Final Version
-// Part 2
-// =============================================
-
-// Live Messages
-function listenMessages() {
-
-    if (!selectedConversation) return;
+function loadConversations() {
 
     const q = query(
 
-        collection(db, "messages"),
+        collection(db, "conversations"),
 
-        where("conversationId", "==", selectedConversation),
-
-        orderBy("createdAt")
+        orderBy("updatedAt", "desc")
 
     );
 
     onSnapshot(q, (snapshot) => {
 
-        messageBox.innerHTML = "";
+        conversationList.innerHTML = "";
+
+        if (snapshot.empty) {
+
+            conversationList.innerHTML =
+                "<p>No conversations.</p>";
+
+            return;
+
+        }
 
         snapshot.forEach((item) => {
 
-            renderMessage(item.id, item.data());
+            const data = item.data();
 
-        });
+            const div = document.createElement("div");
 
-        scrollBottom();
+            div.className = "conversation-item";
 
-    });
+            div.innerHTML = `
+                <strong>${data.visitorId}</strong>
+                <br>
+                <small>${data.lastMessage || ""}</small>
+            `;
 
-}
+            div.onclick = () => {
 
-// Render Message
+                openConversation(item.id, data);
 
-function renderMessage(id, data) {
+            };
 
-    const div = document.createElement("div");
-
-    div.className = "message " + data.senderType;
-
-    div.innerHTML = `
-
-        <div class="bubble">
-
-            ${escapeHTML(data.message)}
-
-        </div>
-
-    `;
-
-    messageBox.appendChild(div);
-
-}
-
-// Send Reply
-
-async function sendReply() {
-
-    if (!selectedConversation) return;
-
-    const text = messageInput.value.trim();
-
-    if (text === "") return;
-
-    sendButton.disabled = true;
-
-    try {
-
-        await addDoc(
-
-            collection(db, "messages"),
-
-            {
-
-                conversationId: selectedConversation,
-
-                senderId: "admin",
-
-                senderType: "admin",
-
-                message: text,
-
-                messageType: "text",
-
-                seen: false,
-
-                createdAt: serverTimestamp()
-
-            }
-
-        );
-
-        await updateConversation(text);
-
-        messageInput.value = "";
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        alert("Reply failed.");
-
-    }
-
-    sendButton.disabled = false;
-
-}
-
-// Update Conversation
-
-async function updateConversation(lastMessage) {
-
-    await updateDoc(
-
-        doc(db, "conversations", selectedConversation),
-
-        {
-
-            lastMessage,
-
-            lastSender: "admin",
-
-            unreadVisitor: true,
-
-            unreadAdmin: false,
-
-            updatedAt: serverTimestamp()
-
-        }
-
-    );
-
-}
-
-// Auto Scroll
-
-function scrollBottom() {
-
-    messageBox.scrollTop = messageBox.scrollHeight;
-
-}
-
-// Escape HTML
-
-function escapeHTML(text) {
-
-    const div = document.createElement("div");
-
-    div.innerText = text;
-
-    return div.innerHTML;
-
-}
-// =============================================
-// PPPP CHAT SYSTEM
-// admin.js
-// Final Version
-// Part 3
-// =============================================
-
-// ================================
-// Search Conversation
-// ================================
-
-const searchInput = document.getElementById("searchUser");
-
-if (searchInput) {
-
-    searchInput.addEventListener("keyup", function () {
-
-        const keyword = this.value.toLowerCase();
-
-        document.querySelectorAll(".conversation").forEach(item => {
-
-            const text = item.innerText.toLowerCase();
-
-            item.style.display = text.includes(keyword)
-                ? ""
-                : "none";
+            conversationList.appendChild(div);
 
         });
 
@@ -324,161 +134,81 @@ if (searchInput) {
 
 }
 
-// ================================
-// Selected Conversation Highlight
-// ================================
+// ============================================
+// Open Conversation
+// ============================================
 
-function selectConversation(card){
+function openConversation(id, data) {
 
-    document
-        .querySelectorAll(".conversation")
-        .forEach(c=>c.classList.remove("active"));
+    currentConversation = id;
 
-    card.classList.add("active");
+    visitorName.textContent = data.visitorId;
 
-}
-
-// Update previous function
-const oldCreateConversationCard = createConversationCard;
-
-createConversationCard = function(id,data){
-
-    const div=document.createElement("div");
-
-    div.className="conversation";
-
-    div.innerHTML=`
-
-        <h4>${data.visitorId}</h4>
-
-        <p>${data.lastMessage || "No Message Yet"}</p>
-
-    `;
-
-    div.onclick=function(){
-
-        selectConversation(div);
-
-        openConversation(id,data);
-
-    };
-
-    conversationList.appendChild(div);
-
-};
-
-// ================================
-// Visitor Online Status
-// ================================
-
-function watchVisitor(){
-
-    if(!selectedVisitor) return;
-
-    onSnapshot(
-
-        doc(db,"users",selectedVisitor),
-
-        function(docSnap){
-
-            if(!docSnap.exists()) return;
-
-            const data=docSnap.data();
-
-            document.getElementById("visitorStatus").innerHTML=
-
-                data.online
-                ? "🟢 Online"
-                : "⚪ Offline";
-
-        }
-
-    );
-
-}
-
-// Override openConversation
-
-const oldOpenConversation = openConversation;
-
-openConversation = function(id,data){
-
-    selectedConversation=id;
-
-    selectedVisitor=data.visitorId;
-
-    document.getElementById("visitorName").innerHTML=
-
-        data.visitorId;
-
-    watchVisitor();
+    visitorStatus.textContent =
+        data.status === "open"
+            ? "🟢 Online"
+            : "🔴 Offline";
 
     listenMessages();
 
-};
-
-// ================================
-// Admin Typing
-// ================================
-
-let typingTimer;
-
-messageInput.addEventListener("input",()=>{
-
-    clearTimeout(typingTimer);
-
-    startTyping();
-
-    typingTimer=setTimeout(stopTyping,1500);
-
-});
-
-async function startTyping(){
-
-    if(!selectedConversation) return;
-
-    try{
-
-        await updateDoc(
-
-            doc(db,"typing",selectedConversation),
-
-            {
-
-                adminTyping:true
-
-            }
-
-        );
-
-    }catch(e){}
-
 }
 
-async function stopTyping(){
+// ============================================
+// Listen Messages
+// ============================================
 
-    if(!selectedConversation) return;
+function listenMessages() {
 
-    try{
+    if (!currentConversation) return;
 
-        await updateDoc(
+    if (unsubscribeMessages) {
 
-            doc(db,"typing",selectedConversation),
+        unsubscribeMessages();
 
-            {
+    }
 
-                adminTyping:false
+    const q = query(
 
-            }
+        collection(db, "messages"),
 
-        );
+        where("conversationId", "==", currentConversation),
 
-    }catch(e){}
+        orderBy("createdAt")
+
+    );
+
+    unsubscribeMessages = onSnapshot(
+
+        q,
+
+        (snapshot) => {
+
+            messageBox.innerHTML = "";
+
+            snapshot.forEach((item) => {
+
+                const data = item.data();
+
+                const div = document.createElement("div");
+
+                div.className =
+                    "admin-message " + data.senderType;
+
+                div.innerHTML = `
+                    <div class="bubble">
+                        ${data.message}
+                    </div>
+                `;
+
+                messageBox.appendChild(div);
+
+            });
+
+            messageBox.scrollTop =
+                messageBox.scrollHeight;
+
+        }
+
+    );
 
 }
-
-// ================================
-// Dashboard Ready
-// ================================
-
-console.log("PPPP Admin Dashboard Ready");
