@@ -265,3 +265,317 @@ function listenMessages(){
     });
 
 }
+// ============================================
+// PPPP CHAT SYSTEM
+// chat.js
+// Version 4.0
+// Part 2
+// ============================================
+
+// ============================================
+// Send Message
+// ============================================
+
+async function sendMessage() {
+
+    if (!conversationId) return;
+
+    const text = input().value.trim();
+
+    if (!text) return;
+
+    send().disabled = true;
+
+    try {
+
+        await addDoc(
+
+            collection(db, "messages"),
+
+            {
+
+                conversationId,
+
+                senderId: visitorId,
+
+                senderType: "visitor",
+
+                message: text,
+
+                messageType: "text",
+
+                seen: false,
+
+                createdAt: serverTimestamp()
+
+            }
+
+        );
+
+        await updateConversation(text);
+
+        input().value = "";
+
+        await stopTyping();
+
+    }
+
+    catch (error) {
+
+        console.error("Send Message Error:", error);
+
+        alert("Unable to send message.");
+
+    }
+
+    finally {
+
+        send().disabled = false;
+
+    }
+
+}
+
+// ============================================
+// Update Conversation
+// ============================================
+
+async function updateConversation(lastMessage) {
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", conversationId),
+
+            {
+
+                lastMessage,
+
+                lastSender: "visitor",
+
+                unreadAdmin: true,
+
+                unreadVisitor: false,
+
+                visitorTyping: false,
+
+                updatedAt: serverTimestamp()
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+// ============================================
+// Typing Handler
+// ============================================
+
+function typingHandler() {
+
+    startTyping();
+
+    clearTimeout(typingTimeout);
+
+    typingTimeout = setTimeout(async () => {
+
+        await stopTyping();
+
+    }, 1200);
+
+}
+
+// ============================================
+// Start Typing
+// ============================================
+
+async function startTyping() {
+
+    if (!conversationId) return;
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", conversationId),
+
+            {
+
+                visitorTyping: true
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+// ============================================
+// Stop Typing
+// ============================================
+
+async function stopTyping() {
+
+    if (!conversationId) return;
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", conversationId),
+
+            {
+
+                visitorTyping: false
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+// ============================================
+// Mark Admin Messages as Seen
+// ============================================
+
+async function markMessagesSeen(snapshot) {
+
+    const updates = [];
+
+    snapshot.forEach(item => {
+
+        const data = item.data();
+
+        if (
+
+            data.senderType === "admin" &&
+
+            data.seen !== true
+
+        ) {
+
+            updates.push(
+
+                updateDoc(
+
+                    doc(db, "messages", item.id),
+
+                    {
+
+                        seen: true
+
+                    }
+
+                )
+
+            );
+
+        }
+
+    });
+
+    if (updates.length) {
+
+        await Promise.all(updates);
+
+    }
+
+}
+
+// ============================================
+// Replace Message Listener
+// ============================================
+
+function listenMessages() {
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+    }
+
+    const q = query(
+
+        collection(db, "messages"),
+
+        where("conversationId", "==", conversationId),
+
+        orderBy("createdAt")
+
+    );
+
+    unsubscribeMessages = onSnapshot(
+
+        q,
+
+        async (snapshot) => {
+
+            clearMessages();
+
+            if (snapshot.empty) {
+
+                addMessage(
+
+                    "👋 Welcome! Start your conversation.",
+
+                    "system"
+
+                );
+
+                return;
+
+            }
+
+            snapshot.forEach(item => {
+
+                const data = item.data();
+
+                addMessage(
+
+                    escapeHTML(data.message),
+
+                    data.senderType
+
+                );
+
+            });
+
+            await markMessagesSeen(snapshot);
+
+            const box = document.getElementById("chat-messages");
+
+            if (box) {
+
+                box.scrollTop = box.scrollHeight;
+
+            }
+
+        }
+
+    );
+
+}
