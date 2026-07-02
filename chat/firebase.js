@@ -1,9 +1,11 @@
-// PPPP Chat Firebase
-// Version 1.0
+// ============================================
+// PPPP CHAT SYSTEM
+// firebase.js
+// Final Version
+// ============================================
 
-import { firebaseConfig } from "./config.js";
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+// Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 
 import {
     getFirestore,
@@ -11,72 +13,102 @@ import {
     doc,
     addDoc,
     setDoc,
-    getDoc,
-    getDocs,
     updateDoc,
     deleteDoc,
+    getDoc,
+    getDocs,
     query,
     where,
     orderBy,
     limit,
     onSnapshot,
     serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 import {
     getAuth,
-    signInWithEmailAndPassword,
-    signOut,
     GoogleAuthProvider,
+    GithubAuthProvider,
+    FacebookAuthProvider,
     signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-import {
-    getStorage
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { firebaseConfig } from "./config.js";
 
-import {
-    getAnalytics
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+// Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
 
+// Firestore
+
 const db = getFirestore(app);
+
+// Authentication
 
 const auth = getAuth(app);
 
-const storage = getStorage(app);
-
-const analytics = getAnalytics(app);
-
 const googleProvider = new GoogleAuthProvider();
 
+const githubProvider = new GithubAuthProvider();
+
+const facebookProvider = new FacebookAuthProvider();
+
+// Export
+
 export {
+
     app,
+
     db,
+
     auth,
-    storage,
-    analytics,
+
     googleProvider,
 
+    githubProvider,
+
+    facebookProvider,
+
     collection,
+
     doc,
+
     addDoc,
+
     setDoc,
-    getDoc,
-    getDocs,
+
     updateDoc,
+
     deleteDoc,
+
+    getDoc,
+
+    getDocs,
+
     query,
+
     where,
+
     orderBy,
+
     limit,
+
     onSnapshot,
+
     serverTimestamp,
 
-    signInWithEmailAndPassword,
-    signOut,
     signInWithPopup,
+
+    signInWithEmailAndPassword,
+
+    createUserWithEmailAndPassword,
+
+    signOut,
+
     onAuthStateChanged
+
 };
