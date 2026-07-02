@@ -1,35 +1,33 @@
-🌀 PPPP Chat System v4.0.0
+# 🌀 PPPP Chat System v4.0
 
-A lightweight, modern, real-time live chat system built with Firebase Authentication, Cloud Firestore, Firebase Storage, and Vanilla JavaScript.
+A lightweight, modern, real-time live chat system built with **Firebase Authentication**, **Cloud Firestore**, and **Vanilla JavaScript**.
 
-Designed for static websites, including GitHub Pages.
+Designed for static websites including **GitHub Pages**.
 
 ---
 
-Features
+# Features
 
 - Real-time Chat
 - Guest Visitor Support
 - Firebase Authentication
 - Admin Dashboard
-- Cloud Firestore Database
-- Firebase Storage Support
+- Firestore Database
 - Typing Indicator
 - Seen Status
 - Online / Offline Status
 - Browser Notification
-- File & Image Upload
+- Upload Module Ready
 - Mobile Responsive
 - Modular Architecture
-- GitHub Pages Ready
 
 ---
 
-Folder Structure
+# Folder Structure
 
+```
 chat/
 │
-├── chat-loader.js
 ├── chat.html
 ├── chat.css
 ├── chat.js
@@ -44,20 +42,21 @@ chat/
 ├── notification.js
 ├── state.js
 └── README.md
+```
 
 ---
 
-Firebase Services
+# Firebase Services
 
-Enable the following Firebase services:
+Enable the following services.
 
 - Authentication
 - Cloud Firestore
-- Firebase Storage
+- Firebase Storage (Optional)
 
 ---
 
-Authentication
+# Authentication
 
 Enable at least:
 
@@ -67,123 +66,119 @@ Enable at least:
 Optional:
 
 - Google
-- GitHub
 - Facebook
+- GitHub
 
 ---
 
-Firestore Collections
+# Firestore Collections
 
+```
 admins
 conversations
 messages
-typing
 users
+typing
+```
 
 ---
 
-Admin Setup
+# Admin Setup
 
-Create a document inside the admins collection.
+Create a document:
 
+```
 admins/{ADMIN_UID}
+```
 
 Example:
 
-name : Super Admin
-email : admin@example.com
+```
 role : superadmin
-active : true
+name : Admin
+email : admin@example.com
+```
 
 ---
 
-Installation
+# Installation
 
 Clone the repository.
 
-git clone https://github.com/<your-username>/<repository>.git
+```
+git clone https://github.com/your-repository.git
+```
 
 Configure Firebase.
 
+```
 chat/config.js
-
----
-
-Deployment
+```
 
 Deploy Firestore Rules.
 
+```
 firebase deploy --only firestore:rules
-
-Deploy Firestore Indexes.
-
-firebase deploy --only firestore:indexes
-
-Deploy Storage Rules.
-
-firebase deploy --only storage
+```
 
 ---
 
-GitHub Pages Integration
+# GitHub Pages
 
-Add the following line before the closing "</body>" tag on every public page.
+Include the chat widget.
 
-<script type="module" src="chat/chat-loader.js"></script>
+```html
+<link rel="stylesheet" href="chat/chat.css">
 
-The loader automatically:
-
-- Loads "chat.css"
-- Loads "chat.js"
-- Creates the Chat Widget
-- Initializes PPPP Chat
+<script type="module" src="chat/chat.js"></script>
+```
 
 ---
 
-Admin Panel
+# Admin Panel
 
-Login Page
-
+```
 admin/login.html
+```
 
 Dashboard
 
+```
 admin/admin.html
+```
 
 ---
 
-Required Files
+# Required Files
 
+```
 chat/
 admin/
 firestore.rules
-firestore.indexes.json
-storage.rules
 firebase.json
+```
 
 ---
 
-Browser Support
+# Browser Support
 
-- Google Chrome
-- Mozilla Firefox
-- Microsoft Edge
+- Chrome
+- Firefox
+- Edge
 - Safari
-- Brave
-- Opera
 
 ---
 
-Version
+# Version
 
-Version 4.0.0
+```
+Version 4.0
+```
 
 ---
 
-License
+# License
 
-This project is publicly available for viewing on GitHub.
+Private Project
 
-Copyright © 2026 PPPP Bangladesh.
-
-All rights reserved.
+Copyright © PPPP Bangladesh
