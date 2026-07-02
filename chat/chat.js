@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // chat.js
-// Final Version
+// Version 3.0
 // Part 1
 // ============================================
 
@@ -20,18 +20,38 @@ import {
 } from "./firebase.js";
 
 import { initVisitor } from "./auth.js";
-import { createChatWidget, bindUIEvents } from "./ui.js";
+import {
+    createChatWidget,
+    bindUIEvents,
+    showTyping,
+    setStatus
+} from "./ui.js";
+
+// ============================================
+// Global Variables
+// ============================================
 
 let visitorId = "";
 let conversationId = "";
+let unsubscribeMessages = null;
+let unsubscribeConversation = null;
+let typingTimer = null;
 
-const chatMessages = () => document.getElementById("chat-messages");
-const chatInput = () => document.getElementById("chat-text");
-const sendBtn = () => document.getElementById("chat-send");
+// ============================================
+// DOM Helpers
+// ============================================
 
-document.addEventListener("DOMContentLoaded", initializeChat);
+const messagesBox = () => document.getElementById("chat-messages");
+const inputBox = () => document.getElementById("chat-text");
+const sendButton = () => document.getElementById("chat-send");
 
-async function initializeChat() {
+// ============================================
+// Start
+// ============================================
+
+document.addEventListener("DOMContentLoaded", startChat);
+
+async function startChat() {
 
     createChatWidget();
 
@@ -41,9 +61,19 @@ async function initializeChat() {
 
     await loadConversation();
 
-    sendBtn().addEventListener("click", sendMessage);
+    registerEvents();
 
-    chatInput().addEventListener("keydown", e => {
+}
+
+// ============================================
+// UI Events
+// ============================================
+
+function registerEvents() {
+
+    sendButton().addEventListener("click", sendMessage);
+
+    inputBox().addEventListener("keydown", e => {
 
         if (e.key === "Enter") {
 
@@ -55,7 +85,13 @@ async function initializeChat() {
 
     });
 
+    inputBox().addEventListener("input", handleTyping);
+
 }
+
+// ============================================
+// Conversation
+// ============================================
 
 async function loadConversation() {
 
@@ -91,6 +127,10 @@ async function loadConversation() {
 
                 unreadVisitor: false,
 
+                visitorTyping: false,
+
+                adminTyping: false,
+
                 createdAt: serverTimestamp(),
 
                 updatedAt: serverTimestamp()
@@ -101,19 +141,63 @@ async function loadConversation() {
 
         conversationId = ref.id;
 
-    }
-
-    else {
+    } else {
 
         conversationId = snapshot.docs[0].id;
 
     }
 
+    listenConversation();
+
     listenMessages();
 
 }
 
+// ============================================
+// Conversation Listener
+// ============================================
+
+function listenConversation() {
+
+    if (unsubscribeConversation) {
+
+        unsubscribeConversation();
+
+    }
+
+    unsubscribeConversation = onSnapshot(
+
+        doc(db, "conversations", conversationId),
+
+        snapshot => {
+
+            if (!snapshot.exists()) return;
+
+            const data = snapshot.data();
+
+            showTyping(data.adminTyping === true);
+
+            setStatus(data.status === "closed"
+                ? "🔴 Offline"
+                : "🟢 Online");
+
+        }
+
+    );
+
+}
+
+// ============================================
+// Messages Listener
+// ============================================
+
 function listenMessages() {
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+    }
 
     const q = query(
 
@@ -125,29 +209,29 @@ function listenMessages() {
 
     );
 
-    onSnapshot(q, snapshot => {
+    unsubscribeMessages = onSnapshot(q, snapshot => {
 
-        chatMessages().innerHTML = "";
+        messagesBox().innerHTML = "";
 
         if (snapshot.empty) {
 
-            chatMessages().innerHTML =
+            messagesBox().innerHTML = `
 
-            `<div class="loading-chat">
+                <div class="loading-chat">
 
-                Start your conversation 👋
+                    Start your conversation 👋
 
-            </div>`;
+                </div>
+
+            `;
 
             return;
 
         }
 
-        snapshot.forEach(doc => {
+        snapshot.forEach(item => {
 
-            const data = doc.data();
-
-            renderMessage(data);
+            renderMessage(item.data());
 
         });
 
@@ -156,6 +240,10 @@ function listenMessages() {
     });
 
 }
+
+// ============================================
+// Render Message
+// ============================================
 
 function renderMessage(data) {
 
@@ -173,19 +261,21 @@ function renderMessage(data) {
 
     `;
 
-    chatMessages().appendChild(div);
+    messagesBox().appendChild(div);
 
 }
+
+// ============================================
+// Helpers
+// ============================================
 
 function scrollBottom() {
 
-    chatMessages().scrollTop =
-
-    chatMessages().scrollHeight;
+    messagesBox().scrollTop = messagesBox().scrollHeight;
 
 }
 
-function escapeHTML(text) {
+function escapeHTML(text = "") {
 
     const div = document.createElement("div");
 
@@ -197,98 +287,143 @@ function escapeHTML(text) {
 // ============================================
 // PPPP CHAT SYSTEM
 // chat.js
-// Final Version
+// Version 3.0
 // Part 2
 // ============================================
 
+// ============================================
 // Send Message
+// ============================================
+
 async function sendMessage() {
 
-    const text = chatInput().value.trim();
+    const text = inputBox().value.trim();
 
     if (!text) return;
 
-    sendBtn().disabled = true;
+    sendButton().disabled = true;
 
     try {
 
         await addDoc(
+
             collection(db, "messages"),
+
             {
+
                 conversationId,
+
                 senderId: visitorId,
+
                 senderType: "visitor",
+
                 message: text,
+
                 messageType: "text",
+
                 seen: false,
+
                 createdAt: serverTimestamp()
+
             }
+
         );
 
         await updateConversation(text);
 
-        chatInput().value = "";
-
-    } catch (err) {
-
-        console.error("Send Error:", err);
-
-        alert("Message could not be sent.");
-
-    }
-
-    sendBtn().disabled = false;
-
-}
-
-// Update Conversation
-async function updateConversation(lastMessage) {
-
-    await updateDoc(
-
-        doc(db, "conversations", conversationId),
-
-        {
-
-            lastMessage,
-
-            lastSender: "visitor",
-
-            unreadAdmin: true,
-
-            updatedAt: serverTimestamp()
-
-        }
-
-    );
-
-}
-
-// Typing Status
-
-let typingTimeout;
-
-chatInput().addEventListener("input", () => {
-
-    clearTimeout(typingTimeout);
-
-    typingTimeout = setTimeout(() => {
+        inputBox().value = "";
 
         stopTyping();
 
-    }, 1500);
+    }
 
-    startTyping();
+    catch (error) {
 
-});
+        console.error("Send Message Error:", error);
 
-async function startTyping() {
+        alert("Unable to send message.");
+
+    }
+
+    finally {
+
+        sendButton().disabled = false;
+
+    }
+
+}
+
+// ============================================
+// Update Conversation
+// ============================================
+
+async function updateConversation(lastMessage) {
 
     try {
 
         await updateDoc(
 
-            doc(db, "typing", conversationId),
+            doc(db, "conversations", conversationId),
+
+            {
+
+                lastMessage,
+
+                lastSender: "visitor",
+
+                unreadAdmin: true,
+
+                unreadVisitor: false,
+
+                visitorTyping: false,
+
+                updatedAt: serverTimestamp()
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error("Conversation Update Error:", error);
+
+    }
+
+}
+
+// ============================================
+// Typing Events
+// ============================================
+
+function handleTyping() {
+
+    startTyping();
+
+    clearTimeout(typingTimer);
+
+    typingTimer = setTimeout(() => {
+
+        stopTyping();
+
+    }, 1500);
+
+}
+
+// ============================================
+// Start Typing
+// ============================================
+
+async function startTyping() {
+
+    if (!conversationId) return;
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", conversationId),
 
             {
 
@@ -298,17 +433,29 @@ async function startTyping() {
 
         );
 
-    } catch(e){}
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
 
 }
 
+// ============================================
+// Stop Typing
+// ============================================
+
 async function stopTyping() {
+
+    if (!conversationId) return;
 
     try {
 
         await updateDoc(
 
-            doc(db, "typing", conversationId),
+            doc(db, "conversations", conversationId),
 
             {
 
@@ -318,36 +465,263 @@ async function stopTyping() {
 
         );
 
-    } catch(e){}
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
 
 }
 
+// ============================================
 // Connection Status
+// ============================================
 
 window.addEventListener("online", () => {
 
-    console.log("Online");
+    console.log("PPPP Chat Connected");
 
 });
 
 window.addEventListener("offline", () => {
 
-    console.log("Offline");
+    console.log("PPPP Chat Offline");
 
 });
 
-// Auto Focus
+// ============================================
+// Cleanup
+// ============================================
 
-window.addEventListener("load", () => {
+window.addEventListener("beforeunload", () => {
 
-    setTimeout(() => {
+    stopTyping();
 
-        if(chatInput()){
+    if (unsubscribeMessages) {
 
-            chatInput().focus();
+        unsubscribeMessages();
+
+    }
+
+    if (unsubscribeConversation) {
+
+        unsubscribeConversation();
+
+    }
+
+});
+// ============================================
+// PPPP CHAT SYSTEM
+// chat.js
+// Version 3.0
+// Part 3 (Final)
+// ============================================
+
+// ============================================
+// Mark Admin Messages as Seen
+// ============================================
+
+async function markMessagesAsSeen(snapshot) {
+
+    try {
+
+        const updates = [];
+
+        snapshot.forEach(item => {
+
+            const data = item.data();
+
+            if (
+                data.senderType === "admin" &&
+                data.seen !== true
+            ) {
+
+                updates.push(
+
+                    updateDoc(
+
+                        doc(db, "messages", item.id),
+
+                        {
+
+                            seen: true
+
+                        }
+
+                    )
+
+                );
+
+            }
+
+        });
+
+        await Promise.all(updates);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+// ============================================
+// Replace listenMessages()
+// ============================================
+
+function listenMessages() {
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+    }
+
+    const q = query(
+
+        collection(db, "messages"),
+
+        where("conversationId", "==", conversationId),
+
+        orderBy("createdAt")
+
+    );
+
+    unsubscribeMessages = onSnapshot(q, async(snapshot)=>{
+
+        messagesBox().innerHTML="";
+
+        if(snapshot.empty){
+
+            messagesBox().innerHTML=`
+
+                <div class="loading-chat">
+
+                    Start your conversation 👋
+
+                </div>
+
+            `;
+
+            return;
 
         }
 
-    },500);
+        snapshot.forEach(item=>{
+
+            renderMessage(item.data());
+
+        });
+
+        scrollBottom();
+
+        await markMessagesAsSeen(snapshot);
+
+    });
+
+}
+
+// ============================================
+// Conversation Status
+// ============================================
+
+async function closeConversation(){
+
+    try{
+
+        await updateDoc(
+
+            doc(db,"conversations",conversationId),
+
+            {
+
+                status:"closed",
+
+                updatedAt:serverTimestamp()
+
+            }
+
+        );
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+// ============================================
+// Open Conversation
+// ============================================
+
+async function openConversation(){
+
+    try{
+
+        await updateDoc(
+
+            doc(db,"conversations",conversationId),
+
+            {
+
+                status:"open",
+
+                updatedAt:serverTimestamp()
+
+            }
+
+        );
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+// ============================================
+// Reconnect
+// ============================================
+
+window.addEventListener("online",()=>{
+
+    if(conversationId){
+
+        listenConversation();
+
+        listenMessages();
+
+    }
 
 });
+
+// ============================================
+// Cleanup
+// ============================================
+
+window.addEventListener("beforeunload",async()=>{
+
+    try{
+
+        await stopTyping();
+
+    }catch(e){}
+
+});
+
+// ============================================
+// Chat Ready
+// ============================================
+
+console.log("PPPP Chat v3.0 Ready");
