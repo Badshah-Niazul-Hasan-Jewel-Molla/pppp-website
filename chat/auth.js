@@ -1,31 +1,39 @@
-// ======================================
-// PPPP CHAT AUTH
-// Version 1.0
-// ======================================
+// ============================================
+// PPPP CHAT SYSTEM
+// auth.js
+// Final Version
+// ============================================
 
 import {
     db,
     doc,
-    setDoc,
     getDoc,
+    setDoc,
+    updateDoc,
     serverTimestamp
 } from "./firebase.js";
 
 import { getVisitorId } from "./utils.js";
 
+let visitorId = "";
+
+// ===============================
+// Initialize Visitor
+// ===============================
+
 export async function initVisitor() {
 
-    const visitorId = getVisitorId();
+    visitorId = getVisitorId();
 
-    const ref = doc(db, "users", visitorId);
+    const userRef = doc(db, "users", visitorId);
 
-    const snap = await getDoc(ref);
+    const userSnap = await getDoc(userRef);
 
-    if (!snap.exists()) {
+    if (!userSnap.exists()) {
 
-        await setDoc(ref, {
+        await setDoc(userRef, {
 
-            visitorId: visitorId,
+            visitorId,
 
             name: "Guest",
 
@@ -45,13 +53,13 @@ export async function initVisitor() {
 
     } else {
 
-        await setDoc(ref, {
+        await updateDoc(userRef, {
 
             online: true,
 
             lastSeen: serverTimestamp()
 
-        }, { merge: true });
+        });
 
     }
 
@@ -59,24 +67,72 @@ export async function initVisitor() {
 
 }
 
-export async function setOffline(visitorId) {
+// ===============================
+// Online
+// ===============================
 
-    const ref = doc(db, "users", visitorId);
+export async function setOnline() {
 
-    await setDoc(ref, {
+    if (!visitorId) return;
 
-        online: false,
+    await updateDoc(
 
-        lastSeen: serverTimestamp()
+        doc(db, "users", visitorId),
 
-    }, { merge: true });
+        {
+
+            online: true,
+
+            lastSeen: serverTimestamp()
+
+        }
+
+    );
 
 }
 
-window.addEventListener("beforeunload", async () => {
+// ===============================
+// Offline
+// ===============================
 
-    const id = getVisitorId();
+export async function setOffline() {
 
-    await setOffline(id);
+    if (!visitorId) return;
+
+    await updateDoc(
+
+        doc(db, "users", visitorId),
+
+        {
+
+            online: false,
+
+            lastSeen: serverTimestamp()
+
+        }
+
+    );
+
+}
+
+// ===============================
+// Window Events
+// ===============================
+
+window.addEventListener("focus", () => {
+
+    setOnline();
+
+});
+
+window.addEventListener("blur", () => {
+
+    setOffline();
+
+});
+
+window.addEventListener("beforeunload", () => {
+
+    setOffline();
 
 });
