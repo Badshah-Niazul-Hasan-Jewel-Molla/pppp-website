@@ -291,3 +291,194 @@ function escapeHTML(text) {
     return div.innerHTML;
 
 }
+// =============================================
+// PPPP CHAT SYSTEM
+// admin.js
+// Final Version
+// Part 3
+// =============================================
+
+// ================================
+// Search Conversation
+// ================================
+
+const searchInput = document.getElementById("searchUser");
+
+if (searchInput) {
+
+    searchInput.addEventListener("keyup", function () {
+
+        const keyword = this.value.toLowerCase();
+
+        document.querySelectorAll(".conversation").forEach(item => {
+
+            const text = item.innerText.toLowerCase();
+
+            item.style.display = text.includes(keyword)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ================================
+// Selected Conversation Highlight
+// ================================
+
+function selectConversation(card){
+
+    document
+        .querySelectorAll(".conversation")
+        .forEach(c=>c.classList.remove("active"));
+
+    card.classList.add("active");
+
+}
+
+// Update previous function
+const oldCreateConversationCard = createConversationCard;
+
+createConversationCard = function(id,data){
+
+    const div=document.createElement("div");
+
+    div.className="conversation";
+
+    div.innerHTML=`
+
+        <h4>${data.visitorId}</h4>
+
+        <p>${data.lastMessage || "No Message Yet"}</p>
+
+    `;
+
+    div.onclick=function(){
+
+        selectConversation(div);
+
+        openConversation(id,data);
+
+    };
+
+    conversationList.appendChild(div);
+
+};
+
+// ================================
+// Visitor Online Status
+// ================================
+
+function watchVisitor(){
+
+    if(!selectedVisitor) return;
+
+    onSnapshot(
+
+        doc(db,"users",selectedVisitor),
+
+        function(docSnap){
+
+            if(!docSnap.exists()) return;
+
+            const data=docSnap.data();
+
+            document.getElementById("visitorStatus").innerHTML=
+
+                data.online
+                ? "🟢 Online"
+                : "⚪ Offline";
+
+        }
+
+    );
+
+}
+
+// Override openConversation
+
+const oldOpenConversation = openConversation;
+
+openConversation = function(id,data){
+
+    selectedConversation=id;
+
+    selectedVisitor=data.visitorId;
+
+    document.getElementById("visitorName").innerHTML=
+
+        data.visitorId;
+
+    watchVisitor();
+
+    listenMessages();
+
+};
+
+// ================================
+// Admin Typing
+// ================================
+
+let typingTimer;
+
+messageInput.addEventListener("input",()=>{
+
+    clearTimeout(typingTimer);
+
+    startTyping();
+
+    typingTimer=setTimeout(stopTyping,1500);
+
+});
+
+async function startTyping(){
+
+    if(!selectedConversation) return;
+
+    try{
+
+        await updateDoc(
+
+            doc(db,"typing",selectedConversation),
+
+            {
+
+                adminTyping:true
+
+            }
+
+        );
+
+    }catch(e){}
+
+}
+
+async function stopTyping(){
+
+    if(!selectedConversation) return;
+
+    try{
+
+        await updateDoc(
+
+            doc(db,"typing",selectedConversation),
+
+            {
+
+                adminTyping:false
+
+            }
+
+        );
+
+    }catch(e){}
+
+}
+
+// ================================
+// Dashboard Ready
+// ================================
+
+console.log("PPPP Admin Dashboard Ready");
