@@ -579,3 +579,119 @@ function listenMessages() {
     );
 
 }
+// ============================================
+// PPPP CHAT SYSTEM
+// chat.js
+// Version 4.0
+// Part 3 (Final)
+// ============================================
+
+// ============================================
+// Connection Events
+// ============================================
+
+window.addEventListener("online", () => {
+
+    console.log("PPPP Chat Connected");
+
+    if (conversationId) {
+
+        listenConversation();
+
+        listenMessages();
+
+    }
+
+});
+
+window.addEventListener("offline", () => {
+
+    console.log("PPPP Chat Offline");
+
+});
+
+// ============================================
+// Window Focus
+// ============================================
+
+window.addEventListener("focus", () => {
+
+    if (conversationId) {
+
+        updateConversation("");
+
+    }
+
+});
+
+// ============================================
+// Cleanup
+// ============================================
+
+window.addEventListener("beforeunload", async () => {
+
+    try {
+
+        await stopTyping();
+
+    } catch (e) {
+
+        console.log(e);
+
+    }
+
+    if (unsubscribeConversation) {
+
+        unsubscribeConversation();
+
+    }
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+    }
+
+});
+
+// ============================================
+// Public Helpers
+// ============================================
+
+export function getConversationId() {
+
+    return conversationId;
+
+}
+
+export function getVisitorId() {
+
+    return visitorId;
+
+}
+
+// ============================================
+// Reset Chat
+// ============================================
+
+export async function resetConversation() {
+
+    clearMessages();
+
+    conversationId = "";
+
+    await loadConversation();
+
+}
+
+// ============================================
+// Chat Ready
+// ============================================
+
+console.log("===================================");
+
+console.log("PPPP Chat System v4.0 Loaded");
+
+console.log("Visitor:", getCurrentVisitor());
+
+console.log("===================================");
