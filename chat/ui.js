@@ -1,206 +1,255 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // ui.js
-// Final Version v1.0
+// Version 4.0
+// ============================================
+
+import { chatConfig } from "./config.js";
+
+let widget = null;
+let isOpen = false;
+
+// ============================================
+// Create Widget
 // ============================================
 
 export function createChatWidget() {
 
-    if (document.getElementById("pppp-chat-widget")) return;
+    if (document.getElementById("pppp-chat-widget")) {
 
-    document.body.insertAdjacentHTML("beforeend", `
+        widget = document.getElementById("pppp-chat-widget");
+        return;
 
-<div id="pppp-chat-widget">
+    }
 
-    <!-- Floating Button -->
+    widget = document.createElement("div");
 
-    <button id="pppp-chat-button">
+    widget.id = "pppp-chat-widget";
 
-        💬
+    widget.innerHTML = `
 
-        <span id="chat-notification" class="hidden">0</span>
+<div id="pppp-chat-button" class="pppp-chat-button">
 
-    </button>
+    💬
 
-    <!-- Chat Window -->
+</div>
 
-    <div id="pppp-chat-window" class="hidden">
+<div id="pppp-chat-window" class="pppp-chat-window">
 
-        <div class="chat-header">
+    <div class="pppp-chat-header">
 
-            <div class="chat-header-left">
+        <div>
 
-                <div class="chat-avatar">
+            <div class="title">
 
-                    PPPP
-
-                </div>
-
-                <div>
-
-                    <div class="chat-title">
-
-                        People's Power & Peace Party
-
-                    </div>
-
-                    <div
-                        id="chat-status"
-                        class="chat-status">
-
-                        🟢 Online
-
-                    </div>
-
-                </div>
+                ${chatConfig.siteName}
 
             </div>
 
-            <button id="pppp-chat-close">
+            <div id="chat-status" class="status">
 
-                ✕
+                🟢 Online
 
-            </button>
-
-        </div>
-
-        <div id="chat-messages">
+            </div>
 
         </div>
 
-        <div
-            id="typing-indicator"
-            class="hidden">
+        <button id="chat-close">
 
-            Admin is typing...
+            ✕
 
-        </div>
+        </button>
 
-        <div class="chat-input">
+    </div>
 
-            <button
-                id="emoji-btn"
-                title="Emoji">
+    <div id="chat-messages" class="pppp-chat-messages">
 
-                😊
+    </div>
 
-            </button>
+    <div id="chat-typing" class="pppp-chat-typing">
 
-            <button
-                id="upload-btn"
-                title="Upload">
+    </div>
 
-                📎
+    <div class="pppp-chat-footer">
 
-            </button>
+        <input
 
-            <input
-                type="file"
-                id="image-upload"
-                accept="image/*"
-                hidden
-            >
+            id="chat-text"
 
-            <input
-                type="text"
-                id="chat-text"
-                placeholder="Write your message..."
-                autocomplete="off"
-            >
+            type="text"
 
-            <button
-                id="voice-btn"
-                title="Voice">
+            placeholder="${chatConfig.placeholder}"
 
-                🎤
+            autocomplete="off"
 
-            </button>
+        >
 
-            <button
-                id="chat-send">
+        <button id="chat-send">
 
-                ➤
+            ${chatConfig.sendButtonText}
 
-            </button>
-
-        </div>
+        </button>
 
     </div>
 
 </div>
 
-`);
+`;
+
+    document.body.appendChild(widget);
 
 }
+
+// ============================================
+// Bind Events
+// ============================================
 
 export function bindUIEvents() {
 
     const button = document.getElementById("pppp-chat-button");
 
-    const windowBox = document.getElementById("pppp-chat-window");
+    const close = document.getElementById("chat-close");
 
-    const close = document.getElementById("pppp-chat-close");
+    button.addEventListener("click", toggleChat);
 
-    const upload = document.getElementById("upload-btn");
-
-    const image = document.getElementById("image-upload");
-
-    button.onclick = () => {
-
-        windowBox.classList.remove("hidden");
-
-    };
-
-    close.onclick = () => {
-
-        windowBox.classList.add("hidden");
-
-    };
-
-    upload.onclick = () => {
-
-        image.click();
-
-    };
+    close.addEventListener("click", toggleChat);
 
 }
 
-export function showTyping(show = true) {
+// ============================================
+// Toggle
+// ============================================
 
-    const typing = document.getElementById("typing-indicator");
+export function toggleChat() {
 
-    if (!typing) return;
+    const win = document.getElementById("pppp-chat-window");
 
-    typing.classList.toggle("hidden", !show);
+    isOpen = !isOpen;
+
+    win.classList.toggle("open", isOpen);
 
 }
+
+// ============================================
+// Status
+// ============================================
 
 export function setStatus(text) {
 
     const status = document.getElementById("chat-status");
 
-    if (!status) return;
+    if (status) {
 
-    status.textContent = text;
-
-}
-
-export function setNotification(count) {
-
-    const badge = document.getElementById("chat-notification");
-
-    if (!badge) return;
-
-    if (count <= 0) {
-
-        badge.classList.add("hidden");
-
-        return;
+        status.innerText = text;
 
     }
 
-    badge.classList.remove("hidden");
+}
 
-    badge.textContent = count;
+// ============================================
+// Typing
+// ============================================
+
+export function showTyping(show = true) {
+
+    const typing = document.getElementById("chat-typing");
+
+    if (!typing) return;
+
+    if (show) {
+
+        typing.innerHTML =
+
+            "Admin is typing...";
+
+    }
+
+    else {
+
+        typing.innerHTML = "";
+
+    }
 
 }
+
+// ============================================
+// Message
+// ============================================
+
+export function addMessage(text, sender) {
+
+    const box = document.getElementById("chat-messages");
+
+    if (!box) return;
+
+    const div = document.createElement("div");
+
+    div.className =
+
+        "pppp-message " + sender;
+
+    div.innerHTML = `
+
+<div class="bubble">
+
+${text}
+
+</div>
+
+`;
+
+    box.appendChild(div);
+
+    box.scrollTop = box.scrollHeight;
+
+}
+
+// ============================================
+// Clear Messages
+// ============================================
+
+export function clearMessages() {
+
+    const box = document.getElementById("chat-messages");
+
+    if (box) {
+
+        box.innerHTML = "";
+
+    }
+
+}
+
+// ============================================
+// Open
+// ============================================
+
+export function openChat() {
+
+    if (!isOpen) {
+
+        toggleChat();
+
+    }
+
+}
+
+// ============================================
+// Close
+// ============================================
+
+export function closeChat() {
+
+    if (isOpen) {
+
+        toggleChat();
+
+    }
+
+}
+
+// ============================================
+// Ready
+// ============================================
+
+console.log("PPPP UI Ready");
