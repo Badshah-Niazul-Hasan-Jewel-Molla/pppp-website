@@ -179,6 +179,8 @@ Version 4.0
 
 # License
 
-Private Project
+This project is publicly available for viewing on GitHub.
 
-Copyright © PPPP Bangladesh
+Copyright © PPPP Bangladesh.
+
+All rights reserved.
