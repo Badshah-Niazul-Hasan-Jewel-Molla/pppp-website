@@ -1,25 +1,134 @@
-/* =========================================
-   PPPP Admin Dashboard
-   Version 1.0
-========================================= */
+/* ==========================================
+   PPPP CHAT SYSTEM
+   admin.css
+   Version 4.0
+========================================== */
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
+    font-family:Arial,sans-serif;
+
 }
 
 body{
 
-    font-family:Arial,Helvetica,sans-serif;
-
     background:#f5f6fa;
 
-    height:100vh;
+    color:#222;
 
 }
 
-.dashboard{
+/* ================= Login ================= */
+
+.login-container{
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:360px;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.login-card h1{
+
+    margin-bottom:10px;
+
+}
+
+.login-card p{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+.login-card input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+}
+
+.login-card button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:#0066ff;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.google-btn{
+
+    margin-top:15px;
+
+    background:#db4437;
+
+}
+
+.divider{
+
+    text-align:center;
+
+    margin:20px 0;
+
+    color:#888;
+
+}
+
+.error{
+
+    margin-top:15px;
+
+    color:red;
+
+}
+
+/* ================= Dashboard ================= */
+
+.admin-layout{
 
     display:flex;
 
@@ -33,7 +142,7 @@ body{
 
     width:320px;
 
-    background:#ffffff;
+    background:#fff;
 
     border-right:1px solid #ddd;
 
@@ -45,35 +154,25 @@ body{
 
 .logo{
 
-    padding:20px;
-
     background:#0066ff;
 
     color:#fff;
 
-    text-align:center;
+    padding:20px;
+
+    font-size:22px;
+
+    font-weight:bold;
 
 }
 
-.search-box{
+.sidebar-header{
 
     padding:15px;
 
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #ddd;
 
-}
-
-.search-box input{
-
-    width:100%;
-
-    padding:10px;
-
-    border:1px solid #ddd;
-
-    border-radius:8px;
-
-    outline:none;
+    font-weight:bold;
 
 }
 
@@ -81,11 +180,11 @@ body{
 
     flex:1;
 
-    overflow-y:auto;
+    overflow:auto;
 
 }
 
-.conversation{
+.conversation-item{
 
     padding:15px;
 
@@ -93,35 +192,11 @@ body{
 
     cursor:pointer;
 
-    transition:.3s;
-
 }
 
-.conversation:hover{
+.conversation-item:hover{
 
-    background:#f0f6ff;
-
-}
-
-.conversation.active{
-
-    background:#dcecff;
-
-}
-
-.conversation h4{
-
-    font-size:16px;
-
-    margin-bottom:5px;
-
-}
-
-.conversation p{
-
-    color:#777;
-
-    font-size:13px;
+    background:#f5f5f5;
 
 }
 
@@ -139,11 +214,9 @@ body{
 
 .chat-header{
 
-    height:70px;
+    padding:18px;
 
     background:#fff;
-
-    border-bottom:1px solid #ddd;
 
     display:flex;
 
@@ -151,19 +224,19 @@ body{
 
     align-items:center;
 
-    padding:0 20px;
+    border-bottom:1px solid #ddd;
 
 }
 
 .chat-header button{
 
-    background:#0066ff;
-
-    color:#fff;
+    padding:10px 18px;
 
     border:none;
 
-    padding:10px 18px;
+    background:#0066ff;
+
+    color:#fff;
 
     border-radius:8px;
 
@@ -171,59 +244,51 @@ body{
 
 }
 
-.messages{
+.admin-messages{
 
     flex:1;
 
-    overflow-y:auto;
+    overflow:auto;
 
     padding:20px;
 
-    background:#eef2f7;
+    background:#f9f9f9;
 
 }
 
-.message{
-
-    margin-bottom:15px;
+.admin-message{
 
     display:flex;
 
-}
-
-.message.visitor{
-
-    justify-content:flex-start;
+    margin:10px 0;
 
 }
 
-.message.admin{
+.admin-message.admin{
 
     justify-content:flex-end;
 
 }
 
-.message .bubble{
+.admin-message.visitor{
 
-    max-width:70%;
+    justify-content:flex-start;
+
+}
+
+.bubble{
+
+    max-width:75%;
 
     padding:12px 16px;
 
-    border-radius:18px;
+    border-radius:15px;
 
-    line-height:1.5;
-
-}
-
-.message.visitor .bubble{
-
-    background:#ffffff;
-
-    color:#222;
+    word-break:break-word;
 
 }
 
-.message.admin .bubble{
+.admin-message.admin .bubble{
 
     background:#0066ff;
 
@@ -231,7 +296,25 @@ body{
 
 }
 
-/* Footer */
+.admin-message.visitor .bubble{
+
+    background:#e5e5e5;
+
+}
+
+.typing-indicator{
+
+    min-height:22px;
+
+    padding:0 20px;
+
+    font-size:13px;
+
+    color:#666;
+
+    font-style:italic;
+
+}
 
 .chat-footer{
 
@@ -255,53 +338,23 @@ body{
 
     border:1px solid #ddd;
 
-    border-radius:25px;
-
-    outline:none;
+    border-radius:8px;
 
 }
 
 .chat-footer button{
 
+    padding:12px 25px;
+
+    border:none;
+
     background:#0066ff;
 
     color:#fff;
 
-    border:none;
-
-    padding:12px 20px;
-
-    border-radius:25px;
+    border-radius:8px;
 
     cursor:pointer;
-
-}
-
-.chat-footer button:hover{
-
-    background:#0052cc;
-
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#bdbdbd;
-
-    border-radius:10px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#999;
 
 }
 
@@ -309,24 +362,16 @@ body{
 
 @media(max-width:768px){
 
-.dashboard{
+    .sidebar{
 
-    flex-direction:column;
+        width:100%;
 
-}
+    }
 
-.sidebar{
+    .chat-area{
 
-    width:100%;
+        display:none;
 
-    height:40vh;
-
-}
-
-.chat-area{
-
-    height:60vh;
-
-}
+    }
 
 }
