@@ -1,27 +1,48 @@
-# PPPP Chat Admin Panel
+# 💬 PPPP Chat Admin Panel v4.0.0
 
-PPPP Chat Admin Panel is the secure dashboard for managing visitor conversations in real time.
+The **PPPP Chat Admin Panel** is the secure dashboard for managing visitor conversations in real time.
 
----
-
-# Features
-
-- Secure Admin Login
-- Firebase Authentication
-- Real-time Visitor Messages
-- Send Reply
-- Typing Indicator
-- Seen Status
-- Online / Offline Status
-- Conversation List
-- Mobile Friendly
-- Firestore Integration
+Built with **Firebase Authentication**, **Cloud Firestore**, and **Vanilla JavaScript**.
 
 ---
 
-# Folder Structure
+# 📖 Table of Contents
 
-```
+- Features
+- Folder Structure
+- Requirements
+- Authentication
+- Firestore
+- Admin Roles
+- Login
+- Dashboard
+- Deployment
+- Security
+- Browser Support
+- Version
+- License
+
+---
+
+# ✨ Features
+
+- 🔐 Secure Admin Login
+- 👥 Multi-Admin Support
+- 💬 Real-time Visitor Messages
+- 📤 Send Reply
+- ⌨️ Typing Indicator
+- 👁️ Seen Status
+- 🟢 Online / Offline Status
+- 📋 Conversation List
+- 🔍 Search Conversations
+- 📱 Mobile Friendly
+- ☁️ Cloud Firestore Integration
+
+---
+
+# 📂 Folder Structure
+
+```text
 admin/
 │
 ├── login.html
@@ -34,86 +55,66 @@ admin/
 
 ---
 
-# Requirements
+# 🔥 Requirements
 
-Enable Firebase Authentication.
+Enable the following Firebase services.
 
-Supported providers
-
-- Email / Password
-- Google (Optional)
+- Authentication
+- Cloud Firestore
+- Firebase Storage
 
 ---
 
-# Firestore
+# 🔐 Authentication
+
+Enable:
+
+- Email / Password
+
+Optional:
+
+- Google Sign-In
+
+---
+
+# 🗂️ Firestore
 
 Required Collection
 
-```
+```text
 admins
 ```
 
 Document ID
 
-```
+```text
 Firebase Authentication UID
 ```
 
 Example
 
-```
+```text
 admins/
-    ABC123456789
+└── ABC123456789XYZ
 ```
 
 Fields
 
-```
-name
-email
-role
-active
-createdAt
-```
-
-Example
-
-```
-name : Super Admin
-email : admin@pppp.org
-role : superadmin
-active : true
+```text
+name: Super Admin
+email: admin@example.com
+role: superadmin
+active: true
+createdAt: serverTimestamp()
 ```
 
 ---
 
-# Login
+# 👥 Admin Roles
 
-```
-admin/login.html
-```
+Supported roles:
 
----
-
-# Dashboard
-
-```
-admin/admin.html
-```
-
----
-
-# Security
-
-Only users whose UID exists in the **admins** collection can access the Admin Panel.
-
-All other authenticated users are denied access.
-
----
-
-# Recommended Roles
-
-```
+```text
 superadmin
 admin
 moderator
@@ -122,31 +123,89 @@ support
 
 ---
 
-# Deployment Checklist
+# 🔑 Login
 
-- Enable Firebase Authentication
-- Deploy Firestore Rules
-- Deploy Storage Rules
-- Deploy Firestore Indexes
-- Create the first Admin document
-- Test Login
-- Test Visitor Chat
-- Test Admin Reply
+Open:
+
+```text
+admin/login.html
+```
+
+Login using your Firebase Authentication account.
 
 ---
 
-# Version
+# 🖥️ Dashboard
 
+After successful login:
+
+```text
+admin/admin.html
 ```
-Version 4.0
+
+From the dashboard you can:
+
+- View conversations
+- Reply to visitors
+- Monitor typing status
+- Mark messages as seen
+- Track visitor activity
+
+---
+
+# 🚀 Deployment
+
+Deploy Firestore Rules.
+
+```bash
+firebase deploy --only firestore:rules
+```
+
+Deploy Firestore Indexes.
+
+```bash
+firebase deploy --only firestore:indexes
+```
+
+Deploy Storage Rules.
+
+```bash
+firebase deploy --only storage
 ```
 
 ---
 
-# License
+# 🔒 Security
+
+Only authenticated users whose **UID exists in the `admins` collection** can access the Admin Panel.
+
+All other users are denied access.
+
+---
+
+# 🌍 Browser Support
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Safari
+- Brave
+- Opera
+
+---
+
+# 📌 Version
+
+```text
+Version 4.0.0
+```
+
+---
+
+# 📄 License
 
 This module is part of the PPPP Chat System.
 
-Copyright © PPPP Bangladesh.
+Copyright © 2014-Present PPPP Bangladesh.
 
 All rights reserved.
