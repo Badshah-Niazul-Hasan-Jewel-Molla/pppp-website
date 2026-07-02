@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPPP Admin Dashboard</title>
+
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>PPPP Chat</h2>
+
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchUser"
+                placeholder="Search visitor..."
+            >
+
+        </div>
+
+        <div
+            id="conversationList"
+            class="conversation-list">
+
+        </div>
+
+    </aside>
+
+    <!-- Chat Area -->
+
+    <main class="chat-area">
+
+        <header class="chat-header">
+
+            <div>
+
+                <h3 id="visitorName">
+
+                    Select Conversation
+
+                </h3>
+
+                <small id="visitorStatus">
+
+                    Offline
+
+                </small>
+
+            </div>
+
+            <button
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <section
+            id="adminMessages"
+            class="messages">
+
+        </section>
+
+        <footer class="chat-footer">
+
+            <input
+                type="text"
+                id="adminMessage"
+                placeholder="Write a reply..."
+            >
+
+            <button
+                id="sendReply">
+
+                Send
+
+            </button>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script type="module" src="auth.js"></script>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+
+</html>
