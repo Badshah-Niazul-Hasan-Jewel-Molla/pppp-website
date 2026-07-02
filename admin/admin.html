@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PPPP Admin Dashboard</title>
+<title>PPPP Chat Admin</title>
 
 <link rel="stylesheet" href="admin.css">
 
@@ -15,7 +15,7 @@
 
 <body>
 
-<div class="dashboard">
+<div class="admin-layout">
 
     <!-- Sidebar -->
 
@@ -23,43 +23,42 @@
 
         <div class="logo">
 
-            <h2>PPPP Chat</h2>
+            PPPP CHAT
 
         </div>
 
-        <div class="search-box">
+        <div class="sidebar-header">
 
-            <input
-                type="text"
-                id="searchUser"
-                placeholder="Search visitor..."
-            >
+            Conversations
 
         </div>
 
         <div
-            id="conversationList"
-            class="conversation-list">
+            id="conversation-list"
+            class="conversation-list"
+        >
+
+            Loading...
 
         </div>
 
     </aside>
 
-    <!-- Chat Area -->
+    <!-- Main -->
 
     <main class="chat-area">
 
-        <header class="chat-header">
+        <div class="chat-header">
 
             <div>
 
-                <h3 id="visitorName">
+                <h2 id="visitor-name">
 
                     Select Conversation
 
-                </h3>
+                </h2>
 
-                <small id="visitorStatus">
+                <small id="visitor-status">
 
                     Offline
 
@@ -67,43 +66,57 @@
 
             </div>
 
-            <button
-                onclick="logout()">
+            <button id="logoutBtn">
 
                 Logout
 
             </button>
 
-        </header>
+        </div>
 
-        <section
-            id="adminMessages"
-            class="messages">
+        <div
+            id="admin-messages"
+            class="admin-messages"
+        >
 
-        </section>
+            <div class="empty-chat">
 
-        <footer class="chat-footer">
+                Select a conversation
+
+            </div>
+
+        </div>
+
+        <div
+            id="typing-indicator"
+            class="typing-indicator"
+        ></div>
+
+        <div class="chat-footer">
 
             <input
+
+                id="reply-text"
+
                 type="text"
-                id="adminMessage"
-                placeholder="Write a reply..."
+
+                placeholder="Type your reply..."
+
+                autocomplete="off"
+
             >
 
-            <button
-                id="sendReply">
+            <button id="sendReply">
 
                 Send
 
             </button>
 
-        </footer>
+        </div>
 
     </main>
 
 </div>
-
-<script type="module" src="auth.js"></script>
 
 <script type="module" src="admin.js"></script>
 
