@@ -257,3 +257,66 @@
 }
 
 }
+.pppp-message{
+
+    display:flex;
+
+    margin:12px 0;
+
+}
+
+.pppp-message.visitor{
+
+    justify-content:flex-end;
+
+}
+
+.pppp-message.admin{
+
+    justify-content:flex-start;
+
+}
+
+.bubble{
+
+    max-width:75%;
+
+    padding:12px 15px;
+
+    border-radius:18px;
+
+    word-break:break-word;
+
+    line-height:1.5;
+
+    font-size:15px;
+
+}
+
+.visitor .bubble{
+
+    background:#0066ff;
+
+    color:#fff;
+
+}
+
+.admin .bubble{
+
+    background:#ececec;
+
+    color:#222;
+
+}
+
+.loading-chat{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#888;
+
+    font-size:14px;
+
+}
