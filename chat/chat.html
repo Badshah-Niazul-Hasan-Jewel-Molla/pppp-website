@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPPP Chat</title>
+
+<link rel="stylesheet" href="chat.css">
+
+</head>
+
+<body>
+
+<!-- Floating Chat Button -->
+<div id="pppp-chat-button">
+    💬
+</div>
+
+<!-- Chat Window -->
+<div id="pppp-chat-widget" class="pppp-chat-window">
+
+    <!-- Header -->
+    <div class="pppp-chat-header">
+
+        <div>
+
+            <div class="title">
+                PPPP Support
+            </div>
+
+            <div id="chat-status" class="status">
+                🟢 Online
+            </div>
+
+        </div>
+
+        <button id="chat-close">
+            ✕
+        </button>
+
+    </div>
+
+    <!-- Messages -->
+    <div
+        id="chat-messages"
+        class="pppp-chat-messages"
+    >
+    </div>
+
+    <!-- Typing Indicator -->
+    <div
+        id="typing-indicator"
+        class="pppp-chat-typing"
+    ></div>
+
+    <!-- Footer -->
+    <div class="pppp-chat-footer">
+
+        <input
+
+            id="chat-text"
+
+            type="text"
+
+            placeholder="Type your message..."
+
+            autocomplete="off"
+
+        >
+
+        <button id="chat-send">
+
+            Send
+
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="chat.js"></script>
+
+</body>
+</html>
