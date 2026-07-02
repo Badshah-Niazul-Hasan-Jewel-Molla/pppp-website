@@ -180,3 +180,166 @@ async function sendMessage(){
     input().value="";
 
 }
+// =====================================
+// PPPP CHAT
+// chat.js
+// Part 2
+// =====================================
+
+// Update conversation after sending message
+async function updateConversation(lastMessage){
+
+    const { doc, updateDoc } = await import("./firebase.js");
+
+    await updateDoc(
+
+        doc(db,"conversations",conversationId),
+
+        {
+
+            lastMessage:lastMessage,
+
+            lastSender:"visitor",
+
+            unreadAdmin:true,
+
+            updatedAt:serverTimestamp()
+
+        }
+
+    );
+
+}
+
+// Replace sendMessage() with this version
+async function sendMessage(){
+
+    const text=input().value.trim();
+
+    if(text==="") return;
+
+    await addDoc(
+
+        collection(db,"messages"),
+
+        {
+
+            conversationId:conversationId,
+
+            senderId:visitorId,
+
+            senderType:"visitor",
+
+            message:text,
+
+            messageType:"text",
+
+            seen:false,
+
+            createdAt:serverTimestamp()
+
+        }
+
+    );
+
+    await updateConversation(text);
+
+    input().value="";
+
+}
+
+// Better message bubble
+function appendMessage(text,type){
+
+    const bubble=document.createElement("div");
+
+    bubble.className="pppp-message "+type;
+
+    bubble.innerHTML=`
+
+        <div class="bubble">
+
+            ${text}
+
+        </div>
+
+    `;
+
+    messages().appendChild(bubble);
+
+    messages().scrollTop=messages().scrollHeight;
+
+}
+
+// Loading screen
+function showLoading(){
+
+    messages().innerHTML=`
+
+        <div class="loading-chat">
+
+            Loading conversation...
+
+        </div>
+
+    `;
+
+}
+
+// Empty conversation
+function emptyConversation(){
+
+    messages().innerHTML=`
+
+        <div class="loading-chat">
+
+            Start your conversation 👋
+
+        </div>
+
+    `;
+
+}
+
+// Listen improvements
+function listenMessages(){
+
+    showLoading();
+
+    const q=query(
+
+        collection(db,"messages"),
+
+        where("conversationId","==",conversationId)
+
+    );
+
+    onSnapshot(q,function(snapshot){
+
+        messages().innerHTML="";
+
+        if(snapshot.empty){
+
+            emptyConversation();
+
+            return;
+
+        }
+
+        snapshot.forEach(function(doc){
+
+            const data=doc.data();
+
+            appendMessage(
+
+                data.message,
+
+                data.senderType
+
+            );
+
+        });
+
+    });
+
+}
