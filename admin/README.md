@@ -1,4 +1,4 @@
-# 🛡️ PPPP Chat Admin Panel
+# PPPP Chat Admin Panel
 
 PPPP Chat Admin Panel is the secure dashboard for managing visitor conversations in real time.
 
