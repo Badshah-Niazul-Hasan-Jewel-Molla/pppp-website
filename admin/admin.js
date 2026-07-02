@@ -212,3 +212,261 @@ function listenMessages() {
     );
 
 }
+// ============================================
+// PPPP CHAT SYSTEM
+// admin.js
+// Version 4.0
+// Part 2 (Final)
+// ============================================
+
+// ============================================
+// Send Reply
+// ============================================
+
+sendButton.addEventListener("click", sendReply);
+
+replyInput.addEventListener("keydown", (e) => {
+
+    if (e.key === "Enter") {
+
+        e.preventDefault();
+
+        sendReply();
+
+    }
+
+});
+
+async function sendReply() {
+
+    if (!currentConversation) return;
+
+    const text = replyInput.value.trim();
+
+    if (!text) return;
+
+    sendButton.disabled = true;
+
+    try {
+
+        await addDoc(
+
+            collection(db, "messages"),
+
+            {
+
+                conversationId: currentConversation,
+
+                senderId: currentAdmin.uid,
+
+                senderType: "admin",
+
+                message: text,
+
+                messageType: "text",
+
+                seen: false,
+
+                createdAt: serverTimestamp()
+
+            }
+
+        );
+
+        await updateConversation(text);
+
+        replyInput.value = "";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("Message could not be sent.");
+
+    }
+
+    finally {
+
+        sendButton.disabled = false;
+
+    }
+
+}
+
+// ============================================
+// Update Conversation
+// ============================================
+
+async function updateConversation(lastMessage) {
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", currentConversation),
+
+            {
+
+                lastMessage,
+
+                lastSender: "admin",
+
+                unreadVisitor: true,
+
+                unreadAdmin: false,
+
+                adminTyping: false,
+
+                updatedAt: serverTimestamp()
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+// ============================================
+// Typing Indicator
+// ============================================
+
+let typingTimer = null;
+
+replyInput.addEventListener("input", async () => {
+
+    if (!currentConversation) return;
+
+    clearTimeout(typingTimer);
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", currentConversation),
+
+            {
+
+                adminTyping: true
+
+            }
+
+        );
+
+    }
+
+    catch (e) {}
+
+    typingTimer = setTimeout(stopTyping, 1200);
+
+});
+
+async function stopTyping() {
+
+    if (!currentConversation) return;
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "conversations", currentConversation),
+
+            {
+
+                adminTyping: false
+
+            }
+
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+// ============================================
+// Watch Visitor Typing
+// ============================================
+
+onSnapshot(
+
+    collection(db, "conversations"),
+
+    (snapshot) => {
+
+        snapshot.forEach((item) => {
+
+            if (item.id !== currentConversation) return;
+
+            const data = item.data();
+
+            typingIndicator.textContent =
+
+                data.visitorTyping
+
+                    ? "Visitor is typing..."
+
+                    : "";
+
+        });
+
+    }
+
+);
+
+// ============================================
+// Logout
+// ============================================
+
+logoutButton.addEventListener("click", async () => {
+
+    if (!confirm("Logout now?")) return;
+
+    await signOut(auth);
+
+    location.href = "login.html";
+
+});
+
+// ============================================
+// Cleanup
+// ============================================
+
+window.addEventListener("beforeunload", async () => {
+
+    try {
+
+        await stopTyping();
+
+    }
+
+    catch (e) {}
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+    }
+
+});
+
+// ============================================
+// Ready
+// ============================================
+
+console.log("================================");
+
+console.log("PPPP Admin Panel Ready");
+
+console.log("Admin:", currentAdmin);
+
+console.log("================================");
