@@ -1,59 +1,95 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // auth.js
-// Final Version
+// Version 4.0
 // ============================================
 
 import {
+    auth,
     db,
     doc,
     getDoc,
     setDoc,
     updateDoc,
-    serverTimestamp
+    serverTimestamp,
+    onAuthStateChanged,
+    signInWithPopup,
+    googleProvider,
+    facebookProvider,
+    githubProvider
 } from "./firebase.js";
 
 import { getVisitorId } from "./utils.js";
 
-let visitorId = "";
+// ============================================
+// Current User
+// ============================================
 
-// ===============================
+let currentVisitor = null;
+
+// ============================================
 // Initialize Visitor
-// ===============================
+// ============================================
 
 export async function initVisitor() {
 
-    visitorId = getVisitorId();
+    const visitorId = getVisitorId();
 
-    const userRef = doc(db, "users", visitorId);
+    currentVisitor = {
 
-    const userSnap = await getDoc(userRef);
+        id: visitorId,
 
-    if (!userSnap.exists()) {
+        name: "Guest",
 
-        await setDoc(userRef, {
+        photo: "",
 
-            visitorId,
+        email: "",
 
-            name: "Guest",
+        provider: "guest"
 
-            email: "",
+    };
 
-            photo: "",
+    await saveVisitor(currentVisitor);
 
-            provider: "guest",
+    return visitorId;
+
+}
+
+// ============================================
+// Save Visitor
+// ============================================
+
+async function saveVisitor(user) {
+
+    const ref = doc(db, "users", user.id);
+
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+
+        await setDoc(ref, {
+
+            id: user.id,
+
+            name: user.name,
+
+            email: user.email,
+
+            photo: user.photo,
+
+            provider: user.provider,
 
             online: true,
 
-            lastSeen: serverTimestamp(),
+            createdAt: serverTimestamp(),
 
-            createdAt: serverTimestamp()
+            lastSeen: serverTimestamp()
 
         });
 
     } else {
 
-        await updateDoc(userRef, {
+        await updateDoc(ref, {
 
             online: true,
 
@@ -63,73 +99,147 @@ export async function initVisitor() {
 
     }
 
-    return visitorId;
-
 }
 
-// ===============================
-// Online
-// ===============================
+// ============================================
+// Google Login
+// ============================================
 
-export async function setOnline() {
+export async function loginGoogle() {
 
-    if (!visitorId) return;
+    const result = await signInWithPopup(
 
-    await updateDoc(
+        auth,
 
-        doc(db, "users", visitorId),
-
-        {
-
-            online: true,
-
-            lastSeen: serverTimestamp()
-
-        }
+        googleProvider
 
     );
 
+    return await saveFirebaseUser(result.user, "google");
+
 }
 
-// ===============================
-// Offline
-// ===============================
+// ============================================
+// Facebook Login
+// ============================================
+
+export async function loginFacebook() {
+
+    const result = await signInWithPopup(
+
+        auth,
+
+        facebookProvider
+
+    );
+
+    return await saveFirebaseUser(result.user, "facebook");
+
+}
+
+// ============================================
+// GitHub Login
+// ============================================
+
+export async function loginGithub() {
+
+    const result = await signInWithPopup(
+
+        auth,
+
+        githubProvider
+
+    );
+
+    return await saveFirebaseUser(result.user, "github");
+
+}
+
+// ============================================
+// Save Firebase User
+// ============================================
+
+async function saveFirebaseUser(user, provider) {
+
+    currentVisitor = {
+
+        id: user.uid,
+
+        name: user.displayName || "Visitor",
+
+        email: user.email || "",
+
+        photo: user.photoURL || "",
+
+        provider
+
+    };
+
+    await saveVisitor(currentVisitor);
+
+    return currentVisitor.id;
+
+}
+
+// ============================================
+// Auth State
+// ============================================
+
+onAuthStateChanged(auth, async(user) => {
+
+    if (!user) return;
+
+    await saveFirebaseUser(user, "firebase");
+
+});
+
+// ============================================
+// Set Offline
+// ============================================
 
 export async function setOffline() {
 
-    if (!visitorId) return;
+    if (!currentVisitor) return;
 
-    await updateDoc(
+    try {
 
-        doc(db, "users", visitorId),
+        await updateDoc(
 
-        {
+            doc(db, "users", currentVisitor.id),
 
-            online: false,
+            {
 
-            lastSeen: serverTimestamp()
+                online: false,
 
-        }
+                lastSeen: serverTimestamp()
 
-    );
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
 
 }
 
-// ===============================
-// Window Events
-// ===============================
+// ============================================
+// Current Visitor
+// ============================================
 
-window.addEventListener("focus", () => {
+export function getCurrentVisitor() {
 
-    setOnline();
+    return currentVisitor;
 
-});
+}
 
-window.addEventListener("blur", () => {
-
-    setOffline();
-
-});
+// ============================================
+// Auto Offline
+// ============================================
 
 window.addEventListener("beforeunload", () => {
 
