@@ -1,50 +1,83 @@
-// =====================================
-// PPPP ADMIN AUTH
-// Version 1.0
-// =====================================
+// ============================================
+// PPPP CHAT SYSTEM
+// admin/auth.js
+// Version 4.0
+// ============================================
 
 import {
     auth,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    googleProvider,
-    onAuthStateChanged,
-    signOut
+    db,
+    doc,
+    getDoc,
+    signOut,
+    onAuthStateChanged
 } from "../chat/firebase.js";
 
-// ----------------------------
-// Email Login
-// ----------------------------
+// ============================================
+// Current Admin
+// ============================================
 
-const loginForm = document.getElementById("loginForm");
+let currentAdmin = null;
 
-if (loginForm) {
+// ============================================
+// Check Admin Login
+// ============================================
 
-    loginForm.addEventListener("submit", async (e) => {
+export function requireAdmin(callback) {
 
-        e.preventDefault();
+    onAuthStateChanged(auth, async (user) => {
 
-        const email = document.getElementById("email").value.trim();
+        if (!user) {
 
-        const password = document.getElementById("password").value;
+            location.href = "login.html";
 
-        const message = document.getElementById("loginMessage");
+            return;
+
+        }
 
         try {
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            const adminRef = doc(db, "admins", user.uid);
 
-            window.location.href = "admin.html";
+            const adminSnap = await getDoc(adminRef);
+
+            if (!adminSnap.exists()) {
+
+                alert("Access Denied");
+
+                await signOut(auth);
+
+                location.href = "login.html";
+
+                return;
+
+            }
+
+            currentAdmin = {
+
+                uid: user.uid,
+
+                email: user.email,
+
+                name: user.displayName || "Administrator",
+
+                photo: user.photoURL || "",
+
+                role: adminSnap.data().role || "admin"
+
+            };
+
+            callback(currentAdmin);
 
         }
 
         catch (error) {
 
-            message.innerHTML = error.message;
+            console.error(error);
+
+            alert("Authentication Error");
+
+            location.href = "login.html";
 
         }
 
@@ -52,66 +85,62 @@ if (loginForm) {
 
 }
 
-// ----------------------------
-// Google Login
-// ----------------------------
+// ============================================
+// Logout
+// ============================================
 
-const googleBtn = document.getElementById("googleLogin");
+export async function logoutAdmin() {
 
-if (googleBtn) {
+    try {
 
-    googleBtn.addEventListener("click", async () => {
-
-        try {
-
-            await signInWithPopup(
-                auth,
-                googleProvider
-            );
-
-            window.location.href = "admin.html";
-
-        }
-
-        catch (error) {
-
-            document.getElementById("loginMessage").innerHTML =
-                error.message;
-
-        }
-
-    });
-
-}
-
-// ----------------------------
-// Check Login
-// ----------------------------
-
-onAuthStateChanged(auth, (user) => {
-
-    if (!user) {
-
-        if (
-            !window.location.pathname.endsWith("login.html")
-        ) {
-
-            window.location.href = "login.html";
-
-        }
+        await signOut(auth);
 
     }
 
-});
+    catch (e) {
 
-// ----------------------------
-// Logout
-// ----------------------------
+        console.error(e);
 
-window.logout = async function () {
+    }
 
-    await signOut(auth);
+    location.href = "login.html";
 
-    window.location.href = "login.html";
+}
 
-};
+// ============================================
+// Current Admin
+// ============================================
+
+export function getCurrentAdmin() {
+
+    return currentAdmin;
+
+}
+
+// ============================================
+// Role Check
+// ============================================
+
+export function isSuperAdmin() {
+
+    if (!currentAdmin) return false;
+
+    return currentAdmin.role === "superadmin";
+
+}
+
+// ============================================
+// Role Check
+// ============================================
+
+export function isAdmin() {
+
+    return currentAdmin !== null;
+
+}
+
+// ============================================
+// Ready
+// ============================================
+
+console.log("PPPP Admin Auth Ready");
