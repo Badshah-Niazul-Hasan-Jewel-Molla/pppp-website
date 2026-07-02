@@ -130,3 +130,164 @@ function openConversation(id,data){
     listenMessages();
 
 }
+// =============================================
+// PPPP CHAT SYSTEM
+// admin.js
+// Final Version
+// Part 2
+// =============================================
+
+// Live Messages
+function listenMessages() {
+
+    if (!selectedConversation) return;
+
+    const q = query(
+
+        collection(db, "messages"),
+
+        where("conversationId", "==", selectedConversation),
+
+        orderBy("createdAt")
+
+    );
+
+    onSnapshot(q, (snapshot) => {
+
+        messageBox.innerHTML = "";
+
+        snapshot.forEach((item) => {
+
+            renderMessage(item.id, item.data());
+
+        });
+
+        scrollBottom();
+
+    });
+
+}
+
+// Render Message
+
+function renderMessage(id, data) {
+
+    const div = document.createElement("div");
+
+    div.className = "message " + data.senderType;
+
+    div.innerHTML = `
+
+        <div class="bubble">
+
+            ${escapeHTML(data.message)}
+
+        </div>
+
+    `;
+
+    messageBox.appendChild(div);
+
+}
+
+// Send Reply
+
+async function sendReply() {
+
+    if (!selectedConversation) return;
+
+    const text = messageInput.value.trim();
+
+    if (text === "") return;
+
+    sendButton.disabled = true;
+
+    try {
+
+        await addDoc(
+
+            collection(db, "messages"),
+
+            {
+
+                conversationId: selectedConversation,
+
+                senderId: "admin",
+
+                senderType: "admin",
+
+                message: text,
+
+                messageType: "text",
+
+                seen: false,
+
+                createdAt: serverTimestamp()
+
+            }
+
+        );
+
+        await updateConversation(text);
+
+        messageInput.value = "";
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("Reply failed.");
+
+    }
+
+    sendButton.disabled = false;
+
+}
+
+// Update Conversation
+
+async function updateConversation(lastMessage) {
+
+    await updateDoc(
+
+        doc(db, "conversations", selectedConversation),
+
+        {
+
+            lastMessage,
+
+            lastSender: "admin",
+
+            unreadVisitor: true,
+
+            unreadAdmin: false,
+
+            updatedAt: serverTimestamp()
+
+        }
+
+    );
+
+}
+
+// Auto Scroll
+
+function scrollBottom() {
+
+    messageBox.scrollTop = messageBox.scrollHeight;
+
+}
+
+// Escape HTML
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.innerText = text;
+
+    return div.innerHTML;
+
+}
