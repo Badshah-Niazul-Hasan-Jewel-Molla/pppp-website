@@ -19,49 +19,143 @@
 
     <div class="login-card">
 
-        <h1>PPPP Admin</h1>
+        <h1>PPPP Chat Admin</h1>
 
-        <p>People's Power & Peace Party</p>
+        <p>Administrator Login</p>
 
         <form id="loginForm">
 
             <input
-                type="email"
                 id="email"
-                placeholder="Admin Email"
+                type="email"
+                placeholder="Email Address"
                 required
             >
 
             <input
-                type="password"
                 id="password"
+                type="password"
                 placeholder="Password"
                 required
             >
 
-            <button type="submit">
-
+            <button
+                id="loginBtn"
+                type="submit"
+            >
                 Login
-
             </button>
 
         </form>
 
-        <hr>
+        <div class="divider">
 
-        <button id="googleLogin">
+            OR
+
+        </div>
+
+        <button
+            id="googleLogin"
+            class="google-btn"
+        >
 
             Continue with Google
 
         </button>
 
-        <div id="loginMessage"></div>
+        <p
+            id="loginError"
+            class="error"
+        ></p>
 
     </div>
 
 </div>
 
-<script type="module" src="auth.js"></script>
+<script type="module">
+
+import {
+    auth,
+    googleProvider,
+    signInWithPopup,
+    signInWithEmailAndPassword
+} from "../chat/firebase.js";
+
+const form = document.getElementById("loginForm");
+
+const error = document.getElementById("loginError");
+
+const google = document.getElementById("googleLogin");
+
+// ==========================
+// Email Login
+// ==========================
+
+form.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    error.textContent="";
+
+    const email=document.getElementById("email").value;
+
+    const password=document.getElementById("password").value;
+
+    try{
+
+        await signInWithEmailAndPassword(
+
+            auth,
+
+            email,
+
+            password
+
+        );
+
+        location.href="admin.html";
+
+    }
+
+    catch(err){
+
+        error.textContent=err.message;
+
+    }
+
+});
+
+// ==========================
+// Google Login
+// ==========================
+
+google.addEventListener("click",async()=>{
+
+    error.textContent="";
+
+    try{
+
+        await signInWithPopup(
+
+            auth,
+
+            googleProvider
+
+        );
+
+        location.href="admin.html";
+
+    }
+
+    catch(err){
+
+        error.textContent=err.message;
+
+    }
+
+});
+
+</script>
 
 </body>
 
