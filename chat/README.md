@@ -1,4 +1,4 @@
-PPPP Chat System v4.0.0
+🌀 PPPP Chat System v4.0.0
 
 A lightweight, modern, real-time live chat system built with Firebase Authentication, Cloud Firestore, Firebase Storage, and Vanilla JavaScript.
 
@@ -184,6 +184,6 @@ License
 
 This project is publicly available for viewing on GitHub.
 
-Copyright © PPPP Bangladesh.
+Copyright © 2026 PPPP Bangladesh.
 
 All rights reserved.
