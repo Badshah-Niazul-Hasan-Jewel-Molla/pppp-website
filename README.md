@@ -145,7 +145,7 @@ https://naz-niaz.github.io/pppp_bangladesh/
 # 📌 Version
 
 ```text
-PPPP Chat System v4.0.0 Final Stable
+Version 4.0.0
 ```
 
 ---
