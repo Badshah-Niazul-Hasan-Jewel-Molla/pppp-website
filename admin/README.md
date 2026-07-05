@@ -43,13 +43,47 @@ Built with **Firebase Authentication**, **Cloud Firestore**, and **Vanilla JavaS
 # 📂 Folder Structure
 
 ```text
-admin/
+pppp_bangladesh/
 │
-├── login.html
-├── admin.html
-├── admin.css
-├── admin.js
-├── auth.js
+├── index.html
+├── about.html
+├── contact.html
+│
+├── chat/
+│   ├── assets/
+│   │   ├── logo.svg
+│   │   ├── avatar.svg
+│   │   ├── loading.svg
+│   │   └── notification.mp3
+│   │
+│   ├── chat-loader.js
+│   ├── chat.html
+│   ├── chat.css
+│   ├── chat.js
+│   ├── auth.js
+│   ├── ui.js
+│   ├── utils.js
+│   ├── config.js
+│   ├── firebase.js
+│   ├── realtime.js
+│   ├── messageService.js
+│   ├── upload.js
+│   ├── notification.js
+│   ├── state.js
+│   └── README.md
+│
+├── admin/
+│   ├── login.html
+│   ├── admin.html
+│   ├── admin.css
+│   ├── admin.js
+│   ├── auth.js
+│   └── README.md
+│
+├── firestore.rules
+├── firestore.indexes.json
+├── storage.rules
+├── firebase.json
 └── README.md
 ```
 
@@ -206,6 +240,6 @@ Version 4.0.0
 
 This module is part of the PPPP Chat System.
 
-Copyright © 2014-Present PPPP Bangladesh.
+Copyright © 2014–Present PPPP Bangladesh.
 
 All rights reserved.
