@@ -1,100 +1,150 @@
 # People's Power & Peace Party (PPPP) Bangladesh Official Website | পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি) বাংলাদেশ অফিসিয়াল ওয়েবসাইট
 
-🌐 Live Website: https://naz-niaz.github.io/pppp_bangladesh/
+🌐 **Live Website:** https://naz-niaz.github.io/pppp_bangladesh/
 
-**"Power to the People, Peace for the People"**
-*For the welfare of all people of all parties*
-
----
-
-## 🌿 About This Project
-
-This repository represents the official digital presence of the **People's Power & Peace Party (PPPP)** —
-a vision-driven initiative focused on unity, justice, and peaceful coexistence.
-
-The website shares the ideology, mission, and values of a people-centered movement that rises beyond division and partisan conflict.
+**"Power to the People, Peace for the People"**  
+*For the welfare of all people of all parties.*
 
 ---
 
-## 🎯 Vision
+# 🌿 About This Project
+
+This repository contains the official website and real-time chat system of the **People's Power & Peace Party (PPPP) Bangladesh**.
+
+The project is built using **HTML5**, **CSS3**, **Vanilla JavaScript**, **Firebase Authentication**, **Cloud Firestore**, and **Firebase Storage**, and is designed to run directly on **GitHub Pages** without any backend server.
+
+---
+
+# 🎯 Vision
 
 To create a society where:
 
-* Peace is not temporary, but permanent
-* Power belongs to the people
-* Every voice matters equally
-* Politics serves humanity, not division
+- Peace is permanent.
+- Power belongs to the people.
+- Every voice has equal value.
+- Politics serves humanity instead of division.
 
 ---
 
-## 🕊️ Mission
+# 🕊️ Mission
 
-* Promote peace, dialogue, and mutual respect
-* Encourage inclusive participation across all communities
-* Advocate for fairness, justice, and equal opportunity
-* Build unity beyond political boundaries
-
----
-
-## 🌱 Core Values
-
-* **People First** – The power of the people is our strength
-* **Peace Always** – Not conflict, but solutions
-* **Unity Over Division** – Unity over division
-* **Welfare for All** – Welfare of all people of all groups
+- Promote peace, dialogue, and mutual respect.
+- Encourage inclusive participation across every community.
+- Advocate justice, fairness, and equal opportunity.
+- Build national unity beyond political differences.
 
 ---
 
-## 🚀 Features of the Website
+# ✨ Features
 
-* Clear presentation of party ideology
-* Simple and accessible design
-* Message-focused content for awareness
-* A platform to inspire unity and participation
-
----
-
-## 🛠️ Technologies Used
-
-* HTML
-* CSS
-* Basic Web Design Principles
-
----
-
-## 🤝 Contributing
-
-This is a growing idea, not a finished destination.
-
-You are welcome to:
-
-* Share ideas 💡
-* Suggest improvements 🔧
-* Contribute to development 🌍
+- Official PPPP Website
+- Real-time Live Chat
+- Firebase Authentication
+- Cloud Firestore Database
+- Firebase Storage
+- Guest Chat
+- Admin Dashboard
+- Typing Indicator
+- Seen Status
+- Online / Offline Status
+- Browser Notifications
+- Responsive Design
+- GitHub Pages Ready
 
 ---
 
-## 📌 Why This Project Matters
+# 📂 Project Structure
 
-In a world divided by ideology,
-this project stands for something different—
-
-A space where People first, Politics later.
+```text
+pppp_bangladesh/
+│
+├── index.html
+├── about.html
+├── contact.html
+│
+├── chat/
+│   ├── assets/
+│   │   ├── logo.svg
+│   │   ├── avatar.svg
+│   │   ├── loading.svg
+│   │   └── notification.mp3
+│   │
+│   ├── chat-loader.js
+│   ├── chat.html
+│   ├── chat.css
+│   ├── chat.js
+│   ├── auth.js
+│   ├── ui.js
+│   ├── utils.js
+│   ├── config.js
+│   ├── firebase.js
+│   ├── realtime.js
+│   ├── messageService.js
+│   ├── upload.js
+│   ├── notification.js
+│   ├── state.js
+│   └── README.md
+│
+├── admin/
+│   ├── login.html
+│   ├── admin.html
+│   ├── admin.css
+│   ├── admin.js
+│   ├── auth.js
+│   └── README.md
+│
+├── firestore.rules
+├── firestore.indexes.json
+├── storage.rules
+├── firebase.json
+└── README.md
+```
 
 ---
 
-## 💬 Motto
+# 🔥 Firebase Services
 
-**"Power to the People, Peace for the People"**
+Enable:
+
+- Authentication
+- Cloud Firestore
+- Firebase Storage
 
 ---
 
-## 🌊 Final Note
+# 🚀 Deployment
 
-This is not just a repository.
-It is a beginning.
+```bash
+firebase deploy
+```
 
-A quiet call—
-for unity,
-for dignity,
-for peace.
+Or deploy separately:
+
+```bash
+firebase deploy --only firestore:rules
+firebase deploy --only firestore:indexes
+firebase deploy --only storage
+```
+
+---
+
+# 🌐 Live Website
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+---
+
+# 📌 Version
+
+```text
+PPPP Chat System v4.0.0 Final Stable
+```
+
+---
+
+# 📄 License
+
+Copyright © 2014–Present  
+**People's Power & Peace Party (PPPP) Bangladesh**
+
+All rights reserved.
