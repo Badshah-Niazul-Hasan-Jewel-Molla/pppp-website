@@ -63,6 +63,7 @@
 
 # 📂 Project Structure
 
+<pre>
 pppp_bangladesh/
 │
 ├── index.html
@@ -104,7 +105,8 @@ pppp_bangladesh/
 ├── firestore.indexes.json
 ├── storage.rules
 ├── firebase.json
-└── README.md  
+└── README.md
+</pre>  
 
 ---
 
