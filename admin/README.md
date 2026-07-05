@@ -26,17 +26,17 @@ Built with **Firebase Authentication**, **Cloud Firestore**, and **Vanilla JavaS
 
 # ✨ Features
 
-- 🔐 Secure Admin Login
-- 👥 Multi-Admin Support
-- 💬 Real-time Visitor Messages
-- 📤 Send Reply
-- ⌨️ Typing Indicator
-- 👁️ Seen Status
-- 🟢 Online / Offline Status
-- 📋 Conversation List
-- 🔍 Search Conversations
-- 📱 Mobile Friendly
-- ☁️ Cloud Firestore Integration
+🔐 Secure Admin Login
+👥 Multi-Admin Support
+💬 Real-time Visitor Messages
+📤 Send Reply
+⌨️ Typing Indicator
+👁️ Seen Status
+🟢 Online / Offline Status
+📋 Conversation List
+🔍 Search Conversations
+📱 Mobile Friendly
+☁️ Cloud Firestore Integration
 
 ---
 
@@ -230,9 +230,7 @@ All other users are denied access.
 
 # 📌 Version
 
-```text
 📦 Version 4.0.0 (Stable Release)
-```
 
 ---
 
