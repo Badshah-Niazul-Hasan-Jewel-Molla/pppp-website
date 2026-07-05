@@ -1,9 +1,10 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // admin.js
-// Version 4.0
-// Part 1
+// Version 4.0.0 Final Stable
 // ============================================
+
+import { chatConfig } from "../chat/config.js";
 
 import {
     db,
@@ -21,15 +22,30 @@ import {
     serverTimestamp
 } from "../chat/firebase.js";
 
+import {
+    sendMessage,
+    setTyping,
+    stopTyping
+} from "../chat/messageService.js";
+
+import {
+    log,
+    escapeHTML
+} from "../chat/utils.js";
+
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 // ============================================
-// Global Variables
+// Global
 // ============================================
 
 let currentAdmin = null;
 let currentConversation = null;
+
+let unsubscribeConversation = null;
 let unsubscribeMessages = null;
+
+let typingTimer = null;
 
 // ============================================
 // DOM
@@ -45,7 +61,7 @@ const visitorStatus = document.getElementById("visitor-status");
 const typingIndicator = document.getElementById("typing-indicator");
 
 // ============================================
-// Auth Check
+// Authentication
 // ============================================
 
 onAuthStateChanged(auth, async (user) => {
@@ -57,11 +73,13 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
-    const adminRef = doc(db, "admins", user.uid);
+    const adminDoc = await getDoc(
 
-    const adminSnap = await getDoc(adminRef);
+        doc(db, chatConfig.adminsCollection, user.uid)
 
-    if (!adminSnap.exists()) {
+    );
+
+    if (!adminDoc.exists()) {
 
         alert("Access Denied");
 
@@ -80,33 +98,32 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // ============================================
-// Load Conversations
+// Conversations
 // ============================================
 
 function loadConversations() {
 
     const q = query(
 
-        collection(db, "conversations"),
+        collection(db, chatConfig.conversationsCollection),
 
         orderBy("updatedAt", "desc")
 
     );
 
-    onSnapshot(q, (snapshot) => {
+    onSnapshot(q, snapshot => {
 
         conversationList.innerHTML = "";
 
         if (snapshot.empty) {
 
-            conversationList.innerHTML =
-                "<p>No conversations.</p>";
+            conversationList.innerHTML = "<p>No conversations.</p>";
 
             return;
 
         }
 
-        snapshot.forEach((item) => {
+        snapshot.forEach(item => {
 
             const data = item.data();
 
@@ -115,16 +132,12 @@ function loadConversations() {
             div.className = "conversation-item";
 
             div.innerHTML = `
-                <strong>${data.visitorId}</strong>
+                <strong>${escapeHTML(data.visitorId)}</strong>
                 <br>
-                <small>${data.lastMessage || ""}</small>
+                <small>${escapeHTML(data.lastMessage || "")}</small>
             `;
 
-            div.onclick = () => {
-
-                openConversation(item.id, data);
-
-            };
+            div.onclick = () => openConversation(item.id, data);
 
             conversationList.appendChild(div);
 
@@ -149,17 +162,36 @@ function openConversation(id, data) {
             ? "🟢 Online"
             : "🔴 Offline";
 
+    if (unsubscribeConversation) unsubscribeConversation();
+
+    unsubscribeConversation = onSnapshot(
+
+        doc(db, chatConfig.conversationsCollection, id),
+
+        snap => {
+
+            if (!snap.exists()) return;
+
+            const d = snap.data();
+
+            typingIndicator.textContent =
+                d.visitorTyping
+                    ? "Visitor is typing..."
+                    : "";
+
+        }
+
+    );
+
     listenMessages();
 
 }
 
 // ============================================
-// Listen Messages
+// Messages
 // ============================================
 
 function listenMessages() {
-
-    if (!currentConversation) return;
 
     if (unsubscribeMessages) {
 
@@ -169,7 +201,7 @@ function listenMessages() {
 
     const q = query(
 
-        collection(db, "messages"),
+        collection(db, chatConfig.messagesCollection),
 
         where("conversationId", "==", currentConversation),
 
@@ -177,47 +209,33 @@ function listenMessages() {
 
     );
 
-    unsubscribeMessages = onSnapshot(
+    unsubscribeMessages = onSnapshot(q, snapshot => {
 
-        q,
+        messageBox.innerHTML = "";
 
-        (snapshot) => {
+        snapshot.forEach(item => {
 
-            messageBox.innerHTML = "";
+            const data = item.data();
 
-            snapshot.forEach((item) => {
+            const div = document.createElement("div");
 
-                const data = item.data();
+            div.className = "admin-message " + data.senderType;
 
-                const div = document.createElement("div");
+            div.innerHTML = `
+                <div class="bubble">
+                    ${escapeHTML(data.message)}
+                </div>
+            `;
 
-                div.className =
-                    "admin-message " + data.senderType;
+            messageBox.appendChild(div);
 
-                div.innerHTML = `
-                    <div class="bubble">
-                        ${data.message}
-                    </div>
-                `;
+        });
 
-                messageBox.appendChild(div);
+        messageBox.scrollTop = messageBox.scrollHeight;
 
-            });
-
-            messageBox.scrollTop =
-                messageBox.scrollHeight;
-
-        }
-
-    );
+    });
 
 }
-// ============================================
-// PPPP CHAT SYSTEM
-// admin.js
-// Version 4.0
-// Part 2 (Final)
-// ============================================
 
 // ============================================
 // Send Reply
@@ -225,7 +243,7 @@ function listenMessages() {
 
 sendButton.addEventListener("click", sendReply);
 
-replyInput.addEventListener("keydown", (e) => {
+replyInput.addEventListener("keydown", e => {
 
     if (e.key === "Enter") {
 
@@ -249,33 +267,23 @@ async function sendReply() {
 
     try {
 
-        await addDoc(
+        await sendMessage({
 
-            collection(db, "messages"),
+            conversationId: currentConversation,
 
-            {
+            senderId: currentAdmin.uid,
 
-                conversationId: currentConversation,
+            senderType: "admin",
 
-                senderId: currentAdmin.uid,
+            message: text,
 
-                senderType: "admin",
+            messageType: "text"
 
-                message: text,
-
-                messageType: "text",
-
-                seen: false,
-
-                createdAt: serverTimestamp()
-
-            }
-
-        );
-
-        await updateConversation(text);
+        });
 
         replyInput.value = "";
+
+        await stopTyping(currentConversation, "admin");
 
     }
 
@@ -283,7 +291,7 @@ async function sendReply() {
 
         console.error(error);
 
-        alert("Message could not be sent.");
+        alert("Unable to send message.");
 
     }
 
@@ -291,137 +299,31 @@ async function sendReply() {
 
         sendButton.disabled = false;
 
-    }
-
-}
-
-// ============================================
-// Update Conversation
-// ============================================
-
-async function updateConversation(lastMessage) {
-
-    try {
-
-        await updateDoc(
-
-            doc(db, "conversations", currentConversation),
-
-            {
-
-                lastMessage,
-
-                lastSender: "admin",
-
-                unreadVisitor: true,
-
-                unreadAdmin: false,
-
-                adminTyping: false,
-
-                updatedAt: serverTimestamp()
-
-            }
-
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(error);
+        replyInput.focus();
 
     }
 
 }
 
 // ============================================
-// Typing Indicator
+// Typing
 // ============================================
 
-let typingTimer = null;
-
-replyInput.addEventListener("input", async () => {
+replyInput.addEventListener("input", () => {
 
     if (!currentConversation) return;
+
+    setTyping(currentConversation, "admin", true);
 
     clearTimeout(typingTimer);
 
-    try {
+    typingTimer = setTimeout(() => {
 
-        await updateDoc(
+        stopTyping(currentConversation, "admin");
 
-            doc(db, "conversations", currentConversation),
-
-            {
-
-                adminTyping: true
-
-            }
-
-        );
-
-    }
-
-    catch (e) {}
-
-    typingTimer = setTimeout(stopTyping, 1200);
+    }, chatConfig.typingTimeout);
 
 });
-
-async function stopTyping() {
-
-    if (!currentConversation) return;
-
-    try {
-
-        await updateDoc(
-
-            doc(db, "conversations", currentConversation),
-
-            {
-
-                adminTyping: false
-
-            }
-
-        );
-
-    }
-
-    catch (e) {}
-
-}
-
-// ============================================
-// Watch Visitor Typing
-// ============================================
-
-onSnapshot(
-
-    collection(db, "conversations"),
-
-    (snapshot) => {
-
-        snapshot.forEach((item) => {
-
-            if (item.id !== currentConversation) return;
-
-            const data = item.data();
-
-            typingIndicator.textContent =
-
-                data.visitorTyping
-
-                    ? "Visitor is typing..."
-
-                    : "";
-
-        });
-
-    }
-
-);
 
 // ============================================
 // Logout
@@ -445,17 +347,17 @@ window.addEventListener("beforeunload", async () => {
 
     try {
 
-        await stopTyping();
+        if (currentConversation) {
 
-    }
+            await stopTyping(currentConversation, "admin");
 
-    catch (e) {}
+        }
 
-    if (unsubscribeMessages) {
+    } catch {}
 
-        unsubscribeMessages();
+    unsubscribeMessages?.();
 
-    }
+    unsubscribeConversation?.();
 
 });
 
@@ -463,10 +365,8 @@ window.addEventListener("beforeunload", async () => {
 // Ready
 // ============================================
 
-console.log("================================");
+log("==================================");
 
-console.log("PPPP Admin Panel Ready");
+log("PPPP Admin Panel v4.0.0 Final Stable");
 
-console.log("Admin:", currentAdmin);
-
-console.log("================================");
+log("==================================");
