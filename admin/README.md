@@ -231,7 +231,7 @@ All other users are denied access.
 # 📌 Version
 
 ```text
-Version 4.0.0
+📦 Version 4.0.0 (Stable Release)
 ```
 
 ---
