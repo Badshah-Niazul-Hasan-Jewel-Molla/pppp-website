@@ -16,7 +16,9 @@ export function getVisitorId() {
 
     if (!id) {
 
-        id = crypto.randomUUID();
+        id = crypto.randomUUID
+            ? crypto.randomUUID()
+            : randomId(32);
 
         localStorage.setItem("pppp_visitor_id", id);
 
@@ -32,7 +34,13 @@ export function getVisitorId() {
 
 export function saveLocal(key, value) {
 
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(
+
+        key,
+
+        JSON.stringify(value)
+
+    );
 
 }
 
@@ -46,7 +54,9 @@ export function loadLocal(key, defaultValue = null) {
 
         return JSON.parse(value);
 
-    } catch {
+    }
+
+    catch {
 
         return defaultValue;
 
@@ -57,6 +67,12 @@ export function loadLocal(key, defaultValue = null) {
 export function removeLocal(key) {
 
     localStorage.removeItem(key);
+
+}
+
+export function clearLocal() {
+
+    localStorage.clear();
 
 }
 
@@ -108,7 +124,13 @@ export function formatDate(date) {
 
     if (!date) return "";
 
-    const d = date?.toDate ? date.toDate() : new Date(date);
+    const d =
+
+        date?.toDate
+
+            ? date.toDate()
+
+            : new Date(date);
 
     return d.toLocaleString(
 
@@ -162,11 +184,13 @@ export function debounce(callback, delay = 300) {
 
         clearTimeout(timer);
 
-        timer = setTimeout(() => {
+        timer = setTimeout(
 
-            callback(...args);
+            () => callback(...args),
 
-        }, delay);
+            delay
+
+        );
 
     };
 
@@ -178,7 +202,21 @@ export function debounce(callback, delay = 300) {
 
 export function sleep(ms = 300) {
 
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(
+
+        resolve => setTimeout(resolve, ms)
+
+    );
+
+}
+
+// ============================================
+// Online Status
+// ============================================
+
+export function isOnline() {
+
+    return navigator.onLine;
 
 }
 
@@ -228,7 +266,7 @@ export function validateImage(file) {
 
             ok: false,
 
-            message: "Maximum image size is 5 MB."
+            message: "Maximum image size exceeded."
 
         };
 
@@ -260,7 +298,7 @@ export function notify(title, body = "") {
 
             body,
 
-            icon: chatConfig.logo
+            icon: chatConfig.notificationIcon
 
         });
 
@@ -269,7 +307,7 @@ export function notify(title, body = "") {
 }
 
 // ============================================
-// Request Notification Permission
+// Notification Permission
 // ============================================
 
 export async function requestNotificationPermission() {
@@ -285,6 +323,30 @@ export async function requestNotificationPermission() {
 }
 
 // ============================================
+// Play Notification Sound
+// ============================================
+
+export function playSound() {
+
+    if (!chatConfig.enableSound) return;
+
+    try {
+
+        const audio = new Audio(
+
+            chatConfig.notificationSound
+
+        );
+
+        audio.play().catch(() => {});
+
+    }
+
+    catch {}
+
+}
+
+// ============================================
 // Logger
 // ============================================
 
@@ -292,7 +354,13 @@ export function log(...args) {
 
     if (chatConfig.debug) {
 
-        console.log("[PPPP Chat]", ...args);
+        console.log(
+
+            "[PPPP Chat]",
+
+            ...args
+
+        );
 
     }
 
