@@ -150,7 +150,6 @@ firebase deploy --only storage
 
 # 📄 License
 
-Copyright © 2014–Present  
-**People's Power & Peace Party (PPPP) Bangladesh**
-
+© 2014–Present  
+**People's Power & Peace Party (PPPP) Bangladesh**  
 All rights reserved.
