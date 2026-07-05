@@ -106,7 +106,7 @@ pppp_bangladesh/
 ├── storage.rules
 ├── firebase.json
 └── README.md
-</pre>  
+</pre>
 
 ---
 
@@ -138,7 +138,7 @@ firebase deploy --only storage
 
 # 🌐 Live Website
 
-https://naz-niaz.github.io/pppp_bangladesh/
+🔗 https://naz-niaz.github.io/pppp_bangladesh/
 
 ---
 
