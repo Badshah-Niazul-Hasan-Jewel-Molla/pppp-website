@@ -1,10 +1,12 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // config.js
-// Version 4.0.0 Final
+// Version 4.0.0 Final Stable
 // ============================================
 
+// ============================================
 // Firebase Configuration
+// ============================================
 
 export const firebaseConfig = {
 
@@ -31,18 +33,18 @@ export const firebaseConfig = {
 export const chatConfig = {
 
     // ========================================
-    // Organization
+    // Application
     // ========================================
+
+    appName: "PPPP Chat",
+
+    version: "4.0.0",
 
     siteName: "People's Power & Peace Party (PPPP)",
 
     shortName: "PPPP",
 
     adminName: "PPPP Admin",
-
-    appName: "PPPP Chat",
-
-    version: "4.0.0",
 
     // ========================================
     // Assets
@@ -55,6 +57,20 @@ export const chatConfig = {
     loading: "./assets/loading.svg",
 
     notificationSound: "./assets/notification.mp3",
+
+    // ========================================
+    // Firestore Collections
+    // ========================================
+
+    usersCollection: "users",
+
+    adminsCollection: "admins",
+
+    conversationsCollection: "conversations",
+
+    messagesCollection: "messages",
+
+    typingCollection: "typing",
 
     // ========================================
     // Chat UI
@@ -75,15 +91,11 @@ export const chatConfig = {
 
     allowGuestChat: true,
 
-    // Enable after Firebase provider setup
-
     allowGoogleLogin: true,
 
     allowFacebookLogin: false,
 
     allowGithubLogin: false,
-
-    // Enable after Firebase Storage setup
 
     allowImageUpload: false,
 
@@ -103,7 +115,7 @@ export const chatConfig = {
     // Upload
     // ========================================
 
-    maxImageSize: 5 * 1024 * 1024, // 5 MB
+    maxImageSize: 5 * 1024 * 1024,
 
     allowedImageTypes: [
 
@@ -126,6 +138,20 @@ export const chatConfig = {
     typingTimeout: 1500,
 
     reconnectDelay: 3000,
+
+    // ========================================
+    // Localization
+    // ========================================
+
+    locale: "en-BD",
+
+    timeZone: "Asia/Dhaka",
+
+    // ========================================
+    // Development
+    // ========================================
+
+    debug: true,
 
     // ========================================
     // Theme
