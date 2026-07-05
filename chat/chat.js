@@ -1,78 +1,165 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // chat.js
-// Version 4.0
-// Part 1
+// Version 4.0.0 Final Stable
+// Part 1 / 4
 // ============================================
 
+import { chatConfig } from "./config.js";
+
 import {
+
     db,
+
     collection,
+
     query,
+
     where,
-    orderBy,
+
     getDocs,
+
     addDoc,
-    updateDoc,
-    doc,
-    onSnapshot,
+
     serverTimestamp
+
 } from "./firebase.js";
 
 import {
+
     initVisitor,
+
     getCurrentVisitor
+
 } from "./auth.js";
 
 import {
-    addMessage,
-    clearMessages,
+
     createChatWidget,
+
     bindUIEvents,
+
+    addMessage,
+
+    clearMessages,
+
     setStatus,
+
     showTyping
+
 } from "./ui.js";
 
 import {
-    escapeHTML
+
+    sendMessage as sendChatMessage,
+
+    setTyping,
+
+    stopTyping,
+
+    markMessageSeen
+
+} from "./messageService.js";
+
+import {
+
+    listenConversation,
+
+    listenMessages,
+
+    listenTyping,
+
+    stopAllRealtimeListeners
+
+} from "./realtime.js";
+
+import {
+
+    requestNotificationPermission,
+
+    notifyNewMessage
+
+} from "./notification.js";
+
+import {
+
+    scrollBottom,
+
+    log
+
 } from "./utils.js";
 
+import {
+
+    setConversationId,
+
+    getConversationId,
+
+    setVisitor,
+
+    setInitialized,
+
+    isInitialized
+
+} from "./state.js";
+
 // ============================================
-// Global Variables
+// Global
 // ============================================
 
 let visitorId = "";
-let conversationId = "";
 
-let unsubscribeConversation = null;
-let unsubscribeMessages = null;
-
-let typingTimeout = null;
+let typingTimer = null;
 
 // ============================================
 // DOM
 // ============================================
 
-const input = () => document.getElementById("chat-text");
-const send = () => document.getElementById("chat-send");
+const input = () =>
+
+    document.getElementById("chat-text");
+
+const sendButton = () =>
+
+    document.getElementById("chat-send");
 
 // ============================================
 // Start
 // ============================================
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener(
 
-async function init(){
+    "DOMContentLoaded",
+
+    initializeChat
+
+);
+
+// ============================================
+// Initialize
+// ============================================
+
+async function initializeChat() {
+
+    if (isInitialized()) return;
 
     createChatWidget();
 
     bindUIEvents();
 
+    await requestNotificationPermission();
+
     visitorId = await initVisitor();
+
+    setVisitor(getCurrentVisitor());
 
     await loadConversation();
 
     registerEvents();
+
+    setInitialized(true);
+
+    log("PPPP Chat Initialized");
 
 }
 
@@ -80,249 +167,319 @@ async function init(){
 // Register Events
 // ============================================
 
-function registerEvents(){
+function registerEvents() {
 
-    send().addEventListener("click",sendMessage);
+    sendButton()?.addEventListener(
 
-    input().addEventListener("keydown",e=>{
+        "click",
 
-        if(e.key==="Enter"){
+        handleSend
 
-            e.preventDefault();
+    );
 
-            sendMessage();
+    input()?.addEventListener(
+
+        "keydown",
+
+        e => {
+
+            if (e.key === "Enter") {
+
+                e.preventDefault();
+
+                handleSend();
+
+            }
 
         }
 
-    });
+    );
 
-    input().addEventListener("input",typingHandler);
+    input()?.addEventListener(
+
+        "input",
+
+        typingHandler
+
+    );
 
 }
-
 // ============================================
 // Load Conversation
 // ============================================
 
-async function loadConversation(){
+async function loadConversation() {
 
-    const q=query(
+    const q = query(
 
-        collection(db,"conversations"),
+        collection(
 
-        where("visitorId","==",visitorId)
+            db,
+
+            chatConfig.conversationsCollection
+
+        ),
+
+        where(
+
+            "visitorId",
+
+            "==",
+
+            visitorId
+
+        )
 
     );
 
-    const snap=await getDocs(q);
+    const snapshot = await getDocs(q);
 
-    if(snap.empty){
+    let conversationId = "";
 
-        const ref=await addDoc(
+    if (snapshot.empty) {
 
-            collection(db,"conversations"),
+        const ref = await addDoc(
+
+            collection(
+
+                db,
+
+                chatConfig.conversationsCollection
+
+            ),
 
             {
 
                 visitorId,
 
-                status:"open",
+                adminId: "",
 
-                adminId:"",
+                status: "open",
 
-                lastMessage:"",
+                lastMessage: "",
 
-                lastSender:"",
+                lastSender: "",
 
-                unreadAdmin:false,
+                unreadAdmin: false,
 
-                unreadVisitor:false,
+                unreadVisitor: false,
 
-                visitorTyping:false,
+                visitorTyping: false,
 
-                adminTyping:false,
+                adminTyping: false,
 
-                createdAt:serverTimestamp(),
+                createdAt: serverTimestamp(),
 
-                updatedAt:serverTimestamp()
+                updatedAt: serverTimestamp()
 
             }
 
         );
 
-        conversationId=ref.id;
+        conversationId = ref.id;
 
     }
 
-    else{
+    else {
 
-        conversationId=snap.docs[0].id;
+        conversationId = snapshot.docs[0].id;
 
     }
 
-    listenConversation();
+    setConversationId(conversationId);
 
-    listenMessages();
+    initializeRealtime();
 
 }
 
 // ============================================
-// Conversation Listener
+// Realtime
 // ============================================
 
-function listenConversation(){
+function initializeRealtime() {
 
-    if(unsubscribeConversation){
+    const conversationId = getConversationId();
 
-        unsubscribeConversation();
+    if (!conversationId) return;
 
-    }
+    // Conversation
 
-    unsubscribeConversation=onSnapshot(
+    listenConversation(
 
-        doc(db,"conversations",conversationId),
+        conversationId,
 
-        snapshot=>{
+        data => {
 
-            if(!snapshot.exists()) return;
+            setStatus(
 
-            const data=snapshot.data();
+                data.status === "closed"
 
-            if(data.status==="closed"){
+                    ? "🔴 Offline"
 
-                setStatus("🔴 Offline");
+                    : "🟢 Online"
+
+            );
+
+        }
+
+    );
+
+    // Typing
+
+    listenTyping(
+
+        conversationId,
+
+        data => {
+
+            showTyping(
+
+                data.adminTyping
+
+            );
+
+        }
+
+    );
+
+    // Messages
+
+    listenMessages(
+
+        conversationId,
+
+        async messages => {
+
+            clearMessages();
+
+            if (!messages.length) {
+
+                addMessage(
+
+                    chatConfig.welcomeMessage,
+
+                    "system"
+
+                );
+
+                return;
 
             }
 
-            else{
+            for (const message of messages) {
 
-                setStatus("🟢 Online");
+                addMessage(
+
+                    message.message,
+
+                    message.senderType
+
+                );
+
+                if (
+
+                    message.senderType === "admin" &&
+
+                    !message.seen
+
+                ) {
+
+                    await markMessageSeen(
+
+                        message.id
+
+                    );
+
+                }
 
             }
 
-            showTyping(data.adminTyping===true);
+            scrollBottom(
+
+                document.getElementById(
+
+                    "chat-messages"
+
+                )
+
+            );
+
+            const last =
+
+                messages[
+
+                    messages.length - 1
+
+                ];
+
+            if (
+
+                last &&
+
+                last.senderType === "admin"
+
+            ) {
+
+                notifyNewMessage(
+
+                    last.message
+
+                );
+
+            }
 
         }
 
     );
 
 }
-
-// ============================================
-// Message Listener
-// ============================================
-
-function listenMessages(){
-
-    if(unsubscribeMessages){
-
-        unsubscribeMessages();
-
-    }
-
-    const q=query(
-
-        collection(db,"messages"),
-
-        where("conversationId","==",conversationId),
-
-        orderBy("createdAt")
-
-    );
-
-    unsubscribeMessages=onSnapshot(q,snapshot=>{
-
-        clearMessages();
-
-        if(snapshot.empty){
-
-            addMessage(
-
-                "👋 Welcome! Start your conversation.",
-
-                "system"
-
-            );
-
-            return;
-
-        }
-
-        snapshot.forEach(item=>{
-
-            const data=item.data();
-
-            addMessage(
-
-                escapeHTML(data.message),
-
-                data.senderType
-
-            );
-
-        });
-
-    });
-
-}
-// ============================================
-// PPPP CHAT SYSTEM
-// chat.js
-// Version 4.0
-// Part 2
-// ============================================
-
 // ============================================
 // Send Message
 // ============================================
 
-async function sendMessage() {
+async function handleSend() {
+
+    const conversationId = getConversationId();
 
     if (!conversationId) return;
 
-    const text = input().value.trim();
+    const text = input()?.value.trim();
 
     if (!text) return;
 
-    send().disabled = true;
+    sendButton().disabled = true;
 
     try {
 
-        await addDoc(
+        await sendChatMessage({
 
-            collection(db, "messages"),
+            conversationId,
 
-            {
+            senderId: visitorId,
 
-                conversationId,
+            senderType: "visitor",
 
-                senderId: visitorId,
+            message: text,
 
-                senderType: "visitor",
+            messageType: "text"
 
-                message: text,
-
-                messageType: "text",
-
-                seen: false,
-
-                createdAt: serverTimestamp()
-
-            }
-
-        );
-
-        await updateConversation(text);
+        });
 
         input().value = "";
 
-        await stopTyping();
+        await stopTyping(
+
+            conversationId,
+
+            "visitor"
+
+        );
 
     }
 
     catch (error) {
 
-        console.error("Send Message Error:", error);
+        console.error(error);
 
         alert("Unable to send message.");
 
@@ -330,39 +487,71 @@ async function sendMessage() {
 
     finally {
 
-        send().disabled = false;
+        sendButton().disabled = false;
+
+        input().focus();
 
     }
 
 }
 
 // ============================================
-// Update Conversation
+// Typing Handler
 // ============================================
 
-async function updateConversation(lastMessage) {
+function typingHandler() {
+
+    const conversationId =
+
+        getConversationId();
+
+    if (!conversationId) return;
+
+    startTyping();
+
+    clearTimeout(typingTimer);
+
+    typingTimer = setTimeout(
+
+        () => {
+
+            stopTyping(
+
+                conversationId,
+
+                "visitor"
+
+            );
+
+        },
+
+        chatConfig.typingTimeout
+
+    );
+
+}
+
+// ============================================
+// Start Typing
+// ============================================
+
+async function startTyping() {
+
+    const conversationId =
+
+        getConversationId();
+
+    if (!conversationId) return;
 
     try {
 
-        await updateDoc(
+        await setTyping(
 
-            doc(db, "conversations", conversationId),
+            conversationId,
 
-            {
+            "visitor",
 
-                lastMessage,
-
-                lastSender: "visitor",
-
-                unreadAdmin: true,
-
-                unreadVisitor: false,
-
-                visitorTyping: false,
-
-                updatedAt: serverTimestamp()
-
-            }
+            true
 
         );
 
@@ -377,42 +566,24 @@ async function updateConversation(lastMessage) {
 }
 
 // ============================================
-// Typing Handler
+// Stop Typing Immediately
 // ============================================
 
-function typingHandler() {
+async function stopTypingNow() {
 
-    startTyping();
+    const conversationId =
 
-    clearTimeout(typingTimeout);
-
-    typingTimeout = setTimeout(async () => {
-
-        await stopTyping();
-
-    }, 1200);
-
-}
-
-// ============================================
-// Start Typing
-// ============================================
-
-async function startTyping() {
+        getConversationId();
 
     if (!conversationId) return;
 
     try {
 
-        await updateDoc(
+        await stopTyping(
 
-            doc(db, "conversations", conversationId),
+            conversationId,
 
-            {
-
-                visitorTyping: true
-
-            }
+            "visitor"
 
         );
 
@@ -420,193 +591,30 @@ async function startTyping() {
 
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
     }
 
 }
-
-// ============================================
-// Stop Typing
-// ============================================
-
-async function stopTyping() {
-
-    if (!conversationId) return;
-
-    try {
-
-        await updateDoc(
-
-            doc(db, "conversations", conversationId),
-
-            {
-
-                visitorTyping: false
-
-            }
-
-        );
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
-
-// ============================================
-// Mark Admin Messages as Seen
-// ============================================
-
-async function markMessagesSeen(snapshot) {
-
-    const updates = [];
-
-    snapshot.forEach(item => {
-
-        const data = item.data();
-
-        if (
-
-            data.senderType === "admin" &&
-
-            data.seen !== true
-
-        ) {
-
-            updates.push(
-
-                updateDoc(
-
-                    doc(db, "messages", item.id),
-
-                    {
-
-                        seen: true
-
-                    }
-
-                )
-
-            );
-
-        }
-
-    });
-
-    if (updates.length) {
-
-        await Promise.all(updates);
-
-    }
-
-}
-
-// ============================================
-// Replace Message Listener
-// ============================================
-
-function listenMessages() {
-
-    if (unsubscribeMessages) {
-
-        unsubscribeMessages();
-
-    }
-
-    const q = query(
-
-        collection(db, "messages"),
-
-        where("conversationId", "==", conversationId),
-
-        orderBy("createdAt")
-
-    );
-
-    unsubscribeMessages = onSnapshot(
-
-        q,
-
-        async (snapshot) => {
-
-            clearMessages();
-
-            if (snapshot.empty) {
-
-                addMessage(
-
-                    "👋 Welcome! Start your conversation.",
-
-                    "system"
-
-                );
-
-                return;
-
-            }
-
-            snapshot.forEach(item => {
-
-                const data = item.data();
-
-                addMessage(
-
-                    escapeHTML(data.message),
-
-                    data.senderType
-
-                );
-
-            });
-
-            await markMessagesSeen(snapshot);
-
-            const box = document.getElementById("chat-messages");
-
-            if (box) {
-
-                box.scrollTop = box.scrollHeight;
-
-            }
-
-        }
-
-    );
-
-}
-// ============================================
-// PPPP CHAT SYSTEM
-// chat.js
-// Version 4.0
-// Part 3 (Final)
-// ============================================
-
 // ============================================
 // Connection Events
 // ============================================
 
 window.addEventListener("online", () => {
 
-    console.log("PPPP Chat Connected");
+    log("PPPP Chat Connected");
 
-    if (conversationId) {
+    if (!isInitialized()) return;
 
-        listenConversation();
-
-        listenMessages();
-
-    }
+    initializeRealtime();
 
 });
 
 window.addEventListener("offline", () => {
 
-    console.log("PPPP Chat Offline");
+    log("PPPP Chat Offline");
+
+    setStatus("🔴 Offline");
 
 });
 
@@ -616,11 +624,7 @@ window.addEventListener("offline", () => {
 
 window.addEventListener("focus", () => {
 
-    if (conversationId) {
-
-        updateConversation("");
-
-    }
+    showTyping(false);
 
 });
 
@@ -628,41 +632,47 @@ window.addEventListener("focus", () => {
 // Cleanup
 // ============================================
 
-window.addEventListener("beforeunload", async () => {
+window.addEventListener(
 
-    try {
+    "beforeunload",
 
-        await stopTyping();
+    async () => {
 
-    } catch (e) {
+        try {
 
-        console.log(e);
+            const conversationId =
+
+                getConversationId();
+
+            if (conversationId) {
+
+                await stopTyping(
+
+                    conversationId,
+
+                    "visitor"
+
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            log(error);
+
+        }
+
+        stopAllRealtimeListeners();
 
     }
 
-    if (unsubscribeConversation) {
-
-        unsubscribeConversation();
-
-    }
-
-    if (unsubscribeMessages) {
-
-        unsubscribeMessages();
-
-    }
-
-});
+);
 
 // ============================================
 // Public Helpers
 // ============================================
-
-export function getConversationId() {
-
-    return conversationId;
-
-}
 
 export function getVisitorId() {
 
@@ -670,28 +680,50 @@ export function getVisitorId() {
 
 }
 
+export function getChatConversationId() {
+
+    return getConversationId();
+
+}
+
+export function isChatReady() {
+
+    return isInitialized();
+
+}
+
 // ============================================
-// Reset Chat
+// Reset Conversation
 // ============================================
 
 export async function resetConversation() {
 
+    stopAllRealtimeListeners();
+
     clearMessages();
 
-    conversationId = "";
+    setConversationId("");
 
     await loadConversation();
 
 }
 
 // ============================================
-// Chat Ready
+// Version
 // ============================================
 
-console.log("===================================");
+export const CHAT_VERSION = "4.0.0 Final Stable";
 
-console.log("PPPP Chat System v4.0 Loaded");
+// ============================================
+// Ready
+// ============================================
 
-console.log("Visitor:", getCurrentVisitor());
+log("===================================");
 
-console.log("===================================");
+log("PPPP Chat System v4.0.0 Final Stable");
+
+log("Visitor:", getCurrentVisitor());
+
+log("Conversation:", getConversationId());
+
+log("===================================");
