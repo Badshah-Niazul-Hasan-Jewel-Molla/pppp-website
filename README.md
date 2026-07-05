@@ -64,46 +64,46 @@
 # 📂 Project Structure
 
 pppp_bangladesh/
-
-├── index.html  
-├── about.html  
-├── contact.html  
-
+│
+├── index.html
+├── about.html
+├── contact.html
+│
 ├── chat/
 │   ├── assets/
-│   │   ├── logo.svg  
-│   │   ├── avatar.svg  
-│   │   ├── loading.svg  
-│   │   └── notification.mp3  
+│   │   ├── logo.svg
+│   │   ├── avatar.svg
+│   │   ├── loading.svg
+│   │   └── notification.mp3
+│   │
+│   ├── chat-loader.js
+│   ├── chat.html
+│   ├── chat.css
+│   ├── chat.js
+│   ├── auth.js
+│   ├── ui.js
+│   ├── utils.js
+│   ├── config.js
+│   ├── firebase.js
+│   ├── realtime.js
+│   ├── messageService.js
+│   ├── upload.js
+│   ├── notification.js
+│   ├── state.js
+│   └── README.md
 │
-│   ├── chat-loader.js  
-│   ├── chat.html  
-│   ├── chat.css  
-│   ├── chat.js  
-│   ├── auth.js  
-│   ├── ui.js  
-│   ├── utils.js  
-│   ├── config.js  
-│   ├── firebase.js  
-│   ├── realtime.js  
-│   ├── messageService.js  
-│   ├── upload.js  
-│   ├── notification.js  
-│   ├── state.js  
-│   └── README.md  
-
 ├── admin/
-│   ├── login.html  
-│   ├── admin.html  
-│   ├── admin.css  
-│   ├── admin.js  
-│   ├── auth.js  
-│   └── README.md  
-
-├── firestore.rules  
-├── firestore.indexes.json  
-├── storage.rules  
-├── firebase.json  
+│   ├── login.html
+│   ├── admin.html
+│   ├── admin.css
+│   ├── admin.js
+│   ├── auth.js
+│   └── README.md
+│
+├── firestore.rules
+├── firestore.indexes.json
+├── storage.rules
+├── firebase.json
 └── README.md  
 
 ---
