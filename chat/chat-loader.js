@@ -1,12 +1,17 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // chat-loader.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 (function () {
 
-    // Prevent duplicate loading
+    "use strict";
+
+    // ============================================
+    // Prevent Duplicate Loading
+    // ============================================
+
     if (window.__PPPP_CHAT_LOADED__) {
 
         return;
@@ -19,24 +24,56 @@
     // Load CSS
     // ============================================
 
-    const css = document.createElement("link");
+    if (!document.querySelector('link[data-pppp-chat-css]')) {
 
-    css.rel = "stylesheet";
+        const css = document.createElement("link");
 
-    css.href = "./chat/chat.css";
+        css.rel = "stylesheet";
 
-    document.head.appendChild(css);
+        css.href = "./chat/chat.css";
+
+        css.dataset.ppppChatCss = "true";
+
+        css.onerror = () => {
+
+            console.error("PPPP Chat CSS failed to load.");
+
+        };
+
+        document.head.appendChild(css);
+
+    }
 
     // ============================================
-    // Load Chat Script
+    // Load Script
     // ============================================
 
-    const script = document.createElement("script");
+    if (!document.querySelector('script[data-pppp-chat-js]')) {
 
-    script.type = "module";
+        const script = document.createElement("script");
 
-    script.src = "./chat/chat.js";
+        script.type = "module";
 
-    document.body.appendChild(script);
+        script.defer = true;
+
+        script.src = "./chat/chat.js";
+
+        script.dataset.ppppChatJs = "true";
+
+        script.onerror = () => {
+
+            console.error("PPPP Chat JS failed to load.");
+
+        };
+
+        document.body.appendChild(script);
+
+    }
+
+    // ============================================
+    // Ready
+    // ============================================
+
+    console.log("PPPP Chat Loader Ready");
 
 })();
