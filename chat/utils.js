@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // utils.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import { chatConfig } from "./config.js";
@@ -32,13 +32,7 @@ export function getVisitorId() {
 
 export function saveLocal(key, value) {
 
-    localStorage.setItem(
-
-        key,
-
-        JSON.stringify(value)
-
-    );
+    localStorage.setItem(key, JSON.stringify(value));
 
 }
 
@@ -52,9 +46,7 @@ export function loadLocal(key, defaultValue = null) {
 
         return JSON.parse(value);
 
-    }
-
-    catch {
+    } catch {
 
         return defaultValue;
 
@@ -102,29 +94,43 @@ export function escapeHTML(text = "") {
 
     const div = document.createElement("div");
 
-    div.innerText = text;
+    div.textContent = text;
 
     return div.innerHTML;
 
 }
 
 // ============================================
-// Date Time
+// Date & Time
 // ============================================
 
 export function formatDate(date) {
 
     if (!date) return "";
 
-    const d =
+    const d = date?.toDate ? date.toDate() : new Date(date);
 
-        date.toDate
+    return d.toLocaleString(
 
-            ? date.toDate()
+        chatConfig.locale,
 
-            : new Date(date);
+        {
 
-    return d.toLocaleString();
+            timeZone: chatConfig.timeZone,
+
+            year: "numeric",
+
+            month: "short",
+
+            day: "numeric",
+
+            hour: "2-digit",
+
+            minute: "2-digit"
+
+        }
+
+    );
 
 }
 
@@ -136,7 +142,11 @@ export function scrollBottom(element) {
 
     if (!element) return;
 
-    element.scrollTop = element.scrollHeight;
+    if (chatConfig.autoScroll) {
+
+        element.scrollTop = element.scrollHeight;
+
+    }
 
 }
 
@@ -159,6 +169,16 @@ export function debounce(callback, delay = 300) {
         }, delay);
 
     };
+
+}
+
+// ============================================
+// Sleep
+// ============================================
+
+export function sleep(ms = 300) {
+
+    return new Promise(resolve => setTimeout(resolve, ms));
 
 }
 
@@ -225,10 +245,12 @@ export function validateImage(file) {
 }
 
 // ============================================
-// Notification
+// Browser Notification
 // ============================================
 
 export function notify(title, body = "") {
+
+    if (!chatConfig.allowNotifications) return;
 
     if (!("Notification" in window)) return;
 
@@ -236,7 +258,9 @@ export function notify(title, body = "") {
 
         new Notification(title, {
 
-            body
+            body,
+
+            icon: chatConfig.logo
 
         });
 
@@ -255,6 +279,20 @@ export async function requestNotificationPermission() {
     if (Notification.permission === "default") {
 
         await Notification.requestPermission();
+
+    }
+
+}
+
+// ============================================
+// Logger
+// ============================================
+
+export function log(...args) {
+
+    if (chatConfig.debug) {
+
+        console.log("[PPPP Chat]", ...args);
 
     }
 
