@@ -1,8 +1,12 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // state.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
+
+import { chatConfig } from "./config.js";
+
+import { log } from "./utils.js";
 
 // ============================================
 // Global State
@@ -34,13 +38,13 @@ const state = {
 // Visitor
 // ============================================
 
-export function setVisitor(visitor){
+export function setVisitor(visitor) {
 
     state.visitor = visitor;
 
 }
 
-export function getVisitor(){
+export function getVisitor() {
 
     return state.visitor;
 
@@ -50,25 +54,25 @@ export function getVisitor(){
 // Conversation
 // ============================================
 
-export function setConversationId(id){
+export function setConversationId(id) {
 
     state.conversationId = id;
 
 }
 
-export function getConversationId(){
+export function getConversationId() {
 
     return state.conversationId;
 
 }
 
-export function setCurrentConversation(data){
+export function setCurrentConversation(data) {
 
     state.currentConversation = data;
 
 }
 
-export function getCurrentConversation(){
+export function getCurrentConversation() {
 
     return state.currentConversation;
 
@@ -78,25 +82,37 @@ export function getCurrentConversation(){
 // Messages
 // ============================================
 
-export function setMessages(messages){
+export function setMessages(messages = []) {
 
     state.messages = messages;
 
 }
 
-export function getMessages(){
+export function getMessages() {
 
     return state.messages;
 
 }
 
-export function addMessage(message){
+export function addMessage(message) {
 
     state.messages.push(message);
 
+    if (
+
+        state.messages.length >
+
+        chatConfig.messageLimit
+
+    ) {
+
+        state.messages.shift();
+
+    }
+
 }
 
-export function clearMessages(){
+export function clearMessages() {
 
     state.messages = [];
 
@@ -106,25 +122,25 @@ export function clearMessages(){
 // Typing
 // ============================================
 
-export function setVisitorTyping(status){
+export function setVisitorTyping(status) {
 
-    state.visitorTyping = status;
+    state.visitorTyping = Boolean(status);
 
 }
 
-export function getVisitorTyping(){
+export function getVisitorTyping() {
 
     return state.visitorTyping;
 
 }
 
-export function setAdminTyping(status){
+export function setAdminTyping(status) {
 
-    state.adminTyping = status;
+    state.adminTyping = Boolean(status);
 
 }
 
-export function getAdminTyping(){
+export function getAdminTyping() {
 
     return state.adminTyping;
 
@@ -134,41 +150,41 @@ export function getAdminTyping(){
 // Online Status
 // ============================================
 
-export function setOnline(status){
+export function setOnline(status) {
 
-    state.online = status;
+    state.online = Boolean(status);
 
 }
 
-export function isOnline(){
+export function isOnline() {
 
     return state.online;
 
 }
 
 // ============================================
-// Unread Count
+// Unread Messages
 // ============================================
 
-export function setUnreadCount(count){
+export function setUnreadCount(count) {
 
-    state.unreadCount = count;
+    state.unreadCount = Math.max(0, count);
 
 }
 
-export function getUnreadCount(){
+export function getUnreadCount() {
 
     return state.unreadCount;
 
 }
 
-export function increaseUnread(){
+export function increaseUnread() {
 
     state.unreadCount++;
 
 }
 
-export function resetUnread(){
+export function resetUnread() {
 
     state.unreadCount = 0;
 
@@ -178,13 +194,13 @@ export function resetUnread(){
 // Initialized
 // ============================================
 
-export function setInitialized(status){
+export function setInitialized(status) {
 
-    state.initialized = status;
+    state.initialized = Boolean(status);
 
 }
 
-export function isInitialized(){
+export function isInitialized() {
 
     return state.initialized;
 
@@ -194,7 +210,7 @@ export function isInitialized(){
 // Reset State
 // ============================================
 
-export function resetState(){
+export function resetState() {
 
     state.visitor = null;
 
@@ -217,17 +233,37 @@ export function resetState(){
 }
 
 // ============================================
-// Get Full State
+// Full State
 // ============================================
 
-export function getState(){
+export function getState() {
 
-    return state;
+    return { ...state };
 
 }
+
+// ============================================
+// Network Status
+// ============================================
+
+window.addEventListener("online", () => {
+
+    setOnline(true);
+
+    log("Network Online");
+
+});
+
+window.addEventListener("offline", () => {
+
+    setOnline(false);
+
+    log("Network Offline");
+
+});
 
 // ============================================
 // Ready
 // ============================================
 
-console.log("PPPP State Ready");
+log("PPPP State Ready");
