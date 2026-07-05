@@ -1,4 +1,4 @@
-# People's Power & Peace Party (PPPP) Bangladesh Official Website | পিপলস পাওয়ার অ্যান্ড পিস পার্টি (পিপিপিপি) বাংলাদেশ অফিসিয়াল ওয়েবসাইট
+# 🌍 People's Power & Peace Party (PPPP) Bangladesh Official Website
 
 🌐 **Live Website:** https://naz-niaz.github.io/pppp_bangladesh/
 
@@ -9,106 +9,112 @@
 
 # 🌿 About This Project
 
-This repository contains the official website and real-time chat system of the **People's Power & Peace Party (PPPP) Bangladesh**.
+📘 This repository contains the official website and real-time chat system of the **People's Power & Peace Party (PPPP) Bangladesh**.
 
-The project is built using **HTML5**, **CSS3**, **Vanilla JavaScript**, **Firebase Authentication**, **Cloud Firestore**, and **Firebase Storage**, and is designed to run directly on **GitHub Pages** without any backend server.
+🧱 The project is built using:
+✨ HTML5  
+🎨 CSS3  
+⚙️ Vanilla JavaScript  
+🔥 Firebase Authentication  
+☁️ Cloud Firestore  
+📦 Firebase Storage  
+
+🌐 It is designed to run directly on **GitHub Pages** without any backend server.
 
 ---
 
 # 🎯 Vision
 
-To create a society where:
+🌟 To create a society where:
 
-- Peace is permanent.
-- Power belongs to the people.
-- Every voice has equal value.
-- Politics serves humanity instead of division.
+🕊️ Peace is permanent  
+👥 Power belongs to the people  
+🗣️ Every voice has equal value  
+⚖️ Politics serves humanity instead of division  
 
 ---
 
 # 🕊️ Mission
 
-- Promote peace, dialogue, and mutual respect.
-- Encourage inclusive participation across every community.
-- Advocate justice, fairness, and equal opportunity.
-- Build national unity beyond political differences.
+🤝 Promote peace, dialogue, and mutual respect  
+🌍 Encourage inclusive participation across every community  
+⚖️ Advocate justice, fairness, and equal opportunity  
+🇧🇩 Build national unity beyond political differences  
 
 ---
 
 # ✨ Features
 
-- Official PPPP Website
-- Real-time Live Chat
-- Firebase Authentication
-- Cloud Firestore Database
-- Firebase Storage
-- Guest Chat
-- Admin Dashboard
-- Typing Indicator
-- Seen Status
-- Online / Offline Status
-- Browser Notifications
-- Responsive Design
-- GitHub Pages Ready
+🌐 Official PPPP Website  
+💬 Real-time Live Chat  
+🔐 Firebase Authentication  
+☁️ Cloud Firestore Database  
+📦 Firebase Storage  
+👤 Guest Chat  
+🧑‍💼 Admin Dashboard  
+⌨️ Typing Indicator  
+👁️ Seen Status  
+🟢 Online / Offline Status  
+🔔 Browser Notifications  
+📱 Responsive Design  
+🚀 GitHub Pages Ready  
 
 ---
 
 # 📂 Project Structure
 
-```text
 pppp_bangladesh/
-│
-├── index.html
-├── about.html
-├── contact.html
-│
+
+├── index.html  
+├── about.html  
+├── contact.html  
+
 ├── chat/
 │   ├── assets/
-│   │   ├── logo.svg
-│   │   ├── avatar.svg
-│   │   ├── loading.svg
-│   │   └── notification.mp3
-│   │
-│   ├── chat-loader.js
-│   ├── chat.html
-│   ├── chat.css
-│   ├── chat.js
-│   ├── auth.js
-│   ├── ui.js
-│   ├── utils.js
-│   ├── config.js
-│   ├── firebase.js
-│   ├── realtime.js
-│   ├── messageService.js
-│   ├── upload.js
-│   ├── notification.js
-│   ├── state.js
-│   └── README.md
+│   │   ├── logo.svg  
+│   │   ├── avatar.svg  
+│   │   ├── loading.svg  
+│   │   └── notification.mp3  
 │
+│   ├── chat-loader.js  
+│   ├── chat.html  
+│   ├── chat.css  
+│   ├── chat.js  
+│   ├── auth.js  
+│   ├── ui.js  
+│   ├── utils.js  
+│   ├── config.js  
+│   ├── firebase.js  
+│   ├── realtime.js  
+│   ├── messageService.js  
+│   ├── upload.js  
+│   ├── notification.js  
+│   ├── state.js  
+│   └── README.md  
+
 ├── admin/
-│   ├── login.html
-│   ├── admin.html
-│   ├── admin.css
-│   ├── admin.js
-│   ├── auth.js
-│   └── README.md
-│
-├── firestore.rules
-├── firestore.indexes.json
-├── storage.rules
-├── firebase.json
-└── README.md
-```
+│   ├── login.html  
+│   ├── admin.html  
+│   ├── admin.css  
+│   ├── admin.js  
+│   ├── auth.js  
+│   └── README.md  
+
+├── firestore.rules  
+├── firestore.indexes.json  
+├── storage.rules  
+├── firebase.json  
+└── README.md  
 
 ---
 
 # 🔥 Firebase Services
 
-Enable:
+⚡ Required services:
 
-- Authentication
-- Cloud Firestore
-- Firebase Storage
+🔐 Authentication  
+☁️ Cloud Firestore  
+📦 Firebase Storage  
 
 ---
 
