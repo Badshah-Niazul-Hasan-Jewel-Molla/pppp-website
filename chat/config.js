@@ -77,7 +77,7 @@ export const chatConfig = {
 
     // Enable after Firebase provider setup
 
-    allowGoogleLogin: false,
+    allowGoogleLogin: true,
 
     allowFacebookLogin: false,
 
