@@ -1,8 +1,10 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // admin/auth.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
+
+import { chatConfig } from "../chat/config.js";
 
 import {
     auth,
@@ -37,7 +39,15 @@ export function requireAdmin(callback) {
 
         try {
 
-            const adminRef = doc(db, "admins", user.uid);
+            const adminRef = doc(
+
+                db,
+
+                chatConfig.adminsCollection,
+
+                user.uid
+
+            );
 
             const adminSnap = await getDoc(adminRef);
 
@@ -128,10 +138,6 @@ export function isSuperAdmin() {
     return currentAdmin.role === "superadmin";
 
 }
-
-// ============================================
-// Role Check
-// ============================================
 
 export function isAdmin() {
 
