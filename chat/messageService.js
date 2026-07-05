@@ -1,17 +1,27 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // messageService.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import {
+
     db,
+
     collection,
     addDoc,
+
     updateDoc,
+
     doc,
+
     serverTimestamp
+
 } from "./firebase.js";
+
+import { chatConfig } from "./config.js";
+
+import { log } from "./utils.js";
 
 // ============================================
 // Send Message
@@ -20,22 +30,38 @@ import {
 export async function sendMessage({
 
     conversationId,
+
     senderId,
+
     senderType,
+
     message,
+
     messageType = "text"
 
 }) {
 
-    if (!conversationId || !message) {
+    if (!conversationId) {
 
-        throw new Error("Invalid message.");
+        throw new Error("Conversation ID is required.");
+
+    }
+
+    if (!message || !message.trim()) {
+
+        throw new Error("Message cannot be empty.");
 
     }
 
     const ref = await addDoc(
 
-        collection(db, "messages"),
+        collection(
+
+            db,
+
+            chatConfig.messagesCollection
+
+        ),
 
         {
 
@@ -45,7 +71,7 @@ export async function sendMessage({
 
             senderType,
 
-            message,
+            message: message.trim(),
 
             messageType,
 
@@ -61,7 +87,7 @@ export async function sendMessage({
 
         conversationId,
 
-        lastMessage: message,
+        lastMessage: message.trim(),
 
         lastSender: senderType
 
@@ -89,7 +115,15 @@ export async function updateConversation({
 
     await updateDoc(
 
-        doc(db, "conversations", conversationId),
+        doc(
+
+            db,
+
+            chatConfig.conversationsCollection,
+
+            conversationId
+
+        ),
 
         {
 
@@ -119,11 +153,21 @@ export async function markMessageSeen(messageId) {
 
     await updateDoc(
 
-        doc(db, "messages", messageId),
+        doc(
+
+            db,
+
+            chatConfig.messagesCollection,
+
+            messageId
+
+        ),
 
         {
 
-            seen: true
+            seen: true,
+
+            seenAt: serverTimestamp()
 
         }
 
@@ -145,6 +189,8 @@ export async function setTyping(
 
 ) {
 
+    if (!chatConfig.allowTypingIndicator) return;
+
     if (!conversationId) return;
 
     const data = {};
@@ -161,9 +207,19 @@ export async function setTyping(
 
     }
 
+    data.typingUpdatedAt = serverTimestamp();
+
     await updateDoc(
 
-        doc(db, "conversations", conversationId),
+        doc(
+
+            db,
+
+            chatConfig.conversationsCollection,
+
+            conversationId
+
+        ),
 
         data
 
@@ -196,32 +252,18 @@ export async function stopTyping(
 }
 
 // ============================================
-// Message Placeholder
+// Future Features
 // ============================================
 
-export async function deleteMessage(messageId) {
+export async function deleteMessage() {
 
-    console.warn(
-
-        "deleteMessage() will be available in Version 4.1"
-
-    );
+    log("deleteMessage() will be available in Version 4.1");
 
 }
 
-export async function editMessage(
+export async function editMessage() {
 
-    messageId,
-
-    newMessage
-
-) {
-
-    console.warn(
-
-        "editMessage() will be available in Version 4.1"
-
-    );
+    log("editMessage() will be available in Version 4.1");
 
 }
 
@@ -229,4 +271,4 @@ export async function editMessage(
 // Ready
 // ============================================
 
-console.log("PPPP Message Service Ready");
+log("PPPP Message Service Ready");
