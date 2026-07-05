@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PPPP Admin Login</title>
+<title>PPPP Chat Admin Login</title>
 
 <link rel="stylesheet" href="admin.css">
 
@@ -23,7 +23,7 @@
 
         <p>Administrator Login</p>
 
-        <form id="loginForm">
+        <form id="loginForm" autocomplete="off">
 
             <input
                 id="email"
@@ -48,19 +48,14 @@
 
         </form>
 
-        <div class="divider">
-
-            OR
-
-        </div>
+        <div class="divider">OR</div>
 
         <button
             id="googleLogin"
             class="google-btn"
+            type="button"
         >
-
             Continue with Google
-
         </button>
 
         <p
@@ -82,58 +77,63 @@ import {
 } from "../chat/firebase.js";
 
 const form = document.getElementById("loginForm");
+const errorBox = document.getElementById("loginError");
+const googleBtn = document.getElementById("googleLogin");
+const loginBtn = document.getElementById("loginBtn");
 
-const error = document.getElementById("loginError");
-
-const google = document.getElementById("googleLogin");
-
-// ==========================
+// ==============================
 // Email Login
-// ==========================
+// ==============================
 
-form.addEventListener("submit", async (e)=>{
+form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    error.textContent="";
+    errorBox.textContent = "";
 
-    const email=document.getElementById("email").value;
+    loginBtn.disabled = true;
 
-    const password=document.getElementById("password").value;
-
-    try{
+    try {
 
         await signInWithEmailAndPassword(
 
             auth,
 
-            email,
+            document.getElementById("email").value.trim(),
 
-            password
+            document.getElementById("password").value
 
         );
 
-        location.href="admin.html";
+        location.replace("admin.html");
 
     }
 
-    catch(err){
+    catch (err) {
 
-        error.textContent=err.message;
+        errorBox.textContent = err.message;
+
+    }
+
+    finally {
+
+        loginBtn.disabled = false;
 
     }
 
 });
 
-// ==========================
+// ==============================
 // Google Login
-// ==========================
+// ==============================
 
-google.addEventListener("click",async()=>{
+googleBtn.addEventListener("click", async () => {
 
-    error.textContent="";
+    errorBox.textContent = "";
 
-    try{
+    googleBtn.disabled = true;
+
+    try {
 
         await signInWithPopup(
 
@@ -143,13 +143,19 @@ google.addEventListener("click",async()=>{
 
         );
 
-        location.href="admin.html";
+        location.replace("admin.html");
 
     }
 
-    catch(err){
+    catch (err) {
 
-        error.textContent=err.message;
+        errorBox.textContent = err.message;
+
+    }
+
+    finally {
+
+        googleBtn.disabled = false;
 
     }
 
