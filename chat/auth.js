@@ -1,28 +1,43 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // auth.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import {
+
     auth,
     db,
+
     doc,
     getDoc,
     setDoc,
     updateDoc,
+
     serverTimestamp,
+
     onAuthStateChanged,
+
     signInWithPopup,
+    signInAnonymously,
+
     googleProvider,
     facebookProvider,
     githubProvider
+
 } from "./firebase.js";
 
-import { getVisitorId } from "./utils.js";
+import { chatConfig } from "./config.js";
+
+import {
+
+    getVisitorId,
+    log
+
+} from "./utils.js";
 
 // ============================================
-// Current User
+// Current Visitor
 // ============================================
 
 let currentVisitor = null;
@@ -33,6 +48,28 @@ let currentVisitor = null;
 
 export async function initVisitor() {
 
+    // Anonymous Login
+
+    if (chatConfig.allowGuestChat) {
+
+        try {
+
+            const result = await signInAnonymously(auth);
+
+            return result.user.uid;
+
+        }
+
+        catch (error) {
+
+            log(error);
+
+        }
+
+    }
+
+    // Local Guest
+
     const visitorId = getVisitorId();
 
     currentVisitor = {
@@ -41,9 +78,9 @@ export async function initVisitor() {
 
         name: "Guest",
 
-        photo: "",
-
         email: "",
+
+        photo: "",
 
         provider: "guest"
 
@@ -61,7 +98,15 @@ export async function initVisitor() {
 
 async function saveVisitor(user) {
 
-    const ref = doc(db, "users", user.id);
+    const ref = doc(
+
+        db,
+
+        chatConfig.usersCollection,
+
+        user.id
+
+    );
 
     const snap = await getDoc(ref);
 
@@ -87,7 +132,9 @@ async function saveVisitor(user) {
 
         });
 
-    } else {
+    }
+
+    else {
 
         await updateDoc(ref, {
 
@@ -107,6 +154,8 @@ async function saveVisitor(user) {
 
 export async function loginGoogle() {
 
+    if (!chatConfig.allowGoogleLogin) return null;
+
     const result = await signInWithPopup(
 
         auth,
@@ -115,7 +164,13 @@ export async function loginGoogle() {
 
     );
 
-    return await saveFirebaseUser(result.user, "google");
+    return saveFirebaseUser(
+
+        result.user,
+
+        "google"
+
+    );
 
 }
 
@@ -125,6 +180,8 @@ export async function loginGoogle() {
 
 export async function loginFacebook() {
 
+    if (!chatConfig.allowFacebookLogin) return null;
+
     const result = await signInWithPopup(
 
         auth,
@@ -133,7 +190,13 @@ export async function loginFacebook() {
 
     );
 
-    return await saveFirebaseUser(result.user, "facebook");
+    return saveFirebaseUser(
+
+        result.user,
+
+        "facebook"
+
+    );
 
 }
 
@@ -143,6 +206,8 @@ export async function loginFacebook() {
 
 export async function loginGithub() {
 
+    if (!chatConfig.allowGithubLogin) return null;
+
     const result = await signInWithPopup(
 
         auth,
@@ -151,7 +216,13 @@ export async function loginGithub() {
 
     );
 
-    return await saveFirebaseUser(result.user, "github");
+    return saveFirebaseUser(
+
+        result.user,
+
+        "github"
+
+    );
 
 }
 
@@ -159,7 +230,13 @@ export async function loginGithub() {
 // Save Firebase User
 // ============================================
 
-async function saveFirebaseUser(user, provider) {
+async function saveFirebaseUser(
+
+    user,
+
+    provider
+
+) {
 
     currentVisitor = {
 
@@ -182,19 +259,35 @@ async function saveFirebaseUser(user, provider) {
 }
 
 // ============================================
-// Auth State
+// Authentication State
 // ============================================
 
-onAuthStateChanged(auth, async(user) => {
+onAuthStateChanged(
 
-    if (!user) return;
+    auth,
 
-    await saveFirebaseUser(user, "firebase");
+    async (user) => {
 
-});
+        if (!user) return;
+
+        await saveFirebaseUser(
+
+            user,
+
+            user.isAnonymous
+
+                ? "guest"
+
+                : "firebase"
+
+        );
+
+    }
+
+);
 
 // ============================================
-// Set Offline
+// Offline
 // ============================================
 
 export async function setOffline() {
@@ -205,7 +298,15 @@ export async function setOffline() {
 
         await updateDoc(
 
-            doc(db, "users", currentVisitor.id),
+            doc(
+
+                db,
+
+                chatConfig.usersCollection,
+
+                currentVisitor.id
+
+            ),
 
             {
 
@@ -221,7 +322,7 @@ export async function setOffline() {
 
     catch (error) {
 
-        console.error(error);
+        log(error);
 
     }
 
@@ -241,8 +342,14 @@ export function getCurrentVisitor() {
 // Auto Offline
 // ============================================
 
-window.addEventListener("beforeunload", () => {
+window.addEventListener(
 
-    setOffline();
+    "beforeunload",
 
-});
+    () => {
+
+        setOffline();
+
+    }
+
+);
