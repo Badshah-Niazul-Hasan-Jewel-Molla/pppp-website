@@ -1,12 +1,17 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // ui.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import { chatConfig } from "./config.js";
 
+import { escapeHTML } from "./utils.js";
+
+import { playNotificationSound } from "./notification.js";
+
 let widget = null;
+
 let isOpen = false;
 
 // ============================================
@@ -18,6 +23,7 @@ export function createChatWidget() {
     if (document.getElementById("pppp-chat-widget")) {
 
         widget = document.getElementById("pppp-chat-widget");
+
         return;
 
     }
@@ -30,7 +36,7 @@ export function createChatWidget() {
 
 <div id="pppp-chat-button" class="pppp-chat-button">
 
-    💬
+    <img src="${chatConfig.logo}" alt="PPPP">
 
 </div>
 
@@ -38,17 +44,30 @@ export function createChatWidget() {
 
     <div class="pppp-chat-header">
 
-        <div>
+        <div class="header-info">
 
-            <div class="title">
+            <img
+                class="avatar"
+                src="${chatConfig.avatar}"
+                alt="PPPP"
+            >
 
-                ${chatConfig.siteName}
+            <div>
 
-            </div>
+                <div class="title">
 
-            <div id="chat-status" class="status">
+                    ${chatConfig.appName}
 
-                🟢 Online
+                </div>
+
+                <div
+                    id="chat-status"
+                    class="status"
+                >
+
+                    🟢 Online
+
+                </div>
 
             </div>
 
@@ -62,11 +81,17 @@ export function createChatWidget() {
 
     </div>
 
-    <div id="chat-messages" class="pppp-chat-messages">
+    <div
+        id="chat-messages"
+        class="pppp-chat-messages"
+    >
 
     </div>
 
-    <div id="chat-typing" class="pppp-chat-typing">
+    <div
+        id="chat-typing"
+        class="pppp-chat-typing"
+    >
 
     </div>
 
@@ -106,13 +131,17 @@ export function createChatWidget() {
 
 export function bindUIEvents() {
 
-    const button = document.getElementById("pppp-chat-button");
+    document
 
-    const close = document.getElementById("chat-close");
+        .getElementById("pppp-chat-button")
 
-    button.addEventListener("click", toggleChat);
+        ?.addEventListener("click", toggleChat);
 
-    close.addEventListener("click", toggleChat);
+    document
+
+        .getElementById("chat-close")
+
+        ?.addEventListener("click", toggleChat);
 
 }
 
@@ -123,6 +152,8 @@ export function bindUIEvents() {
 export function toggleChat() {
 
     const win = document.getElementById("pppp-chat-window");
+
+    if (!win) return;
 
     isOpen = !isOpen;
 
@@ -140,7 +171,7 @@ export function setStatus(text) {
 
     if (status) {
 
-        status.innerText = text;
+        status.textContent = text;
 
     }
 
@@ -156,27 +187,27 @@ export function showTyping(show = true) {
 
     if (!typing) return;
 
-    if (show) {
+    typing.textContent =
 
-        typing.innerHTML =
+        show
 
-            "Admin is typing...";
+            ? "Admin is typing..."
 
-    }
-
-    else {
-
-        typing.innerHTML = "";
-
-    }
+            : "";
 
 }
 
 // ============================================
-// Message
+// Add Message
 // ============================================
 
-export function addMessage(text, sender) {
+export function addMessage(
+
+    text,
+
+    sender = "visitor"
+
+) {
 
     const box = document.getElementById("chat-messages");
 
@@ -184,15 +215,13 @@ export function addMessage(text, sender) {
 
     const div = document.createElement("div");
 
-    div.className =
-
-        "pppp-message " + sender;
+    div.className = `pppp-message ${sender}`;
 
     div.innerHTML = `
 
 <div class="bubble">
 
-${text}
+${escapeHTML(text)}
 
 </div>
 
@@ -201,6 +230,18 @@ ${text}
     box.appendChild(div);
 
     box.scrollTop = box.scrollHeight;
+
+    if (
+
+        sender === "admin" &&
+
+        !isOpen
+
+    ) {
+
+        playNotificationSound();
+
+    }
 
 }
 
@@ -245,6 +286,16 @@ export function closeChat() {
         toggleChat();
 
     }
+
+}
+
+// ============================================
+// Widget State
+// ============================================
+
+export function isChatOpen() {
+
+    return isOpen;
 
 }
 
