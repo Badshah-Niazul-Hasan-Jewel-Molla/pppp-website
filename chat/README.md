@@ -45,22 +45,47 @@ Designed for static websites, including **GitHub Pages**.
 # 📂 Folder Structure
 
 ```text
-chat/
+pppp_bangladesh/
 │
-├── chat-loader.js
-├── chat.html
-├── chat.css
-├── chat.js
-├── auth.js
-├── ui.js
-├── utils.js
-├── config.js
-├── firebase.js
-├── realtime.js
-├── messageService.js
-├── upload.js
-├── notification.js
-├── state.js
+├── index.html
+├── about.html
+├── contact.html
+│
+├── chat/
+│   ├── assets/
+│   │   ├── logo.svg
+│   │   ├── avatar.svg
+│   │   ├── loading.svg
+│   │   └── notification.mp3
+│   │
+│   ├── chat-loader.js
+│   ├── chat.html
+│   ├── chat.css
+│   ├── chat.js
+│   ├── auth.js
+│   ├── ui.js
+│   ├── utils.js
+│   ├── config.js
+│   ├── firebase.js
+│   ├── realtime.js
+│   ├── messageService.js
+│   ├── upload.js
+│   ├── notification.js
+│   ├── state.js
+│   └── README.md
+│
+├── admin/
+│   ├── login.html
+│   ├── admin.html
+│   ├── admin.css
+│   ├── admin.js
+│   ├── auth.js
+│   └── README.md
+│
+├── firestore.rules
+├── firestore.indexes.json
+├── storage.rules
+├── firebase.json
 └── README.md
 ```
 
@@ -179,8 +204,6 @@ The loader automatically:
 
 # 💻 Standalone Chat Page
 
-You can also access the chat directly.
-
 ```text
 chat/chat.html
 ```
@@ -239,6 +262,6 @@ Version 4.0.0
 
 This project is publicly available on GitHub.
 
-Copyright © 2014-Present PPPP Bangladesh.
+Copyright © 2014–Present PPPP Bangladesh.
 
 All rights reserved.
