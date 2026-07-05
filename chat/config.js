@@ -38,7 +38,7 @@ export const chatConfig = {
 
     appName: "PPPP Chat",
 
-    version: "4.0.0",
+    version: "4.0.0 Final Stable",
 
     siteName: "People's Power & Peace Party (PPPP)",
 
@@ -58,6 +58,8 @@ export const chatConfig = {
 
     notificationSound: "./assets/notification.mp3",
 
+    notificationIcon: "./assets/logo.svg",
+
     // ========================================
     // Firestore Collections
     // ========================================
@@ -71,6 +73,14 @@ export const chatConfig = {
     messagesCollection: "messages",
 
     typingCollection: "typing",
+
+    // ========================================
+    // Storage
+    // ========================================
+
+    imageStoragePath: "chat-images",
+
+    fileStoragePath: "chat-files",
 
     // ========================================
     // Chat UI
@@ -117,6 +127,8 @@ export const chatConfig = {
 
     maxImageSize: 5 * 1024 * 1024,
 
+    maxFileSize: 10 * 1024 * 1024,
+
     allowedImageTypes: [
 
         "image/png",
@@ -151,7 +163,7 @@ export const chatConfig = {
     // Development
     // ========================================
 
-    debug: true,
+    debug: false,
 
     // ========================================
     // Theme
