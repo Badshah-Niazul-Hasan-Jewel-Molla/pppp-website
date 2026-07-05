@@ -1,7 +1,7 @@
 /* ==========================================
    PPPP CHAT SYSTEM
    chat.css
-   Version 4.0
+   Version 4.0.0 Final Stable
 ========================================== */
 
 /* ---------- Theme ---------- */
@@ -12,18 +12,32 @@
     --pppp-primary-dark:#0052cc;
 
     --pppp-bg:#ffffff;
-
     --pppp-border:#dddddd;
 
     --pppp-shadow:0 10px 35px rgba(0,0,0,.18);
 
     --pppp-radius:18px;
 
-    --pppp-text:#222;
+    --pppp-text:#222222;
 
-    --pppp-admin:#0066ff;
+    --pppp-admin:#ececec;
+    --pppp-visitor:#0066ff;
 
-    --pppp-visitor:#f1f3f6;
+    --pppp-system:#fff8d6;
+
+}
+
+/* ---------- Reset ---------- */
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
 
 }
 
@@ -57,6 +71,8 @@
 
     cursor:pointer;
 
+    user-select:none;
+
     box-shadow:var(--pppp-shadow);
 
     z-index:999999;
@@ -87,7 +103,7 @@
 
     height:560px;
 
-    background:#fff;
+    background:var(--pppp-bg);
 
     border-radius:20px;
 
@@ -151,7 +167,7 @@
 
     border:none;
 
-    color:white;
+    color:#fff;
 
     cursor:pointer;
 
@@ -207,15 +223,15 @@
 
     border-radius:16px;
 
-    word-break:break-word;
-
     line-height:1.45;
+
+    word-break:break-word;
 
 }
 
 .pppp-message.visitor .bubble{
 
-    background:var(--pppp-primary);
+    background:var(--pppp-visitor);
 
     color:#fff;
 
@@ -223,7 +239,7 @@
 
 .pppp-message.admin .bubble{
 
-    background:#ececec;
+    background:var(--pppp-admin);
 
     color:#222;
 
@@ -231,7 +247,7 @@
 
 .pppp-message.system .bubble{
 
-    background:#fff8d6;
+    background:var(--pppp-system);
 
     color:#555;
 
@@ -287,6 +303,12 @@
 
 }
 
+#chat-text:focus{
+
+    border-color:var(--pppp-primary);
+
+}
+
 #chat-send{
 
     background:var(--pppp-primary);
@@ -301,6 +323,8 @@
 
     cursor:pointer;
 
+    transition:.2s;
+
 }
 
 #chat-send:hover{
@@ -309,21 +333,47 @@
 
 }
 
+#chat-send:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ---------- Scrollbar ---------- */
+
+.pppp-chat-messages::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.pppp-chat-messages::-webkit-scrollbar-thumb{
+
+    background:#cfcfcf;
+
+    border-radius:10px;
+
+}
+
 /* ---------- Mobile ---------- */
 
-@media(max-width:600px){
+@media (max-width:600px){
 
     .pppp-chat-window{
 
-        right:0;
-
         left:0;
+
+        right:0;
 
         bottom:0;
 
         width:100%;
 
         height:100vh;
+
+        max-width:100%;
 
         border-radius:0;
 
