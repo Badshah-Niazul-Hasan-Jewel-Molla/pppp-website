@@ -7,6 +7,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta name="theme-color" content="#0066ff">
+
 <title>PPPP Chat</title>
 
 <link rel="stylesheet" href="chat.css">
@@ -16,12 +18,19 @@
 <body>
 
 <!-- Floating Chat Button -->
-<div id="pppp-chat-button">
+<div
+    id="pppp-chat-button"
+    aria-label="Open Chat"
+    title="Open Chat"
+>
     💬
 </div>
 
 <!-- Chat Window -->
-<div id="pppp-chat-widget" class="pppp-chat-window">
+<div
+    id="pppp-chat-widget"
+    class="pppp-chat-window"
+>
 
     <!-- Header -->
     <div class="pppp-chat-header">
@@ -32,13 +41,20 @@
                 PPPP Support
             </div>
 
-            <div id="chat-status" class="status">
+            <div
+                id="chat-status"
+                class="status"
+            >
                 🟢 Online
             </div>
 
         </div>
 
-        <button id="chat-close">
+        <button
+            id="chat-close"
+            aria-label="Close Chat"
+            title="Close Chat"
+        >
             ✕
         </button>
 
@@ -48,12 +64,11 @@
     <div
         id="chat-messages"
         class="pppp-chat-messages"
-    >
-    </div>
+    ></div>
 
-    <!-- Typing Indicator -->
+    <!-- Typing -->
     <div
-        id="typing-indicator"
+        id="chat-typing"
         class="pppp-chat-typing"
     ></div>
 
