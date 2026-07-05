@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // config.js
-// Version 4.0
+// Version 4.0.0 Final
 // ============================================
 
 // Firebase Configuration
@@ -30,14 +30,36 @@ export const firebaseConfig = {
 
 export const chatConfig = {
 
-    // Website / Organization
+    // ========================================
+    // Organization
+    // ========================================
+
     siteName: "People's Power & Peace Party (PPPP)",
 
     shortName: "PPPP",
 
     adminName: "PPPP Admin",
 
-    // Chat Settings
+    appName: "PPPP Chat",
+
+    version: "4.0.0",
+
+    // ========================================
+    // Assets
+    // ========================================
+
+    logo: "./assets/logo.svg",
+
+    avatar: "./assets/avatar.svg",
+
+    loading: "./assets/loading.svg",
+
+    notificationSound: "./assets/notification.mp3",
+
+    // ========================================
+    // Chat UI
+    // ========================================
+
     welcomeMessage:
         "👋 Welcome to PPPP! How can we help you today?",
 
@@ -47,16 +69,23 @@ export const chatConfig = {
     sendButtonText:
         "Send",
 
+    // ========================================
     // Features
+    // ========================================
+
     allowGuestChat: true,
 
-    allowGoogleLogin: true,
+    // Enable after Firebase provider setup
 
-    allowFacebookLogin: true,
+    allowGoogleLogin: false,
 
-    allowGithubLogin: true,
+    allowFacebookLogin: false,
 
-    allowImageUpload: true,
+    allowGithubLogin: false,
+
+    // Enable after Firebase Storage setup
+
+    allowImageUpload: false,
 
     allowTypingIndicator: true,
 
@@ -66,7 +95,14 @@ export const chatConfig = {
 
     allowNotifications: true,
 
+    enableSound: true,
+
+    autoScroll: true,
+
+    // ========================================
     // Upload
+    // ========================================
+
     maxImageSize: 5 * 1024 * 1024, // 5 MB
 
     allowedImageTypes: [
@@ -81,7 +117,20 @@ export const chatConfig = {
 
     ],
 
+    // ========================================
+    // Performance
+    // ========================================
+
+    messageLimit: 100,
+
+    typingTimeout: 1500,
+
+    reconnectDelay: 3000,
+
+    // ========================================
     // Theme
+    // ========================================
+
     primaryColor: "#0066ff",
 
     secondaryColor: "#0052cc",
