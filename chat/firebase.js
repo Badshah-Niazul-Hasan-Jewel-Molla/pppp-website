@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // firebase.js
-// Version 4.0.0 Final Stable
+// Version 4.0.1 Final Stable
 // ============================================
 
 // Firebase App
@@ -48,6 +48,7 @@ import {
     getStorage,
     ref,
     uploadBytes,
+    uploadBytesResumable,
     getDownloadURL,
     deleteObject
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
@@ -64,19 +65,7 @@ const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-// Storage (Optional)
-// Enable when Firebase Storage is configured.
-let storage = null;
-
-try {
-
-    storage = getStorage(app);
-
-} catch (error) {
-
-    console.warn("Firebase Storage is not available.", error);
-
-}
+const storage = getStorage(app);
 
 // ============================================
 // Providers
@@ -95,21 +84,15 @@ const githubProvider = new GithubAuthProvider();
 export {
 
     app,
-
     db,
-
     auth,
-
     storage,
 
     googleProvider,
-
     facebookProvider,
-
     githubProvider,
 
     // Firestore
-
     collection,
     collectionGroup,
     doc,
@@ -129,7 +112,6 @@ export {
     Timestamp,
 
     // Authentication
-
     signInWithPopup,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -138,9 +120,9 @@ export {
     onAuthStateChanged,
 
     // Storage
-
     ref,
     uploadBytes,
+    uploadBytesResumable,
     getDownloadURL,
     deleteObject
 
