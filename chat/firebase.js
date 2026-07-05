@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // firebase.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 // Firebase App
@@ -38,6 +38,7 @@ import {
     signInWithPopup,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    signInAnonymously,
     signOut,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -59,15 +60,23 @@ import { firebaseConfig } from "./config.js";
 
 const app = initializeApp(firebaseConfig);
 
-// ============================================
-// Services
-// ============================================
-
 const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-const storage = getStorage(app);
+// Storage (Optional)
+// Enable when Firebase Storage is configured.
+let storage = null;
+
+try {
+
+    storage = getStorage(app);
+
+} catch (error) {
+
+    console.warn("Firebase Storage is not available.", error);
+
+}
 
 // ============================================
 // Providers
@@ -80,7 +89,7 @@ const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 // ============================================
-// Export Everything
+// Export
 // ============================================
 
 export {
@@ -100,6 +109,7 @@ export {
     githubProvider,
 
     // Firestore
+
     collection,
     collectionGroup,
     doc,
@@ -118,14 +128,17 @@ export {
     serverTimestamp,
     Timestamp,
 
-    // Auth
+    // Authentication
+
     signInWithPopup,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    signInAnonymously,
     signOut,
     onAuthStateChanged,
 
     // Storage
+
     ref,
     uploadBytes,
     getDownloadURL,
