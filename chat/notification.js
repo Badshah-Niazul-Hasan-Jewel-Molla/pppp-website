@@ -1,8 +1,12 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // notification.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
+
+import { chatConfig } from "./config.js";
+
+import { log } from "./utils.js";
 
 // ============================================
 // State
@@ -54,9 +58,11 @@ export function showNotification(
 
     body,
 
-    icon = ""
+    icon = chatConfig.logo
 
 ) {
+
+    if (!chatConfig.allowNotifications) return;
 
     if (!notificationPermission) return;
 
@@ -78,29 +84,31 @@ export function showNotification(
 // Sound Notification
 // ============================================
 
-export function playNotificationSound(
+export function playNotificationSound() {
 
-    file = "./notification.mp3"
-
-) {
+    if (!chatConfig.enableSound) return;
 
     try {
 
         if (!audio) {
 
-            audio = new Audio(file);
+            audio = new Audio(
+
+                chatConfig.notificationSound
+
+            );
 
         }
 
         audio.currentTime = 0;
 
-        audio.play().catch(()=>{});
+        audio.play().catch(() => {});
 
     }
 
-    catch(e){
+    catch (error) {
 
-        console.log(e);
+        log(error);
 
     }
 
@@ -120,27 +128,27 @@ export function startTitleBlink(
 
     stopTitleBlink();
 
-    blinkInterval = setInterval(()=>{
+    blinkInterval = setInterval(() => {
 
         document.title =
 
             document.title === originalTitle
 
-            ? text
+                ? text
 
-            : originalTitle;
+                : originalTitle;
 
-    },1000);
+    }, 1000);
 
 }
 
 // ============================================
-// Stop Blink
+// Stop Title Blink
 // ============================================
 
-export function stopTitleBlink(){
+export function stopTitleBlink() {
 
-    if(blinkInterval){
+    if (blinkInterval) {
 
         clearInterval(blinkInterval);
 
@@ -156,21 +164,27 @@ export function stopTitleBlink(){
 // Window Focus
 // ============================================
 
-window.addEventListener("focus",()=>{
+window.addEventListener(
 
-    stopTitleBlink();
+    "focus",
 
-});
+    () => {
+
+        stopTitleBlink();
+
+    }
+
+);
 
 // ============================================
-// New Message Helper
+// New Message Notification
 // ============================================
 
-export function notifyNewMessage(message){
+export function notifyNewMessage(message) {
 
     showNotification(
 
-        "PPPP Chat",
+        chatConfig.appName,
 
         message
 
@@ -186,4 +200,4 @@ export function notifyNewMessage(message){
 // Ready
 // ============================================
 
-console.log("PPPP Notification Ready");
+log("PPPP Notification Ready");
