@@ -242,6 +242,5 @@ firebase deploy --only storage
 📘 This module is part of the **PPPP Chat System**.
 
 © 2014–Present  
-**People's Power & Peace Party (PPPP) Bangladesh**
-
+**People's Power & Peace Party (PPPP) Bangladesh**  
 All rights reserved.
