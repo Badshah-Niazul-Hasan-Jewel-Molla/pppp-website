@@ -144,9 +144,7 @@ firebase deploy --only storage
 
 # 📌 Version
 
-```text
 📦 Version 4.0.0 (Stable Release)
-```
 
 ---
 
