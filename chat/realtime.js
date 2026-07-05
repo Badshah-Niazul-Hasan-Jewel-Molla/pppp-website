@@ -1,40 +1,70 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // realtime.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import {
+
     db,
+
     doc,
+
     collection,
+
     query,
+
     where,
+
     orderBy,
+
     onSnapshot
+
 } from "./firebase.js";
+
+import { chatConfig } from "./config.js";
+
+import { log } from "./utils.js";
 
 // ============================================
 // Listener References
 // ============================================
 
 let conversationListener = null;
+
 let messageListener = null;
+
 let typingListener = null;
+
+let presenceListener = null;
 
 // ============================================
 // Conversation Listener
 // ============================================
 
-export function listenConversation(conversationId, callback) {
+export function listenConversation(
+
+    conversationId,
+
+    callback
+
+) {
 
     stopConversationListener();
 
     conversationListener = onSnapshot(
 
-        doc(db, "conversations", conversationId),
+        doc(
 
-        (snapshot) => {
+            db,
+
+            chatConfig.conversationsCollection,
+
+            conversationId
+
+        ),
+
+        snapshot => {
 
             if (!snapshot.exists()) return;
 
@@ -42,11 +72,7 @@ export function listenConversation(conversationId, callback) {
 
         },
 
-        (error) => {
-
-            console.error("Conversation Listener:", error);
-
-        }
+        error => log(error)
 
     );
 
@@ -56,15 +82,35 @@ export function listenConversation(conversationId, callback) {
 // Message Listener
 // ============================================
 
-export function listenMessages(conversationId, callback) {
+export function listenMessages(
+
+    conversationId,
+
+    callback
+
+) {
 
     stopMessageListener();
 
     const q = query(
 
-        collection(db, "messages"),
+        collection(
 
-        where("conversationId", "==", conversationId),
+            db,
+
+            chatConfig.messagesCollection
+
+        ),
+
+        where(
+
+            "conversationId",
+
+            "==",
+
+            conversationId
+
+        ),
 
         orderBy("createdAt")
 
@@ -74,11 +120,11 @@ export function listenMessages(conversationId, callback) {
 
         q,
 
-        (snapshot) => {
+        snapshot => {
 
             const messages = [];
 
-            snapshot.forEach((doc) => {
+            snapshot.forEach(doc => {
 
                 messages.push({
 
@@ -94,11 +140,7 @@ export function listenMessages(conversationId, callback) {
 
         },
 
-        (error) => {
-
-            console.error("Message Listener:", error);
-
-        }
+        error => log(error)
 
     );
 
@@ -108,27 +150,51 @@ export function listenMessages(conversationId, callback) {
 // Typing Listener
 // ============================================
 
-export function listenTyping(conversationId, callback) {
+export function listenTyping(
+
+    conversationId,
+
+    callback
+
+) {
+
+    if (!chatConfig.allowTypingIndicator) return;
 
     stopTypingListener();
 
     typingListener = onSnapshot(
 
-        doc(db, "conversations", conversationId),
+        doc(
 
-        (snapshot) => {
+            db,
+
+            chatConfig.conversationsCollection,
+
+            conversationId
+
+        ),
+
+        snapshot => {
 
             if (!snapshot.exists()) return;
 
+            const data = snapshot.data();
+
             callback({
 
-                visitorTyping: snapshot.data().visitorTyping || false,
+                visitorTyping:
 
-                adminTyping: snapshot.data().adminTyping || false
+                    data.visitorTyping || false,
+
+                adminTyping:
+
+                    data.adminTyping || false
 
             });
 
-        }
+        },
+
+        error => log(error)
 
     );
 
@@ -138,25 +204,51 @@ export function listenTyping(conversationId, callback) {
 // Presence Listener
 // ============================================
 
-export function listenPresence(conversationId, callback) {
+export function listenPresence(
 
-    return onSnapshot(
+    conversationId,
 
-        doc(db, "conversations", conversationId),
+    callback
 
-        (snapshot) => {
+) {
+
+    if (!chatConfig.allowOnlineStatus) return;
+
+    stopPresenceListener();
+
+    presenceListener = onSnapshot(
+
+        doc(
+
+            db,
+
+            chatConfig.conversationsCollection,
+
+            conversationId
+
+        ),
+
+        snapshot => {
 
             if (!snapshot.exists()) return;
 
+            const data = snapshot.data();
+
             callback({
 
-                status: snapshot.data().status || "offline",
+                status:
 
-                updatedAt: snapshot.data().updatedAt || null
+                    data.status || "offline",
+
+                updatedAt:
+
+                    data.updatedAt || null
 
             });
 
-        }
+        },
+
+        error => log(error)
 
     );
 
@@ -211,7 +303,23 @@ export function stopTypingListener() {
 }
 
 // ============================================
-// Stop All
+// Stop Presence Listener
+// ============================================
+
+export function stopPresenceListener() {
+
+    if (presenceListener) {
+
+        presenceListener();
+
+        presenceListener = null;
+
+    }
+
+}
+
+// ============================================
+// Stop All Listeners
 // ============================================
 
 export function stopAllRealtimeListeners() {
@@ -222,10 +330,12 @@ export function stopAllRealtimeListeners() {
 
     stopTypingListener();
 
+    stopPresenceListener();
+
 }
 
 // ============================================
 // Ready
 // ============================================
 
-console.log("PPPP Realtime Ready");
+log("PPPP Realtime Ready");
