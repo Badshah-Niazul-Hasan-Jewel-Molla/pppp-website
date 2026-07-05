@@ -1,7 +1,7 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // firebase.js
-// Version 4.0.1 Final Stable
+// Version 4.0.0 Final Stable
 // ============================================
 
 // Firebase App
