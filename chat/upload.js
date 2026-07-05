@@ -1,34 +1,24 @@
 // ============================================
 // PPPP CHAT SYSTEM
 // upload.js
-// Version 4.0
+// Version 4.0.0 Final Stable
 // ============================================
 
 import {
+
     storage,
+
     ref,
+
     uploadBytesResumable,
+
     getDownloadURL
+
 } from "./firebase.js";
 
-// ============================================
-// Configuration
-// ============================================
+import { chatConfig } from "./config.js";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
-
-const ALLOWED_IMAGE_TYPES = [
-    "image/jpeg",
-    "image/png",
-    "image/webp",
-    "image/gif"
-];
-
-const ALLOWED_FILE_TYPES = [
-    "application/pdf",
-    "text/plain",
-    "application/zip"
-];
+import { log } from "./utils.js";
 
 // ============================================
 // Validation
@@ -36,25 +26,53 @@ const ALLOWED_FILE_TYPES = [
 
 export function validateFile(file, imageOnly = false) {
 
+    if (!chatConfig.allowImageUpload) {
+
+        throw new Error("Image upload is disabled.");
+
+    }
+
+    if (!storage) {
+
+        throw new Error("Firebase Storage is not configured.");
+
+    }
+
     if (!file) {
 
         throw new Error("No file selected.");
 
     }
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (
 
-        throw new Error("Maximum file size is 10MB.");
+        file.size >
+
+        chatConfig.maxImageSize
+
+    ) {
+
+        throw new Error(
+
+            "Maximum file size exceeded."
+
+        );
 
     }
 
-    if (imageOnly) {
+    if (
 
-        if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+        imageOnly &&
 
-            throw new Error("Unsupported image format.");
+        !chatConfig.allowedImageTypes.includes(file.type)
 
-        }
+    ) {
+
+        throw new Error(
+
+            "Unsupported image format."
+
+        );
 
     }
 
@@ -82,7 +100,13 @@ export function uploadImage(
 
         `chat-images/${conversationId}/${Date.now()}-${file.name}`;
 
-    const storageRef = ref(storage, path);
+    const storageRef = ref(
+
+        storage,
+
+        path
+
+    );
 
     const task = uploadBytesResumable(
 
@@ -92,49 +116,63 @@ export function uploadImage(
 
     );
 
-    return new Promise((resolve, reject) => {
+    return new Promise(
 
-        task.on(
+        (resolve, reject) => {
 
-            "state_changed",
+            task.on(
 
-            (snapshot) => {
+                "state_changed",
 
-                const progress =
+                snapshot => {
 
-                    Math.round(
+                    const progress = Math.round(
 
-                        (snapshot.bytesTransferred /
+                        snapshot.bytesTransferred /
 
-                        snapshot.totalBytes) * 100
+                        snapshot.totalBytes *
+
+                        100
 
                     );
 
-                onProgress(progress);
+                    onProgress(progress);
 
-            },
+                },
 
-            reject,
+                error => {
 
-            async () => {
+                    log(error);
 
-                const url =
+                    reject(error);
 
-                    await getDownloadURL(task.snapshot.ref);
+                },
 
-                resolve({
+                async () => {
 
-                    path,
+                    const url =
 
-                    url
+                        await getDownloadURL(
 
-                });
+                            task.snapshot.ref
 
-            }
+                        );
 
-        );
+                    resolve({
 
-    });
+                        path,
+
+                        url
+
+                    });
+
+                }
+
+            );
+
+        }
+
+    );
 
 }
 
@@ -152,65 +190,15 @@ export function uploadFile(
 
 ) {
 
-    validateFile(file);
+    return uploadImage(
 
-    const path =
+        conversationId,
 
-        `chat-files/${conversationId}/${Date.now()}-${file.name}`;
+        file,
 
-    const storageRef = ref(storage, path);
-
-    const task = uploadBytesResumable(
-
-        storageRef,
-
-        file
+        onProgress
 
     );
-
-    return new Promise((resolve, reject) => {
-
-        task.on(
-
-            "state_changed",
-
-            (snapshot) => {
-
-                const progress =
-
-                    Math.round(
-
-                        (snapshot.bytesTransferred /
-
-                        snapshot.totalBytes) * 100
-
-                    );
-
-                onProgress(progress);
-
-            },
-
-            reject,
-
-            async () => {
-
-                const url =
-
-                    await getDownloadURL(task.snapshot.ref);
-
-                resolve({
-
-                    path,
-
-                    url
-
-                });
-
-            }
-
-        );
-
-    });
 
 }
 
@@ -235,12 +223,12 @@ export function getFileInfo(file) {
 }
 
 // ============================================
-// Future Placeholder
+// Future
 // ============================================
 
 export async function compressImage(file) {
 
-    console.warn(
+    log(
 
         "Image compression will be available in Version 4.1"
 
@@ -254,4 +242,4 @@ export async function compressImage(file) {
 // Ready
 // ============================================
 
-console.log("PPPP Upload Service Ready");
+log("PPPP Upload Service Ready");
