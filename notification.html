@@ -614,10 +614,10 @@ const card=document.createElement("div");
 
 card.className="card";
 
-if(
-currentIndex===index &&
-filteredList[index]===file
-){
+card.style.background = colors[index % colors.length];
+card.style.color = "#fff";
+
+if(currentIndex===index){
 
 card.style.border="4px solid #00b894";
 
