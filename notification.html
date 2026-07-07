@@ -1,118 +1,388 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PPPP Notification Center</title>
+<title>🌀 PPPP Notification Center 🌀</title>
+
+<link rel="icon" href="favicon.ico">
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+background:linear-gradient(-45deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
+
 background-size:400% 400%;
-animation:bg 15s infinite;
+
+animation:bg 15s ease infinite;
+
 padding:20px;
+
+min-height:100vh;
+
 }
 
 @keyframes bg{
-0%{background-position:0 50%}
-50%{background-position:100% 50%}
-100%{background-position:0 50%}
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
 }
 
-h1{
-text-align:center;
-color:white;
-font-size:28px;
-text-shadow:0 2px 5px #000;
+.container{
+
+max-width:1500px;
+
+margin:auto;
+
 }
 
-.subtitle{
+.header{
+
 text-align:center;
+
 color:white;
-font-size:16px;
+
+margin-bottom:25px;
+
+}
+
+.header h1{
+
+font-size:35px;
+
+margin-bottom:10px;
+
+text-shadow:0 2px 10px rgba(0,0,0,.35);
+
+}
+
+.header p{
+
+font-size:18px;
+
+opacity:.95;
+
+}
+
+.topbar{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+justify-content:space-between;
+
+align-items:center;
+
 margin-bottom:20px;
+
 }
 
 .search{
-width:100%;
-padding:14px;
-border:none;
-border-radius:15px;
-font-size:16px;
-box-sizing:border-box;
-margin-bottom:20px;
-}
 
-.grid{
-display:grid;
-grid-template-columns:
-repeat(auto-fill,minmax(300px,1fr));
-gap:15px;
-}
+flex:1;
 
-.card{
+min-width:260px;
 
-background:rgba(255,255,255,.9);
-border-radius:18px;
 padding:15px;
+
+font-size:17px;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
 box-shadow:0 5px 15px rgba(0,0,0,.25);
 
 }
 
-.name{
-
-font-weight:bold;
-font-size:15px;
-word-break:break-word;
-margin-bottom:12px;
-
-}
-
-
-audio{
-
-width:100%;
-margin-bottom:10px;
-
-}
-
-
-button,a{
-
-border:none;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
-text-decoration:none;
-margin-right:5px;
-background:#333;
-color:white;
-
-}
-
-
-.download{
-
-background:#008000;
-
-}
-
-
-.count{
+.counter{
 
 background:white;
-padding:10px;
-border-radius:12px;
-text-align:center;
-margin-bottom:15px;
+
+padding:15px 20px;
+
+border-radius:15px;
+
 font-weight:bold;
+
+box-shadow:0 5px 15px rgba(0,0,0,.25);
 
 }
 
+.player{
+
+background:white;
+
+border-radius:20px;
+
+padding:20px;
+
+margin-bottom:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.player h2{
+
+margin-bottom:15px;
+
+}
+
+.nowPlaying{
+
+font-size:16px;
+
+font-weight:bold;
+
+margin-bottom:12px;
+
+word-break:break-word;
+
+color:#333;
+
+}
+
+#audioPlayer{
+
+width:100%;
+
+margin-bottom:15px;
+
+}
+
+.controls{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.controls button{
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:15px;
+
+font-weight:bold;
+
+color:white;
+
+transition:.25s;
+
+}
+
+.controls button:hover{
+
+transform:scale(1.05);
+
+}
+
+.play{
+
+background:#16a085;
+
+}
+
+.pause{
+
+background:#f39c12;
+
+}
+
+.stop{
+
+background:#e74c3c;
+
+}
+
+.prev{
+
+background:#6c5ce7;
+
+}
+
+.next{
+
+background:#0984e3;
+
+}
+
+.shuffle{
+
+background:#8e44ad;
+
+}
+
+.repeat{
+
+background:#2d3436;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+
+gap:18px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.25);
+
+transition:.25s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.filename{
+
+font-weight:bold;
+
+font-size:15px;
+
+margin-bottom:15px;
+
+word-break:break-word;
+
+line-height:1.5;
+
+}
+
+.cardButtons{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.cardButtons button,
+
+.cardButtons a{
+
+flex:1;
+
+text-align:center;
+
+text-decoration:none;
+
+border:none;
+
+padding:10px;
+
+border-radius:10px;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:white;
+
+transition:.25s;
+
+}
+
+.playBtn{
+
+background:#00b894;
+
+}
+
+.downloadBtn{
+
+background:#0984e3;
+
+}
+
+.copyBtn{
+
+background:#6c5ce7;
+
+}
+
+.shareBtn{
+
+background:#e84393;
+
+}
+
+.favoriteBtn{
+
+background:#d63031;
+
+}
+
+.cardButtons button:hover,
+
+.cardButtons a:hover{
+
+transform:scale(1.05);
+
+}
+
+footer{
+
+margin-top:40px;
+
+text-align:center;
+
+color:white;
+
+font-weight:bold;
+
+font-size:15px;
+
+padding:20px;
+
+}
 
 </style>
 
@@ -120,113 +390,291 @@ font-weight:bold;
 
 <body>
 
+<div class="container">
 
-<h1> PPPP Notification </h1>
+<div class="header">
 
-<div class="subtitle">
-People's Power & Peace Party (PPPP)
+<h1>🌀 PPPP Notification Center 🌀</h1>
+
+<p>People's Power & Peace Party (PPPP)</p>
+
+<p>Power to the People • Peace for the People</p>
+
 </div>
 
+<div class="topbar">
 
-<div class="count" id="count"></div>
-
-
-<input 
-class="search"
+<input
+type="text"
 id="search"
-placeholder="🔍 Notification search...">
+class="search"
+placeholder="🔍 Search Notification...">
 
+<div
+class="counter"
+id="counter">
+Loading...
+</div>
 
-<div class="grid" id="grid"></div>
+</div>
+
+<div class="player">
+
+<h2>🎵 Now Playing</h2>
+
+<div
+class="nowPlaying"
+id="nowPlaying">
+
+No notification selected.
+
+</div>
+
+<audio
+id="audioPlayer"
+controls>
+
+</audio>
+
+<div
+class="controls">
+
+<button class="prev" id="prevBtn">
+⏮ Previous
+</button>
+
+<button class="play" id="playBtn">
+▶ Play
+</button>
+
+<button class="pause" id="pauseBtn">
+⏸ Pause
+</button>
+
+<button class="stop" id="stopBtn">
+⏹ Stop
+</button>
+
+<button class="next" id="nextBtn">
+⏭ Next
+</button>
+
+<button class="shuffle" id="shuffleBtn">
+🔀 Shuffle
+</button>
+
+<button class="repeat" id="repeatBtn">
+🔁 Repeat Off
+</button>
+
+</div>
+
+</div>
+
+<div
+class="grid"
+id="grid">
+
+</div>
 <script>
 
 const notifications = [
 
 "Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp3",
+
 "Bangladesh_Hilful_Fuzul_BHF.mp3",
+
 "Bangladesh_Peace_Organization_BPO.mp3",
+
 "Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp3",
+
 "Boss_you_have_a_text_message_from_PPPP.mp3",
+
 "https_naz-niaz.github.io_pppp_bangladesh.mp3",
+
 "Jewel-Juthi_Award_Organization_JAO.mp3",
+
 "Naz-Niaz_Award_Organization_NAO.mp3",
+
 "Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp3",
+
 "New_message_from_PPPP.mp3",
+
 "New_notification_from_PPPP.mp3",
+
 "New_update_from_PPPP.mp3",
+
 "notification.mp3",
+
 "People's_Power_&_Peace_Party_PPPP.mp3",
+
 "Please_check_your_new_message_from_PPPP.mp3",
+
 "Power_to_the_People_Peace_for_the_People_PPPP.mp3",
+
 "PPPP.mp3",
+
 "PPPP_notification.mp3",
+
 "pppp.bangladesh@gmail.com.mp3",
+
 "Thank_you_for_joining_PPPP.mp3",
+
 "Welcome_to_PPPP.mp3",
 
 "জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp3",
+
 "শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp3",
+
 "হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp3",
+
 "হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp3",
 
 "حقوق_الشعب_والسلام_للشعب_PPPP.mp3",
+
 "حزب_قوة_الشعب_والسلام_PPPP.mp3"
 
 ];
 
-document.getElementById("count").innerHTML =
-"Total Notifications : <b>" + notifications.length + "</b>";
+const audio = document.getElementById("audioPlayer");
 
 const grid = document.getElementById("grid");
 
-let currentAudio = null;
+const search = document.getElementById("search");
 
+const counter = document.getElementById("counter");
+
+const nowPlaying = document.getElementById("nowPlaying");
+
+const playBtn = document.getElementById("playBtn");
+
+const pauseBtn = document.getElementById("pauseBtn");
+
+const stopBtn = document.getElementById("stopBtn");
+
+const prevBtn = document.getElementById("prevBtn");
+
+const nextBtn = document.getElementById("nextBtn");
+
+const shuffleBtn = document.getElementById("shuffleBtn");
+
+const repeatBtn = document.getElementById("repeatBtn");
+
+let repeatMode = false;
+
+let currentIndex = -1;
+
+let filteredList = [...notifications];
+
+counter.innerHTML =
+"Total Notifications : <b>" +
+notifications.length +
+"</b>";
+
+function fileURL(name){
+
+return "notification/" + encodeURIComponent(name);
+
+}
+
+function playIndex(index){
+
+if(index<0 || index>=filteredList.length) return;
+
+currentIndex=index;
+
+audio.src=fileURL(filteredList[index]);
+
+audio.play();
+
+nowPlaying.innerHTML=
+filteredList[index];
+
+render(filteredList);
+
+}
 function render(list){
 
 grid.innerHTML="";
 
-list.forEach(file=>{
+list.forEach((file,index)=>{
 
 const card=document.createElement("div");
 
 card.className="card";
 
-card.innerHTML=`
+if(
+currentIndex===index &&
+filteredList[index]===file
+){
 
-<div class="name">${file}</div>
-
-<audio controls preload="none">
-
-<source src="notification/${encodeURIComponent(file)}" type="audio/mpeg">
-
-</audio>
-
-<br><br>
-
-<a
-class="download"
-href="notification/${encodeURIComponent(file)}"
-download="${file}">
-⬇ Download
-</a>
-
-`;
-
-const audio = card.querySelector("audio");
-
-audio.addEventListener("play",()=>{
-
-if(currentAudio && currentAudio!==audio){
-
-currentAudio.pause();
-
-currentAudio.currentTime=0;
+card.style.border="4px solid #00b894";
 
 }
 
-currentAudio=audio;
+card.innerHTML=`
 
-});
+<div class="filename">
+
+${file}
+
+</div>
+
+<div class="cardButtons">
+
+<button
+class="playBtn"
+onclick="playIndex(${index})">
+
+▶ Play
+
+</button>
+
+<a
+
+class="downloadBtn"
+
+href="${fileURL(file)}"
+
+download="${file}">
+
+⬇ Download
+
+</a>
+
+<button
+
+class="copyBtn"
+
+onclick="copyLink('${encodeURIComponent(file)}')">
+
+📋 Copy Link
+
+</button>
+
+<button
+
+class="shareBtn"
+
+onclick="shareFile('${encodeURIComponent(file)}')">
+
+📤 Share
+
+</button>
+
+<button
+
+class="favoriteBtn"
+
+onclick="toggleFavorite('${file}')">
+
+⭐ Favorite
+
+</button>
+
+</div>
+
+`;
 
 grid.appendChild(card);
 
@@ -234,41 +682,760 @@ grid.appendChild(card);
 
 }
 
-render(notifications);
+render(filteredList);
 
-const search = document.getElementById("search");
+function copyLink(file){
 
-search.addEventListener("input",function(){
+const url=
 
-const keyword = this.value.toLowerCase().trim();
+location.origin+
 
-const result = notifications.filter(file =>
-file.toLowerCase().includes(keyword)
-);
+location.pathname.replace(
 
-render(result);
+"notification.html",
 
-});
+""
 
-search.addEventListener("keyup",function(e){
+)+
 
-if(e.key==="Escape"){
+"notification/"+
 
-this.value="";
+file;
 
-render(notifications);
+navigator.clipboard.writeText(url);
+
+alert("Notification link copied.");
 
 }
 
+function shareFile(file){
+
+const url=
+
+location.origin+
+
+location.pathname.replace(
+
+"notification.html",
+
+""
+
+)+
+
+"notification/"+
+
+file;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"PPPP Notification",
+
+text:"PPPP Official Notification",
+
+url:url
+
 });
 
-window.onload=function(){
+}else{
 
-render(notifications);
+navigator.clipboard.writeText(url);
+
+alert("Share is not supported.\nLink copied.");
+
+}
+
+}
+const favorites = JSON.parse(
+
+localStorage.getItem(
+
+"ppppNotificationFavorites"
+
+) || "[]"
+
+);
+
+function saveFavorites(){
+
+localStorage.setItem(
+
+"ppppNotificationFavorites",
+
+JSON.stringify(favorites)
+
+);
+
+}
+
+function toggleFavorite(file){
+
+const i=favorites.indexOf(file);
+
+if(i===-1){
+
+favorites.push(file);
+
+alert("⭐ Added to Favorites");
+
+}else{
+
+favorites.splice(i,1);
+
+alert("❌ Removed from Favorites");
+
+}
+
+saveFavorites();
+
+render(filteredList);
+
+}
+
+playBtn.onclick=function(){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+return;
+
+}
+
+audio.play();
 
 };
 
+pauseBtn.onclick=function(){
+
+audio.pause();
+
+};
+
+stopBtn.onclick=function(){
+
+audio.pause();
+
+audio.currentTime=0;
+
+};
+
+prevBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex--;
+
+if(currentIndex<0)
+
+currentIndex=
+
+filteredList.length-1;
+
+playIndex(currentIndex);
+
+};
+
+nextBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length)
+
+currentIndex=0;
+
+playIndex(currentIndex);
+
+};
+
+shuffleBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+const random=
+
+Math.floor(
+
+Math.random()*
+
+filteredList.length
+
+);
+
+playIndex(random);
+
+};
+
+repeatBtn.onclick=function(){
+
+repeatMode=!repeatMode;
+
+repeatBtn.innerHTML=
+
+repeatMode ?
+
+"🔁 Repeat On"
+
+:
+
+"🔁 Repeat Off";
+
+};
+audio.addEventListener(
+
+"ended",
+
+function(){
+
+if(repeatMode){
+
+audio.currentTime=0;
+
+audio.play();
+
+return;
+
+}
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length){
+
+currentIndex=0;
+
+}
+
+playIndex(currentIndex);
+
+}
+
+);
+
+search.addEventListener(
+
+"input",
+
+function(){
+
+const keyword=
+
+this.value
+
+.toLowerCase()
+
+.trim();
+
+filteredList=
+
+notifications.filter(file=>
+
+file
+
+.toLowerCase()
+
+.includes(keyword)
+
+);
+
+counter.innerHTML=
+
+"Showing <b>"+
+
+filteredList.length+
+
+"</b> of <b>"+
+
+notifications.length+
+
+"</b> Notifications";
+
+currentIndex=-1;
+
+nowPlaying.innerHTML=
+
+"No notification selected.";
+
+audio.pause();
+
+audio.removeAttribute("src");
+
+audio.load();
+
+render(filteredList);
+
+}
+
+);
+
+window.addEventListener(
+
+"load",
+
+function(){
+
+counter.innerHTML=
+
+"Total Notifications : <b>"+
+
+notifications.length+
+
+"</b>";
+
+render(filteredList);
+
+}
+
+);
+function updateNowPlaying(){
+
+if(currentIndex<0 ||
+
+currentIndex>=filteredList.length){
+
+nowPlaying.innerHTML=
+
+"No notification selected.";
+
+return;
+
+}
+
+nowPlaying.innerHTML=
+
+"🎵 " +
+
+filteredList[currentIndex];
+
+}
+
+audio.addEventListener(
+
+"play",
+
+updateNowPlaying
+
+);
+
+audio.addEventListener(
+
+"pause",
+
+function(){
+
+document.title=
+
+"⏸ PPPP Notification Center";
+
+}
+
+);
+
+audio.addEventListener(
+
+"playing",
+
+function(){
+
+document.title=
+
+"🎵 " +
+
+filteredList[currentIndex];
+
+}
+
+);
+
+audio.addEventListener(
+
+"loadedmetadata",
+
+function(){
+
+if(isNaN(audio.duration))
+
+return;
+
+const m=
+
+Math.floor(
+
+audio.duration/60
+
+);
+
+const s=
+
+Math.floor(
+
+audio.duration%60
+
+)
+
+.toString()
+
+.padStart(2,"0");
+
+nowPlaying.innerHTML=
+
+"🎵 " +
+
+filteredList[currentIndex] +
+
+" (" +
+
+m +
+
+":" +
+
+s +
+
+")";
+
+}
+
+);
+
+audio.volume=1.0;
+
+audio.preload="metadata";
+window.addEventListener(
+
+"keydown",
+
+function(e){
+
+if(
+
+e.target.tagName==="INPUT"
+
+)return;
+
+switch(e.code){
+
+case"Space":
+
+e.preventDefault();
+
+if(audio.paused){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+}else{
+
+audio.play();
+
+}
+
+}else{
+
+audio.pause();
+
+}
+
+break;
+
+case"ArrowRight":
+
+nextBtn.click();
+
+break;
+
+case"ArrowLeft":
+
+prevBtn.click();
+
+break;
+
+case"KeyS":
+
+shuffleBtn.click();
+
+break;
+
+case"KeyR":
+
+repeatBtn.click();
+
+break;
+
+}
+
+}
+
+);
+
+window.addEventListener(
+
+"scroll",
+
+function(){
+
+const btn=
+
+document.getElementById(
+
+"topBtn"
+
+);
+
+if(!btn)return;
+
+btn.style.display=
+
+window.scrollY>300
+
+?
+
+"block"
+
+:
+
+"none";
+
+}
+
+);
+
+const topBtn=
+
+document.createElement(
+
+"button"
+
+);
+
+topBtn.id="topBtn";
+
+topBtn.innerHTML="⬆";
+
+topBtn.style.position="fixed";
+
+topBtn.style.right="20px";
+
+topBtn.style.bottom="20px";
+
+topBtn.style.width="55px";
+
+topBtn.style.height="55px";
+
+topBtn.style.border="none";
+
+topBtn.style.borderRadius="50%";
+
+topBtn.style.background="#0984e3";
+
+topBtn.style.color="#fff";
+
+topBtn.style.fontSize="24px";
+
+topBtn.style.cursor="pointer";
+
+topBtn.style.display="none";
+
+topBtn.style.boxShadow=
+
+"0 5px 15px rgba(0,0,0,.3)";
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+document.body.appendChild(
+
+topBtn
+
+);
+function downloadFile(file){
+
+const a=document.createElement("a");
+
+a.href=fileURL(file);
+
+a.download=file;
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+}
+
+function isFavorite(file){
+
+return favorites.includes(file);
+
+}
+
+const oldRender=render;
+
+render=function(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+if(currentIndex===index){
+
+card.style.border="4px solid #00b894";
+
+}
+
+card.innerHTML=`
+
+<div class="filename">${file}</div>
+
+<div class="cardButtons">
+
+<button class="playBtn"
+
+onclick="playIndex(${index})">
+
+▶ Play
+
+</button>
+
+<button class="downloadBtn"
+
+onclick="downloadFile('${file}')">
+
+⬇ Download
+
+</button>
+
+<button class="copyBtn"
+
+onclick="copyLink('${encodeURIComponent(file)}')">
+
+📋 Copy Link
+
+</button>
+
+<button class="shareBtn"
+
+onclick="shareFile('${encodeURIComponent(file)}')">
+
+📤 Share
+
+</button>
+
+<button class="favoriteBtn"
+
+onclick="toggleFavorite('${file}')">
+
+${isFavorite(file) ? "💛 Favorite" : "🤍 Favorite"}
+
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+};
+const footer=document.createElement("footer");
+
+footer.innerHTML=`
+
+<hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
+
+<div style="font-size:22px;margin-bottom:10px;">
+
+🌀 People's Power & Peace Party (PPPP) 🌀
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🔔 Official Notification Library
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🌐 https://naz-niaz.github.io/pppp_bangladesh/
+
+</div>
+
+<div>
+
+© 2026 PPPP. All Rights Reserved.
+
+</div>
+
+`;
+
+document.body.appendChild(footer);
+
+render(filteredList);
+
+if(notifications.length>0){
+
+counter.innerHTML=
+
+"Total Notifications : <b>"+
+
+notifications.length+
+
+"</b>";
+
+}
+audio.addEventListener("error",function(){
+
+alert("Audio file not found:\n\n"+audio.src);
+
+});
+
+window.addEventListener("load",function(){
+
+render(filteredList);
+
+counter.innerHTML=
+
+"Total Notifications : <b>"+
+
+notifications.length+
+
+"</b>";
+
+nowPlaying.innerHTML=
+
+"No notification selected.";
+
+});
+
 </script>
+
+</div>
 
 </body>
 
