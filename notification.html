@@ -1,15 +1,275 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PPPP Notifications</title>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPPP Notification Center</title>
+
 <style>
-body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);background-size:400% 400%;animation:bg 15s infinite;padding:20px}
-@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-h1{color:#fff;text-align:center}input{width:100%;padding:12px;border:none;border-radius:10px;margin:10px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
-.card{background:#ffffffdd;padding:12px;border-radius:12px}.name{font-weight:bold;word-break:break-all}
-button,a{margin:4px;padding:8px 12px;text-decoration:none}
-</style></head><body><h1> PPPP Notification Library </h1><input id=s placeholder="সার্চ করুন..."><div class=grid id=g></div>
-<script>const files=["notification.mp3", "PPPP.mp3", "New_message_from_PPPP.mp3", "Boss_you_have_a_text_message_from_PPPP.mp3", "New_notification_from_PPPP.mp3", "Welcome_to_PPPP.mp3", "New_update_from_PPPP.mp3", "Thank_you_for_joining_PPPP.mp3", "Please_check_your_new_message_from_PPPP.mp3", "People"s_Power_&_Peace_Party_PPPP.mp3", "Power_to_the_People_Peace_for_the_People_PPPP.mp3", "Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp3", "Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp3", "Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp3", "Bangladesh_Peace_Organization_BPO.mp3", "Bangladesh_Hilful_Fuzul_BHF.mp3", "Naz-Niaz_Award_Organization_NAO.mp3", "Jewel-Juthi_Award_Organization_JAO.mp3", "https_naz-niaz.github.io_pppp_bangladesh.mp3", "pppp.bangladesh@gmail.com.mp3", "জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp3", "শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp3", "হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp3", "হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp3", "حزب_قوة_الشعب_والسلام_PPPP.mp3", "حقوق_الشعب_والسلام_للشعب_PPPP.mp3"];
-let current=null;
-function render(list){g.innerHTML="";list.forEach(f=>{let c=document.createElement('div');c.className='card';c.innerHTML=`<div class=name>${f}</div><button>▶️ Play</button><button>⏹ Stop</button><a href="notification/${encodeURI(f)}" download>⬇️ Download</a>`;let b=c.querySelectorAll('button');b[0].onclick=()=>{if(current)current.pause();current=new Audio('notification/'+encodeURI(f));current.play();};b[1].onclick=()=>{if(current){current.pause();current.currentTime=0;}};g.appendChild(c);})}
-render(files);
-s.oninput=()=>render(files.filter(x=>x.toLowerCase().includes(s.value.toLowerCase())));
-</script></body></html>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
+background-size:400% 400%;
+animation:bg 15s infinite;
+padding:20px;
+}
+
+@keyframes bg{
+0%{background-position:0 50%}
+50%{background-position:100% 50%}
+100%{background-position:0 50%}
+}
+
+h1{
+text-align:center;
+color:white;
+font-size:28px;
+text-shadow:0 2px 5px #000;
+}
+
+.subtitle{
+text-align:center;
+color:white;
+font-size:16px;
+margin-bottom:20px;
+}
+
+.search{
+width:100%;
+padding:14px;
+border:none;
+border-radius:15px;
+font-size:16px;
+box-sizing:border-box;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fill,minmax(300px,1fr));
+gap:15px;
+}
+
+.card{
+
+background:rgba(255,255,255,.9);
+border-radius:18px;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.name{
+
+font-weight:bold;
+font-size:15px;
+word-break:break-word;
+margin-bottom:12px;
+
+}
+
+
+audio{
+
+width:100%;
+margin-bottom:10px;
+
+}
+
+
+button,a{
+
+border:none;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+text-decoration:none;
+margin-right:5px;
+background:#333;
+color:white;
+
+}
+
+
+.download{
+
+background:#008000;
+
+}
+
+
+.count{
+
+background:white;
+padding:10px;
+border-radius:12px;
+text-align:center;
+margin-bottom:15px;
+font-weight:bold;
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<h1>🌀 PPPP Notification 🌀</h1>
+
+<div class="subtitle">
+People's Power & Peace Party (PPPP)
+</div>
+
+
+<div class="count" id="count"></div>
+
+
+<input 
+class="search"
+id="search"
+placeholder="🔍 Notification search...">
+
+
+<div class="grid" id="grid"></div>
+<script>
+
+const notifications = [
+
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp3",
+"Bangladesh_Hilful_Fuzul_BHF.mp3",
+"Bangladesh_Peace_Organization_BPO.mp3",
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp3",
+"Boss_you_have_a_text_message_from_PPPP.mp3",
+"https_naz-niaz.github.io_pppp_bangladesh.mp3",
+"Jewel-Juthi_Award_Organization_JAO.mp3",
+"Naz-Niaz_Award_Organization_NAO.mp3",
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp3",
+"New_message_from_PPPP.mp3",
+"New_notification_from_PPPP.mp3",
+"New_update_from_PPPP.mp3",
+"notification.mp3",
+"People's_Power_&_Peace_Party_PPPP.mp3",
+"Please_check_your_new_message_from_PPPP.mp3",
+"Power_to_the_People_Peace_for_the_People_PPPP.mp3",
+"PPPP.mp3",
+"PPPP_notification.mp3",
+"pppp.bangladesh@gmail.com.mp3",
+"Thank_you_for_joining_PPPP.mp3",
+"Welcome_to_PPPP.mp3",
+
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp3",
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp3",
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp3",
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp3",
+
+"حقوق_الشعب_والسلام_للشعب_PPPP.mp3",
+"حزب_قوة_الشعب_والسلام_PPPP.mp3"
+
+];
+
+document.getElementById("count").innerHTML =
+"Total Notifications : <b>" + notifications.length + "</b>";
+
+const grid = document.getElementById("grid");
+
+let currentAudio = null;
+
+function render(list){
+
+grid.innerHTML="";
+
+list.forEach(file=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<div class="name">${file}</div>
+
+<audio controls preload="none">
+
+<source src="notification/${encodeURIComponent(file)}" type="audio/mpeg">
+
+</audio>
+
+<br><br>
+
+<a
+class="download"
+href="notification/${encodeURIComponent(file)}"
+download="${file}">
+⬇ Download
+</a>
+
+`;
+
+const audio = card.querySelector("audio");
+
+audio.addEventListener("play",()=>{
+
+if(currentAudio && currentAudio!==audio){
+
+currentAudio.pause();
+
+currentAudio.currentTime=0;
+
+}
+
+currentAudio=audio;
+
+});
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(notifications);
+
+const search = document.getElementById("search");
+
+search.addEventListener("input",function(){
+
+const keyword = this.value.toLowerCase().trim();
+
+const result = notifications.filter(file =>
+file.toLowerCase().includes(keyword)
+);
+
+render(result);
+
+});
+
+search.addEventListener("keyup",function(e){
+
+if(e.key==="Escape"){
+
+this.value="";
+
+render(notifications);
+
+}
+
+});
+
+window.onload=function(){
+
+render(notifications);
+
+};
+
+</script>
+
+</body>
+
+</html>
