@@ -6,91 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPPP App | Digital Platform</title>
 
+    <meta name="description" content="PPPP Bangladesh-এর অফিসিয়াল ডিজিটাল অ্যাপ ও অনলাইন প্ল্যাটফর্ম।">
+    <meta name="keywords" content="PPPP App, Bangladesh Political App, PPPP Digital Platform">
+    <meta name="author" content="PPPP Bangladesh">
 
-<meta name="description" content="PPPP Bangladesh-এর অফিসিয়াল ডিজিটাল অ্যাপ ও অনলাইন প্ল্যাটফর্ম।">
-<meta name="keywords" content="PPPP App, Bangladesh Political App, PPPP Digital Platform">
-<meta name="author" content="PPPP Bangladesh">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-<link rel="icon" href="favicon.ico">
-<link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
 
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-    }
+        header {
+            background: #0b3d2e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
 
-    header {
-        background: #0b3d2e;
-        color: white;
-        text-align: center;
-        padding: 25px;
-    }
+        main {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+        }
 
-    main {
-        max-width: 1000px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-    }
+        .card {
+            background: #f9f9f9;
+            border-left: 5px solid #0b3d2e;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
 
-    .card {
-        background: #f9f9f9;
-        border-left: 5px solid #0b3d2e;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 15px;
-    }
+        .box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            transition: 0.3s;
+        }
 
-    .box {
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        transition: 0.3s;
-    }
+        .box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-    .box:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: #0b3d2e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-    .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 12px;
-        background: #0b3d2e;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-    }
+        .btn:hover {
+            background: #145c44;
+        }
 
-    .btn:hover {
-        background: #145c44;
-    }
+        .badge {
+            display: inline-block;
+            background: #0b3d2e;
+            color: white;
+            padding: 3px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
 
-    .badge {
-        display: inline-block;
-        background: #0b3d2e;
-        color: white;
-        padding: 3px 8px;
-        font-size: 12px;
-        border-radius: 4px;
-    }
-
-    footer {
-        text-align: center;
-        padding: 15px;
-        font-size: 14px;
-    }
-</style>
-
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+    </style>
 
 </head>
 
@@ -112,7 +110,6 @@
 </section>
 
 <section class="grid">
-
 
 <div class="box">
     <span class="badge">Web App</span>
@@ -156,47 +153,45 @@
     <a href="videos.html" class="btn">Watch</a>
 </div>
 
-
 </section>
 
 <section class="card">
     <h2>📲 Download the PPPP App</h2>
     <p>Download the official PPPP app and stay connected with the People's Power & Peace Party (PPPP)</p>
-        <button id="installBtn" class="pppp-btn">📱 Install PPPP App</button><br>
-		<button onclick="location.reload()" class="pppp-btn">🔄 Check for Updates</button><br>
-		<button onclick="navigator.share({title:'PPPP App',text:'Download the official PPPP App',url:'https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk'})" class="pppp-btn">📤 Share PPPP App</button><br>
-		<button onclick="navigator.share({title:'PPPP Bangladesh',url:'https://naz-niaz.github.io/pppp_bangladesh/'})" class="pppp-btn">📤 Share PPPP Website</button><br>
-		<a href="/pppp_bangladesh/PPPP.apk" download class="pppp-btn">📥 Download PPPP.apk for Android</a><br>
-        <a href="/pppp_bangladesh/PPPP.ipa" download class="pppp-btn">🍎 Download PPPP.ipa for iPhone</a><br>
-        <a href="/pppp_bangladesh/PPPP.msixbundle" download class="pppp-btn">🪟 Download PPPP.msixbundle for Windows</a><br>
+
+    <button id="installBtn" class="pppp-btn">📱 Install PPPP App</button><br>
+    <button onclick="location.reload()" class="pppp-btn">🔄 Check for Updates</button><br>
+    <button onclick="navigator.share({title:'PPPP App',text:'Download the official PPPP App',url:'https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk'})" class="pppp-btn">📤 Share PPPP App</button><br>
+    <button onclick="navigator.share({title:'PPPP Bangladesh',url:'https://naz-niaz.github.io/pppp_bangladesh/'})" class="pppp-btn">📤 Share PPPP Website</button><br>
+    <a href="/pppp_bangladesh/PPPP.apk" download class="pppp-btn">📥 Download PPPP.apk for Android</a><br>
+    <a href="/pppp_bangladesh/PPPP.ipa" download class="pppp-btn">🍎 Download PPPP.ipa for iPhone</a><br>
+    <a href="/pppp_bangladesh/PPPP.msixbundle" download class="pppp-btn">🪟 Download PPPP.msixbundle for Windows</a><br>
 </section>
 
-    <style>
-    .pppp-btn{
-        display:inline-block;
-        width:260px;
-        padding:14px 28px;
-        background:#009b77;
-        color:white;
-        text-decoration:none;
-        border:none;
-        border-radius:10px;
-        font-weight:bold;
-        font-size:1.1em;
-        cursor:pointer;
-        margin:10px;
-        transition:0.3s;
-        box-sizing:border-box;
-        text-align:center;
-    }
+<style>
+.pppp-btn{
+    display:inline-block;
+    width:260px;
+    padding:14px 28px;
+    background:#009b77;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:1.1em;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+    box-sizing:border-box;
+    text-align:center;
+}
 
-    .pppp-btn:hover{
-        background:#007a5e;
-        transform:scale(1.05);
-    }
-    </style>
-
-</section>
+.pppp-btn:hover{
+    background:#007a5e;
+    transform:scale(1.05);
+}
+</style>
 
 <section class="card">
     <h2>📞 Support</h2>
@@ -208,16 +203,14 @@
 <footer>
     <hr>
 
+    <p>
+        © 2014–Present People's Power & Peace Party (PPPP) Bangladesh.
+        All Rights Reserved.
+    </p>
 
-<p>
-    © 2014–Present People's Power & Peace Party (PPPP) Bangladesh.
-    All Rights Reserved.
-</p>
-
-<p>
-    <strong>"Power to the People, Peace for the People"</strong>
-</p>
-
+    <p>
+        <strong>"Power to the People, Peace for the People"</strong>
+    </p>
 
 </footer>
 
