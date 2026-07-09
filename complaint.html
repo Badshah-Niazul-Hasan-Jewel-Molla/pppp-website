@@ -117,7 +117,7 @@
 <section class="card">
 
 
-<form action="#" method="post">
+<form>
 
     <span class="tag">Complainant Info</span>
 
@@ -128,11 +128,11 @@
     <input type="text" name="phone" placeholder="মোবাইল নম্বর">
 
     <select name="category">
-        <option value="membership">সদস্যপদ সমস্যা</option>
-        <option value="service">সেবা সংক্রান্ত</option>
-        <option value="financial">আর্থিক বিষয়</option>
-        <option value="misconduct">অনিয়ম / অভিযোগ</option>
-        <option value="other">অন্যান্য</option>
+        <option value="সদস্যপদ সমস্যা">সদস্যপদ সমস্যা</option>
+        <option value="সেবা সংক্রান্ত">সেবা সংক্রান্ত</option>
+        <option value="আর্থিক বিষয়">আর্থিক বিষয়</option>
+        <option value="অনিয়ম / অভিযোগ">অনিয়ম / অভিযোগ</option>
+        <option value="অন্যান্য">অন্যান্য</option>
     </select>
 
     <input type="text" name="subject" placeholder="অভিযোগের বিষয় *" required>
@@ -141,9 +141,85 @@
 
     <input type="text" name="location" placeholder="অবস্থান (ঐচ্ছিক)">
 
-    <button type="submit">Submit Complaint</button>
+    <button type="button" onclick="sendEmail()">📧 Send via Email</button>
+
+    <button type="button" onclick="sendWhatsApp()">💬 Send via WhatsApp</button>
 
 </form>
+
+<script>
+function getComplaintData() {
+    return {
+        name: document.querySelector('[name="name"]').value,
+        email: document.querySelector('[name="email"]').value,
+        phone: document.querySelector('[name="phone"]').value,
+        category: document.querySelector('[name="category"]').value,
+        subject: document.querySelector('[name="subject"]').value,
+        details: document.querySelector('[name="details"]').value,
+        location: document.querySelector('[name="location"]').value
+    };
+}
+
+function sendEmail() {
+
+    const d = getComplaintData();
+
+    const subject = encodeURIComponent("PPPP Complaint - " + d.subject);
+
+    const body = encodeURIComponent(
+`PPPP Complaint
+
+Name: ${d.name}
+
+Email: ${d.email}
+
+Phone: ${d.phone}
+
+Category: ${d.category}
+
+Subject: ${d.subject}
+
+Complaint:
+${d.details}
+
+Location:
+${d.location}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function sendWhatsApp() {
+
+    const d = getComplaintData();
+
+    const text = encodeURIComponent(
+`⚠️ PPPP Complaint
+
+👤 Name: ${d.name}
+
+📧 Email: ${d.email}
+
+📱 Phone: ${d.phone}
+
+📂 Category: ${d.category}
+
+📝 Subject: ${d.subject}
+
+📄 Complaint:
+${d.details}
+
+📍 Location:
+${d.location}`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+}
+</script>
 
 
 </section>
