@@ -114,7 +114,7 @@
     <h2>📋 Volunteer Registration Form</h2>
 
 
-<form action="#" method="post">
+<form>
     <input type="text" name="name" placeholder="পূর্ণ নাম *" required>
 
     <input type="email" name="email" placeholder="ইমেইল *" required>
@@ -135,17 +135,83 @@
 
     <textarea name="why" rows="5" placeholder="আপনি কেন স্বেচ্ছাসেবক হতে চান?"></textarea>
 
-    <button type="submit">Submit Application</button>
+    <button type="button" onclick="sendEmail()">📧 Submit via Email</button>
+
+<button type="button" onclick="sendWhatsApp()">💬 Submit via WhatsApp</button>
 </form>
+<script>
+function getFormData() {
+    return {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        address: document.querySelector('input[name="address"]').value,
+        age: document.querySelector('input[name="age"]').value,
+        interest: document.querySelector('select[name="interest"]').value,
+        why: document.querySelector('textarea[name="why"]').value
+    };
+}
+
+function sendEmail() {
+
+    const data = getFormData();
+
+    const subject = encodeURIComponent("PPPP Volunteer Application");
+
+    const body = encodeURIComponent(
+`PPPP Volunteer Application
+
+Name: ${data.name}
+
+Email: ${data.email}
+
+Phone: ${data.phone}
+
+Address: ${data.address}
+
+Age: ${data.age}
+
+Interest: ${data.interest}
+
+Reason:
+${data.why}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function sendWhatsApp() {
+
+    const data = getFormData();
+
+    const text = encodeURIComponent(
+`🙋 PPPP Volunteer Application
+
+👤 Name: ${data.name}
+
+📧 Email: ${data.email}
+
+📱 Phone: ${data.phone}
+
+🏠 Address: ${data.address}
+
+🎂 Age: ${data.age}
+
+⭐ Interest: ${data.interest}
+
+📝 Reason:
+${data.why}`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+}
+</script>
 
 
-</section>
-
-<section class="card">
-    <h2>⚠️ গুরুত্বপূর্ণ তথ্য</h2>
-    <p>
-        এই ফর্মটি বর্তমানে ডেমো অবস্থায় আছে। ভবিষ্যতে এটি Google Form, Email বা Database System-এর সাথে যুক্ত করা হবে।
-    </p>
 </section>
 
 <section class="card">
