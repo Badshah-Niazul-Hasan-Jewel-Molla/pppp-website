@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPPP Music Center</title>
+
+<link rel="icon" href="favicon.ico">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+background:linear-gradient(-45deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
+
+background-size:400% 400%;
+
+animation:bg 15s ease infinite;
+
+padding:20px;
+
+min-height:100vh;
+
+}
+
+@keyframes bg{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+.container{
+
+max-width:1500px;
+
+margin:auto;
+
+}
+
+.header{
+
+text-align:center;
+
+color:white;
+
+margin-bottom:25px;
+
+}
+
+.header h1{
+
+font-size:35px;
+
+margin-bottom:10px;
+
+text-shadow:0 2px 10px rgba(0,0,0,.35);
+
+}
+
+.header p{
+
+font-size:18px;
+
+opacity:.95;
+
+}
+
+.topbar{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.search{
+
+flex:1;
+
+min-width:260px;
+
+padding:15px;
+
+font-size:17px;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.counter{
+
+background:white;
+
+padding:15px 20px;
+
+border-radius:15px;
+
+font-weight:bold;
+
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.player{
+
+background:white;
+
+border-radius:20px;
+
+padding:20px;
+
+margin-bottom:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.player h2{
+
+margin-bottom:15px;
+
+}
+
+.nowPlaying{
+
+font-size:16px;
+
+font-weight:bold;
+
+margin-bottom:12px;
+
+word-break:break-word;
+
+color:#333;
+
+}
+
+#audioPlayer{
+
+width:100%;
+
+margin-bottom:15px;
+
+}
+
+.controls{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.controls button{
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:15px;
+
+font-weight:bold;
+
+color:white;
+
+transition:.25s;
+
+}
+
+.controls button:hover{
+
+transform:scale(1.05);
+
+}
+
+.play{background:#16a085;}
+.pause{background:#f39c12;}
+.stop{background:#e74c3c;}
+.prev{background:#6c5ce7;}
+.next{background:#0984e3;}
+.shuffle{background:#8e44ad;}
+.repeat{background:#2d3436;}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+
+gap:18px;
+
+}
+
+.card{
+
+border-radius:18px;
+
+padding:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.25);
+
+transition:.25s;
+
+color:#fff;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.filename{
+
+font-weight:bold;
+
+font-size:15px;
+
+margin-bottom:15px;
+
+word-break:break-word;
+
+line-height:1.5;
+
+}
+
+.cardButtons{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.cardButtons button,
+
+.cardButtons a{
+
+flex:1;
+
+text-align:center;
+
+text-decoration:none;
+
+border:none;
+
+padding:10px;
+
+border-radius:10px;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:white;
+
+transition:.25s;
+
+}
+
+.playBtn{background:#00b894;}
+.downloadBtn{background:#0984e3;}
+.copyBtn{background:#6c5ce7;}
+.shareBtn{background:#e84393;}
+.favoriteBtn{background:#d63031;}
+
+.cardButtons button:hover,
+.cardButtons a:hover{
+
+transform:scale(1.05);
+
+}
+
+footer{
+
+margin-top:40px;
+
+text-align:center;
+
+color:white;
+
+font-weight:bold;
+
+font-size:15px;
+
+padding:20px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>🎵 PPPP Music Center</h1>
+
+<p>People's Power & Peace Party (PPPP)</p>
+
+<p>Power to the People • Peace for the People</p>
+
+</div>
+
+<div class="topbar">
+
+<input
+type="text"
+id="search"
+class="search"
+placeholder="🔍 Search Music...">
+
+<div class="counter" id="counter">
+Loading...
+</div>
+
+</div>
+
+<div class="player">
+
+<h2>🎵 Now Playing</h2>
+
+<div class="nowPlaying" id="nowPlaying">
+
+No music selected.
+
+</div>
+
+<audio id="audioPlayer" controls></audio>
+
+<div class="controls">
+
+<button class="prev" id="prevBtn">⏮ Previous</button>
+
+<button class="play" id="playBtn">▶ Play</button>
+
+<button class="pause" id="pauseBtn">⏸ Pause</button>
+
+<button class="stop" id="stopBtn">⏹ Stop</button>
+
+<button class="next" id="nextBtn">⏭ Next</button>
+
+<button class="shuffle" id="shuffleBtn">🔀 Shuffle</button>
+
+<button class="repeat" id="repeatBtn">🔁 Repeat Off</button>
+
+</div>
+
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+
+const music=[
+
+"PPPP.mp3",
+
+"Message_from_PPPP.mp3",
+
+"New_message_from_PPPP.mp3",
+
+"PPPP_Slogan.mp3",
+
+"Welcome_to_PPPP.mp3",
+
+"New_update_from_PPPP.mp3",
+
+"Thank_you_for_joining_PPPP.mp3",
+
+"PPPP_Bangladesh.mp3",
+
+"People's_Power_&_Peace_Party_PPPP.mp3",
+
+"Power_to_the_People_Peace_for_the_People_PPPP.mp3",
+
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp3",
+
+"Paper_Pen_Pigment_Party_PPPP.mp3",
+
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp3",
+
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp3",
+
+"Bangladesh_Peace_Organization_BPO.mp3",
+
+"Bangladesh_Hilful_Fuzul_BHF.mp3",
+
+"Naz-Niaz_Award_Organization_NAO.mp3",
+
+"Jewel-Juthi_Award_Organization_JAO.mp3",
+
+"PPPP_music.mp3",
+
+"কাগজ_কলম_কালি_PPPP.mp3",
+
+"নির্বাচনী_ইশতেহার_PPPP.mp3",
+
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp3",
+
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp3",
+
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp3",
+
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp3",
+
+"حزب_قوة_الشعب_والسلام_PPPP.mp3",
+
+"حقوق_الشعب_والسلام_للشعب_PPPP.mp3"
+
+];
+
+const colors=[
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+const notifications = [
+
+"PPPP.mp3",
+
+"Message_from_PPPP.mp3",
+
+"New_message_from_PPPP.mp3",
+
+"PPPP_Slogan.mp3",
+
+"Welcome_to_PPPP.mp3",
+
+"New_update_from_PPPP.mp3",
+
+"Thank_you_for_joining_PPPP.mp3",
+
+"PPPP_Bangladesh.mp3",
+
+"People's_Power_&_Peace_Party_PPPP.mp3",
+
+"Power_to_the_People_Peace_for_the_People_PPPP.mp3",
+
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp3",
+
+"Paper_Pen_Pigment_Party_PPPP.mp3",
+
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp3",
+
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp3",
+
+"Bangladesh_Peace_Organization_BPO.mp3",
+
+"Bangladesh_Hilful_Fuzul_BHF.mp3",
+
+"Naz-Niaz_Award_Organization_NAO.mp3",
+
+"Jewel-Juthi_Award_Organization_JAO.mp3",
+
+"PPPP_music.mp3",
+
+"কাগজ_কলম_কালি_PPPP.mp3",
+
+"নির্বাচনী_ইশতেহার_PPPP.mp3",
+
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp3",
+
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp3",
+
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp3",
+
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp3",
+
+"حزب_قوة_الشعب_والسلام_PPPP.mp3",
+
+"حقوق_الشعب_والسلام_للشعب_PPPP.mp3"
+
+];
+
+const colors = [
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+
+const audio=document.getElementById("audioPlayer");
+
+const grid=document.getElementById("grid");
+
+const search=document.getElementById("search");
+
+const counter=document.getElementById("counter");
+
+const nowPlaying=document.getElementById("nowPlaying");
+
+const playBtn=document.getElementById("playBtn");
+
+const pauseBtn=document.getElementById("pauseBtn");
+
+const stopBtn=document.getElementById("stopBtn");
+
+const prevBtn=document.getElementById("prevBtn");
+
+const nextBtn=document.getElementById("nextBtn");
+
+const shuffleBtn=document.getElementById("shuffleBtn");
+
+const repeatBtn=document.getElementById("repeatBtn");
+
+let repeatMode=false;
+
+let currentIndex=-1;
+
+let filteredList=[...notifications];
+
+counter.innerHTML="Total Music : <b>"+notifications.length+"</b>";
+
+function fileURL(name){
+
+return "music/"+encodeURIComponent(name);
+
+}
+
+function playIndex(index){
+
+if(index<0||index>=filteredList.length)return;
+
+currentIndex=index;
+
+audio.src=fileURL(filteredList[index]);
+
+audio.play();
+
+nowPlaying.innerHTML=filteredList[index];
+
+render(filteredList);
+
+}
+
+function render(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.style.background=colors[index%colors.length];
+
+card.style.color="#fff";
+
+if(currentIndex===index){
+
+card.style.border="4px solid #00b894";
+
+}
+
+card.innerHTML=`
+
+<div class="filename">${file}</div>
+
+<div class="cardButtons">
+
+<button class="playBtn" onclick="playIndex(${index})">
+
+▶ Play
+
+</button>
+
+<a class="downloadBtn"
+
+href="${fileURL(file)}"
+
+download="${file}">
+
+⬇ Download
+
+</a>
+
+<button class="copyBtn"
+
+onclick="copyLink('${encodeURIComponent(file)}')">
+
+📋 Copy Link
+
+</button>
+
+<button class="shareBtn"
+
+onclick="shareFile('${encodeURIComponent(file)}')">
+
+📤 Share
+
+</button>
+
+<button class="favoriteBtn"
+
+onclick="toggleFavorite('${file}')">
+
+⭐ Favorite
+
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(filteredList);
+function copyLink(file){
+
+const url=
+location.origin+
+location.pathname.replace(
+"music.html",
+""
+)+
+"music/"+
+file;
+
+navigator.clipboard.writeText(url);
+
+alert("Music link copied.");
+
+}
+
+function shareFile(file){
+
+const url=
+location.origin+
+location.pathname.replace(
+"music.html",
+""
+)+
+"music/"+
+file;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"PPPP Music",
+
+text:"PPPP Official Music",
+
+url:url
+
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+alert("Share is not supported.\nLink copied.");
+
+}
+
+}
+
+const favorites=JSON.parse(
+
+localStorage.getItem(
+
+"ppppMusicFavorites"
+
+)||"[]"
+
+);
+
+function saveFavorites(){
+
+localStorage.setItem(
+
+"ppppMusicFavorites",
+
+JSON.stringify(favorites)
+
+);
+
+}
+
+function toggleFavorite(file){
+
+const i=favorites.indexOf(file);
+
+if(i===-1){
+
+favorites.push(file);
+
+alert("⭐ Added to Favorites");
+
+}else{
+
+favorites.splice(i,1);
+
+alert("❌ Removed from Favorites");
+
+}
+
+saveFavorites();
+
+render(filteredList);
+
+}
+
+function isFavorite(file){
+
+return favorites.includes(file);
+
+}
+
+function downloadFile(file){
+
+const a=document.createElement("a");
+
+a.href=fileURL(file);
+
+a.download=file;
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+}
+
+const oldRender=render;
+
+render=function(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.style.background=colors[index%colors.length];
+
+card.style.color="#fff";
+
+if(currentIndex===index){
+
+card.style.border="4px solid #00b894";
+
+}
+
+card.innerHTML=`
+
+<div class="filename">${file}</div>
+
+<div class="cardButtons">
+
+<button class="playBtn"
+
+onclick="playIndex(${index})">
+
+▶ Play
+
+</button>
+
+<button class="downloadBtn"
+
+onclick="downloadFile('${file}')">
+
+⬇ Download
+
+</button>
+
+<button class="copyBtn"
+
+onclick="copyLink('${encodeURIComponent(file)}')">
+
+📋 Copy Link
+
+</button>
+
+<button class="shareBtn"
+
+onclick="shareFile('${encodeURIComponent(file)}')">
+
+📤 Share
+
+</button>
+
+<button class="favoriteBtn"
+
+onclick="toggleFavorite('${file}')">
+
+${isFavorite(file)?"💛 Favorite":"🤍 Favorite"}
+
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+};
+
+render(filteredList);
+
+playBtn.onclick=function(){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+return;
+
+}
+
+audio.play();
+
+};
+
+pauseBtn.onclick=function(){
+
+audio.pause();
+
+};
+
+stopBtn.onclick=function(){
+
+audio.pause();
+
+audio.currentTime=0;
+
+};
+
+prevBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex--;
+
+if(currentIndex<0)
+
+currentIndex=filteredList.length-1;
+
+playIndex(currentIndex);
+
+};
+
+nextBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length)
+
+currentIndex=0;
+
+playIndex(currentIndex);
+
+};
+
+shuffleBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+playIndex(
+
+Math.floor(Math.random()*filteredList.length)
+
+);
+
+};
+
+repeatBtn.onclick=function(){
+
+repeatMode=!repeatMode;
+
+repeatBtn.innerHTML=
+
+repeatMode?
+
+"🔁 Repeat On":"🔁 Repeat Off";
+
+};
+audio.addEventListener("ended",function(){
+
+if(repeatMode){
+
+audio.currentTime=0;
+
+audio.play();
+
+return;
+
+}
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length){
+
+currentIndex=0;
+
+}
+
+playIndex(currentIndex);
+
+});
+
+search.addEventListener("input",function(){
+
+const keyword=this.value.toLowerCase().trim();
+
+filteredList=notifications.filter(file=>
+
+file.toLowerCase().includes(keyword)
+
+);
+
+counter.innerHTML=
+
+"Showing <b>"+
+
+filteredList.length+
+
+"</b> of <b>"+
+
+notifications.length+
+
+"</b> Music";
+
+currentIndex=-1;
+
+nowPlaying.innerHTML="No music selected.";
+
+audio.pause();
+
+audio.removeAttribute("src");
+
+audio.load();
+
+render(filteredList);
+
+});
+
+function updateNowPlaying(){
+
+if(currentIndex<0||
+
+currentIndex>=filteredList.length){
+
+nowPlaying.innerHTML="No music selected.";
+
+return;
+
+}
+
+nowPlaying.innerHTML="🎵 "+filteredList[currentIndex];
+
+}
+
+audio.addEventListener("play",updateNowPlaying);
+
+audio.addEventListener("pause",function(){
+
+document.title="⏸ PPPP Music Center";
+
+});
+
+audio.addEventListener("playing",function(){
+
+document.title="🎵 "+filteredList[currentIndex];
+
+});
+
+audio.addEventListener("loadedmetadata",function(){
+
+if(isNaN(audio.duration))return;
+
+const m=Math.floor(audio.duration/60);
+
+const s=Math.floor(audio.duration%60)
+
+.toString()
+
+.padStart(2,"0");
+
+nowPlaying.innerHTML=
+
+"🎵 "+
+
+filteredList[currentIndex]+
+
+" ("+m+":"+s+")";
+
+});
+
+audio.volume=1.0;
+
+audio.preload="metadata";
+
+window.addEventListener("keydown",function(e){
+
+if(e.target.tagName==="INPUT")return;
+
+switch(e.code){
+
+case"Space":
+
+e.preventDefault();
+
+if(audio.paused){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+}else{
+
+audio.play();
+
+}
+
+}else{
+
+audio.pause();
+
+}
+
+break;
+
+case"ArrowRight":
+
+nextBtn.click();
+
+break;
+
+case"ArrowLeft":
+
+prevBtn.click();
+
+break;
+
+case"KeyS":
+
+shuffleBtn.click();
+
+break;
+
+case"KeyR":
+
+repeatBtn.click();
+
+break;
+
+}
+
+});
+
+audio.addEventListener("error",function(){
+
+alert("Music file not found:\n\n"+audio.src);
+
+});
+
+window.addEventListener("load",function(){
+
+render(filteredList);
+
+counter.innerHTML=
+
+"Total Music : <b>"+notifications.length+"</b>";
+
+nowPlaying.innerHTML="No music selected.";
+
+});
+
+const footer=document.createElement("footer");
+
+footer.innerHTML=`
+
+<hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
+
+<div style="font-size:22px;margin-bottom:10px;">
+
+People's Power & Peace Party (PPPP)
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🎵 Official Music Library
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🌐 https://naz-niaz.github.io/pppp_bangladesh/
+
+</div>
+
+<div>
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</div>
+
+`;
+
+document.body.appendChild(footer);
+render(filteredList);
+
+counter.innerHTML =
+"Total Music : <b>" +
+notifications.length +
+"</b>";
+</script>
+
+</div>
+
+</body>
+
+</html>
