@@ -154,7 +154,7 @@
     <h2>📋 অফিসিয়াল আবেদন ফর্ম</h2>
 
 
-<form action="#" method="post">
+<form>
     <input type="text" name="fullname" placeholder="পূর্ণ নাম *" required>
 
     <input type="email" name="email" placeholder="ইমেইল *" required>
@@ -174,17 +174,83 @@
 
     <textarea name="motivation" rows="5" placeholder="আপনি কেন PPPP-তে যোগ দিতে চান?"></textarea>
 
-    <button type="submit">Submit Application</button>
+    <button type="button" onclick="sendEmail()">📧 Submit via Email</button>
+
+<button type="button" onclick="sendWhatsApp()">💬 Submit via WhatsApp</button>
 </form>
+<script>
+function getFormData() {
+    return {
+        fullname: document.querySelector('input[name="fullname"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        nid: document.querySelector('input[name="nid"]').value,
+        age: document.querySelector('input[name="age"]').value,
+        type: document.querySelector('select[name="type"]').value,
+        motivation: document.querySelector('textarea[name="motivation"]').value
+    };
+}
+
+function sendEmail() {
+
+    const d = getFormData();
+
+    const subject = encodeURIComponent("PPPP Membership Application");
+
+    const body = encodeURIComponent(
+`PPPP Membership Application
+
+Name: ${d.fullname}
+
+Email: ${d.email}
+
+Phone: ${d.phone}
+
+NID: ${d.nid}
+
+Age: ${d.age}
+
+Membership Type: ${d.type}
+
+Reason:
+${d.motivation}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function sendWhatsApp() {
+
+    const d = getFormData();
+
+    const text = encodeURIComponent(
+`📋 PPPP Membership Application
+
+👤 Name: ${d.fullname}
+
+📧 Email: ${d.email}
+
+📱 Phone: ${d.phone}
+
+🆔 NID: ${d.nid}
+
+🎂 Age: ${d.age}
+
+👥 Membership: ${d.type}
+
+📝 Reason:
+${d.motivation}`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+}
+</script>
 
 
-</section>
-
-<section class="card">
-    <h2>⚠️ গুরুত্বপূর্ণ নোট</h2>
-    <p>
-        এই আবেদনটি বর্তমানে ডেমো মোডে আছে। ভবিষ্যতে এটি অফিসিয়াল ডাটাবেস বা ইমেইল সিস্টেমের সাথে সংযুক্ত করা হবে।
-    </p>
 </section>
 
 <section class="card">
