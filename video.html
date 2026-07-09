@@ -275,3 +275,628 @@ No video selected.
 <script>
 
 const video=[
+"PPPP.mp4",
+
+"Message_from_PPPP.mp4",
+
+"New_message_from_PPPP.mp4",
+
+"PPPP_Slogan.mp4",
+
+"Welcome_to_PPPP.mp4",
+
+"New_update_from_PPPP.mp4",
+
+"Thank_you_for_joining_PPPP.mp4",
+
+"PPPP_Bangladesh.mp4",
+
+"People's_Power_&_Peace_Party_PPPP.mp4",
+
+"Power_to_the_People_Peace_for_the_People_PPPP.mp4",
+
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp4",
+
+"Paper_Pen_Pigment_Party_PPPP.mp4",
+
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp4",
+
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp4",
+
+"Bangladesh_Peace_Organization_BPO.mp4",
+
+"Bangladesh_Hilful_Fuzul_BHF.mp4",
+
+"Naz-Niaz_Award_Organization_NAO.mp4",
+
+"Jewel-Juthi_Award_Organization_JAO.mp4",
+
+"PPPP_video.mp4",
+
+"কাগজ_কলম_কালি_PPPP.mp4",
+
+"নির্বাচনী_ইশতেহার_PPPP.mp4",
+
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp4",
+
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp4",
+
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp4",
+
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.mp4",
+
+"حزب_قوة_الشعب_والسلام_PPPP.mp4",
+
+"حقوق_الشعب_والسلام_للشعب_PPPP.mp4"
+
+];
+
+const colors=[
+
+"#ff6b6b",
+
+"#6c5ce7",
+
+"#00b894",
+
+"#fdcb6e",
+
+"#e17055",
+
+"#0984e3",
+
+"#e84393",
+
+"#2d3436"
+
+];
+
+const videoPlayer=document.getElementById("videoPlayer");
+
+const grid=document.getElementById("grid");
+
+const search=document.getElementById("search");
+
+const counter=document.getElementById("counter");
+
+const nowPlaying=document.getElementById("nowPlaying");
+
+const playBtn=document.getElementById("playBtn");
+
+const pauseBtn=document.getElementById("pauseBtn");
+
+const stopBtn=document.getElementById("stopBtn");
+
+const prevBtn=document.getElementById("prevBtn");
+
+const nextBtn=document.getElementById("nextBtn");
+
+const shuffleBtn=document.getElementById("shuffleBtn");
+
+const repeatBtn=document.getElementById("repeatBtn");
+
+let repeatMode=false;
+
+let currentIndex=-1;
+
+let filteredList=[...video];
+
+counter.innerHTML="Total Video : <b>"+video.length+"</b>";
+
+function fileURL(name){
+
+return "video/"+encodeURIComponent(name);
+
+}
+
+function playIndex(index){
+
+if(index<0||index>=filteredList.length)return;
+
+currentIndex=index;
+
+videoPlayer.src=fileURL(filteredList[index]);
+
+videoPlayer.play();
+
+nowPlaying.innerHTML=filteredList[index];
+
+render(filteredList);
+
+}
+function render(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.style.background=colors[index%colors.length];
+
+card.style.color="#fff";
+
+if(currentIndex===index){
+
+card.style.border="4px solid #00b894";
+
+}
+
+card.innerHTML=`
+
+<div class="filename">
+
+${file}
+
+</div>
+
+<div class="cardButtons">
+
+<button
+class="playBtn"
+onclick="playIndex(${index})">
+
+▶ Play
+
+</button>
+
+<button
+class="downloadBtn"
+onclick="downloadFile('${file}')">
+
+⬇ Download
+
+</button>
+
+<button
+class="copyBtn"
+onclick="copyLink('${encodeURIComponent(file)}')">
+
+📋 Copy Link
+
+</button>
+
+<button
+class="shareBtn"
+onclick="shareFile('${encodeURIComponent(file)}')">
+
+📤 Share
+
+</button>
+
+<button
+class="favoriteBtn"
+onclick="toggleFavorite('${file}')">
+
+${isFavorite(file) ? "💛 Favorite" : "🤍 Favorite"}
+
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(filteredList);
+
+function copyLink(file){
+
+const url=
+
+location.origin+
+
+location.pathname.replace(
+
+"video.html",
+
+""
+
+)+
+
+"video/"+
+
+file;
+
+navigator.clipboard.writeText(url);
+
+alert("Video link copied.");
+
+}
+
+function shareFile(file){
+
+const url=
+
+location.origin+
+
+location.pathname.replace(
+
+"video.html",
+
+""
+
+)+
+
+"video/"+
+
+file;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"PPPP Video",
+
+text:"PPPP Official Video",
+
+url:url
+
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+alert("Share is not supported.\nLink copied.");
+
+}
+
+}
+
+const favorites=JSON.parse(
+
+localStorage.getItem(
+
+"ppppVideoFavorites"
+
+)||"[]"
+
+);
+
+function saveFavorites(){
+
+localStorage.setItem(
+
+"ppppVideoFavorites",
+
+JSON.stringify(favorites)
+
+);
+
+}
+
+function toggleFavorite(file){
+
+const i=favorites.indexOf(file);
+
+if(i===-1){
+
+favorites.push(file);
+
+alert("⭐ Added to Favorites");
+
+}else{
+
+favorites.splice(i,1);
+
+alert("❌ Removed from Favorites");
+
+}
+
+saveFavorites();
+
+render(filteredList);
+
+}
+
+function isFavorite(file){
+
+return favorites.includes(file);
+
+}
+
+function downloadFile(file){
+
+const a=document.createElement("a");
+
+a.href=fileURL(file);
+
+a.download=file;
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+}
+playBtn.onclick=function(){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+return;
+
+}
+
+videoPlayer.play();
+
+};
+
+pauseBtn.onclick=function(){
+
+videoPlayer.pause();
+
+};
+
+stopBtn.onclick=function(){
+
+videoPlayer.pause();
+
+videoPlayer.currentTime=0;
+
+};
+
+prevBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex--;
+
+if(currentIndex<0){
+
+currentIndex=filteredList.length-1;
+
+}
+
+playIndex(currentIndex);
+
+};
+
+nextBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length){
+
+currentIndex=0;
+
+}
+
+playIndex(currentIndex);
+
+};
+
+shuffleBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+const random=Math.floor(
+
+Math.random()*filteredList.length
+
+);
+
+playIndex(random);
+
+};
+
+repeatBtn.onclick=function(){
+
+repeatMode=!repeatMode;
+
+repeatBtn.innerHTML=
+
+repeatMode ?
+
+"🔁 Repeat On"
+
+:
+
+"🔁 Repeat Off";
+
+};
+
+videoPlayer.addEventListener("ended",function(){
+
+if(repeatMode){
+
+videoPlayer.currentTime=0;
+
+videoPlayer.play();
+
+return;
+
+}
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length){
+
+currentIndex=0;
+
+}
+
+playIndex(currentIndex);
+
+});
+search.addEventListener("input",function(){
+
+const keyword=this.value.toLowerCase().trim();
+
+filteredList=video.filter(file=>
+
+file.toLowerCase().includes(keyword)
+
+);
+
+counter.innerHTML=
+
+"Showing <b>"+
+
+filteredList.length+
+
+"</b> of <b>"+
+
+video.length+
+
+"</b> Video";
+
+currentIndex=-1;
+
+nowPlaying.innerHTML="No video selected.";
+
+videoPlayer.pause();
+
+videoPlayer.removeAttribute("src");
+
+videoPlayer.load();
+
+render(filteredList);
+
+});
+
+function updateNowPlaying(){
+
+if(currentIndex<0||
+
+currentIndex>=filteredList.length){
+
+nowPlaying.innerHTML="No video selected.";
+
+return;
+
+}
+
+nowPlaying.innerHTML="🎬 "+filteredList[currentIndex];
+
+}
+
+videoPlayer.addEventListener("play",updateNowPlaying);
+
+videoPlayer.addEventListener("pause",function(){
+
+document.title="⏸ PPPP Video Center";
+
+});
+
+videoPlayer.addEventListener("playing",function(){
+
+document.title="🎬 "+filteredList[currentIndex];
+
+});
+
+videoPlayer.addEventListener("loadedmetadata",function(){
+
+if(isNaN(videoPlayer.duration))return;
+
+const m=Math.floor(videoPlayer.duration/60);
+
+const s=Math.floor(videoPlayer.duration%60)
+
+.toString()
+
+.padStart(2,"0");
+
+nowPlaying.innerHTML=
+
+"🎬 "+
+
+filteredList[currentIndex]+
+
+" ("+m+":"+s+")";
+
+});
+
+videoPlayer.volume=1.0;
+
+videoPlayer.preload="metadata";
+window.addEventListener("keydown",function(e){
+
+if(e.target.tagName==="INPUT") return;
+
+switch(e.code){
+
+case "Space":
+
+e.preventDefault();
+
+if(videoPlayer.paused){
+
+if(currentIndex===-1){
+
+playIndex(0);
+
+}else{
+
+videoPlayer.play();
+
+}
+
+}else{
+
+videoPlayer.pause();
+
+}
+
+break;
+
+case "ArrowRight":
+
+nextBtn.click();
+
+break;
+
+case "ArrowLeft":
+
+prevBtn.click();
+
+break;
+
+case "KeyS":
+
+shuffleBtn.click();
+
+break;
+
+case "KeyR":
+
+repeatBtn.click();
+
+break;
+
+}
+
+});
+
+videoPlayer.addEventListener("error",function(){
+
+alert("Video file not found:\n\n"+videoPlayer.src);
+
+});
+
+window.addEventListener("load",function(){
+
+render(filteredList);
+
+counter.innerHTML=
+
+"Total Video : <b>"+video.length+"</b>";
+
+nowPlaying.innerHTML=
+
+"No video selected.";
+
+});
