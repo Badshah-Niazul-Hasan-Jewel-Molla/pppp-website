@@ -116,11 +116,63 @@
     <p>নতুন সংবাদ, ইভেন্ট, প্রেস রিলিজ এবং দলীয় ঘোষণা সরাসরি আপনার ইমেইলে পান।</p>
 
 
-<form action="#" method="post">
+<form>
+
     <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন..." required>
+
     <br>
-    <button type="submit">Subscribe</button>
+
+    <button type="button" onclick="sendEmail()">📧 Subscribe via Email</button>
+
+    <button type="button" onclick="sendWhatsApp()">💬 Subscribe via WhatsApp</button>
+
 </form>
+
+<script>
+function getEmail(){
+
+    return document.querySelector('input[name="email"]').value;
+
+}
+
+function sendEmail(){
+
+    const email = getEmail();
+
+    const subject = encodeURIComponent("PPPP Newsletter Subscription");
+
+    const body = encodeURIComponent(
+`I would like to subscribe to the PPPP Bangladesh Newsletter.
+
+Subscriber Email:
+${email}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+
+}
+
+function sendWhatsApp(){
+
+    const email = getEmail();
+
+    const text = encodeURIComponent(
+`📧 PPPP Newsletter Subscription
+
+Subscriber Email:
+${email}
+
+I would like to subscribe to the PPPP Bangladesh Newsletter.`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+
+}
+</script>
 
 
 </section>
@@ -164,13 +216,6 @@
 </div>
 
 
-</section>
-
-<section class="card">
-    <h2>⚠️ গুরুত্বপূর্ণ তথ্য</h2>
-    <p>
-        এই নিউজলেটার সিস্টেম বর্তমানে ডেমো অবস্থায় আছে। ভবিষ্যতে এটি ইমেইল সার্ভিস (Mailchimp / Firebase / API) এর সাথে যুক্ত করা হবে।
-    </p>
 </section>
 
 <section class="card">
