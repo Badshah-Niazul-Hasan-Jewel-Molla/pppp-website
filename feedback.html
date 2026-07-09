@@ -108,7 +108,7 @@
 <section class="card">
 
 
-<form action="#" method="post">
+<form>
 
     <input type="text" name="name" placeholder="আপনার নাম" required>
 
@@ -124,9 +124,72 @@
 
     <textarea name="message" rows="6" placeholder="আপনার বিস্তারিত বার্তা লিখুন..." required></textarea>
 
-    <button type="submit">Send Feedback</button>
+    <button type="button" onclick="sendEmail()">📧 Send via Email</button>
+
+<button type="button" onclick="sendWhatsApp()">💬 Send via WhatsApp</button>
 
 </form>
+<script>
+function getFormData() {
+    return {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        type: document.querySelector('select[name="type"]').value,
+        subject: document.querySelector('input[name="subject"]').value,
+        message: document.querySelector('textarea[name="message"]').value
+    };
+}
+
+function sendEmail() {
+
+    const data = getFormData();
+
+    const subject = encodeURIComponent(
+        data.subject || "PPPP Feedback"
+    );
+
+    const body = encodeURIComponent(
+`PPPP Feedback
+
+Name: ${data.name}
+
+Email: ${data.email}
+
+Type: ${data.type}
+
+Message:
+${data.message}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function sendWhatsApp() {
+
+    const data = getFormData();
+
+    const text = encodeURIComponent(
+`📝 PPPP Feedback
+
+👤 Name: ${data.name}
+
+📧 Email: ${data.email}
+
+📌 Type: ${data.type}
+
+📝 Subject: ${data.subject}
+
+💬 Message:
+${data.message}`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+}
+</script>
 
 
 </section>
@@ -139,13 +202,6 @@
         <li>দলীয় কার্যক্রম উন্নয়ন</li>
         <li>স্বচ্ছতা ও জবাবদিহিতা বৃদ্ধি</li>
     </ul>
-</section>
-
-<section class="card">
-    <h2>⚠️ নোটিশ</h2>
-    <p class="note">
-        এই ফর্ম বর্তমানে static version। ভবিষ্যতে এটি email/API/CRM system এর সাথে সংযুক্ত করা হবে।
-    </p>
 </section>
 
 <section class="card">
