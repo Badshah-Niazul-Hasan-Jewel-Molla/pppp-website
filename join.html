@@ -101,36 +101,104 @@
     <h2>📋 সদস্যপদ ফর্ম</h2>
 
 
-<form action="#" method="post">
-    <input type="text" name="name" placeholder="পূর্ণ নাম *" required>
+<form>
 
-    <input type="email" name="email" placeholder="ইমেইল ঠিকানা *" required>
+<input type="text" name="name" placeholder="পূর্ণ নাম *" required>
 
-    <input type="text" name="phone" placeholder="মোবাইল নম্বর *" required>
+<input type="email" name="email" placeholder="ইমেইল *" required>
 
-    <input type="text" name="address" placeholder="ঠিকানা">
+<input type="text" name="phone" placeholder="মোবাইল নম্বর *" required>
 
-    <input type="number" name="age" placeholder="বয়স">
+<input type="text" name="address" placeholder="ঠিকানা">
 
-    <select name="membership_type">
-        <option value="general">সাধারণ সদস্য</option>
-        <option value="volunteer">স্বেচ্ছাসেবক</option>
-        <option value="youth">যুব সদস্য</option>
-    </select>
+<input type="number" name="age" placeholder="বয়স">
 
-    <textarea name="reason" rows="5" placeholder="কেন PPPP-তে যোগ দিতে চান?"></textarea>
+<select name="membership_type">
+    <option value="general">সাধারণ সদস্য</option>
+    <option value="volunteer">স্বেচ্ছাসেবক</option>
+    <option value="youth">যুব সদস্য</option>
+</select>
 
-    <button type="submit">Submit Application</button>
+<textarea name="reason" rows="5" placeholder="কেন PPPP-তে যোগ দিতে চান?"></textarea>
+
+<button type="button" onclick="sendEmail()">📧 Submit via Email</button>
+
+<button type="button" onclick="sendWhatsApp()">💬 Submit via WhatsApp</button>
+
 </form>
+<script>
+function getFormData() {
+    return {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        address: document.querySelector('input[name="address"]').value,
+        age: document.querySelector('input[name="age"]').value,
+        membership: document.querySelector('select[name="membership_type"]').value,
+        reason: document.querySelector('textarea[name="reason"]').value
+    };
+}
+
+function sendEmail() {
+
+    const d = getFormData();
+
+    const subject = encodeURIComponent("PPPP Membership Application");
+
+    const body = encodeURIComponent(
+`PPPP Membership Application
+
+Name: ${d.name}
+
+Email: ${d.email}
+
+Phone: ${d.phone}
+
+Address: ${d.address}
+
+Age: ${d.age}
+
+Membership Type: ${d.membership}
+
+Reason:
+${d.reason}`
+    );
+
+    window.location.href =
+    `mailto:pppp.bangladesh@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function sendWhatsApp() {
+
+    const d = getFormData();
+
+    const text = encodeURIComponent(
+`📋 PPPP Membership Application
+
+👤 Name: ${d.name}
+
+📧 Email: ${d.email}
+
+📱 Phone: ${d.phone}
+
+🏠 Address: ${d.address}
+
+🎂 Age: ${d.age}
+
+👥 Membership: ${d.membership}
+
+📝 Reason:
+${d.reason}`
+    );
+
+    window.open(
+        `https://wa.me/8801339277749?text=${text}`,
+        "_blank"
+    );
+}
+</script>
 
 
-</section>
-
-<section class="box">
-    <h2>⚠️ গুরুত্বপূর্ণ তথ্য</h2>
-    <p>
-        এই ফর্মটি বর্তমানে ডেমো অবস্থায় আছে। ভবিষ্যতে এটি অফিসিয়াল ডাটাবেস / Google Form / Email System এর সাথে সংযুক্ত করা হবে।
-    </p>
 </section>
 
 <section class="box">
