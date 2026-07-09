@@ -150,18 +150,47 @@
     <h2>📨 Send Message</h2>
 
 
-<form action="#" method="post">
+<form onsubmit="sendWhatsApp(); return false;">
 
-    <input type="text" name="name" placeholder="আপনার নাম *" required>
+    <input type="text" id="name" placeholder="আপনার নাম *" required>
 
-    <input type="email" name="email" placeholder="আপনার ইমেইল *" required>
+    <input type="email" id="email" placeholder="আপনার ইমেইল *" required>
 
-    <input type="text" name="subject" placeholder="বিষয়">
+    <input type="text" id="subject" placeholder="বিষয়">
 
-    <textarea name="message" rows="6" placeholder="আপনার বার্তা লিখুন..." required></textarea>
+    <textarea id="message" rows="6" placeholder="আপনার বার্তা লিখুন..." required></textarea>
 
-    <button type="submit">Send Message</button>
+    <button type="submit">📲 Send via WhatsApp</button>
+
 </form>
+
+<script>
+function sendWhatsApp(){
+
+    const name=document.getElementById("name").value;
+    const email=document.getElementById("email").value;
+    const subject=document.getElementById("subject").value;
+    const message=document.getElementById("message").value;
+
+    const text=
+`📩 PPPP Contact Form
+
+👤 Name: ${name}
+
+📧 Email: ${email}
+
+📝 Subject: ${subject}
+
+💬 Message:
+${message}`;
+
+    window.open(
+        "https://wa.me/8801339277749?text="+encodeURIComponent(text),
+        "_blank"
+    );
+
+}
+</script>
 
 
 </section>
