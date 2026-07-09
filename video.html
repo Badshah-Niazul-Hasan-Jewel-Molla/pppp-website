@@ -900,3 +900,122 @@ nowPlaying.innerHTML=
 "No video selected.";
 
 });
+window.addEventListener("scroll",function(){
+
+const btn=document.getElementById("topBtn");
+
+if(!btn)return;
+
+btn.style.display=
+
+window.scrollY>300 ?
+
+"block" :
+
+"none";
+
+});
+
+const topBtn=document.createElement("button");
+
+topBtn.id="topBtn";
+
+topBtn.innerHTML="⬆";
+
+topBtn.style.position="fixed";
+
+topBtn.style.right="20px";
+
+topBtn.style.bottom="20px";
+
+topBtn.style.width="55px";
+
+topBtn.style.height="55px";
+
+topBtn.style.border="none";
+
+topBtn.style.borderRadius="50%";
+
+topBtn.style.background="#0984e3";
+
+topBtn.style.color="#fff";
+
+topBtn.style.fontSize="24px";
+
+topBtn.style.cursor="pointer";
+
+topBtn.style.display="none";
+
+topBtn.style.boxShadow=
+
+"0 5px 15px rgba(0,0,0,.3)";
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+document.body.appendChild(topBtn);
+const footer=document.createElement("footer");
+
+footer.innerHTML=`
+
+<hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
+
+<div style="font-size:22px;margin-bottom:10px;">
+
+People's Power & Peace Party (PPPP)
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🎬 Official Video Library
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🌐 https://naz-niaz.github.io/pppp_bangladesh/
+
+</div>
+
+<div>
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</div>
+
+`;
+
+document.body.appendChild(footer);
+
+render(filteredList);
+
+counter.innerHTML=
+
+"Total Video : <b>"+
+
+video.length+
+
+"</b>";
+</script>
+
+</div>
+
+</body>
+
+</html>
