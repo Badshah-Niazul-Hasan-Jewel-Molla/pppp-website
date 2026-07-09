@@ -160,21 +160,42 @@
 </section>
 
 <section class="card">
-    <h2>📲 ভবিষ্যৎ ফিচার</h2>
-    <ul>
-        <li>Android & iOS App (Future Release)</li>
-        <li>PWA Installable Web App</li>
-        <li>QR Code Membership System</li>
-        <li>Live Push Notifications</li>
-        <li>AI-based Political Assistant</li>
-    </ul>
+    <h2>📲 Download the PPPP App</h2>
+    <p>Download the official PPPP app and stay connected with the People's Power & Peace Party (PPPP)</p>
+        <button id="installBtn" class="pppp-btn">📱 Install PPPP App</button><br>
+		<button onclick="location.reload()" class="pppp-btn">🔄 Check for Updates</button><br>
+		<button onclick="navigator.share({title:'PPPP App',text:'Download the official PPPP App',url:'https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk'})" class="pppp-btn">📤 Share PPPP App</button><br>
+		<button onclick="navigator.share({title:'PPPP Bangladesh',url:'https://naz-niaz.github.io/pppp_bangladesh/'})" class="pppp-btn">📤 Share PPPP Website</button><br>
+		<a href="/pppp_bangladesh/PPPP.apk" download class="pppp-btn">📥 Download PPPP.apk for Android</a><br>
+        <a href="/pppp_bangladesh/PPPP.ipa" download class="pppp-btn">🍎 Download PPPP.ipa for iPhone</a><br>
+        <a href="/pppp_bangladesh/PPPP.msixbundle" download class="pppp-btn">🪟 Download PPPP.msixbundle for Windows</a><br>
 </section>
 
-<section class="card">
-    <h2>⚠️ Status</h2>
-    <p>
-        এই সিস্টেমটি বর্তমানে Web Version হিসেবে চালু আছে। ভবিষ্যতে Mobile App সংস্করণ প্রকাশ করা হবে।
-    </p>
+    <style>
+    .pppp-btn{
+        display:inline-block;
+        width:260px;
+        padding:14px 28px;
+        background:#009b77;
+        color:white;
+        text-decoration:none;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+        font-size:1.1em;
+        cursor:pointer;
+        margin:10px;
+        transition:0.3s;
+        box-sizing:border-box;
+        text-align:center;
+    }
+
+    .pppp-btn:hover{
+        background:#007a5e;
+        transform:scale(1.05);
+    }
+    </style>
+
 </section>
 
 <section class="card">
