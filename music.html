@@ -393,6 +393,9 @@ No music selected.
 <div class="grid" id="grid"></div>
 
 <script>
+window.onerror = function(message, source, line, column) {
+    alert("ERROR: " + message + "\nLine: " + line);
+};
 
 const music=[
 
