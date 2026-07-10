@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🌀 PPPP xlsx 🌀</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111827;
+padding:20px;
+color:white;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+font-size:30px;
+}
+
+#search{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:15px;
+font-size:18px;
+background:#1f2937;
+color:#fff;
+margin-bottom:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:18px;
+}
+
+.card{
+border-radius:20px;
+padding:20px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+min-height:210px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.file{
+font-size:22px;
+font-weight:bold;
+word-break:break-word;
+margin-bottom:15px;
+}
+
+.btns{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:auto;
+}
+
+button,a{
+border:none;
+padding:12px;
+border-radius:12px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+text-decoration:none;
+text-align:center;
+color:#111;
+}
+
+.copy{background:#f39c12;}
+.share{background:#9b59b6;}
+.download{background:#16a085;}
+.view{background:#3498db;}
+
+footer{
+margin-top:30px;
+text-align:center;
+font-size:15px;
+color:#ccc;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌀 PPPP xlsx 🌀</h1>
+
+<input id="search" type="text" placeholder="🔍 xlsx সার্চ করুন...">
+
+<div class="grid" id="grid"></div>
+
+<footer>
+সব xlsx অনলাইনে দেখুন, ডাউনলোড করুন, শেয়ার করুন।
+</footer>
+
+<script>
+
+const colors = [
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+
+const files=[
+"PPPP.xlsx",
+"PPPP_Constitution.xlsx",
+"PPPP_Election_Manifesto.xlsx",
+"PPPP_Membership_Form.xlsx",
+"PPPP_Politics_Zero_Cost.xlsx",
+"PPPP_Election_Zero_Cost.xlsx",
+"PPPP_MP_Candidate_Zero_Cost.xlsx",
+"PPPP_Volunteers_Zero_Cost.xlsx"
+];
+
+const grid=document.getElementById("grid");
+
+function render(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const color=colors[index%colors.length];
+
+const path="xlsx/"+encodeURIComponent(file);
+
+const url=location.origin+
+location.pathname.replace("xlsx.html","")+path;
+
+const card=document.createElement("div");
+card.className="card";
+card.style.background=color;
+
+card.innerHTML=`
+
+<div class="file">📊 ${file}</div>
+
+<div class="btns">
+
+<a class="view"
+target="_blank"
+href="https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(url)}">
+👁 দেখুন
+</a>
+
+<a class="download"
+href="${path}" download>
+⬇ ডাউনলোড
+</a>
+
+<button class="copy">
+🔗 কপি
+</button>
+
+<button class="share">
+📤 শেয়ার
+</button>
+
+</div>
+
+`;
+
+card.querySelector(".copy").onclick=()=>{
+navigator.clipboard.writeText(url);
+alert("লিংক কপি হয়েছে");
+};
+
+card.querySelector(".share").onclick=()=>{
+
+if(navigator.share){
+
+navigator.share({
+title:file,
+text:file,
+url:url
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+alert("লিংক কপি হয়েছে");
+
+}
+
+};
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(files);
+
+document.getElementById("search").addEventListener("input",function(){
+
+const value=this.value.toLowerCase();
+
+render(files.filter(f=>f.toLowerCase().includes(value)));
+
+});
+
+</script>
+
+</body>
+</html>
