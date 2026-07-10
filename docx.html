@@ -170,7 +170,7 @@ const files=[
 ];
 
 const grid=document.getElementById("grid");
-
+const count=document.getElementById("count");
 files.forEach((file,i)=>{
 
 const color=colors[i%colors.length];
@@ -223,6 +223,7 @@ onclick="shareDoc('${file}','${path}')">
 `;
 
 });
+count.innerText=files.length;
 
 function searchDocs(){
 
@@ -297,6 +298,14 @@ m.style.display="none";
 }
 
 </script>
-
+<div style="
+margin-top:30px;
+text-align:center;
+font-size:16px;
+color:#ccc;
+font-weight:bold;
+">
+Total DOCX : <span id="count"></span>
+</div>
 </body>
 </html>
