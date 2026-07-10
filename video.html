@@ -84,7 +84,7 @@ margin-bottom:12px;
 word-break:break-word;
 color:#333;
 }
-#audioPlayer{
+#videoPlayer{
 width:100%;
 margin-bottom:15px;
 }
@@ -216,17 +216,15 @@ Loading...
 </div>
 </div>
 <div class="player">
-<h2>🎵 Now Playing</h2>
+<h2>🎬 Now Watching</h2>
 <div
 class="nowPlaying"
 id="nowPlaying">
 No video selected.
 </div>
 <video
-id="audioPlayer"
-controls
-width="100%"
-style="border-radius:15px;">
+id="videoPlayer"
+controls>
 </video>
 <div
 class="controls">
@@ -260,26 +258,26 @@ id="grid">
 <script>
 const videos = [
 "PPPP.mp4",
-"Message_from_PPPP.mp4",
 "New_message_from_PPPP.mp4",
-"PPPP_Slogan.mp4",
+"Boss_you_have_a_text_message_from_PPPP.mp4",
+"New_video_from_PPPP.mp4",
 "Welcome_to_PPPP.mp4",
 "New_update_from_PPPP.mp4",
 "Thank_you_for_joining_PPPP.mp4",
-"PPPP_Bangladesh.mp4",
+"Please_check_your_new_message_from_PPPP.mp4",
 "People's_Power_&_Peace_Party_PPPP.mp4",
 "Power_to_the_People_Peace_for_the_People_PPPP.mp4",
 "Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.mp4",
-"Paper_Pen_Pigment_Party_PPPP.mp4",
+"video.mp4",
 "Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.mp4",
 "Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.mp4",
 "Bangladesh_Peace_Organization_BPO.mp4",
 "Bangladesh_Hilful_Fuzul_BHF.mp4",
 "Naz-Niaz_Award_Organization_NAO.mp4",
 "Jewel-Juthi_Award_Organization_JAO.mp4",
+"https_naz-niaz.github.io_pppp_bangladesh.mp4",
+"pppp.bangladesh@gmail.com.mp4",
 "PPPP_video.mp4",
-"কাগজ_কলম_কালি_PPPP.mp4",
-"নির্বাচনী_ইশতেহার_PPPP.mp4",
 "জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.mp4",
 "শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.mp4",
 "হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.mp4",
@@ -297,7 +295,7 @@ const colors = [
 "#e84393",
 "#2d3436"
 ];
-const video = document.getElementById("audioPlayer");
+const video = document.getElementById("videoPlayer");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const counter = document.getElementById("counter");
@@ -322,8 +320,8 @@ return "video/" + encodeURIComponent(name);
 function playIndex(index){
 if(index<0 || index>=filteredList.length) return;
 currentIndex=index;
-audio.src=fileURL(filteredList[index]);
-audio.play();
+video.src=fileURL(filteredList[index]);
+video.play();
 nowPlaying.innerHTML=
 filteredList[index];
 render(filteredList);
@@ -435,14 +433,14 @@ if(currentIndex===-1){
 playIndex(0);
 return;
 }
-audio.play();
+video.play();
 };
 pauseBtn.onclick=function(){
-audio.pause();
+video.pause();
 };
 stopBtn.onclick=function(){
-audio.pause();
-audio.currentTime=0;
+video.pause();
+video.currentTime=0;
 };
 prevBtn.onclick=function(){
 if(filteredList.length===0)return;
@@ -476,12 +474,12 @@ repeatMode ?
 :
 "🔁 Repeat Off";
 };
-audio.addEventListener(
+video.addEventListener(
 "ended",
 function(){
 if(repeatMode){
-audio.currentTime=0;
-audio.play();
+video.currentTime=0;
+video.play();
 return;
 }
 if(filteredList.length===0)return;
@@ -514,9 +512,9 @@ videos.length+
 currentIndex=-1;
 nowPlaying.innerHTML=
 "No video selected.";
-audio.pause();
-audio.removeAttribute("src");
-audio.load();
+video.pause();
+video.removeAttribute("src");
+video.load();
 render(filteredList);
 }
 );
@@ -538,45 +536,45 @@ nowPlaying.innerHTML=
 return;
 }
 nowPlaying.innerHTML=
-"🎵 " +
+"🎬 " +
 filteredList[currentIndex];
 }
-audio.addEventListener(
+video.addEventListener(
 "play",
 updateNowPlaying
 );
-audio.addEventListener(
+video.addEventListener(
 "pause",
 function(){
 document.title=
 "⏸ PPPP Video Center";
 }
 );
-audio.addEventListener(
+video.addEventListener(
 "playing",
 function(){
 document.title=
-"🎵 " +
+"🎬 " +
 filteredList[currentIndex];
 }
 );
-audio.addEventListener(
+video.addEventListener(
 "loadedmetadata",
 function(){
-if(isNaN(audio.duration))
+if(isNaN(video.duration))
 return;
 const m=
 Math.floor(
-audio.duration/60
+video.duration/60
 );
 const s=
 Math.floor(
-audio.duration%60
+video.duration%60
 )
 .toString()
 .padStart(2,"0");
 nowPlaying.innerHTML=
-"🎵 " +
+"🎬 " +
 filteredList[currentIndex] +
 " (" +
 m +
@@ -585,8 +583,8 @@ s +
 ")";
 }
 );
-audio.volume=1.0;
-audio.preload="auto";
+video.volume=1.0;
+video.preload="metadata";
 window.addEventListener(
 "keydown",
 function(e){
@@ -596,14 +594,14 @@ e.target.tagName==="INPUT"
 switch(e.code){
 case"Space":
 e.preventDefault();
-if(audio.paused){
+if(video.paused){
 if(currentIndex===-1){
 playIndex(0);
 }else{
-audio.play();
+video.play();
 }
 }else{
-audio.pause();
+video.pause();
 }
 break;
 case"ArrowRight":
@@ -720,13 +718,13 @@ const footer=document.createElement("footer");
 footer.innerHTML=`
 <hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
 <div style="font-size:22px;margin-bottom:10px;">
- People's Power & Peace Party (PPPP) 
+ People's Power & Peace Party (PPPP)
 </div>
 <div style="margin-bottom:8px;">
 Power to the People • Peace for the People
 </div>
 <div style="margin-bottom:8px;">
-🎵 Official Video Library
+🎬 Official Video Library
 </div>
 <div style="margin-bottom:8px;">
 🌐 <a href="https://naz-niaz.github.io/pppp_bangladesh/" target="_blank" style="color:white;">
@@ -745,8 +743,8 @@ counter.innerHTML=
 videos.length+
 "</b>";
 }
-audio.addEventListener("error",function(){
-alert("Video file not found:\n\n"+audio.src);
+video.addEventListener("error",function(){
+alert("Video file not found:\n\n"+video.src);
 });
 window.addEventListener("load",function(){
 render(filteredList);
