@@ -155,19 +155,23 @@ function render(list){
 
 gallery.innerHTML="";
 
-list.forEach(file=>{
+list.forEach((file, index) => {
+
+const color = colors[index % colors.length];
 
 const url="photos/"+encodeURIComponent(file);
 
 gallery.innerHTML+=`
 
-<div class="card">
+<div class="card" style="border-top:6px solid ${color};">
 
 <img src="${url}" loading="lazy">
 
 <div class="info">
 
-<div class="name">${file}</div>
+<div class="name" style="background:${color};color:#fff;padding:8px;border-radius:6px;">
+    ${file}
+</div>
 
 <div class="buttons">
 
