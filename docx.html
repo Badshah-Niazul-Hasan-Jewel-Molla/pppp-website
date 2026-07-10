@@ -247,18 +247,26 @@ let q=document
 .value
 .toLowerCase();
 
+let total=0;
+
 document
 .querySelectorAll(".card")
 .forEach(card=>{
 
-card.style.display=
-card.dataset.name.includes(q)
-?
-"block"
-:
-"none";
+if(card.dataset.name.includes(q)){
+
+card.style.display="block";
+total++;
+
+}else{
+
+card.style.display="none";
+
+}
 
 });
+
+count.innerText=total;
 
 }
 
