@@ -87,7 +87,8 @@ transition:.2s;
 }
 
 .open{
-background:#2d3436;
+background:#ffe66d;
+color:#111;
 }
 
 .download{
@@ -174,6 +175,10 @@ files.forEach((file,i)=>{
 
 const color=colors[i%colors.length];
 const path="docx/"+file;
+const fullUrl=
+location.origin+
+location.pathname.replace("docx.html","")+
+path;
 
 grid.innerHTML+=`
 
@@ -188,7 +193,7 @@ data-name="${file.toLowerCase()}">
 <a
 class="open"
 target="_blank"
-href="${path}">
+href="https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(fullUrl)}">
 📖 Open
 </a>
 
