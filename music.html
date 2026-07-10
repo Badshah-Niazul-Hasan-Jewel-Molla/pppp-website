@@ -21,191 +21,113 @@ font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-
 background:linear-gradient(-45deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
-
 background-size:400% 400%;
-
 animation:bg 15s ease infinite;
-
 padding:20px;
-
 min-height:100vh;
-
 }
 
 @keyframes bg{
-
 0%{background-position:0% 50%;}
-
 50%{background-position:100% 50%;}
-
 100%{background-position:0% 50%;}
-
 }
 
 .container{
-
 max-width:1500px;
-
 margin:auto;
-
 }
 
 .header{
-
 text-align:center;
-
-color:white;
-
+color:#fff;
 margin-bottom:25px;
-
 }
 
 .header h1{
-
 font-size:35px;
-
 margin-bottom:10px;
-
 text-shadow:0 2px 10px rgba(0,0,0,.35);
-
 }
 
 .header p{
-
 font-size:18px;
-
 opacity:.95;
-
 }
 
 .topbar{
-
 display:flex;
-
 flex-wrap:wrap;
-
 gap:15px;
-
 justify-content:space-between;
-
 align-items:center;
-
 margin-bottom:20px;
-
 }
 
 .search{
-
 flex:1;
-
 min-width:260px;
-
 padding:15px;
-
 font-size:17px;
-
 border:none;
-
 outline:none;
-
 border-radius:15px;
-
 box-shadow:0 5px 15px rgba(0,0,0,.25);
-
 }
 
 .counter{
-
-background:white;
-
+background:#fff;
 padding:15px 20px;
-
 border-radius:15px;
-
 font-weight:bold;
-
 box-shadow:0 5px 15px rgba(0,0,0,.25);
-
 }
 
 .player{
-
-background:white;
-
+background:#fff;
 border-radius:20px;
-
 padding:20px;
-
 margin-bottom:20px;
-
 box-shadow:0 10px 25px rgba(0,0,0,.25);
-
 }
 
 .player h2{
-
 margin-bottom:15px;
-
 }
 
 .nowPlaying{
-
 font-size:16px;
-
 font-weight:bold;
-
 margin-bottom:12px;
-
 word-break:break-word;
-
 color:#333;
-
 }
 
 #audioPlayer{
-
 width:100%;
-
 margin-bottom:15px;
-
 }
 
 .controls{
-
 display:flex;
-
 flex-wrap:wrap;
-
 gap:10px;
-
 }
 
 .controls button{
-
 padding:12px 18px;
-
 border:none;
-
 border-radius:10px;
-
 cursor:pointer;
-
 font-size:15px;
-
 font-weight:bold;
-
-color:white;
-
+color:#fff;
 transition:.25s;
-
 }
 
 .controls button:hover{
-
 transform:scale(1.05);
-
 }
 
 .play{background:#16a085;}
@@ -217,82 +139,51 @@ transform:scale(1.05);
 .repeat{background:#2d3436;}
 
 .grid{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
-
 gap:18px;
-
 }
 
 .card{
-
 border-radius:18px;
-
 padding:18px;
-
 box-shadow:0 8px 18px rgba(0,0,0,.25);
-
 transition:.25s;
-
 color:#fff;
-
 }
 
 .card:hover{
-
 transform:translateY(-5px);
-
 }
 
 .filename{
-
 font-weight:bold;
-
 font-size:15px;
-
 margin-bottom:15px;
-
 word-break:break-word;
-
 line-height:1.5;
-
 }
 
 .cardButtons{
-
 display:flex;
-
 flex-wrap:wrap;
-
 gap:8px;
-
 }
 
-.cardButtons button,
-.cardButtons a{
-
+.cardButtons button{
 flex:1;
-
-text-align:center;
-
-text-decoration:none;
-
 border:none;
-
 padding:10px;
-
 border-radius:10px;
-
-font-size:14px;
-
 cursor:pointer;
-
-color:white;
-
+font-size:14px;
+font-weight:bold;
+color:#fff;
 transition:.25s;
+}
 
+.cardButtons button:hover{
+transform:scale(1.05);
 }
 
 .playBtn{background:#00b894;}
@@ -301,31 +192,32 @@ transition:.25s;
 .shareBtn{background:#e84393;}
 .favoriteBtn{background:#d63031;}
 
-.cardButtons button:hover,
-.cardButtons a:hover{
-
-transform:scale(1.05);
-
+footer{
+margin-top:40px;
+text-align:center;
+color:#fff;
+font-weight:bold;
+font-size:15px;
+padding:20px;
 }
 
-footer{
-
-margin-top:40px;
-
-text-align:center;
-
-color:white;
-
-font-weight:bold;
-
-font-size:15px;
-
-padding:20px;
-
+#topBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#0984e3;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+display:none;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
 </style>
-
 </head>
 
 <body>
@@ -350,7 +242,9 @@ id="search"
 class="search"
 placeholder="🔍 Search Music...">
 
-<div class="counter" id="counter">
+<div
+class="counter"
+id="counter">
 
 Loading...
 
@@ -362,40 +256,61 @@ Loading...
 
 <h2>🎵 Now Playing</h2>
 
-<div class="nowPlaying" id="nowPlaying">
+<div
+class="nowPlaying"
+id="nowPlaying">
 
 No music selected.
 
 </div>
 
-<audio id="audioPlayer" controls></audio>
+<audio
+id="audioPlayer"
+controls>
+
+</audio>
 
 <div class="controls">
 
-<button class="prev" id="prevBtn">⏮ Previous</button>
+<button class="prev" id="prevBtn">
+⏮ Previous
+</button>
 
-<button class="play" id="playBtn">▶ Play</button>
+<button class="play" id="playBtn">
+▶ Play
+</button>
 
-<button class="pause" id="pauseBtn">⏸ Pause</button>
+<button class="pause" id="pauseBtn">
+⏸ Pause
+</button>
 
-<button class="stop" id="stopBtn">⏹ Stop</button>
+<button class="stop" id="stopBtn">
+⏹ Stop
+</button>
 
-<button class="next" id="nextBtn">⏭ Next</button>
+<button class="next" id="nextBtn">
+⏭ Next
+</button>
 
-<button class="shuffle" id="shuffleBtn">🔀 Shuffle</button>
+<button class="shuffle" id="shuffleBtn">
+🔀 Shuffle
+</button>
 
-<button class="repeat" id="repeatBtn">🔁 Repeat Off</button>
+<button class="repeat" id="repeatBtn">
+🔁 Repeat Off
+</button>
 
 </div>
 
 </div>
 
-<div class="grid" id="grid"></div>
+<div
+class="grid"
+id="grid">
+
+</div>
 
 <script>
-window.onerror = function(message, source, line, column) {
-    alert("ERROR: " + message + "\nLine: " + line);
-};
 
 const music=[
 
@@ -456,53 +371,32 @@ const music=[
 ];
 
 const colors=[
-
 "#ff6b6b",
-
 "#6c5ce7",
-
 "#00b894",
-
 "#fdcb6e",
-
 "#e17055",
-
 "#0984e3",
-
 "#e84393",
-
 "#2d3436"
-
 ];
 
 const audio=document.getElementById("audioPlayer");
-
 const grid=document.getElementById("grid");
-
 const search=document.getElementById("search");
-
 const counter=document.getElementById("counter");
-
 const nowPlaying=document.getElementById("nowPlaying");
 
 const playBtn=document.getElementById("playBtn");
-
 const pauseBtn=document.getElementById("pauseBtn");
-
 const stopBtn=document.getElementById("stopBtn");
-
 const prevBtn=document.getElementById("prevBtn");
-
 const nextBtn=document.getElementById("nextBtn");
-
 const shuffleBtn=document.getElementById("shuffleBtn");
-
 const repeatBtn=document.getElementById("repeatBtn");
 
 let repeatMode=false;
-
 let currentIndex=-1;
-
 let filteredList=[...music];
 
 counter.innerHTML="Total Music : <b>"+music.length+"</b>";
@@ -538,7 +432,7 @@ const card=document.createElement("div");
 
 card.className="card";
 
-card.style.background=colors[index % colors.length];
+card.style.background=colors[index%colors.length];
 
 card.style.color="#fff";
 
@@ -609,6 +503,7 @@ grid.appendChild(card);
 }
 
 render(filteredList);
+
 function copyLink(file){
 
 const url=
@@ -855,6 +750,7 @@ currentIndex=0;
 playIndex(currentIndex);
 
 });
+
 search.addEventListener("input",function(){
 
 const keyword=this.value.toLowerCase().trim();
@@ -890,10 +786,9 @@ audio.load();
 render(filteredList);
 
 });
-
 function updateNowPlaying(){
 
-if(currentIndex<0 ||
+if(currentIndex<0||
 
 currentIndex>=filteredList.length){
 
@@ -946,13 +841,14 @@ filteredList[currentIndex]+
 audio.volume=1.0;
 
 audio.preload="metadata";
+
 window.addEventListener("keydown",function(e){
 
-if(e.target.tagName==="INPUT") return;
+if(e.target.tagName==="INPUT")return;
 
 switch(e.code){
 
-case "Space":
+case"Space":
 
 e.preventDefault();
 
@@ -976,25 +872,25 @@ audio.pause();
 
 break;
 
-case "ArrowRight":
+case"ArrowRight":
 
 nextBtn.click();
 
 break;
 
-case "ArrowLeft":
+case"ArrowLeft":
 
 prevBtn.click();
 
 break;
 
-case "KeyS":
+case"KeyS":
 
 shuffleBtn.click();
 
 break;
 
-case "KeyR":
+case"KeyR":
 
 repeatBtn.click();
 
@@ -1069,9 +965,7 @@ topBtn.style.cursor="pointer";
 
 topBtn.style.display="none";
 
-topBtn.style.boxShadow=
-
-"0 5px 15px rgba(0,0,0,.3)";
+topBtn.style.boxShadow="0 5px 15px rgba(0,0,0,.3)";
 
 topBtn.onclick=function(){
 
@@ -1086,6 +980,7 @@ behavior:"smooth"
 };
 
 document.body.appendChild(topBtn);
+
 const footer=document.createElement("footer");
 
 footer.innerHTML=`
@@ -1113,7 +1008,9 @@ Power to the People • Peace for the People
 <div style="margin-bottom:8px;">
 
 🌐 <a href="https://naz-niaz.github.io/pppp_bangladesh/" target="_blank" style="color:white;">
+
 https://naz-niaz.github.io/pppp_bangladesh/
+
 </a>
 
 </div>
@@ -1137,6 +1034,7 @@ counter.innerHTML=
 music.length+
 
 "</b>";
+
 </script>
 
 </div>
