@@ -293,3 +293,565 @@ class="grid">
 </div>
 
 <script>
+const photos = [
+"পিপিপিপি.png",
+"PPPP.png",
+"PPPP_Profile.png",
+"PPPP_Cover.png",
+"PPPP_Logo.png",
+"PPPP_Flag.png",
+"PPPP_Founder.png",
+"PPPP_Cofounder.png",
+"PPPP_Conact.png",
+"PPPP_Slogan.png",
+"PPPP_Motto.png",
+"PPPP_Symbol.png",
+"PPPP_Pen.png",
+"PPPP_Kolom.png",
+"PPPP_Lotus.png",
+"PPPP_Poddoful.png",
+"PPPP_Date.png",
+"PPPP_Khejur.png",
+"PPPP_Mothers_Embrace.jpeg",
+"PPPP_Mayer_Achol.jpeg",
+"PPPP_App.png",
+"PPPP_Icon.png",
+"PPPP_Chat.png",
+"PPPP_Menu.png",
+"PPPP_Score.png",
+"PPPP_QR.png",
+"PPPP_LOVEit.jpg"
+];
+
+const colors = [
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+
+const photoViewer=document.getElementById("photoViewer");
+const grid=document.getElementById("grid");
+const search=document.getElementById("search");
+const counter=document.getElementById("counter");
+const nowViewing=document.getElementById("nowViewing");
+
+const prevBtn=document.getElementById("prevBtn");
+const nextBtn=document.getElementById("nextBtn");
+const shuffleBtn=document.getElementById("shuffleBtn");
+const zoomInBtn=document.getElementById("zoomInBtn");
+const zoomOutBtn=document.getElementById("zoomOutBtn");
+const resetBtn=document.getElementById("resetBtn");
+
+let currentIndex=-1;
+let zoom=1;
+
+let filteredList=[...photos];
+
+counter.innerHTML=
+"Total Photos : <b>"+photos.length+"</b>";
+
+function fileURL(name){
+return "photos/"+encodeURIComponent(name);
+}
+
+function showPhoto(index){
+
+if(index<0||index>=filteredList.length)return;
+
+currentIndex=index;
+
+photoViewer.src=fileURL(filteredList[index]);
+
+nowViewing.innerHTML=
+"🖼 "+filteredList[index];
+
+document.title=
+"🖼 "+filteredList[index];
+
+zoom=1;
+photoViewer.style.transform="scale(1)";
+
+render(filteredList);
+
+}
+function render(list){
+
+grid.innerHTML="";
+
+list.forEach((file,index)=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.style.background=
+colors[index%colors.length];
+
+card.style.color="#fff";
+
+if(currentIndex===index){
+card.style.border=
+"4px solid #00b894";
+}
+
+card.innerHTML=`
+
+<img
+class="thumbnail"
+src="${fileURL(file)}"
+onclick="showPhoto(${index})">
+
+<div class="filename">
+${file}
+</div>
+
+<div class="cardButtons">
+
+<button
+class="viewBtn"
+onclick="showPhoto(${index})">
+🖼 View
+</button>
+
+<button
+class="downloadBtn"
+onclick="downloadFile('${file}')">
+⬇ Download
+</button>
+
+<button
+class="copyBtn"
+onclick="copyLink('${encodeURIComponent(file)}')">
+📋 Copy Link
+</button>
+
+<button
+class="shareBtn"
+onclick="shareFile('${encodeURIComponent(file)}')">
+📤 Share
+</button>
+
+<button
+class="favoriteBtn"
+onclick="toggleFavorite('${file}')">
+${isFavorite(file) ? "💛 Favorite" : "🤍 Favorite"}
+</button>
+
+</div>
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(filteredList);
+
+const favorites=JSON.parse(
+localStorage.getItem(
+"ppppPhotoFavorites"
+)||"[]"
+);
+
+function saveFavorites(){
+
+localStorage.setItem(
+"ppppPhotoFavorites",
+JSON.stringify(favorites)
+);
+
+}
+
+function isFavorite(file){
+
+return favorites.includes(file);
+
+}
+
+function toggleFavorite(file){
+
+const i=favorites.indexOf(file);
+
+if(i===-1){
+
+favorites.push(file);
+
+alert("⭐ Added to Favorites");
+
+}else{
+
+favorites.splice(i,1);
+
+alert("❌ Removed from Favorites");
+
+}
+
+saveFavorites();
+
+render(filteredList);
+
+}
+
+function downloadFile(file){
+
+const a=document.createElement("a");
+
+a.href=fileURL(file);
+
+a.download=file;
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+}
+
+function copyLink(file){
+
+const url=
+location.origin+
+location.pathname.replace(
+"photos.html",
+""
+)+
+"photos/"+
+file;
+
+navigator.clipboard.writeText(url);
+
+alert("Photo link copied.");
+
+}
+
+function shareFile(file){
+
+const url=
+location.origin+
+location.pathname.replace(
+"photos.html",
+""
+)+
+"photos/"+
+file;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"PPPP Photo",
+
+text:"PPPP Official Photo",
+
+url:url
+
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+alert("Share is not supported.\nLink copied.");
+
+}
+
+}
+search.addEventListener(
+"input",
+function(){
+
+const keyword=
+this.value
+.toLowerCase()
+.trim();
+
+filteredList=
+photos.filter(file=>
+file.toLowerCase().includes(keyword)
+);
+
+counter.innerHTML=
+"Showing <b>"+
+filteredList.length+
+"</b> of <b>"+
+photos.length+
+"</b> Photos";
+
+currentIndex=-1;
+
+nowViewing.innerHTML=
+"No photo selected.";
+
+photoViewer.removeAttribute("src");
+
+render(filteredList);
+
+}
+);
+
+prevBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex--;
+
+if(currentIndex<0)
+currentIndex=
+filteredList.length-1;
+
+showPhoto(currentIndex);
+
+};
+
+nextBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+currentIndex++;
+
+if(currentIndex>=filteredList.length)
+currentIndex=0;
+
+showPhoto(currentIndex);
+
+};
+
+shuffleBtn.onclick=function(){
+
+if(filteredList.length===0)return;
+
+const random=
+Math.floor(
+Math.random()*
+filteredList.length
+);
+
+showPhoto(random);
+
+};
+
+zoomInBtn.onclick=function(){
+
+zoom+=0.2;
+
+photoViewer.style.transform=
+"scale("+zoom+")";
+
+};
+
+zoomOutBtn.onclick=function(){
+
+if(zoom>0.4){
+
+zoom-=0.2;
+
+photoViewer.style.transform=
+"scale("+zoom+")";
+
+}
+
+};
+
+resetBtn.onclick=function(){
+
+zoom=1;
+
+photoViewer.style.transform=
+"scale(1)";
+
+};
+
+photoViewer.onclick=function(){
+
+if(
+document.fullscreenElement
+){
+
+document.exitFullscreen();
+
+}else{
+
+photoViewer.requestFullscreen();
+
+}
+
+};
+
+window.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.target.tagName==="INPUT"
+)return;
+
+switch(e.code){
+
+case"ArrowLeft":
+prevBtn.click();
+break;
+
+case"ArrowRight":
+nextBtn.click();
+break;
+
+case"KeyR":
+shuffleBtn.click();
+break;
+
+case"Equal":
+zoomInBtn.click();
+break;
+
+case"Minus":
+zoomOutBtn.click();
+break;
+
+case"Digit0":
+resetBtn.click();
+break;
+
+}
+
+}
+);
+
+window.addEventListener(
+"scroll",
+function(){
+
+const btn=
+document.getElementById(
+"topBtn"
+);
+
+if(!btn)return;
+
+btn.style.display=
+window.scrollY>300
+?
+"block"
+:
+"none";
+
+}
+);
+
+const topBtn=
+document.createElement(
+"button"
+);
+
+topBtn.id="topBtn";
+
+topBtn.innerHTML="⬆";
+
+topBtn.style.position="fixed";
+topBtn.style.right="20px";
+topBtn.style.bottom="20px";
+topBtn.style.width="55px";
+topBtn.style.height="55px";
+topBtn.style.border="none";
+topBtn.style.borderRadius="50%";
+topBtn.style.background="#0984e3";
+topBtn.style.color="#fff";
+topBtn.style.fontSize="24px";
+topBtn.style.cursor="pointer";
+topBtn.style.display="none";
+topBtn.style.boxShadow=
+"0 5px 15px rgba(0,0,0,.3)";
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+};
+
+document.body.appendChild(
+topBtn
+);
+
+const footer=
+document.createElement("footer");
+
+footer.innerHTML=`
+
+<hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
+
+<div style="font-size:22px;margin-bottom:10px;">
+
+People's Power & Peace Party (PPPP)
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🖼 Official Photo Library
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+🌐
+<a
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="color:white;">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</div>
+
+<div>
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</div>
+
+`;
+
+document.body.appendChild(
+footer
+);
+
+window.addEventListener(
+"load",
+function(){
+
+counter.innerHTML=
+"Total Photos : <b>"+
+photos.length+
+"</b>";
+
+render(filteredList);
+
+nowViewing.innerHTML=
+"No photo selected.";
+
+}
+);
+
+</script>
+</div>
+</body>
+</html>
