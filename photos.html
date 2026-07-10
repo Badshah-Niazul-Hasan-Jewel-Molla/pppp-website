@@ -14,13 +14,14 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f4f6f9;
+background:#f3f5f9;
 padding:20px;
 }
 
 h1{
 text-align:center;
 margin-bottom:20px;
+font-size:2rem;
 color:#222;
 }
 
@@ -29,85 +30,126 @@ width:100%;
 max-width:500px;
 display:block;
 margin:0 auto 25px;
-padding:12px;
-border-radius:10px;
-border:1px solid #ccc;
+padding:14px 18px;
+border-radius:30px;
+border:none;
+outline:none;
 font-size:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
 }
 
 .card{
-border-radius:15px;
+border-radius:22px;
 overflow:hidden;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
+padding:14px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+transition:transform .3s ease, box-shadow .3s ease;
 }
 
-.card img{
-width:100%;
-height:220px;
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.image-box{
+background:#fff;
+border-radius:18px;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+height:260px;
+margin-bottom:14px;
+}
+
+.image-box img{
+max-width:100%;
+max-height:100%;
 object-fit:contain;
-background:#fafafa;
+border-radius:12px;
 }
 
 .info{
-padding:12px;
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
 .name{
+background:rgba(255,255,255,.22);
+backdrop-filter:blur(8px);
+color:#fff;
+padding:12px 14px;
+border-radius:14px;
 font-weight:bold;
+font-size:15px;
 word-break:break-word;
-margin-bottom:10px;
 }
 
 .buttons{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
-button,a{
-flex:1;
-padding:10px;
+.buttons a,
+.buttons button{
+padding:12px;
 border:none;
-border-radius:8px;
-text-decoration:none;
-text-align:center;
-cursor:pointer;
+border-radius:14px;
 font-size:14px;
-color:white;
+font-weight:600;
+cursor:pointer;
+text-decoration:none;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:transform .2s ease, opacity .2s ease;
+}
+
+.buttons a:hover,
+.buttons button:hover{
+transform:translateY(-2px);
+opacity:.92;
 }
 
 .download{
-background:#00b894;
+background:#10b981;
 }
 
 .copy{
-background:#0984e3;
+background:#2563eb;
 }
 
 .share{
-background:#6c5ce7;
+background:#7c3aed;
 }
 
+@media(max-width:480px){
+.buttons{
+grid-template-columns:1fr;
+}
+}
 </style>
 </head>
 
 <body>
 
-<h1>📷 PPPP Photo Gallery</h1>
+<h1>📸 PPPP Photo Gallery</h1>
 
 <input id="search" type="text" placeholder="ছবি খুঁজুন...">
 
 <div class="gallery" id="gallery"></div>
 
 <script>
-
-const photos=[
+const photos = [
 "পিপিপিপি.png",
 "PPPP.png",
 "PPPP_Profile.png",
@@ -148,121 +190,67 @@ const colors = [
 "#2d3436"
 ];
 
-const gallery=document.getElementById("gallery");
+const gallery = document.getElementById("gallery");
 
 function render(list){
-
-gallery.innerHTML="";
+gallery.innerHTML = "";
 
 list.forEach((file, index) => {
-
 const color = colors[index % colors.length];
+const url = "photos/" + encodeURIComponent(file);
 
-const url="photos/"+encodeURIComponent(file);
-
-gallery.innerHTML+=`
-
-<div class="card"
-style="
-background:linear-gradient(135deg, ${color}, ${color}cc);
-padding:12px;
-">
-
-<div style="background:white;border-radius:12px;padding:10px;">
-<img src="${url}" loading="lazy">
+gallery.innerHTML += `
+<div class="card" style="background:linear-gradient(135deg, ${color}, ${color}cc);">
+<div class="image-box">
+<img src="${url}" alt="${file}" loading="lazy">
 </div>
 
 <div class="info">
-
-<div class="name"
-style="
-background:rgba(255,255,255,.25);
-color:#fff;
-padding:10px;
-border-radius:10px;
-backdrop-filter:blur(5px);
-">
-${file}
-</div>
+<div class="name">${file}</div>
 
 <div class="buttons">
-
-<a class="download" href="${url}" download>
-Download
-</a>
-
-<button class="copy" onclick="copyLink('${url}')">
-Copy Link
-</button>
-
-<button class="share" onclick="sharePhoto('${file}','${url}')">
-Share
-</button>
-
+<a class="download" href="${url}" download>⬇ Download</a>
+<button class="copy" onclick="copyLink('${url}')">🔗 Copy</button>
+<button class="share" onclick="sharePhoto('${file}', '${url}')">📤 Share</button>
 </div>
-
 </div>
-
 </div>
-
 `;
-
 });
-
 }
 
 render(photos);
 
-document.getElementById("search").addEventListener("input",e=>{
-
-const q=e.target.value.toLowerCase();
-
-render(
-photos.filter(p=>p.toLowerCase().includes(q))
-);
-
+document.getElementById("search").addEventListener("input", e => {
+const q = e.target.value.toLowerCase();
+render(photos.filter(p => p.toLowerCase().includes(q)));
 });
 
 function absolute(path){
-return new URL(path,location.href).href;
+return new URL(path, location.href).href;
 }
 
 function copyLink(path){
-
-navigator.clipboard.writeText(
-absolute(path)
-);
-
+navigator.clipboard.writeText(absolute(path));
 alert("Link copied.");
-
 }
 
-async function sharePhoto(name,path){
-
-const url=absolute(path);
+async function sharePhoto(name, path){
+const url = absolute(path);
 
 if(navigator.share){
-
 try{
-
 await navigator.share({
 title:name,
 text:name,
 url:url
 });
-
 }catch(e){}
-
 }else{
-
 navigator.clipboard.writeText(url);
-
 alert("Link copied.");
-
 }
-
 }
-
 </script>
 
 </body>
