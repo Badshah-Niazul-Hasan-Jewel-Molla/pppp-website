@@ -222,10 +222,12 @@ class="nowPlaying"
 id="nowPlaying">
 No video selected.
 </div>
-<audio
+<video
 id="audioPlayer"
-controls>
-</audio>
+controls
+width="100%"
+style="border-radius:15px;">
+</video>
 <div
 class="controls">
 <button class="prev" id="prevBtn">
@@ -295,7 +297,7 @@ const colors = [
 "#e84393",
 "#2d3436"
 ];
-const audio = document.getElementById("audioPlayer");
+const video = document.getElementById("audioPlayer");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const counter = document.getElementById("counter");
