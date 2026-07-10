@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPPP Photo Gallery</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+color:#222;
+}
+
+#search{
+width:100%;
+max-width:500px;
+display:block;
+margin:0 auto 25px;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.card{
+background:#fff;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:contain;
+background:#fafafa;
+}
+
+.info{
+padding:12px;
+}
+
+.name{
+font-weight:bold;
+word-break:break-word;
+margin-bottom:10px;
+}
+
+.buttons{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+}
+
+button,a{
+flex:1;
+padding:10px;
+border:none;
+border-radius:8px;
+text-decoration:none;
+text-align:center;
+cursor:pointer;
+font-size:14px;
+color:white;
+}
+
+.download{
+background:#00b894;
+}
+
+.copy{
+background:#0984e3;
+}
+
+.share{
+background:#6c5ce7;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📷 PPPP Photo Gallery</h1>
+
+<input id="search" type="text" placeholder="ছবি খুঁজুন...">
+
+<div class="gallery" id="gallery"></div>
+
+<script>
+
+const photos=[
+"পিপিপিপি.png",
+"PPPP.png",
+"PPPP_Profile.png",
+"PPPP_Cover.png",
+"PPPP_Logo.png",
+"PPPP_Flag.png",
+"PPPP_Founder.png",
+"PPPP_Cofounder.png",
+"PPPP_Conact.png",
+"PPPP_Slogan.png",
+"PPPP_Motto.png",
+"PPPP_Symbol.png",
+"PPPP_Pen.png",
+"PPPP_Kolom.png",
+"PPPP_Lotus.png",
+"PPPP_Poddoful.png",
+"PPPP_Date.png",
+"PPPP_Khejur.png",
+"PPPP_Mothers_Embrace.jpeg",
+"PPPP_Mayer_Achol.jpeg",
+"PPPP_App.png",
+"PPPP_Icon.png",
+"PPPP_Chat.png",
+"PPPP_Menu.png",
+"PPPP_Score.png",
+"PPPP_QR.png",
+"PPPP_LOVEit.jpg"
+];
+
+const gallery=document.getElementById("gallery");
+
+function render(list){
+
+gallery.innerHTML="";
+
+list.forEach(file=>{
+
+const url="photos/"+encodeURIComponent(file);
+
+gallery.innerHTML+=`
+
+<div class="card">
+
+<img src="${url}" loading="lazy">
+
+<div class="info">
+
+<div class="name">${file}</div>
+
+<div class="buttons">
+
+<a class="download" href="${url}" download>
+Download
+</a>
+
+<button class="copy" onclick="copyLink('${url}')">
+Copy Link
+</button>
+
+<button class="share" onclick="sharePhoto('${file}','${url}')">
+Share
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+render(photos);
+
+document.getElementById("search").addEventListener("input",e=>{
+
+const q=e.target.value.toLowerCase();
+
+render(
+photos.filter(p=>p.toLowerCase().includes(q))
+);
+
+});
+
+function absolute(path){
+return new URL(path,location.href).href;
+}
+
+function copyLink(path){
+
+navigator.clipboard.writeText(
+absolute(path)
+);
+
+alert("Link copied.");
+
+}
+
+async function sharePhoto(name,path){
+
+const url=absolute(path);
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+title:name,
+text:name,
+url:url
+});
+
+}catch(e){}
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+alert("Link copied.");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
