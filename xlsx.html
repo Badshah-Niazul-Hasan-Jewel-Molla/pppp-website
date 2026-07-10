@@ -106,7 +106,7 @@ color:#ccc;
 <div class="grid" id="grid"></div>
 
 <footer>
-সব xlsx অনলাইনে দেখুন, ডাউনলোড করুন, শেয়ার করুন।
+Total XLSX : <span id="count"></span>
 </footer>
 
 <script>
@@ -134,6 +134,7 @@ const files=[
 ];
 
 const grid=document.getElementById("grid");
+const count=document.getElementById("count");
 
 function render(list){
 
