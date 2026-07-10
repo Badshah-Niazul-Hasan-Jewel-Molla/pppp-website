@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌀 PPPP DOCX 🌀</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui,sans-serif;
+}
+
+body{
+background:#111827;
+padding:20px;
+color:#fff;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+font-size:32px;
+}
+
+.search{
+margin:auto;
+max-width:700px;
+margin-bottom:25px;
+}
+
+.search input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+background:#2d3436;
+color:#fff;
+font-size:17px;
+outline:none;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.title{
+font-size:20px;
+font-weight:bold;
+margin-bottom:20px;
+word-break:break-word;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+button,a{
+text-decoration:none;
+border:none;
+padding:12px;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+text-align:center;
+color:#fff;
+transition:.2s;
+}
+
+.open{
+background:#2d3436;
+}
+
+.download{
+background:#0984e3;
+}
+
+.copy{
+background:#e84393;
+}
+
+.share{
+background:#00b894;
+}
+
+button:hover,
+a:hover{
+transform:scale(1.04);
+filter:brightness(1.08);
+}
+
+#msg{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#6c5ce7;
+padding:12px 18px;
+border-radius:12px;
+display:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌀 PPPP DOCX 🌀</h1>
+
+<div class="search">
+<input
+id="search"
+placeholder="Search DOCX..."
+onkeyup="searchDocs()">
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div id="msg"></div>
+
+<script>
+
+const colors=[
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+
+const files=[
+
+"PPPP.docx",
+"PPPP_Election_Manifesto.docx",
+"PPPP_Membership_Form.docx",
+"PPPP_Politics_Zero_Cost.docx",
+"PPPP_Election_Zero_Cost.docx",
+"PPPP_MP_Candidate_Zero_Cost.docx",
+"PPPP_Volunteers_Zero_Cost.docx",
+"PPPP_Emails.docx",
+"PPPP_Emails_Professional.docx",
+"PPPP_Emails_Premium.docx",
+"PPPP_Colors.docx",
+"PPPP_html.docx",
+"PPPP_Photos.docx"
+
+];
+
+const grid=document.getElementById("grid");
+
+files.forEach((file,i)=>{
+
+const color=colors[i%colors.length];
+const path="docx/"+file;
+
+grid.innerHTML+=`
+
+<div class="card"
+style="background:${color}"
+data-name="${file.toLowerCase()}">
+
+<div class="title">${file}</div>
+
+<div class="buttons">
+
+<a
+class="open"
+target="_blank"
+href="${path}">
+📖 Open
+</a>
+
+<a
+class="download"
+download
+href="${path}">
+⬇ Download
+</a>
+
+<button
+class="copy"
+onclick="copyLink('${path}')">
+🔗 Copy
+</button>
+
+<button
+class="share"
+onclick="shareDoc('${file}','${path}')">
+📤 Share
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+function searchDocs(){
+
+let q=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+document
+.querySelectorAll(".card")
+.forEach(card=>{
+
+card.style.display=
+card.dataset.name.includes(q)
+?
+"block"
+:
+"none";
+
+});
+
+}
+
+function copyLink(path){
+
+const link=location.origin+"/docx/"+path.split("/").pop();
+
+navigator.clipboard.writeText(link);
+
+show("Link Copied");
+
+}
+
+async function shareDoc(name,path){
+
+const url=location.origin+"/docx/"+path.split("/").pop();
+
+if(navigator.share){
+
+await navigator.share({
+
+title:name,
+text:name,
+url:url
+
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+show("Link Copied");
+
+}
+
+}
+
+function show(text){
+
+const m=document.getElementById("msg");
+
+m.innerHTML=text;
+
+m.style.display="block";
+
+setTimeout(()=>{
+
+m.style.display="none";
+
+},1800);
+
+}
+
+</script>
+
+</body>
+</html>
