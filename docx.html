@@ -190,10 +190,8 @@ files.forEach((file,i)=>{
 
 const color=colors[i%colors.length];
 const path="docx/"+file;
-const fullUrl=
-location.origin+
-location.pathname.replace("docx.html","")+
-path;
+const fullUrl =
+"https://naz-niaz.github.io/pppp_bangladesh/" + path;
 
 grid.innerHTML+=`
 
@@ -208,7 +206,7 @@ data-name="${file.toLowerCase()}">
 <a
 class="open"
 target="_blank"
-href="https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(fullUrl)}">
+href="https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(fullUrl)}">
 📖 Open
 </a>
 
