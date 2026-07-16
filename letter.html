@@ -13,8 +13,10 @@
 }
 
 body{
+    margin:0;
     font-family:Arial,sans-serif;
-    background:linear-gradient(180deg,#67d9d9,#4fc3c3);
+    background:linear-gradient(135deg,#45c5dc,#63d2c6,#45c5dc);
+    color:#fff;
     padding:20px;
     min-height:100vh;
 }
@@ -123,9 +125,45 @@ p{
         font-size:75px;
     }
 }
+#topBtn{
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:9999;
+}
+
+#topBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
+}
 </style>
 </head>
 <body>
+
+<header style="text-align:center;padding:35px 20px;color:#fff;">
+    <h1 style="margin:0;font-size:58px;text-shadow:0 4px 10px rgba(0,0,0,.25);">
+        🅿️ PPPP Letters
+    </h1>
+
+    <h2 style="margin:18px 0 10px;">
+        People's Power & Peace Party (PPPP)
+    </h2>
+
+    <p style="margin:0;color:#fff;font-size:1.5rem;">
+        Power to the People • Peace for the People
+    </p>
+</header>
 
 <div class="container">
 
@@ -208,7 +246,53 @@ letters.forEach((letter,index)=>{
 
 });
 
+window.onscroll=function(){
+const btn=document.getElementById("topBtn");
+
+if(document.documentElement.scrollTop>300){
+btn.style.display="block";
+}else{
+btn.style.display="none";
+}
+};
+
+function topFunction(){
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
 </script>
+
+<footer style="text-align:center;color:#fff;padding:60px 20px 40px;">
+
+<hr style="border:none;height:2px;background:rgba(255,255,255,.35);margin-bottom:35px;">
+
+<h2>People's Power & Peace Party (PPPP)</h2>
+
+<p style="color:#fff;">
+Power to the People • Peace for the People
+</p>
+
+<h3>🅿️ Official Letter Library</h3>
+
+<p>
+🌐
+<a href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="color:#fff;text-decoration:underline;">
+https://naz-niaz.github.io/pppp_bangladesh/
+</a>
+</p>
+
+<p style="color:#fff;">
+© 2014-Present PPPP. All Rights Reserved.
+</p>
+
+</footer>
+
+<button id="topBtn" onclick="topFunction()">↑</button>
 
 </body>
 </html>
