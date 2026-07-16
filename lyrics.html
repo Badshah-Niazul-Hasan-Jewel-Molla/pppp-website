@@ -4376,7 +4376,7 @@ onclick="copyText('${escapeText(song.style)}')">
 
 class="action-btn copy-link"
 
-onclick="copyLink('${song.file}')">
+onclick="copyLink(${number})">
 
 🔗 Copy Link
 
@@ -4389,7 +4389,7 @@ onclick="copyLink('${song.file}')">
 
 class="action-btn share-btn"
 
-onclick="shareSong('${song.title}','${song.file}')">
+onclick="shareSong('${escapeText(song.title)}',${number})">
 
 📤 Share
 
@@ -4551,24 +4551,14 @@ showToast("❌ Copy Failed");
 //========================================================
 
 
-function copyLink(file){
-
+function copyLink(number){
 
 const link =
-
-window.location.href.replace(
-"lyrics.html",
-""
-)
-+
-"music/"
-+
-file;
-
-
+window.location.origin +
+window.location.pathname +
+"#song-" + number;
 
 copyText(link);
-
 
 }
 
@@ -4581,50 +4571,38 @@ copyText(link);
 //========================================================
 
 
-function shareSong(title,file){
+async function shareSong(title,number){
 
-
+const url =
+window.location.origin +
+window.location.pathname +
+"#song-" + number;
 
 const shareData={
 
+title:"PPPP Music Lyrics",
 
-title:
+text:"PPPP Music Lyrics - " + title,
 
-title,
-
-
-text:
-
-"PPPP Music Lyrics - " + title,
-
-
-url:
-
-window.location.href
-
-
+url:url
 
 };
 
-
-
 if(navigator.share){
 
+try{
 
-navigator.share(shareData);
+await navigator.share(shareData);
 
+}catch(e){}
+
+}else{
+
+copyText(
+shareData.text + " " + url
+);
 
 }
-
-else{
-
-
-copyText(window.location.href);
-
-
-}
-
-
 
 }
 
