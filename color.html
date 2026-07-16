@@ -403,8 +403,8 @@ total += filtered.length;
 
    app.appendChild(grid);
  });
-document.getElementById("totalColors").textContent =
-"Total Color : " + total;
+document.getElementById("totalColors").innerHTML =
+"Total Color : <b>" + total + "</b>";
 }
 
 function toggleTheme(){
