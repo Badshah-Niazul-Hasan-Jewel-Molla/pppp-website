@@ -2083,7 +2083,12 @@ const card = document.createElement("article");
 card.className = "glass song-card";
 
 card.style.border = "3px solid " + color;
-card.style.boxShadow = "0 0 20px " + color + "55";
+
+card.style.background =
+`linear-gradient(135deg,${color}55,${color}22)`;
+
+card.style.boxShadow =
+`0 0 20px ${color}55`;
 
 
 card.id = "song-" + number;
@@ -2123,7 +2128,9 @@ ${song.file}
 </div>
 
 
-<div class="content-box">
+<div
+class="content-box"
+style="background:${color}33;border-color:${color};">
 
 ${song.title}
 
@@ -2139,7 +2146,9 @@ ${song.title}
 </div>
 
 
-<div class="content-box lyrics-text">
+<div
+class="content-box lyrics-text"
+style="background:${color}33;border-color:${color};">
 
 ${song.lyrics}
 
@@ -2155,7 +2164,9 @@ ${song.lyrics}
 </div>
 
 
-<div class="content-box style-text">
+<div
+class="content-box style-text"
+style="background:${color}33;border-color:${color};">
 
 ${song.style}
 
