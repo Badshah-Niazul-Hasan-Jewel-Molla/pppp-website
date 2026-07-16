@@ -1750,6 +1750,16 @@ Paste here
 
 ========================================================*/
 
+const colors = [
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
 
 const songs = [
 
@@ -2064,12 +2074,16 @@ songs.forEach((song,index)=>{
 
 const number = index + 1;
 
+const color = colors[index % colors.length];
 
 
 const card = document.createElement("article");
 
 
 card.className = "glass song-card";
+
+card.style.border = "3px solid " + color;
+card.style.boxShadow = "0 0 20px " + color + "55";
 
 
 card.id = "song-" + number;
@@ -2082,9 +2096,11 @@ card.innerHTML = `
 <div class="song-header">
 
 
-<div class="song-number">
+<div
+class="song-number"
+style="background:${color};">
 
-🎵 Song Number: ${number}
+${number}
 
 </div>
 
