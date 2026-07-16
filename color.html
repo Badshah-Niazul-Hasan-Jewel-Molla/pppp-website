@@ -1,151 +1,422 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors)</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPPP Color System | 125 HEX Pattern Colors</title>
+
+<style>
+
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#0f0f0f;
-  color:#fff;
-  transition:.3s;
+
+margin:0;
+font-family:Arial,sans-serif;
+background:#0f0f0f;
+color:#fff;
+transition:.3s;
+
 }
+
 
 body.light{
-  background:#f5f5f5;
-  color:#111;
+
+background:#f5f5f5;
+color:#111;
+
 }
+
+
+.container{
+
+max-width:1200px;
+margin:auto;
+
+}
+
+
+/* PPPP Header */
 
 .header{
-  text-align:center;
-  padding:25px 15px;
+
+text-align:center;
+padding:25px 15px;
+
 }
+
 
 .header h1{
-  margin:0;
-  font-size:24px;
+
+margin:0;
+font-size:26px;
+
 }
+
 
 .header p{
-  max-width:900px;
-  margin:12px auto;
-  line-height:1.6;
-  color:#aaa;
+
+margin:10px auto;
+line-height:1.6;
+color:#aaa;
+
 }
+
 
 body.light .header p{
-  color:#555;
+
+color:#555;
+
 }
+
+
+
+/* Topbar */
+
+.topbar{
+
+background:#191919;
+color:white;
+text-align:center;
+padding:15px;
+margin:0 20px 20px;
+border-radius:10px;
+font-weight:bold;
+line-height:1.6;
+
+}
+
+
+
+/* Color Title */
+
+.color-title{
+
+text-align:center;
+padding:10px 20px;
+
+}
+
+
+.color-title h1{
+
+font-size:22px;
+
+}
+
+
+/* Toolbar */
 
 .toolbar{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:15px;
+
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px;
+
 }
+
 
 .toolbar input{
-  padding:10px;
-  width:240px;
-  border:none;
-  border-radius:8px;
+
+padding:10px;
+width:240px;
+border:none;
+border-radius:8px;
+
 }
+
 
 .toolbar button{
-  padding:10px 16px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
+
+padding:10px 16px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+
 }
+
+
+
+/* Section */
 
 .section-title{
-  margin:30px 20px 10px;
-  font-size:18px;
-  font-weight:bold;
+
+margin:30px 20px 10px;
+font-size:18px;
+font-weight:bold;
+
 }
+
+
+
+/* Color Grid */
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-  padding:0 20px 25px;
+
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px;
+padding:0 20px 25px;
+
 }
+
+
 
 .box{
-  min-height:100px;
-  border-radius:10px;
-  padding:10px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  font-weight:bold;
-  text-align:center;
-  text-shadow:0 1px 3px rgba(0,0,0,.6);
-  transition:.2s;
+
+min-height:100px;
+border-radius:10px;
+padding:10px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+cursor:pointer;
+
+font-weight:bold;
+text-align:center;
+
+text-shadow:
+0 1px 3px rgba(0,0,0,.6);
+
+transition:.2s;
+
 }
+
+
 
 .box:hover{
-  transform:scale(1.04);
+
+transform:scale(1.04);
+
 }
+
+
 
 .hex{
-  font-size:14px;
+
+font-size:14px;
+
 }
+
 
 .name{
-  font-size:12px;
-  margin-top:6px;
+
+font-size:12px;
+margin-top:6px;
+
 }
+
+
+
+/* Footer */
+
+.footer{
+
+margin-top:30px;
+background:#191919;
+color:white;
+
+text-align:center;
+
+padding:20px;
+
+line-height:1.6;
+
+border-radius:10px 10px 0 0;
+
+}
+
+
+
+/* Toast */
 
 .toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#222;
-  padding:10px 14px;
-  border-radius:8px;
-  opacity:0;
-  transition:.3s;
+
+position:fixed;
+bottom:20px;
+left:50%;
+
+transform:translateX(-50%);
+
+background:#222;
+
+padding:10px 14px;
+
+border-radius:8px;
+
+opacity:0;
+
+transition:.3s;
+
 }
+
+
 
 .toast.show{
-  opacity:1;
+
+opacity:1;
+
 }
+
+
+
+/* Mobile */
 
 @media(max-width:900px){
-  .grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+
 }
 
-@media(max-width:600px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
 }
-</style></head><body><div class="header">
-<h1> 19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors) </h1><p>
+
+
+
+@media(max-width:600px){
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>🎨 PPPP Colors</h1>
+
+<p>People's Power & Peace Party (PPPP)</p>
+
+<p>Power to the People • Peace for the People</p>
+
+</div>
+
+
+
+<div class="topbar">
+
+<div style="font-size:22px;margin-bottom:10px;">
+
+People's Power & Peace Party (PPPP)
+
+</div>
+
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+
+<div style="margin-bottom:8px;">
+
+🎨 Official Color Library
+
+</div>
+
+
+<div>
+
+🌐
+
+<a href="https://naz-niaz.github.io/pppp_bangladesh/" 
+target="_blank" 
+style="color:white;">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</div>
+
+
+</div>
+
+
+
+<div class="color-title">
+
+<h1>
+19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors)
+</h1>
+
+
+<p>
+
 📌 Overview<br>
+
 A mathematical color system generated using the repeating HEX pattern:
 19, 38, 57, 76, 95 — forming a structured palette of 125 unique colors.
-</p><div class="toolbar">
-<input type="text" id="search" placeholder="🔍 Search PPPP Colors...">
-<button onclick="toggleTheme()">🌗 Theme</button>
+
+</p>
+
+
 </div>
-</div><div id="app"></div><div class="toast" id="toast">Copied</div><script>
+
+
+
+<div class="toolbar">
+
+<input type="text" 
+id="search" 
+placeholder="🔍 Search PPPP Colors...">
+
+
+<button onclick="toggleTheme()">
+
+🌗 Theme
+
+</button>
+
+</div>
+
+
+
+<div id="app"></div>
+
+
+<div class="toast" id="toast">
+
+Copied
+
+</div>
+<script>
+
 const sections = [
 
 {
 title:"🌑 Base / Dark Core System",
+
 items:[
+
 {hex:"#191919",name:"গাঢ় চারকোল কালো"},
 {hex:"#191938",name:"নীলাভ কালো"},
 {hex:"#191957",name:"গভীর ইন্ডিগো"},
@@ -175,12 +446,17 @@ items:[
 {hex:"#199557",name:"একোয়া গ্রিন পালস"},
 {hex:"#199576",name:"সফট সায়ান মিস্ট"},
 {hex:"#199595",name:"পেল একোয়া"}
+
 ]
+
 },
+
 
 {
 title:"🌊 Ocean / Blue Spectrum",
+
 items:[
+
 {hex:"#381919",name:"গাঢ় মেরুন"},
 {hex:"#381938",name:"ডার্ক রোজ শ্যাডো"},
 {hex:"#381957",name:"ওয়াইন ডিপ"},
@@ -210,12 +486,17 @@ items:[
 {hex:"#389557",name:"রেডিশ ব্রাউন"},
 {hex:"#389576",name:"স্মোকি রোজ"},
 {hex:"#389595",name:"সি-গ্রিন টিল"}
+
 ]
+
 },
+
 
 {
 title:"🌿 Nature / Green Flow System",
+
 items:[
+
 {hex:"#571919",name:"গভীর ওয়াইন শ্যাডো"},
 {hex:"#571938",name:"ডার্ক ব্রিক ওয়াইন"},
 {hex:"#571957",name:"বার্গান্ডি ডিপ"},
@@ -245,12 +526,15 @@ items:[
 {hex:"#579557",name:"মিউটেড পিঙ্ক গ্রে"},
 {hex:"#579576",name:"ফেডেড মভ"},
 {hex:"#579595",name:"মিউটেড টিল"}
-]
-},
 
+]
+
+},
 {
 title:"🔥 Earth / Warm Core System",
+
 items:[
+
 {hex:"#761919",name:"ডার্ক ব্লাড উড"},
 {hex:"#761938",name:"ডার্ক চেরি ব্রাউন"},
 {hex:"#761957",name:"বার্ন্ট ওয়াইন উড"},
@@ -280,12 +564,17 @@ items:[
 {hex:"#769557",name:"মিস্ট গ্রে"},
 {hex:"#769576",name:"লাইট স্লেট"},
 {hex:"#769595",name:"ধূসরাভ টিল"}
+
 ]
+
 },
+
 
 {
 title:"🌫 Neutral / Final Layer System",
+
 items:[
+
 {hex:"#951919",name:"বারগান্ডি অ্যাশ"},
 {hex:"#951938",name:"ডার্ক রেড গ্রে"},
 {hex:"#951957",name:"ওয়াইন গ্রে"},
@@ -315,67 +604,195 @@ items:[
 {hex:"#959557",name:"পেল স্টিল"},
 {hex:"#959576",name:"কুল লাইট গ্রে"},
 {hex:"#959595",name:"হালকা ধূসর"}
+
 ]
+
 }
+
 ];
 
+
+
 function showToast(text){
- const t=document.getElementById("toast");
- t.innerText=text;
- t.classList.add("show");
- setTimeout(()=>t.classList.remove("show"),1200);
+
+const t=document.getElementById("toast");
+
+t.innerText=text;
+
+t.classList.add("show");
+
+setTimeout(()=>{
+
+t.classList.remove("show");
+
+},1200);
+
 }
+
+
 
 function render(){
- const app=document.getElementById("app");
- const q=document.getElementById("search").value.toLowerCase();
 
- app.innerHTML="";
+const app=document.getElementById("app");
 
- sections.forEach(section=>{
-   const filtered=section.items.filter(item =>
-      item.hex.toLowerCase().includes(q) ||
-      item.name.toLowerCase().includes(q)
-   );
+const q=document.getElementById("search").value.toLowerCase();
 
-   if(filtered.length===0) return;
 
-   const title=document.createElement("div");
-   title.className="section-title";
-   title.innerText=section.title;
-   app.appendChild(title);
+app.innerHTML="";
 
-   const grid=document.createElement("div");
-   grid.className="grid";
 
-   filtered.forEach(item=>{
-      const box=document.createElement("div");
-      box.className="box";
-      box.style.background=item.hex;
+sections.forEach(section=>{
 
-      box.innerHTML=`
-      <div class="hex">${item.hex}</div>
-      <div class="name">${item.name}</div>
-      `;
 
-      box.onclick=()=>{
-        navigator.clipboard.writeText(item.hex);
-        showToast("Copied: " + item.hex);
-      };
+const filtered=section.items.filter(item=>
 
-      grid.appendChild(box);
-   });
+item.hex.toLowerCase().includes(q) ||
 
-   app.appendChild(grid);
- });
+item.name.toLowerCase().includes(q)
+
+);
+
+
+if(filtered.length===0) return;
+
+
+
+const title=document.createElement("div");
+
+title.className="section-title";
+
+title.innerText=section.title;
+
+app.appendChild(title);
+
+
+
+const grid=document.createElement("div");
+
+grid.className="grid";
+
+
+
+filtered.forEach(item=>{
+
+
+const box=document.createElement("div");
+
+box.className="box";
+
+box.style.background=item.hex;
+
+
+
+box.innerHTML=`
+
+<div class="hex">${item.hex}</div>
+
+<div class="name">${item.name}</div>
+
+`;
+
+
+
+box.onclick=()=>{
+
+navigator.clipboard.writeText(item.hex);
+
+showToast("Copied: "+item.hex);
+
+};
+
+
+
+grid.appendChild(box);
+
+
+});
+
+
+app.appendChild(grid);
+
+
+});
+
+
 }
+
+
 
 function toggleTheme(){
- document.body.classList.toggle("light");
+
+document.body.classList.toggle("light");
+
 }
 
-document.getElementById("search").addEventListener("input",render);
+
+
+document
+.getElementById("search")
+.addEventListener("input",render);
+
+
 
 render();
-</script></body>
+
+
+</script>
+
+
+
+<footer class="footer">
+
+
+<div style="margin-bottom:8px;">
+
+🎨 PPPP Color System
+
+</div>
+
+
+<div style="margin-bottom:8px;">
+
+People's Power & Peace Party (PPPP)
+
+</div>
+
+
+<div style="margin-bottom:8px;">
+
+Power to the People • Peace for the People
+
+</div>
+
+
+<div style="margin-bottom:8px;">
+
+🌐
+
+<a href="https://naz-niaz.github.io/pppp_bangladesh/" 
+target="_blank"
+style="color:white;">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</div>
+
+
+<div>
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</div>
+
+
+</footer>
+
+
+</div>
+
+
+</body>
+
 </html>
