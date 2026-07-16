@@ -14,14 +14,39 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f4f6f9;
+background:linear-gradient(-45deg,#ff6b6b,#4ecdc4,#45b7d1,#96c93d);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
 padding:20px;
+min-height:100vh;
 }
 
-h1{
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+max-width:1500px;
+margin:auto;
+}
+
+.header{
 text-align:center;
-margin-bottom:20px;
-color:#222;
+color:white;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:35px;
+margin-bottom:10px;
+text-shadow:0 2px 10px rgba(0,0,0,.35);
+}
+
+.header p{
+font-size:18px;
+opacity:.95;
 }
 
 #search{
@@ -94,19 +119,32 @@ background:#0984e3;
 background:#6c5ce7;
 }
 
+footer{
+margin-top:40px;
+text-align:center;
+color:white;
+font-weight:bold;
+font-size:15px;
+padding:20px;
+}
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
+<div class="header">
 <h1>📷 PPPP Photos</h1>
+<p>People's Power & Peace Party (PPPP)</p>
+<p>Power to the People • Peace for the People</p>
+</div>
 
 <input id="search" type="text" placeholder="🔍 Search PPPP Photos...">
 
 <div class="gallery" id="gallery"></div>
 
 <script>
-
 const photos=[
 "পিপিপিপি.png",
 "PPPP.png",
@@ -154,9 +192,9 @@ function render(list){
 
 gallery.innerHTML="";
 
-list.forEach((file, index) => {
+list.forEach((file,index)=>{
 
-const color = colors[index % colors.length];
+const color=colors[index%colors.length];
 
 const url="photos/"+encodeURIComponent(file);
 
@@ -262,8 +300,40 @@ alert("Link copied.");
 }
 
 }
-
 </script>
+
+<footer>
+
+<hr style="margin:25px 0;border:none;height:2px;background:rgba(255,255,255,.35);">
+
+<div style="font-size:22px;margin-bottom:10px;">
+People's Power & Peace Party (PPPP)
+</div>
+
+<div style="margin-bottom:8px;">
+Power to the People • Peace for the People
+</div>
+
+<div style="margin-bottom:8px;">
+📷 Official Photo Gallery
+</div>
+
+<div style="margin-bottom:8px;">
+🌐
+<a href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="color:white;">
+https://naz-niaz.github.io/pppp_bangladesh/
+</a>
+</div>
+
+<div>
+© 2014-Present PPPP. All Rights Reserved.
+</div>
+
+</footer>
+
+</div>
 
 </body>
 </html>
