@@ -161,7 +161,17 @@ Power to the People • Peace for the People
 </header>
 <div class="toolbar">
 <input type="text" id="search" placeholder="🔍 Search PPPP Colors...">
-</div><div id="app"></div><div class="toast" id="toast">Copied</div><script>
+</div>
+
+<div id="totalColors" style="
+margin-top:12px;
+font-weight:bold;
+font-size:16px;
+text-align:center;
+">
+Total Color : 0
+</div>
+<div id="app"></div><div class="toast" id="toast">Copied</div><script>
 const sections = [
 
 {
@@ -351,6 +361,8 @@ function render(){
  const app=document.getElementById("app");
  const q=document.getElementById("search").value.toLowerCase();
 
+ let total = 0;
+
  app.innerHTML="";
 
  sections.forEach(section=>{
@@ -358,6 +370,7 @@ function render(){
       item.hex.toLowerCase().includes(q) ||
       item.name.toLowerCase().includes(q)
    );
+total += filtered.length;
 
    if(filtered.length===0) return;
 
@@ -389,6 +402,8 @@ function render(){
 
    app.appendChild(grid);
  });
+document.getElementById("totalColors").textContent =
+"Total Color : " + total;
 }
 
 function toggleTheme(){
