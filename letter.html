@@ -128,17 +128,17 @@ p{
 #topBtn{
 display:none;
 position:fixed;
-bottom:25px;
 right:25px;
-width:60px;
-height:60px;
+bottom:25px;
+width:65px;
+height:65px;
 border:none;
 border-radius:50%;
 background:#1e88e5;
 color:#fff;
-font-size:28px;
+font-size:30px;
 cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,.35);
+box-shadow:0 6px 16px rgba(0,0,0,.35);
 transition:.3s;
 z-index:9999;
 }
@@ -151,17 +151,28 @@ transform:scale(1.08);
 </head>
 <body>
 
-<header style="text-align:center;padding:30px 20px;color:#fff;">
+<header style="text-align:center;padding:35px 15px;color:#fff;">
 
-<h1 style="margin:0;font-size:48px;">
+<h1 style="
+margin:0;
+font-size:clamp(32px,7vw,58px);
+white-space:nowrap;
+text-shadow:0 4px 10px rgba(0,0,0,.25);
+">
 🅿️ PPPP Letters
 </h1>
 
-<h2 style="margin:10px 0;">
+<h2 style="
+margin:15px 0 10px;
+font-size:clamp(18px,4vw,32px);
+">
 People's Power & Peace Party (PPPP)
 </h2>
 
-<p style="margin:0;">
+<p style="
+margin:0;
+font-size:clamp(15px,3vw,22px);
+">
 Power to the People • Peace for the People
 </p>
 
@@ -247,7 +258,6 @@ letters.forEach((letter,index)=>{
 
 window.onscroll=function(){
 const btn=document.getElementById("topBtn");
-
 if(document.documentElement.scrollTop>300||document.body.scrollTop>300){
 btn.style.display="block";
 }else{
@@ -264,9 +274,9 @@ behavior:"smooth"
 
 </script>
 
-<footer style="color:#fff;text-align:center;padding:40px 20px;margin-top:60px;">
+<footer style="text-align:center;color:#fff;padding:60px 20px 40px;">
 
-<hr style="opacity:.4;">
+<hr style="border:none;height:2px;background:rgba(255,255,255,.35);margin-bottom:35px;">
 
 <h2>
 People's Power & Peace Party (PPPP)
@@ -284,7 +294,7 @@ Power to the People • Peace for the People
 🌐
 <a href="https://naz-niaz.github.io/pppp_bangladesh/"
 target="_blank"
-style="color:#fff;text-decoration:underline;">
+style="color:#fff;text-decoration:none;">
 https://naz-niaz.github.io/pppp_bangladesh/
 </a>
 </p>
