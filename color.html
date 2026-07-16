@@ -7,12 +7,11 @@
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#4fc3d7,#5fd3c8,#4fc3d7);
-  color:#fff;
-  transition:.3s;
-  min-height:100vh;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#45c5dc,#63d2c6,#45c5dc);
+color:#fff;
+min-height:100vh;
 }
 
 body.light{
@@ -134,10 +133,31 @@ body.light .header p{
   }
 }
 </style></head><body>
-<header style="padding:30px 20px;text-align:center;color:#fff;">
-<h1 style="margin:0;font-size:48px;">🎨 PPPP Colors</h1>
-<h2 style="margin:10px 0;">People's Power & Peace Party (PPPP)</h2>
-<p style="margin:0;">Power to the People • Peace for the People</p>
+<header style="text-align:center;padding:35px 15px;color:#fff;">
+
+<h1 style="
+margin:0;
+font-size:clamp(32px,7vw,58px);
+white-space:nowrap;
+text-shadow:0 4px 10px rgba(0,0,0,.25);
+">
+🎨 PPPP Colors
+</h1>
+
+<h2 style="
+margin:15px 0 10px;
+font-size:clamp(18px,4vw,32px);
+">
+People's Power & Peace Party (PPPP)
+</h2>
+
+<p style="
+margin:0;
+font-size:clamp(15px,3vw,22px);
+">
+Power to the People • Peace for the People
+</p>
+
 </header>
 <div class="header">
 <h1> 19, 38, 57, 76, 95 HEX Pattern Color System (125 Colors) </h1><p>
@@ -401,21 +421,35 @@ behavior:"smooth"
 });
 }
 </script>
-<footer style="color:#fff;text-align:center;padding:40px 20px;margin-top:60px;">
-<hr style="opacity:.4;">
-<h2>People's Power & Peace Party (PPPP)</h2>
-<p>Power to the People • Peace for the People</p>
+<footer style="text-align:center;color:#fff;padding:60px 20px 40px;">
 
-<h3>🎨 Official Color Library</h3>
+<hr style="border:none;height:2px;background:rgba(255,255,255,.35);margin-bottom:35px;">
+
+<h2>
+People's Power & Peace Party (PPPP)
+</h2>
+
+<p>
+Power to the People • Peace for the People
+</p>
+
+<h3>
+🎨 Official Color Library
+</h3>
 
 <p>
 🌐
-<a href="https://naz-niaz.github.io/pppp_bangladesh/" target="_blank" style="color:#fff;">
+<a href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="color:#fff;text-decoration:none;">
 https://naz-niaz.github.io/pppp_bangladesh/
 </a>
 </p>
 
-<p>© 2014-Present PPPP. All Rights Reserved.</p>
+<p>
+© 2014-Present PPPP. All Rights Reserved.
+</p>
+
 </footer>
 
 <button onclick="topFunction()" id="topBtn">↑</button>
@@ -424,21 +458,24 @@ https://naz-niaz.github.io/pppp_bangladesh/
 #topBtn{
 display:none;
 position:fixed;
-bottom:25px;
 right:25px;
-width:60px;
-height:60px;
+bottom:25px;
+width:65px;
+height:65px;
 border:none;
 border-radius:50%;
 background:#1e88e5;
 color:#fff;
-font-size:28px;
+font-size:30px;
 cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,.35);
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
 z-index:9999;
 }
+
 #topBtn:hover{
 background:#1565c0;
+transform:scale(1.08);
 }
 </style>
 </body>
