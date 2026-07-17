@@ -50,8 +50,8 @@
 🔐 Firebase Authentication  
 ☁️ Cloud Firestore Database  
 📦 Firebase Storage  
-👤 Guest Chat  
-🧑‍💼 Admin Dashboard  
+👥 Guest Chat  
+👤 Admin Dashboard  
 ⌨️ Typing Indicator  
 👀 Seen Status  
 🟢 Online / Offline Status  
