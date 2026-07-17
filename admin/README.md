@@ -1,4 +1,4 @@
-# 💬 PPPP Chat Admin Panel v4.0.0
+# 💬 PPPP Chat Admin Panel v1.0.0
 
 📘 The **PPPP Chat Admin Panel** is the secure dashboard for managing visitor conversations in real time.
 
@@ -23,7 +23,7 @@
 🔒 Security  
 🌍 Browser Support  
 📌 Version  
-📄 License
+⚖️ License
 
 ---
 
@@ -34,7 +34,7 @@
 💬 Real-time Visitor Messages  
 📤 Send Reply  
 ⌨️ Typing Indicator  
-👁️ Seen Status  
+👀 Seen Status  
 🟢 Online / Offline Status  
 📋 Conversation List  
 🔍 Search Conversations  
@@ -43,51 +43,24 @@
 
 ---
 
-# 📂 Folder Structure
+# 👤 PPPP Admin Structure
 
 <pre>
-pppp_bangladesh/
+admin/
 │
-├── index.html
-├── about.html
-├── contact.html
+├── 🔐 login.html
+├── 👤 admin.html
+├── 🎨 admin.css
+├── ⚙️ admin.js
+├── 🔑 auth.js
+└── 📖 README.md
+
+root/
 │
-├── chat/
-│   ├── assets/
-│   │   ├── logo.svg
-│   │   ├── avatar.svg
-│   │   ├── loading.svg
-│   │   └── notification.mp3
-│   │
-│   ├── chat-loader.js
-│   ├── chat.html
-│   ├── chat.css
-│   ├── chat.js
-│   ├── auth.js
-│   ├── ui.js
-│   ├── utils.js
-│   ├── config.js
-│   ├── firebase.js
-│   ├── realtime.js
-│   ├── messageService.js
-│   ├── upload.js
-│   ├── notification.js
-│   ├── state.js
-│   └── README.md
-│
-├── admin/
-│   ├── login.html
-│   ├── admin.html
-│   ├── admin.css
-│   ├── admin.js
-│   ├── auth.js
-│   └── README.md
-│
-├── firestore.rules
-├── firestore.indexes.json
-├── storage.rules
-├── firebase.json
-└── README.md
+├── 🔥 firestore.rules
+├── 📑 firestore.indexes.json
+├── 📦 storage.rules
+└── ⚙️ firebase.json
 </pre>
 
 ---
@@ -185,7 +158,7 @@ admin/admin.html
 👀 View conversations  
 💬 Reply to visitors  
 ⌨️ Monitor typing status  
-👁️ Mark messages as seen  
+👁️👁️ Mark messages as seen  
 🟢 Track visitor activity
 
 ---
@@ -233,11 +206,11 @@ firebase deploy --only storage
 
 # 📌 Version
 
-📦 Version 4.0.0 (Stable Release)
+📦 Version 1.0.0
 
 ---
 
-# 📄 License
+# ⚖️ License
 
 📘 This module is part of the **PPPP Chat System**.
 
