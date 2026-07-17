@@ -1,4 +1,4 @@
-# 💬 PPPP Chat Admin Panel v1.0.0
+# 💬 PPPP Chat Admin Panel v1.0
 
 📘 The **PPPP Chat Admin Panel** is the secure dashboard for managing visitor conversations in real time.
 
@@ -206,7 +206,7 @@ firebase deploy --only storage
 
 # 📌 Version
 
-📦 Version 1.0.0
+📦 Version 1.0
 
 ---
 
