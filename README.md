@@ -61,51 +61,78 @@
 
 ---
 
-# 📂 Project Structure
+# 🏛️ PPPP Structure
 
 <pre>
-pppp_bangladesh/
+🏠 Main
 │
-├── index.html
-├── about.html
-├── contact.html
+├── 🏠 PPPP Home
+├── ℹ️ PPPP About
+├── 🗳️ PPPP Manifesto
+├── ⚖️ PPPP Constitution
+└── 🫂 PPPP Leadership
+
+🤝 Get Involved
 │
-├── chat/
-│   ├── assets/
-│   │   ├── logo.svg
-│   │   ├── avatar.svg
-│   │   ├── loading.svg
-│   │   └── notification.mp3
-│   │
-│   ├── chat-loader.js
-│   ├── chat.html
-│   ├── chat.css
-│   ├── chat.js
-│   ├── auth.js
-│   ├── ui.js
-│   ├── utils.js
-│   ├── config.js
-│   ├── firebase.js
-│   ├── realtime.js
-│   ├── messageService.js
-│   ├── upload.js
-│   ├── notification.js
-│   ├── state.js
-│   └── README.md
+├── 📬 PPPP Join
+├── 🪪 PPPP Membership
+├── 🌱 PPPP Volunteer
+├── 💝 PPPP Donate
+└── 🌍 PPPP Chapters
+
+📰 Media & Communication
 │
-├── admin/
-│   ├── login.html
-│   ├── admin.html
-│   ├── admin.css
-│   ├── admin.js
-│   ├── auth.js
-│   └── README.md
+├── 📰 PPPP News
+├── 📢 PPPP Press
+├── 📅 PPPP Events
+├── 🖼️ PPPP Gallery
+├── 🎬 PPPP Videos
+├── 📚 PPPP Publications
+└── 📣 PPPP Newsletter
+
+🎵 Media Library
 │
-├── firestore.rules
-├── firestore.indexes.json
-├── storage.rules
-├── firebase.json
-└── README.md
+├── 🎵 PPPP Music
+├── 🎥 PPPP Music Videos
+├── 📷 PPPP Photos
+└── 📜 PPPP Lyrics
+
+📁 Resources
+│
+├── 📕 PPPP PDF
+├── 📘 PPPP Word
+├── 📊 PPPP Excel
+├── 📥 PPPP Download
+└── 📱 PPPP App
+
+🎨 Brand
+│
+├── 🎨 PPPP Colors
+├── 🅿️ PPPP Letters
+├── 📧 PPPP Emails
+└── 🔔 PPPP Notifications
+
+💬 Support
+│
+├── 🔍 PPPP Search
+├── 📞 PPPP Contact
+├── 🌐 PPPP Social Media
+├── ✔️ PPPP FAQ
+├── 🔊 PPPP Feedback
+├── 📮 PPPP Complaint
+└── 👥 PPPP Chat
+
+🔒 Legal
+│
+├── 🗝️ PPPP Privacy
+├── 🏷️ PPPP Terms
+├── 🔖 PPPP Disclaimer
+├── 🪟 PPPP Transparency
+└── ♿ PPPP Accessibility
+
+⚙️ Administration
+│
+└── 👤 PPPP Admin
 </pre>
 
 ---
