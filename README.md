@@ -53,7 +53,7 @@
 👤 Guest Chat  
 🧑‍💼 Admin Dashboard  
 ⌨️ Typing Indicator  
-👁️ Seen Status  
+👀 Seen Status  
 🟢 Online / Offline Status  
 🔔 Browser Notifications  
 📱 Responsive Design  
@@ -171,11 +171,11 @@ firebase deploy --only storage
 
 # 📌 Version
 
-📦 Version 4.0.0 (Stable Release)
+📦 Version 1.0.0
 
 ---
 
-# 📄 License
+# ⚖️ License
 
 © 2014–Present  
 **People's Power & Peace Party (PPPP) Bangladesh**  
