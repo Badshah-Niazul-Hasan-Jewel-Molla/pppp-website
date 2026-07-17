@@ -13,7 +13,7 @@
 🔥 Firebase Services  
 🔐 Authentication  
 🗂️ Firestore Collections  
-👨‍💼 Admin Setup  
+👤 Admin Setup  
 ⚙️ Installation  
 🚀 Deployment  
 🌐 GitHub Pages Integration  
