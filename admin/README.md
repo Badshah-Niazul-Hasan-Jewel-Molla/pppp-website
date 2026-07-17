@@ -16,7 +16,7 @@
 🔥 Requirements  
 🔐 Authentication  
 🗂️ Firestore  
-👥 Admin Roles  
+👤 Admin Roles  
 🔑 Login  
 🖥️ Dashboard  
 🚀 Deployment  
@@ -120,7 +120,7 @@ createdAt: serverTimestamp()
 
 ---
 
-# 👥 Admin Roles
+# 👤 Admin Roles
 
 📌 Supported roles:
 
