@@ -1,4 +1,4 @@
-# 💬 PPPP Chat System v1.0.0
+# 👥 PPPP Chat System v1.0
 
 📘 A lightweight, modern, real-time live chat system built with **Firebase Authentication**, **Cloud Firestore**, **Firebase Storage**, and **Vanilla JavaScript**.
 
@@ -237,7 +237,7 @@ firebase.json
 
 # 📌 Version
 
-📦 Version 1.0.0
+📦 Version 1.0
 
 ---
 
