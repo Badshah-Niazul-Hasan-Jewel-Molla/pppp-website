@@ -113,7 +113,7 @@ users
 
 ---
 
-# 👨‍💼 Admin Setup
+# 👤 Admin Setup
 
 📌 Create a document inside:
 
