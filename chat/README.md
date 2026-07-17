@@ -1,4 +1,4 @@
-# 💬 PPPP Chat System v4.0.0
+# 💬 PPPP Chat System v1.0.0
 
 📘 A lightweight, modern, real-time live chat system built with **Firebase Authentication**, **Cloud Firestore**, **Firebase Storage**, and **Vanilla JavaScript**.
 
@@ -22,7 +22,7 @@
 📦 Required Files  
 🌍 Browser Support  
 📌 Version  
-📄 License  
+⚖️ License  
 
 ---
 
@@ -35,7 +35,7 @@
 ☁️ Cloud Firestore Database  
 📦 Firebase Storage Support  
 ⌨️ Typing Indicator  
-👁️ Seen Status  
+👀 Seen Status  
 🟢 Online / Offline Status  
 🔔 Browser Notifications  
 📎 File & Image Upload  
@@ -45,51 +45,33 @@
 
 ---
 
-# 📂 Folder Structure
+# 👥 PPPP Chat Structure
 
 <pre>
-pppp_bangladesh/
+chat/
 │
-├── index.html
-├── about.html
-├── contact.html
+├── 📄 chat.html
+├── 🎨 chat.css
+├── ⚡ chat-loader.js
+├── 💬 chat.js
+├── 🔐 auth.js
+├── 🖥️ ui.js
+├── 🛠️ utils.js
+├── ⚙️ config.js
+├── 🔥 firebase.js
+├── ☁️ realtime.js
+├── ✉️ messageService.js
+├── 📤 upload.js
+├── 🔔 notification.js
+├── 📊 state.js
+├── 📖 README.md
 │
-├── chat/
-│   ├── assets/
-│   │   ├── logo.svg
-│   │   ├── avatar.svg
-│   │   ├── loading.svg
-│   │   └── notification.mp3
-│   │
-│   ├── chat-loader.js
-│   ├── chat.html
-│   ├── chat.css
-│   ├── chat.js
-│   ├── auth.js
-│   ├── ui.js
-│   ├── utils.js
-│   ├── config.js
-│   ├── firebase.js
-│   ├── realtime.js
-│   ├── messageService.js
-│   ├── upload.js
-│   ├── notification.js
-│   ├── state.js
-│   └── README.md
-│
-├── admin/
-│   ├── login.html
-│   ├── admin.html
-│   ├── admin.css
-│   ├── admin.js
-│   ├── auth.js
-│   └── README.md
-│
-├── firestore.rules
-├── firestore.indexes.json
-├── storage.rules
-├── firebase.json
-└── README.md
+└── 📁 assets/
+    │
+    ├── 🖼️ logo.svg
+    ├── 👤 avatar.svg
+    ├── ⏳ loading.svg
+    └── 🔊 notification.mp3
 </pre>
 
 ---
@@ -255,11 +237,11 @@ firebase.json
 
 # 📌 Version
 
-📦 Version 4.0.0 (Stable Release)
+📦 Version 1.0.0
 
 ---
 
-# 📄 License
+# ⚖️ License
 
 📘 This project is publicly available on GitHub.
 
