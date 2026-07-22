@@ -163,7 +163,9 @@ const emails = [
 ];
 const colors=["#ff6b6b","#6c5ce7","#00b894","#fdcb6e","#e17055","#0984e3","#e84393","#2d3436"];
 const grid=document.getElementById("grid"),toast=document.getElementById("toast");
-function render(list){grid.innerHTML="";list.forEach(e=>{let d=document.createElement("div");d.className="card";d.innerHTML='<div class="email">'+e[0]+'</div><div>'+e[1]+'</div>';d.onclick=()=>{navigator.clipboard.writeText(e[0]);toast.style.display='block';setTimeout(()=>toast.style.display='none',1200)};grid.appendChild(d)});totalEmails.innerHTML="Total Emails : <b>"+list.length+"</b>";}
+function render(list){grid.innerHTML="";list.forEach((e,i)=>{let d=document.createElement("div");d.className="card";
+d.style.background=colors[i%colors.length];
+d.innerHTML='<div class="email">'+e[0]+'</div><div>'+e[1]+'</div>';d.onclick=()=>{navigator.clipboard.writeText(e[0]);toast.style.display='block';setTimeout(()=>toast.style.display='none',1200)};grid.appendChild(d)});totalEmails.innerHTML="Total Emails : <b>"+list.length+"</b>";}
 render(emails);
 search.oninput=()=>{let q=search.value.toLowerCase();render(emails.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q)));};
 window.onscroll=()=>topBtn.style.display=(document.documentElement.scrollTop>300)?"block":"none";
