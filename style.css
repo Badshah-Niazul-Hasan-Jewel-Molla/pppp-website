@@ -624,6 +624,39 @@ button:hover,
 
 }
 
+.card:nth-child(8n+1){
+    background:#ff6b6b;
+}
+
+.card:nth-child(8n+2){
+    background:#6c5ce7;
+}
+
+.card:nth-child(8n+3){
+    background:#00b894;
+}
+
+.card:nth-child(8n+4){
+    background:#fdcb6e;
+    color:#111;
+}
+
+.card:nth-child(8n+5){
+    background:#e17055;
+}
+
+.card:nth-child(8n+6){
+    background:#0984e3;
+}
+
+.card:nth-child(8n+7){
+    background:#e84393;
+}
+
+.card:nth-child(8n){
+    background:#2d3436;
+}
+
 .card:hover{
 
     transform:translateY(-5px);
