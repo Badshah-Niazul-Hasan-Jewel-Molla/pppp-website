@@ -1,111 +1,1363 @@
-:root {
-  --primary: #0b3d2e;
-  --secondary: #145a43;
-  --accent: #1dbf73;
-  --text: #1a1a1a;
-  --bg: #ffffff;
-  --light: #f5f7f6;
-  --border: #e6e6e6;
+/* ==========================================================
+   PPPP Universal Style.css
+   People's Power & Peace Party (PPPP)
+   Power to the People • Peace for the People
+   ========================================================== */
+
+
+/* ==========================
+   RESET
+========================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, Arial, sans-serif;
+
+/* ==========================
+   ROOT
+========================== */
+
+:root{
+
+    --bg1:#45c5dc;
+    --bg2:#63d2c6;
+    --white:#ffffff;
+    --black:#111111;
+
+    --blue:#1e88e5;
+    --blue-hover:#1565c0;
+
+    --shadow:0 6px 16px rgba(0,0,0,.25);
+    --radius:12px;
+    --transition:.25s ease;
+
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+
+/* ==========================
+   HTML
+========================== */
+
+html{
+
+    scroll-behavior:smooth;
+
 }
 
-/* HEADER */
-header {
-  background: var(--primary);
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
+
+/* ==========================
+   BODY
+========================== */
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--bg1),
+    var(--bg2),
+    var(--bg1)
+    );
+
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+
+    color:var(--white);
+
+    overflow-x:hidden;
+
 }
 
-/* NAVBAR */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background: var(--secondary);
+
+/* ==========================
+   TEXT
+========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+small,
+strong{
+
+    color:var(--white);
+
 }
 
-nav a {
-  color: white;
-  padding: 10px 15px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
+
+b{
+
+    color:#ffe082;
+
 }
 
-nav a:hover {
-  background: var(--accent);
-  color: #000;
+
+/* ==========================
+   LINKS
+========================== */
+
+a{
+
+    color:var(--white);
+    text-decoration:none;
+
+    transition:var(--transition);
+
 }
 
-/* CONTAINER */
-.container {
-  width: min(95%, 1100px);
-  margin: auto;
-  padding: 20px;
+a:hover{
+
+    opacity:.85;
+
 }
 
-/* BUTTONS */
-.pppp-btn {
-  display: inline-block;
-  background: var(--primary);
-  color: white;
-  padding: 10px 16px;
-  margin: 6px 0;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: 0.3s;
+
+/* ==========================
+   IMAGE
+========================== */
+
+img{
+
+    max-width:100%;
+    height:auto;
+    display:block;
+
 }
 
-.pppp-btn:hover {
-  background: var(--accent);
-  color: black;
+
+/* ==========================
+   VIDEO
+========================== */
+
+video{
+
+    max-width:100%;
+    border-radius:var(--radius);
+
 }
 
-/* CARDS */
-.card {
-  background: var(--light);
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+
+/* ==========================
+   AUDIO
+========================== */
+
+audio{
+
+    width:100%;
+
 }
 
-/* SECTION HEADINGS */
-h1, h2, h3 {
-  color: var(--primary);
-  margin-bottom: 10px;
+
+/* ==========================
+   HR
+========================== */
+
+hr{
+
+    border:none;
+
+    height:2px;
+
+    background:
+    rgba(255,255,255,.35);
+
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: var(--primary);
-  color: white;
-  margin-top: 40px;
+
+/* ==========================
+   SELECTION
+========================== */
+
+::selection{
+
+    background:#ffffff;
+
+    color:#111111;
+
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-  }
 
-  .container {
-    padding: 15px;
-  }
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:12px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#2a9dad;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1e88e5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#1565c0;
+
+}
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.container{
+
+    width:min(1200px,95%);
+    margin:auto;
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+
+    text-align:center;
+
+    padding:35px 15px;
+
+    color:#fff;
+
+}
+
+.header h1{
+
+    margin:0;
+
+    font-size:clamp(32px,7vw,58px);
+
+    white-space:nowrap;
+
+    text-shadow:0 4px 10px rgba(0,0,0,.25);
+
+}
+
+.header h2{
+
+    margin:15px 0 10px;
+
+    font-size:clamp(18px,4vw,32px);
+
+    white-space:nowrap;
+
+}
+
+.header p{
+
+    margin:0;
+
+    font-size:clamp(15px,3vw,22px);
+
+    line-height:1.6;
+
+}
+
+
+/* ==========================================================
+   TOOLBAR
+========================================================== */
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin:20px auto;
+
+}
+
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.toolbar input,
+input[type="text"],
+input[type="search"]{
+
+    width:min(450px,100%);
+
+    padding:14px 16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:16px;
+
+    color:#111;
+
+    background:#fff;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+
+/* ==========================================================
+   TOTAL COUNTER
+========================================================== */
+
+.total,
+#total,
+#totalColors,
+#totalEmails,
+#totalPhotos,
+#totalVideos,
+#totalLyrics{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+========================================================== */
+
+.section-title{
+
+    margin:35px 20px 15px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:16px;
+
+    padding:20px;
+
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.card{
+
+    border-radius:16px;
+
+    padding:16px;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.20);
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 24px rgba(0,0,0,.28);
+
+}
+
+.card .title{
+
+    font-weight:bold;
+
+    font-size:18px;
+
+}
+
+.card .subtitle{
+
+    margin-top:8px;
+
+    font-size:14px;
+
+    opacity:.95;
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.header h1{
+
+white-space:normal;
+
+}
+
+.header h2{
+
+white-space:normal;
+
+}
+
+}
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+button,
+.btn{
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    background:#1e88e5;
+
+    color:#fff;
+
+    transition:.25s;
+
+    box-shadow:0 5px 12px rgba(0,0,0,.20);
+
+}
+
+button:hover,
+.btn:hover{
+
+    background:#1565c0;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+input,
+textarea,
+select{
+
+    font-family:inherit;
+
+    font-size:16px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    min-height:140px;
+
+    resize:vertical;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:#111;
+
+}
+
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin:20px 0;
+
+}
+
+th{
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+}
+
+td{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+th,
+td{
+
+    padding:12px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    text-align:left;
+
+}
+
+
+/* ==========================================================
+   TOAST
+========================================================== */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:20px;
+
+    transform:translateX(-50%);
+
+    background:#222;
+
+    color:#fff;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.30s;
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer{
+
+    text-align:center;
+
+    padding:60px 20px 40px;
+
+    color:#fff;
+
+}
+
+footer h2{
+
+    margin-bottom:15px;
+
+    font-size:clamp(18px,4vw,32px);
+
+    white-space:nowrap;
+
+}
+
+footer h3{
+
+    margin:20px 0;
+
+    font-size:clamp(18px,4vw,28px);
+
+}
+
+footer p{
+
+    margin:10px 0;
+
+}
+
+footer a{
+
+    color:#fff;
+
+}
+
+
+/* ==========================================================
+   BACK TO TOP
+========================================================== */
+
+#topBtn{
+
+    display:none;
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:65px;
+
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1e88e5;
+
+    color:#fff;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+
+    transition:.25s;
+
+}
+
+#topBtn:hover{
+
+    background:#1565c0;
+
+    transform:scale(1.08);
+
+}
+
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.round{
+
+    border-radius:12px;
+
+}
+
+.shadow{
+
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+
+}
+/* ==========================================================
+   PPPP Universal Style.css
+   Part 4 – Media & Advanced Components
+========================================================== */
+
+
+/* ==========================
+   IMAGE GALLERY
+========================== */
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:16px;
+
+    padding:20px;
+
+}
+
+.gallery img{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.gallery img:hover{
+
+    transform:scale(1.04);
+
+}
+
+
+/* ==========================
+   VIDEO
+========================== */
+
+video{
+
+    width:100%;
+
+    border-radius:16px;
+
+    background:#000;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.30);
+
+}
+
+
+/* ==========================
+   AUDIO
+========================== */
+
+audio{
+
+    width:100%;
+
+    margin-top:10px;
+
+}
+
+
+/* ==========================
+   IFRAME
+========================== */
+
+iframe{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:16px;
+
+}
+
+
+/* ==========================
+   MODAL
+========================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+.modal-content{
+
+    max-width:95%;
+
+    max-height:90vh;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.modal img{
+
+    width:100%;
+
+    height:auto;
+
+}
+
+
+/* ==========================
+   LOADING
+========================== */
+
+.loader{
+
+    width:60px;
+
+    height:60px;
+
+    margin:30px auto;
+
+    border:6px solid rgba(255,255,255,.3);
+
+    border-top:6px solid #fff;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================
+   FADE
+========================== */
+
+.fade{
+
+    animation:fade .35s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* ==========================
+   SCALE
+========================== */
+
+.scale{
+
+    animation:scale .25s ease;
+
+}
+
+@keyframes scale{
+
+    from{
+
+        transform:scale(.92);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* ==========================
+   BADGE
+========================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    background:#1e88e5;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================
+   TAG
+========================== */
+
+.tag{
+
+    display:inline-block;
+
+    margin:4px;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.18);
+
+}
+
+
+/* ==========================
+   CODE
+========================== */
+
+code{
+
+    background:rgba(0,0,0,.25);
+
+    padding:2px 6px;
+
+    border-radius:6px;
+
+}
+
+
+/* ==========================
+   PRE
+========================== */
+
+pre{
+
+    overflow:auto;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:rgba(0,0,0,.25);
+
+}
+
+
+/* ==========================
+   PRINT
+========================== */
+
+@media print{
+
+    #topBtn,
+
+    .toolbar,
+
+    button{
+
+        display:none !important;
+
+    }
+
+}
+/* ==========================================================
+   PPPP Universal Style.css
+   Part 5 – Final Professional Utilities
+========================================================== */
+
+
+/* ==========================
+   STATUS COLORS
+========================== */
+
+.success{
+    background:#2e7d32 !important;
+    color:#fff !important;
+}
+
+.info{
+    background:#0288d1 !important;
+    color:#fff !important;
+}
+
+.warning{
+    background:#f9a825 !important;
+    color:#fff !important;
+}
+
+.danger{
+    background:#c62828 !important;
+    color:#fff !important;
+}
+
+
+/* ==========================
+   MESSAGE BOX
+========================== */
+
+.message{
+    padding:18px;
+    border-radius:14px;
+    margin:15px 0;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+}
+
+
+/* ==========================
+   GLASS EFFECT
+========================== */
+
+.glass{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;
+}
+
+
+/* ==========================
+   PROGRESS BAR
+========================== */
+
+.progress{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,.2);
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress div{
+    height:100%;
+    background:#1e88e5;
+}
+
+
+/* ==========================
+   FLEX
+========================== */
+
+.flex{
+    display:flex;
+}
+
+.flex-center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.flex-between{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.flex-column{
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* ==========================
+   GRID
+========================== */
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+
+/* ==========================
+   SPACING
+========================== */
+
+.p10{padding:10px;}
+.p20{padding:20px;}
+.p30{padding:30px;}
+
+.m10{margin:10px;}
+.m20{margin:20px;}
+.m30{margin:30px;}
+
+
+/* ==========================
+   WIDTH
+========================== */
+
+.w100{
+    width:100%;
+}
+
+.max800{
+    max-width:800px;
+    margin:auto;
+}
+
+.max1000{
+    max-width:1000px;
+    margin:auto;
+}
+
+.max1200{
+    max-width:1200px;
+    margin:auto;
+}
+
+
+/* ==========================
+   TEXT
+========================== */
+
+.bold{
+    font-weight:bold;
+}
+
+.small{
+    font-size:13px;
+}
+
+.large{
+    font-size:22px;
+}
+
+.center{
+    text-align:center;
+}
+
+.left{
+    text-align:left;
+}
+
+.right{
+    text-align:right;
+}
+
+
+/* ==========================
+   HOVER
+========================== */
+
+.hover:hover{
+    transform:translateY(-3px);
+    transition:.25s;
+}
+
+
+/* ==========================
+   LINK
+========================== */
+
+a{
+    color:#fff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+
+/* ==========================
+   SELECTION
+========================== */
+
+::selection{
+    background:#1e88e5;
+    color:#fff;
+}
+
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:10px;
+    height:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.15);
+}
+
+::-webkit-scrollbar-thumb{
+    background:#1e88e5;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#1565c0;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+
+.grid-4{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.grid-3{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.grid-2,
+.grid-3,
+.grid-4{
+    grid-template-columns:1fr;
+}
+
+.header h1{
+    font-size:30px;
+}
+
+footer h2{
+    white-space:normal;
+}
+
+footer p{
+    white-space:normal;
+}
+
 }
