@@ -1318,3 +1318,82 @@ footer hr{
     }
 
 }
+
+/* ==========================================
+   SECTION DESIGN
+========================================== */
+
+main{
+    width:min(1200px,95%);
+    margin:auto;
+    padding:20px 0;
+}
+
+main section{
+    margin:18px 0;
+    padding:25px;
+    border-radius:18px;
+    color:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+}
+
+/* 1 */
+main section:nth-of-type(8n+1){
+    background:#ff6b6b;
+}
+
+/* 2 */
+main section:nth-of-type(8n+2){
+    background:#6c5ce7;
+}
+
+/* 3 */
+main section:nth-of-type(8n+3){
+    background:#00b894;
+}
+
+/* 4 */
+main section:nth-of-type(8n+4){
+    background:#fdcb6e;
+    color:#111;
+}
+
+main section:nth-of-type(8n+4) h2,
+main section:nth-of-type(8n+4) p,
+main section:nth-of-type(8n+4) li,
+main section:nth-of-type(8n+4) a{
+    color:#111;
+}
+
+/* 5 */
+main section:nth-of-type(8n+5){
+    background:#e17055;
+}
+
+/* 6 */
+main section:nth-of-type(8n+6){
+    background:#0984e3;
+}
+
+/* 7 */
+main section:nth-of-type(8n+7){
+    background:#e84393;
+}
+
+/* 8 */
+main section:nth-of-type(8n){
+    background:#2d3436;
+}
+
+main section h2{
+    margin-bottom:15px;
+}
+
+main section p,
+main section li{
+    line-height:1.8;
+}
+
+main section ul{
+    padding-left:25px;
+}
