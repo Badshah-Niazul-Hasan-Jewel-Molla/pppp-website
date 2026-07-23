@@ -1397,3 +1397,40 @@ main section li{
 main section ul{
     padding-left:25px;
 }
+
+:root{
+    --site-bg:#49c9e7;
+    --white:#ffffff;
+}
+
+/* পুরো ওয়েবসাইট */
+html,
+body{
+    background:var(--site-bg);
+    color:#fff;
+    min-height:100%;
+}
+
+/* Header */
+header{
+    background:var(--site-bg);
+    color:#fff;
+    padding:30px 20px;
+    text-align:center;
+}
+
+/* Main */
+main{
+    background:var(--site-bg);
+    width:min(1200px,95%);
+    margin:auto;
+    padding:20px 0;
+}
+
+/* Footer */
+footer{
+    background:var(--site-bg);
+    color:#fff;
+    text-align:center;
+    padding:30px 20px;
+}
