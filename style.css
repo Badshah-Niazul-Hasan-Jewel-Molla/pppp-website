@@ -1436,100 +1436,72 @@ footer{
 }
 
 /* ==========================================================
-   GLOBAL BACKGROUND OVERRIDE
+   UNIVERSAL OVERRIDE
+   Keeps section/card colors but removes white page backgrounds
    ========================================================== */
 
-:root{
-    --site-bg:#49c9e7;
-}
-
-/* পুরো ওয়েবসাইট */
+/* Site background */
 html,
 body{
     background:var(--site-bg) !important;
-    color:#fff !important;
+    color:#fff;
 }
 
-/* সব প্রধান কন্টেইনার */
-main,
-header,
-footer,
-section,
-article,
-aside,
-nav,
-.container,
-.wrapper,
-.content{
+/* Transparent page containers */
+body > header,
+body > main,
+body > footer{
     background:transparent !important;
 }
 
-/* সব Card */
-.card,
-.box,
-.panel,
-.item,
-.list-item{
-    background:transparent !important;
-    color:inherit !important;
+/* Don't touch section/card colors */
+main section,
+.card{
+    color:inherit;
 }
 
-/* FAQ details */
+/* FAQ / Details */
 details{
     background:transparent !important;
     border:1px solid rgba(255,255,255,.25) !important;
-    color:#fff !important;
+    border-radius:12px;
+    color:inherit;
 }
 
 details summary{
-    color:#fff !important;
+    color:inherit;
 }
 
-/* Paragraph, List */
-p,
-li,
-label,
-span,
-strong,
-small,
-summary{
-    color:inherit !important;
-}
-
-/* সব Heading */
-h1,h2,h3,h4,h5,h6{
-    color:inherit !important;
-}
-
-/* Link */
-a{
-    color:#fff !important;
-}
-
-/* Input বাদ */
-input,
-textarea,
-select{
-    background:#fff !important;
-    color:#111 !important;
-}
-
-/* Table */
-table,
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th{
+/* White wrappers only */
+main,
+.container,
+.wrapper,
+.content,
+.page,
+.page-content{
     background:transparent !important;
-    color:#fff !important;
 }
 
-/* Bootstrap/Generic white classes */
+/* Bootstrap style classes */
 .bg-white,
 .bg-light,
 .white,
 .light{
     background:transparent !important;
+}
+
+/* Text */
+h1,h2,h3,h4,h5,h6,
+p,
+li,
+span,
+label,
+strong,
+small{
+    color:inherit;
+}
+
+/* Links */
+a{
+    color:inherit;
 }
