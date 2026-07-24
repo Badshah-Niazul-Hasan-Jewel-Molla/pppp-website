@@ -1434,3 +1434,102 @@ footer{
     text-align:center;
     padding:30px 20px;
 }
+
+/* ==========================================================
+   GLOBAL BACKGROUND OVERRIDE
+   ========================================================== */
+
+:root{
+    --site-bg:#49c9e7;
+}
+
+/* পুরো ওয়েবসাইট */
+html,
+body{
+    background:var(--site-bg) !important;
+    color:#fff !important;
+}
+
+/* সব প্রধান কন্টেইনার */
+main,
+header,
+footer,
+section,
+article,
+aside,
+nav,
+.container,
+.wrapper,
+.content{
+    background:transparent !important;
+}
+
+/* সব Card */
+.card,
+.box,
+.panel,
+.item,
+.list-item{
+    background:transparent !important;
+    color:inherit !important;
+}
+
+/* FAQ details */
+details{
+    background:transparent !important;
+    border:1px solid rgba(255,255,255,.25) !important;
+    color:#fff !important;
+}
+
+details summary{
+    color:#fff !important;
+}
+
+/* Paragraph, List */
+p,
+li,
+label,
+span,
+strong,
+small,
+summary{
+    color:inherit !important;
+}
+
+/* সব Heading */
+h1,h2,h3,h4,h5,h6{
+    color:inherit !important;
+}
+
+/* Link */
+a{
+    color:#fff !important;
+}
+
+/* Input বাদ */
+input,
+textarea,
+select{
+    background:#fff !important;
+    color:#111 !important;
+}
+
+/* Table */
+table,
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+    background:transparent !important;
+    color:#fff !important;
+}
+
+/* Bootstrap/Generic white classes */
+.bg-white,
+.bg-light,
+.white,
+.light{
+    background:transparent !important;
+}
