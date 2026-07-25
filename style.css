@@ -1436,72 +1436,100 @@ footer{
 }
 
 /* ==========================================================
-   UNIVERSAL OVERRIDE
-   Keeps section/card colors but removes white page backgrounds
+   UNIVERSAL PAGE BACKGROUND OVERRIDE
    ========================================================== */
 
-/* Site background */
+:root{
+    --site-bg:#52c3e6;
+}
+
 html,
 body{
+    margin:0;
+    padding:0;
     background:var(--site-bg) !important;
     color:#fff;
 }
 
-/* Transparent page containers */
-body > header,
-body > main,
-body > footer{
-    background:transparent !important;
-}
-
-/* Don't touch section/card colors */
-main section,
-.card{
-    color:inherit;
-}
-
-/* FAQ / Details */
-details{
-    background:transparent !important;
-    border:1px solid rgba(255,255,255,.25) !important;
-    border-radius:12px;
-    color:inherit;
-}
-
-details summary{
-    color:inherit;
-}
-
-/* White wrappers only */
+/* সব Container Transparent */
+body,
 main,
+header,
+footer,
+section,
+article,
+aside,
+nav,
 .container,
+.container-fluid,
 .wrapper,
 .content,
 .page,
-.page-content{
+.page-content,
+.row,
+.col,
+[class*="container"],
+[class*="wrapper"]{
     background:transparent !important;
 }
 
-/* Bootstrap style classes */
+/* Card-এর নিজস্ব রঙ থাকবে */
+.card,
+.box,
+.panel,
+.tile,
+.info-box,
+.feature-box{
+    color:inherit;
+}
+
+/* Bootstrap */
 .bg-white,
-.bg-light,
-.white,
-.light{
+.bg-light{
     background:transparent !important;
 }
 
-/* Text */
+/* White inline styles override */
+[style*="background:#fff"],
+[style*="background: #fff"],
+[style*="background:white"],
+[style*="background: white"],
+[style*="background-color:#fff"],
+[style*="background-color: #fff"],
+[style*="background-color:white"],
+[style*="background-color: white"]{
+    background:transparent !important;
+}
+
+/* Images */
+img{
+    max-width:100%;
+    height:auto;
+}
+
+/* Details */
+details{
+    background:transparent !important;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+}
+
+/* Typography */
 h1,h2,h3,h4,h5,h6,
-p,
-li,
-span,
-label,
-strong,
-small{
+p,span,li,label,strong,
+small,a{
     color:inherit;
 }
 
-/* Links */
-a{
-    color:inherit;
+/* Form */
+input,
+textarea,
+select{
+    background:rgba(255,255,255,.08);
+    color:#fff;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:rgba(255,255,255,.7);
 }
