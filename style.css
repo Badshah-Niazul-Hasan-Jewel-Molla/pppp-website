@@ -1525,3 +1525,12 @@ html{
 [style*="background-color: white"]{
     background:transparent !important;
 }
+
+/* White box text fix */
+
+.amount,
+.amount *,
+option,
+select option{
+    color:#111 !important;
+}
