@@ -1242,60 +1242,27 @@ visible;
 SCROLL TOP BUTTON
 ========================================================*/
 
-#scrollTopBtn{
+#topBtn{
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:9999;
+}
 
-position:
-
-fixed;
-
-right:
-
-25px;
-
-bottom:
-
-25px;
-
-width:
-
-55px;
-
-height:
-
-55px;
-
-border-radius:
-
-50%;
-
-background:
-
-var(--primary);
-
-color:
-
-#fff;
-
-font-size:
-
-24px;
-
-display:
-
-none;
-
-align-items:
-
-center;
-
-justify-content:
-
-center;
-
-z-index:
-
-999;
-
+#topBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
 }
 
 
@@ -1647,14 +1614,10 @@ SCROLL TO TOP
 =======================================================-->
 
 <button
+onclick="topFunction()"
+id="topBtn">
 
-id="scrollTopBtn"
-
-aria-label="Scroll to Top">
-
-
-🔝
-
+↑
 
 </button>
 <!--======================================================
@@ -4864,59 +4827,27 @@ enableDarkMode();
 //========================================================
 
 
-const scrollBtn =
+window.onscroll=function(){
 
-document.getElementById("scrollTopBtn");
+const btn=document.getElementById("topBtn");
 
-
-
-window.addEventListener(
-
-"scroll",
-
-()=>{
-
-
-if(window.scrollY>400){
-
-
-scrollBtn.style.display="flex";
-
-
+if(document.documentElement.scrollTop>300||
+document.body.scrollTop>300){
+btn.style.display="block";
+}else{
+btn.style.display="none";
 }
 
-else{
+};
 
-
-scrollBtn.style.display="none";
-
-
-}
-
-
-
-});
-
-
-
-
-scrollBtn.addEventListener(
-
-"click",
-
-()=>{
-
+function topFunction(){
 
 window.scrollTo({
-
 top:0,
-
 behavior:"smooth"
-
 });
 
-
-});
+}
 
 
 
