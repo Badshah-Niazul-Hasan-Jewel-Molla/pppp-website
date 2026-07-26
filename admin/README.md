@@ -43,7 +43,7 @@
 
 ---
 
-# 👤 PPPP Admin Structure
+# 👤 PPPP Chat Admin Structure
 
 <pre>
 admin/
