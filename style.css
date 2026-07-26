@@ -1505,3 +1505,56 @@ small{
 a{
     color:inherit;
 }
+
+/* ==========================================================
+   PPPP UNIVERSAL WHITE BOX FIX
+   ========================================================== */
+
+/* White containers */
+.box,
+.amount,
+details,
+table,
+thead,
+tbody,
+tr,
+td,
+th,
+select,
+option{
+    color:#111 !important;
+}
+
+/* Everything inside white containers */
+.box *,
+.amount *,
+details *,
+table *,
+thead *,
+tbody *,
+tr *,
+td *,
+th *,
+select *,
+option *{
+    color:#111 !important;
+}
+
+/* Form controls */
+input,
+textarea,
+select{
+    color:#111 !important;
+}
+
+/* Placeholders */
+input::placeholder,
+textarea::placeholder{
+    color:#666 !important;
+}
+
+/* Hover button inside amount selector */
+.amount:hover,
+.amount:hover *{
+    color:#fff !important;
+}
