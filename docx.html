@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PPPP Word | People's Power & Peace Party Bangladesh</title>
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+PPPP Word | People's Power & Peace Party Bangladesh
+</title>
 
 <link rel="icon" href="favicon.ico">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -17,21 +24,43 @@ font-family:system-ui,sans-serif;
 }
 
 body{
-background:#111827;
-padding:20px;
+margin:0;
+background:linear-gradient(135deg,#45c5dc,#63d2c6,#45c5dc);
 color:#fff;
+min-height:100vh;
 }
 
-h1{
+.container{
+max-width:1500px;
+margin:auto;
+padding:20px;
+}
+
+.header{
 text-align:center;
-margin-bottom:20px;
-font-size:32px;
+padding:35px 15px;
+}
+
+.header h1{
+margin:0;
+font-size:clamp(32px,7vw,58px);
+white-space:nowrap;
+text-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+.header h2{
+margin:15px 0 10px;
+font-size:clamp(18px,4vw,32px);
+}
+
+.header p{
+margin:0;
+font-size:clamp(15px,3vw,22px);
 }
 
 .search{
-margin:auto;
 max-width:700px;
-margin-bottom:25px;
+margin:30px auto 15px;
 }
 
 .search input{
@@ -39,10 +68,17 @@ width:100%;
 padding:15px;
 border:none;
 border-radius:14px;
-background:#2d3436;
-color:#fff;
+background:#fff;
+color:#111;
 font-size:17px;
 outline:none;
+}
+
+#countBox{
+margin-bottom:25px;
+text-align:center;
+font-size:17px;
+font-weight:bold;
 }
 
 .grid{
@@ -75,7 +111,8 @@ grid-template-columns:repeat(2,1fr);
 gap:10px;
 }
 
-button,a{
+button,
+a{
 text-decoration:none;
 border:none;
 padding:12px;
@@ -121,32 +158,76 @@ padding:12px 18px;
 border-radius:12px;
 display:none;
 font-weight:bold;
+z-index:9999;
 }
+
+#topBtn{
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:9999;
+}
+
+#topBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1> 📘 PPPP Word </h1>
+<div class="container">
+
+<header class="header">
+
+<h1>
+📘 PPPP Word
+</h1>
+
+<h2>
+People's Power & Peace Party (PPPP)
+</h2>
+
+<p>
+Power to the People • Peace for the People
+</p>
+
+</header>
 
 <div class="search">
+
 <input
 id="search"
 placeholder="🔍 Search PPPP DOCX..."
 onkeyup="searchDocs()">
+
 </div>
 
-<div class="grid" id="grid"></div>
+<div id="countBox">
 
-<div style="
-margin-top:30px;
-text-align:center;
-font-size:16px;
-color:#ccc;
-font-weight:bold;
-">
 Total DOCX :
-<span id="count"></span>
+<b id="count">0</b>
+
+</div>
+
+<div
+class="grid"
+id="grid">
+
 </div>
 
 <div id="msg"></div>
@@ -181,23 +262,30 @@ const files=[
 "PPPP_Photos.docx"
 
 ];
-
 const grid=document.getElementById("grid");
 const count=document.getElementById("count");
+
 files.forEach((file,i)=>{
 
 const color=colors[i%colors.length];
+
 const path="docx/"+file;
-const fullUrl =
-"https://naz-niaz.github.io/pppp_bangladesh/" + path;
+
+const fullUrl=
+"https://naz-niaz.github.io/pppp_bangladesh/"+path;
 
 grid.innerHTML+=`
 
-<div class="card"
-style="background:${color}"
+<div
+class="card"
+style="background:linear-gradient(135deg,${color},${color}cc)"
 data-name="${file.toLowerCase()}">
 
-<div class="title">${file}</div>
+<div class="title">
+
+${file.replace(".docx","").replaceAll("_"," ")}
+
+</div>
 
 <div class="buttons">
 
@@ -205,26 +293,34 @@ data-name="${file.toLowerCase()}">
 class="open"
 target="_blank"
 href="https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(fullUrl)}">
+
 👀 View
+
 </a>
 
 <a
 class="download"
 download
 href="${path}">
+
 📥 Download
+
 </a>
 
 <button
 class="copy"
 onclick="copyLink('${path}')">
+
 🔗 Copy Link
+
 </button>
 
 <button
 class="share"
 onclick="shareDoc('${file}','${path}')">
+
 📤 Share
+
 </button>
 
 </div>
@@ -234,7 +330,8 @@ onclick="shareDoc('${file}','${path}')">
 `;
 
 });
-count.innerText=files.length;
+
+count.innerHTML="<b>"+files.length+"</b>";
 
 function searchDocs(){
 
@@ -252,6 +349,7 @@ document
 if(card.dataset.name.includes(q)){
 
 card.style.display="block";
+
 total++;
 
 }else{
@@ -262,13 +360,17 @@ card.style.display="none";
 
 });
 
-count.innerText=total;
+count.innerHTML="<b>"+total+"</b>";
 
 }
 
 function copyLink(path){
 
-const link=location.origin+"/docx/"+path.split("/").pop();
+const link=
+
+location.origin+
+location.pathname.replace("docx.html","")+
+path;
 
 navigator.clipboard.writeText(link);
 
@@ -278,9 +380,15 @@ show("Link Copied");
 
 async function shareDoc(name,path){
 
-const url=location.origin+"/docx/"+path.split("/").pop();
+const url=
+
+location.origin+
+location.pathname.replace("docx.html","")+
+path;
 
 if(navigator.share){
+
+try{
 
 await navigator.share({
 
@@ -289,6 +397,8 @@ text:name,
 url:url
 
 });
+
+}catch(e){}
 
 }else{
 
@@ -315,8 +425,121 @@ m.style.display="none";
 },1800);
 
 }
+window.onscroll=function(){
+
+const btn=document.getElementById("topBtn");
+
+if(
+document.documentElement.scrollTop>300||
+document.body.scrollTop>300
+){
+btn.style.display="block";
+}else{
+btn.style.display="none";
+}
+
+};
+
+function topFunction(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
 
 </script>
+
+<footer style="
+text-align:center;
+color:#fff;
+padding:60px 20px 40px;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+">
+
+<hr style="
+border:none;
+height:2px;
+background:rgba(255,255,255,.35);
+margin-bottom:35px;
+">
+
+<h2 style="
+margin:0 0 15px;
+font-size:clamp(18px,4vw,32px);
+white-space:nowrap;
+">
+
+People's Power & Peace Party (PPPP)
+
+</h2>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(15px,3vw,22px);
+white-space:nowrap;
+">
+
+Power to the People • Peace for the People
+
+</p>
+
+<h3 style="
+margin:0 0 20px;
+font-size:clamp(18px,4vw,30px);
+white-space:nowrap;
+">
+
+📘 Official Word Library
+
+</h3>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+🌐
+<a
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="
+color:#fff;
+text-decoration:none;
+">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</p>
+
+<p style="
+margin:0;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<button
+onclick="topFunction()"
+id="topBtn">
+
+↑
+
+</button>
+
+</div>
+
 <script type="module" src="chat/chat-loader.js"></script>
+
 </body>
 </html>
