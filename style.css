@@ -1505,32 +1505,3 @@ small{
 a{
     color:inherit;
 }
-
-/* Extra white wrappers */
-html{
-    background:var(--site-bg) !important;
-}
-
-#app,
-#__next,
-.site,
-.site-content{
-    background:transparent !important;
-}
-
-/* Inline white background */
-[style*="background:#fff"],
-[style*="background: white"],
-[style*="background-color:#fff"],
-[style*="background-color: white"]{
-    background:transparent !important;
-}
-
-/* White box text fix */
-
-.amount,
-.amount *,
-option,
-select option{
-    color:#111 !important;
-}
