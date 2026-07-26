@@ -1,119 +1,541 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta
+http-equiv="X-UA-Compatible"
+content="IE=edge">
+
+<meta
+name="description"
+content="Official PPPP Excel Library">
+
+<meta
+name="keywords"
+content="PPPP, Excel, XLSX">
+
+<meta
+name="author"
+content="People's Power & Peace Party">
+
+<meta
+name="robots"
+content="index,follow">
+
+<meta
+name="theme-color"
+content="#6c5ce7">
+
 <title>PPPP Excel | People's Power & Peace Party Bangladesh</title>
 
 <link rel="icon" href="favicon.ico">
 
 <style>
+
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 font-family:Arial,sans-serif;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
 }
 
 body{
-background:#111827;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#62d8d5 0%,
+
+#58cbc9 35%,
+
+#63d6d2 70%,
+
+#55c5c2 100%
+
+);
+
+background-attachment:fixed;
+
+color:#fff;
+
 padding:20px;
-color:white;
+
+min-height:100vh;
+
 }
 
-h1{
+.container{
+
+width:95%;
+
+max-width:1400px;
+
+margin:auto;
+
+}
+
+.glass{
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(15px);
+
+-webkit-backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.18);
+
+border-radius:20px;
+
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+}
+
+header{
+
 text-align:center;
-margin-bottom:20px;
-font-size:30px;
+
+padding:45px 20px;
+
+margin-bottom:25px;
+
+}
+
+header h1{
+
+font-size:38px;
+
+margin-bottom:12px;
+
+}
+
+header h2{
+
+font-size:24px;
+
+margin-bottom:10px;
+
+}
+
+header p{
+
+font-size:18px;
+
+}
+
+.search-box{
+
+padding:25px;
+
+margin-bottom:25px;
+
 }
 
 #search{
+
 width:100%;
-padding:15px;
+
+padding:16px;
+
 border:none;
+
 outline:none;
+
 border-radius:15px;
+
 font-size:18px;
-background:#1f2937;
-color:#fff;
-margin-bottom:25px;
+
+background:#fff;
+
+color:#111;
+
+margin-top:15px;
+
+}
+
+.total{
+
+margin-top:18px;
+
+text-align:center;
+
+font-size:20px;
+
+font-weight:bold;
+
 }
 
 .grid{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:18px;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:20px;
+
 }
 
 .card{
+
 border-radius:20px;
+
 padding:20px;
+
 display:flex;
+
 flex-direction:column;
+
 justify-content:space-between;
-min-height:210px;
+
+min-height:220px;
+
 transition:.3s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
 }
 
 .card:hover{
-transform:translateY(-5px);
+
+transform:translateY(-6px);
+
 }
 
 .file{
-font-size:22px;
+
+font-size:21px;
+
 font-weight:bold;
+
 word-break:break-word;
+
 margin-bottom:15px;
+
 }
 
 .btns{
+
 display:grid;
+
 grid-template-columns:1fr 1fr;
+
 gap:10px;
+
 margin-top:auto;
+
 }
 
-button,a{
+button,
+a{
+
 border:none;
+
 padding:12px;
+
 border-radius:12px;
+
 font-size:15px;
+
 font-weight:bold;
+
 cursor:pointer;
+
 text-decoration:none;
+
 text-align:center;
+
 color:#111;
+
+transition:.25s;
+
 }
 
-.copy{background:#f39c12;}
-.share{background:#9b59b6;}
-.download{background:#16a085;}
-.view{background:#3498db;}
+button:hover,
+a:hover{
+
+transform:scale(1.03);
+
+}
+
+.view{
+
+background:#3498db;
+
+color:#fff;
+
+}
+
+.download{
+
+background:#16a085;
+
+color:#fff;
+
+}
+
+.copy{
+
+background:#f39c12;
+
+}
+
+.share{
+
+background:#9b59b6;
+
+color:#fff;
+
+}
 
 footer{
-margin-top:30px;
+
+margin-top:60px;
+
+padding:35px 20px;
+
 text-align:center;
-font-size:15px;
-color:#ccc;
+
+background:rgba(0,0,0,.28);
+
+border-radius:20px;
+
 }
+
+footer h2{
+
+margin-bottom:10px;
+
+}
+
+footer p{
+
+margin:6px 0;
+
+}
+
+#scrollTopBtn{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#6c5ce7;
+
+color:#fff;
+
+font-size:24px;
+
+cursor:pointer;
+
+display:none;
+
+z-index:999;
+
+box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+width:100%;
+
+}
+
+header h1{
+
+font-size:30px;
+
+}
+
+header h2{
+
+font-size:20px;
+
+}
+
+#scrollTopBtn{
+
+right:15px;
+
+bottom:15px;
+
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>  📊 PPPP Excel </h1>
+<div class="container">
 
-<input id="search" type="text" placeholder="🔍 Search PPPP xlsx...">
+<!--======================================================
+HEADER
+=======================================================-->
 
-<div class="grid" id="grid"></div>
+<header class="glass">
 
-<footer>
-Total XLSX : <span id="count"></span>
+<h1>
+
+📊 PPPP Excel
+
+</h1>
+
+<h2>
+
+People's Power &amp; Peace Party (PPPP)
+
+</h2>
+
+<p>
+
+Power to the People • Peace for the People
+
+</p>
+
+</header>
+
+<!--======================================================
+SEARCH
+=======================================================-->
+
+<section class="glass search-box">
+
+<input
+
+id="search"
+
+type="text"
+
+placeholder="🔍 Search PPPP XLSX..."
+
+autocomplete="off">
+
+<div class="total">
+
+📊 Total XLSX :
+<strong id="count"></strong>
+
+</div>
+
+</section>
+
+<!--======================================================
+GRID
+=======================================================-->
+
+<div
+
+class="grid"
+
+id="grid">
+
+</div>
+
+<!--======================================================
+FOOTER
+=======================================================-->
+
+<footer class="glass">
+
+<h2>
+
+People's Power &amp; Peace Party (PPPP)
+
+</h2>
+
+<p>
+
+Power to the People • Peace for the People
+
+</p>
+
+<p>
+
+📊 Official Excel Library
+
+</p>
+
+<p>
+
+🌐
+
+<a
+
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+
+target="_blank"
+
+style="color:white;">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</p>
+
+<p>
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</p>
+
 </footer>
 
-<script>
+</div>
 
-const colors = [
+<!--======================================================
+BACK TO TOP
+=======================================================-->
+
+<button
+
+id="scrollTopBtn"
+
+title="Back to Top">
+
+↑
+
+</button>
+
+<script>
+const colors=[
+
 "#ff6b6b",
 "#6c5ce7",
 "#00b894",
@@ -122,9 +544,11 @@ const colors = [
 "#0984e3",
 "#e84393",
 "#2d3436"
+
 ];
 
 const files=[
+
 "PPPP.xlsx",
 "PPPP_Constitution.xlsx",
 "PPPP_Election_Manifesto.xlsx",
@@ -133,9 +557,11 @@ const files=[
 "PPPP_Election_Zero_Cost.xlsx",
 "PPPP_MP_Candidate_Zero_Cost.xlsx",
 "PPPP_Volunteers_Zero_Cost.xlsx"
+
 ];
 
 const grid=document.getElementById("grid");
+
 const count=document.getElementById("count");
 
 function render(list){
@@ -148,36 +574,61 @@ const color=colors[index%colors.length];
 
 const path="xlsx/"+encodeURIComponent(file);
 
-const url=location.origin+
-location.pathname.replace("xlsx.html","")+path;
+const url=
+location.origin+
+location.pathname.replace("xlsx.html","")+
+path;
 
 const card=document.createElement("div");
+
 card.className="card";
+
 card.style.background=color;
 
 card.innerHTML=`
 
-<div class="file">📊 ${file}</div>
+<div class="file">
+
+📊 ${file}
+
+</div>
 
 <div class="btns">
 
-<a class="view"
+<a
+
+class="view"
+
 target="_blank"
+
 href="https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(url)}">
+
 👀 View
+
 </a>
 
-<a class="download"
-href="${path}" download>
+<a
+
+class="download"
+
+href="${path}"
+
+download>
+
 📥 Download
+
 </a>
 
 <button class="copy">
+
 🔗 Copy Link
+
 </button>
 
 <button class="share">
+
 📤 Share
+
 </button>
 
 </div>
@@ -185,8 +636,11 @@ href="${path}" download>
 `;
 
 card.querySelector(".copy").onclick=()=>{
+
 navigator.clipboard.writeText(url);
-alert("লিংক কপি হয়েছে");
+
+alert("Link Copied");
+
 };
 
 card.querySelector(".share").onclick=()=>{
@@ -194,15 +648,20 @@ card.querySelector(".share").onclick=()=>{
 if(navigator.share){
 
 navigator.share({
+
 title:file,
+
 text:file,
+
 url:url
+
 });
 
 }else{
 
 navigator.clipboard.writeText(url);
-alert("লিংক কপি হয়েছে");
+
+alert("Link Copied");
 
 }
 
@@ -212,23 +671,94 @@ grid.appendChild(card);
 
 });
 
-count.innerText=list.length;
+count.textContent=list.length;
 
 }
+//========================================================
+// INITIAL LOAD
+//========================================================
 
 render(files);
 
-document.getElementById("search").addEventListener("input",function(){
+//========================================================
+// LIVE SEARCH
+//========================================================
+
+document.getElementById("search").addEventListener(
+
+"input",
+
+function(){
 
 const value=this.value.toLowerCase();
 
-render(files.filter(f=>f.toLowerCase().includes(value)));
+render(
+
+files.filter(file=>
+
+file.toLowerCase().includes(value)
+
+)
+
+);
+
+}
+
+);
+
+//========================================================
+// BACK TO TOP
+//========================================================
+
+const scrollBtn=
+
+document.getElementById("scrollTopBtn");
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+if(window.scrollY>300){
+
+scrollBtn.style.display="block";
+
+}else{
+
+scrollBtn.style.display="none";
+
+}
+
+}
+
+);
+
+scrollBtn.addEventListener(
+
+"click",
+
+()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
 
 });
 
+}
+
+);
+
 </script>
 
-<script type="module" src="chat/chat-loader.js"></script>
+<script
+type="module"
+src="chat/chat-loader.js">
+</script>
 
 </body>
+
 </html>
