@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PPPP PDF | People's Power & Peace Party Bangladesh</title>
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+PPPP PDF | People's Power & Peace Party Bangladesh
+</title>
 
 <link rel="icon" href="favicon.ico">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -16,26 +24,56 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#1d1d1d;
+margin:0;
+background:linear-gradient(135deg,#45c5dc,#63d2c6,#45c5dc);
 color:#fff;
+min-height:100vh;
+}
+
+.container{
+max-width:1500px;
+margin:auto;
 padding:20px;
 }
 
-h1{
+.header{
 text-align:center;
-margin-bottom:20px;
-font-size:30px;
+padding:35px 15px;
+}
+
+.header h1{
+margin:0;
+font-size:clamp(32px,7vw,58px);
+white-space:nowrap;
+text-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+.header h2{
+margin:15px 0 10px;
+font-size:clamp(18px,4vw,32px);
+}
+
+.header p{
+margin:0;
+font-size:clamp(15px,3vw,22px);
 }
 
 .search{
 width:100%;
-padding:15px;
-font-size:18px;
+max-width:550px;
+display:block;
+margin:30px auto 15px;
+padding:14px;
+font-size:17px;
 border:none;
-border-radius:14px;
+border-radius:12px;
 outline:none;
-background:#2b2b2b;
-color:#fff;
+}
+
+#countBox{
+text-align:center;
+font-size:18px;
+font-weight:bold;
 margin-bottom:25px;
 }
 
@@ -67,7 +105,8 @@ grid-template-columns:repeat(2,1fr);
 gap:10px;
 }
 
-button,a.btn{
+button,
+a.btn{
 text-decoration:none;
 border:none;
 padding:12px;
@@ -85,32 +124,81 @@ a.btn:hover{
 transform:scale(1.03);
 }
 
-.view{background:#ffe66d;}
-.download{background:#00cec9;}
-.copy{background:#fab1a0;}
-.share{background:#a29bfe;}
+.view{
+background:#ffe66d;
+}
 
-.footer{
-margin-top:30px;
-text-align:center;
-color:#aaa;
+.download{
+background:#00cec9;
+}
+
+.copy{
+background:#fab1a0;
+}
+
+.share{
+background:#a29bfe;
+}
+
+#topBtn{
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:9999;
+}
+
+#topBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
 }
 
 </style>
 </head>
+
 <body>
 
-<h1> 📕 PPPP PDF </h1>
+<div class="container">
+
+<header class="header">
+
+<h1>
+📕 PPPP PDF
+</h1>
+
+<h2>
+People's Power & Peace Party (PPPP)
+</h2>
+
+<p>
+Power to the People • Peace for the People
+</p>
+
+</header>
 
 <input
 id="search"
 class="search"
 placeholder="🔍 Search PPPP PDF...">
 
-<div class="grid" id="grid"></div>
+<div id="countBox">
+Total PDF :
+<b id="count">0</b>
+</div>
 
-<div class="footer">
-Total PDF : <span id="count"></span>
+<div
+class="grid"
+id="grid">
 </div>
 
 <script>
@@ -127,6 +215,7 @@ const colors=[
 ];
 
 const files=[
+
 "PPPP.pdf",
 "PPPP_Constitution.pdf",
 "PPPP_Election_Manifesto.pdf",
@@ -134,9 +223,9 @@ const files=[
 "PPPP_Politics_Zero_Cost.pdf",
 "PPPP_Election_Zero_Cost.pdf",
 "PPPP_MP_Candidate_Zero_Cost.pdf",
-"PPPP_Volunteers_Zero_Cost.pdf"
-];
+"PPPP_Volunteers_Zero_Cost.pdf",
 
+];
 const grid=document.getElementById("grid");
 
 function draw(list){
@@ -150,35 +239,52 @@ const color=colors[index%colors.length];
 const url="pdf/"+file;
 
 const card=document.createElement("div");
+
 card.className="card";
-card.style.background=color;
+
+card.style.background=
+`linear-gradient(135deg,${color},${color}cc)`;
 
 card.innerHTML=`
 
 <div class="title">
+
 ${file.replace(".pdf","").replaceAll("_"," ")}
+
 </div>
 
 <div class="buttons">
 
-<a class="btn view"
+<a
+class="btn view"
 target="_blank"
 href="${url}">
+
 👀 View
+
 </a>
 
-<a class="btn download"
+<a
+class="btn download"
 download
 href="${url}">
+
 📥 Download
+
 </a>
 
-<button class="copy">
+<button
+class="copy">
+
 🔗 Copy Link
+
 </button>
 
-<button class="share">
+<button
+class="share">
+
 📤 Share
+
 </button>
 
 </div>
@@ -187,7 +293,13 @@ href="${url}">
 
 card.querySelector(".copy").onclick=()=>{
 
-navigator.clipboard.writeText(location.origin+location.pathname.replace("pdf.html","")+url);
+navigator.clipboard.writeText(
+
+location.origin+
+location.pathname.replace("pdf.html","")+
+url
+
+);
 
 alert("Link Copied");
 
@@ -195,19 +307,28 @@ alert("Link Copied");
 
 card.querySelector(".share").onclick=()=>{
 
-const link=location.origin+location.pathname.replace("pdf.html","")+url;
+const link=
+
+location.origin+
+location.pathname.replace("pdf.html","")+
+url;
 
 if(navigator.share){
 
 navigator.share({
+
 title:file,
+
 text:file,
+
 url:link
+
 });
 
 }else{
 
 navigator.clipboard.writeText(link);
+
 alert("Link Copied");
 
 }
@@ -218,21 +339,145 @@ grid.appendChild(card);
 
 });
 
-document.getElementById("count").innerText=list.length;
+document.getElementById("count").innerHTML=
+
+"<b>"+list.length+"</b>";
 
 }
 
 draw(files);
 
-document.getElementById("search").addEventListener("input",e=>{
+document
+.getElementById("search")
+.addEventListener("input",e=>{
 
 const q=e.target.value.toLowerCase();
 
-draw(files.filter(f=>f.toLowerCase().includes(q)));
+draw(
+
+files.filter(file=>
+
+file.toLowerCase().includes(q)
+
+)
+
+);
 
 });
+window.onscroll=function(){
+
+const btn=document.getElementById("topBtn");
+
+if(
+document.documentElement.scrollTop>300||
+document.body.scrollTop>300
+){
+btn.style.display="block";
+}else{
+btn.style.display="none";
+}
+
+};
+
+function topFunction(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
 
 </script>
+
+<footer style="
+text-align:center;
+color:#fff;
+padding:60px 20px 40px;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+">
+
+<hr style="
+border:none;
+height:2px;
+background:rgba(255,255,255,.35);
+margin-bottom:35px;
+">
+
+<h2 style="
+margin:0 0 15px;
+font-size:clamp(18px,4vw,32px);
+white-space:nowrap;
+">
+
+People's Power & Peace Party (PPPP)
+
+</h2>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(15px,3vw,22px);
+white-space:nowrap;
+">
+
+Power to the People • Peace for the People
+
+</p>
+
+<h3 style="
+margin:0 0 20px;
+font-size:clamp(18px,4vw,30px);
+white-space:nowrap;
+">
+
+📕 Official PDF Library
+
+</h3>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+🌐
+
+<a
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="
+color:#fff;
+text-decoration:none;
+">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</p>
+
+<p style="
+margin:0;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<button
+onclick="topFunction()"
+id="topBtn">
+
+↑
+
+</button>
+
+</div>
 
 <script type="module" src="chat/chat-loader.js"></script>
 
