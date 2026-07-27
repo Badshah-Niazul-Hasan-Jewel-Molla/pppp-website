@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPPP Pictures | People's Power & Peace Party Bangladesh</title>
+
+<link rel="icon" href="favicon.ico">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#45c5dc,#63d2c6,#45c5dc);
+color:#fff;
+min-height:100vh;
+}
+
+.container{
+max-width:1500px;
+margin:auto;
+}
+
+.header{
+text-align:center;
+padding:35px 15px;
+}
+
+.header h1{
+margin:0;
+font-size:clamp(32px,7vw,58px);
+white-space:nowrap;
+text-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+.header h2{
+margin:15px 0 10px;
+font-size:clamp(18px,4vw,32px);
+}
+
+.header p{
+margin:0;
+font-size:clamp(15px,3vw,22px);
+}
+
+.toolbar{
+display:flex;
+justify-content:center;
+margin-top:25px;
+}
+
+#search{
+width:100%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+#totalPictures{
+margin-top:15px;
+text-align:center;
+font-size:17px;
+font-weight:bold;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.card{
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:contain;
+background:#fafafa;
+}
+
+.info{
+padding:12px;
+}
+
+.name{
+font-weight:bold;
+word-break:break-word;
+margin-bottom:10px;
+}
+
+.buttons{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+}
+
+button,a{
+flex:1;
+padding:10px;
+border:none;
+border-radius:8px;
+text-decoration:none;
+text-align:center;
+cursor:pointer;
+font-size:14px;
+color:#fff;
+}
+
+.download{
+background:#00b894;
+}
+
+.copy{
+background:#0984e3;
+}
+
+.share{
+background:#6c5ce7;
+}
+
+#topBtn{
+display:none;
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:9999;
+}
+
+#topBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>🖼️ PPPP Pictures</h1>
+
+<h2>
+People's Power & Peace Party (PPPP)
+</h2>
+
+<p>
+Power to the People • Peace for the People
+</p>
+
+<div class="toolbar">
+<input
+id="search"
+type="text"
+placeholder="🔍 Search PPPP Pictures...">
+</div>
+
+<div id="totalPictures">
+Total Pictures : 0
+</div>
+
+</div>
+
+<div
+class="gallery"
+id="gallery">
+</div>
+
+<script>
+
+const pictures=[
+
+"PPPP.png",
+"PPPP_Pro.png",
+"Message_from_PPPP.png",
+"Message_from_PPPP_Pro.png",
+"New_message_from_PPPP.png",
+"New_message_from_PPPP_Pro.png",
+"PPPP_Slogan.png",
+"PPPP_Slogan_Pro.png",
+"Welcome_to_PPPP.png",
+"Welcome_to_PPPP_Pro.png",
+"New_update_from_PPPP.png",
+"New_update_from_PPPP_Pro.png",
+"Thank_you_for_joining_PPPP.png",
+"Thank_you_for_joining_PPPP_Pro.jpg",
+"PPPP_Bangladesh.png",
+"PPPP_Bangladesh_Pro.png",
+"People's_Power_&_Peace_Party_PPPP.png",
+"People's_Power_&_Peace_Party_PPPP_Pro.png",
+"Power_to_the_People_Peace_for_the_People_PPPP.png",
+"Power_to_the_People_Peace_for_the_People_PPPP_Pro.png",
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP.jpeg",
+"Naz-Niaz_Garden_House_Dhaka_Bangladesh_PPPP_Pro.jpeg",
+"Paper_Pen_Pigment_Party_PPPP.png",
+"Paper_Pen_Pigment_Party_PPPP_Pro.png",
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM.png",
+"Badshah_Niazul_Hasan_Jewel_Molla_BNHJM_Pro.jpg",
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM.png",
+"Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM_Pro.jpg",
+"Bangladesh_Peace_Organization_BPO.jpeg",
+"Bangladesh_Peace_Organization_BPO_Pro.jpeg",
