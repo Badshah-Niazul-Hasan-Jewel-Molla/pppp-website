@@ -223,3 +223,323 @@ const pictures=[
 "Begum_Nazmun_Nahar_Juthi_Mozumder_BNNJM_Pro.jpg",
 "Bangladesh_Peace_Organization_BPO.jpeg",
 "Bangladesh_Peace_Organization_BPO_Pro.jpeg",
+"Bangladesh_Hilful_Fuzul_BHF.png",
+"Bangladesh_Hilful_Fuzul_BHF_Pro.png",
+"Naz-Niaz_Award_Organization_NAO.png",
+"Naz-Niaz_Award_Organization_NAO_Pro.png",
+"Jewel-Juthi_Award_Organization_JAO.png",
+"Jewel-Juthi_Award_Organization_JAO_Pro.png",
+"PPPP_Picture.png",
+"PPPP_Picture_Pro.png",
+"কাগজ_কলম_কালি_PPPP.png",
+"কাগজ_কলম_কালি_PPPP_Pro.png",
+"নির্বাচনী_ইশতেহার_PPPP.png",
+"নির্বাচনী_ইশতেহার_PPPP_Pro.png",
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি.png",
+"জনশক্তি_ও_শান্তি_পার্টি_পিপিপিপি_Pro.png",
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি.png",
+"শক্তি_জনগণের_জন্য_শান্তি_জনগণের_জন্য_পিপিপিপি_Pro.png",
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি.png",
+"হিজব_কুওয়াত_আশ-শাআব_ওয়াস-সালাম_পিপিপিপি_Pro.png",
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি.png",
+"হুকূক_আশ-শাআব_ওয়াস-সালাম_লি_আশ-শাআব_পিপিপিপি_Pro.png",
+"حزب_قوة_الشعب_والسلام_PPPP.png",
+"حزب_قوة_الشعب_والسلام_PPPP_Pro.png",
+"حقوق_الشعب_والسلام_للشعب_PPPP.png",
+"حقوق_الشعب_والسلام_للشعب_PPPP_Pro.png",
+"চল_চল_চল.jpeg",
+"চল_চল_চল_Pro.jpeg",
+"ধন_ধান্য_পুষ্প_ভরা_NABIHA_RIDA_OFFICIAL.jpg",
+"ধন_ধান্য_পুষ্প_ভরা_Hasnahena_Afrin_Official.jpg",
+"সত্যের_বার্তা_PPPP.png",
+"সত্যের_বার্তা_PPPP_Pro.png"
+
+];
+
+const colors=[
+"#ff6b6b",
+"#6c5ce7",
+"#00b894",
+"#fdcb6e",
+"#e17055",
+"#0984e3",
+"#e84393",
+"#2d3436"
+];
+
+const gallery=document.getElementById("gallery");
+const totalPictures=document.getElementById("totalPictures");
+
+function render(list){
+
+gallery.innerHTML="";
+
+totalPictures.innerHTML=
+"Total Pictures : <b>"+list.length+"</b>";
+
+list.forEach((file,index)=>{
+
+const color=colors[index%colors.length];
+
+const url="pictures/"+encodeURIComponent(file);
+
+gallery.innerHTML+=`
+
+<div class="card"
+style="
+background:linear-gradient(135deg,${color},${color}cc);
+padding:12px;
+">
+
+<div style="
+background:white;
+border-radius:12px;
+padding:10px;
+">
+
+<img
+src="${url}"
+loading="lazy"
+alt="${file}">
+
+</div>
+
+<div class="info">
+
+<div
+class="name"
+style="
+background:rgba(255,255,255,.25);
+color:#fff;
+padding:10px;
+border-radius:10px;
+backdrop-filter:blur(5px);
+">
+
+${file}
+
+</div>
+
+<div class="buttons">
+
+<a
+class="download"
+href="${url}"
+download>
+
+📥 Download
+
+</a>
+
+<button
+class="copy"
+onclick="copyLink('${url}')">
+
+🔗 Copy Link
+
+</button>
+
+<button
+class="share"
+onclick="sharePicture('${file}','${url}')">
+
+📤 Share
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+render(pictures);
+
+document
+.getElementById("search")
+.addEventListener("input",e=>{
+
+const q=e.target.value.toLowerCase();
+
+render(
+
+pictures.filter(picture=>
+
+picture.toLowerCase().includes(q)
+
+)
+
+);
+
+});
+
+function absolute(path){
+
+return new URL(path,location.href).href;
+
+}
+
+function copyLink(path){
+
+navigator.clipboard.writeText(
+
+absolute(path)
+
+);
+
+alert("Link copied.");
+
+}
+
+async function sharePicture(name,path){
+
+const url=absolute(path);
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:name,
+text:name,
+url:url
+
+});
+
+}catch(e){}
+
+}else{
+navigator.clipboard.writeText(url);
+
+alert("Link copied.");
+
+}
+
+}
+
+window.onscroll=function(){
+
+const btn=document.getElementById("topBtn");
+
+if(
+document.documentElement.scrollTop>300 ||
+document.body.scrollTop>300
+){
+btn.style.display="block";
+}else{
+btn.style.display="none";
+}
+
+};
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+}
+</script>
+
+<footer style="
+text-align:center;
+color:#fff;
+padding:60px 20px 40px;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+">
+
+<hr style="
+border:none;
+height:2px;
+background:rgba(255,255,255,.35);
+margin-bottom:35px;
+">
+
+<h2 style="
+margin:0 0 15px;
+font-size:clamp(18px,4vw,32px);
+white-space:nowrap;
+">
+
+People's Power & Peace Party (PPPP)
+
+</h2>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(15px,3vw,22px);
+white-space:nowrap;
+">
+
+Power to the People • Peace for the People
+
+</p>
+
+<h3 style="
+margin:0 0 20px;
+font-size:clamp(18px,4vw,30px);
+white-space:nowrap;
+">
+
+🖼️ Official Picture Gallery
+
+</h3>
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+🌐
+<a
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="
+color:#fff;
+text-decoration:none;
+">
+
+https://naz-niaz.github.io/pppp_bangladesh/
+
+</a>
+
+</p>
+
+<p style="
+margin:0;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
+© 2014-Present PPPP. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<button
+onclick="topFunction()"
+id="topBtn">
+
+↑
+
+</button>
+
+<script type="module" src="chat/chat-loader.js"></script>
+
+</div>
+
+</body>
+</html>
