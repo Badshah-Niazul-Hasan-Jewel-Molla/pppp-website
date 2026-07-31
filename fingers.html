@@ -118,9 +118,17 @@ font-size:14px;
 color:#fff;
 }
 
-.download{background:#00b894;}
-.copy{background:#0984e3;}
-.share{background:#6c5ce7;}
+.download{
+background:#00b894;
+}
+
+.copy{
+background:#0984e3;
+}
+
+.share{
+background:#6c5ce7;
+}
 
 #topBtn{
 display:none;
@@ -145,6 +153,7 @@ background:#1565c0;
 transform:scale(1.08);
 }
 </style>
+
 </head>
 
 <body>
@@ -164,10 +173,12 @@ Power to the People • Peace for the People
 </p>
 
 <div class="toolbar">
+
 <input
 id="search"
 type="text"
 placeholder="🔍 Search PPPP Fingers...">
+
 </div>
 
 <div id="totalFingers">
@@ -182,23 +193,32 @@ Total Fingers : 0
 
 const fingers=[
 
-"হাতের_আঙুল_Fingers.jpeg",
-"Thumb_বুড়ো_আঙুল.jpeg",
-"Index_finger_তর্জনী.jpeg",
-"Middle_finger_মধ্যমা.jpeg",
-"Fingers_Name_হাতের_পাঁচ_আঙুলের_নাম.jpeg",
-"Name_of_five_fingers.png",
-"Names_of_fingers_in_Arabic.jpeg",
-"Thumb_Index_Middle_Ring_Pinky.jpeg",
-"হাতের_পাঁচ_আঙুলের_নাম.jpeg",
-"বৃদ্ধাঙ্গুলি_তর্জনী_মধ্যমা_অনামিকা_কনিষ্ঠা.jpeg",
-"আরবি_ও_ইংরেজিতে_হাতের_পাঁচ_আঙুলের_নাম.png",
-"পায়ের_আঙুল_Toes.jpeg",
-"Big_toe_পায়ের_বুড়ো_আঙুল.png",
-"Index_toe_পায়ের_দ্বিতীয়_আঙুল.jpeg",
-"Middle_toe_পায়ের_মাঝের_আঙুল.jpeg",
-"Ring_toe_পায়ের_চতুর্থ_আঙুল.jpeg",
-"পায়ের_পাঁচ_আঙুলের_নাম.jpg"
+"হাতের_আঙুল_Fingers.jpg",
+"Thumb_বুড়ো_আঙুল.jpg",
+"Index_finger_তর্জনী.jpg",
+"Middle_finger_মধ্যমা.jpg",
+"Ring_finger_অনামিকা_আঙুল.jpg",
+"Little_finger_কনিষ্ঠা.jpg",
+"Fingers_Name_হাতের_পাঁচ_আঙুলের_নাম.jpg",
+"Name_of_five_fingers.jpg",
+"Names_of_Each_Finger.jpg",
+"Names_of_fingers_in_Arabic.jpg",
+"Thumb_Index_Middle_Ring_Pinky.jpg",
+"হাতের_পাঁচ_আঙুলের_নাম.jpg",
+"বৃদ্ধাঙ্গুলি_তর্জনী_মধ্যমা_অনামিকা_কনিষ্ঠা.jpg",
+"আরবিতে_হাতের_পাঁচ_আঙুলের_নাম.jpg",
+"ইংরেজিতে_হাতের_পাঁচ_আঙুলের_নাম.jpg",
+"আরবি_ও_ইংরেজিতে_হাতের_পাঁচ_আঙুলের_নাম.jpg",
+"পায়ের_আঙুল_Toes.jpg",
+"Big_toe_পায়ের_বুড়ো_আঙুল.jpg",
+"Index_toe_পায়ের_দ্বিতীয়_আঙুল.jpg",
+"Middle_toe_পায়ের_মাঝের_আঙুল.jpg",
+"Ring_toe_পায়ের_চতুর্থ_আঙুল.jpg",
+"Pinky_toe_পায়ের_কনিষ্ঠা_আঙুল.jpg",
+"পায়ের_পাঁচ_আঙুলের_নাম.jpg",
+"Names_of_Five_Fingers_in_Islam.png",
+"Names_of_Five_Toes_in_Islam.png",
+"Names_of_Five_Fingers_&_Toes_in_Islam.png"
 
 ];
 const colors=[
@@ -218,26 +238,48 @@ const totalFingers=document.getElementById("totalFingers");
 function render(list){
 
 gallery.innerHTML="";
-totalFingers.innerHTML="Total Fingers : <b>"+list.length+"</b>";
+
+totalFingers.innerHTML=
+"Total Fingers : <b>"+list.length+"</b>";
 
 list.forEach((file,index)=>{
 
 const color=colors[index%colors.length];
+
 const url="fingers/"+encodeURIComponent(file);
 
 gallery.innerHTML+=`
 
-<div class="card" style="background:linear-gradient(135deg,${color},${color}cc);padding:12px;">
+<div class="card"
+style="
+background:linear-gradient(135deg,${color},${color}cc);
+padding:12px;
+">
 
-<div style="background:white;border-radius:12px;padding:10px;">
+<div style="
+background:white;
+border-radius:12px;
+padding:10px;
+">
 
-<img src="${url}" loading="lazy" alt="${file}">
+<img
+src="${url}"
+loading="lazy"
+alt="${file}">
 
 </div>
 
 <div class="info">
 
-<div class="name" style="background:rgba(255,255,255,.25);color:#fff;padding:10px;border-radius:10px;backdrop-filter:blur(5px);">
+<div
+class="name"
+style="
+background:rgba(255,255,255,.25);
+color:#fff;
+padding:10px;
+border-radius:10px;
+backdrop-filter:blur(5px);
+">
 
 ${file}
 
@@ -245,11 +287,30 @@ ${file}
 
 <div class="buttons">
 
-<a class="download" href="${url}" download>📥 Download</a>
+<a
+class="download"
+href="${url}"
+download>
 
-<button class="copy" onclick="copyLink('${url}')">🔗 Copy Link</button>
+📥 Download
 
-<button class="share" onclick="shareFinger('${file}','${url}')">📤 Share</button>
+</a>
+
+<button
+class="copy"
+onclick="copyLink('${url}')">
+
+🔗 Copy Link
+
+</button>
+
+<button
+class="share"
+onclick="shareFinger('${file}','${url}')">
+
+📤 Share
+
+</button>
 
 </div>
 
@@ -265,24 +326,44 @@ ${file}
 
 render(fingers);
 
-document.getElementById("search").addEventListener("input",e=>{
+document
+.getElementById("search")
+.addEventListener("input",e=>{
 
 const q=e.target.value.toLowerCase();
 
-render(fingers.filter(item=>item.toLowerCase().includes(q)));
+render(
+
+fingers.filter(item=>
+
+item.toLowerCase().includes(q)
+
+)
+
+);
 
 });
 
+
 function absolute(path){
+
 return new URL(path,location.href).href;
+
 }
+
 
 function copyLink(path){
 
-navigator.clipboard.writeText(absolute(path));
+navigator.clipboard.writeText(
+
+absolute(path)
+
+);
+
 alert("Link copied.");
 
 }
+
 
 async function shareFinger(name,path){
 
@@ -293,9 +374,11 @@ if(navigator.share){
 try{
 
 await navigator.share({
+
 title:name,
 text:name,
 url:url
+
 });
 
 }catch(e){}
@@ -303,54 +386,111 @@ url:url
 }else{
 
 navigator.clipboard.writeText(url);
+
 alert("Link copied.");
 
 }
 
 }
 
+
 window.onscroll=function(){
 
 const btn=document.getElementById("topBtn");
 
-if(document.documentElement.scrollTop>300||document.body.scrollTop>300){
+if(
+document.documentElement.scrollTop>300 ||
+document.body.scrollTop>300
+){
+
 btn.style.display="block";
+
 }else{
+
 btn.style.display="none";
+
 }
 
 };
 
+
 function topFunction(){
 
 window.scrollTo({
+
 top:0,
 behavior:"smooth"
+
 });
 
 }
+
 </script>
 
-<footer style="text-align:center;color:#fff;padding:60px 20px 40px;overflow-x:auto;-webkit-overflow-scrolling:touch;">
 
-<hr style="border:none;height:2px;background:rgba(255,255,255,.35);margin-bottom:35px;">
+<footer style="
+text-align:center;
+color:#fff;
+padding:60px 20px 40px;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+">
 
-<h2 style="margin:0 0 15px;font-size:clamp(18px,4vw,32px);white-space:nowrap;">
+<hr style="
+border:none;
+height:2px;
+background:rgba(255,255,255,.35);
+margin-bottom:35px;
+">
+
+
+<h2 style="
+margin:0 0 15px;
+font-size:clamp(18px,4vw,32px);
+white-space:nowrap;
+">
+
 People's Power & Peace Party (PPPP)
+
 </h2>
 
-<p style="margin:0 0 20px;font-size:clamp(15px,3vw,22px);white-space:nowrap;">
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(15px,3vw,22px);
+white-space:nowrap;
+">
+
 Power to the People • Peace for the People
+
 </p>
 
-<h3 style="margin:0 0 20px;font-size:clamp(18px,4vw,30px);white-space:nowrap;">
+
+<h3 style="
+margin:0 0 20px;
+font-size:clamp(18px,4vw,30px);
+white-space:nowrap;
+">
+
 ✌️ Official Fingers Gallery
+
 </h3>
 
-<p style="margin:0 0 20px;font-size:clamp(14px,2.6vw,20px);white-space:nowrap;">
+
+<p style="
+margin:0 0 20px;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
 
 🌐
-<a href="https://naz-niaz.github.io/pppp_bangladesh/" target="_blank" style="color:#fff;text-decoration:none;">
+<a
+href="https://naz-niaz.github.io/pppp_bangladesh/"
+target="_blank"
+style="
+color:#fff;
+text-decoration:none;
+">
 
 https://naz-niaz.github.io/pppp_bangladesh/
 
@@ -358,15 +498,32 @@ https://naz-niaz.github.io/pppp_bangladesh/
 
 </p>
 
-<p style="margin:0;font-size:clamp(14px,2.6vw,20px);white-space:nowrap;">
+
+<p style="
+margin:0;
+font-size:clamp(14px,2.6vw,20px);
+white-space:nowrap;
+">
+
 © 2014-Present PPPP. All Rights Reserved.
+
 </p>
+
 
 </footer>
 
-<button onclick="topFunction()" id="topBtn">↑</button>
+
+<button
+onclick="topFunction()"
+id="topBtn">
+
+↑
+
+</button>
+
 
 <script type="module" src="chat/chat-loader.js"></script>
+
 
 </div>
 
