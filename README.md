@@ -88,7 +88,13 @@
 ├── 🖼️ PPPP Gallery
 ├── 🎬 PPPP Videos
 ├── 📚 PPPP Publications
-└── 📣 PPPP Newsletter
+├── 📣 PPPP Newsletter
+├── 🇧🇩 PPPP BD
+├── 🇵🇸 PPPP Palestine
+├── ☪️ PPPP Islamic
+├── 🌙 PPPP Osman Hadi
+├── 🎙️ PPPP Kotha
+└── 🌐 PPPP Social
 
 🎵 Media Library
 │
@@ -103,7 +109,15 @@
 ├── 📘 PPPP Word
 ├── 📊 PPPP Excel
 ├── 📥 PPPP Download
-└── 📱 PPPP App
+├── 📱 PPPP App
+├── 🪧 PPPP Poster
+├── 🏳️ PPPP Banner
+├── 🎈 PPPP Childhood
+├── 💠 PPPP Wallpaper
+├── 🧩 PPPP Theme
+├── 🔄 PPPP GIF
+├── ✌️ PPPP Fingers
+└── 👑 PPPP Kingdom
 
 🎨 Brand
 │
@@ -132,7 +146,7 @@
 
 ⚙️ Administration
 │
-└── 👤 PPPP Admin
+└── 👤 PPPP Chat Admin
 </pre>
 
 ---
