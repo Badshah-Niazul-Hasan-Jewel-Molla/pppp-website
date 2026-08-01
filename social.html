@@ -817,6 +817,157 @@ behavior:"smooth"
 
 }
 </script>
+<style>
+.social-section{
+margin:25px auto;
+padding:20px;
+border-radius:18px;
+background:#fff;
+box-shadow:0 6px 18px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.social-section:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+.social-title{
+font-size:28px;
+font-weight:700;
+text-align:center;
+margin-bottom:30px;
+}
+
+.social-card{
+padding:18px;
+margin:18px 0;
+border-radius:15px;
+border-left:8px solid;
+background:#fafafa;
+transition:.3s;
+}
+
+.social-card:hover{
+transform:scale(1.01);
+background:#fff;
+}
+
+.social-card h2{
+margin:0 0 12px;
+font-size:22px;
+font-weight:bold;
+}
+
+.social-card p{
+margin:8px 0;
+font-size:17px;
+line-height:1.8;
+word-break:break-word;
+}
+
+.social-card a{
+text-decoration:none;
+font-weight:bold;
+transition:.25s;
+word-break:break-all;
+}
+
+.social-card a:hover{
+text-decoration:underline;
+opacity:.85;
+}
+
+/* Colors from const colors[] */
+
+.social-card:nth-child(8n+1){
+border-color:#ff6b6b;
+}
+.social-card:nth-child(8n+1) h2,
+.social-card:nth-child(8n+1) a{
+color:#ff6b6b;
+}
+
+.social-card:nth-child(8n+2){
+border-color:#6c5ce7;
+}
+.social-card:nth-child(8n+2) h2,
+.social-card:nth-child(8n+2) a{
+color:#6c5ce7;
+}
+
+.social-card:nth-child(8n+3){
+border-color:#00b894;
+}
+.social-card:nth-child(8n+3) h2,
+.social-card:nth-child(8n+3) a{
+color:#00b894;
+}
+
+.social-card:nth-child(8n+4){
+border-color:#fdcb6e;
+}
+.social-card:nth-child(8n+4) h2,
+.social-card:nth-child(8n+4) a{
+color:#fdcb6e;
+}
+
+.social-card:nth-child(8n+5){
+border-color:#e17055;
+}
+.social-card:nth-child(8n+5) h2,
+.social-card:nth-child(8n+5) a{
+color:#e17055;
+}
+
+.social-card:nth-child(8n+6){
+border-color:#0984e3;
+}
+.social-card:nth-child(8n+6) h2,
+.social-card:nth-child(8n+6) a{
+color:#0984e3;
+}
+
+.social-card:nth-child(8n+7){
+border-color:#e84393;
+}
+.social-card:nth-child(8n+7) h2,
+.social-card:nth-child(8n+7) a{
+color:#e84393;
+}
+
+.social-card:nth-child(8n){
+border-color:#2d3436;
+}
+.social-card:nth-child(8n) h2,
+.social-card:nth-child(8n) a{
+color:#2d3436;
+}
+
+@media(max-width:768px){
+
+.social-section{
+padding:15px;
+}
+
+.social-title{
+font-size:22px;
+}
+
+.social-card{
+padding:15px;
+}
+
+.social-card h2{
+font-size:19px;
+}
+
+.social-card p{
+font-size:15px;
+}
+
+}
+</style>
 
 <div class="social-card">
   <h2>📚 Naz-Niaz</h2>
