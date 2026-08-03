@@ -177,6 +177,32 @@ font-size:clamp(15px,3vw,22px);
 ">
 Power to the People • Peace for the People
 </p>
+<div style="display:flex;justify-content:center;margin-top:25px;">
+
+<input
+id="search"
+type="text"
+placeholder="🔍 Search PPPP Letters..."
+style="
+width:100%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+">
+
+</div>
+
+<div id="totalLetters"
+style="
+margin-top:15px;
+text-align:center;
+font-size:17px;
+font-weight:bold;
+">
+Total Letters : 0
+</div>
 
 </header>
 
@@ -220,41 +246,64 @@ const colors = [
 ];
 
 const grid = document.getElementById("lettersGrid");
+const totalLetters = document.getElementById("totalLetters");
 
-letters.forEach((letter,index)=>{
+function render(list){
 
-    const fileName = `${letter}_Letter_Icon.jpg`;
+grid.innerHTML="";
 
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.background = colors[index];
+totalLetters.innerHTML="Total Letters : <b>"+list.length+"</b>";
 
-    card.innerHTML = `
-        <div class="image-container">
+list.forEach((letter,index)=>{
 
-            <div class="letter-placeholder">
-                ${letter}
-            </div>
+const fileName=`${letter}_Letter_Icon.jpg`;
 
-            <img
-                src="${fileName}"
-                alt="${letter}"
-                loading="lazy"
-                onload="this.previousElementSibling.style.display='none';"
-            >
+const card=document.createElement("div");
 
-        </div>
+card.className="card";
 
-        <h3>${letter}</h3>
+card.style.background=colors[index % colors.length];
 
-        <a href="${fileName}"
-           download="${letter}_Letter_Icon.jpg"
-           class="download-btn">
-           📥 Download
-        </a>
-    `;
+card.innerHTML=`
+<div class="image-container">
 
-    grid.appendChild(card);
+<div class="letter-placeholder">
+${letter}
+</div>
+
+<img
+src="${fileName}"
+alt="${letter}"
+loading="lazy"
+onload="this.previousElementSibling.style.display='none';"
+>
+
+</div>
+
+<h3>${letter}</h3>
+
+<a
+href="${fileName}"
+download="${letter}_Letter_Icon.jpg"
+class="download-btn">
+📥 Download
+</a>
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+render(letters);
+document.getElementById("search").addEventListener("input",function(e){
+
+const q=e.target.value.toUpperCase();
+
+render(
+letters.filter(letter=>letter.includes(q))
+);
 
 });
 
