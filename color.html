@@ -521,12 +521,13 @@ transform:scale(1.08);
 
 <script type="module" src="chat/chat-loader.js"></script>
 
-<!-- Floating Share & Back To Top Buttons -->
+<!-- Floating Share Button -->
 
 <style>
-.floating-btn{
+#shareBtn{
 position:fixed;
 right:20px;
+bottom:105px;
 width:65px;
 height:65px;
 border:none;
@@ -543,52 +544,17 @@ align-items:center;
 justify-content:center;
 }
 
-.floating-btn:hover{
+#shareBtn:hover{
 background:#1565c0;
 transform:scale(1.08);
 }
-
-#shareBtn{
-bottom:105px;
-}
-
-#topBtn{
-bottom:25px;
-display:none;
-}
 </style>
 
-<button id="shareBtn" class="floating-btn" title="Share">
+<button id="shareBtn" title="Share">
 🔗
 </button>
 
-<button id="topBtn" class="floating-btn" title="Back to Top">
-↑
-</button>
-
 <script>
-// Back To Top
-window.addEventListener("scroll",function(){
-
-const topBtn=document.getElementById("topBtn");
-
-if(document.documentElement.scrollTop>300){
-topBtn.style.display="flex";
-}else{
-topBtn.style.display="none";
-}
-
-});
-
-document.getElementById("topBtn").onclick=function(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-};
-
 // Website Share
 document.getElementById("shareBtn").onclick=async function(){
 
@@ -607,7 +573,6 @@ await navigator.share(shareData);
 }else{
 
 navigator.clipboard.writeText(window.location.href);
-
 alert("Website link copied successfully!");
 
 }
