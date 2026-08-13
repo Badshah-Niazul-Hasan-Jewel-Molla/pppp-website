@@ -170,5 +170,99 @@
 
 <script type="module" src="chat/chat-loader.js"></script>
 
+<!-- Floating Share & Back To Top Buttons -->
+
+<style>
+.floating-btn{
+position:fixed;
+right:20px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.floating-btn:hover{
+background:#1565c0;
+transform:scale(1.08);
+}
+
+#shareBtn{
+bottom:105px;
+}
+
+#topBtn{
+bottom:25px;
+display:none;
+}
+</style>
+
+<button id="shareBtn" class="floating-btn" title="Share">
+🔗
+</button>
+
+<button id="topBtn" class="floating-btn" title="Back to Top">
+↑
+</button>
+
+<script>
+// Back To Top
+window.addEventListener("scroll",function(){
+
+const topBtn=document.getElementById("topBtn");
+
+if(document.documentElement.scrollTop>300){
+topBtn.style.display="flex";
+}else{
+topBtn.style.display="none";
+}
+
+});
+
+document.getElementById("topBtn").onclick=function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+// Website Share
+document.getElementById("shareBtn").onclick=async function(){
+
+const shareData={
+title:document.title,
+text:"People's Power & Peace Party (PPPP) Bangladesh Official Website",
+url:window.location.href
+};
+
+if(navigator.share){
+
+try{
+await navigator.share(shareData);
+}catch(e){}
+
+}else{
+
+navigator.clipboard.writeText(window.location.href);
+
+alert("Website link copied successfully!");
+
+}
+
+};
+</script>
+
 </body>
 </html>
