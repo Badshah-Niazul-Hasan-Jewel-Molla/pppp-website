@@ -739,6 +739,65 @@ id="topBtn">
 
 <script type="module" src="chat/chat-loader.js"></script>
 
+<!-- Floating Share Button -->
+
+<style>
+#shareBtn{
+position:fixed;
+right:20px;
+bottom:105px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:#1e88e5;
+color:#fff;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+transition:.3s;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+#shareBtn:hover{
+background:#1565c0;
+transform:scale(1.08);
+}
+</style>
+
+<button id="shareBtn" title="Share">
+🔗
+</button>
+
+<script>
+// Website Share
+document.getElementById("shareBtn").onclick=async function(){
+
+const shareData={
+title:document.title,
+text:"People's Power & Peace Party (PPPP) Bangladesh Official Website",
+url:window.location.href
+};
+
+if(navigator.share){
+
+try{
+await navigator.share(shareData);
+}catch(e){}
+
+}else{
+
+navigator.clipboard.writeText(window.location.href);
+alert("Website link copied successfully!");
+
+}
+
+};
+</script>
+
 </div>
 
 </body>
