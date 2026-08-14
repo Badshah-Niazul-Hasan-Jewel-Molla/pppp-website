@@ -269,77 +269,50 @@ alert("Website link copied successfully!");
 
 <!-- =========================================================
      ⚙️ PPPP SETTINGS & CONTROL CENTER
-     + 🔗 SHARE
-     + ⬆️ BACK TO TOP
-     + ❤️ LIKED PAGES
-     + ⭐ FAVORITED PAGES
-     + 📌 PINNED PAGES
-     + 🌐 BANGLA / ENGLISH
-     + 🔊 SMART BILINGUAL READ ALOUD
-     + 🖨️ PAGE-ONLY PRINT
-     + 📥 PAGE-ONLY DOWNLOAD
+     IMPORTANT:
+     এই code-টি আপনার existing Share & Back To Top code-এর
+     ঠিক নিচে বসাবেন।
+     
+     Share / Back To Top code পরিবর্তন করার প্রয়োজন নেই।
 ========================================================= -->
 
 <style>
 
 /* =========================================================
-   🔗 FLOATING BUTTONS
+   ⚙️ SETTINGS FLOATING BUTTON
+   Share Button:
+   bottom:105px
+   height:65px
+
+   তাই Settings:
+   bottom:185px
+   → Share button-এর ঠিক উপরে
 ========================================================= */
 
-.pppp-floating-btn{
-position:fixed;
-right:20px;
-width:65px;
-height:65px;
-border:none;
-border-radius:50%;
-background:#1e88e5;
-color:#fff;
-font-size:30px;
-cursor:pointer;
-box-shadow:0 6px 16px rgba(0,0,0,.35);
-transition:.3s;
-z-index:99990;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.pppp-floating-btn:hover{
-background:#1565c0;
-transform:scale(1.08);
-}
-
-
-/* BACK TO TOP */
-#topBtn{
-bottom:25px;
-display:none;
-}
-
-
-/* SHARE */
-#shareBtn{
-bottom:105px;
-}
-
-
-/* SETTINGS
-   ঠিক Share button-এর উপরে
-*/
 #ppppSettingsBtn{
-bottom:185px;
+position:fixed !important;
+right:20px !important;
+left:auto !important;
+bottom:185px !important;
+
 width:65px;
 height:65px;
+
 border:none;
 border-radius:50%;
+
 background:#1e88e5;
 color:#fff;
+
 font-size:30px;
 cursor:pointer;
+
 box-shadow:0 6px 16px rgba(0,0,0,.35);
+
 transition:.3s;
-z-index:99991;
+
+z-index:100002;
+
 display:flex;
 align-items:center;
 justify-content:center;
@@ -347,7 +320,7 @@ justify-content:center;
 
 #ppppSettingsBtn:hover{
 background:#1565c0;
-transform:scale(1.08) rotate(30deg);
+transform:scale(1.08) rotate(20deg);
 }
 
 
@@ -358,10 +331,14 @@ transform:scale(1.08) rotate(30deg);
 #ppppSettingsOverlay{
 position:fixed;
 inset:0;
+
 background:rgba(0,0,0,.60);
+
 backdrop-filter:blur(4px);
 -webkit-backdrop-filter:blur(4px);
+
 z-index:100000;
+
 display:none;
 }
 
@@ -372,17 +349,26 @@ display:none;
 
 #ppppSettingsPanel{
 position:fixed;
+
 top:0;
 right:0;
+
 width:430px;
 max-width:92%;
+
 height:100vh;
+
 background:#fff;
 color:#222;
+
 box-shadow:-8px 0 30px rgba(0,0,0,.35);
+
 overflow-y:auto;
+
 transform:translateX(100%);
+
 transition:transform:.35s ease;
+
 z-index:100001;
 }
 
@@ -398,18 +384,25 @@ transform:translateX(0);
 .pppp-settings-header{
 position:sticky;
 top:0;
+
 z-index:20;
-background:linear-gradient(
+
+background:
+linear-gradient(
 135deg,
 #0d47a1,
 #1565c0,
 #1e88e5
 );
+
 color:#fff;
+
 padding:18px;
+
 display:flex;
 align-items:center;
 justify-content:space-between;
+
 box-shadow:0 3px 12px rgba(0,0,0,.25);
 }
 
@@ -427,11 +420,16 @@ margin-top:3px;
 #ppppSettingsClose{
 width:42px;
 height:42px;
+
 border:none;
 border-radius:50%;
+
 background:rgba(255,255,255,.18);
+
 color:#fff;
+
 font-size:25px;
+
 cursor:pointer;
 }
 
@@ -442,20 +440,31 @@ cursor:pointer;
 
 .pppp-settings-search{
 padding:14px;
+
 background:#f5f7fa;
+
 position:sticky;
-top:78px;
+
+top:77px;
+
 z-index:19;
 }
 
 #ppppSettingsSearch{
 width:100%;
+
 box-sizing:border-box;
+
 padding:13px 15px;
+
 border:2px solid #ddd;
+
 border-radius:30px;
+
 font-size:15px;
+
 outline:none;
+
 background:#fff;
 }
 
@@ -470,29 +479,46 @@ border-color:#1e88e5;
 
 .pppp-category{
 margin:12px;
+
 border-radius:14px;
+
 overflow:hidden;
+
 background:#fff;
+
 box-shadow:0 3px 12px rgba(0,0,0,.10);
+
 border:1px solid #eee;
 }
 
 .pppp-category-title{
 width:100%;
+
 border:none;
+
 padding:15px;
-background:linear-gradient(
+
+background:
+linear-gradient(
 135deg,
 #1565c0,
 #1e88e5
 );
+
 color:#fff;
+
 font-size:16px;
+
 font-weight:800;
+
 text-align:left;
+
 cursor:pointer;
+
 display:flex;
+
 align-items:center;
+
 justify-content:space-between;
 }
 
@@ -501,13 +527,16 @@ transition:.3s;
 }
 
 .pppp-category.open
-.pppp-category-title span:last-child{
+.pppp-category-title
+span:last-child{
 transform:rotate(180deg);
 }
 
 .pppp-category-content{
 display:none;
+
 padding:8px;
+
 background:#f8f9fb;
 }
 
@@ -521,130 +550,216 @@ display:block;
    MENU BUTTON
 ========================================================= */
 
-.pppp-btn,
-.pppp-action{
+.pppp-btn{
 display:flex;
+
 align-items:center;
+
 gap:9px;
+
 width:100%;
+
 box-sizing:border-box;
+
 padding:11px 12px;
+
 margin:5px 0;
+
 border-radius:10px;
+
 background:#fff;
+
 color:#222;
+
 text-decoration:none;
+
 font-size:14px;
+
 font-weight:600;
+
 border:1px solid #e3e6ea;
+
 cursor:pointer;
+
 transition:.2s;
-text-align:left;
 }
 
-.pppp-btn:hover,
-.pppp-action:hover{
+.pppp-btn:hover{
 background:#e3f2fd;
+
 border-color:#1e88e5;
+
 color:#0d47a1;
+
 transform:translateX(3px);
 }
 
-.pppp-btn:active,
-.pppp-action:active{
-transform:scale(.98);
+
+/* =========================================================
+   ACTION BUTTON
+========================================================= */
+
+.pppp-action{
+display:flex;
+
+align-items:center;
+
+gap:9px;
+
+width:100%;
+
+box-sizing:border-box;
+
+padding:11px 12px;
+
+margin:5px 0;
+
+border:none;
+
+border-radius:10px;
+
+background:#fff;
+
+color:#222;
+
+font-size:14px;
+
+font-weight:600;
+
+text-align:left;
+
+cursor:pointer;
+
+border:1px solid #e3e6ea;
+
+transition:.2s;
+}
+
+.pppp-action:hover{
+background:#e8f5e9;
+
+border-color:#43a047;
+
+transform:translateX(3px);
 }
 
 
 /* =========================================================
-   SAVED PAGE BUTTONS
+   SAVED PAGE LIST MODAL
 ========================================================= */
 
-.pppp-saved-btn{
-position:relative;
-}
-
-.pppp-count{
-margin-left:auto;
-font-size:11px;
-padding:3px 8px;
-border-radius:20px;
-background:#e3f2fd;
-color:#1565c0;
-}
-
-
-/* =========================================================
-   SAVED PAGE LIST
-========================================================= */
-
-#ppppSavedPagesBox{
-display:none;
+#ppppSavedPagesOverlay{
 position:fixed;
+
 inset:0;
-z-index:100010;
+
 background:rgba(0,0,0,.65);
+
+z-index:100010;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
 padding:20px;
+
 box-sizing:border-box;
 }
 
-#ppppSavedPagesPanel{
-max-width:600px;
+#ppppSavedPagesBox{
 width:100%;
-max-height:90vh;
-overflow:auto;
+
+max-width:520px;
+
+max-height:85vh;
+
+overflow-y:auto;
+
 background:#fff;
+
+color:#222;
+
 border-radius:18px;
-margin:5vh auto;
-box-shadow:0 10px 40px rgba(0,0,0,.4);
+
+box-shadow:
+0 15px 45px rgba(0,0,0,.45);
+
+padding:18px;
+
+box-sizing:border-box;
 }
 
 .pppp-saved-header{
-position:sticky;
-top:0;
-background:linear-gradient(
-135deg,
-#0d47a1,
-#1e88e5
-);
-color:#fff;
-padding:16px;
 display:flex;
-justify-content:space-between;
+
 align-items:center;
-z-index:2;
+
+justify-content:space-between;
+
+margin-bottom:12px;
+}
+
+.pppp-saved-title{
+font-size:20px;
+
+font-weight:800;
 }
 
 #ppppSavedClose{
-border:none;
-background:rgba(255,255,255,.2);
-color:#fff;
-border-radius:50%;
 width:40px;
 height:40px;
+
+border:none;
+
+border-radius:50%;
+
+background:#e53935;
+
+color:#fff;
+
 font-size:24px;
+
+cursor:pointer;
 }
 
 .pppp-saved-item{
+display:block;
+
 padding:12px;
-margin:8px;
+
+margin:7px 0;
+
+border-radius:10px;
+
+background:#f5f7fa;
+
 border:1px solid #ddd;
-border-radius:12px;
-background:#fafafa;
-}
 
-.pppp-saved-item a{
-color:#1565c0;
-font-weight:700;
+color:#222;
+
 text-decoration:none;
-display:block;
+
+font-size:14px;
+
+font-weight:600;
 }
 
-.pppp-saved-item small{
-display:block;
+.pppp-saved-item:hover{
+background:#e3f2fd;
+
+border-color:#1e88e5;
+}
+
+.pppp-empty{
+padding:25px 10px;
+
+text-align:center;
+
 color:#777;
-margin-top:5px;
-word-break:break-all;
+
+font-size:14px;
 }
 
 
@@ -654,47 +769,12 @@ word-break:break-all;
 
 .pppp-settings-footer{
 padding:20px;
+
 text-align:center;
+
 font-size:12px;
+
 color:#777;
-}
-
-
-/* =========================================================
-   HIDDEN GOOGLE TRANSLATE
-========================================================= */
-
-#google_translate_element{
-position:absolute;
-left:-99999px;
-top:-99999px;
-width:1px;
-height:1px;
-overflow:hidden;
-}
-
-
-/* =========================================================
-   HIGH CONTRAST
-========================================================= */
-
-body.pppp-high-contrast{
-background:#000 !important;
-color:#fff !important;
-}
-
-body.pppp-high-contrast
-.pppp-category-content{
-background:#111 !important;
-}
-
-body.pppp-high-contrast
-.pppp-btn,
-body.pppp-high-contrast
-.pppp-action{
-background:#000 !important;
-color:#fff !important;
-border:2px solid #fff !important;
 }
 
 
@@ -746,6 +826,19 @@ background:#202020;
 }
 
 body.pppp-dark-mode
+#ppppSavedPagesBox{
+background:#181818;
+color:#eee;
+}
+
+body.pppp-dark-mode
+.pppp-saved-item{
+background:#292929;
+color:#eee;
+border-color:#444;
+}
+
+body.pppp-dark-mode
 .pppp-settings-footer{
 color:#aaa;
 }
@@ -757,23 +850,13 @@ color:#aaa;
 
 @media(max-width:600px){
 
-.pppp-floating-btn,
 #ppppSettingsBtn{
-right:16px;
-width:62px;
-height:62px;
-}
+right:20px !important;
+left:auto !important;
+bottom:185px !important;
 
-#topBtn{
-bottom:20px;
-}
-
-#shareBtn{
-bottom:95px;
-}
-
-#ppppSettingsBtn{
-bottom:170px;
+width:65px;
+height:65px;
 }
 
 #ppppSettingsPanel{
@@ -791,39 +874,59 @@ font-size:14px;
 padding:12px;
 }
 
-#ppppSavedPagesBox{
-padding:10px;
 }
 
+
+/* =========================================================
+   PRINT
+   Settings panel / overlay / settings button print হবে না
+========================================================= */
+
+@media print{
+
+#ppppSettingsBtn,
+#ppppSettingsOverlay,
+#ppppSettingsPanel,
+#ppppSavedPagesOverlay{
+display:none !important;
+}
+
+}
+
+
+/* =========================================================
+   GOOGLE TRANSLATE HIDE
+========================================================= */
+
+#google_translate_element{
+position:fixed !important;
+
+width:1px !important;
+height:1px !important;
+
+overflow:hidden !important;
+
+left:-9999px !important;
+top:-9999px !important;
+}
+
+.goog-te-banner-frame{
+display:none !important;
+}
+
+body{
+top:0 !important;
+}
+
+.goog-tooltip{
+display:none !important;
+}
+
+.goog-te-gadget{
+font-size:0 !important;
 }
 
 </style>
-
-
-<!-- =========================================================
-     🔗 SHARE BUTTON
-========================================================= -->
-
-<button
-id="shareBtn"
-class="pppp-floating-btn"
-title="Share"
-aria-label="Share">
-🔗
-</button>
-
-
-<!-- =========================================================
-     ⬆️ BACK TO TOP
-========================================================= -->
-
-<button
-id="topBtn"
-class="pppp-floating-btn"
-title="Back to Top"
-aria-label="Back to Top">
-↑
-</button>
 
 
 <!-- =========================================================
@@ -846,12 +949,48 @@ aria-label="PPPP Settings">
 
 
 <!-- =========================================================
+     SAVED PAGES OVERLAY
+========================================================= -->
+
+<div id="ppppSavedPagesOverlay">
+
+<div id="ppppSavedPagesBox">
+
+<div class="pppp-saved-header">
+
+<div
+id="ppppSavedTitle"
+class="pppp-saved-title">
+Saved Pages
+</div>
+
+<button
+id="ppppSavedClose"
+title="Close">
+×
+</button>
+
+</div>
+
+<div id="ppppSavedList"></div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     GOOGLE TRANSLATE ELEMENT
+========================================================= -->
+
+<div id="google_translate_element"></div>
+
+
+<!-- =========================================================
      SETTINGS PANEL
 ========================================================= -->
 
-<div
-id="ppppSettingsPanel"
-translate="no">
+<div id="ppppSettingsPanel">
 
 
 <!-- HEADER -->
@@ -898,11 +1037,18 @@ placeholder="🔍 Search PPPP Settings...">
 <div class="pppp-category open">
 
 <button class="pppp-category-title">
-<span>🏛️ PPPP Structure</span>
+
+<span>
+🏛️ PPPP Structure
+</span>
+
 <span>▼</span>
+
 </button>
 
+
 <div class="pppp-category-content">
+
 
 <div
 class="pppp-btn"
@@ -910,23 +1056,34 @@ style="background:#e3f2fd;font-weight:800;">
 🏠 Main
 </div>
 
-<a href="/pppp_bangladesh/index.html" class="pppp-btn">
+
+<a
+href="/pppp_bangladesh/index.html"
+class="pppp-btn">
 🏠 PPPP Home
 </a>
 
-<a href="/pppp_bangladesh/about.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/about.html"
+class="pppp-btn">
 ℹ️ PPPP About
 </a>
 
-<a href="/pppp_bangladesh/manifesto.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/manifesto.html"
+class="pppp-btn">
 🗳️ PPPP Manifesto
 </a>
 
-<a href="/pppp_bangladesh/constitution.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/constitution.html"
+class="pppp-btn">
 ⚖️ PPPP Constitution
 </a>
 
-<a href="/pppp_bangladesh/leadership.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/leadership.html"
+class="pppp-btn">
 🫂 PPPP Leadership
 </a>
 
@@ -937,23 +1094,33 @@ style="background:#e8f5e9;font-weight:800;">
 🤝 Get Involved
 </div>
 
-<a href="/pppp_bangladesh/join.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/join.html"
+class="pppp-btn">
 📬 PPPP Join
 </a>
 
-<a href="/pppp_bangladesh/membership.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/membership.html"
+class="pppp-btn">
 🪪 PPPP Membership
 </a>
 
-<a href="/pppp_bangladesh/volunteer.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/volunteer.html"
+class="pppp-btn">
 🌱 PPPP Volunteer
 </a>
 
-<a href="/pppp_bangladesh/donate.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/donate.html"
+class="pppp-btn">
 💝 PPPP Donate
 </a>
 
-<a href="/pppp_bangladesh/chapters.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/chapters.html"
+class="pppp-btn">
 🌍 PPPP Chapters
 </a>
 
@@ -964,51 +1131,75 @@ style="background:#fff3e0;font-weight:800;">
 📰 Media & Communication
 </div>
 
-<a href="/pppp_bangladesh/news.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/news.html"
+class="pppp-btn">
 📰 PPPP News
 </a>
 
-<a href="/pppp_bangladesh/press.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/press.html"
+class="pppp-btn">
 📢 PPPP Press
 </a>
 
-<a href="/pppp_bangladesh/events.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/events.html"
+class="pppp-btn">
 📅 PPPP Events
 </a>
 
-<a href="/pppp_bangladesh/gallery.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/gallery.html"
+class="pppp-btn">
 🖼️ PPPP Gallery
 </a>
 
-<a href="/pppp_bangladesh/videos.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/videos.html"
+class="pppp-btn">
 🎬 PPPP Videos
 </a>
 
-<a href="/pppp_bangladesh/publications.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/publications.html"
+class="pppp-btn">
 📚 PPPP Publications
 </a>
 
-<a href="/pppp_bangladesh/app.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/app.html"
+class="pppp-btn">
 📱 PPPP App
 </a>
 
-<a href="/pppp_bangladesh/download.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/download.html"
+class="pppp-btn">
 📥 PPPP Download
 </a>
 
-<a href="/pppp_bangladesh/search.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/search.html"
+class="pppp-btn">
 🔍 PPPP Search
 </a>
 
-<a href="/pppp_bangladesh/newsletter.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/newsletter.html"
+class="pppp-btn">
 📣 PPPP Newsletter
 </a>
 
-<a href="/pppp_bangladesh/contact.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/contact.html"
+class="pppp-btn">
 📞 PPPP Contact
 </a>
 
-<a href="/pppp_bangladesh/social-media.html" class="pppp-btn">
+<a
+href="/pppp_bangladesh/social-media.html"
+class="pppp-btn">
 🌐 PPPP Social Media
 </a>
 
@@ -1312,40 +1503,44 @@ class="pppp-btn">
 
 <div class="pppp-category-content">
 
-<button class="pppp-action"
+<button
+class="pppp-action"
 onclick="history.back()">
 🔙 Back
 </button>
 
-<button class="pppp-action"
+<button
+class="pppp-action"
 onclick="history.forward()">
 ➡️ Forward
 </button>
 
-<button class="pppp-action"
+<button
+class="pppp-action"
 onclick="location.reload()">
 🔄 Refresh
 </button>
 
-<button class="pppp-action"
+<button
+class="pppp-action"
 onclick="window.scrollTo({top:0,behavior:'smooth'})">
 ⬆️ Back to Top
 </button>
 
-<button class="pppp-action"
-onclick="window.scrollTo({
-top:document.body.scrollHeight,
-behavior:'smooth'
-})">
+<button
+class="pppp-action"
+onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
 ⬇️ Back to Bottom
 </button>
 
-<button class="pppp-action"
-onclick="location.href='/pppp_bangladesh/index.html'">
+<button
+class="pppp-action"
+onclick="window.location.href='/pppp_bangladesh/index.html'">
 🏠 Home
 </button>
 
-<button class="pppp-action"
+<button
+class="pppp-action"
 onclick="document.getElementById('ppppSettingsSearch').focus()">
 📖 Menu
 </button>
@@ -1397,96 +1592,6 @@ onclick="ppppComment()">
 💬 Comment
 </button>
 
-<button
-class="pppp-action"
-onclick="ppppLike()"
-id="ppppLikeBtn">
-👍 Like
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppFeedback()">
-📝 Feedback
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppReport()">
-⚠️ Report
-</button>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     📚 SAVED PAGES
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>📚 Saved Pages</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-
-<button
-class="pppp-action pppp-saved-btn"
-onclick="ppppShowSavedPages('liked')">
-
-❤️ Liked Pages
-
-<span
-id="ppppLikedCount"
-class="pppp-count">
-0
-</span>
-
-</button>
-
-
-<button
-class="pppp-action pppp-saved-btn"
-onclick="ppppShowSavedPages('favorite')">
-
-⭐ Favorited Pages
-
-<span
-id="ppppFavoriteCount"
-class="pppp-count">
-0
-</span>
-
-</button>
-
-
-<button
-class="pppp-action pppp-saved-btn"
-onclick="ppppShowSavedPages('pinned')">
-
-📌 Pinned Pages
-
-<span
-id="ppppPinnedCount"
-class="pppp-count">
-0
-</span>
-
-</button>
-
-
-<button
-class="pppp-action"
-onclick="ppppClearSavedPages()">
-
-🗑️ Clear Saved Pages
-
-</button>
-
 </div>
 </div>
 
@@ -1505,26 +1610,60 @@ onclick="ppppClearSavedPages()">
 <div class="pppp-category-content">
 
 
+<!-- LIKE -->
+
 <button
+id="ppppLikeBtn"
 class="pppp-action"
-onclick="ppppBookmark()">
-🔖 Bookmark
+onclick="ppppLike()">
+👍 Like
 </button>
 
 
+<!-- LIKED PAGES -->
+
 <button
 class="pppp-action"
-onclick="ppppFavorite()"
-id="ppppFavoriteBtn">
+onclick="ppppShowSavedPages('liked')">
+❤️ Liked Pages
+</button>
+
+
+<!-- FAVORITE -->
+
+<button
+id="ppppFavoriteBtn"
+class="pppp-action"
+onclick="ppppFavorite()">
 ⭐ Favorite
 </button>
 
 
+<!-- FAVORITED PAGES -->
+
 <button
 class="pppp-action"
-onclick="ppppPin()"
-id="ppppPinBtn">
+onclick="ppppShowSavedPages('favorite')">
+⭐ Favorited Pages
+</button>
+
+
+<!-- PIN -->
+
+<button
+id="ppppPinBtn"
+class="pppp-action"
+onclick="ppppPin()">
 📌 Pin
+</button>
+
+
+<!-- PINNED PAGES -->
+
+<button
+class="pppp-action"
+onclick="ppppShowSavedPages('pinned')">
+📌 Pinned Pages
 </button>
 
 
@@ -1534,13 +1673,11 @@ onclick="ppppHistory()">
 🕒 History
 </button>
 
-
 <button
 class="pppp-action"
 onclick="ppppTags()">
 🏷️ Tags
 </button>
-
 
 <button
 class="pppp-action"
@@ -1548,13 +1685,17 @@ onclick="ppppContents()">
 📑 Contents
 </button>
 
+<button
+class="pppp-action"
+onclick="ppppCategories()">
+🗂️ Categories
+</button>
 
 <button
 class="pppp-action"
 onclick="ppppStatistics()">
 📊 Statistics
 </button>
-
 
 </div>
 </div>
@@ -1627,6 +1768,18 @@ onclick="ppppContrast()">
 🌓 High Contrast
 </button>
 
+<button
+class="pppp-action"
+onclick="ppppLayout()">
+↔️ Layout
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppTheme()">
+🎨 Theme
+</button>
+
 </div>
 </div>
 
@@ -1644,13 +1797,11 @@ onclick="ppppContrast()">
 
 <div class="pppp-category-content">
 
-
 <button
 class="pppp-action"
 onclick="ppppBangla()">
 🇧🇩 বাংলা
 </button>
-
 
 <button
 class="pppp-action"
@@ -1658,13 +1809,11 @@ onclick="ppppEnglish()">
 🇬🇧 English
 </button>
 
-
 <button
 class="pppp-action"
 onclick="ppppLanguage()">
 🌐 Language Settings
 </button>
-
 
 </div>
 </div>
@@ -1683,13 +1832,11 @@ onclick="ppppLanguage()">
 
 <div class="pppp-category-content">
 
-
 <button
 class="pppp-action"
 onclick="ppppReadAloud()">
 🔊 Read Aloud
 </button>
-
 
 <button
 class="pppp-action"
@@ -1697,13 +1844,11 @@ onclick="ppppMute()">
 🔇 Mute
 </button>
 
-
 <button
 class="pppp-action"
 onclick="ppppLargeControls()">
 🖱️ Large Controls
 </button>
-
 
 <button
 class="pppp-action"
@@ -1711,13 +1856,11 @@ onclick="ppppContrast()">
 👁️ High Contrast
 </button>
 
-
 <a
 href="/pppp_bangladesh/accessibility.html"
 class="pppp-btn">
 ♿ PPPP Accessibility
 </a>
-
 
 </div>
 </div>
@@ -1736,20 +1879,17 @@ class="pppp-btn">
 
 <div class="pppp-category-content">
 
-
 <button
 class="pppp-action"
 onclick="ppppDownloadPage()">
 📥 Download Page
 </button>
 
-
 <button
 class="pppp-action"
-onclick="ppppPrintPage()">
+onclick="window.print()">
 🖨️ Print
 </button>
-
 
 <button
 class="pppp-action"
@@ -1757,13 +1897,11 @@ onclick="ppppQRCode()">
 📱 QR Code
 </button>
 
-
 <button
 class="pppp-action"
 onclick="ppppScreenshot()">
 📸 Screenshot
 </button>
-
 
 <button
 class="pppp-action"
@@ -1771,13 +1909,11 @@ onclick="ppppCopyPage()">
 📋 Copy Page Text
 </button>
 
-
 <button
 class="pppp-action"
 onclick="ppppShareFile()">
 📤 Share Page
 </button>
-
 
 </div>
 </div>
@@ -1796,13 +1932,11 @@ onclick="ppppShareFile()">
 
 <div class="pppp-category-content">
 
-
 <button
 class="pppp-action"
 onclick="ppppHelp()">
 ❓ Help
 </button>
-
 
 <a
 href="/pppp_bangladesh/faq.html"
@@ -1810,13 +1944,11 @@ class="pppp-btn">
 ✔️ FAQ
 </a>
 
-
 <button
 class="pppp-action"
 onclick="ppppAboutSettings()">
 ℹ️ About Settings
 </button>
-
 
 </div>
 </div>
@@ -1836,137 +1968,30 @@ People's Power & Peace Party (PPPP)
 
 
 <!-- =========================================================
-     📚 SAVED PAGES MODAL
-========================================================= -->
-
-<div
-id="ppppSavedPagesBox"
-onclick="if(event.target===this)ppppCloseSavedPages()">
-
-<div
-id="ppppSavedPagesPanel">
-
-<div class="pppp-saved-header">
-
-<strong id="ppppSavedTitle">
-📚 Saved Pages
-</strong>
-
-<button
-id="ppppSavedClose"
-onclick="ppppCloseSavedPages()">
-×
-</button>
-
-</div>
-
-<div
-id="ppppSavedList"
-style="padding:10px;">
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-     🌐 HIDDEN GOOGLE TRANSLATE
-========================================================= -->
-
-<div
-id="google_translate_element">
-</div>
-
-
-<!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
 
 <script>
 
-/* =========================================================
-   BASIC HELPERS
-========================================================= */
+(function(){
 
-const PPPP_KEYS={
-liked:"ppppLikedPages",
-favorite:"ppppFavoritedPages",
-pinned:"ppppPinnedPages"
-};
-
-
-function ppppGetList(type){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(PPPP_KEYS[type])
-)||[];
-
-}catch(e){
-
-return[];
-
-}
-
-}
-
-
-function ppppSaveList(type,list){
-
-localStorage.setItem(
-PPPP_KEYS[type],
-JSON.stringify(list)
-);
-
-ppppUpdateCounts();
-
-}
-
-
-function ppppCurrentPage(){
-
-return{
-
-title:document.title||"PPPP Page",
-
-url:window.location.href,
-
-time:new Date().toLocaleString()
-
-};
-
-}
-
-
-function ppppIsSaved(type){
-
-const list=ppppGetList(type);
-
-return list.some(function(item){
-
-return item.url===window.location.href;
-
-});
-
-}
+"use strict";
 
 
 /* =========================================================
    SETTINGS OPEN / CLOSE
 ========================================================= */
 
-const settingsBtn=
+const settingsBtn =
 document.getElementById("ppppSettingsBtn");
 
-const settingsPanel=
+const settingsPanel =
 document.getElementById("ppppSettingsPanel");
 
-const settingsOverlay=
+const settingsOverlay =
 document.getElementById("ppppSettingsOverlay");
 
-const settingsClose=
+const settingsClose =
 document.getElementById("ppppSettingsClose");
 
 
@@ -1981,8 +2006,6 @@ settingsPanel.classList.add("active");
 },10);
 
 document.body.style.overflow="hidden";
-
-ppppUpdateButtonStates();
 
 }
 
@@ -2013,7 +2036,7 @@ closePPPPSettings;
 
 
 /* =========================================================
-   CATEGORY
+   CATEGORY OPEN / CLOSE
 ========================================================= */
 
 document
@@ -2024,7 +2047,8 @@ button.addEventListener(
 "click",
 function(){
 
-this.parentElement.classList.toggle("open");
+this.parentElement
+.classList.toggle("open");
 
 });
 
@@ -2042,7 +2066,9 @@ document
 function(){
 
 const query=
-this.value.toLowerCase().trim();
+this.value
+.toLowerCase()
+.trim();
 
 document
 .querySelectorAll(
@@ -2058,25 +2084,28 @@ category
 )
 .forEach(function(item){
 
-const text=
-item.textContent.toLowerCase();
+const match=
+item.textContent
+.toLowerCase()
+.includes(query);
 
-if(!query||text.includes(query)){
+if(match){
 
 item.style.display="flex";
 
-if(query)found=true;
+found=true;
 
 }else{
 
-item.style.display="none";
+item.style.display=
+query ? "none" : "flex";
 
 }
 
 });
 
 
-if(query&&found){
+if(query && found){
 
 category.style.display="block";
 
@@ -2109,11 +2138,459 @@ if(e.key==="Escape"){
 
 closePPPPSettings();
 
-ppppCloseSavedPages();
+document.getElementById(
+"ppppSavedPagesOverlay"
+).style.display="none";
 
 }
 
 });
+
+})();
+
+
+/* =========================================================
+   STORAGE HELPERS
+========================================================= */
+
+function ppppGetSaved(key){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(key) || "[]"
+);
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function ppppSetSaved(key,data){
+
+try{
+
+localStorage.setItem(
+key,
+JSON.stringify(data)
+);
+
+}catch(e){
+
+console.log(
+"PPPP storage unavailable"
+);
+
+}
+
+}
+
+
+function ppppCurrentPage(){
+
+return {
+
+url:window.location.href,
+
+title:
+document.title ||
+"PPPP Page"
+
+};
+
+}
+
+
+function ppppSavePage(key){
+
+const page=
+ppppCurrentPage();
+
+let pages=
+ppppGetSaved(key);
+
+const exists=
+pages.some(function(item){
+
+return item.url===page.url;
+
+});
+
+if(!exists){
+
+pages.unshift(page);
+
+ppppSetSaved(key,pages);
+
+return true;
+
+}
+
+return false;
+
+}
+
+
+function ppppRemovePage(key){
+
+const url=
+window.location.href;
+
+let pages=
+ppppGetSaved(key);
+
+pages=
+pages.filter(function(item){
+
+return item.url!==url;
+
+});
+
+ppppSetSaved(key,pages);
+
+}
+
+
+/* =========================================================
+   ❤️ LIKE
+========================================================= */
+
+function ppppLike(){
+
+const key=
+"ppppLikedPages";
+
+const pages=
+ppppGetSaved(key);
+
+const exists=
+pages.some(function(item){
+
+return item.url===window.location.href;
+
+});
+
+
+if(exists){
+
+ppppRemovePage(key);
+
+document.getElementById(
+"ppppLikeBtn"
+).innerHTML=
+"👍 Like";
+
+alert(
+"👍 Like removed from this page."
+);
+
+}else{
+
+ppppSavePage(key);
+
+document.getElementById(
+"ppppLikeBtn"
+).innerHTML=
+"❤️ Liked";
+
+alert(
+"❤️ Page added to Liked Pages."
+);
+
+}
+
+}
+
+
+/* =========================================================
+   ⭐ FAVORITE
+========================================================= */
+
+function ppppFavorite(){
+
+const key=
+"ppppFavoritedPages";
+
+const pages=
+ppppGetSaved(key);
+
+const exists=
+pages.some(function(item){
+
+return item.url===window.location.href;
+
+});
+
+
+if(exists){
+
+ppppRemovePage(key);
+
+document.getElementById(
+"ppppFavoriteBtn"
+).innerHTML=
+"⭐ Favorite";
+
+alert(
+"⭐ Page removed from Favorites."
+);
+
+}else{
+
+ppppSavePage(key);
+
+document.getElementById(
+"ppppFavoriteBtn"
+).innerHTML=
+"⭐ Favorited";
+
+alert(
+"⭐ Page added to Favorited Pages."
+);
+
+}
+
+}
+
+
+/* =========================================================
+   📌 PIN
+========================================================= */
+
+function ppppPin(){
+
+const key=
+"ppppPinnedPages";
+
+const pages=
+ppppGetSaved(key);
+
+const exists=
+pages.some(function(item){
+
+return item.url===window.location.href;
+
+});
+
+
+if(exists){
+
+ppppRemovePage(key);
+
+document.getElementById(
+"ppppPinBtn"
+).innerHTML=
+"📌 Pin";
+
+alert(
+"📌 Page unpinned."
+);
+
+}else{
+
+ppppSavePage(key);
+
+document.getElementById(
+"ppppPinBtn"
+).innerHTML=
+"📌 Pinned";
+
+alert(
+"📌 Page added to Pinned Pages."
+);
+
+}
+
+}
+
+
+/* =========================================================
+   📚 SAVED PAGE LISTS
+========================================================= */
+
+function ppppShowSavedPages(type){
+
+let key="";
+let title="";
+
+if(type==="liked"){
+
+key="ppppLikedPages";
+
+title="❤️ Liked Pages";
+
+}
+
+else if(type==="favorite"){
+
+key="ppppFavoritedPages";
+
+title="⭐ Favorited Pages";
+
+}
+
+else if(type==="pinned"){
+
+key="ppppPinnedPages";
+
+title="📌 Pinned Pages";
+
+}
+
+
+const pages=
+ppppGetSaved(key);
+
+const overlay=
+document.getElementById(
+"ppppSavedPagesOverlay"
+);
+
+const titleBox=
+document.getElementById(
+"ppppSavedTitle"
+);
+
+const list=
+document.getElementById(
+"ppppSavedList"
+);
+
+
+titleBox.textContent=
+title;
+
+list.innerHTML="";
+
+
+if(!pages.length){
+
+list.innerHTML=
+'<div class="pppp-empty">'+
+'এই তালিকায় এখনো কোনো পেজ নেই।'+
+'</div>';
+
+}else{
+
+pages.forEach(function(page){
+
+const a=
+document.createElement("a");
+
+a.className=
+"pppp-saved-item";
+
+a.href=
+page.url;
+
+a.textContent=
+page.title;
+
+a.title=
+page.url;
+
+list.appendChild(a);
+
+});
+
+}
+
+
+overlay.style.display=
+"flex";
+
+}
+
+
+document
+.getElementById("ppppSavedClose")
+.onclick=function(){
+
+document.getElementById(
+"ppppSavedPagesOverlay"
+).style.display="none";
+
+};
+
+
+document
+.getElementById("ppppSavedPagesOverlay")
+.onclick=function(e){
+
+if(e.target===this){
+
+this.style.display="none";
+
+}
+
+};
+
+
+/* =========================================================
+   UPDATE LIKE / FAVORITE / PIN STATUS
+========================================================= */
+
+(function(){
+
+const url=
+window.location.href;
+
+
+/* LIKE */
+
+if(
+ppppGetSaved("ppppLikedPages")
+.some(function(item){
+return item.url===url;
+})
+){
+
+document.getElementById(
+"ppppLikeBtn"
+).innerHTML=
+"❤️ Liked";
+
+}
+
+
+/* FAVORITE */
+
+if(
+ppppGetSaved("ppppFavoritedPages")
+.some(function(item){
+return item.url===url;
+})
+){
+
+document.getElementById(
+"ppppFavoriteBtn"
+).innerHTML=
+"⭐ Favorited";
+
+}
+
+
+/* PIN */
+
+if(
+ppppGetSaved("ppppPinnedPages")
+.some(function(item){
+return item.url===url;
+})
+){
+
+document.getElementById(
+"ppppPinBtn"
+).innerHTML=
+"📌 Pinned";
+
+}
+
+})();
 
 
 /* =========================================================
@@ -2122,7 +2599,7 @@ ppppCloseSavedPages();
 
 async function ppppShare(){
 
-const data={
+const shareData={
 
 title:document.title,
 
@@ -2133,11 +2610,14 @@ url:window.location.href
 
 };
 
+
 if(navigator.share){
 
 try{
 
-await navigator.share(data);
+await navigator.share(
+shareData
+);
 
 }catch(e){}
 
@@ -2148,56 +2628,6 @@ ppppCopyLink();
 }
 
 }
-
-
-/* =========================================================
-   🔗 FLOATING SHARE
-========================================================= */
-
-document
-.getElementById("shareBtn")
-.onclick=ppppShare;
-
-
-/* =========================================================
-   ⬆️ BACK TO TOP
-========================================================= */
-
-window.addEventListener(
-"scroll",
-function(){
-
-const btn=
-document.getElementById("topBtn");
-
-if(
-window.scrollY>300
-){
-
-btn.style.display="flex";
-
-}else{
-
-btn.style.display="none";
-
-}
-
-});
-
-
-document
-.getElementById("topBtn")
-.onclick=function(){
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-};
 
 
 /* =========================================================
@@ -2213,7 +2643,7 @@ navigator.clipboard
 .then(function(){
 
 alert(
-"📋 Website link copied successfully!"
+"Website link copied successfully!"
 );
 
 });
@@ -2236,7 +2666,15 @@ window.location.href
 
 function ppppSend(){
 
+if(navigator.share){
+
 ppppShare();
+
+}else{
+
+ppppCopyLink();
+
+}
 
 }
 
@@ -2248,7 +2686,9 @@ ppppShare();
 function ppppEmail(){
 
 const subject=
-encodeURIComponent(document.title);
+encodeURIComponent(
+document.title
+);
 
 const body=
 encodeURIComponent(
@@ -2256,7 +2696,7 @@ encodeURIComponent(
 window.location.href
 );
 
-location.href=
+window.location.href=
 "mailto:?subject="+
 subject+
 "&body="+
@@ -2271,384 +2711,8 @@ body;
 
 function ppppComment(){
 
-location.href=
+window.location.href=
 "/pppp_bangladesh/feedback.html";
-
-}
-
-
-/* =========================================================
-   👍 LIKE
-========================================================= */
-
-function ppppLike(){
-
-const list=
-ppppGetList("liked");
-
-const url=
-window.location.href;
-
-const index=
-list.findIndex(function(item){
-
-return item.url===url;
-
-});
-
-
-if(index>=0){
-
-list.splice(index,1);
-
-ppppSaveList("liked",list);
-
-alert("💔 Page removed from Liked Pages.");
-
-}else{
-
-list.unshift(
-ppppCurrentPage()
-);
-
-ppppSaveList("liked",list);
-
-alert("❤️ Page added to Liked Pages.");
-
-}
-
-ppppUpdateButtonStates();
-
-}
-
-
-/* =========================================================
-   ⭐ FAVORITE
-========================================================= */
-
-function ppppFavorite(){
-
-const list=
-ppppGetList("favorite");
-
-const url=
-window.location.href;
-
-const index=
-list.findIndex(function(item){
-
-return item.url===url;
-
-});
-
-
-if(index>=0){
-
-list.splice(index,1);
-
-ppppSaveList("favorite",list);
-
-alert(
-"⭐ Page removed from Favorited Pages."
-);
-
-}else{
-
-list.unshift(
-ppppCurrentPage()
-);
-
-ppppSaveList("favorite",list);
-
-alert(
-"⭐ Page added to Favorited Pages."
-);
-
-}
-
-ppppUpdateButtonStates();
-
-}
-
-
-/* =========================================================
-   📌 PIN
-========================================================= */
-
-function ppppPin(){
-
-const list=
-ppppGetList("pinned");
-
-const url=
-window.location.href;
-
-const index=
-list.findIndex(function(item){
-
-return item.url===url;
-
-});
-
-
-if(index>=0){
-
-list.splice(index,1);
-
-ppppSaveList("pinned",list);
-
-alert(
-"📌 Page removed from Pinned Pages."
-);
-
-}else{
-
-list.unshift(
-ppppCurrentPage()
-);
-
-ppppSaveList("pinned",list);
-
-alert(
-"📌 Page added to Pinned Pages."
-);
-
-}
-
-ppppUpdateButtonStates();
-
-}
-
-
-/* =========================================================
-   📊 UPDATE SAVED COUNTS
-========================================================= */
-
-function ppppUpdateCounts(){
-
-document
-.getElementById("ppppLikedCount")
-.textContent=
-ppppGetList("liked").length;
-
-
-document
-.getElementById("ppppFavoriteCount")
-.textContent=
-ppppGetList("favorite").length;
-
-
-document
-.getElementById("ppppPinnedCount")
-.textContent=
-ppppGetList("pinned").length;
-
-}
-
-
-/* =========================================================
-   🔄 UPDATE BUTTON STATES
-========================================================= */
-
-function ppppUpdateButtonStates(){
-
-const like=
-document.getElementById("ppppLikeBtn");
-
-const favorite=
-document.getElementById("ppppFavoriteBtn");
-
-const pin=
-document.getElementById("ppppPinBtn");
-
-
-if(like){
-
-like.innerHTML=
-ppppIsSaved("liked")
-?"💔 Unlike"
-:"👍 Like";
-
-}
-
-
-if(favorite){
-
-favorite.innerHTML=
-ppppIsSaved("favorite")
-?"⭐ Unfavorite"
-:"⭐ Favorite";
-
-}
-
-
-if(pin){
-
-pin.innerHTML=
-ppppIsSaved("pinned")
-?"📌 Unpin"
-:"📌 Pin";
-
-}
-
-ppppUpdateCounts();
-
-}
-
-
-/* =========================================================
-   📚 SHOW SAVED PAGES
-========================================================= */
-
-function ppppShowSavedPages(type){
-
-const list=
-ppppGetList(type);
-
-const box=
-document.getElementById(
-"ppppSavedPagesBox"
-);
-
-const output=
-document.getElementById(
-"ppppSavedList"
-);
-
-const title=
-document.getElementById(
-"ppppSavedTitle"
-);
-
-
-const titles={
-
-liked:"❤️ Liked Pages",
-
-favorite:"⭐ Favorited Pages",
-
-pinned:"📌 Pinned Pages"
-
-};
-
-
-title.textContent=
-titles[type];
-
-
-output.innerHTML="";
-
-
-if(!list.length){
-
-output.innerHTML=
-"<div style='padding:25px;text-align:center;color:#777;'>"+
-"No saved pages yet."+
-"</div>";
-
-}else{
-
-list.forEach(function(item){
-
-const div=
-document.createElement("div");
-
-div.className=
-"pppp-saved-item";
-
-div.innerHTML=
-
-"<a href='"+
-
-item.url+
-
-"'>"+
-
-item.title+
-
-"</a>"+
-
-"<small>"+
-
-item.url+
-
-"</small>"+
-
-"<small>🕒 "+
-
-item.time+
-
-"</small>";
-
-output.appendChild(div);
-
-});
-
-}
-
-
-box.style.display="block";
-
-}
-
-
-/* =========================================================
-   CLOSE SAVED PAGES
-========================================================= */
-
-function ppppCloseSavedPages(){
-
-document
-.getElementById(
-"ppppSavedPagesBox"
-)
-.style.display="none";
-
-}
-
-
-/* =========================================================
-   🗑️ CLEAR SAVED PAGES
-========================================================= */
-
-function ppppClearSavedPages(){
-
-if(!confirm(
-"🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
-))return;
-
-localStorage.removeItem(
-PPPP_KEYS.liked
-);
-
-localStorage.removeItem(
-PPPP_KEYS.favorite
-);
-
-localStorage.removeItem(
-PPPP_KEYS.pinned
-);
-
-ppppUpdateCounts();
-
-ppppUpdateButtonStates();
-
-alert(
-"🗑️ Saved Pages lists cleared."
-);
-
-}
-
-
-/* =========================================================
-   🔖 BOOKMARK
-========================================================= */
-
-function ppppBookmark(){
-
-alert(
-"🔖 Browser bookmark ব্যবহার করে এই page bookmark করুন।"
-);
 
 }
 
@@ -2659,45 +2723,8 @@ alert(
 
 function ppppHistory(){
 
-const key=
-"ppppPageHistory";
-
-let list=[];
-
-try{
-
-list=
-JSON.parse(
-localStorage.getItem(key)
-)||[];
-
-}catch(e){}
-
-
-const page=
-ppppCurrentPage();
-
-
-list=
-list.filter(function(item){
-
-return item.url!==page.url;
-
-});
-
-
-list.unshift(page);
-
-list=list.slice(0,100);
-
-localStorage.setItem(
-key,
-JSON.stringify(list)
-);
-
-
 alert(
-"🕒 Current page browser-এর PPPP history list-এ সংরক্ষিত হয়েছে।"
+"🕒 Browser history is available from your browser."
 );
 
 }
@@ -2709,23 +2736,9 @@ alert(
 
 function ppppTags(){
 
-const tags=
-prompt(
-"🏷️ এই page-এর tags লিখুন:"
-);
-
-if(tags!==null){
-
-localStorage.setItem(
-"ppppTags_"+window.location.href,
-tags
-);
-
 alert(
-"🏷️ Tags saved successfully."
+"🏷️ Page Tags"
 );
-
-}
 
 }
 
@@ -2744,7 +2757,7 @@ document.querySelectorAll(
 if(!headings.length){
 
 alert(
-"📑 No page contents found."
+"No page contents found."
 );
 
 return;
@@ -2764,8 +2777,20 @@ h.innerText+
 
 });
 
-
 alert(text);
+
+}
+
+
+/* =========================================================
+   🗂️ CATEGORIES
+========================================================= */
+
+function ppppCategories(){
+
+alert(
+"🗂️ PPPP Categories are available in Settings."
+);
 
 }
 
@@ -2776,34 +2801,14 @@ alert(text);
 
 function ppppStatistics(){
 
-const words=
-document.body.innerText
-.trim()
-.split(/\s+/)
-.filter(Boolean)
-.length;
-
 alert(
 
 "📊 PPPP Page Statistics\n\n"+
-
 "Page: "+
 document.title+
-
-"\n\nURL: "+
-window.location.href+
-
-"\n\nWords: "+
-words+
-
-"\n\n❤️ Liked: "+
-ppppGetList("liked").length+
-
-"\n⭐ Favorited: "+
-ppppGetList("favorite").length+
-
-"\n📌 Pinned: "+
-ppppGetList("pinned").length
+"\n\n"+
+"URL: "+
+window.location.href
 
 );
 
@@ -2816,7 +2821,8 @@ ppppGetList("pinned").length
 
 function ppppDarkMode(){
 
-document.body.classList.add(
+document.body
+.classList.add(
 "pppp-dark-mode"
 );
 
@@ -2834,7 +2840,8 @@ localStorage.setItem(
 
 function ppppLightMode(){
 
-document.body.classList.remove(
+document.body
+.classList.remove(
 "pppp-dark-mode"
 );
 
@@ -2921,7 +2928,8 @@ function ppppZoomReset(){
 
 ppppZoomLevel=1;
 
-document.body.style.zoom="1";
+document.body.style.zoom=
+"1";
 
 }
 
@@ -2940,76 +2948,231 @@ document.body.classList.toggle(
 
 
 /* =========================================================
-   🌐 GOOGLE TRANSLATE
+   ↔️ LAYOUT
 ========================================================= */
 
-function ppppBangla(){
-
-try{
-
-doGTranslate("bn|bn");
-
-}catch(e){
-
-document.cookie=
-"go﻿ogtrans=/bn/bn;path=/";
-
-}
-
-document.documentElement.lang="bn";
-
-}
-
-
-function ppppEnglish(){
-
-try{
-
-doGTranslate("bn|en");
-
-}catch(e){
-
-document.cookie=
-"googtrans=/bn/en;path=/";
-
-location.reload();
-
-}
-
-}
-
-
-/* =========================================================
-   LANGUAGE SETTINGS
-========================================================= */
-
-function ppppLanguage(){
+function ppppLayout(){
 
 alert(
-
-"🌐 Language Settings\n\n"+
-
-"🇧🇩 বাংলা — বাংলা page\n"+
-
-"🇬🇧 English — English translation\n\n"+
-
-"Translation system: Google Website Translator"
-
+"↔️ Layout controls can be customized here."
 );
 
 }
 
 
 /* =========================================================
-   🔊 SMART BILINGUAL READ ALOUD
+   🎨 THEME
+========================================================= */
+
+function ppppTheme(){
+
+alert(
+"🎨 PPPP Theme settings are available."
+);
+
+}
+
+
+/* =========================================================
+   🌐 LANGUAGE
+========================================================= */
+
+function ppppBangla(){
+
+try{
+
+/*
+   Google Translate original language
+*/
+
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;domain="+
+location.hostname;
+
+}catch(e){}
+
+
+/*
+   Reload original Bengali page
+*/
+
+const cleanURL=
+window.location.href
+.split("#googtrans")[0];
+
+window.location.href=
+cleanURL;
+
+}
+
+
+/* =========================================================
+   🇬🇧 ENGLISH TRANSLATION
+========================================================= */
+
+function ppppEnglish(){
+
+/*
+   Google Translate uses:
+   /source/target
+
+   Original:
+   bn
+
+   Target:
+   en
+*/
+
+try{
+
+document.cookie=
+"googtrans=/bn/en;path=/";
+
+document.cookie=
+"googtrans=/bn/en;path=/;domain="+
+location.hostname;
+
+}catch(e){}
+
+
+/*
+   Load Google Translate if needed
+*/
+
+if(
+window.google &&
+google.translate
+){
+
+ppppTriggerGoogleEnglish();
+
+return;
+
+}
+
+
+/*
+   Google Translate script dynamically load
+*/
+
+window.ppppGoogleTranslateReady=
+function(){
+
+ppppTriggerGoogleEnglish();
+
+};
+
+
+if(
+!document.getElementById(
+"ppppGoogleTranslateScript"
+)
+){
+
+const script=
+document.createElement("script");
+
+script.id=
+"ppppGoogleTranslateScript";
+
+script.src=
+"https://translate.google.com/translate_a/element.js?cb=ppppGoogleTranslateReady";
+
+document.body.appendChild(script);
+
+}else{
+
+setTimeout(
+ppppTriggerGoogleEnglish,
+1200
+);
+
+}
+
+}
+
+
+function ppppTriggerGoogleEnglish(){
+
+let tries=0;
+
+const timer=
+setInterval(function(){
+
+tries++;
+
+const select=
+document.querySelector(
+".goog-te-combo"
+);
+
+if(select){
+
+select.value="en";
+
+select.dispatchEvent(
+new Event(
+"change",
+{
+bubbles:true
+}
+)
+);
+
+clearInterval(timer);
+
+return;
+
+}
+
+if(tries>30){
+
+clearInterval(timer);
+
+window.location.href=
+window.location.href
+.split("#googtrans")[0]+
+"#googtrans(bn|en)";
+
+}
+
+},300);
+
+}
+
+
+/* =========================================================
+   🌐 LANGUAGE SETTINGS
+========================================================= */
+
+function ppppLanguage(){
+
+alert(
+"🌐 Language Settings\n\n"+
+"🇧🇩 বাংলা\n"+
+"🇬🇧 English"
+);
+
+}
+
+
+/* =========================================================
+   🔊 READ ALOUD
+   বাংলা → Bengali voice
+   English → English voice
 ========================================================= */
 
 function ppppReadAloud(){
 
-if(!("speechSynthesis" in window)){
+if(
+!("speechSynthesis" in window)
+){
 
 alert(
-"🔊 আপনার browser-এ Read Aloud / Speech Synthesis support নেই।"
+"এই browser-এ Read Aloud supported নয়।"
 );
 
 return;
@@ -3021,28 +3184,33 @@ speechSynthesis.cancel();
 
 
 /*
-   Settings panel ও floating buttons
-   পড়া থেকে বাদ দেওয়া হবে।
+   Page content clone
+   Settings / Share / Back To Top বাদ
 */
 
 const clone=
 document.body.cloneNode(true);
 
 
-clone
-.querySelectorAll(
-"#ppppSettingsPanel,"+
-"#ppppSettingsOverlay,"+
-"#ppppSettingsBtn,"+
-"#shareBtn,"+
-"#topBtn,"+
-"#ppppSavedPagesBox,"+
-"script,"+
-"style"
-)
-.forEach(function(el){
+[
+"ppppSettingsBtn",
+"ppppSettingsOverlay",
+"ppppSettingsPanel",
+"ppppSavedPagesOverlay",
+"shareBtn",
+"topBtn",
+"google_translate_element"
+]
+.forEach(function(id){
+
+const el=
+clone.querySelector("#"+id);
+
+if(el){
 
 el.remove();
+
+}
 
 });
 
@@ -3056,7 +3224,7 @@ clone.innerText
 if(!text){
 
 alert(
-"🔊 পড়ার মতো কোনো text পাওয়া যায়নি।"
+"এই পেজে পড়ার মতো লেখা পাওয়া যায়নি।"
 );
 
 return;
@@ -3065,120 +3233,204 @@ return;
 
 
 /*
-   বাংলা ও English অংশ আলাদা করা।
+   Voice detection
 */
-
-const regex=
-/([\u0980-\u09FF][\u0980-\u09FF\s.,!?;:'"“”‘’()\-–—]*)|([A-Za-z][A-Za-z0-9\s.,!?;:'"“”‘’()\-–—]*)/g;
-
-
-const parts=
-text.match(regex);
-
-
-if(!parts){
-
-const speech=
-new SpeechSynthesisUtterance(text);
-
-speech.lang="bn-BD";
-
-speech.rate=.9;
-
-speechSynthesis.speak(speech);
-
-return;
-
-}
-
 
 const voices=
 speechSynthesis.getVoices();
 
 
-function findVoice(lang){
+function getVoice(lang){
 
-return voices.find(function(v){
+return voices.find(
+function(v){
 
-return v.lang.toLowerCase()===
-lang.toLowerCase();
-
-})||voices.find(function(v){
-
-return v.lang
-.toLowerCase()
-.startsWith(
-lang.split("-")[0]
-.toLowerCase()
-);
+return v.lang &&
+v.lang.toLowerCase()
+.startsWith(lang);
 
 });
 
 }
 
 
+/*
+   Mixed Bengali + English
+   sentence chunks
+*/
+
+const tokens=
+text.match(
+/[\u0980-\u09FF]+|[A-Za-z]+(?:['’\-][A-Za-z]+)*|[0-9]+(?:[.,][0-9]+)*|[^A-Za-z\u0980-\u09FF0-9]+/g
+) || [];
+
+
+let chunks=[];
+
+let current="";
+let currentLang="";
+
+
+tokens.forEach(function(token){
+
+let lang="";
+
+
+if(
+/[\u0980-\u09FF]/.test(token)
+){
+
+lang="bn";
+
+}
+
+else if(
+/[A-Za-z]/.test(token)
+){
+
+lang="en";
+
+}
+
+
+/*
+   punctuation / space
+   current language-এর সঙ্গে থাকবে
+*/
+
+if(!lang){
+
+current+=token;
+
+return;
+
+}
+
+
+if(
+currentLang &&
+currentLang!==lang &&
+current.trim()
+){
+
+chunks.push({
+text:current.trim(),
+lang:currentLang
+});
+
+current="";
+
+}
+
+
+current+=token;
+
+currentLang=lang;
+
+});
+
+
+if(current.trim()){
+
+chunks.push({
+text:current.trim(),
+lang:currentLang || "en"
+});
+
+}
+
+
+/*
+   Voices ready হওয়ার পর পড়া
+*/
+
+function speakChunks(){
+
+const availableVoices=
+speechSynthesis.getVoices();
+
 let index=0;
 
 
-function speakNext(){
+function next(){
 
-if(index>=parts.length){
-
-return;
-
-}
-
-
-const part=
-parts[index++]
-.trim();
-
-
-if(!part){
-
-speakNext();
+if(index>=chunks.length){
 
 return;
 
 }
 
 
-const isBangla=
-/[\u0980-\u09FF]/.test(part);
-
-
-const lang=
-isBangla
-?"bn-BD"
-:"en-US";
-
+const item=
+chunks[index++];
 
 const utterance=
-new SpeechSynthesisUtterance(part);
+new SpeechSynthesisUtterance(
+item.text
+);
 
 
-utterance.lang=lang;
+if(item.lang==="bn"){
 
-utterance.rate=.88;
+utterance.lang="bn-BD";
+
+const bnVoice=
+availableVoices.find(
+function(v){
+
+return v.lang &&
+v.lang.toLowerCase()
+.startsWith("bn");
+
+});
+
+if(bnVoice){
+
+utterance.voice=
+bnVoice;
+
+}
+
+}else{
+
+utterance.lang="en-US";
+
+const enVoice=
+availableVoices.find(
+function(v){
+
+return v.lang &&
+v.lang.toLowerCase()
+.startsWith("en");
+
+});
+
+if(enVoice){
+
+utterance.voice=
+enVoice;
+
+}
+
+}
+
+
+utterance.rate=.9;
 
 utterance.pitch=1;
 
-
-const voice=
-findVoice(lang);
-
-if(voice){
-
-utterance.voice=voice;
-
-}
+utterance.volume=1;
 
 
 utterance.onend=
-speakNext;
+function(){
 
-utterance.onerror=
-speakNext;
+setTimeout(
+next,
+80
+);
+
+};
 
 
 speechSynthesis.speak(
@@ -3188,7 +3440,39 @@ utterance
 }
 
 
-speakNext();
+next();
+
+}
+
+
+/*
+   Android Chrome-এ voices
+   পরে load হতে পারে
+*/
+
+if(
+voices.length
+){
+
+speakChunks();
+
+}else{
+
+speechSynthesis.onvoiceschanged=
+function(){
+
+speechSynthesis.onvoiceschanged=null;
+
+speakChunks();
+
+};
+
+setTimeout(
+speakChunks,
+1000
+);
+
+}
 
 }
 
@@ -3199,7 +3483,10 @@ speakNext();
 
 function ppppMute(){
 
-if("speechSynthesis" in window){
+if(
+"speechSynthesis"
+in window
+){
 
 speechSynthesis.cancel();
 
@@ -3220,9 +3507,11 @@ document
 )
 .forEach(function(btn){
 
-btn.style.padding="15px";
+btn.style.padding=
+"15px";
 
-btn.style.fontSize="16px";
+btn.style.fontSize=
+"16px";
 
 });
 
@@ -3231,54 +3520,19 @@ btn.style.fontSize="16px";
 
 /* =========================================================
    📥 DOWNLOAD PAGE
-   Settings / floating controls বাদ যাবে
 ========================================================= */
 
 function ppppDownloadPage(){
 
-const clone=
-document.documentElement.cloneNode(true);
-
-
 /*
-   PPPP UI remove
+   বর্তমান সম্পূর্ণ page download হবে।
+   Settings panel active থাকলেও
+   শুধু page HTML download হবে।
 */
-
-clone
-.querySelectorAll(
-"#ppppSettingsBtn,"+
-"#ppppSettingsPanel,"+
-"#ppppSettingsOverlay,"+
-"#shareBtn,"+
-"#topBtn,"+
-"#ppppSavedPagesBox,"+
-"#google_translate_element"
-)
-.forEach(function(el){
-
-el.remove();
-
-});
-
-
-/*
-   Download করা file-এ
-   Settings-এর JavaScript যেন
-   আবার automatically না চলে।
-*/
-
-clone
-.querySelectorAll("script")
-.forEach(function(script){
-
-script.remove();
-
-});
-
 
 const html=
 "<!DOCTYPE html>\n"+
-clone.outerHTML;
+document.documentElement.outerHTML;
 
 
 const blob=
@@ -3301,10 +3555,13 @@ a.href=url;
 
 a.download=
 (
-document.title||
+document.title ||
 "PPPP_Page"
 )
-.replace(/[^\w\u0980-\u09FF-]+/g,"_")+
+.replace(
+/\s+/g,
+"_"
+)+
 ".html";
 
 
@@ -3315,67 +3572,27 @@ a.click();
 a.remove();
 
 
-setTimeout(function(){
+setTimeout(
+function(){
 
 URL.revokeObjectURL(url);
 
-},1000);
+},
+1000
+);
 
 }
 
 
 /* =========================================================
-   🖨️ PRINT PAGE
-   Settings / buttons print হবে না
+   🖨️ PRINT
 ========================================================= */
 
-function ppppPrintPage(){
-
-closePPPPSettings();
-
-setTimeout(function(){
+function ppppPrint(){
 
 window.print();
 
-},150);
-
 }
-
-
-/* =========================================================
-   PRINT CSS
-========================================================= */
-
-const printStyle=
-document.createElement("style");
-
-printStyle.innerHTML=`
-
-@media print{
-
-#ppppSettingsBtn,
-#ppppSettingsPanel,
-#ppppSettingsOverlay,
-#shareBtn,
-#topBtn,
-#ppppSavedPagesBox,
-#google_translate_element{
-
-display:none !important;
-
-}
-
-body{
-
-overflow:visible !important;
-
-}
-
-}
-
-`;
-
-document.head.appendChild(printStyle);
 
 
 /* =========================================================
@@ -3402,76 +3619,11 @@ qrURL,
    📸 SCREENSHOT
 ========================================================= */
 
-async function ppppScreenshot(){
-
-if(
-typeof html2canvas==="undefined"
-){
-
-const script=
-document.createElement("script");
-
-script.src=
-"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
-
-script.onload=
-function(){
-
-ppppScreenshot();
-
-};
-
-script.onerror=
-function(){
+function ppppScreenshot(){
 
 alert(
-"📸 Screenshot library load করা যায়নি। ফোনের Screenshot ব্যবহার করুন।"
+"📸 Screenshot নিতে আপনার ফোনের Screenshot feature ব্যবহার করুন।"
 );
-
-};
-
-document.head.appendChild(script);
-
-return;
-
-}
-
-
-try{
-
-const canvas=
-await html2canvas(
-document.body,
-{
-useCORS:true,
-scale:window.devicePixelRatio||1
-}
-);
-
-
-const link=
-document.createElement("a");
-
-link.download=
-(
-document.title||
-"PPPP_Screenshot"
-)+
-".png";
-
-link.href=
-canvas.toDataURL("image/png");
-
-link.click();
-
-
-}catch(e){
-
-alert(
-"📸 Screenshot তৈরি করা সম্ভব হয়নি।"
-);
-
-}
 
 }
 
@@ -3482,16 +3634,9 @@ alert(
 
 function ppppCopyPage(){
 
-if(!navigator.clipboard){
-
-alert(
-"📋 Clipboard support নেই।"
-);
-
-return;
-
-}
-
+if(
+navigator.clipboard
+){
 
 navigator.clipboard
 .writeText(
@@ -3504,6 +3649,8 @@ alert(
 );
 
 });
+
+}
 
 }
 
@@ -3528,17 +3675,11 @@ function ppppHelp(){
 alert(
 
 "❓ PPPP Settings Help\n\n"+
-
-"⚙️ Settings খুলুন।\n"+
-
-"🔍 Search দিয়ে option খুঁজুন।\n"+
-"❤️ Like করলে Liked Pages-এ থাকবে।\n"+
-"⭐ Favorite করলে Favorited Pages-এ থাকবে।\n"+
-"📌 Pin করলে Pinned Pages-এ থাকবে।\n"+
-"🌐 English চাপলে page translation হবে।\n"+
-"🔊 Read Aloud বাংলা ও English আলাদা voice/language-এ পড়ার চেষ্টা করবে।\n"+
-"🖨️ Print শুধু page print করবে।\n"+
-"📥 Download শুধু page download করবে।"
+"⚙️ Settings খুলে Category নির্বাচন করুন।\n"+
+"🔍 Search ব্যবহার করে দ্রুত Button খুঁজুন।\n"+
+"❤️ Like করলে Liked Pages-এ সংরক্ষিত হবে।\n"+
+"⭐ Favorite করলে Favorited Pages-এ সংরক্ষিত হবে।\n"+
+"📌 Pin করলে Pinned Pages-এ সংরক্ষিত হবে।"
 
 );
 
@@ -3546,7 +3687,7 @@ alert(
 
 
 /* =========================================================
-   ℹ️ ABOUT
+   ℹ️ ABOUT SETTINGS
 ========================================================= */
 
 function ppppAboutSettings(){
@@ -3554,16 +3695,7 @@ function ppppAboutSettings(){
 alert(
 
 "⚙️ PPPP Settings & Control Center\n\n"+
-
-"People's Power & Peace Party (PPPP)\n\n"+
-
-"❤️ Liked Pages\n"+
-"⭐ Favorited Pages\n"+
-"📌 Pinned Pages\n"+
-"🌐 Language\n"+
-"🔊 Read Aloud\n"+
-"🖨️ Print\n"+
-"📥 Download"
+"People's Power & Peace Party (PPPP)"
 
 );
 
@@ -3571,8 +3703,10 @@ alert(
 
 
 /* =========================================================
-   🌙 LOAD DARK MODE
+   🌙 LOAD SAVED DARK MODE
 ========================================================= */
+
+(function(){
 
 if(
 localStorage.getItem(
@@ -3580,242 +3714,14 @@ localStorage.getItem(
 )==="dark"
 ){
 
-document.body.classList.add(
+document.body
+.classList.add(
 "pppp-dark-mode"
 );
 
 }
 
-
-/* =========================================================
-   📚 INITIAL UPDATE
-========================================================= */
-
-ppppUpdateCounts();
-
-ppppUpdateButtonStates();
-
-
-/* =========================================================
-   🕒 AUTO SAVE CURRENT PAGE TO HISTORY
-========================================================= */
-
-(function(){
-
-const key=
-"ppppPageHistory";
-
-let list=[];
-
-try{
-
-list=
-JSON.parse(
-localStorage.getItem(key)
-)||[];
-
-}catch(e){}
-
-
-const page=
-ppppCurrentPage();
-
-
-list=
-list.filter(function(item){
-
-return item.url!==page.url;
-
-});
-
-
-list.unshift(page);
-
-list=list.slice(0,100);
-
-
-localStorage.setItem(
-key,
-JSON.stringify(list)
-);
-
 })();
-
-
-/* =========================================================
-   🌐 GOOGLE TRANSLATE FUNCTION
-========================================================= */
-
-function GTranslateFireEvent(
-element,
-event
-){
-
-try{
-
-if(
-document.createEvent
-){
-
-const evt=
-document.createEvent(
-"HTMLEvents"
-);
-
-evt.initEvent(
-event,
-true,
-true
-);
-
-element.dispatchEvent(evt);
-
-}else{
-
-const evt=
-document.createEventObject();
-
-element.fireEvent(
-"on"+event,
-evt
-);
-
-}
-
-}catch(e){}
-
-}
-
-
-function doGTranslate(
-lang_pair
-){
-
-if(!lang_pair)
-return;
-
-
-const lang=
-lang_pair.split("|")[1];
-
-
-const select=
-document.querySelector(
-".goog-te-combo"
-);
-
-
-if(select){
-
-select.value=lang;
-
-GTranslateFireEvent(
-select,
-"change"
-);
-
-return;
-
-}
-
-
-/*
-   Widget load হওয়ার আগে click হলে
-   cookie সেট করে page reload।
-*/
-
-document.cookie=
-"googtrans=/bn/"+lang+
-";path=/";
-
-document.cookie=
-"googtrans=/bn/"+lang+
-";path=/;domain="+
-location.hostname;
-
-location.reload();
-
-}
-
-
-/* =========================================================
-   GOOGLE TRANSLATE INITIALIZER
-========================================================= */
-
-window.googleTranslateElementInit=
-function(){
-
-if(
-window.google &&
-google.translate
-){
-
-new google.translate.TranslateElement(
-
-{
-
-pageLanguage:"bn",
-
-includedLanguages:"bn,en",
-
-autoDisplay:false
-
-},
-
-"google_translate_element"
-
-);
-
-}
-
-};
-
-
-/* =========================================================
-   LOAD GOOGLE TRANSLATE SCRIPT
-========================================================= */
-
-(function(){
-
-if(
-document.getElementById(
-"ppppGoogleTranslateScript"
-)
-)return;
-
-
-const script=
-document.createElement("script");
-
-script.id=
-"ppppGoogleTranslateScript";
-
-script.src=
-"https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-
-script.async=true;
-
-document.head.appendChild(script);
-
-})();
-
-
-/* =========================================================
-   VOICE LIST LOAD
-========================================================= */
-
-if(
-"speechSynthesis" in window
-){
-
-speechSynthesis.onvoiceschanged=
-function(){
-
-speechSynthesis.getVoices();
-
-};
-
-}
 
 </script>
 
