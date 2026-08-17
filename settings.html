@@ -2424,7 +2424,14 @@ onclick="ppppCalcEqual()">
 <input
 type="date"
 id="ppppBirthDate"
-style="width:100%;box-sizing:border-box;padding:11px;border:1px solid #ddd;border-radius:9px;margin:8px 0;">
+style="
+width:100%;
+box-sizing:border-box;
+padding:11px;
+border:1px solid #ddd;
+border-radius:9px;
+margin:8px 0;
+">
 
 <button
 class="pppp-action"
@@ -2432,9 +2439,46 @@ onclick="ppppCalculateAge()">
 🎂 Calculate Age
 </button>
 
+
+<!-- CURRENT AGE -->
+
 <div
 id="ppppAgeResult"
-style="font-weight:700;line-height:1.8;">
+style="
+font-weight:700;
+line-height:1.8;
+margin-top:15px;
+">
+</div>
+
+
+<!-- NEXT BIRTHDAY -->
+
+<div
+id="ppppNextBirthday"
+style="
+margin-top:20px;
+">
+</div>
+
+
+<!-- LIFE SUMMARY -->
+
+<div
+id="ppppLifeSummary"
+style="
+margin-top:20px;
+">
+</div>
+
+
+<!-- UPCOMING BIRTHDAYS -->
+
+<div
+id="ppppUpcomingBirthdays"
+style="
+margin-top:20px;
+">
 </div>
 
 </div>
@@ -4696,94 +4740,528 @@ function ppppCalculate() {
 
 
 /* =========================================================
-   AGE CALCULATOR
+   🎂 AGE CALCULATOR
+   FULL LIFE SUMMARY
 ========================================================= */
 
-function ppppCalculateAge() {
+function ppppToBanglaNumber(value){
 
-    const input =
-        document.getElementById(
-            "ppppBirthDate"
-        );
+return String(value)
+.replace(/0/g,"০")
+.replace(/1/g,"১")
+.replace(/2/g,"২")
+.replace(/3/g,"৩")
+.replace(/4/g,"৪")
+.replace(/5/g,"৫")
+.replace(/6/g,"৬")
+.replace(/7/g,"৭")
+.replace(/8/g,"৮")
+.replace(/9/g,"৯");
 
-    const result =
-        document.getElementById(
-            "ppppAgeResult"
-        );
+}
 
-    if (!input || !result) return;
 
-    const value =
-        input.value;
+/* =========================================================
+   DATE FORMAT
+========================================================= */
 
-    if (!value) {
+function ppppFormatDate(date){
 
-        result.textContent =
-            "জন্মতারিখ নির্বাচন করুন।";
+return date.toLocaleDateString(
+"bn-BD",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
 
-        return;
+}
 
-    }
 
-    const birth =
-        new Date(
-            value + "T00:00:00"
-        );
+/* =========================================================
+   AGE CALCULATION
+========================================================= */
 
-    const today =
-        new Date();
+function ppppCalculateAge(){
 
-    if (birth > today) {
+const value=
+document.getElementById(
+"ppppBirthDate"
+).value;
 
-        result.textContent =
-            "❌ জন্মতারিখ ভবিষ্যতের হতে পারে না।";
+const result=
+document.getElementById(
+"ppppAgeResult"
+);
 
-        return;
+const nextBirthday=
+document.getElementById(
+"ppppNextBirthday"
+);
 
-    }
+const summary=
+document.getElementById(
+"ppppLifeSummary"
+);
 
-    let years =
-        today.getFullYear() -
-        birth.getFullYear();
+const upcoming=
+document.getElementById(
+"ppppUpcomingBirthdays"
+);
 
-    let months =
-        today.getMonth() -
-        birth.getMonth();
 
-    let days =
-        today.getDate() -
-        birth.getDate();
+if(!value){
 
-    if (days < 0) {
+result.innerHTML=
+"<div style='padding:15px;text-align:center;color:#777;'>"+
+"🎂 জন্মতারিখ নির্বাচন করুন।"+
+"</div>";
 
-        months--;
+nextBirthday.innerHTML="";
+summary.innerHTML="";
+upcoming.innerHTML="";
 
-        const previousMonth =
-            new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                0
-            ).getDate();
+return;
 
-        days += previousMonth;
+}
 
-    }
 
-    if (months < 0) {
+const birth=
+new Date(
+value+"T00:00:00"
+);
 
-        years--;
-        months += 12;
+const today=
+new Date();
 
-    }
 
-    result.textContent =
-        "🎂 Age: " +
-        years +
-        " বছর " +
-        months +
-        " মাস " +
-        days +
-        " দিন";
+/* =========================================================
+   FUTURE DATE CHECK
+========================================================= */
+
+if(birth>today){
+
+result.innerHTML=
+"<div style='padding:15px;text-align:center;color:#d63031;'>"+
+"❌ জন্মতারিখ ভবিষ্যতের হতে পারে না।"+
+"</div>";
+
+nextBirthday.innerHTML="";
+summary.innerHTML="";
+upcoming.innerHTML="";
+
+return;
+
+}
+
+
+/* =========================================================
+   EXACT AGE
+========================================================= */
+
+let years=
+today.getFullYear()-
+birth.getFullYear();
+
+let months=
+today.getMonth()-
+birth.getMonth();
+
+let days=
+today.getDate()-
+birth.getDate();
+
+
+if(days<0){
+
+months--;
+
+const previousMonthDays=
+new Date(
+today.getFullYear(),
+today.getMonth(),
+0
+).getDate();
+
+days+=previousMonthDays;
+
+}
+
+
+if(months<0){
+
+years--;
+
+months+=12;
+
+}
+
+
+/* =========================================================
+   TOTAL DAYS
+========================================================= */
+
+const milliseconds=
+today.getTime()-
+birth.getTime();
+
+const totalSeconds=
+Math.floor(
+milliseconds/1000
+);
+
+const totalMinutes=
+Math.floor(
+totalSeconds/60
+);
+
+const totalHours=
+Math.floor(
+totalMinutes/60
+);
+
+const totalDays=
+Math.floor(
+totalHours/24
+);
+
+const totalWeeks=
+Math.floor(
+totalDays/7
+);
+
+const totalMonths=
+years*12+
+months;
+
+
+/* =========================================================
+   CURRENT AGE
+========================================================= */
+
+result.innerHTML=
+`
+<div style="
+font-size:22px;
+padding:15px;
+text-align:center;
+font-weight:700;
+">
+🎂 আপনার বয়স
+</div>
+
+<div style="
+border:1px solid #aaa;
+border-radius:8px;
+padding:15px;
+text-align:center;
+font-size:20px;
+">
+${ppppToBanglaNumber(years)} বছর
+${ppppToBanglaNumber(months)} মাস
+${ppppToBanglaNumber(days)} দিন
+</div>
+`;
+
+
+/* =========================================================
+   NEXT BIRTHDAY
+========================================================= */
+
+let nextYear=
+today.getFullYear();
+
+let next=
+new Date(
+nextYear,
+birth.getMonth(),
+birth.getDate(),
+0,0,0,0
+);
+
+
+if(next<=today){
+
+nextYear++;
+
+next=
+new Date(
+nextYear,
+birth.getMonth(),
+birth.getDate(),
+0,0,0,0
+);
+
+}
+
+
+/*
+   Next Birthday Month / Day
+*/
+
+nextBirthday.innerHTML=
+`
+<div style="
+font-size:22px;
+margin-bottom:10px;
+">
+🎂 Next Birthday
+</div>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+text-align:center;
+font-size:18px;
+">
+
+<tr>
+<th style="
+background:#22c7e8;
+color:#fff;
+padding:10px;
+border:1px solid #aaa;
+">
+Month
+</th>
+
+<th style="
+background:#22c7e8;
+color:#fff;
+padding:10px;
+border:1px solid #aaa;
+">
+Day
+</th>
+</tr>
+
+<tr>
+
+<td style="
+padding:12px;
+border:1px solid #aaa;
+">
+${ppppToBanglaNumber(next.getMonth()+1)}
+</td>
+
+<td style="
+padding:12px;
+border:1px solid #aaa;
+">
+${ppppToBanglaNumber(next.getDate())}
+</td>
+
+</tr>
+
+</table>
+
+<div style="
+text-align:center;
+padding:12px;
+font-weight:700;
+">
+🎉 ${ppppFormatDate(next)}
+</div>
+`;
+
+
+/* =========================================================
+   LIFE SUMMARY
+========================================================= */
+
+summary.innerHTML=
+`
+<div style="
+font-size:22px;
+margin-bottom:10px;
+">
+📊 Summary of your life
+</div>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+text-align:center;
+font-size:17px;
+">
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total বছর
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(years)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total মাস
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalMonths)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total সপ্তাহ
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalWeeks)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total দিন
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalDays)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total ঘণ্টা
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalHours)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total মিনিট
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalMinutes)}
+</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #aaa;">
+Total সেকেন্ড
+</td>
+<td style="padding:12px;border:1px solid #aaa;">
+${ppppToBanglaNumber(totalSeconds)}
+</td>
+</tr>
+
+</table>
+`;
+
+
+/* =========================================================
+   UPCOMING BIRTHDAYS
+========================================================= */
+
+let birthdayRows="";
+
+for(
+let i=0;
+i<5;
+i++
+){
+
+const year=
+nextYear+i;
+
+const birthday=
+new Date(
+year,
+birth.getMonth(),
+birth.getDate(),
+0,0,0,0
+);
+
+birthdayRows+=
+`
+<tr>
+
+<td style="
+padding:10px;
+border:1px solid #aaa;
+">
+${ppppToBanglaNumber(i+1)}
+</td>
+
+<td style="
+padding:10px;
+border:1px solid #aaa;
+">
+${ppppFormatDate(birthday)}
+</td>
+
+<td style="
+padding:10px;
+border:1px solid #aaa;
+">
+${ppppToBanglaNumber(
+year-
+today.getFullYear()
+)}
+ বছর পরে
+</td>
+
+</tr>
+`;
+
+}
+
+
+upcoming.innerHTML=
+`
+<div style="
+font-size:22px;
+margin-bottom:10px;
+">
+🎉 Upcoming Birthdays
+</div>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+text-align:center;
+font-size:16px;
+">
+
+<tr>
+
+<th style="
+background:#22c7e8;
+color:#fff;
+padding:10px;
+border:1px solid #aaa;
+">
+#
+</th>
+
+<th style="
+background:#22c7e8;
+color:#fff;
+padding:10px;
+border:1px solid #aaa;
+">
+Birthday
+</th>
+
+<th style="
+background:#22c7e8;
+color:#fff;
+padding:10px;
+border:1px solid #aaa;
+">
+After
+</th>
+
+</tr>
+
+${birthdayRows}
+
+</table>
+`;
 
 }
 
