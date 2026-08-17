@@ -933,6 +933,175 @@ placeholder="🔍 Search PPPP Settings...">
 
 
 <!-- =====================================================
+     📆 TODAY & LIVE INFORMATION
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>📆 Today & Live Information</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<div id="ppppLiveInformation"
+class="pppp-live-box">
+
+<div class="pppp-live-title">
+📆 Today & Live Information
+</div>
+
+<div class="pppp-live-row">
+🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌅 বাংলা দিন শুরু: সূর্যোদয়ের পর
+</div>
+
+<div class="pppp-live-row">
+🌙 হিজরি দিন শুরু: সূর্যাস্তের পর
+</div>
+
+<div class="pppp-live-row">
+🕛 ইংরেজি দিন শুরু: রাত ১২টার পর
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     🕌 AZAN
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🕌 Azan</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Bangladesh')">
+🇧🇩 Azan Bangladesh
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Makkah')">
+🕋 Azan Makkah
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Madinah')">
+🌙 Azan Madinah
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppAzanMute()"
+id="ppppAzanMuteBtn">
+🔇 Mute Azan
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppAzanUnmute()"
+id="ppppAzanUnmuteBtn">
+🔊 Unmute Azan
+</button>
+
+<audio id="ppppAzanAudio" preload="auto"></audio>
+
+<div class="pppp-info-item">
+🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজবে
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
      🏛️ PPPP STRUCTURE
 ===================================================== -->
 
@@ -1987,175 +2156,6 @@ N O P Q R S T U V W X Y Z
 <div class="pppp-info-item">⚡ Al-Khamis</div>
 <div class="pppp-info-item">🕌 Al-Jumuah</div>
 
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     📆 TODAY & LIVE INFORMATION
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>📆 Today & Live Information</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<div id="ppppLiveInformation"
-class="pppp-live-box">
-
-<div class="pppp-live-title">
-📆 Today & Live Information
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 বাংলা দিন শুরু: সূর্যোদয়ের পর
-</div>
-
-<div class="pppp-live-row">
-🌙 হিজরি দিন শুরু: সূর্যাস্তের পর
-</div>
-
-<div class="pppp-live-row">
-🕛 ইংরেজি দিন শুরু: রাত ১২টার পর
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🕌 AZAN
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🕌 Azan</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Bangladesh')">
-🇧🇩 Azan Bangladesh
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Makkah')">
-🕋 Azan Makkah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Madinah')">
-🌙 Azan Madinah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanMute()"
-id="ppppAzanMuteBtn">
-🔇 Mute Azan
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanUnmute()"
-id="ppppAzanUnmuteBtn">
-🔊 Unmute Azan
-</button>
-
-<audio id="ppppAzanAudio" preload="auto"></audio>
-
-<div class="pppp-info-item">
-🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজবে
 </div>
 
 </div>
