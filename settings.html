@@ -1799,57 +1799,62 @@ onclick="ppppClearSavedPages()">
 <!-- =====================================================
      🎨 APPEARANCE
 ===================================================== -->
-
 <div class="pppp-category">
-
 <button class="pppp-category-title">
-<span>🎨 Appearance</span>
-<span>▼</span>
+    <span>🎨 Appearance</span>
+    <span>▼</span>
 </button>
 
 <div class="pppp-category-content">
 
-<button class="pppp-action"
-onclick="ppppDarkMode()">
-🌙 Dark Mode
-</button>
+    <button class="pppp-action"
+    onclick="ppppThemeNight()">
+        🌙 Dark Mode
+    </button>
 
-<button class="pppp-action"
-onclick="ppppLightMode()">
-☀️ Light Mode
-</button>
+    <button class="pppp-action"
+    onclick="ppppThemeDay()">
+        ☀️ Light Mode
+    </button>
 
-<button class="pppp-action"
-onclick="ppppAutoMode()">
-🌓 Auto Mode
-</button>
+    <button class="pppp-action"
+    onclick="ppppThemeAuto()">
+        🌓 Auto Mode
+    </button>
 
-<button class="pppp-action"
-onclick="ppppFontSize(1)">
-🔤 Font Size +
-</button>
+    <button class="pppp-action"
+    onclick="ppppToggleHighContrast()"
+    id="ppppHighContrastBtn">
+        🔳 High Contrast
+    </button>
 
-<button class="pppp-action"
-onclick="ppppFontSize(-1)">
-🔤 Font Size −
-</button>
+    <button class="pppp-action"
+    onclick="ppppFontSize(1)">
+        🔤 Font Size +
+    </button>
 
-<button class="pppp-action"
-onclick="ppppZoom(1)">
-🔎 Zoom +
-</button>
+    <button class="pppp-action"
+    onclick="ppppFontSize(-1)">
+        🔤 Font Size −
+    </button>
 
-<button class="pppp-action"
-onclick="ppppZoom(-1)">
-🔎 Zoom −
-</button>
+    <button class="pppp-action"
+    onclick="ppppZoom(1)">
+        🔎 Zoom +
+    </button>
 
-<button class="pppp-action"
-onclick="ppppZoomReset()">
-🔍 Zoom Reset
-</button>
+    <button class="pppp-action"
+    onclick="ppppZoom(-1)">
+        🔎 Zoom −
+    </button>
+
+    <button class="pppp-action"
+    onclick="ppppZoomReset()">
+        🔍 Zoom Reset
+    </button>
 
 </div>
+
 </div>
 
 
@@ -3929,6 +3934,72 @@ if (ppppDarkMedia.addEventListener) {
     ppppDarkMedia.addListener(
         ppppHandleSystemTheme
     );
+
+}
+
+/* =========================================================
+HIGH CONTRAST
+========================================================= */
+
+function ppppToggleHighContrast() {
+
+const enabled =
+    document.body.classList.toggle(
+        "pppp-high-contrast"
+    );
+
+localStorage.setItem(
+    "ppppHighContrast",
+    enabled ? "on" : "off"
+);
+
+const button =
+    document.getElementById(
+        "ppppHighContrastBtn"
+    );
+
+if (button) {
+
+    button.textContent =
+        enabled
+            ? "🔲 Normal Contrast"
+            : "🔳 High Contrast";
+
+}
+
+}
+
+function ppppLoadHighContrast() {
+
+const enabled =
+    localStorage.getItem(
+        "ppppHighContrast"
+    ) === "on";
+
+
+if (enabled) {
+
+    document.body.classList.add(
+        "pppp-high-contrast"
+    );
+
+}
+
+
+const button =
+    document.getElementById(
+        "ppppHighContrastBtn"
+    );
+
+
+if (button) {
+
+    button.textContent =
+        enabled
+            ? "🔲 Normal Contrast"
+            : "🔳 High Contrast";
+
+}
 
 }
 
