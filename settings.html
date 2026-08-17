@@ -1807,26 +1807,51 @@ onclick="ppppClearSavedPages()">
 
 <div class="pppp-category-content">
 
-    <button class="pppp-action"
-    onclick="ppppThemeNight()">
-        🌙 Dark Mode
-    </button>
+    <!-- =================================================
+         🎨 THEME
+    ================================================== -->
 
     <button class="pppp-action"
-    onclick="ppppThemeDay()">
-        ☀️ Light Mode
+    onclick="ppppToggleThemeMenu()"
+    id="ppppThemeBtn">
+        🎨 Theme
     </button>
 
-    <button class="pppp-action"
-    onclick="ppppThemeAuto()">
-        🌓 Auto Mode
-    </button>
+    <div id="ppppThemeMenu"
+    style="display:none;">
+
+        <button class="pppp-action"
+        onclick="ppppThemeNight()">
+            🌙 Dark Mode
+        </button>
+
+        <button class="pppp-action"
+        onclick="ppppThemeDay()">
+            ☀️ Light Mode
+        </button>
+
+        <button class="pppp-action"
+        onclick="ppppThemeAuto()">
+            🌓 Auto Mode
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         🔳 HIGH CONTRAST
+    ================================================== -->
 
     <button class="pppp-action"
     onclick="ppppToggleHighContrast()"
     id="ppppHighContrastBtn">
         🔳 High Contrast
     </button>
+
+
+    <!-- =================================================
+         🔤 FONT SIZE
+    ================================================== -->
 
     <button class="pppp-action"
     onclick="ppppFontSize(1)">
@@ -1837,6 +1862,11 @@ onclick="ppppClearSavedPages()">
     onclick="ppppFontSize(-1)">
         🔤 Font Size −
     </button>
+
+
+    <!-- =================================================
+         🔎 ZOOM
+    ================================================== -->
 
     <button class="pppp-action"
     onclick="ppppZoom(1)">
@@ -3836,185 +3866,260 @@ function ppppStatistics() {
 
 
 /* =========================================================
-   THEME
+🎨 THEME
 ========================================================= */
 
-function ppppThemeDay() {
+function ppppToggleThemeMenu() {
 
-    document.body.classList.remove(
-        "pppp-dark-mode"
+const menu =
+    document.getElementById(
+        "ppppThemeMenu"
     );
 
-    localStorage.setItem(
-        "ppppTheme",
-        "day"
-    );
+if (!menu) return;
+
+if (
+    menu.style.display === "none" ||
+    menu.style.display === ""
+) {
+
+    menu.style.display = "block";
+
+} else {
+
+    menu.style.display = "none";
 
 }
 
+}
+
+function ppppThemeDay() {
+
+document.body.classList.remove(
+    "pppp-dark-mode"
+);
+
+localStorage.setItem(
+    "ppppTheme",
+    "day"
+);
+
+ppppCloseThemeMenu();
+
+}
 
 function ppppThemeNight() {
+
+document.body.classList.add(
+    "pppp-dark-mode"
+);
+
+localStorage.setItem(
+    "ppppTheme",
+    "night"
+);
+
+ppppCloseThemeMenu();
+
+}
+
+function ppppThemeAuto() {
+
+localStorage.setItem(
+    "ppppTheme",
+    "auto"
+);
+
+ppppApplyAutoTheme();
+
+ppppCloseThemeMenu();
+
+}
+
+function ppppApplyAutoTheme() {
+
+const dark =
+    window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+if (dark) {
 
     document.body.classList.add(
         "pppp-dark-mode"
     );
 
-    localStorage.setItem(
-        "ppppTheme",
-        "night"
+} else {
+
+    document.body.classList.remove(
+        "pppp-dark-mode"
     );
 
 }
 
+}
 
-function ppppThemeAuto() {
+function ppppCloseThemeMenu() {
 
-    localStorage.setItem(
-        "ppppTheme",
-        "auto"
+const menu =
+    document.getElementById(
+        "ppppThemeMenu"
     );
+
+if (menu) {
+
+    menu.style.display = "none";
+
+}
+
+}
+
+const ppppDarkMedia =
+window.matchMedia(
+"(prefers-color-scheme: dark)"
+);
+
+function ppppHandleSystemTheme() {
+
+if (
+    localStorage.getItem(
+        "ppppTheme"
+    ) === "auto"
+) {
 
     ppppApplyAutoTheme();
 
 }
 
-
-function ppppApplyAutoTheme() {
-
-    const dark =
-        window.matchMedia(
-            "(prefers-color-scheme:dark)"
-        ).matches;
-
-    if (dark) {
-
-        document.body.classList.add(
-            "pppp-dark-mode"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "pppp-dark-mode"
-        );
-
-    }
-
 }
 
+if (
+ppppDarkMedia.addEventListener
+) {
 
-const ppppDarkMedia =
-    window.matchMedia(
-        "(prefers-color-scheme:dark)"
-    );
-
-
-function ppppHandleSystemTheme() {
-
-    if (
-        localStorage.getItem(
-            "ppppTheme"
-        ) === "auto"
-    ) {
-        ppppApplyAutoTheme();
-    }
-
-}
-
-
-if (ppppDarkMedia.addEventListener) {
-
-    ppppDarkMedia.addEventListener(
-        "change",
-        ppppHandleSystemTheme
-    );
+ppppDarkMedia.addEventListener(
+    "change",
+    ppppHandleSystemTheme
+);
 
 } else {
 
-    ppppDarkMedia.addListener(
-        ppppHandleSystemTheme
-    );
+ppppDarkMedia.addListener(
+    ppppHandleSystemTheme
+);
 
 }
 
 /* =========================================================
-   HIGH CONTRAST
+LOAD SAVED THEME
+========================================================= */
+
+function ppppLoadTheme() {
+
+const theme =
+    localStorage.getItem(
+        "ppppTheme"
+    );
+
+if (theme === "night") {
+
+    ppppThemeNight();
+
+} else if (theme === "day") {
+
+    ppppThemeDay();
+
+} else {
+
+    ppppThemeAuto();
+
+}
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+function() {
+
+    ppppLoadTheme();
+
+}
+
+);
+
+/* =========================================================
+🔳 HIGH CONTRAST
 ========================================================= */
 
 function ppppToggleHighContrast() {
 
-    const enabled =
-        document.body.classList.toggle(
-            "pppp-high-contrast"
-        );
-
-    localStorage.setItem(
-        "ppppHighContrast",
-        enabled ? "on" : "off"
+const enabled =
+    document.body.classList.toggle(
+        "pppp-high-contrast"
     );
 
-    const button =
-        document.getElementById(
-            "ppppHighContrastBtn"
-        );
+localStorage.setItem(
+    "ppppHighContrast",
+    enabled ? "on" : "off"
+);
 
-    if (button) {
+const button =
+    document.getElementById(
+        "ppppHighContrastBtn"
+    );
 
-        button.textContent =
-            enabled
-                ? "🔲 Normal Contrast"
-                : "🔳 High Contrast";
+if (button) {
 
-    }
+    button.textContent =
+        enabled
+            ? "🔲 Normal Contrast"
+            : "🔳 High Contrast";
 
 }
 
+}
 
 function ppppLoadHighContrast() {
 
-    const enabled =
-        localStorage.getItem(
-            "ppppHighContrast"
-        ) === "on";
+const enabled =
+    localStorage.getItem(
+        "ppppHighContrast"
+    ) === "on";
 
 
-    if (enabled) {
+if (enabled) {
 
-        document.body.classList.add(
-            "pppp-high-contrast"
-        );
-
-    }
-
-
-    const button =
-        document.getElementById(
-            "ppppHighContrastBtn"
-        );
-
-    if (button) {
-
-        button.textContent =
-            enabled
-                ? "🔲 Normal Contrast"
-                : "🔳 High Contrast";
-
-    }
+    document.body.classList.add(
+        "pppp-high-contrast"
+    );
 
 }
 
 
-/* =========================================================
-   LOAD SAVED HIGH CONTRAST
-========================================================= */
+const button =
+    document.getElementById(
+        "ppppHighContrastBtn"
+    );
+
+if (button) {
+
+    button.textContent =
+        enabled
+            ? "🔲 Normal Contrast"
+            : "🔳 High Contrast";
+
+}
+
+}
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+"DOMContentLoaded",
+function() {
 
-        ppppLoadHighContrast();
+    ppppLoadHighContrast();
 
-    }
+}
+
 );
 
 
