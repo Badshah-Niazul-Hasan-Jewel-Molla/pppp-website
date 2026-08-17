@@ -269,13 +269,14 @@ alert("Website link copied successfully!");
 
 <!-- =========================================================
      ⚙️ PPPP SETTINGS & CONTROL CENTER
-     COMPLETE UPDATED VERSION
+     COMPLETE UPDATE — CHANGE 1–15
 ========================================================= -->
 
 <style>
 
 /* =========================================================
    ⚙️ SETTINGS BUTTON
+   Share-এর ঠিক উপরে, Share-এর সমান 65×65 size
 ========================================================= */
 
 #ppppSettingsBtn{
@@ -305,7 +306,7 @@ transform:scale(1.08) rotate(30deg);
 
 
 /* =========================================================
-   OVERLAY
+   SETTINGS OVERLAY
 ========================================================= */
 
 #ppppSettingsOverlay{
@@ -320,7 +321,7 @@ display:none;
 
 
 /* =========================================================
-   PANEL
+   SETTINGS PANEL
 ========================================================= */
 
 #ppppSettingsPanel{
@@ -351,7 +352,7 @@ transform:translateX(0);
 .pppp-settings-header{
 position:sticky;
 top:0;
-z-index:30;
+z-index:20;
 background:linear-gradient(
 135deg,
 #0d47a1,
@@ -390,23 +391,64 @@ cursor:pointer;
 
 
 /* =========================================================
-   ISLAMIC GREETING
+   GREETING
 ========================================================= */
 
-.pppp-greeting{
+.pppp-settings-greeting{
 padding:14px 16px 8px;
 background:#fff;
+text-align:center;
 font-weight:700;
-line-height:1.8;
-font-size:14px;
-}
-
-.pppp-greeting div:first-child{
+line-height:1.7;
 color:#1565c0;
 }
 
-.pppp-greeting div:last-child{
-color:#16803c;
+.pppp-settings-greeting .pppp-bismillah{
+font-size:17px;
+color:#0d47a1;
+}
+
+
+/* =========================================================
+   DATE / TIME / WEATHER INFORMATION
+========================================================= */
+
+#ppppLiveInfo{
+margin:10px 12px;
+padding:14px;
+border-radius:15px;
+background:linear-gradient(
+135deg,
+#e3f2fd,
+#f8fbff
+);
+border:1px solid #bbdefb;
+box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.pppp-live-title{
+font-size:17px;
+font-weight:800;
+color:#0d47a1;
+margin-bottom:8px;
+}
+
+.pppp-live-row{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:5px 0;
+border-bottom:1px solid rgba(21,101,192,.12);
+font-size:13px;
+}
+
+.pppp-live-row:last-child{
+border-bottom:none;
+}
+
+.pppp-live-value{
+font-weight:700;
+text-align:right;
 }
 
 
@@ -415,11 +457,11 @@ color:#16803c;
 ========================================================= */
 
 .pppp-settings-search{
-padding:10px 14px 14px;
+padding:8px 14px 14px;
 background:#f5f7fa;
 position:sticky;
 top:78px;
-z-index:29;
+z-index:19;
 }
 
 #ppppSettingsSearch{
@@ -461,7 +503,7 @@ background:linear-gradient(
 #1e88e5
 );
 color:#fff;
-font-size:17px;
+font-size:18px;
 font-weight:800;
 text-align:left;
 cursor:pointer;
@@ -472,6 +514,7 @@ justify-content:space-between;
 
 .pppp-category-title span:last-child{
 transition:.3s;
+font-size:17px;
 }
 
 .pppp-category.open
@@ -480,55 +523,9 @@ transform:rotate(180deg);
 }
 
 .pppp-category-content{
-display:block;
+display:block !important;
 padding:8px;
 background:#f8f9fb;
-}
-
-.pppp-category-content.collapsed{
-display:none;
-}
-
-
-/* =========================================================
-   PPPP STRUCTURE MAIN HEADINGS
-========================================================= */
-
-.pppp-structure-heading{
-width:100%;
-box-sizing:border-box;
-padding:15px;
-margin:5px 0;
-background:linear-gradient(
-135deg,
-#1565c0,
-#1e88e5
-);
-color:#fff;
-font-size:17px;
-font-weight:800;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-cursor:pointer;
-}
-
-.pppp-structure-heading .pppp-arrow{
-transition:.3s;
-}
-
-.pppp-structure-heading.open
-.pppp-arrow{
-transform:rotate(180deg);
-}
-
-.pppp-structure-group{
-display:block;
-}
-
-.pppp-structure-group.collapsed{
-display:none;
 }
 
 
@@ -572,82 +569,6 @@ transform:scale(.98);
 
 
 /* =========================================================
-   EXPANDABLE INFORMATION
-========================================================= */
-
-.pppp-info-toggle{
-display:flex;
-align-items:center;
-justify-content:space-between;
-width:100%;
-box-sizing:border-box;
-padding:12px;
-margin:5px 0;
-border:1px solid #e3e6ea;
-border-radius:10px;
-background:#fff;
-color:#222;
-font-size:14px;
-font-weight:700;
-cursor:pointer;
-}
-
-.pppp-info-toggle .arrow{
-transition:.3s;
-}
-
-.pppp-info-toggle.open .arrow{
-transform:rotate(180deg);
-}
-
-.pppp-info-content{
-display:none;
-padding:8px;
-margin:0 0 7px;
-background:#f3f7fb;
-border-radius:10px;
-border:1px solid #e5eaf0;
-}
-
-.pppp-info-content.open{
-display:block;
-}
-
-.pppp-info-item{
-padding:7px 8px;
-font-size:14px;
-font-weight:600;
-line-height:1.5;
-}
-
-
-/* =========================================================
-   LIVE INFORMATION
-========================================================= */
-
-.pppp-live-box{
-margin:8px;
-padding:14px;
-border-radius:12px;
-background:#f8fbff;
-border:1px solid #dbeafe;
-line-height:1.8;
-font-size:13px;
-}
-
-.pppp-live-title{
-font-size:16px;
-font-weight:800;
-color:#1565c0;
-margin-bottom:8px;
-}
-
-.pppp-live-row{
-padding:2px 0;
-}
-
-
-/* =========================================================
    SAVED COUNT
 ========================================================= */
 
@@ -663,6 +584,7 @@ border-radius:20px;
 background:#e3f2fd;
 color:#1565c0;
 }
+
 
 /* =========================================================
    SPECIAL TOOLS
@@ -824,7 +746,7 @@ cursor:pointer;
 
 
 /* =========================================================
-   SAVED MODAL
+   SAVED PAGES MODAL
 ========================================================= */
 
 #ppppSavedPagesBox{
@@ -905,29 +827,35 @@ word-break:break-all;
 .pppp-settings-footer{
 padding:20px;
 text-align:center;
-font-size:13px;
+font-size:12px;
 color:#777;
-line-height:1.8;
 }
 
 
 /* =========================================================
-   SUPPORT
+   HIDDEN GOOGLE TRANSLATE
 ========================================================= */
 
-.pppp-support{
-margin:8px 12px 20px;
-padding:14px;
-text-align:center;
-font-weight:800;
-font-size:14px;
-border-radius:12px;
-background:linear-gradient(
-135deg,
-#f5f7fa,
-#e3f2fd
-);
-color:#1565c0;
+#google_translate_element{
+position:absolute !important;
+left:-99999px !important;
+top:-99999px !important;
+width:1px !important;
+height:1px !important;
+overflow:hidden !important;
+visibility:hidden !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.skiptranslate,
+#goog-gt-tt{
+display:none !important;
+}
+
+body{
+top:0 !important;
 }
 
 
@@ -940,76 +868,63 @@ background:#121212 !important;
 color:#eee !important;
 }
 
-body.pppp-dark-mode
-#ppppSettingsPanel{
+body.pppp-dark-mode #ppppSettingsPanel{
 background:#181818;
 color:#eee;
 }
 
-body.pppp-dark-mode
-.pppp-category{
+body.pppp-dark-mode .pppp-category{
 background:#222;
 border-color:#333;
 }
 
-body.pppp-dark-mode
-.pppp-category-content{
+body.pppp-dark-mode .pppp-category-content{
 background:#202020;
 }
 
-body.pppp-dark-mode
-.pppp-btn,
-body.pppp-dark-mode
-.pppp-action,
-body.pppp-dark-mode
-.pppp-info-toggle{
+body.pppp-dark-mode .pppp-btn,
+body.pppp-dark-mode .pppp-action{
 background:#292929;
 color:#eee;
 border-color:#444;
 }
 
-body.pppp-dark-mode
-.pppp-info-content{
-background:#242424;
-border-color:#444;
-}
-
-body.pppp-dark-mode
-.pppp-greeting{
-background:#181818;
-}
-
-body.pppp-dark-mode
-.pppp-live-box{
-background:#222;
-border-color:#444;
-}
-
-body.pppp-dark-mode
-#ppppSettingsSearch{
+body.pppp-dark-mode #ppppSettingsSearch{
 background:#292929;
 color:#fff;
 border-color:#555;
 }
 
-body.pppp-dark-mode
-.pppp-settings-search{
+body.pppp-dark-mode .pppp-settings-search{
 background:#202020;
 }
 
-body.pppp-dark-mode
-.pppp-settings-footer{
-color:#aaa;
+body.pppp-dark-mode .pppp-settings-greeting{
+background:#181818;
+color:#90caf9;
 }
 
-body.pppp-dark-mode
-.pppp-support{
-background:#242424;
+body.pppp-dark-mode #ppppLiveInfo,
+body.pppp-dark-mode .pppp-tool-box{
+background:#222;
+color:#eee;
+border-color:#444;
+}
+
+body.pppp-dark-mode .pppp-tool-display{
+background:#292929;
+color:#fff;
+border-color:#555;
+}
+
+body.pppp-dark-mode .pppp-settings-footer{
+color:#aaa;
 }
 
 
 /* =========================================================
    HIGH CONTRAST
+   একটি মাত্র High Contrast
 ========================================================= */
 
 body.pppp-high-contrast{
@@ -1017,27 +932,24 @@ background:#000 !important;
 color:#fff !important;
 }
 
-body.pppp-high-contrast
-#ppppSettingsPanel{
+body.pppp-high-contrast #ppppSettingsPanel{
 background:#000 !important;
 color:#fff !important;
 }
 
-body.pppp-high-contrast
-.pppp-category-content,
-body.pppp-high-contrast
-.pppp-info-content{
+body.pppp-high-contrast .pppp-category-content{
 background:#111 !important;
 }
 
-body.pppp-high-contrast
-.pppp-btn,
-body.pppp-high-contrast
-.pppp-action,
-body.pppp-high-contrast
-.pppp-info-toggle{
+body.pppp-high-contrast .pppp-btn,
+body.pppp-high-contrast .pppp-action{
 background:#000 !important;
 color:#fff !important;
+border:2px solid #fff !important;
+}
+
+body.pppp-high-contrast .pppp-category-title{
+background:#000 !important;
 border:2px solid #fff !important;
 }
 
@@ -1067,7 +979,11 @@ font-size:16px !important;
 #shareBtn,
 #topBtn,
 #ppppSavedPagesBox,
-#google_translate_element{
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.skiptranslate{
 display:none !important;
 }
 
@@ -1095,8 +1011,8 @@ print-color-adjust:exact !important;
 #ppppSettingsBtn{
 right:16px;
 bottom:175px;
-width:65px;
-height:65px;
+width:62px;
+height:62px;
 }
 
 #ppppSettingsPanel{
@@ -1118,14 +1034,11 @@ padding:12px;
 padding:10px;
 }
 
+.pppp-compass{
+width:170px;
+height:170px;
 }
 
-body{
-    padding-bottom:100px;
-}
-
-footer{
-    padding-bottom:100px;
 }
 
 </style>
@@ -1144,7 +1057,7 @@ aria-label="PPPP Settings">
 
 
 <!-- =========================================================
-     OVERLAY
+     SETTINGS OVERLAY
 ========================================================= -->
 
 <div id="ppppSettingsOverlay"></div>
@@ -1154,8 +1067,9 @@ aria-label="PPPP Settings">
      SETTINGS PANEL
 ========================================================= -->
 
-<div id="ppppSettingsPanel" translate="no">
-
+<div
+id="ppppSettingsPanel"
+translate="no">
 
 <!-- HEADER -->
 
@@ -1182,22 +1096,124 @@ title="Close">
 </div>
 
 
-<!-- GREETING -->
+<!-- =========================================================
+     GREETING
+========================================================= -->
 
-<div class="pppp-greeting">
-
-<div>
-🌙 As Salamu Alaikum Oa Rahmatullahi Oa Barakatuh
-</div>
+<div class="pppp-settings-greeting">
 
 <div>
-☪️ Bismillahir Rahmanir Rahim
+As Salamu Alaikum Oa Rahmatullahi Oa Barakatuh
+</div>
+
+<div class="pppp-bismillah">
+Bismillahir Rahmanir Rahim
 </div>
 
 </div>
 
 
-<!-- SEARCH -->
+<!-- =========================================================
+     LIVE INFORMATION
+========================================================= -->
+
+<div id="ppppLiveInfo">
+
+<div class="pppp-live-title">
+📅 Today & Live Information
+</div>
+
+<div class="pppp-live-row">
+<span>🇧🇩 বাংলা তারিখ</span>
+<span id="ppppBanglaDate" class="pppp-live-value">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🇬🇧 English Date</span>
+<span id="ppppEnglishDate" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌙 Hijri Date</span>
+<span id="ppppHijriDate" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>📅 বাংলা বার</span>
+<span id="ppppBanglaDay" class="pppp-live-value">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>📅 English Day</span>
+<span id="ppppEnglishDay" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌙 Hijri Day</span>
+<span id="ppppHijriDay" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕐 Current Time</span>
+<span id="ppppCurrentTime" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌡️ Temperature</span>
+<span id="ppppTemperature" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌅 Sunrise</span>
+<span id="ppppSunrise" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌇 Sunset</span>
+<span id="ppppSunset" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕌 Fajr</span>
+<span id="ppppFajr" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕌 Dhuhr</span>
+<span id="ppppDhuhr" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕌 Asr</span>
+<span id="ppppAsr" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕌 Maghrib</span>
+<span id="ppppMaghrib" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🕌 Isha</span>
+<span id="ppppIsha" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌙 Sehri</span>
+<span id="ppppSehri" class="pppp-live-value">Loading...</span>
+</div>
+
+<div class="pppp-live-row">
+<span>🌙 Iftar</span>
+<span id="ppppIftar" class="pppp-live-value">Loading...</span>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
 
 <div class="pppp-settings-search">
 
@@ -1206,175 +1222,6 @@ type="search"
 id="ppppSettingsSearch"
 placeholder="🔍 Search PPPP Settings...">
 
-</div>
-
-
-<!-- =====================================================
-     📆 TODAY & LIVE INFORMATION
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>📆 Today & Live Information</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<div id="ppppLiveInformation"
-class="pppp-live-box">
-
-<div class="pppp-live-title">
-📆 Today & Live Information
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 বাংলা দিন শুরু: সূর্যোদয়ের পর
-</div>
-
-<div class="pppp-live-row">
-🌙 হিজরি দিন শুরু: সূর্যাস্তের পর
-</div>
-
-<div class="pppp-live-row">
-🕛 ইংরেজি দিন শুরু: রাত ১২টার পর
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🕌 AZAN
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🕌 Azan</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Bangladesh')">
-🇧🇩 Azan Bangladesh
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Makkah')">
-🕋 Azan Makkah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Madinah')">
-🌙 Azan Madinah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanMute()"
-id="ppppAzanMuteBtn">
-🔇 Mute Azan
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanUnmute()"
-id="ppppAzanUnmuteBtn">
-🔊 Unmute Azan
-</button>
-
-<audio id="ppppAzanAudio" preload="auto"></audio>
-
-<div class="pppp-info-item">
-🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজবে
-</div>
-
-</div>
 </div>
 
 
@@ -1391,20 +1238,9 @@ id="ppppAzanUnmuteBtn">
 
 <div class="pppp-category-content">
 
-
-<!-- =====================================================
-     🏠 MAIN
-===================================================== -->
-
-<button
-class="pppp-structure-heading"
-type="button"
-onclick="ppppToggleStructureGroup(this)">
-<span>🏠 Main</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-structure-group">
+<div class="pppp-btn">
+🏠 Main
+</div>
 
 <a href="/pppp_bangladesh/index.html" class="pppp-btn">
 🏠 PPPP Home
@@ -1426,22 +1262,9 @@ onclick="ppppToggleStructureGroup(this)">
 🫂 PPPP Leadership
 </a>
 
+<div class="pppp-btn">
+🤝 Get Involved
 </div>
-
-
-<!-- =====================================================
-     🤝 GET INVOLVED
-===================================================== -->
-
-<button
-class="pppp-structure-heading"
-type="button"
-onclick="ppppToggleStructureGroup(this)">
-<span>🤝 Get Involved</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/join.html" class="pppp-btn">
 📬 PPPP Join
@@ -1463,22 +1286,9 @@ onclick="ppppToggleStructureGroup(this)">
 🌍 PPPP Chapters
 </a>
 
+<div class="pppp-btn">
+📰 Media & Communication
 </div>
-
-
-<!-- =====================================================
-     📰 MEDIA & COMMUNICATION
-===================================================== -->
-
-<button
-class="pppp-structure-heading"
-type="button"
-onclick="ppppToggleStructureGroup(this)">
-<span>📰 Media & Communication</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/news.html" class="pppp-btn">
 📰 PPPP News
@@ -1528,22 +1338,9 @@ onclick="ppppToggleStructureGroup(this)">
 🌐 PPPP Social Media
 </a>
 
+<div class="pppp-btn">
+🌍 PPPP Special
 </div>
-
-
-<!-- =====================================================
-     🌍 PPPP SPECIAL
-===================================================== -->
-
-<button
-class="pppp-structure-heading"
-type="button"
-onclick="ppppToggleStructureGroup(this)">
-<span>🌍 PPPP Special</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/islam.html" class="pppp-btn">
 🕋 PPPP Islam
@@ -1588,8 +1385,6 @@ onclick="ppppToggleStructureGroup(this)">
 <a href="/pppp_bangladesh/social.html" class="pppp-btn">
 🌐 PPPP Social
 </a>
-
-</div>
 
 </div>
 </div>
@@ -2016,45 +1811,28 @@ onclick="ppppStatistics()">
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('liked')">
-
 ❤️ Liked Pages
-
-<span id="ppppLikedCount" class="pppp-count">
-0
-</span>
-
+<span id="ppppLikedCount" class="pppp-count">0</span>
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('favorite')">
-
 ⭐ Favorited Pages
-
-<span id="ppppFavoriteCount" class="pppp-count">
-0
-</span>
-
+<span id="ppppFavoriteCount" class="pppp-count">0</span>
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('pinned')">
-
 📌 Pinned Pages
-
-<span id="ppppPinnedCount" class="pppp-count">
-0
-</span>
-
+<span id="ppppPinnedCount" class="pppp-count">0</span>
 </button>
 
 <button
 class="pppp-action"
 onclick="ppppClearSavedPages()">
-
 🗑️ Clear Saved Pages
-
 </button>
 
 </div>
@@ -2143,7 +1921,12 @@ onclick="ppppBangla()">
 
 <button class="pppp-action"
 onclick="ppppEnglish()">
-🔤 English
+🇬🇧 English
+</button>
+
+<button class="pppp-action"
+onclick="ppppLanguage()">
+🌐 Language Settings
 </button>
 
 </div>
@@ -2151,296 +1934,7 @@ onclick="ppppEnglish()">
 
 
 <!-- =====================================================
-     🔤 ALPHABET LIST
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🔤 Alphabet List</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<!-- বাংলা স্বরবর্ণ -->
-
-<button class="pppp-info-toggle">
-<span>🇧🇩 বাংলা স্বরবর্ণ</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">অ</div>
-<div class="pppp-info-item">আ</div>
-<div class="pppp-info-item">ই</div>
-<div class="pppp-info-item">ঈ</div>
-<div class="pppp-info-item">উ</div>
-<div class="pppp-info-item">ঊ</div>
-<div class="pppp-info-item">ঋ</div>
-<div class="pppp-info-item">এ</div>
-<div class="pppp-info-item">ঐ</div>
-<div class="pppp-info-item">ও</div>
-<div class="pppp-info-item">ঔ</div>
-
-</div>
-
-
-<!-- বাংলা ব্যঞ্জনবর্ণ -->
-
-<button class="pppp-info-toggle">
-<span>🅱️ বাংলা ব্যঞ্জনবর্ণ</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">ক খ গ ঘ ঙ</div>
-<div class="pppp-info-item">চ ছ জ ঝ ঞ</div>
-<div class="pppp-info-item">ট ঠ ড ঢ ণ</div>
-<div class="pppp-info-item">ত থ দ ধ ন</div>
-<div class="pppp-info-item">প ফ ব ভ ম</div>
-<div class="pppp-info-item">য র ল শ ষ স হ</div>
-<div class="pppp-info-item">ড় ঢ় য়</div>
-<div class="pppp-info-item">ৎ ং ঃ ঁ</div>
-
-</div>
-
-
-<!-- English Alphabet -->
-
-<button class="pppp-info-toggle">
-<span>🔤 English Alphabet</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">
-A B C D E F G H I J K L M
-</div>
-
-<div class="pppp-info-item">
-N O P Q R S T U V W X Y Z
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🗓️ CALENDAR LIST
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🗓️ Calendar List</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<!-- বাংলা ১২ মাস -->
-
-<button class="pppp-info-toggle">
-<span>🇧🇩 বাংলা ১২ মাসের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">🌸 বৈশাখ</div>
-<div class="pppp-info-item">🌼 জ্যৈষ্ঠ</div>
-<div class="pppp-info-item">🌧️ আষাঢ়</div>
-<div class="pppp-info-item">☔ শ্রাবণ</div>
-<div class="pppp-info-item">🌿 ভাদ্র</div>
-<div class="pppp-info-item">🍂 আশ্বিন</div>
-<div class="pppp-info-item">🌾 কার্তিক</div>
-<div class="pppp-info-item">🌱 অগ্রহায়ণ</div>
-<div class="pppp-info-item">❄️ পৌষ</div>
-<div class="pppp-info-item">🧣 মাঘ</div>
-<div class="pppp-info-item">🌺 ফাল্গুন</div>
-<div class="pppp-info-item">🌿 চৈত্র</div>
-
-</div>
-
-
-<!-- ইংরেজি ১২ মাস -->
-
-<button class="pppp-info-toggle">
-<span>🗓️ ইংরেজি ১২ মাসের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">❄️ January</div>
-<div class="pppp-info-item">💝 February</div>
-<div class="pppp-info-item">🌱 March</div>
-<div class="pppp-info-item">🌸 April</div>
-<div class="pppp-info-item">🌼 May</div>
-<div class="pppp-info-item">☀️ June</div>
-<div class="pppp-info-item">🌻 July</div>
-<div class="pppp-info-item">🌾 August</div>
-<div class="pppp-info-item">🍂 September</div>
-<div class="pppp-info-item">🎃 October</div>
-<div class="pppp-info-item">🍁 November</div>
-<div class="pppp-info-item">🎁 December</div>
-
-</div>
-
-
-<!-- আরবি ১২ মাস -->
-
-<button class="pppp-info-toggle">
-<span>🌙 আরবি ১২ মাসের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">🕋 Muharram</div>
-<div class="pppp-info-item">🌙 Safar</div>
-<div class="pppp-info-item">⭐ Rabiul Awal</div>
-<div class="pppp-info-item">🗝️ Rabius Sani</div>
-<div class="pppp-info-item">🕌 Jumadiul Awal</div>
-<div class="pppp-info-item">🤲 Jumadius Sani</div>
-<div class="pppp-info-item">☪️ Rajab</div>
-<div class="pppp-info-item">📿 Shaban</div>
-<div class="pppp-info-item">🕌 Ramadan</div>
-<div class="pppp-info-item">🌟 Shawal</div>
-<div class="pppp-info-item">🕊️ Jilqudh</div>
-<div class="pppp-info-item">📜 Jilhajj</div>
-
-</div>
-
-
-<!-- বাংলা ৬ ঋতু -->
-
-<button class="pppp-info-toggle">
-<span>🇧🇩 বাংলা ৬ ঋতুর নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">☀️ গ্রীষ্মকাল</div>
-<div class="pppp-info-item">🌧️ বর্ষাকাল</div>
-<div class="pppp-info-item">🍂 শরৎকাল</div>
-<div class="pppp-info-item">🌾 হেমন্তকাল</div>
-<div class="pppp-info-item">❄️ শীতকাল</div>
-<div class="pppp-info-item">🌸 বসন্তকাল</div>
-
-</div>
-
-
-<!-- ইংরেজি ৬ ঋতু -->
-
-<button class="pppp-info-toggle">
-<span>🗓️ ইংরেজি ৬ ঋতুর নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">☀️ Summer</div>
-<div class="pppp-info-item">🌧️ Rainy Season</div>
-<div class="pppp-info-item">🍂 Autumn</div>
-<div class="pppp-info-item">🌾 Late Autumn</div>
-<div class="pppp-info-item">❄️ Winter</div>
-<div class="pppp-info-item">🌸 Spring</div>
-
-</div>
-
-
-<!-- আরবি ৬ ঋতু -->
-
-<button class="pppp-info-toggle">
-<span>🌙 আরবি ৬ ঋতুর নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">☀️ As-Saifu</div>
-<div class="pppp-info-item">🌧️ Mawsimul Amtar</div>
-<div class="pppp-info-item">🍂 Al-Kharifu</div>
-<div class="pppp-info-item">🌾 Awakhirul Kharif</div>
-<div class="pppp-info-item">❄️ Ash-Shitau</div>
-<div class="pppp-info-item">🌸 Ar-Rabiu</div>
-
-</div>
-
-
-<!-- বাংলা ৭ দিন -->
-
-<button class="pppp-info-toggle">
-<span>🇧🇩 বাংলা ৭ দিনের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">🪐 শনিবার</div>
-<div class="pppp-info-item">☀️ রবিবার</div>
-<div class="pppp-info-item">🌙 সোমবার</div>
-<div class="pppp-info-item">🔥 মঙ্গলবার</div>
-<div class="pppp-info-item">🌿 বুধবার</div>
-<div class="pppp-info-item">⚡ বৃহস্পতিবার</div>
-<div class="pppp-info-item">🕌 শুক্রবার</div>
-
-</div>
-
-
-<!-- ইংরেজি ৭ দিন -->
-
-<button class="pppp-info-toggle">
-<span>🗓️ ইংরেজি ৭ দিনের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">🪐 Saturday</div>
-<div class="pppp-info-item">☀️ Sunday</div>
-<div class="pppp-info-item">🌙 Monday</div>
-<div class="pppp-info-item">🔥 Tuesday</div>
-<div class="pppp-info-item">🌿 Wednesday</div>
-<div class="pppp-info-item">⚡ Thursday</div>
-<div class="pppp-info-item">🕌 Friday</div>
-
-</div>
-
-
-<!-- আরবি ৭ দিন -->
-
-<button class="pppp-info-toggle">
-<span>🌙 আরবি ৭ দিনের নাম</span>
-<span class="arrow">▼</span>
-</button>
-
-<div class="pppp-info-content">
-
-<div class="pppp-info-item">🪐 As-Sabt</div>
-<div class="pppp-info-item">☀️ Al-Ahad</div>
-<div class="pppp-info-item">🌙 Al-Isnayn</div>
-<div class="pppp-info-item">🔥 As-Sulasa</div>
-<div class="pppp-info-item">🌿 Al-Arbia</div>
-<div class="pppp-info-item">⚡ Al-Khamis</div>
-<div class="pppp-info-item">🕌 Al-Jumuah</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🎙️ ACCESSIBILITY
+     ♿ ACCESSIBILITY
 ===================================================== -->
 
 <div class="pppp-category">
@@ -2459,12 +1953,12 @@ onclick="ppppReadAloudMain()">
 
 <button class="pppp-action"
 onclick="ppppReadAloudBangla()">
-📢 Read Aloud (Bangla)
+🔊 Read Aloud (Bangla)
 </button>
 
 <button class="pppp-action"
 onclick="ppppReadAloudEnglish()">
-📣 Read Aloud (English)
+🔊 Read Aloud (English)
 </button>
 
 <button class="pppp-action"
@@ -2475,7 +1969,8 @@ id="ppppMuteBtn">
 
 <button class="pppp-action"
 onclick="ppppUnmute()"
-id="ppppUnmuteBtn">
+id="ppppUnmuteBtn"
+style="display:none;">
 🔊 Unmute
 </button>
 
@@ -2484,7 +1979,8 @@ onclick="ppppLargeControls()">
 🖱️ Large Controls
 </button>
 
-<a href="/pppp_bangladesh/accessibility.html"
+<a
+href="/pppp_bangladesh/accessibility.html"
 class="pppp-btn">
 ♿ PPPP Accessibility
 </a>
@@ -2756,7 +2252,42 @@ onclick="ppppTasbihReset()">
 
 
 <!-- =====================================================
-     📱 PPPP APP
+     🎨 THEME
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🎨 Theme</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<button
+class="pppp-action"
+onclick="ppppThemeDay()">
+☀️ Day
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppThemeNight()">
+🌙 Night
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppThemeAuto()">
+🌓 Auto
+</button>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     📱 PPPP APP & PLATFORMS
 ===================================================== -->
 
 <div class="pppp-category">
@@ -2775,20 +2306,20 @@ class="pppp-btn">
 </button>
 
 <button
-onclick="location.reload()"
-class="pppp-btn">
+class="pppp-btn"
+onclick="location.reload()">
 🔄 Check for PPPP Updates
 </button>
 
 <button
-onclick="ppppShareApp()"
-class="pppp-btn">
+class="pppp-btn"
+onclick="ppppShareApp()">
 🧩 Share PPPP App
 </button>
 
 <button
-onclick="ppppShareWebsite()"
-class="pppp-btn">
+class="pppp-btn"
+onclick="ppppShareWebsite()">
 🌍 Share PPPP Website
 </button>
 
@@ -2838,8 +2369,8 @@ onclick="ppppDownloadPage()">
 
 <button
 class="pppp-action"
-onclick="ppppSavePDF()">
-📕 Save as PDF
+onclick="ppppSaveAsPDF()">
+📄 Save as PDF
 </button>
 
 <button
@@ -2883,7 +2414,7 @@ onclick="ppppShareFile()">
 <div class="pppp-category">
 
 <button class="pppp-category-title">
-<span>⚙️ Reset Settings</span>
+<span>⚙️ Reset</span>
 <span>▼</span>
 </button>
 
@@ -2892,7 +2423,7 @@ onclick="ppppShareFile()">
 <button
 class="pppp-action"
 onclick="ppppResetSettings()">
-🔄 Reset to Default Settings
+🔄 Reset Settings
 </button>
 
 </div>
@@ -2934,15 +2465,6 @@ onclick="ppppAboutSettings()">
 </div>
 
 
-<!-- =====================================================
-     SUPPORT
-===================================================== -->
-
-<div class="pppp-support">
-✊ We Support 🇮🇷 Iran & 🇵🇸 Palestine
-</div>
-
-
 <!-- FOOTER -->
 
 <div class="pppp-settings-footer">
@@ -2957,7 +2479,7 @@ People's Power & Peace Party (PPPP)
 
 
 <!-- =========================================================
-     SAVED PAGES MODAL
+     📚 SAVED PAGES MODAL
 ========================================================= -->
 
 <div
@@ -2990,7 +2512,7 @@ style="padding:10px;">
 
 
 <!-- =========================================================
-     HIDDEN GOOGLE TRANSLATE
+     🌐 HIDDEN GOOGLE TRANSLATE
 ========================================================= -->
 
 <div id="google_translate_element"></div>
@@ -3006,55 +2528,55 @@ style="padding:10px;">
    STORAGE
 ========================================================= */
 
-const PPPP_KEYS = {
-    liked: "ppppLikedPages",
-    favorite: "ppppFavoritedPages",
-    pinned: "ppppPinnedPages",
-    history: "ppppPageHistory"
+const PPPP_KEYS={
+liked:"ppppLikedPages",
+favorite:"ppppFavoritedPages",
+pinned:"ppppPinnedPages",
+history:"ppppPageHistory"
 };
 
 
-function ppppGetList(type) {
+function ppppGetList(type){
 
-    try {
-        return JSON.parse(
-            localStorage.getItem(PPPP_KEYS[type])
-        ) || [];
-    } catch (e) {
-        return [];
-    }
+try{
+return JSON.parse(
+localStorage.getItem(PPPP_KEYS[type])
+)||[];
+}catch(e){
+return [];
+}
 
 }
 
 
-function ppppSaveList(type, list) {
+function ppppSaveList(type,list){
 
-    localStorage.setItem(
-        PPPP_KEYS[type],
-        JSON.stringify(list)
-    );
+localStorage.setItem(
+PPPP_KEYS[type],
+JSON.stringify(list)
+);
 
-    ppppUpdateCounts();
-
-}
-
-
-function ppppCurrentPage() {
-
-    return {
-        title: document.title || "PPPP Page",
-        url: window.location.href,
-        time: new Date().toLocaleString()
-    };
+ppppUpdateCounts();
 
 }
 
 
-function ppppIsSaved(type) {
+function ppppCurrentPage(){
 
-    return ppppGetList(type).some(function(item) {
-        return item.url === window.location.href;
-    });
+return{
+title:document.title||"PPPP Page",
+url:window.location.href,
+time:new Date().toLocaleString()
+};
+
+}
+
+
+function ppppIsSaved(type){
+
+return ppppGetList(type).some(function(item){
+return item.url===window.location.href;
+});
 
 }
 
@@ -3063,76 +2585,50 @@ function ppppIsSaved(type) {
    SETTINGS
 ========================================================= */
 
-const settingsBtn =
-    document.getElementById("ppppSettingsBtn");
+const settingsBtn=
+document.getElementById("ppppSettingsBtn");
 
-const settingsPanel =
-    document.getElementById("ppppSettingsPanel");
+const settingsPanel=
+document.getElementById("ppppSettingsPanel");
 
-const settingsOverlay =
-    document.getElementById("ppppSettingsOverlay");
+const settingsOverlay=
+document.getElementById("ppppSettingsOverlay");
 
-const settingsClose =
-    document.getElementById("ppppSettingsClose");
+const settingsClose=
+document.getElementById("ppppSettingsClose");
 
 
-function openPPPPSettings() {
+function openPPPPSettings(){
 
-    if (!settingsOverlay || !settingsPanel) return;
+settingsOverlay.style.display="block";
 
-    settingsOverlay.style.display = "block";
+requestAnimationFrame(function(){
+settingsPanel.classList.add("active");
+});
 
-    requestAnimationFrame(function() {
-        settingsPanel.classList.add("active");
-    });
+document.body.style.overflow="hidden";
 
-    document.body.style.overflow = "hidden";
-
-    ppppUpdateButtonStates();
+ppppUpdateButtonStates();
 
 }
 
 
-function closePPPPSettings() {
+function closePPPPSettings(){
 
-    if (!settingsOverlay || !settingsPanel) return;
+settingsPanel.classList.remove("active");
 
-    settingsPanel.classList.remove("active");
+setTimeout(function(){
+settingsOverlay.style.display="none";
+},350);
 
-    setTimeout(function() {
-        settingsOverlay.style.display = "none";
-    }, 350);
-
-    document.body.style.overflow = "";
+document.body.style.overflow="";
 
 }
 
 
-if (settingsBtn) {
-    settingsBtn.onclick = openPPPPSettings;
-}
-
-if (settingsClose) {
-    settingsClose.onclick = closePPPPSettings;
-}
-
-
-/*
-   Overlay-এ click করলে close হবে।
-   কিন্তু Settings Panel-এর ভিতরে click করলে close হবে না।
-*/
-
-if (settingsOverlay) {
-
-    settingsOverlay.addEventListener("click", function(e) {
-
-        if (e.target === settingsOverlay) {
-            closePPPPSettings();
-        }
-
-    });
-
-}
+settingsBtn.onclick=openPPPPSettings;
+settingsClose.onclick=closePPPPSettings;
+settingsOverlay.onclick=closePPPPSettings;
 
 
 /* =========================================================
@@ -3140,136 +2636,86 @@ if (settingsOverlay) {
 ========================================================= */
 
 document
-    .querySelectorAll(".pppp-category-title")
-    .forEach(function(button) {
+.querySelectorAll(".pppp-category-title")
+.forEach(function(button){
 
-        button.addEventListener("click", function() {
+button.addEventListener(
+"click",
+function(){
 
-            this.parentElement.classList.toggle("open");
+this.parentElement.classList.toggle("open");
 
-        });
+});
 
-    });
-
-
-/* =========================================================
-   STRUCTURE HEADING
-========================================================= */
-
-document
-    .querySelectorAll(".pppp-structure-heading")
-    .forEach(function(button) {
-
-        button.addEventListener("click", function() {
-
-            const id = this.dataset.target;
-            const group = document.getElementById(id);
-
-            if (!group) return;
-
-            group.classList.toggle("collapsed");
-            this.classList.toggle("open");
-
-        });
-
-    });
-
-
-/* =========================================================
-   INFORMATION TOGGLE
-========================================================= */
-
-document
-    .querySelectorAll(".pppp-info-toggle")
-    .forEach(function(button) {
-
-        button.addEventListener("click", function() {
-
-            const content = this.nextElementSibling;
-
-            if (!content) return;
-
-            content.classList.toggle("open");
-            this.classList.toggle("open");
-
-        });
-
-    });
+});
 
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-const settingsSearch =
-    document.getElementById("ppppSettingsSearch");
+document
+.getElementById("ppppSettingsSearch")
+.addEventListener(
+"input",
+function(){
 
+const query=
+this.value.toLowerCase().trim();
 
-if (settingsSearch) {
+document
+.querySelectorAll(
+"#ppppSettingsPanel .pppp-category"
+)
+.forEach(function(category){
 
-    settingsSearch.addEventListener("input", function() {
+let found=false;
 
-        const query =
-            this.value.toLowerCase().trim();
+category
+.querySelectorAll(
+".pppp-btn,.pppp-action"
+)
+.forEach(function(item){
 
-        document
-            .querySelectorAll(
-                "#ppppSettingsPanel .pppp-category"
-            )
-            .forEach(function(category) {
+const text=
+item.textContent.toLowerCase();
 
-                let found = false;
+if(!query||text.includes(query)){
 
-                category
-                    .querySelectorAll(
-                        ".pppp-btn," +
-                        ".pppp-action," +
-                        ".pppp-info-toggle," +
-                        ".pppp-structure-heading"
-                    )
-                    .forEach(function(item) {
+item.style.display="flex";
 
-                        const text =
-                            item.textContent.toLowerCase();
+if(query)found=true;
 
-                        if (!query || text.includes(query)) {
+}else{
 
-                            item.style.display = "";
-
-                            if (query) {
-                                found = true;
-                            }
-
-                        } else {
-
-                            item.style.display = "none";
-
-                        }
-
-                    });
-
-                category.style.display =
-                    (!query || found) ? "block" : "none";
-
-            });
-
-    });
+item.style.display="none";
 
 }
+
+});
+
+category.style.display=
+(!query||found)?"block":"none";
+
+});
+
+});
 
 
 /* =========================================================
    ESC
 ========================================================= */
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener(
+"keydown",
+function(e){
 
-    if (e.key === "Escape") {
+if(e.key==="Escape"){
 
-        closePPPPSettings();
-        ppppCloseSavedPages();
+closePPPPSettings();
+ppppCloseSavedPages();
 
-    }
+}
 
 });
 
@@ -3278,104 +2724,141 @@ document.addEventListener("keydown", function(e) {
    SHARE
 ========================================================= */
 
-async function ppppShare() {
+async function ppppShare(){
 
-    const shareData = {
-        title: document.title,
-        text:
-            "People's Power & Peace Party (PPPP) Bangladesh Official Website",
-        url: window.location.href
-    };
+const shareData={
+title:document.title,
+text:"People's Power & Peace Party (PPPP) Bangladesh Official Website",
+url:window.location.href
+};
 
-    if (navigator.share) {
+if(navigator.share){
 
-        try {
-            await navigator.share(shareData);
-        } catch (e) {}
+try{
+await navigator.share(shareData);
+}catch(e){}
 
-    } else {
+}else{
 
-        ppppCopyLink();
+ppppCopyLink();
 
-    }
+}
 
 }
 
 
-function ppppCopyLink() {
+function ppppShareApp(){
 
-    if (navigator.clipboard) {
+const data={
+title:"PPPP App",
+text:"Download the official PPPP App",
+url:
+"https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk"
+};
 
-        navigator.clipboard
-            .writeText(window.location.href)
-            .then(function() {
+if(navigator.share){
 
-                alert(
-                    "📋 Website link copied successfully!"
-                );
+navigator.share(data).catch(function(){});
 
-            })
-            .catch(function() {
+}else{
 
-                prompt(
-                    "Copy this link:",
-                    window.location.href
-                );
+ppppCopyLink();
 
-            });
-
-    } else {
-
-        prompt(
-            "Copy this link:",
-            window.location.href
-        );
-
-    }
+}
 
 }
 
 
-function ppppSend() {
-    ppppShare();
+function ppppShareWebsite(){
+
+const data={
+title:"PPPP Bangladesh",
+text:"People's Power & Peace Party Bangladesh",
+url:"https://naz-niaz.github.io/pppp_bangladesh/"
+};
+
+if(navigator.share){
+
+navigator.share(data).catch(function(){});
+
+}else{
+
+ppppCopyLink();
+
 }
-
-
-function ppppEmail() {
-
-    const subject =
-        encodeURIComponent(document.title);
-
-    const body =
-        encodeURIComponent(
-            "People's Power & Peace Party (PPPP)\n\n" +
-            window.location.href
-        );
-
-    location.href =
-        "mailto:?subject=" +
-        subject +
-        "&body=" +
-        body;
 
 }
 
 
-function ppppComment() {
-    location.href =
-        "/pppp_bangladesh/feedback.html";
+/* =========================================================
+   COPY LINK
+========================================================= */
+
+function ppppCopyLink(){
+
+if(navigator.clipboard){
+
+navigator.clipboard
+.writeText(window.location.href)
+.then(function(){
+
+alert("📋 Website link copied successfully!");
+
+});
+
+}else{
+
+prompt(
+"Copy this link:",
+window.location.href
+);
+
+}
+
 }
 
 
-function ppppFeedback() {
-    location.href =
-        "/pppp_bangladesh/feedback.html";
+/* =========================================================
+   SEND / EMAIL / COMMENT
+========================================================= */
+
+function ppppSend(){
+ppppShare();
 }
 
 
-function ppppReport() {
-    location.href =
-        "/pppp_bangladesh/complaint.html";
+function ppppEmail(){
+
+const subject=
+encodeURIComponent(document.title);
+
+const body=
+encodeURIComponent(
+"People's Power & Peace Party (PPPP)\n\n"+
+window.location.href
+);
+
+location.href=
+"mailto:?subject="+
+subject+
+"&body="+
+body;
+
+}
+
+
+function ppppComment(){
+location.href="/pppp_bangladesh/feedback.html";
+}
+
+
+function ppppFeedback(){
+location.href="/pppp_bangladesh/feedback.html";
+}
+
+
+function ppppReport(){
+location.href="/pppp_bangladesh/complaint.html";
 }
 
 
@@ -3383,30 +2866,32 @@ function ppppReport() {
    LIKE
 ========================================================= */
 
-function ppppLike() {
+function ppppLike(){
 
-    const list = ppppGetList("liked");
-    const url = window.location.href;
+const list=ppppGetList("liked");
+const url=window.location.href;
 
-    const index =
-        list.findIndex(function(item) {
-            return item.url === url;
-        });
+const index=list.findIndex(function(item){
+return item.url===url;
+});
 
-    if (index >= 0) {
+if(index>=0){
 
-        list.splice(index, 1);
+list.splice(index,1);
+ppppSaveList("liked",list);
 
-    } else {
+alert("💔 Page removed from Liked Pages.");
 
-        list.unshift(
-            ppppCurrentPage()
-        );
+}else{
 
-    }
+list.unshift(ppppCurrentPage());
+ppppSaveList("liked",list);
 
-    ppppSaveList("liked", list);
-    ppppUpdateButtonStates();
+alert("❤️ Page added to Liked Pages.");
+
+}
+
+ppppUpdateButtonStates();
 
 }
 
@@ -3415,37 +2900,32 @@ function ppppLike() {
    FAVORITE
 ========================================================= */
 
-function ppppFavorite() {
+function ppppFavorite(){
 
-    const list =
-        ppppGetList("favorite");
+const list=ppppGetList("favorite");
+const url=window.location.href;
 
-    const url =
-        window.location.href;
+const index=list.findIndex(function(item){
+return item.url===url;
+});
 
-    const index =
-        list.findIndex(function(item) {
-            return item.url === url;
-        });
+if(index>=0){
 
-    if (index >= 0) {
+list.splice(index,1);
+ppppSaveList("favorite",list);
 
-        list.splice(index, 1);
+alert("⭐ Page removed from Favorited Pages.");
 
-    } else {
+}else{
 
-        list.unshift(
-            ppppCurrentPage()
-        );
+list.unshift(ppppCurrentPage());
+ppppSaveList("favorite",list);
 
-    }
+alert("⭐ Page added to Favorited Pages.");
 
-    ppppSaveList(
-        "favorite",
-        list
-    );
+}
 
-    ppppUpdateButtonStates();
+ppppUpdateButtonStates();
 
 }
 
@@ -3454,37 +2934,32 @@ function ppppFavorite() {
    PIN
 ========================================================= */
 
-function ppppPin() {
+function ppppPin(){
 
-    const list =
-        ppppGetList("pinned");
+const list=ppppGetList("pinned");
+const url=window.location.href;
 
-    const url =
-        window.location.href;
+const index=list.findIndex(function(item){
+return item.url===url;
+});
 
-    const index =
-        list.findIndex(function(item) {
-            return item.url === url;
-        });
+if(index>=0){
 
-    if (index >= 0) {
+list.splice(index,1);
+ppppSaveList("pinned",list);
 
-        list.splice(index, 1);
+alert("📌 Page removed from Pinned Pages.");
 
-    } else {
+}else{
 
-        list.unshift(
-            ppppCurrentPage()
-        );
+list.unshift(ppppCurrentPage());
+ppppSaveList("pinned",list);
 
-    }
+alert("📌 Page added to Pinned Pages.");
 
-    ppppSaveList(
-        "pinned",
-        list
-    );
+}
 
-    ppppUpdateButtonStates();
+ppppUpdateButtonStates();
 
 }
 
@@ -3493,37 +2968,22 @@ function ppppPin() {
    COUNTS
 ========================================================= */
 
-function ppppUpdateCounts() {
+function ppppUpdateCounts(){
 
-    const liked =
-        document.getElementById(
-            "ppppLikedCount"
-        );
+document.getElementById(
+"ppppLikedCount"
+).textContent=
+ppppGetList("liked").length;
 
-    const favorite =
-        document.getElementById(
-            "ppppFavoriteCount"
-        );
+document.getElementById(
+"ppppFavoriteCount"
+).textContent=
+ppppGetList("favorite").length;
 
-    const pinned =
-        document.getElementById(
-            "ppppPinnedCount"
-        );
-
-    if (liked) {
-        liked.textContent =
-            ppppGetList("liked").length;
-    }
-
-    if (favorite) {
-        favorite.textContent =
-            ppppGetList("favorite").length;
-    }
-
-    if (pinned) {
-        pinned.textContent =
-            ppppGetList("pinned").length;
-    }
+document.getElementById(
+"ppppPinnedCount"
+).textContent=
+ppppGetList("pinned").length;
 
 }
 
@@ -3532,51 +2992,39 @@ function ppppUpdateCounts() {
    BUTTON STATES
 ========================================================= */
 
-function ppppUpdateButtonStates() {
+function ppppUpdateButtonStates(){
 
-    const like =
-        document.getElementById(
-            "ppppLikeBtn"
-        );
+const like=
+document.getElementById("ppppLikeBtn");
 
-    const favorite =
-        document.getElementById(
-            "ppppFavoriteBtn"
-        );
+const favorite=
+document.getElementById("ppppFavoriteBtn");
 
-    const pin =
-        document.getElementById(
-            "ppppPinBtn"
-        );
+const pin=
+document.getElementById("ppppPinBtn");
 
-    if (like) {
+if(like){
+like.innerHTML=
+ppppIsSaved("liked")
+?"💔 Unlike"
+:"👍 Like";
+}
 
-        like.innerHTML =
-            ppppIsSaved("liked")
-                ? "💔 Unlike"
-                : "👍 Like";
+if(favorite){
+favorite.innerHTML=
+ppppIsSaved("favorite")
+?"⭐ Unfavorite"
+:"⭐ Favorite";
+}
 
-    }
+if(pin){
+pin.innerHTML=
+ppppIsSaved("pinned")
+?"📌 Unpin"
+:"📌 Pin";
+}
 
-    if (favorite) {
-
-        favorite.innerHTML =
-            ppppIsSaved("favorite")
-                ? "⭐ Unfavorite"
-                : "⭐ Favorite";
-
-    }
-
-    if (pin) {
-
-        pin.innerHTML =
-            ppppIsSaved("pinned")
-                ? "📌 Unpin"
-                : "📌 Pin";
-
-    }
-
-    ppppUpdateCounts();
+ppppUpdateCounts();
 
 }
 
@@ -3585,232 +3033,118 @@ function ppppUpdateButtonStates() {
    SAVED PAGES
 ========================================================= */
 
-function ppppShowSavedPages(type) {
+function ppppShowSavedPages(type){
 
-    const list =
-        ppppGetList(type);
+const list=ppppGetList(type);
 
-    const box =
-        document.getElementById(
-            "ppppSavedPagesBox"
-        );
+const box=
+document.getElementById("ppppSavedPagesBox");
 
-    const output =
-        document.getElementById(
-            "ppppSavedList"
-        );
+const output=
+document.getElementById("ppppSavedList");
 
-    const title =
-        document.getElementById(
-            "ppppSavedTitle"
-        );
+const title=
+document.getElementById("ppppSavedTitle");
 
-    if (!box || !output || !title) return;
+const titles={
+liked:"❤️ Liked Pages",
+favorite:"⭐ Favorited Pages",
+pinned:"📌 Pinned Pages"
+};
 
-    const titles = {
-        liked: "❤️ Liked Pages",
-        favorite: "⭐ Favorited Pages",
-        pinned: "📌 Pinned Pages"
-    };
+title.textContent=titles[type];
 
-    title.textContent =
-        titles[type] || "📚 Saved Pages";
+output.innerHTML="";
 
-    output.innerHTML = "";
+if(!list.length){
 
-    if (!list.length) {
+output.innerHTML=
+"<div style='padding:25px;text-align:center;color:#777;'>"+
+"No saved pages yet."+
+"</div>";
 
-        output.innerHTML =
-            "<div style='padding:25px;text-align:center;color:#777;'>" +
-            "No saved pages yet." +
-            "</div>";
+}else{
 
-    } else {
+list.forEach(function(item){
 
-        list.forEach(function(item) {
+const div=document.createElement("div");
+div.className="pppp-saved-item";
 
-            const div =
-                document.createElement("div");
+const link=document.createElement("a");
+link.href=item.url;
+link.textContent=item.title;
 
-            div.className =
-                "pppp-saved-item";
+const url=document.createElement("small");
+url.textContent=item.url;
 
-            const link =
-                document.createElement("a");
+const time=document.createElement("small");
+time.textContent="🕒 "+item.time;
 
-            link.href =
-                item.url;
+div.appendChild(link);
+div.appendChild(url);
+div.appendChild(time);
 
-            link.textContent =
-                item.title;
+output.appendChild(div);
 
-            const url =
-                document.createElement("small");
+});
 
-            url.textContent =
-                item.url;
+}
 
-            const time =
-                document.createElement("small");
-
-            time.textContent =
-                "🕒 " + item.time;
-
-            div.appendChild(link);
-            div.appendChild(url);
-            div.appendChild(time);
-
-            output.appendChild(div);
-
-        });
-
-    }
-
-    box.style.display = "block";
+box.style.display="block";
 
 }
 
 
-function ppppCloseSavedPages() {
+function ppppCloseSavedPages(){
 
-    const box =
-        document.getElementById(
-            "ppppSavedPagesBox"
-        );
-
-    if (box) {
-        box.style.display = "none";
-    }
-
-}
-
-
-function ppppClearSavedPages() {
-
-    if (!confirm(
-        "🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
-    )) return;
-
-    localStorage.removeItem(
-        PPPP_KEYS.liked
-    );
-
-    localStorage.removeItem(
-        PPPP_KEYS.favorite
-    );
-
-    localStorage.removeItem(
-        PPPP_KEYS.pinned
-    );
-
-    ppppUpdateCounts();
-    ppppUpdateButtonStates();
+document
+.getElementById("ppppSavedPagesBox")
+.style.display="none";
 
 }
 
 
 /* =========================================================
-   APP
+   CLEAR SAVED
 ========================================================= */
 
-function ppppApp() {
+function ppppClearSavedPages(){
 
-    alert(
-        "📱 PPPP App\n\n" +
-        "Browser-এর Add to Home Screen ব্যবহার করে PPPP App ব্যবহার করুন।"
-    );
+if(!confirm(
+"🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
+))return;
 
-}
+localStorage.removeItem(PPPP_KEYS.liked);
+localStorage.removeItem(PPPP_KEYS.favorite);
+localStorage.removeItem(PPPP_KEYS.pinned);
 
+ppppUpdateCounts();
+ppppUpdateButtonStates();
 
-function ppppShareApp() {
-
-    const url =
-        "https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk";
-
-    if (navigator.share) {
-
-        navigator.share({
-            title: "PPPP App",
-            text: "Download the official PPPP App",
-            url: url
-        }).catch(function() {});
-
-    } else {
-
-        ppppCopyText(url);
-
-    }
-
-}
-
-
-function ppppShareWebsite() {
-
-    const url =
-        "https://naz-niaz.github.io/pppp_bangladesh/";
-
-    if (navigator.share) {
-
-        navigator.share({
-            title: "PPPP Bangladesh",
-            text:
-                "People's Power & Peace Party (PPPP) Bangladesh",
-            url: url
-        }).catch(function() {});
-
-    } else {
-
-        ppppCopyText(url);
-
-    }
-
-}
-
-
-function ppppCopyText(text) {
-
-    if (navigator.clipboard) {
-
-        navigator.clipboard
-            .writeText(text)
-            .then(function() {
-
-                alert(
-                    "📋 Copied successfully!"
-                );
-
-            })
-            .catch(function() {
-
-                prompt(
-                    "Copy:",
-                    text
-                );
-
-            });
-
-    } else {
-
-        prompt(
-            "Copy:",
-            text
-        );
-
-    }
+alert("🗑️ Saved Pages lists cleared.");
 
 }
 
 
 /* =========================================================
-   BOOKMARK
+   APP / BOOKMARK
 ========================================================= */
 
-function ppppBookmark() {
+function ppppApp(){
 
-    alert(
-        "🔖 Browser-এর Bookmark ব্যবহার করে এই page bookmark করুন।"
-    );
+alert(
+"📱 PPPP App\n\n"+
+"Browser-এর “Add to Home Screen” ব্যবহার করে PPPP App ব্যবহার করুন।"
+);
+
+}
+
+
+function ppppBookmark(){
+
+alert(
+"🔖 Browser-এর Bookmark ব্যবহার করে এই page bookmark করুন।"
+);
 
 }
 
@@ -3819,108 +3153,73 @@ function ppppBookmark() {
    HISTORY
 ========================================================= */
 
-function ppppHistory() {
+function ppppHistory(){
 
-    let list =
-        ppppGetList("history");
+let list=ppppGetList("history");
+const page=ppppCurrentPage();
 
-    const page =
-        ppppCurrentPage();
+list=list.filter(function(item){
+return item.url!==page.url;
+});
 
-    list =
-        list.filter(function(item) {
-            return item.url !== page.url;
-        });
+list.unshift(page);
+list=list.slice(0,100);
 
-    list.unshift(page);
+ppppSaveList("history",list);
 
-    list =
-        list.slice(0, 100);
-
-    ppppSaveList(
-        "history",
-        list
-    );
+alert(
+"🕒 Current page PPPP History List-এ সংরক্ষিত হয়েছে!"
+);
 
 }
 
 
-function ppppShowHistory() {
+function ppppShowHistory(){
 
-    const list =
-        ppppGetList("history");
+const list=ppppGetList("history");
 
-    const box =
-        document.getElementById(
-            "ppppSavedPagesBox"
-        );
+const box=document.getElementById("ppppSavedPagesBox");
+const output=document.getElementById("ppppSavedList");
+const title=document.getElementById("ppppSavedTitle");
 
-    const output =
-        document.getElementById(
-            "ppppSavedList"
-        );
+title.textContent="📜 History List";
+output.innerHTML="";
 
-    const title =
-        document.getElementById(
-            "ppppSavedTitle"
-        );
+if(!list.length){
 
-    if (!box || !output || !title) return;
+output.innerHTML=
+"<div style='padding:25px;text-align:center;color:#777;'>"+
+"History List is empty."+
+"</div>";
 
-    title.textContent =
-        "📜 History List";
+}else{
 
-    output.innerHTML = "";
+list.forEach(function(item){
 
-    if (!list.length) {
+const div=document.createElement("div");
+div.className="pppp-saved-item";
 
-        output.innerHTML =
-            "<div style='padding:25px;text-align:center;color:#777;'>" +
-            "History List is empty." +
-            "</div>";
+const link=document.createElement("a");
+link.href=item.url;
+link.textContent=item.title;
 
-    } else {
+const url=document.createElement("small");
+url.textContent=item.url;
 
-        list.forEach(function(item) {
+const time=document.createElement("small");
+time.textContent="🕒 "+item.time;
 
-            const div =
-                document.createElement("div");
+div.appendChild(link);
+div.appendChild(url);
+div.appendChild(time);
 
-            div.className =
-                "pppp-saved-item";
+output.appendChild(div);
 
-            const link =
-                document.createElement("a");
+});
 
-            link.href =
-                item.url;
+}
 
-            link.textContent =
-                item.title;
-
-            const url =
-                document.createElement("small");
-
-            url.textContent =
-                item.url;
-
-            const time =
-                document.createElement("small");
-
-            time.textContent =
-                "🕒 " + item.time;
-
-            div.appendChild(link);
-            div.appendChild(url);
-            div.appendChild(time);
-
-            output.appendChild(div);
-
-        });
-
-    }
-
-    box.style.display = "block";
+box.style.display="block";
 
 }
 
@@ -3929,24 +3228,20 @@ function ppppShowHistory() {
    TAGS
 ========================================================= */
 
-function ppppTags() {
+function ppppTags(){
 
-    const key =
-        "ppppTags_" +
-        window.location.href;
+const title=
+document.title||
+"PPPP Page";
 
-    const title =
-        document.title ||
-        "PPPP Page";
+localStorage.setItem(
+"ppppTags_"+window.location.href,
+title
+);
 
-    localStorage.setItem(
-        key,
-        title
-    );
-
-    alert(
-        "🏷️ Page Tag: " + title
-    );
+alert(
+"🏷️ Page Tag: "+title
+);
 
 }
 
@@ -3955,36 +3250,27 @@ function ppppTags() {
    CONTENTS
 ========================================================= */
 
-function ppppContents() {
+function ppppContents(){
 
-    const headings =
-        document.querySelectorAll(
-            "h1,h2,h3,h4,h5,h6"
-        );
+const headings=
+document.querySelectorAll("h1,h2,h3,h4");
 
-    if (!headings.length) {
+if(!headings.length){
 
-        alert(
-            "📑 No page contents found."
-        );
+alert("📑 No page contents found.");
+return;
 
-        return;
+}
 
-    }
+let text="";
 
-    let text = "";
+headings.forEach(function(h,i){
 
-    headings.forEach(function(h, i) {
+text+=(i+1)+". "+h.innerText+"\n";
 
-        text +=
-            (i + 1) +
-            ". " +
-            h.innerText +
-            "\n";
+});
 
-    });
-
-    alert(text);
+alert(text);
 
 }
 
@@ -3993,60 +3279,91 @@ function ppppContents() {
    STATISTICS
 ========================================================= */
 
-function ppppStatistics() {
+function ppppStatistics(){
 
-    const bodyText =
-        document.body.innerText.trim();
+const bodyText=
+document.body.innerText.trim();
 
-    const words =
-        bodyText
-            .split(/\s+/)
-            .filter(Boolean)
-            .length;
+const lines=
+bodyText
+.split(/\r?\n/)
+.map(function(x){return x.trim();})
+.filter(Boolean);
 
-    const pictures =
-        document.querySelectorAll("img").length;
+const words=
+bodyText.split(/\s+/).filter(Boolean).length;
 
-    const videos =
-        document.querySelectorAll("video").length;
+const pictures=
+document.querySelectorAll("img").length;
 
-    const audios =
-        document.querySelectorAll("audio").length;
+const videos=
+document.querySelectorAll("video").length;
 
-    const sections =
-        document.querySelectorAll("section").length;
+const audios=
+document.querySelectorAll("audio").length;
 
-    const headings =
-        document.querySelectorAll(
-            "h1,h2,h3,h4,h5,h6"
-        ).length;
+const links=
+Array.from(document.querySelectorAll("a"));
 
-    const tables =
-        document.querySelectorAll("table").length;
+const pdf=
+links.filter(function(a){
+return /\.pdf(\?|#|$)/i.test(a.href);
+}).length;
 
-    const buttons =
-        document.querySelectorAll("button").length;
+const lyrics=
+links.filter(function(a){
+return /lyrics|lyric/i.test(
+a.href+" "+a.textContent
+);
+}).length;
 
-    const links =
-        document.querySelectorAll("a").length;
+const music=
+audios+
+links.filter(function(a){
+return /\.(mp3|wav|ogg|m4a|flac)(\?|#|$)/i.test(a.href)
+||/music/i.test(a.href+" "+a.textContent);
+}).length;
 
-    const forms =
-        document.querySelectorAll("form").length;
+const images=
+pictures+
+links.filter(function(a){
+return /\.(jpg|jpeg|png|gif|webp|svg)(\?|#|$)/i.test(a.href);
+}).length;
 
-    alert(
-        "📊 PPPP PAGE STATISTICS\n\n" +
-        "📄 Page: " + document.title + "\n\n" +
-        "🔤 Words: " + words + "\n" +
-        "🖼️ Pictures: " + pictures + "\n" +
-        "🎵 Audio: " + audios + "\n" +
-        "🎥 Videos: " + videos + "\n" +
-        "📑 Sections: " + sections + "\n" +
-        "📋 Headings: " + headings + "\n" +
-        "📊 Tables: " + tables + "\n" +
-        "🔗 Links: " + links + "\n" +
-        "🔘 Buttons: " + buttons + "\n" +
-        "📝 Forms: " + forms
-    );
+const sections=document.querySelectorAll("section").length;
+const headings=document.querySelectorAll("h1,h2,h3,h4,h5,h6").length;
+const tables=document.querySelectorAll("table").length;
+const buttons=document.querySelectorAll("button").length;
+const linksCount=document.querySelectorAll("a").length;
+const forms=document.querySelectorAll("form").length;
+
+const files=
+document.querySelectorAll(
+"audio,video,img,iframe,object,embed"
+).length;
+
+alert(
+"📊 PPPP PAGE STATISTICS\n\n"+
+"📄 Page: "+document.title+
+"\n\n"+
+"📏 Total Line: "+lines.length+
+"\n🔤 Word: "+words+
+"\n🖼️ Pictures: "+pictures+
+"\n🎵 Musics: "+music+
+"\n🎥 Videos: "+videos+
+"\n📜 Lyrics: "+lyrics+
+"\n📕 PDF: "+pdf+
+"\n📦 Media Files: "+files+
+"\n📑 Sections: "+sections+
+"\n📋 Headings: "+headings+
+"\n📊 Tables: "+tables+
+"\n🔗 Links: "+linksCount+
+"\n🔘 Buttons: "+buttons+
+"\n📝 Forms: "+forms+
+"\n\n❤️ Liked: "+ppppGetList("liked").length+
+"\n⭐ Favorited: "+ppppGetList("favorite").length+
+"\n📌 Pinned: "+ppppGetList("pinned").length
+);
 
 }
 
@@ -4055,127 +3372,78 @@ function ppppStatistics() {
    THEME
 ========================================================= */
 
-function ppppThemeDay() {
+function ppppThemeDay(){
+ppppLightMode();
+localStorage.setItem("ppppTheme","day");
+}
 
-    document.body.classList.remove(
-        "pppp-dark-mode"
-    );
 
-    localStorage.setItem(
-        "ppppTheme",
-        "day"
-    );
+function ppppThemeNight(){
+ppppDarkMode();
+localStorage.setItem("ppppTheme","night");
+}
+
+
+function ppppThemeAuto(){
+
+localStorage.setItem("ppppTheme","auto");
+
+const dark=
+window.matchMedia(
+"(prefers-color-scheme: dark)"
+).matches;
+
+if(dark){
+ppppDarkMode();
+}else{
+ppppLightMode();
+}
 
 }
 
 
-function ppppThemeNight() {
+function ppppDarkMode(){
 
-    document.body.classList.add(
-        "pppp-dark-mode"
-    );
-
-    localStorage.setItem(
-        "ppppTheme",
-        "night"
-    );
+document.body.classList.add("pppp-dark-mode");
+localStorage.setItem("ppppDarkMode","dark");
 
 }
 
 
-function ppppThemeAuto() {
+function ppppLightMode(){
 
-    localStorage.setItem(
-        "ppppTheme",
-        "auto"
-    );
-
-    ppppApplyAutoTheme();
+document.body.classList.remove("pppp-dark-mode");
+localStorage.setItem("ppppDarkMode","light");
 
 }
 
 
-function ppppApplyAutoTheme() {
-
-    const dark =
-        window.matchMedia(
-            "(prefers-color-scheme:dark)"
-        ).matches;
-
-    if (dark) {
-
-        document.body.classList.add(
-            "pppp-dark-mode"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "pppp-dark-mode"
-        );
-
-    }
-
-}
-
-
-const ppppDarkMedia =
-    window.matchMedia(
-        "(prefers-color-scheme:dark)"
-    );
-
-
-function ppppHandleSystemTheme() {
-
-    if (
-        localStorage.getItem(
-            "ppppTheme"
-        ) === "auto"
-    ) {
-        ppppApplyAutoTheme();
-    }
-
-}
-
-
-if (ppppDarkMedia.addEventListener) {
-
-    ppppDarkMedia.addEventListener(
-        "change",
-        ppppHandleSystemTheme
-    );
-
-} else {
-
-    ppppDarkMedia.addListener(
-        ppppHandleSystemTheme
-    );
-
+function ppppAutoMode(){
+ppppThemeAuto();
 }
 
 
 /* =========================================================
-   FONT
+   FONT SIZE
 ========================================================= */
 
-let ppppFontScale = 100;
+let ppppFontScale=
+Number(localStorage.getItem("ppppFontScale"))||100;
 
+function ppppFontSize(value){
 
-function ppppFontSize(value) {
+ppppFontScale+=value*5;
 
-    ppppFontScale +=
-        value * 5;
+if(ppppFontScale<80)ppppFontScale=80;
+if(ppppFontScale>140)ppppFontScale=140;
 
-    if (ppppFontScale < 80) {
-        ppppFontScale = 80;
-    }
+document.documentElement.style.fontSize=
+ppppFontScale+"%";
 
-    if (ppppFontScale > 140) {
-        ppppFontScale = 140;
-    }
-
-    document.documentElement.style.fontSize =
-        ppppFontScale + "%";
+localStorage.setItem(
+"ppppFontScale",
+ppppFontScale
+);
 
 }
 
@@ -4184,43 +3452,35 @@ function ppppFontSize(value) {
    ZOOM
 ========================================================= */
 
-let ppppZoomLevel = 1;
+let ppppZoomLevel=
+Number(localStorage.getItem("ppppZoomLevel"))||1;
 
+function ppppZoom(value){
 
-function ppppZoom(value) {
+ppppZoomLevel+=value*.1;
 
-    ppppZoomLevel +=
-        value * 0.1;
+if(ppppZoomLevel<.8)ppppZoomLevel=.8;
+if(ppppZoomLevel>1.5)ppppZoomLevel=1.5;
 
-    if (ppppZoomLevel < 0.8) {
-        ppppZoomLevel = 0.8;
-    }
+document.body.style.zoom=ppppZoomLevel;
 
-    if (ppppZoomLevel > 1.5) {
-        ppppZoomLevel = 1.5;
-    }
-
-    document.body.style.zoom =
-        ppppZoomLevel;
+localStorage.setItem(
+"ppppZoomLevel",
+ppppZoomLevel
+);
 
 }
 
 
-function ppppZoomReset() {
+function ppppZoomReset(){
 
-    ppppZoomLevel = 1;
+ppppZoomLevel=1;
+document.body.style.zoom="1";
 
-    document.body.style.zoom =
-        "1";
-
-}
-
-
-function ppppContrast() {
-
-    document.body.classList.toggle(
-        "pppp-high-contrast"
-    );
+localStorage.setItem(
+"ppppZoomLevel",
+"1"
+);
 
 }
 
@@ -4229,94 +3489,93 @@ function ppppContrast() {
    LANGUAGE
 ========================================================= */
 
-function ppppMainLanguage() {
+function ppppMainLanguage(){
 
-    document.cookie =
-        "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+document.cookie=
+"go﻿ogtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 
-    location.reload();
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 
-}
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain="+
+location.hostname;
 
-
-function GTranslateFireEvent(
-    element,
-    event
-) {
-
-    try {
-
-        if (document.createEvent) {
-
-            const evt =
-                document.createEvent(
-                    "HTMLEvents"
-                );
-
-            evt.initEvent(
-                event,
-                true,
-                true
-            );
-
-            element.dispatchEvent(evt);
-
-        }
-
-    } catch (e) {}
+location.reload();
 
 }
 
 
-function doGTranslate(lang_pair) {
+function GTranslateFireEvent(element,event){
 
-    if (!lang_pair) return;
+try{
 
-    const lang =
-        lang_pair.split("|")[1];
+if(document.createEvent){
 
-    const select =
-        document.querySelector(
-            ".goog-te-combo"
-        );
+const evt=
+document.createEvent("HTMLEvents");
 
-    if (select) {
+evt.initEvent(event,true,true);
 
-        select.value = lang;
+element.dispatchEvent(evt);
 
-        GTranslateFireEvent(
-            select,
-            "change"
-        );
+}
 
-        return;
-
-    }
-
-    document.cookie =
-        "googtrans=/bn/" +
-        lang +
-        ";path=/";
-
-    location.reload();
+}catch(e){}
 
 }
 
 
-function ppppBangla() {
+function doGTranslate(lang_pair){
 
-    doGTranslate(
-        "bn|bn"
-    );
+if(!lang_pair)return;
+
+const lang=
+lang_pair.split("|")[1];
+
+const select=
+document.querySelector(".goog-te-combo");
+
+if(select){
+
+select.value=lang;
+
+GTranslateFireEvent(
+select,
+"change"
+);
+
+return;
+
+}
+
+document.cookie=
+"googtrans=/bn/"+lang+
+";path=/";
+
+location.reload();
 
 }
 
 
-function ppppEnglish() {
+function ppppBangla(){
+doGTranslate("bn|bn");
+}
 
-    doGTranslate(
-        "bn|en"
-    );
+
+function ppppEnglish(){
+doGTranslate("bn|en");
+}
+
+
+function ppppLanguage(){
+
+alert(
+"🌐 Language Settings\n\n"+
+"🌐 Main — মূল পেজের প্রকৃত রূপ\n"+
+"🇧🇩 বাংলা — বাংলা\n"+
+"🇬🇧 English — English"
+);
 
 }
 
@@ -4325,242 +3584,317 @@ function ppppEnglish() {
    READ ALOUD
 ========================================================= */
 
-let ppppSpeechStopped = false;
+let ppppSpeechStopped=false;
 
 
-function ppppGetMaleVoice(lang) {
+function ppppGetMaleVoice(lang){
 
-    const voices =
-        window.speechSynthesis.getVoices();
+const voices=
+window.speechSynthesis.getVoices();
 
-    const prefix =
-        lang
-            .split("-")[0]
-            .toLowerCase();
+const prefix=
+lang.split("-")[0].toLowerCase();
 
-    const maleNames = [
-        "male",
-        "man",
-        "david",
-        "mark",
-        "george",
-        "daniel",
-        "alex",
-        "fred"
-    ];
+const maleNames=[
+"male",
+"man",
+"google uk english male",
+"microsoft david",
+"microsoft mark",
+"microsoft george",
+"daniel",
+"alex",
+"fred"
+];
 
-    let voice =
-        voices.find(function(v) {
+let voice=
+voices.find(function(v){
 
-            return (
-                v.lang
-                    .toLowerCase()
-                    .startsWith(prefix) &&
-                maleNames.some(function(name) {
+return v.lang.toLowerCase().startsWith(prefix)
+&&
+maleNames.some(function(name){
+return v.name.toLowerCase().includes(name);
+});
 
-                    return v.name
-                        .toLowerCase()
-                        .includes(name);
+});
 
-                })
-            );
+if(!voice){
 
-        });
+voice=
+voices.find(function(v){
+return v.lang.toLowerCase().startsWith(prefix);
+});
 
-    if (!voice) {
+}
 
-        voice =
-            voices.find(function(v) {
-
-                return v.lang
-                    .toLowerCase()
-                    .startsWith(prefix);
-
-            });
-
-    }
-
-    return voice || null;
+return voice||null;
 
 }
 
 
-function ppppCleanSpeechText() {
+function ppppCleanSpeechText(){
 
-    const clone =
-        document.body.cloneNode(true);
+const clone=
+document.body.cloneNode(true);
 
-    clone.querySelectorAll(
-        "#ppppSettingsPanel," +
-        "#ppppSettingsOverlay," +
-        "#ppppSettingsBtn," +
-        "#shareBtn," +
-        "#topBtn," +
-        "#ppppSavedPagesBox," +
-        "script," +
-        "style," +
-        "noscript"
-    )
-    .forEach(function(el) {
-        el.remove();
-    });
+clone.querySelectorAll(
+"#ppppSettingsPanel,"+
+"#ppppSettingsOverlay,"+
+"#ppppSettingsBtn,"+
+"#shareBtn,"+
+"#topBtn,"+
+"#ppppSavedPagesBox,"+
+"script,"+
+"style,"+
+"noscript"
+)
+.forEach(function(el){
+el.remove();
+});
 
-    return clone.innerText
-        .replace(/\s+/g, " ")
-        .trim();
-
-}
-
-
-function ppppSpeak(text, lang) {
-
-    if (
-        !("speechSynthesis" in window)
-    ) {
-
-        alert(
-            "🔊 আপনার browser-এ Read Aloud support নেই।"
-        );
-
-        return;
-
-    }
-
-    speechSynthesis.cancel();
-
-    ppppSpeechStopped = false;
-
-    const utterance =
-        new SpeechSynthesisUtterance(text);
-
-    utterance.lang = lang;
-    utterance.rate = 0.88;
-    utterance.pitch = 0.85;
-
-    const voice =
-        ppppGetMaleVoice(lang);
-
-    if (voice) {
-        utterance.voice = voice;
-    }
-
-    speechSynthesis.speak(
-        utterance
-    );
+return clone.innerText
+.replace(/\s+/g," ")
+.trim();
 
 }
 
 
-function ppppReadAloudMain() {
+function ppppSpeak(text,lang){
 
-    const text =
-        ppppCleanSpeechText();
+if(!("speechSynthesis" in window)){
 
-    if (!text) return;
+alert(
+"🔊 আপনার browser-এ Read Aloud support নেই।"
+);
 
-    speechSynthesis.cancel();
+return;
 
-    ppppSpeechStopped = false;
+}
 
-    const regex =
-        /[\u0980-\u09FF]/;
+speechSynthesis.cancel();
 
-    const parts =
-        text.split(
-            /(?<=[.!?।])\s+/
-        );
+ppppSpeechStopped=false;
 
-    let index = 0;
+const utterance=
+new SpeechSynthesisUtterance(text);
 
+utterance.lang=lang;
+utterance.rate=.88;
+utterance.pitch=.85;
 
-    function next() {
+const voice=ppppGetMaleVoice(lang);
 
-        if (
-            ppppSpeechStopped ||
-            index >= parts.length
-        ) {
-            return;
-        }
+if(voice)utterance.voice=voice;
 
-        const part =
-            parts[index++].trim();
-
-        if (!part) {
-
-            next();
-            return;
-
-        }
-
-        const lang =
-            regex.test(part)
-                ? "bn-BD"
-                : "en-US";
-
-        const u =
-            new SpeechSynthesisUtterance(
-                part
-            );
-
-        u.lang = lang;
-        u.rate = 0.88;
-        u.pitch = 0.85;
-
-        const voice =
-            ppppGetMaleVoice(lang);
-
-        if (voice) {
-            u.voice = voice;
-        }
-
-        u.onend = next;
-        u.onerror = next;
-
-        speechSynthesis.speak(u);
-
-    }
-
-    next();
+speechSynthesis.speak(utterance);
 
 }
 
 
-function ppppReadAloudBangla() {
+function ppppReadAloudMain(){
 
-    ppppSpeak(
-        ppppCleanSpeechText(),
-        "bn-BD"
-    );
+const text=ppppCleanSpeechText();
+
+if(!text){
+
+alert("🔊 পড়ার মতো কোনো text পাওয়া যায়নি।");
+return;
+
+}
+
+speechSynthesis.cancel();
+ppppSpeechStopped=false;
+
+const regex=/[\u0980-\u09FF]/;
+
+const parts=
+text.split(/(?<=[.!?।])\s+/);
+
+let index=0;
+
+function next(){
+
+if(ppppSpeechStopped||index>=parts.length)return;
+
+const part=parts[index++].trim();
+
+if(!part){
+next();
+return;
+}
+
+const lang=
+regex.test(part)
+?"bn-BD"
+:"en-US";
+
+const u=
+new SpeechSynthesisUtterance(part);
+
+u.lang=lang;
+u.rate=.88;
+u.pitch=.85;
+
+const voice=ppppGetMaleVoice(lang);
+
+if(voice)u.voice=voice;
+
+u.onend=next;
+u.onerror=next;
+
+speechSynthesis.speak(u);
+
+}
+
+next();
 
 }
 
 
-function ppppReadAloudEnglish() {
+function ppppReadAloudBangla(){
 
-    ppppSpeak(
-        ppppCleanSpeechText(),
-        "en-US"
-    );
-
-}
-
-
-function ppppMute() {
-
-    ppppSpeechStopped = true;
-
-    if (
-        "speechSynthesis" in window
-    ) {
-        speechSynthesis.cancel();
-    }
+ppppSpeak(
+ppppCleanSpeechText(),
+"bn-BD"
+);
 
 }
 
 
-function ppppUnmute() {
+function ppppReadAloudEnglish(){
 
-    ppppSpeechStopped = false;
+ppppSpeak(
+ppppCleanSpeechText(),
+"en-US"
+);
+
+}
+
+
+/* =========================================================
+   MUTE / UNMUTE
+========================================================= */
+
+let ppppMuted=false;
+
+let ppppSavedMediaVolumes=new WeakMap();
+
+
+function ppppMute(){
+
+ppppMuted=true;
+ppppSpeechStopped=true;
+
+if("speechSynthesis" in window){
+speechSynthesis.cancel();
+}
+
+document
+.querySelectorAll("audio,video")
+.forEach(function(media){
+
+if(!ppppSavedMediaVolumes.has(media)){
+ppppSavedMediaVolumes.set(
+media,
+media.volume
+);
+}
+
+media.muted=true;
+
+});
+
+document.getElementById(
+"ppppMuteBtn"
+).style.display="none";
+
+document.getElementById(
+"ppppUnmuteBtn"
+).style.display="flex";
+
+}
+
+
+function ppppUnmute(){
+
+ppppMuted=false;
+
+document
+.querySelectorAll("audio,video")
+.forEach(function(media){
+
+const old=
+ppppSavedMediaVolumes.get(media);
+
+if(typeof old==="number"){
+media.volume=old;
+}
+
+media.muted=false;
+
+});
+
+document.getElementById(
+"ppppMuteBtn"
+).style.display="flex";
+
+document.getElementById(
+"ppppUnmuteBtn"
+).style.display="none";
+
+}
+
+
+/* =========================================================
+   SOUND VOLUME
+========================================================= */
+
+function ppppSetVolume(type,value){
+
+value=Number(value);
+
+if(type==="master"){
+
+document
+.querySelectorAll("audio,video")
+.forEach(function(media){
+
+media.volume=value;
+
+});
+
+return;
+
+}
+
+document
+.querySelectorAll("audio,video")
+.forEach(function(media){
+
+const text=
+(
+media.id+" "+
+media.className+" "+
+media.getAttribute("data-type")+" "+
+media.getAttribute("aria-label")
+).toLowerCase();
+
+if(
+(type==="music"&&
+/music|audio|song/.test(text))
+||
+(type==="video"&&
+/video/.test(text))
+||
+(type==="notification"&&
+/notification|alert|notify/.test(text))
+){
+
+media.volume=value;
+
+}
+
+});
 
 }
 
@@ -4569,490 +3903,11 @@ function ppppUnmute() {
    LARGE CONTROLS
 ========================================================= */
 
-function ppppLargeControls() {
-
-    document.body.classList.toggle(
-        "pppp-large-controls"
-    );
-
-}
-
-
-/* =========================================================
-   SOUND CONTROL
-========================================================= */
-
-const PPPP_SOUND_VOLUMES = {
-    notification:
-        Number(
-            localStorage.getItem(
-                "ppppNotificationVolume"
-            )
-        ) || 1,
-
-    music:
-        Number(
-            localStorage.getItem(
-                "ppppMusicVolume"
-            )
-        ) || 1,
-
-    video:
-        Number(
-            localStorage.getItem(
-                "ppppVideoVolume"
-            )
-        ) || 1,
-
-    master:
-        Number(
-            localStorage.getItem(
-                "ppppMasterVolume"
-            )
-        ) || 1
-};
-
-
-function ppppGetMedia() {
-
-    return Array.from(
-        document.querySelectorAll(
-            "audio,video"
-        )
-    );
-
-}
-
-
-function ppppSetVolume(type, value) {
-
-    const volume =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                Number(value)
-            )
-        );
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            PPPP_SOUND_VOLUMES,
-            type
-        )
-    ) {
-
-        PPPP_SOUND_VOLUMES[type] =
-            volume;
-
-        localStorage.setItem(
-            "pppp" +
-            type.charAt(0).toUpperCase() +
-            type.slice(1) +
-            "Volume",
-            volume
-        );
-
-    }
-
-    ppppApplyMediaVolumes();
-
-}
-
-
-function ppppApplyMediaVolumes() {
-
-    ppppGetMedia()
-        .forEach(function(media) {
-
-            let categoryVolume = 1;
-
-            if (
-                media.tagName.toLowerCase() ===
-                "video"
-            ) {
-
-                categoryVolume =
-                    PPPP_SOUND_VOLUMES.video;
-
-            } else {
-
-                categoryVolume =
-                    PPPP_SOUND_VOLUMES.music;
-
-            }
-
-            media.volume =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        categoryVolume *
-                        PPPP_SOUND_VOLUMES.master
-                    )
-                );
-
-        });
-
-    const notification =
-        document.getElementById(
-            "ppppNotificationVolume"
-        );
-
-    const music =
-        document.getElementById(
-            "ppppMusicVolume"
-        );
-
-    const video =
-        document.getElementById(
-            "ppppVideoVolume"
-        );
-
-    const master =
-        document.getElementById(
-            "ppppMasterVolume"
-        );
-
-    if (notification) {
-        notification.value =
-            PPPP_SOUND_VOLUMES.notification;
-    }
-
-    if (music) {
-        music.value =
-            PPPP_SOUND_VOLUMES.music;
-    }
-
-    if (video) {
-        video.value =
-            PPPP_SOUND_VOLUMES.video;
-    }
-
-    if (master) {
-        master.value =
-            PPPP_SOUND_VOLUMES.master;
-    }
-
-}
-
-
-function ppppVolumeUp() {
-
-    ppppGetMedia()
-        .forEach(function(media) {
-
-            media.volume =
-                Math.min(
-                    1,
-                    media.volume + 0.1
-                );
-
-        });
-
-}
-
-
-function ppppVolumeDown() {
-
-    ppppGetMedia()
-        .forEach(function(media) {
-
-            media.volume =
-                Math.max(
-                    0,
-                    media.volume - 0.1
-                );
-
-        });
-
-}
-
-
-function ppppMuteAllMedia() {
-
-    ppppGetMedia()
-        .forEach(function(media) {
-            media.muted = true;
-        });
-
-}
-
-
-function ppppUnmuteAllMedia() {
-
-    ppppGetMedia()
-        .forEach(function(media) {
-            media.muted = false;
-        });
-
-}
-
-
-/* =========================================================
-   CALCULATOR
-   HTML-compatible calculator
-========================================================= */
-
-let ppppCalcExpression = "";
-
-
-function ppppCalcDisplayUpdate() {
-
-    const display =
-        document.getElementById(
-            "ppppCalcDisplay"
-        );
-
-    if (display) {
-
-        display.value =
-            ppppCalcExpression || "0";
-
-    }
-
-}
-
-
-function ppppCalcInput(value) {
-
-    if (
-        ppppCalcExpression === "Error"
-    ) {
-        ppppCalcExpression = "";
-    }
-
-    ppppCalcExpression += value;
-
-    ppppCalcDisplayUpdate();
-
-}
-
-
-function ppppCalcClear() {
-
-    ppppCalcExpression = "";
-
-    ppppCalcDisplayUpdate();
-
-}
-
-
-function ppppCalcBack() {
-
-    ppppCalcExpression =
-        ppppCalcExpression.slice(
-            0,
-            -1
-        );
-
-    ppppCalcDisplayUpdate();
-
-}
-
-
-function ppppCalcEqual() {
-
-    if (!ppppCalcExpression) return;
-
-    try {
-
-        const safe =
-            ppppCalcExpression
-                .replace(/×/g, "*")
-                .replace(/÷/g, "/")
-                .replace(
-                    /[^0-9+\-*/().%\s]/g,
-                    ""
-                );
-
-        if (!safe) {
-            throw new Error();
-        }
-
-        const answer =
-            Function(
-                '"use strict";return (' +
-                safe +
-                ')'
-            )();
-
-        if (
-            typeof answer !== "number" ||
-            !Number.isFinite(answer)
-        ) {
-            throw new Error();
-        }
-
-        ppppCalcExpression =
-            String(answer);
-
-        ppppCalcDisplayUpdate();
-
-    } catch (e) {
-
-        ppppCalcExpression =
-            "Error";
-
-        ppppCalcDisplayUpdate();
-
-    }
-
-}
-
-
-/*
-   পুরোনো calculator function থাকলে
-   সেটিও compatibility-এর জন্য রাখা হলো।
-*/
-
-function ppppCalculate() {
-
-    const input =
-        document.getElementById(
-            "ppppCalculatorInput"
-        );
-
-    const result =
-        document.getElementById(
-            "ppppCalculatorResult"
-        );
-
-    if (!input || !result) return;
-
-    const value =
-        input.value.trim();
-
-    if (!value) {
-
-        result.textContent =
-            "দয়া করে হিসাব লিখুন।";
-
-        return;
-
-    }
-
-    try {
-
-        const safe =
-            value
-                .replace(/×/g, "*")
-                .replace(/÷/g, "/")
-                .replace(
-                    /[^0-9+\-*/().%\s]/g,
-                    ""
-                );
-
-        const answer =
-            Function(
-                '"use strict";return (' +
-                safe +
-                ')'
-            )();
-
-        result.textContent =
-            "🧮 Result: " +
-            answer;
-
-    } catch (e) {
-
-        result.textContent =
-            "❌ Invalid calculation.";
-
-    }
-
-}
-
-
-/* =========================================================
-   AGE CALCULATOR
-========================================================= */
-
-function ppppCalculateAge() {
-
-    const input =
-        document.getElementById(
-            "ppppBirthDate"
-        );
-
-    const result =
-        document.getElementById(
-            "ppppAgeResult"
-        );
-
-    if (!input || !result) return;
-
-    const value =
-        input.value;
-
-    if (!value) {
-
-        result.textContent =
-            "জন্মতারিখ নির্বাচন করুন।";
-
-        return;
-
-    }
-
-    const birth =
-        new Date(
-            value + "T00:00:00"
-        );
-
-    const today =
-        new Date();
-
-    if (birth > today) {
-
-        result.textContent =
-            "❌ জন্মতারিখ ভবিষ্যতের হতে পারে না।";
-
-        return;
-
-    }
-
-    let years =
-        today.getFullYear() -
-        birth.getFullYear();
-
-    let months =
-        today.getMonth() -
-        birth.getMonth();
-
-    let days =
-        today.getDate() -
-        birth.getDate();
-
-    if (days < 0) {
-
-        months--;
-
-        const previousMonth =
-            new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                0
-            ).getDate();
-
-        days += previousMonth;
-
-    }
-
-    if (months < 0) {
-
-        years--;
-        months += 12;
-
-    }
-
-    result.textContent =
-        "🎂 Age: " +
-        years +
-        " বছর " +
-        months +
-        " মাস " +
-        days +
-        " দিন";
+function ppppLargeControls(){
+
+document.body.classList.toggle(
+"pppp-large-controls"
+);
 
 }
 
@@ -5061,155 +3916,296 @@ function ppppCalculateAge() {
    COMPASS
 ========================================================= */
 
-let ppppCompassHandler = null;
+let ppppCompassStarted=false;
 
 
-function ppppStopCompass() {
+function ppppStartCompass(){
 
-    if (!ppppCompassHandler) return;
+if(!("DeviceOrientationEvent" in window)){
 
-    window.removeEventListener(
-        "deviceorientationabsolute",
-        ppppCompassHandler,
-        true
-    );
+alert(
+"🧭 এই device-এ Compass sensor পাওয়া যায়নি।"
+);
 
-    window.removeEventListener(
-        "deviceorientation",
-        ppppCompassHandler,
-        true
-    );
-
-    ppppCompassHandler = null;
+return;
 
 }
 
 
-async function ppppStartCompass() {
+function start(){
 
-    if (
-        !window.DeviceOrientationEvent
-    ) {
+window.addEventListener(
+"deviceorientation",
+ppppCompassHandler,
+true
+);
 
-        alert(
-            "🧭 এই ডিভাইসে Compass support নেই।"
-        );
+ppppCompassStarted=true;
 
-        return;
-
-    }
-
-    /*
-       iPhone/iPad-এর permission
-    */
-
-    if (
-        typeof DeviceOrientationEvent
-            .requestPermission ===
-        "function"
-    ) {
-
-        try {
-
-            const permission =
-                await DeviceOrientationEvent
-                    .requestPermission();
-
-            if (
-                permission !== "granted"
-            ) {
-
-                alert(
-                    "🧭 Compass permission দেওয়া হয়নি।"
-                );
-
-                return;
-
-            }
-
-        } catch (e) {
-
-            alert(
-                "🧭 Compass permission নেওয়া সম্ভব হয়নি।"
-            );
-
-            return;
-
-        }
-
-    }
-
-    ppppStopCompass();
-
-    ppppCompassHandler =
-        function(event) {
-
-            let heading = null;
-
-            if (
-                typeof event.webkitCompassHeading ===
-                "number"
-            ) {
-
-                heading =
-                    event.webkitCompassHeading;
-
-            } else if (
-                typeof event.alpha ===
-                "number"
-            ) {
-
-                heading =
-                    360 - event.alpha;
-
-            }
-
-            if (heading === null) return;
-
-            heading =
-                (heading + 360) % 360;
-
-            const compass =
-                document.getElementById(
-                    "ppppCompass"
-                );
-
-            const degree =
-                document.getElementById(
-                    "ppppCompassDegree"
-                );
-
-            if (compass) {
-
-                compass.style.transform =
-                    "rotate(" +
-                    (-heading) +
-                    "deg)";
-
-            }
-
-            if (degree) {
-
-                degree.textContent =
-                    Math.round(heading) +
-                    "°";
-
-            }
-
-        };
+}
 
 
-    window.addEventListener(
-        "deviceorientationabsolute",
-        ppppCompassHandler,
-        true
-    );
+if(
+typeof DeviceOrientationEvent.requestPermission===
+"function"
+){
 
-    window.addEventListener(
-        "deviceorientation",
-        ppppCompassHandler,
-        true
-    );
+DeviceOrientationEvent
+.requestPermission()
+.then(function(permission){
+
+if(permission==="granted"){
+start();
+}else{
+alert("🧭 Compass permission দেওয়া হয়নি।");
+}
+
+})
+.catch(function(){
+alert("🧭 Compass permission পাওয়া যায়নি।");
+});
+
+}else{
+
+start();
+
+}
+
+}
+
+
+function ppppCompassHandler(event){
+
+let degree=null;
+
+if(typeof event.webkitCompassHeading==="number"){
+
+degree=event.webkitCompassHeading;
+
+}else if(typeof event.alpha==="number"){
+
+degree=360-event.alpha;
+
+}
+
+if(degree===null)return;
+
+degree=(degree+360)%360;
+
+document.getElementById(
+"ppppCompassArrow"
+).style.transform=
+"translate(-50%,-100%) rotate("+degree+"deg)";
+
+document.getElementById(
+"ppppCompassDegree"
+).textContent=
+Math.round(degree)+"°";
+
+}
+
+
+/* =========================================================
+   CALCULATOR
+========================================================= */
+
+function ppppCalcInput(value){
+
+const display=
+document.getElementById(
+"ppppCalcDisplay"
+);
+
+if(display.value==="0"){
+display.value="";
+}
+
+display.value+=value;
+
+}
+
+
+function ppppCalcClear(){
+
+document.getElementById(
+"ppppCalcDisplay"
+).value="0";
+
+}
+
+
+function ppppCalcBack(){
+
+const display=
+document.getElementById(
+"ppppCalcDisplay"
+);
+
+display.value=
+display.value.length>1
+?display.value.slice(0,-1)
+:"0";
+
+}
+
+
+function ppppCalcEqual(){
+
+const display=
+document.getElementById(
+"ppppCalcDisplay"
+);
+
+try{
+
+let expression=
+display.value.replace(/%/g,"/100");
+
+if(!/^[0-9+\-*/().\s]+$/.test(expression)){
+throw new Error();
+}
+
+const result=
+Function(
+'"use strict";return ('+
+expression+
+')'
+)();
+
+display.value=
+Number.isFinite(result)
+?String(result)
+:"Error";
+
+}catch(e){
+
+display.value="Error";
+
+}
+
+}
+
+
+/* =========================================================
+   AGE CALCULATOR
+========================================================= */
+
+function ppppCalculateAge(){
+
+const input=
+document.getElementById(
+"ppppBirthDate"
+);
+
+const result=
+document.getElementById(
+"ppppAgeResult"
+);
+
+if(!input.value){
+
+result.textContent=
+"🎂 জন্মতারিখ নির্বাচন করুন।";
+
+return;
+
+}
+
+const birth=
+new Date(input.value+"T00:00:00");
+
+const today=
+new Date();
+
+if(birth>today){
+
+result.textContent=
+"⚠️ জন্মতারিখ ভবিষ্যতের হতে পারে না।";
+
+return;
+
+}
+
+let years=
+today.getFullYear()-
+birth.getFullYear();
+
+let months=
+today.getMonth()-
+birth.getMonth();
+
+let days=
+today.getDate()-
+birth.getDate();
+
+if(days<0){
+
+months--;
+
+const previousMonth=
+new Date(
+today.getFullYear(),
+today.getMonth(),
+0
+);
+
+days+=
+previousMonth.getDate();
+
+}
+
+if(months<0){
+
+years--;
+months+=12;
+
+}
+
+const diff=
+today.getTime()-birth.getTime();
+
+const totalDays=
+Math.floor(
+diff/(1000*60*60*24)
+);
+
+const weeks=
+Math.floor(totalDays/7);
+
+const nextBirthday=
+new Date(
+today.getFullYear(),
+birth.getMonth(),
+birth.getDate()
+);
+
+if(nextBirthday<=today){
+nextBirthday.setFullYear(
+today.getFullYear()+1
+);
+}
+
+const daysUntil=
+Math.ceil(
+(
+nextBirthday.getTime()-
+today.getTime()
+)/
+(1000*60*60*24)
+);
+
+result.innerHTML=
+"🎂 বয়স: "+
+years+" বছর "+
+months+" মাস "+
+days+" দিন"+
+"<br>📅 মোট দিন: "+
+totalDays+
+"<br>📅 মোট সপ্তাহ: "+
+weeks+
+"<br>🎉 পরবর্তী জন্মদিন: "+
+daysUntil+
+" দিন পরে";
 
 }
 
@@ -5218,1563 +4214,175 @@ async function ppppStartCompass() {
    TASBIH
 ========================================================= */
 
-let ppppTasbih =
-    Number(
-        localStorage.getItem(
-            "ppppTasbih"
-        )
-    ) || 0;
+let ppppTasbihCount=
+Number(
+localStorage.getItem("ppppTasbihCount")
+)||0;
 
 
-function ppppUpdateTasbih() {
+function ppppUpdateTasbih(){
 
-    const count =
-        document.getElementById(
-            "ppppTasbihCount"
-        );
+document.getElementById(
+"ppppTasbihCount"
+).textContent=
+ppppTasbihCount;
 
-    if (count) {
-
-        count.textContent =
-            ppppTasbih;
-
-    }
+localStorage.setItem(
+"ppppTasbihCount",
+ppppTasbihCount
+);
 
 }
 
 
-function ppppTasbihIncrement() {
+function ppppTasbihIncrement(){
 
-    const targetInput =
-        document.getElementById(
-            "ppppTasbihTarget"
-        );
+ppppTasbihCount++;
 
-    const target =
-        targetInput &&
-        Number(targetInput.value);
+ppppUpdateTasbih();
 
-    ppppTasbih++;
+const target=
+Number(
+document.getElementById(
+"ppppTasbihTarget"
+).value
+);
 
-    localStorage.setItem(
-        "ppppTasbih",
-        ppppTasbih
-    );
+if(target>0&&ppppTasbihCount>=target){
 
-    ppppUpdateTasbih();
+alert(
+"📿 Tasbih Target পূর্ণ হয়েছে!"
+);
 
-    if (
-        target > 0 &&
-        ppppTasbih >= target
-    ) {
+}
 
-        if (
-            "speechSynthesis" in window
-        ) {
+}
 
-            speechSynthesis.cancel();
 
-        }
+function ppppTasbihReset(){
 
-        alert(
-            "🎯 Tasbih Target সম্পন্ন হয়েছে!\n\n" +
-            "📿 Count: " +
-            ppppTasbih
-        );
+if(confirm(
+"📿 Tasbih Counter Reset করবেন?"
+)){
 
-    }
+ppppTasbihCount=0;
+ppppUpdateTasbih();
+
+}
+
+}
+
+
+/* =========================================================
+   DOWNLOAD FULL PAGE
+========================================================= */
+
+function ppppDownloadPage(){
+
+const clone=
+document.documentElement.cloneNode(true);
+
+clone.querySelectorAll(
+"#ppppSettingsBtn,"+
+"#ppppSettingsPanel,"+
+"#ppppSettingsOverlay,"+
+"#shareBtn,"+
+"#topBtn,"+
+"#ppppSavedPagesBox,"+
+"#google_translate_element,"+
+".goog-te-banner-frame,"+
+".goog-te-balloon-frame,"+
+".goog-te-menu-frame,"+
+".skiptranslate"
+)
+.forEach(function(el){
+el.remove();
+});
+
+
+clone.querySelectorAll(
+"script"
+)
+.forEach(function(script){
+script.remove();
+});
+
+
+const head=
+clone.querySelector("head");
+
+if(head){
+
+const oldBase=
+head.querySelector("base");
+
+if(oldBase){
+
+oldBase.href=
+window.location.href;
+
+}else{
+
+const base=
+document.createElement("base");
+
+base.href=
+window.location.href;
+
+head.insertBefore(
+base,
+head.firstChild
+);
+
+}
 
 }
 
 
 /*
-   পুরোনো function-এর compatibility
+   Full-page capture/download-এর জন্য
+   original document-এর complete HTML রাখা হচ্ছে।
 */
 
-function ppppTasbihAdd() {
+const html=
+"<!DOCTYPE html>\n"+
+clone.outerHTML;
 
-    ppppTasbihIncrement();
-
+const blob=
+new Blob(
+[html],
+{
+type:"text/html;charset=utf-8"
 }
-
-
-function ppppTasbihReset() {
-
-    ppppTasbih = 0;
-
-    localStorage.setItem(
-        "ppppTasbih",
-        "0"
-    );
-
-    ppppUpdateTasbih();
-
-}
-
-
-/* =========================================================
-   AZAN
-========================================================= */
-
-const PPPP_AZAN_FILES = {
-
-    Bangladesh:
-        "/pppp_bangladesh/azan/Azan_Bangladesh.mp3",
-
-    Makkah:
-        "/pppp_bangladesh/azan/Azan_Makkah.mp3",
-
-    Madinah:
-        "/pppp_bangladesh/azan/Azan_Madinah.mp3"
-
-};
-
-
-let ppppAzanMuted =
-    localStorage.getItem(
-        "ppppAzanMuted"
-    ) === "true";
-
-
-let ppppSelectedAzan =
-    localStorage.getItem(
-        "ppppSelectedAzan"
-    ) || "Bangladesh";
-
-
-function ppppGetAzanAudio() {
-
-    let audio =
-        document.getElementById(
-            "ppppAzanAudio"
-        );
-
-    /*
-       HTML-এ audio না থাকলেও
-       JavaScript নিজে তৈরি করবে।
-    */
-
-    if (!audio) {
-
-        audio =
-            document.createElement(
-                "audio"
-            );
-
-        audio.id =
-            "ppppAzanAudio";
-
-        audio.preload =
-            "auto";
-
-        audio.style.display =
-            "none";
-
-        document.body.appendChild(
-            audio
-        );
-
-    }
-
-    return audio;
-
-}
-
-
-function ppppPlayAzan(type) {
-
-    if (
-        !PPPP_AZAN_FILES[type]
-    ) {
-        type = "Bangladesh";
-    }
-
-    ppppSelectedAzan =
-        type;
-
-    localStorage.setItem(
-        "ppppSelectedAzan",
-        type
-    );
-
-    const audio =
-        ppppGetAzanAudio();
-
-    audio.src =
-        PPPP_AZAN_FILES[type];
-
-    audio.muted =
-        ppppAzanMuted;
-
-    audio.volume =
-        Math.min(
-            1,
-            PPPP_SOUND_VOLUMES.music *
-            PPPP_SOUND_VOLUMES.master
-        );
-
-    audio.currentTime = 0;
-
-    audio.play()
-        .catch(function() {
-
-            alert(
-                "🕌 Azan চালু করতে browser-এর audio permission প্রয়োজন হতে পারে।"
-            );
-
-        });
-
-}
-
-
-function ppppAzanMute() {
-
-    ppppAzanMuted = true;
-
-    localStorage.setItem(
-        "ppppAzanMuted",
-        "true"
-    );
-
-    ppppGetAzanAudio().muted =
-        true;
-
-}
-
-
-function ppppAzanUnmute() {
-
-    ppppAzanMuted = false;
-
-    localStorage.setItem(
-        "ppppAzanMuted",
-        "false"
-    );
-
-    ppppGetAzanAudio().muted =
-        false;
-
-}
-
-
-/* =========================================================
-   AUTO AZAN
-========================================================= */
-
-let ppppLastAzanKey =
-    localStorage.getItem(
-        "ppppLastAzanKey"
-    ) || "";
-
-
-function ppppNormalizeTime(value) {
-
-    if (!value) return null;
-
-    const match =
-        value.match(
-            /(\d{1,2}):(\d{2})/
-        );
-
-    if (!match) return null;
-
-    return (
-        String(match[1])
-            .padStart(2, "0") +
-        ":" +
-        match[2]
-    );
-
-}
-
-
-function ppppCheckAzan() {
-
-    const now =
-        new Date();
-
-    const hh =
-        String(
-            now.getHours()
-        ).padStart(2, "0");
-
-    const mm =
-        String(
-            now.getMinutes()
-        ).padStart(2, "0");
-
-    const current =
-        hh + ":" + mm;
-
-    const key =
-        now.toISOString()
-            .slice(0, 10) +
-        "-" +
-        current;
-
-
-    const prayerMap = {
-
-        Fajr:
-            document.getElementById(
-                "ppppFajr"
-            )?.textContent,
-
-        Dhuhr:
-            document.getElementById(
-                "ppppDhuhr"
-            )?.textContent,
-
-        Asr:
-            document.getElementById(
-                "ppppAsr"
-            )?.textContent,
-
-        Maghrib:
-            document.getElementById(
-                "ppppMaghrib"
-            )?.textContent,
-
-        Isha:
-            document.getElementById(
-                "ppppIsha"
-            )?.textContent
-
-    };
-
-
-    Object.keys(
-        prayerMap
-    ).some(function(name) {
-
-        const time =
-            ppppNormalizeTime(
-                prayerMap[name]
-            );
-
-        if (time === current) {
-
-            if (
-                ppppLastAzanKey !== key &&
-                !ppppAzanMuted
-            ) {
-
-                ppppLastAzanKey =
-                    key;
-
-                localStorage.setItem(
-                    "ppppLastAzanKey",
-                    key
-                );
-
-                ppppPlayAzan(
-                    ppppSelectedAzan
-                );
-
-            }
-
-            return true;
-
-        }
-
-        return false;
-
-    });
-
-}
-
-
-/* =========================================================
-   TODAY / LIVE INFORMATION
-========================================================= */
-
-const PPPP_BANGLA_MONTHS = [
-
-    "বৈশাখ",
-    "জ্যৈষ্ঠ",
-    "আষাঢ়",
-    "শ্রাবণ",
-    "ভাদ্র",
-    "আশ্বিন",
-    "কার্তিক",
-    "অগ্রহায়ণ",
-    "পৌষ",
-    "মাঘ",
-    "ফাল্গুন",
-    "চৈত্র"
-
-];
-
-
-const PPPP_BANGLA_DAYS = [
-
-    "রবিবার",
-    "সোমবার",
-    "মঙ্গলবার",
-    "বুধবার",
-    "বৃহস্পতিবার",
-    "শুক্রবার",
-    "শনিবার"
-
-];
-
-
-const PPPP_HIJRI_MONTHS = [
-
-    "Muharram",
-    "Safar",
-    "Rabiul Awal",
-    "Rabius Sani",
-    "Jumadiul Awal",
-    "Jumadius Sani",
-    "Rajab",
-    "Shaban",
-    "Ramadan",
-    "Shawal",
-    "Jilqudh",
-    "Jilhajj"
-
-];
-
-
-const PPPP_HIJRI_DAYS = [
-
-    "As-Sabt",
-    "Al-Ahad",
-    "Al-Isnayn",
-    "As-Sulasa",
-    "Al-Arbia",
-    "Al-Khamis",
-    "Al-Jumuah"
-
-];
-
-
-/* =========================================================
-   BANGLA DATE
-   Bangladesh Revised Bangla Calendar
-========================================================= */
-
-function ppppIsLeapYear(year) {
-
-    return (
-        year % 400 === 0 ||
-        (
-            year % 4 === 0 &&
-            year % 100 !== 0
-        )
-    );
-
-}
-
-
-function ppppBanglaDate(date) {
-
-    const year =
-        date.getFullYear();
-
-    const startOfBanglaYear =
-        new Date(
-            year,
-            3,
-            14,
-            0,
-            0,
-            0,
-            0
-        );
-
-
-    let banglaYear;
-
-    if (
-        date >=
-        startOfBanglaYear
-    ) {
-
-        banglaYear =
-            year - 593;
-
-    } else {
-
-        banglaYear =
-            year - 594;
-
-    }
-
-
-    let banglaYearStart;
-
-    if (
-        date >=
-        startOfBanglaYear
-    ) {
-
-        banglaYearStart =
-            new Date(
-                year,
-                3,
-                14,
-                0,
-                0,
-                0,
-                0
-            );
-
-    } else {
-
-        banglaYearStart =
-            new Date(
-                year - 1,
-                3,
-                14,
-                0,
-                0,
-                0,
-                0
-            );
-
-    }
-
-
-    const difference =
-        Math.floor(
-            (
-                date -
-                banglaYearStart
-            ) / 86400000
-        );
-
-
-    let remainingDays =
-        difference;
-
-
-    /*
-       বাংলাদেশে প্রচলিত সংশোধিত
-       বাংলা ক্যালেন্ডার অনুযায়ী
-       প্রথম ৬ মাস = ৩১ দিন
-       পরের ৫ মাস = ৩০ দিন
-       ফাল্গুন = ২৯/৩০
-       চৈত্র = ৩০
-    */
-
-    const monthLengths = [
-
-        31,
-        31,
-        31,
-        31,
-        31,
-        31,
-
-        30,
-        30,
-        30,
-        30,
-
-        29,
-
-        30
-
-    ];
-
-
-    /*
-       ফাল্গুন ৩০ দিন
-    */
-
-    if (
-        ppppIsLeapYear(
-            year
-        )
-    ) {
-
-        monthLengths[10] =
-            30;
-
-    }
-
-
-    let monthIndex = 0;
-
-    for (
-        let i = 0;
-        i < monthLengths.length;
-        i++
-    ) {
-
-        if (
-            remainingDays <
-            monthLengths[i]
-        ) {
-
-            monthIndex = i;
-
-            break;
-
-        }
-
-        remainingDays -=
-            monthLengths[i];
-
-    }
-
-
-    const banglaDay =
-        remainingDays + 1;
-
-
-    if (
-        banglaDay < 1 ||
-        banglaDay > 31
-    ) {
-
-        return {
-
-            day: date.getDate(),
-            month: "",
-            year: banglaYear
-
-        };
-
-    }
-
-
-    return {
-
-        day: banglaDay,
-
-        month:
-            PPPP_BANGLA_MONTHS[
-                monthIndex
-            ],
-
-        year:
-            banglaYear
-
-    };
-
-}
-
-
-/* =========================================================
-   HIJRI
-   API: AlAdhan
-========================================================= */
-
-async function ppppGetHijri() {
-
-    try {
-
-        const d =
-            new Date();
-
-        const url =
-            "https://api.aladhan.com/v1/gToH?date=" +
-            String(
-                d.getDate()
-            ).padStart(2, "0") +
-            "-" +
-            String(
-                d.getMonth() + 1
-            ).padStart(2, "0") +
-            "-" +
-            d.getFullYear();
-
-
-        const response =
-            await fetch(url);
-
-        if (!response.ok) {
-            throw new Error();
-        }
-
-        const data =
-            await response.json();
-
-        const h =
-            data?.data?.hijri;
-
-        if (!h) {
-            throw new Error();
-        }
-
-        return {
-
-            day: h.day,
-
-            month:
-                h.month.number,
-
-            monthName:
-                h.month.en,
-
-            year:
-                h.year
-
-        };
-
-    } catch (e) {
-
-        return null;
-
-    }
-
-}
-
-
-/* =========================================================
-   PRAYER / SUN / WEATHER
-========================================================= */
-
-let ppppLiveData = {
-
-    fajr: null,
-    dhuhr: null,
-    asr: null,
-    maghrib: null,
-    isha: null,
-    sunrise: null,
-    sunset: null
-
-};
-
-
-async function ppppLoadPrayerTimes() {
-
-    try {
-
-        const d =
-            new Date();
-
-        const url =
-            "https://api.aladhan.com/v1/timingsByCity/" +
-            String(
-                d.getDate()
-            ) +
-            "-" +
-            String(
-                d.getMonth() + 1
-            ) +
-            "-" +
-            d.getFullYear() +
-            "?city=Dhaka&country=Bangladesh&method=1";
-
-
-        const response =
-            await fetch(url);
-
-        if (!response.ok) {
-            throw new Error();
-        }
-
-        const data =
-            await response.json();
-
-        const t =
-            data?.data?.timings;
-
-        if (!t) {
-            throw new Error();
-        }
-
-
-        ppppLiveData = {
-
-            fajr: t.Fajr,
-            dhuhr: t.Dhuhr,
-            asr: t.Asr,
-            maghrib: t.Maghrib,
-            isha: t.Isha,
-            sunrise: t.Sunrise,
-            sunset: t.Sunset
-
-        };
-
-
-        const fields = {
-
-            ppppFajr:
-                t.Fajr,
-
-            ppppDhuhr:
-                t.Dhuhr,
-
-            ppppAsr:
-                t.Asr,
-
-            ppppMaghrib:
-                t.Maghrib,
-
-            ppppIsha:
-                t.Isha,
-
-            ppppSehri:
-                t.Fajr,
-
-            ppppIftar:
-                t.Maghrib,
-
-            ppppSunrise:
-                t.Sunrise,
-
-            ppppSunset:
-                t.Sunset
-
-        };
-
-
-        Object.keys(fields)
-            .forEach(function(id) {
-
-                const el =
-                    document.getElementById(id);
-
-                if (el) {
-                    el.textContent =
-                        fields[id];
-                }
-
-            });
-
-
-        ppppUpdateDayNight(
-            t.Sunrise,
-            t.Sunset
-        );
-
-
-    } catch (e) {}
-
-}
-
-
-async function ppppLoadWeather() {
-
-    try {
-
-        const response =
-            await fetch(
-                "https://api.open-meteo.com/v1/forecast" +
-                "?latitude=23.8103" +
-                "&longitude=90.4125" +
-                "&current=temperature_2m" +
-                "&timezone=Asia%2FDhaka"
-            );
-
-        if (!response.ok) {
-            throw new Error();
-        }
-
-        const data =
-            await response.json();
-
-        const temp =
-            data?.current?.temperature_2m;
-
-        const element =
-            document.getElementById(
-                "ppppTemperature"
-            );
-
-        if (
-            element &&
-            typeof temp === "number"
-        ) {
-
-            element.textContent =
-                temp + "°C";
-
-        }
-
-    } catch (e) {
-
-        const element =
-            document.getElementById(
-                "ppppTemperature"
-            );
-
-        if (element) {
-
-            element.textContent =
-                "তথ্য পাওয়া যায়নি";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   DAY / NIGHT LENGTH
-========================================================= */
-
-function ppppTimeToMinutes(value) {
-
-    if (!value) return null;
-
-    const m =
-        value.match(
-            /(\d{1,2}):(\d{2})/
-        );
-
-    if (!m) return null;
-
-    return (
-        Number(m[1]) * 60 +
-        Number(m[2])
-    );
-
-}
-
-
-function ppppMinutesToText(minutes) {
-
-    if (minutes < 0) {
-        minutes += 1440;
-    }
-
-    const h =
-        Math.floor(
-            minutes / 60
-        );
-
-    const m =
-        minutes % 60;
-
-    return (
-        h +
-        " Hours " +
-        String(m).padStart(
-            2,
-            "0"
-        ) +
-        " Minutes"
-    );
-
-}
-
-
-function ppppUpdateDayNight(
-    sunrise,
-    sunset
-) {
-
-    const a =
-        ppppTimeToMinutes(
-            sunrise
-        );
-
-    const b =
-        ppppTimeToMinutes(
-            sunset
-        );
-
-    if (
-        a === null ||
-        b === null
-    ) return;
-
-    const day =
-        b - a;
-
-    const night =
-        1440 - day;
-
-
-    const dayElement =
-        document.getElementById(
-            "ppppDayLength"
-        );
-
-    const nightElement =
-        document.getElementById(
-            "ppppNightLength"
-        );
-
-
-    if (dayElement) {
-
-        dayElement.textContent =
-            ppppMinutesToText(
-                day
-            );
-
-    }
-
-    if (nightElement) {
-
-        nightElement.textContent =
-            ppppMinutesToText(
-                night
-            );
-
-    }
-
-}
-
-
-/* =========================================================
-   LIVE CLOCK / DATES
-========================================================= */
-
-let ppppLastHijriDate = null;
-
-
-async function ppppUpdateLiveInformation() {
-
-    const now =
-        new Date();
-
-    const bangla =
-        ppppBanglaDate(now);
-
-
-    const banglaDate =
-        document.getElementById(
-            "ppppBanglaDate"
-        );
-
-    if (banglaDate) {
-
-        banglaDate.textContent =
-            bangla.day +
-            " " +
-            bangla.month +
-            ", " +
-            bangla.year +
-            " বঙ্গাব্দ | " +
-            ppppBanglaSeason(now);
-
-    }
-
-
-    const englishDate =
-        document.getElementById(
-            "ppppEnglishDate"
-        );
-
-    if (englishDate) {
-
-        englishDate.textContent =
-            now.toLocaleDateString(
-                "en-GB",
-                {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }
-            ) +
-            " খ্রিস্টাব্দ | " +
-            ppppEnglishSeason(now);
-
-    }
-
-
-    const englishDay =
-        document.getElementById(
-            "ppppEnglishDay"
-        );
-
-    if (englishDay) {
-
-        englishDay.textContent =
-            now.toLocaleDateString(
-                "en-US",
-                {
-                    weekday: "long"
-                }
-            );
-
-    }
-
-
-    const banglaDay =
-        document.getElementById(
-            "ppppBanglaDay"
-        );
-
-    if (banglaDay) {
-
-        banglaDay.textContent =
-            PPPP_BANGLA_DAYS[
-                now.getDay()
-            ];
-
-    }
-
-
-    const currentTime =
-        document.getElementById(
-            "ppppCurrentTime"
-        );
-
-    if (currentTime) {
-
-        currentTime.textContent =
-            now.toLocaleTimeString(
-                "en-US",
-                {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit"
-                }
-            );
-
-    }
-
-
-    /*
-       Hijri date একই দিনে
-       বারবার API call না করে cache করা।
-    */
-
-    const hijriKey =
-        now.toISOString()
-            .slice(0, 10);
-
-
-    if (
-        ppppLastHijriDate !==
-        hijriKey
-    ) {
-
-        const hijri =
-            await ppppGetHijri();
-
-        if (hijri) {
-
-            ppppLastHijriDate =
-                hijriKey;
-
-            const hijriDate =
-                document.getElementById(
-                    "ppppHijriDate"
-                );
-
-            if (hijriDate) {
-
-                hijriDate.textContent =
-                    hijri.day +
-                    " " +
-                    (
-                        PPPP_HIJRI_MONTHS[
-                            hijri.month - 1
-                        ] ||
-                        hijri.monthName
-                    ) +
-                    ", " +
-                    hijri.year +
-                    " হিজরি | " +
-                    ppppHijriSeason(
-                        hijri.month
-                    );
-
-            }
-
-
-            const hijriDay =
-                document.getElementById(
-                    "ppppHijriDay"
-                );
-
-            if (hijriDay) {
-
-                hijriDay.textContent =
-                    PPPP_HIJRI_DAYS[
-                        (now.getDay() + 1) % 7
-                    ];
-
-            }
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   SEASONS
-========================================================= */
-
-function ppppBanglaSeason(date) {
-
-    const m =
-        date.getMonth();
-
-    if (m >= 3 && m <= 4)
-        return "গ্রীষ্মকাল";
-
-    if (m >= 5 && m <= 6)
-        return "বর্ষাকাল";
-
-    if (m >= 7 && m <= 8)
-        return "শরৎকাল";
-
-    if (m >= 9 && m <= 10)
-        return "হেমন্তকাল";
-
-    if (m === 11 || m <= 1)
-        return "শীতকাল";
-
-    return "বসন্তকাল";
-
-}
-
-
-function ppppEnglishSeason(date) {
-
-    const m =
-        date.getMonth();
-
-    if (m >= 2 && m <= 4)
-        return "Spring";
-
-    if (m >= 5 && m <= 7)
-        return "Summer";
-
-    if (m >= 8 && m <= 9)
-        return "Autumn";
-
-    if (m === 10)
-        return "Late Autumn";
-
-    return "Winter";
-
-}
-
-
-function ppppHijriSeason(month) {
-
-    if (month >= 1 && month <= 3)
-        return "Al-Kharifu";
-
-    if (month >= 4 && month <= 6)
-        return "Awakhirul Kharif";
-
-    if (month >= 7 && month <= 9)
-        return "Ar-Rabiu";
-
-    return "As-Saifu";
-
-}
-
-
-/* =========================================================
-   LIVE INTERVAL
-========================================================= */
-
-function ppppStartLive() {
-
-    ppppUpdateLiveInformation();
-    ppppLoadPrayerTimes();
-    ppppLoadWeather();
-
-
-    setInterval(function() {
-
-        const now =
-            new Date();
-
-        const currentTime =
-            document.getElementById(
-                "ppppCurrentTime"
-            );
-
-        if (currentTime) {
-
-            currentTime.textContent =
-                now.toLocaleTimeString(
-                    "en-US",
-                    {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        second: "2-digit"
-                    }
-                );
-
-        }
-
-        ppppCheckAzan();
-
-    }, 1000);
-
-
-    setInterval(function() {
-
-        ppppUpdateLiveInformation();
-        ppppLoadPrayerTimes();
-        ppppLoadWeather();
-
-    }, 60000);
-
-}
-
-
-/* =========================================================
-   RESET SETTINGS
-========================================================= */
-
-function ppppResetSettings() {
-
-    if (!confirm(
-        "⚙️ সব PPPP Settings Default অবস্থায় ফিরিয়ে নিতে চান?"
-    )) return;
-
-
-    localStorage.removeItem(
-        "ppppTheme"
-    );
-
-    localStorage.removeItem(
-        "ppppDarkMode"
-    );
-
-    localStorage.removeItem(
-        "ppppAzanMuted"
-    );
-
-    localStorage.removeItem(
-        "ppppSelectedAzan"
-    );
-
-    localStorage.removeItem(
-        "ppppTasbih"
-    );
-
-    localStorage.removeItem(
-        "ppppNotificationVolume"
-    );
-
-    localStorage.removeItem(
-        "ppppMusicVolume"
-    );
-
-    localStorage.removeItem(
-        "ppppVideoVolume"
-    );
-
-    localStorage.removeItem(
-        "ppppMasterVolume"
-    );
-
-
-    document.body.classList.remove(
-        "pppp-dark-mode",
-        "pppp-high-contrast",
-        "pppp-large-controls"
-    );
-
-
-    document.documentElement.style.fontSize =
-        "";
-
-    document.body.style.zoom =
-        "1";
-
-
-    ppppFontScale = 100;
-    ppppZoomLevel = 1;
-    ppppTasbih = 0;
-
-    ppppAzanMuted = false;
-    ppppSelectedAzan = "Bangladesh";
-
-
-    PPPP_SOUND_VOLUMES.notification = 1;
-    PPPP_SOUND_VOLUMES.music = 1;
-    PPPP_SOUND_VOLUMES.video = 1;
-    PPPP_SOUND_VOLUMES.master = 1;
-
-
-    ppppUpdateTasbih();
-    ppppApplyMediaVolumes();
-    ppppAzanUnmute();
-
-
-    alert(
-        "✅ PPPP Settings Default অবস্থায় ফিরে গেছে।"
-    );
-
-}
-
-
-/* =========================================================
-   FULL PAGE DOWNLOAD
-========================================================= */
-
-function ppppPrepareFullPageClone() {
-
-    const clone =
-        document.documentElement.cloneNode(true);
-
-
-    clone.querySelectorAll(
-        "#ppppSettingsBtn," +
-        "#ppppSettingsPanel," +
-        "#ppppSettingsOverlay," +
-        "#shareBtn," +
-        "#topBtn," +
-        "#ppppSavedPagesBox," +
-        "#google_translate_element"
-    )
-    .forEach(function(el) {
-
-        el.remove();
-
-    });
-
-
-    clone.querySelectorAll(
-        "script"
-    )
-    .forEach(function(script) {
-
-        script.remove();
-
-    });
-
-
-    const style =
-        document.createElement(
-            "style"
-        );
-
-
-    style.textContent = `
-*{
-    box-sizing:border-box !important;
-}
-html,body{
-    height:auto !important;
-    min-height:100% !important;
-    overflow:visible !important;
-}
-body{
-    position:static !important;
-    top:auto !important;
-}
-[style*="position:fixed"],
-[style*="position:sticky"]{
-    position:static !important;
-}
-`;
-
-
-    const head =
-        clone.querySelector("head");
-
-
-    if (head) {
-
-        head.appendChild(
-            style
-        );
-
-    }
-
-
-    const base =
-        document.createElement(
-            "base"
-        );
-
-    base.href =
-        window.location.href;
-
-
-    if (head) {
-
-        const oldBase =
-            head.querySelector(
-                "base"
-            );
-
-        if (oldBase) {
-
-            oldBase.href =
-                window.location.href;
-
-        } else {
-
-            head.insertBefore(
-                base,
-                head.firstChild
-            );
-
-        }
-
-    }
-
-
-    return clone;
-
-}
-
-
-function ppppDownloadPage() {
-
-    const clone =
-        ppppPrepareFullPageClone();
-
-
-    const html =
-        "<!DOCTYPE html>\n" +
-        clone.outerHTML;
-
-
-    const blob =
-        new Blob(
-            [html],
-            {
-                type:
-                    "text/html;charset=utf-8"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(
-            blob
-        );
-
-
-    const a =
-        document.createElement(
-            "a"
-        );
-
-
-    a.href = url;
-
-
-    a.download =
-        (
-            document.title ||
-            "PPPP_Page"
-        )
-        .replace(
-            /[^\w\u0980-\u09FF-]+/g,
-            "_"
-        ) +
-        ".html";
-
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-
-    setTimeout(function() {
-
-        URL.revokeObjectURL(url);
-
-    }, 5000);
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+(
+document.title||
+"PPPP_Full_Page"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".html";
+
+document.body.appendChild(a);
+
+a.click();
+a.remove();
+
+setTimeout(function(){
+URL.revokeObjectURL(url);
+},3000);
 
 }
 
@@ -6783,15 +4391,147 @@ function ppppDownloadPage() {
    SAVE AS PDF
 ========================================================= */
 
-function ppppSavePDF() {
+function ppppLoadPDFLibrary(callback){
 
-    closePPPPSettings();
+if(typeof html2pdf!=="undefined"){
 
-    setTimeout(function() {
+callback();
+return;
 
-        window.print();
+}
 
-    }, 300);
+const script=
+document.createElement("script");
+
+script.src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+
+script.onload=callback;
+
+script.onerror=function(){
+
+alert(
+"📄 PDF library load করা যায়নি।"
+);
+
+};
+
+document.head.appendChild(script);
+
+}
+
+
+function ppppSaveAsPDF(){
+
+closePPPPSettings();
+
+ppppLoadPDFLibrary(function(){
+
+const controls=[
+document.getElementById("ppppSettingsBtn"),
+document.getElementById("ppppSettingsPanel"),
+document.getElementById("ppppSettingsOverlay"),
+document.getElementById("shareBtn"),
+document.getElementById("topBtn"),
+document.getElementById("ppppSavedPagesBox")
+];
+
+const old=[];
+
+controls.forEach(function(el,i){
+
+if(el){
+
+old[i]=el.style.display;
+el.style.display="none";
+
+}
+
+});
+
+
+const element=
+document.body;
+
+const filename=
+(
+document.title||
+"PPPP_Page"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".pdf";
+
+
+const options={
+
+margin:0,
+
+filename:filename,
+
+image:{
+type:"jpeg",
+quality:.98
+},
+
+html2canvas:{
+scale:2,
+useCORS:true,
+allowTaint:true,
+scrollX:0,
+scrollY:0,
+windowWidth:document.documentElement.scrollWidth
+},
+
+jsPDF:{
+unit:"mm",
+format:"a4",
+orientation:"portrait"
+}
+
+};
+
+
+html2pdf()
+.set(options)
+.from(element)
+.save()
+.then(function(){
+
+controls.forEach(function(el,i){
+
+if(el){
+
+el.style.display=
+old[i]||"";
+
+}
+
+});
+
+})
+.catch(function(){
+
+controls.forEach(function(el,i){
+
+if(el){
+
+el.style.display=
+old[i]||"";
+
+}
+
+});
+
+alert(
+"📄 PDF তৈরি করা সম্ভব হয়নি।"
+);
+
+});
+
+});
 
 }
 
@@ -6800,329 +4540,195 @@ function ppppSavePDF() {
    PRINT
 ========================================================= */
 
-function ppppPrintPage() {
+function ppppPrintPage(){
 
-    closePPPPSettings();
+closePPPPSettings();
 
-    setTimeout(function() {
-
-        window.print();
-
-    }, 300);
+setTimeout(function(){
+window.print();
+},200);
 
 }
 
 
 /* =========================================================
-   QR
+   QR CODE
 ========================================================= */
 
-function ppppQRCode() {
+function ppppQRCode(){
 
-    const qrURL =
-        "https://api.qrserver.com/v1/create-qr-code/" +
-        "?size=300x300&data=" +
-        encodeURIComponent(
-            window.location.href
-        );
+const qrURL=
+"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
+encodeURIComponent(window.location.href);
 
-
-    window.open(
-        qrURL,
-        "_blank"
-    );
+window.open(qrURL,"_blank");
 
 }
 
 
 /* =========================================================
-   FULL PAGE SCREENSHOT
+   SCREENSHOT
+   CURRENT VIEWPORT / CURRENT SCREEN
 ========================================================= */
 
-async function ppppScreenshot() {
+async function ppppScreenshot(){
 
-    if (
-        typeof html2canvas ===
-        "undefined"
-    ) {
+if(typeof html2canvas==="undefined"){
 
-        const script =
-            document.createElement(
-                "script"
-            );
+const script=
+document.createElement("script");
 
+script.src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
 
-        script.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/" +
-            "html2canvas/1.4.1/html2canvas.min.js";
+script.onload=function(){
+ppppScreenshot();
+};
 
+script.onerror=function(){
 
-        script.onload =
-            function() {
+alert(
+"📸 Screenshot library load করা যায়নি।"
+);
 
-                ppppScreenshot();
+};
 
-            };
+document.head.appendChild(script);
 
+return;
 
-        script.onerror =
-            function() {
-
-                alert(
-                    "📸 Screenshot library load করা যায়নি।"
-                );
-
-            };
-
-
-        document.head.appendChild(
-            script
-        );
-
-        return;
-
-    }
-
-
-    const oldX =
-        window.scrollX;
-
-    const oldY =
-        window.scrollY;
-
-
-    const controls = [
-
-        document.getElementById(
-            "ppppSettingsBtn"
-        ),
-
-        document.getElementById(
-            "ppppSettingsPanel"
-        ),
-
-        document.getElementById(
-            "ppppSettingsOverlay"
-        ),
-
-        document.getElementById(
-            "shareBtn"
-        ),
-
-        document.getElementById(
-            "topBtn"
-        ),
-
-        document.getElementById(
-            "ppppSavedPagesBox"
-        )
-
-    ];
-
-
-    const oldDisplay = [];
-
-
-    controls.forEach(
-        function(el, i) {
-
-            if (el) {
-
-                oldDisplay[i] =
-                    el.style.display;
-
-                el.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    const temporaryStyle =
-        document.createElement(
-            "style"
-        );
-
-
-    temporaryStyle.id =
-        "ppppScreenshotTemporaryStyle";
-
-
-    temporaryStyle.textContent = `
-html,
-body{
-    height:auto !important;
-    min-height:100% !important;
-    overflow:visible !important;
 }
-body{
-    position:static !important;
+
+
+/*
+   Settings এবং অন্যান্য floating controls
+   সাময়িকভাবে hide করা হচ্ছে।
+*/
+
+const controls=[
+document.getElementById("ppppSettingsBtn"),
+document.getElementById("ppppSettingsPanel"),
+document.getElementById("ppppSettingsOverlay"),
+document.getElementById("shareBtn"),
+document.getElementById("topBtn"),
+document.getElementById("ppppSavedPagesBox")
+];
+
+const oldDisplay=[];
+
+controls.forEach(function(el,i){
+
+if(el){
+
+oldDisplay[i]=el.style.display;
+el.style.display="none";
+
 }
-`;
+
+});
 
 
-    document.head.appendChild(
-        temporaryStyle
-    );
+try{
+
+/*
+   Current viewport-এর screen position capture।
+   scrollY ব্যবহার করে পেজের বর্তমান অবস্থান
+   crop করা হচ্ছে।
+*/
+
+const scrollX=window.scrollX;
+const scrollY=window.scrollY;
+
+const canvas=
+await html2canvas(
+document.body,
+{
+
+x:scrollX,
+y:scrollY,
+
+width:window.innerWidth,
+height:window.innerHeight,
+
+windowWidth:
+document.documentElement.scrollWidth,
+
+windowHeight:
+document.documentElement.scrollHeight,
+
+scrollX:0,
+scrollY:-scrollY,
+
+useCORS:true,
+allowTaint:true,
+
+scale:
+window.devicePixelRatio||1,
+
+backgroundColor:null
+
+}
+);
 
 
-    const fullWidth =
-        Math.max(
-            document.documentElement.scrollWidth,
-            document.body.scrollWidth,
-            document.documentElement.clientWidth
-        );
+/*
+   controls ফিরিয়ে দেওয়া
+*/
+
+controls.forEach(function(el,i){
+
+if(el){
+
+el.style.display=
+oldDisplay[i]||"";
+
+}
+
+});
 
 
-    const fullHeight =
-        Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            document.documentElement.clientHeight
-        );
+const link=
+document.createElement("a");
+
+link.download=
+(
+document.title||
+"PPPP_Current_Screen"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".png";
+
+link.href=
+canvas.toDataURL("image/png");
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
 
 
-    window.scrollTo(
-        0,
-        0
-    );
+}catch(e){
 
+controls.forEach(function(el,i){
 
-    await new Promise(
-        function(resolve) {
+if(el){
 
-            requestAnimationFrame(
-                function() {
+el.style.display=
+oldDisplay[i]||"";
 
-                    requestAnimationFrame(
-                        resolve
-                    );
+}
 
-                }
-            );
+});
 
-        }
-    );
+alert(
+"📸 Current Screen Screenshot তৈরি করা সম্ভব হয়নি।"
+);
 
-
-    try {
-
-        const canvas =
-            await html2canvas(
-                document.documentElement,
-                {
-
-                    x: 0,
-                    y: 0,
-
-                    width:
-                        fullWidth,
-
-                    height:
-                        fullHeight,
-
-                    windowWidth:
-                        fullWidth,
-
-                    windowHeight:
-                        fullHeight,
-
-                    scrollX: 0,
-                    scrollY: 0,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
-                    backgroundColor:
-                        "#ffffff",
-
-                    scale:
-                        Math.min(
-                            2,
-                            window.devicePixelRatio ||
-                            1
-                        ),
-
-                    logging: false,
-
-                    imageTimeout:
-                        30000,
-
-                    foreignObjectRendering:
-                        false
-
-                }
-            );
-
-
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        link.download =
-            (
-                document.title ||
-                "PPPP_Full_Page_Screenshot"
-            )
-            .replace(
-                /[^\w\u0980-\u09FF-]+/g,
-                "_"
-            ) +
-            ".png";
-
-
-        link.href =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-
-        document.body.appendChild(
-            link
-        );
-
-        link.click();
-
-        link.remove();
-
-
-    } catch (e) {
-
-        alert(
-            "📸 Full Page Screenshot তৈরি করা সম্ভব হয়নি।"
-        );
-
-    }
-
-
-    if (temporaryStyle) {
-        temporaryStyle.remove();
-    }
-
-
-    controls.forEach(
-        function(el, i) {
-
-            if (el) {
-
-                el.style.display =
-                    oldDisplay[i] || "";
-
-            }
-
-        }
-    );
-
-
-    window.scrollTo(
-        oldX,
-        oldY
-    );
+}
 
 }
 
@@ -7131,48 +4737,146 @@ body{
    COPY PAGE
 ========================================================= */
 
-function ppppCopyPage() {
+function ppppCopyPage(){
 
-    if (!navigator.clipboard) {
+if(!navigator.clipboard){
 
-        alert(
-            "📋 Clipboard support নেই।"
-        );
+alert("📋 Clipboard support নেই।");
+return;
 
-        return;
+}
 
-    }
+navigator.clipboard
+.writeText(document.body.innerText)
+.then(function(){
 
+alert(
+"📋 Page text copied successfully!"
+);
 
-    navigator.clipboard
-        .writeText(
-            document.body.innerText
-        )
-        .then(function() {
-
-            alert(
-                "📋 Page text copied successfully!"
-            );
-
-        })
-        .catch(function() {
-
-            alert(
-                "❌ Page text copy করা যায়নি।"
-            );
-
-        });
+});
 
 }
 
 
+function ppppShareFile(){
+ppppShare();
+}
+
+
 /* =========================================================
-   SHARE PAGE
+   RESET SETTINGS
 ========================================================= */
 
-function ppppShareFile() {
+function ppppResetSettings(){
 
-    ppppShare();
+if(!confirm(
+"🔄 সব PPPP Settings Default অবস্থায় ফিরিয়ে আনবেন?"
+))return;
+
+
+/* Theme */
+
+localStorage.removeItem("ppppTheme");
+localStorage.removeItem("ppppDarkMode");
+
+
+/* Font */
+
+localStorage.removeItem("ppppFontScale");
+
+ppppFontScale=100;
+
+document.documentElement.style.fontSize="100%";
+
+
+/* Zoom */
+
+localStorage.removeItem("ppppZoomLevel");
+
+ppppZoomLevel=1;
+
+document.body.style.zoom="1";
+
+
+/* Large Controls */
+
+document.body.classList.remove(
+"pppp-large-controls"
+);
+
+
+/* High Contrast */
+
+document.body.classList.remove(
+"pppp-high-contrast"
+);
+
+
+/* Dark Mode */
+
+document.body.classList.remove(
+"pppp-dark-mode"
+);
+
+
+/* Volume */
+
+document
+.querySelectorAll("audio,video")
+.forEach(function(media){
+
+media.muted=false;
+media.volume=1;
+
+});
+
+
+/* Volume sliders */
+
+[
+"ppppNotificationVolume",
+"ppppMusicVolume",
+"ppppVideoVolume",
+"ppppMasterVolume"
+]
+.forEach(function(id){
+
+const el=
+document.getElementById(id);
+
+if(el)el.value=1;
+
+});
+
+
+/* Mute */
+
+ppppMuted=false;
+
+document.getElementById(
+"ppppMuteBtn"
+).style.display="flex";
+
+document.getElementById(
+"ppppUnmuteBtn"
+).style.display="none";
+
+
+/* Tasbih */
+
+ppppTasbihCount=0;
+
+localStorage.removeItem(
+"ppppTasbihCount"
+);
+
+ppppUpdateTasbih();
+
+
+alert(
+"🔄 PPPP Settings Default অবস্থায় ফিরে গেছে।"
+);
 
 }
 
@@ -7181,356 +4885,616 @@ function ppppShareFile() {
    HELP
 ========================================================= */
 
-function ppppHelp() {
+function ppppHelp(){
 
-    alert(
-        "❓ PPPP Settings Help\n\n" +
-        "⚙️ Settings খুলুন।\n" +
-        "🔍 Search দিয়ে option খুঁজুন।\n" +
-        "❤️ Like করলে Liked Pages-এ থাকবে।\n" +
-        "⭐ Favorite করলে Favorited Pages-এ থাকবে।\n" +
-        "📌 Pin করলে Pinned Pages-এ থাকবে।\n" +
-        "🌐 Language থেকে Main/বাংলা/English নির্বাচন করুন।\n" +
-        "🔊 Read Aloud (Main/Bangla/English) ব্যবহার করুন।\n" +
-        "🔇 Mute ও 🔊 Unmute ব্যবহার করুন।\n" +
-        "📥 Download Page পুরো HTML page সংরক্ষণ করবে।\n" +
-        "📕 Save as PDF browser-এর PDF save ব্যবস্থা ব্যবহার করবে।\n" +
-        "📸 Screenshot পুরো page capture করবে।\n" +
-        "🧮 Calculator ব্যবহার করতে সংখ্যার সঙ্গে + − × ÷ ব্যবহার করুন।\n" +
-        "📿 Tasbih Target দিলে target পূর্ণ হলে notification দেখাবে।\n" +
-        "🔊 Sound Control থেকে volume নিয়ন্ত্রণ করুন।\n" +
-        "🧭 Compass চালু করলে device direction দেখাবে।"
-    );
-
-}
-
-
-/* =========================================================
-   ABOUT SETTINGS
-========================================================= */
-
-function ppppAboutSettings() {
-
-    alert(
-        "⚙️ PPPP Settings & Control Center\n\n" +
-        "People's Power & Peace Party (PPPP)\n\n" +
-        "🌐 Language\n" +
-        "🔤 Alphabet List\n" +
-        "🗓️ Calendar List\n" +
-        "♿ Accessibility\n" +
-        "🔊 Sound Control\n" +
-        "🧭 Compass\n" +
-        "🧮 Calculator\n" +
-        "🎂 Age Calculator\n" +
-        "📿 Tasbih Counter\n" +
-        "📱 PPPP App\n" +
-        "📥 Tools & Downloads\n" +
-        "⚙️ Reset Settings\n" +
-        "❓ Help & Information"
-    );
+alert(
+"❓ PPPP Settings Help\n\n"+
+"⚙️ Settings খুলুন।\n"+
+"🔍 Search দিয়ে option খুঁজুন।\n"+
+"❤️ Like করলে Liked Pages-এ থাকবে।\n"+
+"⭐ Favorite করলে Favorited Pages-এ থাকবে।\n"+
+"📌 Pin করলে Pinned Pages-এ থাকবে।\n"+
+"📜 History List থেকে History দেখা যাবে।\n"+
+"🌐 Main চাপলে মূল page ফিরে আসবে।\n"+
+"🔊 Read Aloud বাংলা ও English পড়বে।\n"+
+"🔇 Mute এবং 🔊 Unmute ব্যবহার করা যাবে।\n"+
+"🧭 Compass দিক নির্দেশ করবে।\n"+
+"🧮 Calculator হিসাব করবে।\n"+
+"🎂 Age Calculator বয়স হিসাব করবে।\n"+
+"📿 Tasbih Counter গণনা করবে।\n"+
+"📥 Download Page পুরো HTML page সংরক্ষণ করবে।\n"+
+"📄 Save as PDF পুরো page PDF করবে।\n"+
+"📸 Screenshot বর্তমান Screen capture করবে।\n"+
+"🔄 Reset Settings Default অবস্থায় ফিরিয়ে দেবে।"
+);
 
 }
 
 
 /* =========================================================
-   INITIAL THEME
+   ABOUT
 ========================================================= */
 
-(function() {
+function ppppAboutSettings(){
 
-    const theme =
-        localStorage.getItem(
-            "ppppTheme"
-        );
+alert(
+"⚙️ PPPP Settings & Control Center\n\n"+
+"People's Power & Peace Party (PPPP)\n\n"+
+"📅 Date & Time\n"+
+"🌡️ Weather\n"+
+"🕌 Prayer Times\n"+
+"🧭 Compass\n"+
+"🧮 Calculator\n"+
+"🎂 Age Calculator\n"+
+"📿 Tasbih Counter\n"+
+"❤️ Liked Pages\n"+
+"⭐ Favorited Pages\n"+
+"📌 Pinned Pages\n"+
+"🌐 Language\n"+
+"🔊 Read Aloud\n"+
+"🔇 Mute / Unmute\n"+
+"📄 Save as PDF\n"+
+"📥 Download\n"+
+"📸 Screenshot"
+);
+
+}
 
 
-    if (theme === "night") {
+/* =========================================================
+   LIVE DATE / TIME
+========================================================= */
 
-        document.body.classList.add(
-            "pppp-dark-mode"
-        );
+function ppppUpdateDateTime(){
 
-    } else if (
-        theme === "auto"
-    ) {
+const now=new Date();
 
-        ppppApplyAutoTheme();
 
-    }
+/* English */
+
+const englishDate=
+new Intl.DateTimeFormat(
+"en-US",
+{
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+).format(now);
+
+document.getElementById(
+"ppppEnglishDate"
+).textContent=
+englishDate;
+
+
+/* Bengali date */
+
+try{
+
+const banglaDate=
+new Intl.DateTimeFormat(
+"bn-BD-u-ca-beng",
+{
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+).format(now);
+
+document.getElementById(
+"ppppBanglaDate"
+).textContent=
+banglaDate;
+
+}catch(e){
+
+document.getElementById(
+"ppppBanglaDate"
+).textContent=
+now.toLocaleDateString("bn-BD");
+
+}
+
+
+/* Hijri */
+
+try{
+
+const hijri=
+new Intl.DateTimeFormat(
+"en-US-u-ca-islamic",
+{
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+).format(now);
+
+document.getElementById(
+"ppppHijriDate"
+).textContent=
+hijri;
+
+}catch(e){
+
+document.getElementById(
+"ppppHijriDate"
+).textContent=
+"Unavailable";
+
+}
+
+
+/* Days */
+
+const banglaDays=[
+"রবিবার",
+"সোমবার",
+"মঙ্গলবার",
+"বুধবার",
+"বৃহস্পতিবার",
+"শুক্রবার",
+"শনিবার"
+];
+
+const englishDays=[
+"Sunday",
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday",
+"Saturday"
+];
+
+document.getElementById(
+"ppppBanglaDay"
+).textContent=
+banglaDays[now.getDay()];
+
+document.getElementById(
+"ppppEnglishDay"
+).textContent=
+englishDays[now.getDay()];
+
+
+/* Hijri weekday follows Gregorian weekday */
+
+document.getElementById(
+"ppppHijriDay"
+).textContent=
+englishDays[now.getDay()];
+
+
+/* Time */
+
+document.getElementById(
+"ppppCurrentTime"
+).textContent=
+now.toLocaleTimeString(
+"en-BD",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
+
+}
+
+
+ppppUpdateDateTime();
+
+setInterval(
+ppppUpdateDateTime,
+1000
+);
+
+
+/* =========================================================
+   WEATHER + SUNRISE/SUNSET
+========================================================= */
+
+async function ppppLoadWeather(){
+
+let latitude=23.8103;
+let longitude=90.4125;
+
+
+/*
+   Bangladesh/Dhaka fallback.
+   User permission দিলে actual location ব্যবহার করা হবে।
+*/
+
+if(navigator.geolocation){
+
+try{
+
+const position=
+await new Promise(function(resolve,reject){
+
+navigator.geolocation.getCurrentPosition(
+resolve,
+reject,
+{
+enableHighAccuracy:false,
+timeout:5000,
+maximumAge:600000
+}
+);
+
+});
+
+latitude=position.coords.latitude;
+longitude=position.coords.longitude;
+
+}catch(e){}
+
+}
+
+
+try{
+
+const url=
+"https://api.open-meteo.com/v1/forecast"+
+"?latitude="+latitude+
+"&longitude="+longitude+
+"&current=temperature_2m"+
+"&daily=sunrise,sunset"+
+"&timezone=auto";
+
+const response=
+await fetch(url);
+
+const data=
+await response.json();
+
+const temp=
+data.current &&
+data.current.temperature_2m;
+
+document.getElementById(
+"ppppTemperature"
+).textContent=
+temp!=null
+?temp+"°C"
+:"Unavailable";
+
+if(data.daily){
+
+document.getElementById(
+"ppppSunrise"
+).textContent=
+ppppFormatApiTime(
+data.daily.sunrise[0]
+);
+
+document.getElementById(
+"ppppSunset"
+).textContent=
+ppppFormatApiTime(
+data.daily.sunset[0]
+);
+
+}
+
+await ppppLoadPrayerTimes(
+latitude,
+longitude
+);
+
+}catch(e){
+
+document.getElementById(
+"ppppTemperature"
+).textContent=
+"Unavailable";
+
+}
+
+}
+
+
+function ppppFormatApiTime(value){
+
+if(!value)return"Unavailable";
+
+const date=
+new Date(value);
+
+return date.toLocaleTimeString(
+"en-BD",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+/* =========================================================
+   PRAYER / SEHRI / IFTAR
+========================================================= */
+
+async function ppppLoadPrayerTimes(
+latitude,
+longitude
+){
+
+try{
+
+const today=
+new Date();
+
+const date=
+String(today.getDate()).padStart(2,"0")+
+"-"+
+String(today.getMonth()+1).padStart(2,"0")+
+"-"+
+today.getFullYear();
+
+const url=
+"https://api.aladhan.com/v1/timings/"+
+date+
+"?latitude="+
+latitude+
+"&longitude="+
+longitude+
+"&method=1";
+
+const response=
+await fetch(url);
+
+const data=
+await response.json();
+
+const t=
+data.data.timings;
+
+document.getElementById(
+"ppppFajr"
+).textContent=t.Fajr||"Unavailable";
+
+document.getElementById(
+"ppppDhuhr"
+).textContent=t.Dhuhr||"Unavailable";
+
+document.getElementById(
+"ppppAsr"
+).textContent=t.Asr||"Unavailable";
+
+document.getElementById(
+"ppppMaghrib"
+).textContent=t.Maghrib||"Unavailable";
+
+document.getElementById(
+"ppppIsha"
+).textContent=t.Isha||"Unavailable";
+
+
+/*
+   Sehri = Fajr-এর সময়ের কাছাকাছি।
+   Iftar = Maghrib।
+*/
+
+document.getElementById(
+"ppppSehri"
+).textContent=
+t.Fajr||"Unavailable";
+
+document.getElementById(
+"ppppIftar"
+).textContent=
+t.Maghrib||"Unavailable";
+
+}catch(e){
+
+[
+"ppppFajr",
+"ppppDhuhr",
+"ppppAsr",
+"ppppMaghrib",
+"ppppIsha",
+"ppppSehri",
+"ppppIftar"
+]
+.forEach(function(id){
+
+document.getElementById(id)
+.textContent="Unavailable";
+
+});
+
+}
+
+}
+
+
+ppppLoadWeather();
+
+
+/* =========================================================
+   LOAD THEME / FONT / ZOOM
+========================================================= */
+
+(function(){
+
+const theme=
+localStorage.getItem("ppppTheme");
+
+if(theme==="night"){
+
+ppppThemeNight();
+
+}else if(theme==="day"){
+
+ppppThemeDay();
+
+}else if(theme==="auto"){
+
+ppppThemeAuto();
+
+}else{
+
+const oldDark=
+localStorage.getItem("ppppDarkMode");
+
+if(oldDark==="dark"){
+ppppDarkMode();
+}else{
+ppppLightMode();
+}
+
+}
+
+
+document.documentElement.style.fontSize=
+ppppFontScale+"%";
+
+document.body.style.zoom=
+ppppZoomLevel;
 
 })();
 
 
 /* =========================================================
-   INITIAL
+   TASBIH INITIAL
+========================================================= */
+
+ppppUpdateTasbih();
+
+
+/* =========================================================
+   INITIAL COUNTS / BUTTONS
 ========================================================= */
 
 ppppUpdateCounts();
 ppppUpdateButtonStates();
-ppppUpdateTasbih();
-ppppApplyMediaVolumes();
 
 
 /* =========================================================
    AUTO HISTORY
 ========================================================= */
 
-(function() {
+(function(){
 
-    let list =
-        ppppGetList("history");
+let list=
+ppppGetList("history");
 
-    const page =
-        ppppCurrentPage();
+const page=
+ppppCurrentPage();
 
+list=list.filter(function(item){
+return item.url!==page.url;
+});
 
-    list =
-        list.filter(function(item) {
+list.unshift(page);
+list=list.slice(0,100);
 
-            return item.url !== page.url;
-
-        });
-
-
-    list.unshift(page);
-
-
-    list =
-        list.slice(0, 100);
-
-
-    ppppSaveList(
-        "history",
-        list
-    );
+ppppSaveList(
+"history",
+list
+);
 
 })();
 
 
 /* =========================================================
-   GOOGLE TRANSLATE
+   GOOGLE TRANSLATE INITIALIZER
 ========================================================= */
 
-window.googleTranslateElementInit =
-    function() {
+window.googleTranslateElementInit=
+function(){
 
-        if (
-            window.google &&
-            google.translate
-        ) {
+if(
+window.google &&
+google.translate
+){
 
-            new google.translate.TranslateElement(
-                {
+new google.translate.TranslateElement(
+{
+pageLanguage:"bn",
+includedLanguages:"bn,en",
+autoDisplay:false
+},
+"google_translate_element"
+);
 
-                    pageLanguage:
-                        "bn",
+}
 
-                    includedLanguages:
-                        "bn,en",
-
-                    autoDisplay:
-                        false
-
-                },
-
-                "google_translate_element"
-            );
-
-        }
-
-    };
+};
 
 
-(function() {
+/* =========================================================
+   LOAD GOOGLE TRANSLATE
+========================================================= */
 
-    if (
-        document.getElementById(
-            "ppppGoogleTranslateScript"
-        )
-    ) return;
+(function(){
 
+if(
+document.getElementById(
+"ppppGoogleTranslateScript"
+)
+)return;
 
-    const script =
-        document.createElement(
-            "script"
-        );
+const script=
+document.createElement("script");
 
+script.id=
+"ppppGoogleTranslateScript";
 
-    script.id =
-        "ppppGoogleTranslateScript";
+script.src=
+"https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
 
+script.async=true;
 
-    script.src =
-        "https://translate.google.com/" +
-        "translate_a/element.js" +
-        "?cb=googleTranslateElementInit";
-
-
-    script.async = true;
-
-
-    document.head.appendChild(
-        script
-    );
+document.head.appendChild(script);
 
 })();
 
 
 /* =========================================================
-   SPEECH VOICES
+   VOICES
 ========================================================= */
 
-if (
-    "speechSynthesis" in window
-) {
+if("speechSynthesis" in window){
 
-    speechSynthesis.onvoiceschanged =
-        function() {
-
-            speechSynthesis.getVoices();
-
-        };
+speechSynthesis.onvoiceschanged=
+function(){
+speechSynthesis.getVoices();
+};
 
 }
 
 
 /* =========================================================
-   START LIVE SYSTEM
+   RESET / SYSTEM THEME LISTENER
 ========================================================= */
 
-ppppStartLive();
+if(
+window.matchMedia
+){
 
+window
+.matchMedia("(prefers-color-scheme: dark)")
+.addEventListener(
+"change",
+function(){
 
-/* =========================================================
-   AZAN AUDIO STATE
-========================================================= */
+if(
+localStorage.getItem("ppppTheme")
+==="auto"
+){
 
-(function() {
+ppppThemeAuto();
 
-    const audio =
-        ppppGetAzanAudio();
+}
 
-    audio.muted =
-        ppppAzanMuted;
+});
 
-    audio.volume =
-        Math.min(
-            1,
-            PPPP_SOUND_VOLUMES.music *
-            PPPP_SOUND_VOLUMES.master
-        );
-
-})();
-
-
-/* =========================================================
-   SERVICE WORKER / APP INSTALL BUTTON
-========================================================= */
-
-(function() {
-
-    const installBtn =
-        document.getElementById(
-            "installBtn"
-        );
-
-
-    let deferredPrompt = null;
-
-
-    window.addEventListener(
-        "beforeinstallprompt",
-        function(e) {
-
-            e.preventDefault();
-
-            deferredPrompt = e;
-
-        }
-    );
-
-
-    if (installBtn) {
-
-        installBtn.addEventListener(
-            "click",
-            async function() {
-
-                if (deferredPrompt) {
-
-                    deferredPrompt.prompt();
-
-                    try {
-
-                        await deferredPrompt.userChoice;
-
-                    } catch (e) {}
-
-                    deferredPrompt =
-                        null;
-
-                } else {
-
-                    ppppApp();
-
-                }
-
-            }
-        );
-
-    }
-
-})();
-
-
-/* =========================================================
-   MEDIA OBSERVER
-   নতুন audio/video এলেও volume apply হবে
-========================================================= */
-
-(function() {
-
-    if (
-        typeof MutationObserver ===
-        "undefined"
-    ) return;
-
-
-    const observer =
-        new MutationObserver(
-            function() {
-
-                ppppApplyMediaVolumes();
-
-            }
-        );
-
-
-    observer.observe(
-        document.body,
-        {
-            childList: true,
-            subtree: true
-        }
-    );
-
-})();
-
-
-/* =========================================================
-   RESIZE / REPAINT PROTECTION
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    function() {
-
-        /*
-           User zoom preserve করা হবে।
-        */
-
-    }
-);
+}
 
 </script>
 
