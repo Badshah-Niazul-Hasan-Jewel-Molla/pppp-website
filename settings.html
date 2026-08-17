@@ -2737,55 +2737,55 @@ style="padding:10px;">
    STORAGE
 ========================================================= */
 
-const PPPP_KEYS={
-liked:"ppppLikedPages",
-favorite:"ppppFavoritedPages",
-pinned:"ppppPinnedPages",
-history:"ppppPageHistory"
+const PPPP_KEYS = {
+    liked: "ppppLikedPages",
+    favorite: "ppppFavoritedPages",
+    pinned: "ppppPinnedPages",
+    history: "ppppPageHistory"
 };
 
 
-function ppppGetList(type){
+function ppppGetList(type) {
 
-try{
-return JSON.parse(
-localStorage.getItem(PPPP_KEYS[type])
-)||[];
-}catch(e){
-return [];
-}
-
-}
-
-
-function ppppSaveList(type,list){
-
-localStorage.setItem(
-PPPP_KEYS[type],
-JSON.stringify(list)
-);
-
-ppppUpdateCounts();
+    try {
+        return JSON.parse(
+            localStorage.getItem(PPPP_KEYS[type])
+        ) || [];
+    } catch (e) {
+        return [];
+    }
 
 }
 
 
-function ppppCurrentPage(){
+function ppppSaveList(type, list) {
 
-return{
-title:document.title||"PPPP Page",
-url:window.location.href,
-time:new Date().toLocaleString()
-};
+    localStorage.setItem(
+        PPPP_KEYS[type],
+        JSON.stringify(list)
+    );
+
+    ppppUpdateCounts();
 
 }
 
 
-function ppppIsSaved(type){
+function ppppCurrentPage() {
 
-return ppppGetList(type).some(function(item){
-return item.url===window.location.href;
-});
+    return {
+        title: document.title || "PPPP Page",
+        url: window.location.href,
+        time: new Date().toLocaleString()
+    };
+
+}
+
+
+function ppppIsSaved(type) {
+
+    return ppppGetList(type).some(function(item) {
+        return item.url === window.location.href;
+    });
 
 }
 
@@ -2794,50 +2794,76 @@ return item.url===window.location.href;
    SETTINGS
 ========================================================= */
 
-const settingsBtn=
-document.getElementById("ppppSettingsBtn");
+const settingsBtn =
+    document.getElementById("ppppSettingsBtn");
 
-const settingsPanel=
-document.getElementById("ppppSettingsPanel");
+const settingsPanel =
+    document.getElementById("ppppSettingsPanel");
 
-const settingsOverlay=
-document.getElementById("ppppSettingsOverlay");
+const settingsOverlay =
+    document.getElementById("ppppSettingsOverlay");
 
-const settingsClose=
-document.getElementById("ppppSettingsClose");
-
-
-function openPPPPSettings(){
-
-settingsOverlay.style.display="block";
-
-requestAnimationFrame(function(){
-settingsPanel.classList.add("active");
-});
-
-document.body.style.overflow="hidden";
-
-ppppUpdateButtonStates();
-
-}
+const settingsClose =
+    document.getElementById("ppppSettingsClose");
 
 
-function closePPPPSettings(){
+function openPPPPSettings() {
 
-settingsPanel.classList.remove("active");
+    if (!settingsOverlay || !settingsPanel) return;
 
-setTimeout(function(){
-settingsOverlay.style.display="none";
-},350);
+    settingsOverlay.style.display = "block";
 
-document.body.style.overflow="";
+    requestAnimationFrame(function() {
+        settingsPanel.classList.add("active");
+    });
+
+    document.body.style.overflow = "hidden";
+
+    ppppUpdateButtonStates();
 
 }
 
 
-settingsBtn.onclick=openPPPPSettings;
-settingsClose.onclick=closePPPPSettings;
-settingsOverlay.onclick=closePPPPSettings;
+function closePPPPSettings() {
+
+    if (!settingsOverlay || !settingsPanel) return;
+
+    settingsPanel.classList.remove("active");
+
+    setTimeout(function() {
+        settingsOverlay.style.display = "none";
+    }, 350);
+
+    document.body.style.overflow = "";
+
+}
+
+
+if (settingsBtn) {
+    settingsBtn.onclick = openPPPPSettings;
+}
+
+if (settingsClose) {
+    settingsClose.onclick = closePPPPSettings;
+}
+
+
+/*
+   Overlay-এ click করলে close হবে।
+   কিন্তু Settings Panel-এর ভিতরে click করলে close হবে না।
+*/
+
+if (settingsOverlay) {
+
+    settingsOverlay.addEventListener("click", function(e) {
+
+        if (e.target === settingsOverlay) {
+            closePPPPSettings();
+        }
+
+    });
+
+}
 
 
 /* =========================================================
@@ -2845,16 +2871,16 @@ settingsOverlay.onclick=closePPPPSettings;
 ========================================================= */
 
 document
-.querySelectorAll(".pppp-category-title")
-.forEach(function(button){
+    .querySelectorAll(".pppp-category-title")
+    .forEach(function(button) {
 
-button.addEventListener("click",function(){
+        button.addEventListener("click", function() {
 
-this.parentElement.classList.toggle("open");
+            this.parentElement.classList.toggle("open");
 
-});
+        });
 
-});
+    });
 
 
 /* =========================================================
@@ -2862,23 +2888,22 @@ this.parentElement.classList.toggle("open");
 ========================================================= */
 
 document
-.querySelectorAll(".pppp-structure-heading")
-.forEach(function(button){
+    .querySelectorAll(".pppp-structure-heading")
+    .forEach(function(button) {
 
-button.addEventListener("click",function(){
+        button.addEventListener("click", function() {
 
-const id=this.dataset.target;
+            const id = this.dataset.target;
+            const group = document.getElementById(id);
 
-const group=document.getElementById(id);
+            if (!group) return;
 
-if(!group)return;
+            group.classList.toggle("collapsed");
+            this.classList.toggle("open");
 
-group.classList.toggle("collapsed");
-this.classList.toggle("open");
+        });
 
-});
-
-});
+    });
 
 
 /* =========================================================
@@ -2886,81 +2911,96 @@ this.classList.toggle("open");
 ========================================================= */
 
 document
-.querySelectorAll(".pppp-info-toggle")
-.forEach(function(button){
+    .querySelectorAll(".pppp-info-toggle")
+    .forEach(function(button) {
 
-button.addEventListener("click",function(){
+        button.addEventListener("click", function() {
 
-const content=this.nextElementSibling;
+            const content = this.nextElementSibling;
 
-if(!content)return;
+            if (!content) return;
 
-content.classList.toggle("open");
-this.classList.toggle("open");
+            content.classList.toggle("open");
+            this.classList.toggle("open");
 
-});
+        });
 
-});
+    });
 
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-document
-.getElementById("ppppSettingsSearch")
-.addEventListener("input",function(){
+const settingsSearch =
+    document.getElementById("ppppSettingsSearch");
 
-const query=this.value.toLowerCase().trim();
 
-document
-.querySelectorAll("#ppppSettingsPanel .pppp-category")
-.forEach(function(category){
+if (settingsSearch) {
 
-let found=false;
+    settingsSearch.addEventListener("input", function() {
 
-category
-.querySelectorAll(
-".pppp-btn,.pppp-action,.pppp-info-toggle,.pppp-structure-heading"
-)
-.forEach(function(item){
+        const query =
+            this.value.toLowerCase().trim();
 
-const text=item.textContent.toLowerCase();
+        document
+            .querySelectorAll(
+                "#ppppSettingsPanel .pppp-category"
+            )
+            .forEach(function(category) {
 
-if(!query||text.includes(query)){
+                let found = false;
 
-item.style.display="";
+                category
+                    .querySelectorAll(
+                        ".pppp-btn," +
+                        ".pppp-action," +
+                        ".pppp-info-toggle," +
+                        ".pppp-structure-heading"
+                    )
+                    .forEach(function(item) {
 
-if(query)found=true;
+                        const text =
+                            item.textContent.toLowerCase();
 
-}else{
+                        if (!query || text.includes(query)) {
 
-item.style.display="none";
+                            item.style.display = "";
+
+                            if (query) {
+                                found = true;
+                            }
+
+                        } else {
+
+                            item.style.display = "none";
+
+                        }
+
+                    });
+
+                category.style.display =
+                    (!query || found) ? "block" : "none";
+
+            });
+
+    });
 
 }
-
-});
-
-category.style.display=
-(!query||found)?"block":"none";
-
-});
-
-});
 
 
 /* =========================================================
    ESC
 ========================================================= */
 
-document.addEventListener("keydown",function(e){
+document.addEventListener("keydown", function(e) {
 
-if(e.key==="Escape"){
+    if (e.key === "Escape") {
 
-closePPPPSettings();
-ppppCloseSavedPages();
+        closePPPPSettings();
+        ppppCloseSavedPages();
 
-}
+    }
 
 });
 
@@ -2969,82 +3009,104 @@ ppppCloseSavedPages();
    SHARE
 ========================================================= */
 
-async function ppppShare(){
+async function ppppShare() {
 
-const shareData={
-title:document.title,
-text:"People's Power & Peace Party (PPPP) Bangladesh Official Website",
-url:window.location.href
-};
+    const shareData = {
+        title: document.title,
+        text:
+            "People's Power & Peace Party (PPPP) Bangladesh Official Website",
+        url: window.location.href
+    };
 
-if(navigator.share){
+    if (navigator.share) {
 
-try{
-await navigator.share(shareData);
-}catch(e){}
+        try {
+            await navigator.share(shareData);
+        } catch (e) {}
 
-}else{
+    } else {
 
-ppppCopyLink();
+        ppppCopyLink();
 
-}
-
-}
-
-
-function ppppCopyLink(){
-
-if(navigator.clipboard){
-
-navigator.clipboard
-.writeText(window.location.href)
-.then(function(){
-alert("📋 Website link copied successfully!");
-});
-
-}else{
-
-prompt("Copy this link:",window.location.href);
-
-}
+    }
 
 }
 
 
-function ppppSend(){
-ppppShare();
+function ppppCopyLink() {
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard
+            .writeText(window.location.href)
+            .then(function() {
+
+                alert(
+                    "📋 Website link copied successfully!"
+                );
+
+            })
+            .catch(function() {
+
+                prompt(
+                    "Copy this link:",
+                    window.location.href
+                );
+
+            });
+
+    } else {
+
+        prompt(
+            "Copy this link:",
+            window.location.href
+        );
+
+    }
+
 }
 
 
-function ppppEmail(){
+function ppppSend() {
+    ppppShare();
+}
 
-const subject=
-encodeURIComponent(document.title);
 
-const body=
-encodeURIComponent(
-"People's Power & Peace Party (PPPP)\n\n"+
-window.location.href
-);
+function ppppEmail() {
 
-location.href=
-"mailto:?subject="+subject+"&body="+body;
+    const subject =
+        encodeURIComponent(document.title);
+
+    const body =
+        encodeURIComponent(
+            "People's Power & Peace Party (PPPP)\n\n" +
+            window.location.href
+        );
+
+    location.href =
+        "mailto:?subject=" +
+        subject +
+        "&body=" +
+        body;
 
 }
 
 
-function ppppComment(){
-location.href="/pppp_bangladesh/feedback.html";
+function ppppComment() {
+    location.href =
+        "/pppp_bangladesh/feedback.html";
 }
 
 
-function ppppFeedback(){
-location.href="/pppp_bangladesh/feedback.html";
+function ppppFeedback() {
+    location.href =
+        "/pppp_bangladesh/feedback.html";
 }
 
 
-function ppppReport(){
-location.href="/pppp_bangladesh/complaint.html";
+function ppppReport() {
+    location.href =
+        "/pppp_bangladesh/complaint.html";
 }
 
 
@@ -3052,28 +3114,30 @@ location.href="/pppp_bangladesh/complaint.html";
    LIKE
 ========================================================= */
 
-function ppppLike(){
+function ppppLike() {
 
-const list=ppppGetList("liked");
-const url=window.location.href;
+    const list = ppppGetList("liked");
+    const url = window.location.href;
 
-const index=list.findIndex(function(item){
-return item.url===url;
-});
+    const index =
+        list.findIndex(function(item) {
+            return item.url === url;
+        });
 
-if(index>=0){
+    if (index >= 0) {
 
-list.splice(index,1);
-ppppSaveList("liked",list);
+        list.splice(index, 1);
 
-}else{
+    } else {
 
-list.unshift(ppppCurrentPage());
-ppppSaveList("liked",list);
+        list.unshift(
+            ppppCurrentPage()
+        );
 
-}
+    }
 
-ppppUpdateButtonStates();
+    ppppSaveList("liked", list);
+    ppppUpdateButtonStates();
 
 }
 
@@ -3082,27 +3146,37 @@ ppppUpdateButtonStates();
    FAVORITE
 ========================================================= */
 
-function ppppFavorite(){
+function ppppFavorite() {
 
-const list=ppppGetList("favorite");
-const url=window.location.href;
+    const list =
+        ppppGetList("favorite");
 
-const index=list.findIndex(function(item){
-return item.url===url;
-});
+    const url =
+        window.location.href;
 
-if(index>=0){
+    const index =
+        list.findIndex(function(item) {
+            return item.url === url;
+        });
 
-list.splice(index,1);
+    if (index >= 0) {
 
-}else{
+        list.splice(index, 1);
 
-list.unshift(ppppCurrentPage());
+    } else {
 
-}
+        list.unshift(
+            ppppCurrentPage()
+        );
 
-ppppSaveList("favorite",list);
-ppppUpdateButtonStates();
+    }
+
+    ppppSaveList(
+        "favorite",
+        list
+    );
+
+    ppppUpdateButtonStates();
 
 }
 
@@ -3111,27 +3185,37 @@ ppppUpdateButtonStates();
    PIN
 ========================================================= */
 
-function ppppPin(){
+function ppppPin() {
 
-const list=ppppGetList("pinned");
-const url=window.location.href;
+    const list =
+        ppppGetList("pinned");
 
-const index=list.findIndex(function(item){
-return item.url===url;
-});
+    const url =
+        window.location.href;
 
-if(index>=0){
+    const index =
+        list.findIndex(function(item) {
+            return item.url === url;
+        });
 
-list.splice(index,1);
+    if (index >= 0) {
 
-}else{
+        list.splice(index, 1);
 
-list.unshift(ppppCurrentPage());
+    } else {
 
-}
+        list.unshift(
+            ppppCurrentPage()
+        );
 
-ppppSaveList("pinned",list);
-ppppUpdateButtonStates();
+    }
+
+    ppppSaveList(
+        "pinned",
+        list
+    );
+
+    ppppUpdateButtonStates();
 
 }
 
@@ -3140,16 +3224,37 @@ ppppUpdateButtonStates();
    COUNTS
 ========================================================= */
 
-function ppppUpdateCounts(){
+function ppppUpdateCounts() {
 
-document.getElementById("ppppLikedCount").textContent=
-ppppGetList("liked").length;
+    const liked =
+        document.getElementById(
+            "ppppLikedCount"
+        );
 
-document.getElementById("ppppFavoriteCount").textContent=
-ppppGetList("favorite").length;
+    const favorite =
+        document.getElementById(
+            "ppppFavoriteCount"
+        );
 
-document.getElementById("ppppPinnedCount").textContent=
-ppppGetList("pinned").length;
+    const pinned =
+        document.getElementById(
+            "ppppPinnedCount"
+        );
+
+    if (liked) {
+        liked.textContent =
+            ppppGetList("liked").length;
+    }
+
+    if (favorite) {
+        favorite.textContent =
+            ppppGetList("favorite").length;
+    }
+
+    if (pinned) {
+        pinned.textContent =
+            ppppGetList("pinned").length;
+    }
 
 }
 
@@ -3158,40 +3263,51 @@ ppppGetList("pinned").length;
    BUTTON STATES
 ========================================================= */
 
-function ppppUpdateButtonStates(){
+function ppppUpdateButtonStates() {
 
-const like=document.getElementById("ppppLikeBtn");
-const favorite=document.getElementById("ppppFavoriteBtn");
-const pin=document.getElementById("ppppPinBtn");
+    const like =
+        document.getElementById(
+            "ppppLikeBtn"
+        );
 
-if(like){
+    const favorite =
+        document.getElementById(
+            "ppppFavoriteBtn"
+        );
 
-like.innerHTML=
-ppppIsSaved("liked")
-?"💔 Unlike"
-:"👍 Like";
+    const pin =
+        document.getElementById(
+            "ppppPinBtn"
+        );
 
-}
+    if (like) {
 
-if(favorite){
+        like.innerHTML =
+            ppppIsSaved("liked")
+                ? "💔 Unlike"
+                : "👍 Like";
 
-favorite.innerHTML=
-ppppIsSaved("favorite")
-?"⭐ Unfavorite"
-:"⭐ Favorite";
+    }
 
-}
+    if (favorite) {
 
-if(pin){
+        favorite.innerHTML =
+            ppppIsSaved("favorite")
+                ? "⭐ Unfavorite"
+                : "⭐ Favorite";
 
-pin.innerHTML=
-ppppIsSaved("pinned")
-?"📌 Unpin"
-:"📌 Pin";
+    }
 
-}
+    if (pin) {
 
-ppppUpdateCounts();
+        pin.innerHTML =
+            ppppIsSaved("pinned")
+                ? "📌 Unpin"
+                : "📌 Pin";
+
+    }
+
+    ppppUpdateCounts();
 
 }
 
@@ -3200,83 +3316,126 @@ ppppUpdateCounts();
    SAVED PAGES
 ========================================================= */
 
-function ppppShowSavedPages(type){
+function ppppShowSavedPages(type) {
 
-const list=ppppGetList(type);
+    const list =
+        ppppGetList(type);
 
-const box=document.getElementById("ppppSavedPagesBox");
-const output=document.getElementById("ppppSavedList");
-const title=document.getElementById("ppppSavedTitle");
+    const box =
+        document.getElementById(
+            "ppppSavedPagesBox"
+        );
 
-const titles={
-liked:"❤️ Liked Pages",
-favorite:"⭐ Favorited Pages",
-pinned:"📌 Pinned Pages"
-};
+    const output =
+        document.getElementById(
+            "ppppSavedList"
+        );
 
-title.textContent=titles[type];
-output.innerHTML="";
+    const title =
+        document.getElementById(
+            "ppppSavedTitle"
+        );
 
-if(!list.length){
+    if (!box || !output || !title) return;
 
-output.innerHTML=
-"<div style='padding:25px;text-align:center;color:#777;'>"+
-"No saved pages yet."+
-"</div>";
+    const titles = {
+        liked: "❤️ Liked Pages",
+        favorite: "⭐ Favorited Pages",
+        pinned: "📌 Pinned Pages"
+    };
 
-}else{
+    title.textContent =
+        titles[type] || "📚 Saved Pages";
 
-list.forEach(function(item){
+    output.innerHTML = "";
 
-const div=document.createElement("div");
-div.className="pppp-saved-item";
+    if (!list.length) {
 
-const link=document.createElement("a");
-link.href=item.url;
-link.textContent=item.title;
+        output.innerHTML =
+            "<div style='padding:25px;text-align:center;color:#777;'>" +
+            "No saved pages yet." +
+            "</div>";
 
-const url=document.createElement("small");
-url.textContent=item.url;
+    } else {
 
-const time=document.createElement("small");
-time.textContent="🕒 "+item.time;
+        list.forEach(function(item) {
 
-div.appendChild(link);
-div.appendChild(url);
-div.appendChild(time);
+            const div =
+                document.createElement("div");
 
-output.appendChild(div);
+            div.className =
+                "pppp-saved-item";
 
-});
+            const link =
+                document.createElement("a");
+
+            link.href =
+                item.url;
+
+            link.textContent =
+                item.title;
+
+            const url =
+                document.createElement("small");
+
+            url.textContent =
+                item.url;
+
+            const time =
+                document.createElement("small");
+
+            time.textContent =
+                "🕒 " + item.time;
+
+            div.appendChild(link);
+            div.appendChild(url);
+            div.appendChild(time);
+
+            output.appendChild(div);
+
+        });
+
+    }
+
+    box.style.display = "block";
 
 }
 
-box.style.display="block";
+
+function ppppCloseSavedPages() {
+
+    const box =
+        document.getElementById(
+            "ppppSavedPagesBox"
+        );
+
+    if (box) {
+        box.style.display = "none";
+    }
 
 }
 
 
-function ppppCloseSavedPages(){
+function ppppClearSavedPages() {
 
-document
-.getElementById("ppppSavedPagesBox")
-.style.display="none";
+    if (!confirm(
+        "🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
+    )) return;
 
-}
+    localStorage.removeItem(
+        PPPP_KEYS.liked
+    );
 
+    localStorage.removeItem(
+        PPPP_KEYS.favorite
+    );
 
-function ppppClearSavedPages(){
+    localStorage.removeItem(
+        PPPP_KEYS.pinned
+    );
 
-if(!confirm(
-"🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
-))return;
-
-localStorage.removeItem(PPPP_KEYS.liked);
-localStorage.removeItem(PPPP_KEYS.favorite);
-localStorage.removeItem(PPPP_KEYS.pinned);
-
-ppppUpdateCounts();
-ppppUpdateButtonStates();
+    ppppUpdateCounts();
+    ppppUpdateButtonStates();
 
 }
 
@@ -3285,69 +3444,91 @@ ppppUpdateButtonStates();
    APP
 ========================================================= */
 
-function ppppApp(){
+function ppppApp() {
 
-alert(
-"📱 PPPP App\n\n"+
-"Browser-এর Add to Home Screen ব্যবহার করে PPPP App ব্যবহার করুন।"
-);
-
-}
-
-
-function ppppShareApp(){
-
-const url=
-"https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk";
-
-if(navigator.share){
-
-navigator.share({
-title:"PPPP App",
-text:"Download the official PPPP App",
-url:url
-}).catch(function(){});
-
-}else{
-
-ppppCopyText(url);
-
-}
+    alert(
+        "📱 PPPP App\n\n" +
+        "Browser-এর Add to Home Screen ব্যবহার করে PPPP App ব্যবহার করুন।"
+    );
 
 }
 
 
-function ppppShareWebsite(){
+function ppppShareApp() {
 
-if(navigator.share){
+    const url =
+        "https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk";
 
-navigator.share({
-title:"PPPP Bangladesh",
-url:"https://naz-niaz.github.io/pppp_bangladesh/"
-}).catch(function(){});
+    if (navigator.share) {
 
-}else{
+        navigator.share({
+            title: "PPPP App",
+            text: "Download the official PPPP App",
+            url: url
+        }).catch(function() {});
 
-ppppCopyText(
-"https://naz-niaz.github.io/pppp_bangladesh/"
-);
+    } else {
+
+        ppppCopyText(url);
+
+    }
+
+}
+
+
+function ppppShareWebsite() {
+
+    const url =
+        "https://naz-niaz.github.io/pppp_bangladesh/";
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: "PPPP Bangladesh",
+            text:
+                "People's Power & Peace Party (PPPP) Bangladesh",
+            url: url
+        }).catch(function() {});
+
+    } else {
+
+        ppppCopyText(url);
+
+    }
 
 }
 
-}
 
+function ppppCopyText(text) {
 
-function ppppCopyText(text){
+    if (navigator.clipboard) {
 
-if(navigator.clipboard){
+        navigator.clipboard
+            .writeText(text)
+            .then(function() {
 
-navigator.clipboard.writeText(text);
+                alert(
+                    "📋 Copied successfully!"
+                );
 
-}else{
+            })
+            .catch(function() {
 
-prompt("Copy:",text);
+                prompt(
+                    "Copy:",
+                    text
+                );
 
-}
+            });
+
+    } else {
+
+        prompt(
+            "Copy:",
+            text
+        );
+
+    }
 
 }
 
@@ -3356,11 +3537,11 @@ prompt("Copy:",text);
    BOOKMARK
 ========================================================= */
 
-function ppppBookmark(){
+function ppppBookmark() {
 
-alert(
-"🔖 Browser-এর Bookmark ব্যবহার করে এই page bookmark করুন।"
-);
+    alert(
+        "🔖 Browser-এর Bookmark ব্যবহার করে এই page bookmark করুন।"
+    );
 
 }
 
@@ -3369,69 +3550,108 @@ alert(
    HISTORY
 ========================================================= */
 
-function ppppHistory(){
+function ppppHistory() {
 
-let list=ppppGetList("history");
-const page=ppppCurrentPage();
+    let list =
+        ppppGetList("history");
 
-list=list.filter(function(item){
-return item.url!==page.url;
-});
+    const page =
+        ppppCurrentPage();
 
-list.unshift(page);
-list=list.slice(0,100);
+    list =
+        list.filter(function(item) {
+            return item.url !== page.url;
+        });
 
-ppppSaveList("history",list);
+    list.unshift(page);
 
-}
+    list =
+        list.slice(0, 100);
 
-
-function ppppShowHistory(){
-
-const list=ppppGetList("history");
-
-const box=document.getElementById("ppppSavedPagesBox");
-const output=document.getElementById("ppppSavedList");
-const title=document.getElementById("ppppSavedTitle");
-
-title.textContent="📜 History List";
-output.innerHTML="";
-
-if(!list.length){
-
-output.innerHTML=
-"<div style='padding:25px;text-align:center;color:#777;'>"+
-"History List is empty."+
-"</div>";
-
-}else{
-
-list.forEach(function(item){
-
-const div=document.createElement("div");
-div.className="pppp-saved-item";
-
-const link=document.createElement("a");
-link.href=item.url;
-link.textContent=item.title;
-
-const url=document.createElement("small");
-url.textContent=item.url;
-
-const time=document.createElement("small");
-time.textContent="🕒 "+item.time;
-
-div.appendChild(link);
-div.appendChild(url);
-div.appendChild(time);
-
-output.appendChild(div);
-
-});
+    ppppSaveList(
+        "history",
+        list
+    );
 
 }
 
-box.style.display="block";
+
+function ppppShowHistory() {
+
+    const list =
+        ppppGetList("history");
+
+    const box =
+        document.getElementById(
+            "ppppSavedPagesBox"
+        );
+
+    const output =
+        document.getElementById(
+            "ppppSavedList"
+        );
+
+    const title =
+        document.getElementById(
+            "ppppSavedTitle"
+        );
+
+    if (!box || !output || !title) return;
+
+    title.textContent =
+        "📜 History List";
+
+    output.innerHTML = "";
+
+    if (!list.length) {
+
+        output.innerHTML =
+            "<div style='padding:25px;text-align:center;color:#777;'>" +
+            "History List is empty." +
+            "</div>";
+
+    } else {
+
+        list.forEach(function(item) {
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "pppp-saved-item";
+
+            const link =
+                document.createElement("a");
+
+            link.href =
+                item.url;
+
+            link.textContent =
+                item.title;
+
+            const url =
+                document.createElement("small");
+
+            url.textContent =
+                item.url;
+
+            const time =
+                document.createElement("small");
+
+            time.textContent =
+                "🕒 " + item.time;
+
+            div.appendChild(link);
+            div.appendChild(url);
+            div.appendChild(time);
+
+            output.appendChild(div);
+
+        });
+
+    }
+
+    box.style.display = "block";
 
 }
 
@@ -3440,14 +3660,24 @@ box.style.display="block";
    TAGS
 ========================================================= */
 
-function ppppTags(){
+function ppppTags() {
 
-const key="ppppTags_"+window.location.href;
-const title=document.title||"PPPP Page";
+    const key =
+        "ppppTags_" +
+        window.location.href;
 
-localStorage.setItem(key,title);
+    const title =
+        document.title ||
+        "PPPP Page";
 
-alert("🏷️ Page Tag: "+title);
+    localStorage.setItem(
+        key,
+        title
+    );
+
+    alert(
+        "🏷️ Page Tag: " + title
+    );
 
 }
 
@@ -3456,26 +3686,36 @@ alert("🏷️ Page Tag: "+title);
    CONTENTS
 ========================================================= */
 
-function ppppContents(){
+function ppppContents() {
 
-const headings=document.querySelectorAll("h1,h2,h3,h4,h5,h6");
+    const headings =
+        document.querySelectorAll(
+            "h1,h2,h3,h4,h5,h6"
+        );
 
-if(!headings.length){
+    if (!headings.length) {
 
-alert("📑 No page contents found.");
-return;
+        alert(
+            "📑 No page contents found."
+        );
 
-}
+        return;
 
-let text="";
+    }
 
-headings.forEach(function(h,i){
+    let text = "";
 
-text+=(i+1)+". "+h.innerText+"\n";
+    headings.forEach(function(h, i) {
 
-});
+        text +=
+            (i + 1) +
+            ". " +
+            h.innerText +
+            "\n";
 
-alert(text);
+    });
+
+    alert(text);
 
 }
 
@@ -3484,37 +3724,60 @@ alert(text);
    STATISTICS
 ========================================================= */
 
-function ppppStatistics(){
+function ppppStatistics() {
 
-const bodyText=document.body.innerText.trim();
+    const bodyText =
+        document.body.innerText.trim();
 
-const words=
-bodyText.split(/\s+/).filter(Boolean).length;
+    const words =
+        bodyText
+            .split(/\s+/)
+            .filter(Boolean)
+            .length;
 
-const pictures=document.querySelectorAll("img").length;
-const videos=document.querySelectorAll("video").length;
-const audios=document.querySelectorAll("audio").length;
-const sections=document.querySelectorAll("section").length;
-const headings=document.querySelectorAll("h1,h2,h3,h4,h5,h6").length;
-const tables=document.querySelectorAll("table").length;
-const buttons=document.querySelectorAll("button").length;
-const links=document.querySelectorAll("a").length;
-const forms=document.querySelectorAll("form").length;
+    const pictures =
+        document.querySelectorAll("img").length;
 
-alert(
-"📊 PPPP PAGE STATISTICS\n\n"+
-"📄 Page: "+document.title+"\n\n"+
-"🔤 Words: "+words+"\n"+
-"🖼️ Pictures: "+pictures+"\n"+
-"🎵 Audio: "+audios+"\n"+
-"🎥 Videos: "+videos+"\n"+
-"📑 Sections: "+sections+"\n"+
-"📋 Headings: "+headings+"\n"+
-"📊 Tables: "+tables+"\n"+
-"🔗 Links: "+links+"\n"+
-"🔘 Buttons: "+buttons+"\n"+
-"📝 Forms: "+forms
-);
+    const videos =
+        document.querySelectorAll("video").length;
+
+    const audios =
+        document.querySelectorAll("audio").length;
+
+    const sections =
+        document.querySelectorAll("section").length;
+
+    const headings =
+        document.querySelectorAll(
+            "h1,h2,h3,h4,h5,h6"
+        ).length;
+
+    const tables =
+        document.querySelectorAll("table").length;
+
+    const buttons =
+        document.querySelectorAll("button").length;
+
+    const links =
+        document.querySelectorAll("a").length;
+
+    const forms =
+        document.querySelectorAll("form").length;
+
+    alert(
+        "📊 PPPP PAGE STATISTICS\n\n" +
+        "📄 Page: " + document.title + "\n\n" +
+        "🔤 Words: " + words + "\n" +
+        "🖼️ Pictures: " + pictures + "\n" +
+        "🎵 Audio: " + audios + "\n" +
+        "🎥 Videos: " + videos + "\n" +
+        "📑 Sections: " + sections + "\n" +
+        "📋 Headings: " + headings + "\n" +
+        "📊 Tables: " + tables + "\n" +
+        "🔗 Links: " + links + "\n" +
+        "🔘 Buttons: " + buttons + "\n" +
+        "📝 Forms: " + forms
+    );
 
 }
 
@@ -3523,81 +3786,127 @@ alert(
    THEME
 ========================================================= */
 
-function ppppThemeDay(){
+function ppppThemeDay() {
 
-document.body.classList.remove("pppp-dark-mode");
+    document.body.classList.remove(
+        "pppp-dark-mode"
+    );
 
-localStorage.setItem("ppppTheme","day");
-
-}
-
-
-function ppppThemeNight(){
-
-document.body.classList.add("pppp-dark-mode");
-
-localStorage.setItem("ppppTheme","night");
+    localStorage.setItem(
+        "ppppTheme",
+        "day"
+    );
 
 }
 
 
-function ppppThemeAuto(){
+function ppppThemeNight() {
 
-localStorage.setItem("ppppTheme","auto");
+    document.body.classList.add(
+        "pppp-dark-mode"
+    );
 
-ppppApplyAutoTheme();
-
-}
-
-
-function ppppApplyAutoTheme(){
-
-const dark=
-window.matchMedia(
-"(prefers-color-scheme:dark)"
-).matches;
-
-if(dark){
-
-document.body.classList.add("pppp-dark-mode");
-
-}else{
-
-document.body.classList.remove("pppp-dark-mode");
-
-}
+    localStorage.setItem(
+        "ppppTheme",
+        "night"
+    );
 
 }
 
 
-window.matchMedia(
-"(prefers-color-scheme:dark)"
-).addEventListener(
-"change",
-function(){
+function ppppThemeAuto() {
 
-if(localStorage.getItem("ppppTheme")==="auto"){
-ppppApplyAutoTheme();
+    localStorage.setItem(
+        "ppppTheme",
+        "auto"
+    );
+
+    ppppApplyAutoTheme();
+
 }
 
-});
+
+function ppppApplyAutoTheme() {
+
+    const dark =
+        window.matchMedia(
+            "(prefers-color-scheme:dark)"
+        ).matches;
+
+    if (dark) {
+
+        document.body.classList.add(
+            "pppp-dark-mode"
+        );
+
+    } else {
+
+        document.body.classList.remove(
+            "pppp-dark-mode"
+        );
+
+    }
+
+}
+
+
+const ppppDarkMedia =
+    window.matchMedia(
+        "(prefers-color-scheme:dark)"
+    );
+
+
+function ppppHandleSystemTheme() {
+
+    if (
+        localStorage.getItem(
+            "ppppTheme"
+        ) === "auto"
+    ) {
+        ppppApplyAutoTheme();
+    }
+
+}
+
+
+if (ppppDarkMedia.addEventListener) {
+
+    ppppDarkMedia.addEventListener(
+        "change",
+        ppppHandleSystemTheme
+    );
+
+} else {
+
+    ppppDarkMedia.addListener(
+        ppppHandleSystemTheme
+    );
+
+}
 
 
 /* =========================================================
    FONT
 ========================================================= */
 
-let ppppFontScale=100;
+let ppppFontScale = 100;
 
-function ppppFontSize(value){
 
-ppppFontScale+=value*5;
+function ppppFontSize(value) {
 
-if(ppppFontScale<80)ppppFontScale=80;
-if(ppppFontScale>140)ppppFontScale=140;
+    ppppFontScale +=
+        value * 5;
 
-document.documentElement.style.fontSize=
-ppppFontScale+"%";
+    if (ppppFontScale < 80) {
+        ppppFontScale = 80;
+    }
+
+    if (ppppFontScale > 140) {
+        ppppFontScale = 140;
+    }
+
+    document.documentElement.style.fontSize =
+        ppppFontScale + "%";
 
 }
 
@@ -3606,33 +3915,43 @@ ppppFontScale+"%";
    ZOOM
 ========================================================= */
 
-let ppppZoomLevel=1;
+let ppppZoomLevel = 1;
 
-function ppppZoom(value){
 
-ppppZoomLevel+=value*.1;
+function ppppZoom(value) {
 
-if(ppppZoomLevel<.8)ppppZoomLevel=.8;
-if(ppppZoomLevel>1.5)ppppZoomLevel=1.5;
+    ppppZoomLevel +=
+        value * 0.1;
 
-document.body.style.zoom=ppppZoomLevel;
+    if (ppppZoomLevel < 0.8) {
+        ppppZoomLevel = 0.8;
+    }
+
+    if (ppppZoomLevel > 1.5) {
+        ppppZoomLevel = 1.5;
+    }
+
+    document.body.style.zoom =
+        ppppZoomLevel;
 
 }
 
 
-function ppppZoomReset(){
+function ppppZoomReset() {
 
-ppppZoomLevel=1;
-document.body.style.zoom="1";
+    ppppZoomLevel = 1;
+
+    document.body.style.zoom =
+        "1";
 
 }
 
 
-function ppppContrast(){
+function ppppContrast() {
 
-document.body.classList.toggle(
-"pppp-high-contrast"
-);
+    document.body.classList.toggle(
+        "pppp-high-contrast"
+    );
 
 }
 
@@ -3641,68 +3960,95 @@ document.body.classList.toggle(
    LANGUAGE
 ========================================================= */
 
-function ppppMainLanguage(){
+function ppppMainLanguage() {
 
-document.cookie=
-"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    document.cookie =
+        "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 
-location.reload();
-
-}
-
-
-function GTranslateFireEvent(element,event){
-
-try{
-
-if(document.createEvent){
-
-const evt=document.createEvent("HTMLEvents");
-
-evt.initEvent(event,true,true);
-
-element.dispatchEvent(evt);
-
-}
-
-}catch(e){}
+    location.reload();
 
 }
 
 
-function doGTranslate(lang_pair){
+function GTranslateFireEvent(
+    element,
+    event
+) {
 
-if(!lang_pair)return;
+    try {
 
-const lang=lang_pair.split("|")[1];
+        if (document.createEvent) {
 
-const select=document.querySelector(".goog-te-combo");
+            const evt =
+                document.createEvent(
+                    "HTMLEvents"
+                );
 
-if(select){
+            evt.initEvent(
+                event,
+                true,
+                true
+            );
 
-select.value=lang;
+            element.dispatchEvent(evt);
 
-GTranslateFireEvent(select,"change");
+        }
 
-return;
+    } catch (e) {}
 
 }
 
-document.cookie=
-"googtrans=/bn/"+lang+";path=/";
 
-location.reload();
+function doGTranslate(lang_pair) {
+
+    if (!lang_pair) return;
+
+    const lang =
+        lang_pair.split("|")[1];
+
+    const select =
+        document.querySelector(
+            ".goog-te-combo"
+        );
+
+    if (select) {
+
+        select.value = lang;
+
+        GTranslateFireEvent(
+            select,
+            "change"
+        );
+
+        return;
+
+    }
+
+    document.cookie =
+        "googtrans=/bn/" +
+        lang +
+        ";path=/";
+
+    location.reload();
 
 }
 
 
-function ppppBangla(){
-doGTranslate("bn|bn");
+function ppppBangla() {
+
+    doGTranslate(
+        "bn|bn"
+    );
+
 }
 
 
-function ppppEnglish(){
-doGTranslate("bn|en");
+function ppppEnglish() {
+
+    doGTranslate(
+        "bn|en"
+    );
+
 }
 
 
@@ -3710,203 +4056,242 @@ doGTranslate("bn|en");
    READ ALOUD
 ========================================================= */
 
-let ppppSpeechStopped=false;
-
-function ppppGetMaleVoice(lang){
-
-const voices=window.speechSynthesis.getVoices();
-
-const prefix=lang.split("-")[0].toLowerCase();
-
-const maleNames=[
-"male",
-"man",
-"david",
-"mark",
-"george",
-"daniel",
-"alex",
-"fred"
-];
-
-let voice=voices.find(function(v){
-
-return v.lang.toLowerCase().startsWith(prefix)&&
-maleNames.some(function(name){
-
-return v.name.toLowerCase().includes(name);
-
-});
-
-});
-
-if(!voice){
-
-voice=voices.find(function(v){
-
-return v.lang.toLowerCase().startsWith(prefix);
-
-});
-
-}
-
-return voice||null;
-
-}
+let ppppSpeechStopped = false;
 
 
-function ppppCleanSpeechText(){
+function ppppGetMaleVoice(lang) {
 
-const clone=document.body.cloneNode(true);
+    const voices =
+        window.speechSynthesis.getVoices();
 
-clone.querySelectorAll(
-"#ppppSettingsPanel,"+
-"#ppppSettingsOverlay,"+
-"#ppppSettingsBtn,"+
-"#shareBtn,"+
-"#topBtn,"+
-"#ppppSavedPagesBox,"+
-"script,"+
-"style,"+
-"noscript"
-)
-.forEach(function(el){
+    const prefix =
+        lang
+            .split("-")[0]
+            .toLowerCase();
 
-el.remove();
+    const maleNames = [
+        "male",
+        "man",
+        "david",
+        "mark",
+        "george",
+        "daniel",
+        "alex",
+        "fred"
+    ];
 
-});
+    let voice =
+        voices.find(function(v) {
 
-return clone.innerText
-.replace(/\s+/g," ")
-.trim();
+            return (
+                v.lang
+                    .toLowerCase()
+                    .startsWith(prefix) &&
+                maleNames.some(function(name) {
+
+                    return v.name
+                        .toLowerCase()
+                        .includes(name);
+
+                })
+            );
+
+        });
+
+    if (!voice) {
+
+        voice =
+            voices.find(function(v) {
+
+                return v.lang
+                    .toLowerCase()
+                    .startsWith(prefix);
+
+            });
+
+    }
+
+    return voice || null;
 
 }
 
 
-function ppppSpeak(text,lang){
+function ppppCleanSpeechText() {
 
-if(!("speechSynthesis" in window)){
+    const clone =
+        document.body.cloneNode(true);
 
-alert("🔊 আপনার browser-এ Read Aloud support নেই।");
-return;
+    clone.querySelectorAll(
+        "#ppppSettingsPanel," +
+        "#ppppSettingsOverlay," +
+        "#ppppSettingsBtn," +
+        "#shareBtn," +
+        "#topBtn," +
+        "#ppppSavedPagesBox," +
+        "script," +
+        "style," +
+        "noscript"
+    )
+    .forEach(function(el) {
+        el.remove();
+    });
 
-}
-
-speechSynthesis.cancel();
-
-ppppSpeechStopped=false;
-
-const utterance=
-new SpeechSynthesisUtterance(text);
-
-utterance.lang=lang;
-utterance.rate=.88;
-utterance.pitch=.85;
-
-const voice=ppppGetMaleVoice(lang);
-
-if(voice)utterance.voice=voice;
-
-speechSynthesis.speak(utterance);
+    return clone.innerText
+        .replace(/\s+/g, " ")
+        .trim();
 
 }
 
 
-function ppppReadAloudMain(){
+function ppppSpeak(text, lang) {
 
-const text=ppppCleanSpeechText();
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
-if(!text)return;
+        alert(
+            "🔊 আপনার browser-এ Read Aloud support নেই।"
+        );
 
-speechSynthesis.cancel();
+        return;
 
-ppppSpeechStopped=false;
+    }
 
-const regex=/[\u0980-\u09FF]/;
+    speechSynthesis.cancel();
 
-const parts=text.split(
-/(?<=[.!?।])\s+/
-);
+    ppppSpeechStopped = false;
 
-let index=0;
+    const utterance =
+        new SpeechSynthesisUtterance(text);
 
-function next(){
+    utterance.lang = lang;
+    utterance.rate = 0.88;
+    utterance.pitch = 0.85;
 
-if(ppppSpeechStopped||
-index>=parts.length)return;
+    const voice =
+        ppppGetMaleVoice(lang);
 
-const part=parts[index++].trim();
+    if (voice) {
+        utterance.voice = voice;
+    }
 
-if(!part){
-
-next();
-return;
-
-}
-
-const lang=
-regex.test(part)
-?"bn-BD"
-:"en-US";
-
-const u=new SpeechSynthesisUtterance(part);
-
-u.lang=lang;
-u.rate=.88;
-u.pitch=.85;
-
-const voice=ppppGetMaleVoice(lang);
-
-if(voice)u.voice=voice;
-
-u.onend=next;
-u.onerror=next;
-
-speechSynthesis.speak(u);
-
-}
-
-next();
+    speechSynthesis.speak(
+        utterance
+    );
 
 }
 
 
-function ppppReadAloudBangla(){
+function ppppReadAloudMain() {
 
-ppppSpeak(
-ppppCleanSpeechText(),
-"bn-BD"
-);
+    const text =
+        ppppCleanSpeechText();
+
+    if (!text) return;
+
+    speechSynthesis.cancel();
+
+    ppppSpeechStopped = false;
+
+    const regex =
+        /[\u0980-\u09FF]/;
+
+    const parts =
+        text.split(
+            /(?<=[.!?।])\s+/
+        );
+
+    let index = 0;
+
+
+    function next() {
+
+        if (
+            ppppSpeechStopped ||
+            index >= parts.length
+        ) {
+            return;
+        }
+
+        const part =
+            parts[index++].trim();
+
+        if (!part) {
+
+            next();
+            return;
+
+        }
+
+        const lang =
+            regex.test(part)
+                ? "bn-BD"
+                : "en-US";
+
+        const u =
+            new SpeechSynthesisUtterance(
+                part
+            );
+
+        u.lang = lang;
+        u.rate = 0.88;
+        u.pitch = 0.85;
+
+        const voice =
+            ppppGetMaleVoice(lang);
+
+        if (voice) {
+            u.voice = voice;
+        }
+
+        u.onend = next;
+        u.onerror = next;
+
+        speechSynthesis.speak(u);
+
+    }
+
+    next();
 
 }
 
 
-function ppppReadAloudEnglish(){
+function ppppReadAloudBangla() {
 
-ppppSpeak(
-ppppCleanSpeechText(),
-"en-US"
-);
-
-}
-
-
-function ppppMute(){
-
-ppppSpeechStopped=true;
-
-if("speechSynthesis" in window){
-
-speechSynthesis.cancel();
-
-}
+    ppppSpeak(
+        ppppCleanSpeechText(),
+        "bn-BD"
+    );
 
 }
 
 
-function ppppUnmute(){
+function ppppReadAloudEnglish() {
 
-ppppSpeechStopped=false;
+    ppppSpeak(
+        ppppCleanSpeechText(),
+        "en-US"
+    );
+
+}
+
+
+function ppppMute() {
+
+    ppppSpeechStopped = true;
+
+    if (
+        "speechSynthesis" in window
+    ) {
+        speechSynthesis.cancel();
+    }
+
+}
+
+
+function ppppUnmute() {
+
+    ppppSpeechStopped = false;
 
 }
 
@@ -3915,11 +4300,11 @@ ppppSpeechStopped=false;
    LARGE CONTROLS
 ========================================================= */
 
-function ppppLargeControls(){
+function ppppLargeControls() {
 
-document.body.classList.toggle(
-"pppp-large-controls"
-);
+    document.body.classList.toggle(
+        "pppp-large-controls"
+    );
 
 }
 
@@ -3928,112 +4313,384 @@ document.body.classList.toggle(
    SOUND CONTROL
 ========================================================= */
 
-function ppppGetMedia(){
+const PPPP_SOUND_VOLUMES = {
+    notification:
+        Number(
+            localStorage.getItem(
+                "ppppNotificationVolume"
+            )
+        ) || 1,
 
-return Array.from(
-document.querySelectorAll(
-"audio,video"
-)
-);
+    music:
+        Number(
+            localStorage.getItem(
+                "ppppMusicVolume"
+            )
+        ) || 1,
 
-}
+    video:
+        Number(
+            localStorage.getItem(
+                "ppppVideoVolume"
+            )
+        ) || 1,
 
-
-function ppppVolumeUp(){
-
-ppppGetMedia().forEach(function(media){
-
-media.volume=
-Math.min(1,media.volume+.1);
-
-});
-
-}
-
-
-function ppppVolumeDown(){
-
-ppppGetMedia().forEach(function(media){
-
-media.volume=
-Math.max(0,media.volume-.1);
-
-});
-
-}
+    master:
+        Number(
+            localStorage.getItem(
+                "ppppMasterVolume"
+            )
+        ) || 1
+};
 
 
-function ppppMuteAllMedia(){
+function ppppGetMedia() {
 
-ppppGetMedia().forEach(function(media){
-
-media.muted=true;
-
-});
+    return Array.from(
+        document.querySelectorAll(
+            "audio,video"
+        )
+    );
 
 }
 
 
-function ppppUnmuteAllMedia(){
+function ppppSetVolume(type, value) {
 
-ppppGetMedia().forEach(function(media){
+    const volume =
+        Math.max(
+            0,
+            Math.min(
+                1,
+                Number(value)
+            )
+        );
 
-media.muted=false;
+    if (
+        Object.prototype.hasOwnProperty.call(
+            PPPP_SOUND_VOLUMES,
+            type
+        )
+    ) {
 
-});
+        PPPP_SOUND_VOLUMES[type] =
+            volume;
+
+        localStorage.setItem(
+            "pppp" +
+            type.charAt(0).toUpperCase() +
+            type.slice(1) +
+            "Volume",
+            volume
+        );
+
+    }
+
+    ppppApplyMediaVolumes();
+
+}
+
+
+function ppppApplyMediaVolumes() {
+
+    ppppGetMedia()
+        .forEach(function(media) {
+
+            let categoryVolume = 1;
+
+            if (
+                media.tagName.toLowerCase() ===
+                "video"
+            ) {
+
+                categoryVolume =
+                    PPPP_SOUND_VOLUMES.video;
+
+            } else {
+
+                categoryVolume =
+                    PPPP_SOUND_VOLUMES.music;
+
+            }
+
+            media.volume =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        categoryVolume *
+                        PPPP_SOUND_VOLUMES.master
+                    )
+                );
+
+        });
+
+    const notification =
+        document.getElementById(
+            "ppppNotificationVolume"
+        );
+
+    const music =
+        document.getElementById(
+            "ppppMusicVolume"
+        );
+
+    const video =
+        document.getElementById(
+            "ppppVideoVolume"
+        );
+
+    const master =
+        document.getElementById(
+            "ppppMasterVolume"
+        );
+
+    if (notification) {
+        notification.value =
+            PPPP_SOUND_VOLUMES.notification;
+    }
+
+    if (music) {
+        music.value =
+            PPPP_SOUND_VOLUMES.music;
+    }
+
+    if (video) {
+        video.value =
+            PPPP_SOUND_VOLUMES.video;
+    }
+
+    if (master) {
+        master.value =
+            PPPP_SOUND_VOLUMES.master;
+    }
+
+}
+
+
+function ppppVolumeUp() {
+
+    ppppGetMedia()
+        .forEach(function(media) {
+
+            media.volume =
+                Math.min(
+                    1,
+                    media.volume + 0.1
+                );
+
+        });
+
+}
+
+
+function ppppVolumeDown() {
+
+    ppppGetMedia()
+        .forEach(function(media) {
+
+            media.volume =
+                Math.max(
+                    0,
+                    media.volume - 0.1
+                );
+
+        });
+
+}
+
+
+function ppppMuteAllMedia() {
+
+    ppppGetMedia()
+        .forEach(function(media) {
+            media.muted = true;
+        });
+
+}
+
+
+function ppppUnmuteAllMedia() {
+
+    ppppGetMedia()
+        .forEach(function(media) {
+            media.muted = false;
+        });
 
 }
 
 
 /* =========================================================
    CALCULATOR
+   HTML-compatible calculator
 ========================================================= */
 
-function ppppCalculate(){
+let ppppCalcExpression = "";
 
-const input=
-document.getElementById(
-"ppppCalculatorInput"
-).value.trim();
 
-const result=
-document.getElementById(
-"ppppCalculatorResult"
-);
+function ppppCalcDisplayUpdate() {
 
-if(!input){
+    const display =
+        document.getElementById(
+            "ppppCalcDisplay"
+        );
 
-result.textContent="দয়া করে হিসাব লিখুন।";
-return;
+    if (display) {
 
-}
+        display.value =
+            ppppCalcExpression || "0";
 
-try{
-
-const safe=input
-.replace(/×/g,"*")
-.replace(/÷/g,"/")
-.replace(/[^0-9+\-*/().%\s]/g,"");
-
-if(!safe){
-
-throw new Error();
+    }
 
 }
 
-const answer=Function(
-'"use strict";return ('+safe+')'
-)();
 
-result.textContent=
-"🧮 Result: "+answer;
+function ppppCalcInput(value) {
 
-}catch(e){
+    if (
+        ppppCalcExpression === "Error"
+    ) {
+        ppppCalcExpression = "";
+    }
 
-result.textContent=
-"❌ Invalid calculation.";
+    ppppCalcExpression += value;
+
+    ppppCalcDisplayUpdate();
 
 }
+
+
+function ppppCalcClear() {
+
+    ppppCalcExpression = "";
+
+    ppppCalcDisplayUpdate();
+
+}
+
+
+function ppppCalcBack() {
+
+    ppppCalcExpression =
+        ppppCalcExpression.slice(
+            0,
+            -1
+        );
+
+    ppppCalcDisplayUpdate();
+
+}
+
+
+function ppppCalcEqual() {
+
+    if (!ppppCalcExpression) return;
+
+    try {
+
+        const safe =
+            ppppCalcExpression
+                .replace(/×/g, "*")
+                .replace(/÷/g, "/")
+                .replace(
+                    /[^0-9+\-*/().%\s]/g,
+                    ""
+                );
+
+        if (!safe) {
+            throw new Error();
+        }
+
+        const answer =
+            Function(
+                '"use strict";return (' +
+                safe +
+                ')'
+            )();
+
+        if (
+            typeof answer !== "number" ||
+            !Number.isFinite(answer)
+        ) {
+            throw new Error();
+        }
+
+        ppppCalcExpression =
+            String(answer);
+
+        ppppCalcDisplayUpdate();
+
+    } catch (e) {
+
+        ppppCalcExpression =
+            "Error";
+
+        ppppCalcDisplayUpdate();
+
+    }
+
+}
+
+
+/*
+   পুরোনো calculator function থাকলে
+   সেটিও compatibility-এর জন্য রাখা হলো।
+*/
+
+function ppppCalculate() {
+
+    const input =
+        document.getElementById(
+            "ppppCalculatorInput"
+        );
+
+    const result =
+        document.getElementById(
+            "ppppCalculatorResult"
+        );
+
+    if (!input || !result) return;
+
+    const value =
+        input.value.trim();
+
+    if (!value) {
+
+        result.textContent =
+            "দয়া করে হিসাব লিখুন।";
+
+        return;
+
+    }
+
+    try {
+
+        const safe =
+            value
+                .replace(/×/g, "*")
+                .replace(/÷/g, "/")
+                .replace(
+                    /[^0-9+\-*/().%\s]/g,
+                    ""
+                );
+
+        const answer =
+            Function(
+                '"use strict";return (' +
+                safe +
+                ')'
+            )();
+
+        result.textContent =
+            "🧮 Result: " +
+            answer;
+
+    } catch (e) {
+
+        result.textContent =
+            "❌ Invalid calculation.";
+
+    }
 
 }
 
@@ -4042,75 +4699,91 @@ result.textContent=
    AGE CALCULATOR
 ========================================================= */
 
-function ppppCalculateAge(){
+function ppppCalculateAge() {
 
-const value=
-document.getElementById(
-"ppppBirthDate"
-).value;
+    const input =
+        document.getElementById(
+            "ppppBirthDate"
+        );
 
-const result=
-document.getElementById(
-"ppppAgeResult"
-);
+    const result =
+        document.getElementById(
+            "ppppAgeResult"
+        );
 
-if(!value){
+    if (!input || !result) return;
 
-result.textContent=
-"জন্মতারিখ নির্বাচন করুন।";
+    const value =
+        input.value;
 
-return;
+    if (!value) {
 
-}
+        result.textContent =
+            "জন্মতারিখ নির্বাচন করুন।";
 
-const birth=new Date(value+"T00:00:00");
-const today=new Date();
+        return;
 
-if(birth>today){
+    }
 
-result.textContent=
-"❌ জন্মতারিখ ভবিষ্যতের হতে পারে না।";
+    const birth =
+        new Date(
+            value + "T00:00:00"
+        );
 
-return;
+    const today =
+        new Date();
 
-}
+    if (birth > today) {
 
-let years=
-today.getFullYear()-birth.getFullYear();
+        result.textContent =
+            "❌ জন্মতারিখ ভবিষ্যতের হতে পারে না।";
 
-let months=
-today.getMonth()-birth.getMonth();
+        return;
 
-let days=
-today.getDate()-birth.getDate();
+    }
 
-if(days<0){
+    let years =
+        today.getFullYear() -
+        birth.getFullYear();
 
-months--;
+    let months =
+        today.getMonth() -
+        birth.getMonth();
 
-const previousMonth=
-new Date(
-today.getFullYear(),
-today.getMonth(),
-0
-).getDate();
+    let days =
+        today.getDate() -
+        birth.getDate();
 
-days+=previousMonth;
+    if (days < 0) {
 
-}
+        months--;
 
-if(months<0){
+        const previousMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                0
+            ).getDate();
 
-years--;
-months+=12;
+        days += previousMonth;
 
-}
+    }
 
-result.textContent=
-"🎂 Age: "+
-years+" বছর "+
-months+" মাস "+
-days+" দিন";
+    if (months < 0) {
+
+        years--;
+        months += 12;
+
+    }
+
+    result.textContent =
+        "🎂 Age: " +
+        years +
+        " বছর " +
+        months +
+        " মাস " +
+        days +
+        " দিন";
 
 }
 
@@ -4119,58 +4792,155 @@ days+" দিন";
    COMPASS
 ========================================================= */
 
-let ppppCompassHandler=null;
+let ppppCompassHandler = null;
 
-function ppppStartCompass(){
 
-if(!window.DeviceOrientationEvent){
+function ppppStopCompass() {
 
-alert("🧭 এই ডিভাইসে Compass support নেই।");
-return;
+    if (!ppppCompassHandler) return;
 
-}
+    window.removeEventListener(
+        "deviceorientationabsolute",
+        ppppCompassHandler,
+        true
+    );
 
-ppppCompassHandler=function(event){
+    window.removeEventListener(
+        "deviceorientation",
+        ppppCompassHandler,
+        true
+    );
 
-let heading=null;
-
-if(typeof event.webkitCompassHeading==="number"){
-
-heading=event.webkitCompassHeading;
-
-}else if(typeof event.alpha==="number"){
-
-heading=360-event.alpha;
+    ppppCompassHandler = null;
 
 }
 
-if(heading===null)return;
 
-const compass=
-document.getElementById("ppppCompass");
+async function ppppStartCompass() {
 
-const degree=
-document.getElementById("ppppCompassDegree");
+    if (
+        !window.DeviceOrientationEvent
+    ) {
 
-compass.style.transform=
-"rotate("+(-heading)+"deg)";
+        alert(
+            "🧭 এই ডিভাইসে Compass support নেই।"
+        );
 
-degree.textContent=
-Math.round(heading)+"°";
+        return;
 
-};
+    }
 
-window.addEventListener(
-"deviceorientationabsolute",
-ppppCompassHandler,
-true
-);
+    /*
+       iPhone/iPad-এর permission
+    */
 
-window.addEventListener(
-"deviceorientation",
-ppppCompassHandler,
-true
-);
+    if (
+        typeof DeviceOrientationEvent
+            .requestPermission ===
+        "function"
+    ) {
+
+        try {
+
+            const permission =
+                await DeviceOrientationEvent
+                    .requestPermission();
+
+            if (
+                permission !== "granted"
+            ) {
+
+                alert(
+                    "🧭 Compass permission দেওয়া হয়নি।"
+                );
+
+                return;
+
+            }
+
+        } catch (e) {
+
+            alert(
+                "🧭 Compass permission নেওয়া সম্ভব হয়নি।"
+            );
+
+            return;
+
+        }
+
+    }
+
+    ppppStopCompass();
+
+    ppppCompassHandler =
+        function(event) {
+
+            let heading = null;
+
+            if (
+                typeof event.webkitCompassHeading ===
+                "number"
+            ) {
+
+                heading =
+                    event.webkitCompassHeading;
+
+            } else if (
+                typeof event.alpha ===
+                "number"
+            ) {
+
+                heading =
+                    360 - event.alpha;
+
+            }
+
+            if (heading === null) return;
+
+            heading =
+                (heading + 360) % 360;
+
+            const compass =
+                document.getElementById(
+                    "ppppCompass"
+                );
+
+            const degree =
+                document.getElementById(
+                    "ppppCompassDegree"
+                );
+
+            if (compass) {
+
+                compass.style.transform =
+                    "rotate(" +
+                    (-heading) +
+                    "deg)";
+
+            }
+
+            if (degree) {
+
+                degree.textContent =
+                    Math.round(heading) +
+                    "°";
+
+            }
+
+        };
+
+
+    window.addEventListener(
+        "deviceorientationabsolute",
+        ppppCompassHandler,
+        true
+    );
+
+    window.addEventListener(
+        "deviceorientation",
+        ppppCompassHandler,
+        true
+    );
 
 }
 
@@ -4179,45 +4949,96 @@ true
    TASBIH
 ========================================================= */
 
-let ppppTasbih=
-Number(
-localStorage.getItem("ppppTasbih")
-)||0;
+let ppppTasbih =
+    Number(
+        localStorage.getItem(
+            "ppppTasbih"
+        )
+    ) || 0;
 
 
-function ppppUpdateTasbih(){
+function ppppUpdateTasbih() {
 
-document.getElementById(
-"ppppTasbihCount"
-).textContent=ppppTasbih;
+    const count =
+        document.getElementById(
+            "ppppTasbihCount"
+        );
 
-}
+    if (count) {
 
+        count.textContent =
+            ppppTasbih;
 
-function ppppTasbihAdd(){
-
-ppppTasbih++;
-
-localStorage.setItem(
-"ppppTasbih",
-ppppTasbih
-);
-
-ppppUpdateTasbih();
+    }
 
 }
 
 
-function ppppTasbihReset(){
+function ppppTasbihIncrement() {
 
-ppppTasbih=0;
+    const targetInput =
+        document.getElementById(
+            "ppppTasbihTarget"
+        );
 
-localStorage.setItem(
-"ppppTasbih",
-"0"
-);
+    const target =
+        targetInput &&
+        Number(targetInput.value);
 
-ppppUpdateTasbih();
+    ppppTasbih++;
+
+    localStorage.setItem(
+        "ppppTasbih",
+        ppppTasbih
+    );
+
+    ppppUpdateTasbih();
+
+    if (
+        target > 0 &&
+        ppppTasbih >= target
+    ) {
+
+        if (
+            "speechSynthesis" in window
+        ) {
+
+            speechSynthesis.cancel();
+
+        }
+
+        alert(
+            "🎯 Tasbih Target সম্পন্ন হয়েছে!\n\n" +
+            "📿 Count: " +
+            ppppTasbih
+        );
+
+    }
+
+}
+
+
+/*
+   পুরোনো function-এর compatibility
+*/
+
+function ppppTasbihAdd() {
+
+    ppppTasbihIncrement();
+
+}
+
+
+function ppppTasbihReset() {
+
+    ppppTasbih = 0;
+
+    localStorage.setItem(
+        "ppppTasbih",
+        "0"
+    );
+
+    ppppUpdateTasbih();
 
 }
 
@@ -4226,77 +5047,143 @@ ppppUpdateTasbih();
    AZAN
 ========================================================= */
 
-const PPPP_AZAN_FILES={
-Bangladesh:"/pppp_bangladesh/azan/Azan_Bangladesh.mp3",
-Makkah:"/pppp_bangladesh/azan/Azan_Makkah.mp3",
-Madinah:"/pppp_bangladesh/azan/Azan_Madinah.mp3"
+const PPPP_AZAN_FILES = {
+
+    Bangladesh:
+        "/pppp_bangladesh/azan/Azan_Bangladesh.mp3",
+
+    Makkah:
+        "/pppp_bangladesh/azan/Azan_Makkah.mp3",
+
+    Madinah:
+        "/pppp_bangladesh/azan/Azan_Madinah.mp3"
+
 };
 
-let ppppAzanMuted=
-localStorage.getItem("ppppAzanMuted")==="true";
 
-let ppppSelectedAzan=
-localStorage.getItem("ppppSelectedAzan")
-||"Bangladesh";
+let ppppAzanMuted =
+    localStorage.getItem(
+        "ppppAzanMuted"
+    ) === "true";
 
 
-function ppppPlayAzan(type){
+let ppppSelectedAzan =
+    localStorage.getItem(
+        "ppppSelectedAzan"
+    ) || "Bangladesh";
 
-ppppSelectedAzan=type;
 
-localStorage.setItem(
-"ppppSelectedAzan",
-type
-);
+function ppppGetAzanAudio() {
 
-const audio=
-document.getElementById("ppppAzanAudio");
+    let audio =
+        document.getElementById(
+            "ppppAzanAudio"
+        );
 
-audio.src=PPPP_AZAN_FILES[type];
+    /*
+       HTML-এ audio না থাকলেও
+       JavaScript নিজে তৈরি করবে।
+    */
 
-audio.muted=ppppAzanMuted;
+    if (!audio) {
 
-audio.currentTime=0;
+        audio =
+            document.createElement(
+                "audio"
+            );
 
-audio.play().catch(function(){
+        audio.id =
+            "ppppAzanAudio";
 
-alert(
-"🕌 Azan চালু করতে browser-এর audio permission প্রয়োজন হতে পারে।"
-);
+        audio.preload =
+            "auto";
 
-});
+        audio.style.display =
+            "none";
+
+        document.body.appendChild(
+            audio
+        );
+
+    }
+
+    return audio;
 
 }
 
 
-function ppppAzanMute(){
+function ppppPlayAzan(type) {
 
-ppppAzanMuted=true;
+    if (
+        !PPPP_AZAN_FILES[type]
+    ) {
+        type = "Bangladesh";
+    }
 
-localStorage.setItem(
-"ppppAzanMuted",
-"true"
-);
+    ppppSelectedAzan =
+        type;
 
-document.getElementById(
-"ppppAzanAudio"
-).muted=true;
+    localStorage.setItem(
+        "ppppSelectedAzan",
+        type
+    );
+
+    const audio =
+        ppppGetAzanAudio();
+
+    audio.src =
+        PPPP_AZAN_FILES[type];
+
+    audio.muted =
+        ppppAzanMuted;
+
+    audio.volume =
+        Math.min(
+            1,
+            PPPP_SOUND_VOLUMES.music *
+            PPPP_SOUND_VOLUMES.master
+        );
+
+    audio.currentTime = 0;
+
+    audio.play()
+        .catch(function() {
+
+            alert(
+                "🕌 Azan চালু করতে browser-এর audio permission প্রয়োজন হতে পারে।"
+            );
+
+        });
 
 }
 
 
-function ppppAzanUnmute(){
+function ppppAzanMute() {
 
-ppppAzanMuted=false;
+    ppppAzanMuted = true;
 
-localStorage.setItem(
-"ppppAzanMuted",
-"false"
-);
+    localStorage.setItem(
+        "ppppAzanMuted",
+        "true"
+    );
 
-document.getElementById(
-"ppppAzanAudio"
-).muted=false;
+    ppppGetAzanAudio().muted =
+        true;
+
+}
+
+
+function ppppAzanUnmute() {
+
+    ppppAzanMuted = false;
+
+    localStorage.setItem(
+        "ppppAzanMuted",
+        "false"
+    );
+
+    ppppGetAzanAudio().muted =
+        false;
 
 }
 
@@ -4305,84 +5192,125 @@ document.getElementById(
    AUTO AZAN
 ========================================================= */
 
-let ppppLastAzanKey=
-localStorage.getItem("ppppLastAzanKey")||"";
+let ppppLastAzanKey =
+    localStorage.getItem(
+        "ppppLastAzanKey"
+    ) || "";
 
 
-function ppppNormalizeTime(value){
+function ppppNormalizeTime(value) {
 
-if(!value)return null;
+    if (!value) return null;
 
-const match=
-value.match(/(\d{1,2}):(\d{2})/);
+    const match =
+        value.match(
+            /(\d{1,2}):(\d{2})/
+        );
 
-if(!match)return null;
+    if (!match) return null;
 
-return(
-String(match[1]).padStart(2,"0")+
-":"+match[2]
-);
-
-}
-
-
-function ppppCheckAzan(){
-
-const now=new Date();
-
-const hh=String(
-now.getHours()
-).padStart(2,"0");
-
-const mm=String(
-now.getMinutes()
-).padStart(2,"0");
-
-const current=hh+":"+mm;
-
-const key=
-now.toISOString().slice(0,10)+
-"-"+
-current;
-
-const prayerMap={
-Fajr:document.getElementById("ppppFajr")?.textContent,
-Dhuhr:document.getElementById("ppppDhuhr")?.textContent,
-Asr:document.getElementById("ppppAsr")?.textContent,
-Maghrib:document.getElementById("ppppMaghrib")?.textContent,
-Isha:document.getElementById("ppppIsha")?.textContent
-};
-
-Object.keys(prayerMap).some(function(name){
-
-const time=ppppNormalizeTime(
-prayerMap[name]
-);
-
-if(time===current){
-
-if(ppppLastAzanKey!==key){
-
-ppppLastAzanKey=key;
-
-localStorage.setItem(
-"ppppLastAzanKey",
-key
-);
-
-ppppPlayAzan(
-ppppSelectedAzan
-);
+    return (
+        String(match[1])
+            .padStart(2, "0") +
+        ":" +
+        match[2]
+    );
 
 }
 
-return true;
 
-}
+function ppppCheckAzan() {
 
-return false;
+    const now =
+        new Date();
 
-});
+    const hh =
+        String(
+            now.getHours()
+        ).padStart(2, "0");
+
+    const mm =
+        String(
+            now.getMinutes()
+        ).padStart(2, "0");
+
+    const current =
+        hh + ":" + mm;
+
+    const key =
+        now.toISOString()
+            .slice(0, 10) +
+        "-" +
+        current;
+
+
+    const prayerMap = {
+
+        Fajr:
+            document.getElementById(
+                "ppppFajr"
+            )?.textContent,
+
+        Dhuhr:
+            document.getElementById(
+                "ppppDhuhr"
+            )?.textContent,
+
+        Asr:
+            document.getElementById(
+                "ppppAsr"
+            )?.textContent,
+
+        Maghrib:
+            document.getElementById(
+                "ppppMaghrib"
+            )?.textContent,
+
+        Isha:
+            document.getElementById(
+                "ppppIsha"
+            )?.textContent
+
+    };
+
+
+    Object.keys(
+        prayerMap
+    ).some(function(name) {
+
+        const time =
+            ppppNormalizeTime(
+                prayerMap[name]
+            );
+
+        if (time === current) {
+
+            if (
+                ppppLastAzanKey !== key &&
+                !ppppAzanMuted
+            ) {
+
+                ppppLastAzanKey =
+                    key;
+
+                localStorage.setItem(
+                    "ppppLastAzanKey",
+                    key
+                );
+
+                ppppPlayAzan(
+                    ppppSelectedAzan
+                );
+
+            }
+
+            return true;
+
+        }
+
+        return false;
+
+    });
 
 }
 
@@ -4391,339 +5319,338 @@ return false;
    TODAY / LIVE INFORMATION
 ========================================================= */
 
-const PPPP_BANGLA_MONTHS=[
-"বৈশাখ",
-"জ্যৈষ্ঠ",
-"আষাঢ়",
-"শ্রাবণ",
-"ভাদ্র",
-"আশ্বিন",
-"কার্তিক",
-"অগ্রহায়ণ",
-"পৌষ",
-"মাঘ",
-"ফাল্গুন",
-"চৈত্র"
+const PPPP_BANGLA_MONTHS = [
+
+    "বৈশাখ",
+    "জ্যৈষ্ঠ",
+    "আষাঢ়",
+    "শ্রাবণ",
+    "ভাদ্র",
+    "আশ্বিন",
+    "কার্তিক",
+    "অগ্রহায়ণ",
+    "পৌষ",
+    "মাঘ",
+    "ফাল্গুন",
+    "চৈত্র"
+
 ];
 
-const PPPP_BANGLA_DAYS=[
-"রবিবার",
-"সোমবার",
-"মঙ্গলবার",
-"বুধবার",
-"বৃহস্পতিবার",
-"শুক্রবার",
-"শনিবার"
+
+const PPPP_BANGLA_DAYS = [
+
+    "রবিবার",
+    "সোমবার",
+    "মঙ্গলবার",
+    "বুধবার",
+    "বৃহস্পতিবার",
+    "শুক্রবার",
+    "শনিবার"
+
 ];
 
-const PPPP_HIJRI_MONTHS=[
-"Muharram",
-"Safar",
-"Rabiul Awal",
-"Rabius Sani",
-"Jumadiul Awal",
-"Jumadius Sani",
-"Rajab",
-"Shaban",
-"Ramadan",
-"Shawal",
-"Jilqudh",
-"Jilhajj"
+
+const PPPP_HIJRI_MONTHS = [
+
+    "Muharram",
+    "Safar",
+    "Rabiul Awal",
+    "Rabius Sani",
+    "Jumadiul Awal",
+    "Jumadius Sani",
+    "Rajab",
+    "Shaban",
+    "Ramadan",
+    "Shawal",
+    "Jilqudh",
+    "Jilhajj"
+
 ];
 
-const PPPP_HIJRI_DAYS=[
-"As-Sabt",
-"Al-Ahad",
-"Al-Isnayn",
-"As-Sulasa",
-"Al-Arbia",
-"Al-Khamis",
-"Al-Jumuah"
+
+const PPPP_HIJRI_DAYS = [
+
+    "As-Sabt",
+    "Al-Ahad",
+    "Al-Isnayn",
+    "As-Sulasa",
+    "Al-Arbia",
+    "Al-Khamis",
+    "Al-Jumuah"
+
 ];
 
 
 /* =========================================================
    BANGLA DATE
    Bangladesh Revised Bangla Calendar
-   বাংলা একাডেমি/বাংলাদেশের প্রচলিত ক্যালেন্ডার
 ========================================================= */
 
-const PPPP_BANGLA_MONTHS=[
-"বৈশাখ",
-"জ্যৈষ্ঠ",
-"আষাঢ়",
-"শ্রাবণ",
-"ভাদ্র",
-"আশ্বিন",
-"কার্তিক",
-"অগ্রহায়ণ",
-"পৌষ",
-"মাঘ",
-"ফাল্গুন",
-"চৈত্র"
-];
+function ppppIsLeapYear(year) {
 
-
-/*
-   বাংলাদেশে বাংলা নববর্ষ শুরু হয়
-   ১৪ এপ্রিল থেকে।
-
-   প্রথম ৬ মাস = ৩১ দিন
-   পরের ৫ মাস = ৩০ দিন
-   ফাল্গুন = ২৯ দিন
-   অধিবর্ষে ফাল্গুন = ৩০ দিন
-*/
-
-
-function ppppIsLeapYear(year){
-
-return(
-year%400===0 ||
-(
-year%4===0 &&
-year%100!==0
-)
-);
+    return (
+        year % 400 === 0 ||
+        (
+            year % 4 === 0 &&
+            year % 100 !== 0
+        )
+    );
 
 }
 
 
-function ppppBanglaDate(date){
+function ppppBanglaDate(date) {
 
-const year=date.getFullYear();
+    const year =
+        date.getFullYear();
 
-const startOfBanglaYear=
-new Date(
-year,
-3,
-14,
-0,
-0,
-0,
-0
-);
-
-
-/*
-   জানুয়ারি ১ থেকে ১৩ এপ্রিল হলে
-   বাংলা বছর = ইংরেজি বছর - 594
-
-   ১৪ এপ্রিল থেকে পরবর্তী বাংলা বছর
-   = ইংরেজি বছর - 593
-*/
-
-let banglaYear;
-
-if(date>=startOfBanglaYear){
-
-banglaYear=year-593;
-
-}else{
-
-banglaYear=year-594;
-
-}
+    const startOfBanglaYear =
+        new Date(
+            year,
+            3,
+            14,
+            0,
+            0,
+            0,
+            0
+        );
 
 
-/*
-   বাংলা বছরের শুরু নির্ধারণ
-*/
+    let banglaYear;
 
-let banglaYearStart;
+    if (
+        date >=
+        startOfBanglaYear
+    ) {
 
-if(date>=startOfBanglaYear){
+        banglaYear =
+            year - 593;
 
-banglaYearStart=
-new Date(
-year,
-3,
-14,
-0,
-0,
-0,
-0
-);
+    } else {
 
-}else{
+        banglaYear =
+            year - 594;
 
-banglaYearStart=
-new Date(
-year-1,
-3,
-14,
-0,
-0,
-0,
-0
-);
-
-}
+    }
 
 
-/*
-   বাংলা বছরের কততম দিন
-*/
+    let banglaYearStart;
 
-const difference=
-Math.floor(
-(
-date-banglaYearStart
-)/86400000
-);
+    if (
+        date >=
+        startOfBanglaYear
+    ) {
 
-let remainingDays=
-difference;
+        banglaYearStart =
+            new Date(
+                year,
+                3,
+                14,
+                0,
+                0,
+                0,
+                0
+            );
 
+    } else {
 
-/*
-   মাসের দিন সংখ্যা
+        banglaYearStart =
+            new Date(
+                year - 1,
+                3,
+                14,
+                0,
+                0,
+                0,
+                0
+            );
 
-   বৈশাখ থেকে আশ্বিন = ৩১ দিন
-   কার্তিক থেকে মাঘ = ৩০ দিন
-   ফাল্গুন = ২৯/৩০ দিন
-   চৈত্র = ৩০ দিন
-*/
-
-const monthLengths=[
-31, // বৈশাখ
-31, // জ্যৈষ্ঠ
-31, // আষাঢ়
-31, // শ্রাবণ
-31, // ভাদ্র
-31, // আশ্বিন
-30, // কার্তিক
-30, // অগ্রহায়ণ
-30, // পৌষ
-30, // মাঘ
-29, // ফাল্গুন
-30  // চৈত্র
-];
+    }
 
 
-/*
-   অধিবর্ষে ফাল্গুন ৩০ দিন
-*/
-
-if(ppppIsLeapYear(year)){
-
-monthLengths[10]=30;
-
-}
+    const difference =
+        Math.floor(
+            (
+                date -
+                banglaYearStart
+            ) / 86400000
+        );
 
 
-/*
-   মাস নির্ধারণ
-*/
-
-let monthIndex=0;
-
-for(
-let i=0;
-i<monthLengths.length;
-i++
-){
-
-if(
-remainingDays<
-monthLengths[i]
-){
-
-monthIndex=i;
-
-break;
-
-}
-
-remainingDays-=monthLengths[i];
-
-}
+    let remainingDays =
+        difference;
 
 
-/*
-   বাংলা তারিখ
-*/
+    /*
+       বাংলাদেশে প্রচলিত সংশোধিত
+       বাংলা ক্যালেন্ডার অনুযায়ী
+       প্রথম ৬ মাস = ৩১ দিন
+       পরের ৫ মাস = ৩০ দিন
+       ফাল্গুন = ২৯/৩০
+       চৈত্র = ৩০
+    */
 
-const banglaDay=
-remainingDays+1;
+    const monthLengths = [
+
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+
+        30,
+        30,
+        30,
+        30,
+
+        29,
+
+        30
+
+    ];
 
 
-/*
-   নিরাপত্তার জন্য
-   অস্বাভাবিক ফলাফল আটকানো
-*/
+    /*
+       ফাল্গুন ৩০ দিন
+    */
 
-if(
-banglaDay<1 ||
-banglaDay>31
-){
+    if (
+        ppppIsLeapYear(
+            year
+        )
+    ) {
 
-return{
-day:date.getDate(),
-month:"",
-year:banglaYear
-};
+        monthLengths[10] =
+            30;
 
-}
+    }
 
 
-return{
+    let monthIndex = 0;
 
-day:banglaDay,
+    for (
+        let i = 0;
+        i < monthLengths.length;
+        i++
+    ) {
 
-month:
-PPPP_BANGLA_MONTHS[
-monthIndex
-],
+        if (
+            remainingDays <
+            monthLengths[i]
+        ) {
 
-year:banglaYear
+            monthIndex = i;
 
-};
+            break;
+
+        }
+
+        remainingDays -=
+            monthLengths[i];
+
+    }
+
+
+    const banglaDay =
+        remainingDays + 1;
+
+
+    if (
+        banglaDay < 1 ||
+        banglaDay > 31
+    ) {
+
+        return {
+
+            day: date.getDate(),
+            month: "",
+            year: banglaYear
+
+        };
+
+    }
+
+
+    return {
+
+        day: banglaDay,
+
+        month:
+            PPPP_BANGLA_MONTHS[
+                monthIndex
+            ],
+
+        year:
+            banglaYear
+
+    };
 
 }
 
 
 /* =========================================================
    HIJRI
-   API source: AlAdhan
+   API: AlAdhan
 ========================================================= */
 
-async function ppppGetHijri(){
+async function ppppGetHijri() {
 
-try{
+    try {
 
-const d=new Date();
+        const d =
+            new Date();
 
-const url=
-"https://api.aladhan.com/v1/gToH?date="+
-String(d.getDate()).padStart(2,"0")+
-"-"+
-String(d.getMonth()+1).padStart(2,"0")+
-"-"+
-d.getFullYear();
+        const url =
+            "https://api.aladhan.com/v1/gToH?date=" +
+            String(
+                d.getDate()
+            ).padStart(2, "0") +
+            "-" +
+            String(
+                d.getMonth() + 1
+            ).padStart(2, "0") +
+            "-" +
+            d.getFullYear();
 
-const response=
-await fetch(url);
 
-if(!response.ok)throw new Error();
+        const response =
+            await fetch(url);
 
-const data=await response.json();
+        if (!response.ok) {
+            throw new Error();
+        }
 
-const h=data?.data?.hijri;
+        const data =
+            await response.json();
 
-if(!h)throw new Error();
+        const h =
+            data?.data?.hijri;
 
-return{
-day:h.day,
-month:h.month.number,
-monthName:h.month.en,
-year:h.year
-};
+        if (!h) {
+            throw new Error();
+        }
 
-}catch(e){
+        return {
 
-return null;
+            day: h.day,
 
-}
+            month:
+                h.month.number,
+
+            monthName:
+                h.month.en,
+
+            year:
+                h.year
+
+        };
+
+    } catch (e) {
+
+        return null;
+
+    }
 
 }
 
@@ -4732,119 +5659,181 @@ return null;
    PRAYER / SUN / WEATHER
 ========================================================= */
 
-let ppppLiveData={
-fajr:null,
-dhuhr:null,
-asr:null,
-maghrib:null,
-isha:null,
-sunrise:null,
-sunset:null
+let ppppLiveData = {
+
+    fajr: null,
+    dhuhr: null,
+    asr: null,
+    maghrib: null,
+    isha: null,
+    sunrise: null,
+    sunset: null
+
 };
 
 
-async function ppppLoadPrayerTimes(){
+async function ppppLoadPrayerTimes() {
 
-try{
+    try {
 
-const d=new Date();
+        const d =
+            new Date();
 
-const url=
-"https://api.aladhan.com/v1/timingsByCity/"+
-String(d.getDate())+"-"+
-String(d.getMonth()+1)+"-"+
-d.getFullYear()+
-"?city=Dhaka&country=Bangladesh&method=1";
+        const url =
+            "https://api.aladhan.com/v1/timingsByCity/" +
+            String(
+                d.getDate()
+            ) +
+            "-" +
+            String(
+                d.getMonth() + 1
+            ) +
+            "-" +
+            d.getFullYear() +
+            "?city=Dhaka&country=Bangladesh&method=1";
 
-const response=await fetch(url);
 
-if(!response.ok)throw new Error();
+        const response =
+            await fetch(url);
 
-const data=await response.json();
+        if (!response.ok) {
+            throw new Error();
+        }
 
-const t=data?.data?.timings;
+        const data =
+            await response.json();
 
-if(!t)throw new Error();
+        const t =
+            data?.data?.timings;
 
-ppppLiveData={
-fajr:t.Fajr,
-dhuhr:t.Dhuhr,
-asr:t.Asr,
-maghrib:t.Maghrib,
-isha:t.Isha,
-sunrise:t.Sunrise,
-sunset:t.Sunset
-};
+        if (!t) {
+            throw new Error();
+        }
 
-document.getElementById("ppppFajr").textContent=
-t.Fajr;
 
-document.getElementById("ppppDhuhr").textContent=
-t.Dhuhr;
+        ppppLiveData = {
 
-document.getElementById("ppppAsr").textContent=
-t.Asr;
+            fajr: t.Fajr,
+            dhuhr: t.Dhuhr,
+            asr: t.Asr,
+            maghrib: t.Maghrib,
+            isha: t.Isha,
+            sunrise: t.Sunrise,
+            sunset: t.Sunset
 
-document.getElementById("ppppMaghrib").textContent=
-t.Maghrib;
+        };
 
-document.getElementById("ppppIsha").textContent=
-t.Isha;
 
-document.getElementById("ppppSehri").textContent=
-t.Fajr;
+        const fields = {
 
-document.getElementById("ppppIftar").textContent=
-t.Maghrib;
+            ppppFajr:
+                t.Fajr,
 
-document.getElementById("ppppSunrise").textContent=
-t.Sunrise;
+            ppppDhuhr:
+                t.Dhuhr,
 
-document.getElementById("ppppSunset").textContent=
-t.Sunset;
+            ppppAsr:
+                t.Asr,
 
-ppppUpdateDayNight(t.Sunrise,t.Sunset);
+            ppppMaghrib:
+                t.Maghrib,
 
-}catch(e){
+            ppppIsha:
+                t.Isha,
+
+            ppppSehri:
+                t.Fajr,
+
+            ppppIftar:
+                t.Maghrib,
+
+            ppppSunrise:
+                t.Sunrise,
+
+            ppppSunset:
+                t.Sunset
+
+        };
+
+
+        Object.keys(fields)
+            .forEach(function(id) {
+
+                const el =
+                    document.getElementById(id);
+
+                if (el) {
+                    el.textContent =
+                        fields[id];
+                }
+
+            });
+
+
+        ppppUpdateDayNight(
+            t.Sunrise,
+            t.Sunset
+        );
+
+
+    } catch (e) {}
 
 }
 
-}
 
+async function ppppLoadWeather() {
 
-async function ppppLoadWeather(){
+    try {
 
-try{
+        const response =
+            await fetch(
+                "https://api.open-meteo.com/v1/forecast" +
+                "?latitude=23.8103" +
+                "&longitude=90.4125" +
+                "&current=temperature_2m" +
+                "&timezone=Asia%2FDhaka"
+            );
 
-const response=
-await fetch(
-"https://api.open-meteo.com/v1/forecast?latitude=23.8103&longitude=90.4125&current=temperature_2m&timezone=Asia%2FDhaka"
-);
+        if (!response.ok) {
+            throw new Error();
+        }
 
-if(!response.ok)throw new Error();
+        const data =
+            await response.json();
 
-const data=await response.json();
+        const temp =
+            data?.current?.temperature_2m;
 
-const temp=
-data?.current?.temperature_2m;
+        const element =
+            document.getElementById(
+                "ppppTemperature"
+            );
 
-if(typeof temp==="number"){
+        if (
+            element &&
+            typeof temp === "number"
+        ) {
 
-document.getElementById(
-"ppppTemperature"
-).textContent=
-temp+"°C";
+            element.textContent =
+                temp + "°C";
 
-}
+        }
 
-}catch(e){
+    } catch (e) {
 
-document.getElementById(
-"ppppTemperature"
-).textContent=
-"তথ্য পাওয়া যায়নি";
+        const element =
+            document.getElementById(
+                "ppppTemperature"
+            );
 
-}
+        if (element) {
+
+            element.textContent =
+                "তথ্য পাওয়া যায়নি";
+
+        }
+
+    }
 
 }
 
@@ -4853,53 +5842,107 @@ document.getElementById(
    DAY / NIGHT LENGTH
 ========================================================= */
 
-function ppppTimeToMinutes(value){
+function ppppTimeToMinutes(value) {
 
-if(!value)return null;
+    if (!value) return null;
 
-const m=value.match(
-/(\d{1,2}):(\d{2})/
-);
+    const m =
+        value.match(
+            /(\d{1,2}):(\d{2})/
+        );
 
-if(!m)return null;
+    if (!m) return null;
 
-return Number(m[1])*60+
-Number(m[2]);
-
-}
-
-
-function ppppMinutesToText(minutes){
-
-if(minutes<0)minutes+=1440;
-
-const h=Math.floor(minutes/60);
-const m=minutes%60;
-
-return h+" Hours "+String(m).padStart(2,"0")+" Minutes";
+    return (
+        Number(m[1]) * 60 +
+        Number(m[2])
+    );
 
 }
 
 
-function ppppUpdateDayNight(sunrise,sunset){
+function ppppMinutesToText(minutes) {
 
-const a=ppppTimeToMinutes(sunrise);
-const b=ppppTimeToMinutes(sunset);
+    if (minutes < 0) {
+        minutes += 1440;
+    }
 
-if(a===null||b===null)return;
+    const h =
+        Math.floor(
+            minutes / 60
+        );
 
-const day=b-a;
-const night=1440-day;
+    const m =
+        minutes % 60;
 
-document.getElementById(
-"ppppDayLength"
-).textContent=
-ppppMinutesToText(day);
+    return (
+        h +
+        " Hours " +
+        String(m).padStart(
+            2,
+            "0"
+        ) +
+        " Minutes"
+    );
 
-document.getElementById(
-"ppppNightLength"
-).textContent=
-ppppMinutesToText(night);
+}
+
+
+function ppppUpdateDayNight(
+    sunrise,
+    sunset
+) {
+
+    const a =
+        ppppTimeToMinutes(
+            sunrise
+        );
+
+    const b =
+        ppppTimeToMinutes(
+            sunset
+        );
+
+    if (
+        a === null ||
+        b === null
+    ) return;
+
+    const day =
+        b - a;
+
+    const night =
+        1440 - day;
+
+
+    const dayElement =
+        document.getElementById(
+            "ppppDayLength"
+        );
+
+    const nightElement =
+        document.getElementById(
+            "ppppNightLength"
+        );
+
+
+    if (dayElement) {
+
+        dayElement.textContent =
+            ppppMinutesToText(
+                day
+            );
+
+    }
+
+    if (nightElement) {
+
+        nightElement.textContent =
+            ppppMinutesToText(
+                night
+            );
+
+    }
 
 }
 
@@ -4908,87 +5951,178 @@ ppppMinutesToText(night);
    LIVE CLOCK / DATES
 ========================================================= */
 
-async function ppppUpdateLiveInformation(){
+let ppppLastHijriDate = null;
 
-const now=new Date();
 
-const bangla=ppppBanglaDate(now);
+async function ppppUpdateLiveInformation() {
 
-document.getElementById(
-"ppppBanglaDate"
-).textContent=
-bangla.day+" "+
-bangla.month+", "+
-bangla.year+" বঙ্গাব্দ | "+
-ppppBanglaSeason(now);
+    const now =
+        new Date();
 
-document.getElementById(
-"ppppEnglishDate"
-).textContent=
-now.toLocaleDateString(
-"en-GB",
-{
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-)+" খ্রিস্টাব্দ | "+
-ppppEnglishSeason(now);
+    const bangla =
+        ppppBanglaDate(now);
 
-document.getElementById(
-"ppppEnglishDay"
-).textContent=
-now.toLocaleDateString(
-"en-US",
-{
-weekday:"long"
-}
-);
 
-document.getElementById(
-"ppppBanglaDay"
-).textContent=
-PPPP_BANGLA_DAYS[
-now.getDay()
-];
+    const banglaDate =
+        document.getElementById(
+            "ppppBanglaDate"
+        );
 
-document.getElementById(
-"ppppCurrentTime"
-).textContent=
-now.toLocaleTimeString(
-"en-US",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}
-);
+    if (banglaDate) {
 
-const hijri=await ppppGetHijri();
+        banglaDate.textContent =
+            bangla.day +
+            " " +
+            bangla.month +
+            ", " +
+            bangla.year +
+            " বঙ্গাব্দ | " +
+            ppppBanglaSeason(now);
 
-if(hijri){
+    }
 
-document.getElementById(
-"ppppHijriDate"
-).textContent=
-hijri.day+" "+
-PPPP_HIJRI_MONTHS[
-hijri.month-1
-]+", "+
-hijri.year+
-" হিজরি | "+
-ppppHijriSeason(
-hijri.month
-);
 
-document.getElementById(
-"ppppHijriDay"
-).textContent=
-PPPP_HIJRI_DAYS[
-(now.getDay()+1)%7
-];
+    const englishDate =
+        document.getElementById(
+            "ppppEnglishDate"
+        );
 
-}
+    if (englishDate) {
+
+        englishDate.textContent =
+            now.toLocaleDateString(
+                "en-GB",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            ) +
+            " খ্রিস্টাব্দ | " +
+            ppppEnglishSeason(now);
+
+    }
+
+
+    const englishDay =
+        document.getElementById(
+            "ppppEnglishDay"
+        );
+
+    if (englishDay) {
+
+        englishDay.textContent =
+            now.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "long"
+                }
+            );
+
+    }
+
+
+    const banglaDay =
+        document.getElementById(
+            "ppppBanglaDay"
+        );
+
+    if (banglaDay) {
+
+        banglaDay.textContent =
+            PPPP_BANGLA_DAYS[
+                now.getDay()
+            ];
+
+    }
+
+
+    const currentTime =
+        document.getElementById(
+            "ppppCurrentTime"
+        );
+
+    if (currentTime) {
+
+        currentTime.textContent =
+            now.toLocaleTimeString(
+                "en-US",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+    }
+
+
+    /*
+       Hijri date একই দিনে
+       বারবার API call না করে cache করা।
+    */
+
+    const hijriKey =
+        now.toISOString()
+            .slice(0, 10);
+
+
+    if (
+        ppppLastHijriDate !==
+        hijriKey
+    ) {
+
+        const hijri =
+            await ppppGetHijri();
+
+        if (hijri) {
+
+            ppppLastHijriDate =
+                hijriKey;
+
+            const hijriDate =
+                document.getElementById(
+                    "ppppHijriDate"
+                );
+
+            if (hijriDate) {
+
+                hijriDate.textContent =
+                    hijri.day +
+                    " " +
+                    (
+                        PPPP_HIJRI_MONTHS[
+                            hijri.month - 1
+                        ] ||
+                        hijri.monthName
+                    ) +
+                    ", " +
+                    hijri.year +
+                    " হিজরি | " +
+                    ppppHijriSeason(
+                        hijri.month
+                    );
+
+            }
+
+
+            const hijriDay =
+                document.getElementById(
+                    "ppppHijriDay"
+                );
+
+            if (hijriDay) {
+
+                hijriDay.textContent =
+                    PPPP_HIJRI_DAYS[
+                        (now.getDay() + 1) % 7
+                    ];
+
+            }
+
+        }
+
+    }
 
 }
 
@@ -4997,40 +6131,65 @@ PPPP_HIJRI_DAYS[
    SEASONS
 ========================================================= */
 
-function ppppBanglaSeason(date){
+function ppppBanglaSeason(date) {
 
-const m=date.getMonth();
+    const m =
+        date.getMonth();
 
-if(m>=3&&m<=4)return"গ্রীষ্মকাল";
-if(m>=5&&m<=6)return"বর্ষাকাল";
-if(m>=7&&m<=8)return"শরৎকাল";
-if(m>=9&&m<=10)return"হেমন্তকাল";
-if(m===11||m<=1)return"শীতকাল";
+    if (m >= 3 && m <= 4)
+        return "গ্রীষ্মকাল";
 
-return"বসন্তকাল";
+    if (m >= 5 && m <= 6)
+        return "বর্ষাকাল";
 
-}
+    if (m >= 7 && m <= 8)
+        return "শরৎকাল";
 
+    if (m >= 9 && m <= 10)
+        return "হেমন্তকাল";
 
-function ppppEnglishSeason(date){
+    if (m === 11 || m <= 1)
+        return "শীতকাল";
 
-const m=date.getMonth();
-
-if(m>=2&&m<=4)return"Spring";
-if(m>=5&&m<=7)return"Summer";
-if(m>=8&&m<=9)return"Autumn";
-if(m===10)return"Late Autumn";
-return"Winter";
+    return "বসন্তকাল";
 
 }
 
 
-function ppppHijriSeason(month){
+function ppppEnglishSeason(date) {
 
-if(month>=1&&month<=3)return"Al-Kharifu";
-if(month>=4&&month<=6)return"Awakhirul Kharif";
-if(month>=7&&month<=9)return"Ar-Rabiu";
-return"As-Saifu";
+    const m =
+        date.getMonth();
+
+    if (m >= 2 && m <= 4)
+        return "Spring";
+
+    if (m >= 5 && m <= 7)
+        return "Summer";
+
+    if (m >= 8 && m <= 9)
+        return "Autumn";
+
+    if (m === 10)
+        return "Late Autumn";
+
+    return "Winter";
+
+}
+
+
+function ppppHijriSeason(month) {
+
+    if (month >= 1 && month <= 3)
+        return "Al-Kharifu";
+
+    if (month >= 4 && month <= 6)
+        return "Awakhirul Kharif";
+
+    if (month >= 7 && month <= 9)
+        return "Ar-Rabiu";
+
+    return "As-Saifu";
 
 }
 
@@ -5039,39 +6198,49 @@ return"As-Saifu";
    LIVE INTERVAL
 ========================================================= */
 
-function ppppStartLive(){
+function ppppStartLive() {
 
-ppppUpdateLiveInformation();
-ppppLoadPrayerTimes();
-ppppLoadWeather();
+    ppppUpdateLiveInformation();
+    ppppLoadPrayerTimes();
+    ppppLoadWeather();
 
-setInterval(function(){
 
-const now=new Date();
+    setInterval(function() {
 
-document.getElementById(
-"ppppCurrentTime"
-).textContent=
-now.toLocaleTimeString(
-"en-US",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}
-);
+        const now =
+            new Date();
 
-ppppCheckAzan();
+        const currentTime =
+            document.getElementById(
+                "ppppCurrentTime"
+            );
 
-},1000);
+        if (currentTime) {
 
-setInterval(function(){
+            currentTime.textContent =
+                now.toLocaleTimeString(
+                    "en-US",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
 
-ppppUpdateLiveInformation();
-ppppLoadPrayerTimes();
-ppppLoadWeather();
+        }
 
-},60000);
+        ppppCheckAzan();
+
+    }, 1000);
+
+
+    setInterval(function() {
+
+        ppppUpdateLiveInformation();
+        ppppLoadPrayerTimes();
+        ppppLoadWeather();
+
+    }, 60000);
 
 }
 
@@ -5080,186 +6249,263 @@ ppppLoadWeather();
    RESET SETTINGS
 ========================================================= */
 
-function ppppResetSettings(){
+function ppppResetSettings() {
 
-if(!confirm(
-"⚙️ সব PPPP Settings Default অবস্থায় ফিরিয়ে নিতে চান?"
-))return;
+    if (!confirm(
+        "⚙️ সব PPPP Settings Default অবস্থায় ফিরিয়ে নিতে চান?"
+    )) return;
 
-localStorage.removeItem("ppppTheme");
-localStorage.removeItem("ppppDarkMode");
-localStorage.removeItem("ppppAzanMuted");
-localStorage.removeItem("ppppSelectedAzan");
-localStorage.removeItem("ppppTasbih");
 
-document.body.classList.remove(
-"pppp-dark-mode",
-"pppp-high-contrast",
-"pppp-large-controls"
-);
+    localStorage.removeItem(
+        "ppppTheme"
+    );
 
-document.documentElement.style.fontSize="";
-document.body.style.zoom="1";
+    localStorage.removeItem(
+        "ppppDarkMode"
+    );
 
-ppppFontScale=100;
-ppppZoomLevel=1;
-ppppTasbih=0;
-ppppAzanMuted=false;
-ppppSelectedAzan="Bangladesh";
+    localStorage.removeItem(
+        "ppppAzanMuted"
+    );
 
-ppppUpdateTasbih();
-ppppAzanUnmute();
+    localStorage.removeItem(
+        "ppppSelectedAzan"
+    );
 
-alert(
-"✅ PPPP Settings Default অবস্থায় ফিরে গেছে।"
-);
+    localStorage.removeItem(
+        "ppppTasbih"
+    );
+
+    localStorage.removeItem(
+        "ppppNotificationVolume"
+    );
+
+    localStorage.removeItem(
+        "ppppMusicVolume"
+    );
+
+    localStorage.removeItem(
+        "ppppVideoVolume"
+    );
+
+    localStorage.removeItem(
+        "ppppMasterVolume"
+    );
+
+
+    document.body.classList.remove(
+        "pppp-dark-mode",
+        "pppp-high-contrast",
+        "pppp-large-controls"
+    );
+
+
+    document.documentElement.style.fontSize =
+        "";
+
+    document.body.style.zoom =
+        "1";
+
+
+    ppppFontScale = 100;
+    ppppZoomLevel = 1;
+    ppppTasbih = 0;
+
+    ppppAzanMuted = false;
+    ppppSelectedAzan = "Bangladesh";
+
+
+    PPPP_SOUND_VOLUMES.notification = 1;
+    PPPP_SOUND_VOLUMES.music = 1;
+    PPPP_SOUND_VOLUMES.video = 1;
+    PPPP_SOUND_VOLUMES.master = 1;
+
+
+    ppppUpdateTasbih();
+    ppppApplyMediaVolumes();
+    ppppAzanUnmute();
+
+
+    alert(
+        "✅ PPPP Settings Default অবস্থায় ফিরে গেছে।"
+    );
 
 }
 
 
 /* =========================================================
    FULL PAGE DOWNLOAD
-   SCROLL POSITION INDEPENDENT
 ========================================================= */
 
-function ppppPrepareFullPageClone(){
+function ppppPrepareFullPageClone() {
 
-const clone=
-document.documentElement.cloneNode(true);
-
-clone.querySelectorAll(
-"#ppppSettingsBtn,"+
-"#ppppSettingsPanel,"+
-"#ppppSettingsOverlay,"+
-"#shareBtn,"+
-"#topBtn,"+
-"#ppppSavedPagesBox,"+
-"#google_translate_element"
-)
-.forEach(function(el){
-
-el.remove();
-
-});
-
-clone.querySelectorAll("script")
-.forEach(function(script){
-
-script.remove();
-
-});
+    const clone =
+        document.documentElement.cloneNode(true);
 
 
-/*
-   Sticky/fixed elements যেন downloaded page-এ
-   অস্বাভাবিক অবস্থান না নেয়
-*/
+    clone.querySelectorAll(
+        "#ppppSettingsBtn," +
+        "#ppppSettingsPanel," +
+        "#ppppSettingsOverlay," +
+        "#shareBtn," +
+        "#topBtn," +
+        "#ppppSavedPagesBox," +
+        "#google_translate_element"
+    )
+    .forEach(function(el) {
 
-const style=
-document.createElement("style");
+        el.remove();
 
-style.textContent=`
+    });
+
+
+    clone.querySelectorAll(
+        "script"
+    )
+    .forEach(function(script) {
+
+        script.remove();
+
+    });
+
+
+    const style =
+        document.createElement(
+            "style"
+        );
+
+
+    style.textContent = `
 *{
-box-sizing:border-box !important;
+    box-sizing:border-box !important;
 }
 html,body{
-height:auto !important;
-min-height:100% !important;
-overflow:visible !important;
+    height:auto !important;
+    min-height:100% !important;
+    overflow:visible !important;
 }
 body{
-position:static !important;
-top:auto !important;
+    position:static !important;
+    top:auto !important;
 }
 [style*="position:fixed"],
 [style*="position:sticky"]{
-position:static !important;
+    position:static !important;
 }
 `;
 
-const head=clone.querySelector("head");
 
-if(head)head.appendChild(style);
+    const head =
+        clone.querySelector("head");
 
-const base=
-document.createElement("base");
 
-base.href=
-window.location.href;
+    if (head) {
 
-if(head){
+        head.appendChild(
+            style
+        );
 
-const oldBase=
-head.querySelector("base");
+    }
 
-if(oldBase){
 
-oldBase.href=
-window.location.href;
+    const base =
+        document.createElement(
+            "base"
+        );
 
-}else{
+    base.href =
+        window.location.href;
 
-head.insertBefore(
-base,
-head.firstChild
-);
+
+    if (head) {
+
+        const oldBase =
+            head.querySelector(
+                "base"
+            );
+
+        if (oldBase) {
+
+            oldBase.href =
+                window.location.href;
+
+        } else {
+
+            head.insertBefore(
+                base,
+                head.firstChild
+            );
+
+        }
+
+    }
+
+
+    return clone;
 
 }
 
-}
 
-return clone;
+function ppppDownloadPage() {
 
-}
+    const clone =
+        ppppPrepareFullPageClone();
 
 
-function ppppDownloadPage(){
+    const html =
+        "<!DOCTYPE html>\n" +
+        clone.outerHTML;
 
-const clone=
-ppppPrepareFullPageClone();
 
-const html=
-"<!DOCTYPE html>\n"+
-clone.outerHTML;
+    const blob =
+        new Blob(
+            [html],
+            {
+                type:
+                    "text/html;charset=utf-8"
+            }
+        );
 
-const blob=
-new Blob(
-[html],
-{
-type:"text/html;charset=utf-8"
-}
-);
 
-const url=
-URL.createObjectURL(blob);
+    const url =
+        URL.createObjectURL(
+            blob
+        );
 
-const a=
-document.createElement("a");
 
-a.href=url;
+    const a =
+        document.createElement(
+            "a"
+        );
 
-a.download=
-(
-document.title||
-"PPPP_Page"
-)
-.replace(
-/[^\w\u0980-\u09FF-]+/g,
-"_"
-)+
-".html";
 
-document.body.appendChild(a);
+    a.href = url;
 
-a.click();
 
-a.remove();
+    a.download =
+        (
+            document.title ||
+            "PPPP_Page"
+        )
+        .replace(
+            /[^\w\u0980-\u09FF-]+/g,
+            "_"
+        ) +
+        ".html";
 
-setTimeout(function(){
 
-URL.revokeObjectURL(url);
+    document.body.appendChild(a);
 
-},5000);
+    a.click();
+
+    a.remove();
+
+
+    setTimeout(function() {
+
+        URL.revokeObjectURL(url);
+
+    }, 5000);
 
 }
 
@@ -5268,15 +6514,15 @@ URL.revokeObjectURL(url);
    SAVE AS PDF
 ========================================================= */
 
-function ppppSavePDF(){
+function ppppSavePDF() {
 
-closePPPPSettings();
+    closePPPPSettings();
 
-setTimeout(function(){
+    setTimeout(function() {
 
-window.print();
+        window.print();
 
-},300);
+    }, 300);
 
 }
 
@@ -5285,15 +6531,15 @@ window.print();
    PRINT
 ========================================================= */
 
-function ppppPrintPage(){
+function ppppPrintPage() {
 
-closePPPPSettings();
+    closePPPPSettings();
 
-setTimeout(function(){
+    setTimeout(function() {
 
-window.print();
+        window.print();
 
-},300);
+    }, 300);
 
 }
 
@@ -5302,246 +6548,312 @@ window.print();
    QR
 ========================================================= */
 
-function ppppQRCode(){
+function ppppQRCode() {
 
-const qrURL=
-"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
-encodeURIComponent(
-window.location.href
-);
+    const qrURL =
+        "https://api.qrserver.com/v1/create-qr-code/" +
+        "?size=300x300&data=" +
+        encodeURIComponent(
+            window.location.href
+        );
 
-window.open(
-qrURL,
-"_blank"
-);
+
+    window.open(
+        qrURL,
+        "_blank"
+    );
 
 }
 
 
 /* =========================================================
-   FULL-PAGE SCREENSHOT
-   SCROLL POSITION INDEPENDENT
+   FULL PAGE SCREENSHOT
 ========================================================= */
 
-async function ppppScreenshot(){
+async function ppppScreenshot() {
 
-if(typeof html2canvas==="undefined"){
+    if (
+        typeof html2canvas ===
+        "undefined"
+    ) {
 
-const script=
-document.createElement("script");
-
-script.src=
-"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
-
-script.onload=function(){
-
-ppppScreenshot();
-
-};
-
-script.onerror=function(){
-
-alert(
-"📸 Screenshot library load করা যায়নি।"
-);
-
-};
-
-document.head.appendChild(script);
-
-return;
-
-}
+        const script =
+            document.createElement(
+                "script"
+            );
 
 
-/*
-   Screenshot করার আগে current scroll position সংরক্ষণ
-*/
-
-const oldX=window.scrollX;
-const oldY=window.scrollY;
-
-const controls=[
-document.getElementById("ppppSettingsBtn"),
-document.getElementById("ppppSettingsPanel"),
-document.getElementById("ppppSettingsOverlay"),
-document.getElementById("shareBtn"),
-document.getElementById("topBtn"),
-document.getElementById("ppppSavedPagesBox")
-];
-
-const oldDisplay=[];
-
-controls.forEach(function(el,i){
-
-if(el){
-
-oldDisplay[i]=el.style.display;
-el.style.display="none";
-
-}
-
-});
+        script.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/" +
+            "html2canvas/1.4.1/html2canvas.min.js";
 
 
-/*
-   Fixed/sticky elements-এর সমস্যা এড়াতে
-   temporary CSS
-*/
+        script.onload =
+            function() {
 
-const temporaryStyle=
-document.createElement("style");
+                ppppScreenshot();
 
-temporaryStyle.id=
-"ppppScreenshotTemporaryStyle";
+            };
 
-temporaryStyle.textContent=`
+
+        script.onerror =
+            function() {
+
+                alert(
+                    "📸 Screenshot library load করা যায়নি।"
+                );
+
+            };
+
+
+        document.head.appendChild(
+            script
+        );
+
+        return;
+
+    }
+
+
+    const oldX =
+        window.scrollX;
+
+    const oldY =
+        window.scrollY;
+
+
+    const controls = [
+
+        document.getElementById(
+            "ppppSettingsBtn"
+        ),
+
+        document.getElementById(
+            "ppppSettingsPanel"
+        ),
+
+        document.getElementById(
+            "ppppSettingsOverlay"
+        ),
+
+        document.getElementById(
+            "shareBtn"
+        ),
+
+        document.getElementById(
+            "topBtn"
+        ),
+
+        document.getElementById(
+            "ppppSavedPagesBox"
+        )
+
+    ];
+
+
+    const oldDisplay = [];
+
+
+    controls.forEach(
+        function(el, i) {
+
+            if (el) {
+
+                oldDisplay[i] =
+                    el.style.display;
+
+                el.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    const temporaryStyle =
+        document.createElement(
+            "style"
+        );
+
+
+    temporaryStyle.id =
+        "ppppScreenshotTemporaryStyle";
+
+
+    temporaryStyle.textContent = `
 html,
 body{
-height:auto !important;
-min-height:100% !important;
-overflow:visible !important;
+    height:auto !important;
+    min-height:100% !important;
+    overflow:visible !important;
 }
 body{
-position:static !important;
+    position:static !important;
 }
 `;
 
-document.head.appendChild(
-temporaryStyle
-);
+
+    document.head.appendChild(
+        temporaryStyle
+    );
 
 
-/*
-   পুরো document-এর actual width/height
-*/
-
-const fullWidth=
-Math.max(
-document.documentElement.scrollWidth,
-document.body.scrollWidth,
-document.documentElement.clientWidth
-);
-
-const fullHeight=
-Math.max(
-document.documentElement.scrollHeight,
-document.body.scrollHeight,
-document.documentElement.clientHeight
-);
+    const fullWidth =
+        Math.max(
+            document.documentElement.scrollWidth,
+            document.body.scrollWidth,
+            document.documentElement.clientWidth
+        );
 
 
-/*
-   Scroll top-এ নেওয়া হচ্ছে শুধু capture-এর জন্য।
-   ফলে মাঝখান/নিচ থেকে Blank Screenshot হবে না।
-*/
-
-window.scrollTo(0,0);
-
-await new Promise(function(resolve){
-
-requestAnimationFrame(function(){
-
-requestAnimationFrame(resolve);
-
-});
-
-});
+    const fullHeight =
+        Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.clientHeight
+        );
 
 
-try{
-
-const canvas=
-await html2canvas(
-document.documentElement,
-{
-x:0,
-y:0,
-width:fullWidth,
-height:fullHeight,
-
-windowWidth:fullWidth,
-windowHeight:fullHeight,
-
-scrollX:0,
-scrollY:0,
-
-useCORS:true,
-allowTaint:false,
-
-backgroundColor:"#ffffff",
-
-scale:Math.min(
-2,
-window.devicePixelRatio||1
-),
-
-logging:false,
-
-imageTimeout:30000,
-
-foreignObjectRendering:false
-}
-);
+    window.scrollTo(
+        0,
+        0
+    );
 
 
-const link=
-document.createElement("a");
+    await new Promise(
+        function(resolve) {
 
-link.download=
-(
-document.title||
-"PPPP_Full_Page_Screenshot"
-)
-.replace(
-/[^\w\u0980-\u09FF-]+/g,
-"_"
-)+
-".png";
+            requestAnimationFrame(
+                function() {
 
-link.href=
-canvas.toDataURL(
-"image/png"
-);
+                    requestAnimationFrame(
+                        resolve
+                    );
 
-document.body.appendChild(link);
+                }
+            );
 
-link.click();
-
-link.remove();
+        }
+    );
 
 
-}catch(e){
+    try {
 
-alert(
-"📸 Full Page Screenshot তৈরি করা সম্ভব হয়নি।"
-);
+        const canvas =
+            await html2canvas(
+                document.documentElement,
+                {
 
-}
+                    x: 0,
+                    y: 0,
+
+                    width:
+                        fullWidth,
+
+                    height:
+                        fullHeight,
+
+                    windowWidth:
+                        fullWidth,
+
+                    windowHeight:
+                        fullHeight,
+
+                    scrollX: 0,
+                    scrollY: 0,
+
+                    useCORS: true,
+
+                    allowTaint: false,
+
+                    backgroundColor:
+                        "#ffffff",
+
+                    scale:
+                        Math.min(
+                            2,
+                            window.devicePixelRatio ||
+                            1
+                        ),
+
+                    logging: false,
+
+                    imageTimeout:
+                        30000,
+
+                    foreignObjectRendering:
+                        false
+
+                }
+            );
 
 
-/*
-   সবকিছু আগের অবস্থায় ফিরিয়ে আনা
-*/
+        const link =
+            document.createElement(
+                "a"
+            );
 
-if(temporaryStyle)
-temporaryStyle.remove();
 
-controls.forEach(function(el,i){
+        link.download =
+            (
+                document.title ||
+                "PPPP_Full_Page_Screenshot"
+            )
+            .replace(
+                /[^\w\u0980-\u09FF-]+/g,
+                "_"
+            ) +
+            ".png";
 
-if(el){
 
-el.style.display=
-oldDisplay[i]||"";
+        link.href =
+            canvas.toDataURL(
+                "image/png"
+            );
 
-}
 
-});
+        document.body.appendChild(
+            link
+        );
 
-window.scrollTo(
-oldX,
-oldY
-);
+        link.click();
+
+        link.remove();
+
+
+    } catch (e) {
+
+        alert(
+            "📸 Full Page Screenshot তৈরি করা সম্ভব হয়নি।"
+        );
+
+    }
+
+
+    if (temporaryStyle) {
+        temporaryStyle.remove();
+    }
+
+
+    controls.forEach(
+        function(el, i) {
+
+            if (el) {
+
+                el.style.display =
+                    oldDisplay[i] || "";
+
+            }
+
+        }
+    );
+
+
+    window.scrollTo(
+        oldX,
+        oldY
+    );
 
 }
 
@@ -5550,27 +6862,37 @@ oldY
    COPY PAGE
 ========================================================= */
 
-function ppppCopyPage(){
+function ppppCopyPage() {
 
-if(!navigator.clipboard){
+    if (!navigator.clipboard) {
 
-alert(
-"📋 Clipboard support নেই।"
-);
+        alert(
+            "📋 Clipboard support নেই।"
+        );
 
-return;
+        return;
 
-}
+    }
 
-navigator.clipboard
-.writeText(document.body.innerText)
-.then(function(){
 
-alert(
-"📋 Page text copied successfully!"
-);
+    navigator.clipboard
+        .writeText(
+            document.body.innerText
+        )
+        .then(function() {
 
-});
+            alert(
+                "📋 Page text copied successfully!"
+            );
+
+        })
+        .catch(function() {
+
+            alert(
+                "❌ Page text copy করা যায়নি।"
+            );
+
+        });
 
 }
 
@@ -5579,9 +6901,9 @@ alert(
    SHARE PAGE
 ========================================================= */
 
-function ppppShareFile(){
+function ppppShareFile() {
 
-ppppShare();
+    ppppShare();
 
 }
 
@@ -5590,41 +6912,53 @@ ppppShare();
    HELP
 ========================================================= */
 
-function ppppHelp(){
+function ppppHelp() {
 
-alert(
-"❓ PPPP Settings Help\n\n"+
-"⚙️ Settings খুলুন।\n"+
-"🔍 Search দিয়ে option খুঁজুন।\n"+
-"❤️ Like করলে Liked Pages-এ থাকবে।\n"+
-"⭐ Favorite করলে Favorited Pages-এ থাকবে।\n"+
-"📌 Pin করলে Pinned Pages-এ থাকবে।\n"+
-"🌐 Language থেকে Main/বাংলা/English নির্বাচন করুন।\n"+
-"🔊 Read Aloud (Main/Bangla/English) ব্যবহার করুন।\n"+
-"🔇 Mute ও 🔊 Unmute ব্যবহার করুন।\n"+
-"📥 Download Page পুরো HTML page সংরক্ষণ করবে।\n"+
-"📕 Save as PDF browser-এর PDF save ব্যবস্থা ব্যবহার করবে।\n"+
-"📸 Screenshot পুরো page capture করবে।"
-);
+    alert(
+        "❓ PPPP Settings Help\n\n" +
+        "⚙️ Settings খুলুন।\n" +
+        "🔍 Search দিয়ে option খুঁজুন।\n" +
+        "❤️ Like করলে Liked Pages-এ থাকবে।\n" +
+        "⭐ Favorite করলে Favorited Pages-এ থাকবে।\n" +
+        "📌 Pin করলে Pinned Pages-এ থাকবে।\n" +
+        "🌐 Language থেকে Main/বাংলা/English নির্বাচন করুন।\n" +
+        "🔊 Read Aloud (Main/Bangla/English) ব্যবহার করুন।\n" +
+        "🔇 Mute ও 🔊 Unmute ব্যবহার করুন।\n" +
+        "📥 Download Page পুরো HTML page সংরক্ষণ করবে।\n" +
+        "📕 Save as PDF browser-এর PDF save ব্যবস্থা ব্যবহার করবে।\n" +
+        "📸 Screenshot পুরো page capture করবে।\n" +
+        "🧮 Calculator ব্যবহার করতে সংখ্যার সঙ্গে + − × ÷ ব্যবহার করুন।\n" +
+        "📿 Tasbih Target দিলে target পূর্ণ হলে notification দেখাবে।\n" +
+        "🔊 Sound Control থেকে volume নিয়ন্ত্রণ করুন।\n" +
+        "🧭 Compass চালু করলে device direction দেখাবে।"
+    );
 
 }
 
 
-function ppppAboutSettings(){
+/* =========================================================
+   ABOUT SETTINGS
+========================================================= */
 
-alert(
-"⚙️ PPPP Settings & Control Center\n\n"+
-"People's Power & Peace Party (PPPP)\n\n"+
-"📆 Today & Live Information\n"+
-"🕌 Azan\n"+
-"📿 Tasbih Counter\n"+
-"🧭 Compass\n"+
-"🧮 Calculator\n"+
-"🎂 Age Calculator\n"+
-"🔊 Sound Control\n"+
-"📥 Download\n"+
-"📸 Screenshot"
-);
+function ppppAboutSettings() {
+
+    alert(
+        "⚙️ PPPP Settings & Control Center\n\n" +
+        "People's Power & Peace Party (PPPP)\n\n" +
+        "🌐 Language\n" +
+        "🔤 Alphabet List\n" +
+        "🗓️ Calendar List\n" +
+        "♿ Accessibility\n" +
+        "🔊 Sound Control\n" +
+        "🧭 Compass\n" +
+        "🧮 Calculator\n" +
+        "🎂 Age Calculator\n" +
+        "📿 Tasbih Counter\n" +
+        "📱 PPPP App\n" +
+        "📥 Tools & Downloads\n" +
+        "⚙️ Reset Settings\n" +
+        "❓ Help & Information"
+    );
 
 }
 
@@ -5633,22 +6967,27 @@ alert(
    INITIAL THEME
 ========================================================= */
 
-(function(){
+(function() {
 
-const theme=
-localStorage.getItem("ppppTheme");
+    const theme =
+        localStorage.getItem(
+            "ppppTheme"
+        );
 
-if(theme==="night"){
 
-document.body.classList.add(
-"pppp-dark-mode"
-);
+    if (theme === "night") {
 
-}else if(theme==="auto"){
+        document.body.classList.add(
+            "pppp-dark-mode"
+        );
 
-ppppApplyAutoTheme();
+    } else if (
+        theme === "auto"
+    ) {
 
-}
+        ppppApplyAutoTheme();
+
+    }
 
 })();
 
@@ -5660,28 +6999,41 @@ ppppApplyAutoTheme();
 ppppUpdateCounts();
 ppppUpdateButtonStates();
 ppppUpdateTasbih();
+ppppApplyMediaVolumes();
 
 
 /* =========================================================
    AUTO HISTORY
 ========================================================= */
 
-(function(){
+(function() {
 
-let list=ppppGetList("history");
+    let list =
+        ppppGetList("history");
 
-const page=ppppCurrentPage();
+    const page =
+        ppppCurrentPage();
 
-list=list.filter(function(item){
 
-return item.url!==page.url;
+    list =
+        list.filter(function(item) {
 
-});
+            return item.url !== page.url;
 
-list.unshift(page);
-list=list.slice(0,100);
+        });
 
-ppppSaveList("history",list);
+
+    list.unshift(page);
+
+
+    list =
+        list.slice(0, 100);
+
+
+    ppppSaveList(
+        "history",
+        list
+    );
 
 })();
 
@@ -5690,48 +7042,67 @@ ppppSaveList("history",list);
    GOOGLE TRANSLATE
 ========================================================= */
 
-window.googleTranslateElementInit=
-function(){
+window.googleTranslateElementInit =
+    function() {
 
-if(
-window.google &&
-google.translate
-){
+        if (
+            window.google &&
+            google.translate
+        ) {
 
-new google.translate.TranslateElement(
-{
-pageLanguage:"bn",
-includedLanguages:"bn,en",
-autoDisplay:false
-},
-"google_translate_element"
-);
+            new google.translate.TranslateElement(
+                {
 
-}
+                    pageLanguage:
+                        "bn",
 
-};
+                    includedLanguages:
+                        "bn,en",
+
+                    autoDisplay:
+                        false
+
+                },
+
+                "google_translate_element"
+            );
+
+        }
+
+    };
 
 
-(function(){
+(function() {
 
-if(
-document.getElementById(
-"ppppGoogleTranslateScript"
-)
-)return;
+    if (
+        document.getElementById(
+            "ppppGoogleTranslateScript"
+        )
+    ) return;
 
-const script=
-document.createElement("script");
 
-script.id=
-"ppppGoogleTranslateScript";
+    const script =
+        document.createElement(
+            "script"
+        );
 
-script.src=
-"https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
 
-script.async=true;
+    script.id =
+        "ppppGoogleTranslateScript";
 
-document.head.appendChild(script);
+
+    script.src =
+        "https://translate.google.com/" +
+        "translate_a/element.js" +
+        "?cb=googleTranslateElementInit";
+
+
+    script.async = true;
+
+
+    document.head.appendChild(
+        script
+    );
 
 })();
 
@@ -5740,14 +7111,16 @@ document.head.appendChild(script);
    SPEECH VOICES
 ========================================================= */
 
-if("speechSynthesis" in window){
+if (
+    "speechSynthesis" in window
+) {
 
-speechSynthesis.onvoiceschanged=
-function(){
+    speechSynthesis.onvoiceschanged =
+        function() {
 
-speechSynthesis.getVoices();
+            speechSynthesis.getVoices();
 
-};
+        };
 
 }
 
@@ -5763,14 +7136,20 @@ ppppStartLive();
    AZAN AUDIO STATE
 ========================================================= */
 
-(function(){
+(function() {
 
-const audio=
-document.getElementById(
-"ppppAzanAudio"
-);
+    const audio =
+        ppppGetAzanAudio();
 
-audio.muted=ppppAzanMuted;
+    audio.muted =
+        ppppAzanMuted;
+
+    audio.volume =
+        Math.min(
+            1,
+            PPPP_SOUND_VOLUMES.music *
+            PPPP_SOUND_VOLUMES.master
+        );
 
 })();
 
@@ -5779,48 +7158,92 @@ audio.muted=ppppAzanMuted;
    SERVICE WORKER / APP INSTALL BUTTON
 ========================================================= */
 
-(function(){
+(function() {
 
-const installBtn=
-document.getElementById("installBtn");
+    const installBtn =
+        document.getElementById(
+            "installBtn"
+        );
 
-let deferredPrompt=null;
 
-window.addEventListener(
-"beforeinstallprompt",
-function(e){
+    let deferredPrompt = null;
 
-e.preventDefault();
 
-deferredPrompt=e;
+    window.addEventListener(
+        "beforeinstallprompt",
+        function(e) {
 
-});
+            e.preventDefault();
 
-if(installBtn){
+            deferredPrompt = e;
 
-installBtn.addEventListener(
-"click",
-async function(){
+        }
+    );
 
-if(deferredPrompt){
 
-deferredPrompt.prompt();
+    if (installBtn) {
 
-try{
-await deferredPrompt.userChoice;
-}catch(e){}
+        installBtn.addEventListener(
+            "click",
+            async function() {
 
-deferredPrompt=null;
+                if (deferredPrompt) {
 
-}else{
+                    deferredPrompt.prompt();
 
-ppppApp();
+                    try {
 
-}
+                        await deferredPrompt.userChoice;
 
-});
+                    } catch (e) {}
 
-}
+                    deferredPrompt =
+                        null;
+
+                } else {
+
+                    ppppApp();
+
+                }
+
+            }
+        );
+
+    }
+
+})();
+
+
+/* =========================================================
+   MEDIA OBSERVER
+   নতুন audio/video এলেও volume apply হবে
+========================================================= */
+
+(function() {
+
+    if (
+        typeof MutationObserver ===
+        "undefined"
+    ) return;
+
+
+    const observer =
+        new MutationObserver(
+            function() {
+
+                ppppApplyMediaVolumes();
+
+            }
+        );
+
+
+    observer.observe(
+        document.body,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
 
 })();
 
@@ -5830,19 +7253,14 @@ ppppApp();
 ========================================================= */
 
 window.addEventListener(
-"resize",
-function(){
+    "resize",
+    function() {
 
-if(
-document.body.style.zoom!=="1" &&
-document.body.style.zoom!==""
-){
+        /*
+           User zoom preserve করা হবে।
+        */
 
-/* Preserve user zoom */
-
-}
-
-});
-
+    }
+);
 
 </script>
