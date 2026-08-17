@@ -4444,94 +4444,239 @@ const PPPP_HIJRI_DAYS=[
 
 /* =========================================================
    BANGLA DATE
-   বাংলাদেশে প্রচলিত Bangla Academy calendar-এর
-   আধুনিক গণনার জন্য astronomical/seasonal correction
+   Bangladesh Revised Bangla Calendar
+   বাংলা একাডেমি/বাংলাদেশের প্রচলিত ক্যালেন্ডার
 ========================================================= */
+
+const PPPP_BANGLA_MONTHS=[
+"বৈশাখ",
+"জ্যৈষ্ঠ",
+"আষাঢ়",
+"শ্রাবণ",
+"ভাদ্র",
+"আশ্বিন",
+"কার্তিক",
+"অগ্রহায়ণ",
+"পৌষ",
+"মাঘ",
+"ফাল্গুন",
+"চৈত্র"
+];
+
+
+/*
+   বাংলাদেশে বাংলা নববর্ষ শুরু হয়
+   ১৪ এপ্রিল থেকে।
+
+   প্রথম ৬ মাস = ৩১ দিন
+   পরের ৫ মাস = ৩০ দিন
+   ফাল্গুন = ২৯ দিন
+   অধিবর্ষে ফাল্গুন = ৩০ দিন
+*/
+
+
+function ppppIsLeapYear(year){
+
+return(
+year%400===0 ||
+(
+year%4===0 &&
+year%100!==0
+)
+);
+
+}
+
 
 function ppppBanglaDate(date){
 
 const year=date.getFullYear();
 
-let banglaYear=year-593;
+const startOfBanglaYear=
+new Date(
+year,
+3,
+14,
+0,
+0,
+0,
+0
+);
 
-const start=new Date(year,3,14);
 
-if(date<start){
-banglaYear--;
+/*
+   জানুয়ারি ১ থেকে ১৩ এপ্রিল হলে
+   বাংলা বছর = ইংরেজি বছর - 594
+
+   ১৪ এপ্রিল থেকে পরবর্তী বাংলা বছর
+   = ইংরেজি বছর - 593
+*/
+
+let banglaYear;
+
+if(date>=startOfBanglaYear){
+
+banglaYear=year-593;
+
+}else{
+
+banglaYear=year-594;
+
 }
 
-const monthStarts=[
-[3,14],
-[4,15],
-[5,15],
-[6,16],
-[7,16],
-[8,16],
-[9,16],
-[10,15],
-[11,15],
-[0,14],
-[1,13],
-[2,15]
+
+/*
+   বাংলা বছরের শুরু নির্ধারণ
+*/
+
+let banglaYearStart;
+
+if(date>=startOfBanglaYear){
+
+banglaYearStart=
+new Date(
+year,
+3,
+14,
+0,
+0,
+0,
+0
+);
+
+}else{
+
+banglaYearStart=
+new Date(
+year-1,
+3,
+14,
+0,
+0,
+0,
+0
+);
+
+}
+
+
+/*
+   বাংলা বছরের কততম দিন
+*/
+
+const difference=
+Math.floor(
+(
+date-banglaYearStart
+)/86400000
+);
+
+let remainingDays=
+difference;
+
+
+/*
+   মাসের দিন সংখ্যা
+
+   বৈশাখ থেকে আশ্বিন = ৩১ দিন
+   কার্তিক থেকে মাঘ = ৩০ দিন
+   ফাল্গুন = ২৯/৩০ দিন
+   চৈত্র = ৩০ দিন
+*/
+
+const monthLengths=[
+31, // বৈশাখ
+31, // জ্যৈষ্ঠ
+31, // আষাঢ়
+31, // শ্রাবণ
+31, // ভাদ্র
+31, // আশ্বিন
+30, // কার্তিক
+30, // অগ্রহায়ণ
+30, // পৌষ
+30, // মাঘ
+29, // ফাল্গুন
+30  // চৈত্র
 ];
 
-let monthIndex=-1;
 
-for(let i=0;i<monthStarts.length;i++){
+/*
+   অধিবর্ষে ফাল্গুন ৩০ দিন
+*/
 
-let m=monthStarts[i][0];
-let d=monthStarts[i][1];
+if(ppppIsLeapYear(year)){
 
-let testYear=year;
+monthLengths[10]=30;
 
-if(m===0||m===1||m===2){
-testYear=year;
 }
 
-const startDate=
-new Date(testYear,m,d);
 
-if(date>=startDate){
+/*
+   মাস নির্ধারণ
+*/
+
+let monthIndex=0;
+
+for(
+let i=0;
+i<monthLengths.length;
+i++
+){
+
+if(
+remainingDays<
+monthLengths[i]
+){
 
 monthIndex=i;
 
-}
+break;
 
 }
 
-if(monthIndex<0){
+remainingDays-=monthLengths[i];
 
-monthIndex=11;
 }
 
-let startMonth=
-monthStarts[monthIndex][0];
 
-let startDay=
-monthStarts[monthIndex][1];
+/*
+   বাংলা তারিখ
+*/
 
-let startYear=year;
+const banglaDay=
+remainingDays+1;
 
-if(startMonth>date.getMonth()){
-startYear--;
-}
 
-const startDate=
-new Date(
-startYear,
-startMonth,
-startDay
-);
+/*
+   নিরাপত্তার জন্য
+   অস্বাভাবিক ফলাফল আটকানো
+*/
 
-const day=
-Math.floor(
-(date-startDate)/86400000
-)+1;
+if(
+banglaDay<1 ||
+banglaDay>31
+){
 
 return{
-day:day,
-month:PPPP_BANGLA_MONTHS[monthIndex],
+day:date.getDate(),
+month:"",
 year:banglaYear
+};
+
+}
+
+
+return{
+
+day:banglaDay,
+
+month:
+PPPP_BANGLA_MONTHS[
+monthIndex
+],
+
+year:banglaYear
+
 };
 
 }
