@@ -1,14 +1,12 @@
 <!-- =========================================================
      ⚙️ PPPP SETTINGS & CONTROL CENTER
      COMPLETE UPDATED VERSION
-     ALL NOTED UPDATES INCLUDED
 ========================================================= -->
 
 <style>
 
 /* =========================================================
    ⚙️ SETTINGS BUTTON
-   Share Button-এর সমান 65x65
 ========================================================= */
 
 #ppppSettingsBtn{
@@ -225,9 +223,6 @@ display:none;
 
 /* =========================================================
    PPPP STRUCTURE MAIN HEADINGS
-   Main / Get Involved / Media & Communication /
-   PPPP Special
-   অন্য category heading-এর মতো বড় নীল + ▼
 ========================================================= */
 
 .pppp-structure-heading{
@@ -781,7 +776,6 @@ placeholder="🔍 Search PPPP Settings...">
 
 <!-- =====================================================
      🏛️ PPPP STRUCTURE
-     MASTER / LOCKED ORDER
 ===================================================== -->
 
 <div class="pppp-category open">
@@ -794,20 +788,19 @@ placeholder="🔍 Search PPPP Settings...">
 <div class="pppp-category-content">
 
 
-<!-- MAIN -->
+<!-- =====================================================
+     🏠 MAIN
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppMainGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>🏠 Main</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppMainGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/index.html" class="pppp-btn">
 🏠 PPPP Home
@@ -832,20 +825,19 @@ class="pppp-structure-group">
 </div>
 
 
-<!-- GET INVOLVED -->
+<!-- =====================================================
+     🤝 GET INVOLVED
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppInvolvedGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>🤝 Get Involved</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppInvolvedGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/join.html" class="pppp-btn">
 📬 PPPP Join
@@ -870,20 +862,19 @@ class="pppp-structure-group">
 </div>
 
 
-<!-- MEDIA & COMMUNICATION -->
+<!-- =====================================================
+     📰 MEDIA & COMMUNICATION
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppMediaCommunicationGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>📰 Media & Communication</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppMediaCommunicationGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/news.html" class="pppp-btn">
 📰 PPPP News
@@ -933,6 +924,23 @@ class="pppp-structure-group">
 🌐 PPPP Social Media
 </a>
 
+</div>
+
+
+<!-- =====================================================
+     🌍 PPPP SPECIAL
+===================================================== -->
+
+<button
+class="pppp-structure-heading"
+type="button"
+onclick="ppppToggleStructureGroup(this)">
+<span>🌍 PPPP Special</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-structure-group">
+
 <a href="/pppp_bangladesh/islam.html" class="pppp-btn">
 🕋 PPPP Islam
 </a>
@@ -979,24 +987,6 @@ class="pppp-structure-group">
 
 </div>
 
-
-<!-- PPPP SPECIAL -->
-
-<div
-class="pppp-structure-heading"
-data-target="ppppSpecialGroup">
-
-<span>🌍 PPPP Special</span>
-<span class="pppp-arrow">▼</span>
-
-</div>
-
-<div
-id="ppppSpecialGroup"
-class="pppp-structure-group">
-
-</div>
-
 </div>
 </div>
 
@@ -1024,6 +1014,10 @@ class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/photos.html" class="pppp-btn">
 📷 PPPP Photos
+</a>
+
+<a href="/pppp_bangladesh/pictures.html" class="pppp-btn">
+🏞️ PPPP Pictures
 </a>
 
 <a href="/pppp_bangladesh/lyrics.html" class="pppp-btn">
@@ -1262,7 +1256,7 @@ onclick="window.scrollTo({top:0,behavior:'smooth'})">
 </button>
 
 <button class="pppp-action"
-onclick="window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'})">
+onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
 ⬇️ Back to Bottom
 </button>
 
@@ -1418,28 +1412,45 @@ onclick="ppppStatistics()">
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('liked')">
+
 ❤️ Liked Pages
-<span id="ppppLikedCount" class="pppp-count">0</span>
+
+<span id="ppppLikedCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('favorite')">
+
 ⭐ Favorited Pages
-<span id="ppppFavoriteCount" class="pppp-count">0</span>
+
+<span id="ppppFavoriteCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('pinned')">
+
 📌 Pinned Pages
-<span id="ppppPinnedCount" class="pppp-count">0</span>
+
+<span id="ppppPinnedCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action"
 onclick="ppppClearSavedPages()">
+
 🗑️ Clear Saved Pages
+
 </button>
 
 </div>
@@ -1460,18 +1471,18 @@ onclick="ppppClearSavedPages()">
 <div class="pppp-category-content">
 
 <button class="pppp-action"
-onclick="ppppThemeDay()">
-☀️ Day
+onclick="ppppDarkMode()">
+🌙 Dark Mode
 </button>
 
 <button class="pppp-action"
-onclick="ppppThemeNight()">
-🌙 Night
+onclick="ppppLightMode()">
+☀️ Light Mode
 </button>
 
 <button class="pppp-action"
-onclick="ppppThemeAuto()">
-🌓 Auto
+onclick="ppppAutoMode()">
+🌓 Auto Mode
 </button>
 
 <button class="pppp-action"
@@ -1499,11 +1510,6 @@ onclick="ppppZoomReset()">
 🔍 Zoom Reset
 </button>
 
-<button class="pppp-action"
-onclick="ppppContrast()">
-◐ High Contrast
-</button>
-
 </div>
 </div>
 
@@ -1523,12 +1529,12 @@ onclick="ppppContrast()">
 
 <button class="pppp-action"
 onclick="ppppMainLanguage()">
-🇧🇩 Main
+🌐 Main
 </button>
 
 <button class="pppp-action"
 onclick="ppppBangla()">
-🅱️ বাংলা
+🇧🇩 বাংলা
 </button>
 
 <button class="pppp-action"
@@ -1541,13 +1547,13 @@ onclick="ppppEnglish()">
 
 
 <!-- =====================================================
-     🔤 ALPHABETS & LANGUAGE LISTS
+     🔤 ALPHABET & CALENDER LIST
 ===================================================== -->
 
 <div class="pppp-category">
 
 <button class="pppp-category-title">
-<span>🔤 Alphabets & Calendar Names</span>
+<span>🔤 Alphabet & Calendar List</span>
 <span>▼</span>
 </button>
 
@@ -1928,15 +1934,15 @@ class="pppp-live-box">
 </div>
 
 <div class="pppp-live-row">
-🌅 বাংলা দিন: সূর্যোদয়ের পর শুরু হয়
+🌅 বাংলা দিন শুরু: সূর্যোদয়ের পর
 </div>
 
 <div class="pppp-live-row">
-🌙 হিজরি দিন: সূর্যাস্তের পর শুরু হয়
+🌙 হিজরি দিন শুরু: সূর্যাস্তের পর
 </div>
 
 <div class="pppp-live-row">
-🕛 ইংরেজি দিন: রাত ১২টার পর শুরু হয়
+🕛 ইংরেজি দিন শুরু: রাত ১২টার পর
 </div>
 
 </div>
@@ -1993,7 +1999,7 @@ id="ppppAzanUnmuteBtn">
 <audio id="ppppAzanAudio" preload="auto"></audio>
 
 <div class="pppp-info-item">
-🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজানোর ব্যবস্থা থাকবে।
+🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান শোনা যাবে
 </div>
 
 </div>
