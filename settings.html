@@ -4105,6 +4105,7 @@ function ppppEnglish() {
 ========================================================= */
 
 let ppppSpeechStopped = false;
+let ppppLastSpeechMode = "main";
 
 
 function ppppGetMaleVoice(lang) {
@@ -4181,7 +4182,9 @@ function ppppCleanSpeechText() {
         "noscript"
     )
     .forEach(function(el) {
+
         el.remove();
+
     });
 
     return clone.innerText
@@ -4190,6 +4193,10 @@ function ppppCleanSpeechText() {
 
 }
 
+
+/* =========================================================
+   COMMON SPEAK
+========================================================= */
 
 function ppppSpeak(text, lang) {
 
@@ -4205,23 +4212,34 @@ function ppppSpeak(text, lang) {
 
     }
 
+
     speechSynthesis.cancel();
 
     ppppSpeechStopped = false;
 
+
     const utterance =
-        new SpeechSynthesisUtterance(text);
+        new SpeechSynthesisUtterance(
+            text
+        );
+
 
     utterance.lang = lang;
     utterance.rate = 0.88;
     utterance.pitch = 0.85;
 
+
     const voice =
         ppppGetMaleVoice(lang);
 
+
     if (voice) {
-        utterance.voice = voice;
+
+        utterance.voice =
+            voice;
+
     }
+
 
     speechSynthesis.speak(
         utterance
@@ -4230,24 +4248,50 @@ function ppppSpeak(text, lang) {
 }
 
 
+/* =========================================================
+   MAIN READ ALOUD
+========================================================= */
+
 function ppppReadAloudMain() {
+
+    ppppLastSpeechMode =
+        "main";
+
 
     const text =
         ppppCleanSpeechText();
 
+
     if (!text) return;
+
+
+    if (
+        !("speechSynthesis" in window)
+    ) {
+
+        alert(
+            "🔊 আপনার browser-এ Read Aloud support নেই।"
+        );
+
+        return;
+
+    }
+
 
     speechSynthesis.cancel();
 
     ppppSpeechStopped = false;
 
+
     const regex =
         /[\u0980-\u09FF]/;
+
 
     const parts =
         text.split(
             /(?<=[.!?।])\s+/
         );
+
 
     let index = 0;
 
@@ -4258,53 +4302,98 @@ function ppppReadAloudMain() {
             ppppSpeechStopped ||
             index >= parts.length
         ) {
+
             return;
+
         }
+
 
         const part =
             parts[index++].trim();
 
+
         if (!part) {
 
             next();
+
             return;
 
         }
+
 
         const lang =
             regex.test(part)
                 ? "bn-BD"
                 : "en-US";
 
+
         const u =
             new SpeechSynthesisUtterance(
                 part
             );
 
-        u.lang = lang;
-        u.rate = 0.88;
-        u.pitch = 0.85;
+
+        u.lang =
+            lang;
+
+        u.rate =
+            0.88;
+
+        u.pitch =
+            0.85;
+
 
         const voice =
-            ppppGetMaleVoice(lang);
+            ppppGetMaleVoice(
+                lang
+            );
+
 
         if (voice) {
-            u.voice = voice;
+
+            u.voice =
+                voice;
+
         }
 
-        u.onend = next;
-        u.onerror = next;
 
-        speechSynthesis.speak(u);
+        u.onend =
+            function() {
+
+                next();
+
+            };
+
+
+        u.onerror =
+            function() {
+
+                next();
+
+            };
+
+
+        speechSynthesis.speak(
+            u
+        );
 
     }
+
 
     next();
 
 }
 
 
+/* =========================================================
+   BANGLA READ ALOUD
+========================================================= */
+
 function ppppReadAloudBangla() {
+
+    ppppLastSpeechMode =
+        "bangla";
+
 
     ppppSpeak(
         ppppCleanSpeechText(),
@@ -4314,7 +4403,15 @@ function ppppReadAloudBangla() {
 }
 
 
+/* =========================================================
+   ENGLISH READ ALOUD
+========================================================= */
+
 function ppppReadAloudEnglish() {
+
+    ppppLastSpeechMode =
+        "english";
+
 
     ppppSpeak(
         ppppCleanSpeechText(),
@@ -4324,22 +4421,127 @@ function ppppReadAloudEnglish() {
 }
 
 
+/* =========================================================
+   MUTE
+========================================================= */
+
 function ppppMute() {
 
-    ppppSpeechStopped = true;
+    ppppSpeechStopped =
+        true;
+
 
     if (
         "speechSynthesis" in window
     ) {
+
         speechSynthesis.cancel();
+
+    }
+
+
+    const muteBtn =
+        document.getElementById(
+            "ppppMuteBtn"
+        );
+
+
+    const unmuteBtn =
+        document.getElementById(
+            "ppppUnmuteBtn"
+        );
+
+
+    if (muteBtn) {
+
+        muteBtn.textContent =
+            "🔇 Muted";
+
+    }
+
+
+    if (unmuteBtn) {
+
+        unmuteBtn.textContent =
+            "🔊 Unmute";
+
     }
 
 }
 
 
+/* =========================================================
+   UNMUTE
+========================================================= */
+
 function ppppUnmute() {
 
-    ppppSpeechStopped = false;
+    ppppSpeechStopped =
+        false;
+
+
+    const muteBtn =
+        document.getElementById(
+            "ppppMuteBtn"
+        );
+
+
+    const unmuteBtn =
+        document.getElementById(
+            "ppppUnmuteBtn"
+        );
+
+
+    if (muteBtn) {
+
+        muteBtn.textContent =
+            "🔇 Mute";
+
+    }
+
+
+    if (unmuteBtn) {
+
+        unmuteBtn.textContent =
+            "🔊 Unmuted";
+
+    }
+
+
+    /*
+       Mute করার পর speechSynthesis.cancel()
+       হয়ে যাওয়ায় আগের speech নিজে থেকে
+       আবার শুরু হবে না।
+
+       তাই Unmute করলে সর্বশেষ ব্যবহৃত
+       Read Aloud mode আবার চালু হবে।
+    */
+
+    if (
+        ppppLastSpeechMode ===
+        "bangla"
+    ) {
+
+        ppppReadAloudBangla();
+
+        return;
+
+    }
+
+
+    if (
+        ppppLastSpeechMode ===
+        "english"
+    ) {
+
+        ppppReadAloudEnglish();
+
+        return;
+
+    }
+
+
+    ppppReadAloudMain();
 
 }
 
