@@ -2809,7 +2809,7 @@ style="padding:10px;">
 
 
 <!-- =========================================================
-     HIDDEN GOOGLE TRANSLATE
+     🌐 HIDDEN GOOGLE TRANSLATE
 ========================================================= -->
 
 <div id="google_translate_element"></div>
@@ -4216,94 +4216,93 @@ function ppppContrast() {
    LANGUAGE
 ========================================================= */
 
-function ppppMainLanguage() {
+function ppppMainLanguage(){
 
-    document.cookie =
-        "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+document.cookie=
+"go﻿ogtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 
-    location.reload();
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 
-}
+document.cookie=
+"googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain="+
+location.hostname;
 
-
-function GTranslateFireEvent(
-    element,
-    event
-) {
-
-    try {
-
-        if (document.createEvent) {
-
-            const evt =
-                document.createEvent(
-                    "HTMLEvents"
-                );
-
-            evt.initEvent(
-                event,
-                true,
-                true
-            );
-
-            element.dispatchEvent(evt);
-
-        }
-
-    } catch (e) {}
+location.reload();
 
 }
 
 
-function doGTranslate(lang_pair) {
+function GTranslateFireEvent(element,event){
 
-    if (!lang_pair) return;
+try{
 
-    const lang =
-        lang_pair.split("|")[1];
+if(document.createEvent){
 
-    const select =
-        document.querySelector(
-            ".goog-te-combo"
-        );
+const evt=
+document.createEvent("HTMLEvents");
 
-    if (select) {
+evt.initEvent(event,true,true);
 
-        select.value = lang;
+element.dispatchEvent(evt);
 
-        GTranslateFireEvent(
-            select,
-            "change"
-        );
+}
 
-        return;
-
-    }
-
-    document.cookie =
-        "googtrans=/bn/" +
-        lang +
-        ";path=/";
-
-    location.reload();
+}catch(e){}
 
 }
 
 
-function ppppBangla() {
+function doGTranslate(lang_pair){
 
-    doGTranslate(
-        "bn|bn"
-    );
+if(!lang_pair)return;
+
+const lang=
+lang_pair.split("|")[1];
+
+const select=
+document.querySelector(".goog-te-combo");
+
+if(select){
+
+select.value=lang;
+
+GTranslateFireEvent(
+select,
+"change"
+);
+
+return;
+
+}
+
+document.cookie=
+"googtrans=/bn/"+lang+
+";path=/";
+
+location.reload();
 
 }
 
 
-function ppppEnglish() {
+function ppppBangla(){
+doGTranslate("bn|bn");
+}
 
-    doGTranslate(
-        "bn|en"
-    );
+
+function ppppEnglish(){
+doGTranslate("bn|en");
+}
+
+
+function ppppLanguage(){
+
+alert(
+"🌐 Language Settings\n\n"+
+"🌐 Main — মূল পেজের প্রকৃত রূপ\n"+
+"🇧🇩 বাংলা — বাংলা\n"+
+"🔤 English — English"
+);
 
 }
 
@@ -4312,319 +4311,189 @@ function ppppEnglish() {
    READ ALOUD
 ========================================================= */
 
-let ppppSpeechStopped = false;
-let ppppLastSpeechMode = "main";
+let ppppSpeechStopped=false;
 
 
-function ppppGetMaleVoice(lang) {
+function ppppGetMaleVoice(lang){
 
-    const voices =
-        window.speechSynthesis.getVoices();
+const voices=
+window.speechSynthesis.getVoices();
 
-    const prefix =
-        lang
-            .split("-")[0]
-            .toLowerCase();
+const prefix=
+lang.split("-")[0].toLowerCase();
 
-    const maleNames = [
-        "male",
-        "man",
-        "david",
-        "mark",
-        "george",
-        "daniel",
-        "alex",
-        "fred"
-    ];
+const maleNames=[
+"male",
+"man",
+"google uk english male",
+"microsoft david",
+"microsoft mark",
+"microsoft george",
+"daniel",
+"alex",
+"fred"
+];
 
-    let voice =
-        voices.find(function(v) {
+let voice=
+voices.find(function(v){
 
-            return (
-                v.lang
-                    .toLowerCase()
-                    .startsWith(prefix) &&
-                maleNames.some(function(name) {
+return v.lang.toLowerCase().startsWith(prefix)
+&&
+maleNames.some(function(name){
+return v.name.toLowerCase().includes(name);
+});
 
-                    return v.name
-                        .toLowerCase()
-                        .includes(name);
+});
 
-                })
-            );
+if(!voice){
 
-        });
+voice=
+voices.find(function(v){
+return v.lang.toLowerCase().startsWith(prefix);
+});
 
-    if (!voice) {
+}
 
-        voice =
-            voices.find(function(v) {
-
-                return v.lang
-                    .toLowerCase()
-                    .startsWith(prefix);
-
-            });
-
-    }
-
-    return voice || null;
+return voice||null;
 
 }
 
 
-function ppppCleanSpeechText() {
+function ppppCleanSpeechText(){
 
-    const clone =
-        document.body.cloneNode(true);
+const clone=
+document.body.cloneNode(true);
 
-    clone.querySelectorAll(
-        "#ppppSettingsPanel," +
-        "#ppppSettingsOverlay," +
-        "#ppppSettingsBtn," +
-        "#shareBtn," +
-        "#topBtn," +
-        "#ppppSavedPagesBox," +
-        "script," +
-        "style," +
-        "noscript"
-    )
-    .forEach(function(el) {
+clone.querySelectorAll(
+"#ppppSettingsPanel,"+
+"#ppppSettingsOverlay,"+
+"#ppppSettingsBtn,"+
+"#shareBtn,"+
+"#topBtn,"+
+"#ppppSavedPagesBox,"+
+"script,"+
+"style,"+
+"noscript"
+)
+.forEach(function(el){
+el.remove();
+});
 
-        el.remove();
-
-    });
-
-    return clone.innerText
-        .replace(/\s+/g, " ")
-        .trim();
+return clone.innerText
+.replace(/\s+/g," ")
+.trim();
 
 }
 
 
-/* =========================================================
-   COMMON SPEAK
-========================================================= */
+function ppppSpeak(text,lang){
 
-function ppppSpeak(text, lang) {
+if(!("speechSynthesis" in window)){
 
-    if (
-        !("speechSynthesis" in window)
-    ) {
+alert(
+"🔊 আপনার browser-এ Read Aloud support নেই।"
+);
 
-        alert(
-            "🔊 আপনার browser-এ Read Aloud support নেই।"
-        );
+return;
 
-        return;
+}
 
-    }
+speechSynthesis.cancel();
 
+ppppSpeechStopped=false;
 
-    speechSynthesis.cancel();
+const utterance=
+new SpeechSynthesisUtterance(text);
 
-    ppppSpeechStopped = false;
+utterance.lang=lang;
+utterance.rate=.88;
+utterance.pitch=.85;
 
+const voice=ppppGetMaleVoice(lang);
 
-    const utterance =
-        new SpeechSynthesisUtterance(
-            text
-        );
+if(voice)utterance.voice=voice;
 
-
-    utterance.lang = lang;
-    utterance.rate = 0.88;
-    utterance.pitch = 0.85;
-
-
-    const voice =
-        ppppGetMaleVoice(lang);
-
-
-    if (voice) {
-
-        utterance.voice =
-            voice;
-
-    }
-
-
-    speechSynthesis.speak(
-        utterance
-    );
+speechSynthesis.speak(utterance);
 
 }
 
 
-/* =========================================================
-   MAIN READ ALOUD
-========================================================= */
+function ppppReadAloudMain(){
 
-function ppppReadAloudMain() {
+const text=ppppCleanSpeechText();
 
-    ppppLastSpeechMode =
-        "main";
+if(!text){
 
+alert("🔊 পড়ার মতো কোনো text পাওয়া যায়নি।");
+return;
 
-    const text =
-        ppppCleanSpeechText();
+}
 
+speechSynthesis.cancel();
+ppppSpeechStopped=false;
 
-    if (!text) return;
+const regex=/[\u0980-\u09FF]/;
 
+const parts=
+text.split(/(?<=[.!?।])\s+/);
 
-    if (
-        !("speechSynthesis" in window)
-    ) {
+let index=0;
 
-        alert(
-            "🔊 আপনার browser-এ Read Aloud support নেই।"
-        );
+function next(){
 
-        return;
+if(ppppSpeechStopped||index>=parts.length)return;
 
-    }
+const part=parts[index++].trim();
 
+if(!part){
+next();
+return;
+}
 
-    speechSynthesis.cancel();
+const lang=
+regex.test(part)
+?"bn-BD"
+:"en-US";
 
-    ppppSpeechStopped = false;
+const u=
+new SpeechSynthesisUtterance(part);
 
+u.lang=lang;
+u.rate=.88;
+u.pitch=.85;
 
-    const regex =
-        /[\u0980-\u09FF]/;
+const voice=ppppGetMaleVoice(lang);
 
+if(voice)u.voice=voice;
 
-    const parts =
-        text.split(
-            /(?<=[.!?।])\s+/
-        );
+u.onend=next;
+u.onerror=next;
 
+speechSynthesis.speak(u);
 
-    let index = 0;
+}
 
-
-    function next() {
-
-        if (
-            ppppSpeechStopped ||
-            index >= parts.length
-        ) {
-
-            return;
-
-        }
-
-
-        const part =
-            parts[index++].trim();
-
-
-        if (!part) {
-
-            next();
-
-            return;
-
-        }
-
-
-        const lang =
-            regex.test(part)
-                ? "bn-BD"
-                : "en-US";
-
-
-        const u =
-            new SpeechSynthesisUtterance(
-                part
-            );
-
-
-        u.lang =
-            lang;
-
-        u.rate =
-            0.88;
-
-        u.pitch =
-            0.85;
-
-
-        const voice =
-            ppppGetMaleVoice(
-                lang
-            );
-
-
-        if (voice) {
-
-            u.voice =
-                voice;
-
-        }
-
-
-        u.onend =
-            function() {
-
-                next();
-
-            };
-
-
-        u.onerror =
-            function() {
-
-                next();
-
-            };
-
-
-        speechSynthesis.speak(
-            u
-        );
-
-    }
-
-
-    next();
+next();
 
 }
 
 
-/* =========================================================
-   BANGLA READ ALOUD
-========================================================= */
+function ppppReadAloudBangla(){
 
-function ppppReadAloudBangla() {
-
-    ppppLastSpeechMode =
-        "bangla";
-
-
-    ppppSpeak(
-        ppppCleanSpeechText(),
-        "bn-BD"
-    );
+ppppSpeak(
+ppppCleanSpeechText(),
+"bn-BD"
+);
 
 }
 
 
-/* =========================================================
-   ENGLISH READ ALOUD
-========================================================= */
+function ppppReadAloudEnglish(){
 
-function ppppReadAloudEnglish() {
-
-    ppppLastSpeechMode =
-        "english";
-
-
-    ppppSpeak(
-        ppppCleanSpeechText(),
-        "en-US"
-    );
+ppppSpeak(
+ppppCleanSpeechText(),
+"en-US"
+);
 
 }
 
@@ -7897,615 +7766,264 @@ function ppppResetSettings() {
 
 
 /* =========================================================
-   FULL PAGE DOWNLOAD
+   DOWNLOAD FULL PAGE
 ========================================================= */
 
-function ppppPrepareFullPageClone() {
+function ppppDownloadPage(){
 
-    const clone =
-        document.documentElement.cloneNode(true);
+const clone=
+document.documentElement.cloneNode(true);
 
-
-    clone.querySelectorAll(
-        "#ppppSettingsBtn," +
-        "#ppppSettingsPanel," +
-        "#ppppSettingsOverlay," +
-        "#shareBtn," +
-        "#topBtn," +
-        "#ppppSavedPagesBox," +
-        "#google_translate_element"
-    )
-    .forEach(function(el) {
-
-        el.remove();
-
-    });
-
-
-    clone.querySelectorAll("script")
-        .forEach(function(script) {
-
-            script.remove();
-
-        });
+clone.querySelectorAll(
+"#ppppSettingsBtn,"+
+"#ppppSettingsPanel,"+
+"#ppppSettingsOverlay,"+
+"#shareBtn,"+
+"#topBtn,"+
+"#ppppSavedPagesBox,"+
+"#google_translate_element,"+
+".goog-te-banner-frame,"+
+".goog-te-balloon-frame,"+
+".goog-te-menu-frame,"+
+".skiptranslate"
+)
+.forEach(function(el){
+el.remove();
+});
 
 
-    const style =
-        document.createElement("style");
+clone.querySelectorAll(
+"script"
+)
+.forEach(function(script){
+script.remove();
+});
 
 
-    style.textContent = `
-*{
-    box-sizing:border-box !important;
+const head=
+clone.querySelector("head");
+
+if(head){
+
+const oldBase=
+head.querySelector("base");
+
+if(oldBase){
+
+oldBase.href=
+window.location.href;
+
+}else{
+
+const base=
+document.createElement("base");
+
+base.href=
+window.location.href;
+
+head.insertBefore(
+base,
+head.firstChild
+);
+
 }
-
-html,
-body{
-    height:auto !important;
-    min-height:100% !important;
-    overflow:visible !important;
-}
-
-body{
-    position:static !important;
-    top:auto !important;
-}
-
-[style*="position:fixed"],
-[style*="position:sticky"]{
-    position:static !important;
-}
-`;
-
-
-    const head =
-        clone.querySelector("head");
-
-
-    if (head) {
-
-        head.appendChild(style);
-
-    }
-
-
-    const base =
-        document.createElement("base");
-
-
-    base.href =
-        window.location.href;
-
-
-    if (head) {
-
-        const oldBase =
-            head.querySelector("base");
-
-
-        if (oldBase) {
-
-            oldBase.href =
-                window.location.href;
-
-        } else {
-
-            head.insertBefore(
-                base,
-                head.firstChild
-            );
-
-        }
-
-    }
-
-
-    return clone;
 
 }
 
 
-/* =========================================================
-   DOWNLOAD PAGE
-========================================================= */
+/*
+   Full-page capture/download-এর জন্য
+   original document-এর complete HTML রাখা হচ্ছে।
+*/
 
-function ppppDownloadPage() {
+const html=
+"<!DOCTYPE html>\n"+
+clone.outerHTML;
 
-    const clone =
-        ppppPrepareFullPageClone();
-
-
-    const html =
-        "<!DOCTYPE html>\n" +
-        clone.outerHTML;
-
-
-    const blob =
-        new Blob(
-            [html],
-            {
-                type:
-                    "text/html;charset=utf-8"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href =
-        url;
-
-
-    a.download =
-        (
-            document.title ||
-            "PPPP_Page"
-        )
-        .replace(
-            /[^\w\u0980-\u09FF-]+/g,
-            "_"
-        ) +
-        ".html";
-
-
-    document.body.appendChild(a);
-
-
-    a.click();
-
-
-    a.remove();
-
-
-    setTimeout(function() {
-
-        URL.revokeObjectURL(url);
-
-    }, 5000);
-
+const blob=
+new Blob(
+[html],
+{
+type:"text/html;charset=utf-8"
 }
+);
 
+const url=
+URL.createObjectURL(blob);
 
-/* =========================================================
-   LOAD HTML2PDF
-========================================================= */
+const a=
+document.createElement("a");
 
-function ppppLoadHTML2PDF() {
+a.href=url;
 
-    return new Promise(function(resolve, reject) {
+a.download=
+(
+document.title||
+"PPPP_Full_Page"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".html";
 
-        if (
-            typeof html2pdf !==
-            "undefined"
-        ) {
+document.body.appendChild(a);
 
-            resolve();
+a.click();
+a.remove();
 
-            return;
-
-        }
-
-
-        const existing =
-            document.querySelector(
-                'script[data-pppp-html2pdf="true"]'
-            );
-
-
-        if (existing) {
-
-            existing.addEventListener(
-                "load",
-                resolve,
-                {
-                    once: true
-                }
-            );
-
-
-            existing.addEventListener(
-                "error",
-                reject,
-                {
-                    once: true
-                }
-            );
-
-
-            return;
-
-        }
-
-
-        const script =
-            document.createElement("script");
-
-
-        script.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/" +
-            "html2pdf.js/0.10.1/html2pdf.bundle.min.js";
-
-
-        script.async = true;
-
-
-        script.dataset.ppppHtml2pdf =
-            "true";
-
-
-        script.onload =
-            function() {
-
-                resolve();
-
-            };
-
-
-        script.onerror =
-            function() {
-
-                reject(
-                    new Error(
-                        "HTML2PDF library load failed"
-                    )
-                );
-
-            };
-
-
-        document.head.appendChild(script);
-
-    });
+setTimeout(function(){
+URL.revokeObjectURL(url);
+},3000);
 
 }
 
 
 /* =========================================================
    SAVE AS PDF
-   DIRECT AUTOMATIC PDF DOWNLOAD
 ========================================================= */
 
-async function ppppSavePDF() {
+function ppppLoadPDFLibrary(callback){
 
-    let temporaryStyle = null;
+if(typeof html2pdf!=="undefined"){
 
-    let controls = [];
+callback();
+return;
 
-    let oldDisplay = [];
-
-    const oldX =
-        window.scrollX;
-
-    const oldY =
-        window.scrollY;
-
-
-    try {
-
-        /*
-           Settings panel বন্ধ
-        */
-
-        if (
-            typeof closePPPPSettings ===
-            "function"
-        ) {
-
-            closePPPPSettings();
-
-        }
-
-
-        /*
-           HTML2PDF library load
-        */
-
-        await ppppLoadHTML2PDF();
-
-
-        /*
-           যে elementগুলো PDF-এ থাকবে না
-        */
-
-        controls = [
-
-            document.getElementById(
-                "ppppSettingsBtn"
-            ),
-
-            document.getElementById(
-                "ppppSettingsPanel"
-            ),
-
-            document.getElementById(
-                "ppppSettingsOverlay"
-            ),
-
-            document.getElementById(
-                "shareBtn"
-            ),
-
-            document.getElementById(
-                "topBtn"
-            ),
-
-            document.getElementById(
-                "ppppSavedPagesBox"
-            ),
-
-            document.getElementById(
-                "google_translate_element"
-            )
-
-        ];
-
-
-        /*
-           আগের display সংরক্ষণ
-        */
-
-        controls.forEach(
-            function(el, i) {
-
-                if (el) {
-
-                    oldDisplay[i] =
-                        el.style.display;
-
-                    el.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        /*
-           PDF temporary CSS
-        */
-
-        temporaryStyle =
-            document.createElement("style");
-
-
-        temporaryStyle.id =
-            "ppppPDFTemporaryStyle";
-
-
-        temporaryStyle.textContent = `
-html,
-body{
-    height:auto !important;
-    min-height:100% !important;
-    overflow:visible !important;
 }
 
-body{
-    position:static !important;
-    width:100% !important;
+const script=
+document.createElement("script");
+
+script.src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+
+script.onload=callback;
+
+script.onerror=function(){
+
+alert(
+"📄 PDF library load করা যায়নি।"
+);
+
+};
+
+document.head.appendChild(script);
+
 }
 
-[style*="position:fixed"],
-[style*="position:sticky"]{
-    position:static !important;
+
+function ppppSaveAsPDF(){
+
+closePPPPSettings();
+
+ppppLoadPDFLibrary(function(){
+
+const controls=[
+document.getElementById("ppppSettingsBtn"),
+document.getElementById("ppppSettingsPanel"),
+document.getElementById("ppppSettingsOverlay"),
+document.getElementById("shareBtn"),
+document.getElementById("topBtn"),
+document.getElementById("ppppSavedPagesBox")
+];
+
+const old=[];
+
+controls.forEach(function(el,i){
+
+if(el){
+
+old[i]=el.style.display;
+el.style.display="none";
+
 }
 
-@page{
-    size:A4 portrait;
-    margin:8mm;
+});
+
+
+const element=
+document.body;
+
+const filename=
+(
+document.title||
+"PPPP_Page"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".pdf";
+
+
+const options={
+
+margin:0,
+
+filename:filename,
+
+image:{
+type:"jpeg",
+quality:.98
+},
+
+html2canvas:{
+scale:2,
+useCORS:true,
+allowTaint:true,
+scrollX:0,
+scrollY:0,
+windowWidth:document.documentElement.scrollWidth
+},
+
+jsPDF:{
+unit:"mm",
+format:"a4",
+orientation:"portrait"
 }
-`;
 
+};
 
-        document.head.appendChild(
-            temporaryStyle
-        );
 
+html2pdf()
+.set(options)
+.from(element)
+.save()
+.then(function(){
 
-        /*
-           পেজের একদম উপরে
-        */
+controls.forEach(function(el,i){
 
-        window.scrollTo(
-            0,
-            0
-        );
+if(el){
 
+el.style.display=
+old[i]||"";
 
-        /*
-           DOM update হওয়ার জন্য অপেক্ষা
-        */
+}
 
-        await new Promise(
-            function(resolve) {
+});
 
-                requestAnimationFrame(
-                    function() {
+})
+.catch(function(){
 
-                        requestAnimationFrame(
-                            resolve
-                        );
+controls.forEach(function(el,i){
 
-                    }
-                );
+if(el){
 
-            }
-        );
+el.style.display=
+old[i]||"";
 
+}
 
-        /*
-           PDF filename
-        */
+});
 
-        const filename =
-            (
-                document.title ||
-                "PPPP_Settings"
-            )
-            .replace(
-                /[^\w\u0980-\u09FF-]+/g,
-                "_"
-            ) +
-            ".pdf";
+alert(
+"📄 PDF তৈরি করা সম্ভব হয়নি।"
+);
 
+});
 
-        /*
-           PDF settings
-        */
-
-        const options = {
-
-            margin: [
-                8,
-                8,
-                8,
-                8
-            ],
-
-            filename:
-                filename,
-
-            image: {
-
-                type:
-                    "jpeg",
-
-                quality:
-                    0.98
-
-            },
-
-            html2canvas: {
-
-                scale:
-                    1.5,
-
-                useCORS:
-                    true,
-
-                allowTaint:
-                    false,
-
-                backgroundColor:
-                    "#ffffff",
-
-                logging:
-                    false,
-
-                imageTimeout:
-                    30000,
-
-                scrollX:
-                    0,
-
-                scrollY:
-                    0
-
-            },
-
-            jsPDF: {
-
-                unit:
-                    "mm",
-
-                format:
-                    "a4",
-
-                orientation:
-                    "portrait",
-
-                compress:
-                    true
-
-            },
-
-            pagebreak: {
-
-                mode: [
-                    "css",
-                    "legacy"
-                ]
-
-            }
-
-        };
-
-
-        /*
-           ⭐ সরাসরি PDF download
-           
-           এখানে window.print()
-           ব্যবহার করা হয়নি।
-        */
-
-        await html2pdf()
-            .set(options)
-            .from(document.body)
-            .save();
-
-
-    } catch (e) {
-
-        console.error(
-            "PPPP PDF Error:",
-            e
-        );
-
-
-        alert(
-            "📕 PDF তৈরি করা সম্ভব হয়নি।\n" +
-            "দয়া করে আবার চেষ্টা করুন।"
-        );
-
-
-    } finally {
-
-        /*
-           Temporary CSS remove
-        */
-
-        if (temporaryStyle) {
-
-            temporaryStyle.remove();
-
-        }
-
-
-        /*
-           Controls restore
-        */
-
-        controls.forEach(
-            function(el, i) {
-
-                if (el) {
-
-                    el.style.display =
-                        oldDisplay[i] || "";
-
-                }
-
-            }
-        );
-
-
-        /*
-           আগের scroll position
-        */
-
-        window.scrollTo(
-            oldX,
-            oldY
-        );
-
-    }
+});
 
 }
 
@@ -8514,357 +8032,195 @@ body{
    PRINT
 ========================================================= */
 
-function ppppPrintPage() {
+function ppppPrintPage(){
 
-    if (
-        typeof closePPPPSettings ===
-        "function"
-    ) {
+closePPPPSettings();
 
-        closePPPPSettings();
-
-    }
-
-
-    setTimeout(function() {
-
-        window.print();
-
-    }, 300);
+setTimeout(function(){
+window.print();
+},200);
 
 }
 
 
 /* =========================================================
-   QR
+   QR CODE
 ========================================================= */
 
-function ppppQRCode() {
+function ppppQRCode(){
 
-    const qrURL =
-        "https://api.qrserver.com/v1/create-qr-code/" +
-        "?size=300x300&data=" +
-        encodeURIComponent(
-            window.location.href
-        );
+const qrURL=
+"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
+encodeURIComponent(window.location.href);
 
-
-    window.open(
-        qrURL,
-        "_blank"
-    );
+window.open(qrURL,"_blank");
 
 }
 
 
 /* =========================================================
-   FULL PAGE SCREENSHOT
+   SCREENSHOT
+   CURRENT VIEWPORT / CURRENT SCREEN
 ========================================================= */
 
-async function ppppScreenshot() {
+async function ppppScreenshot(){
 
-    if (
-        typeof html2canvas ===
-        "undefined"
-    ) {
+if(typeof html2canvas==="undefined"){
 
-        const script =
-            document.createElement("script");
+const script=
+document.createElement("script");
 
+script.src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
 
-        script.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/" +
-            "html2canvas/1.4.1/html2canvas.min.js";
+script.onload=function(){
+ppppScreenshot();
+};
 
+script.onerror=function(){
 
-        script.onload =
-            function() {
+alert(
+"📸 Screenshot library load করা যায়নি।"
+);
 
-                ppppScreenshot();
+};
 
-            };
+document.head.appendChild(script);
 
+return;
 
-        script.onerror =
-            function() {
-
-                alert(
-                    "📸 Screenshot library load করা যায়নি।"
-                );
-
-            };
-
-
-        document.head.appendChild(
-            script
-        );
-
-
-        return;
-
-    }
-
-
-    const oldX =
-        window.scrollX;
-
-    const oldY =
-        window.scrollY;
-
-
-    const controls = [
-
-        document.getElementById(
-            "ppppSettingsBtn"
-        ),
-
-        document.getElementById(
-            "ppppSettingsPanel"
-        ),
-
-        document.getElementById(
-            "ppppSettingsOverlay"
-        ),
-
-        document.getElementById(
-            "shareBtn"
-        ),
-
-        document.getElementById(
-            "topBtn"
-        ),
-
-        document.getElementById(
-            "ppppSavedPagesBox"
-        ),
-
-        document.getElementById(
-            "google_translate_element"
-        )
-
-    ];
-
-
-    const oldDisplay = [];
-
-
-    controls.forEach(
-        function(el, i) {
-
-            if (el) {
-
-                oldDisplay[i] =
-                    el.style.display;
-
-                el.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    const temporaryStyle =
-        document.createElement("style");
-
-
-    temporaryStyle.id =
-        "ppppScreenshotTemporaryStyle";
-
-
-    temporaryStyle.textContent = `
-html,
-body{
-    height:auto !important;
-    min-height:100% !important;
-    overflow:visible !important;
 }
 
-body{
-    position:static !important;
+
+/*
+   Settings এবং অন্যান্য floating controls
+   সাময়িকভাবে hide করা হচ্ছে।
+*/
+
+const controls=[
+document.getElementById("ppppSettingsBtn"),
+document.getElementById("ppppSettingsPanel"),
+document.getElementById("ppppSettingsOverlay"),
+document.getElementById("shareBtn"),
+document.getElementById("topBtn"),
+document.getElementById("ppppSavedPagesBox")
+];
+
+const oldDisplay=[];
+
+controls.forEach(function(el,i){
+
+if(el){
+
+oldDisplay[i]=el.style.display;
+el.style.display="none";
+
 }
-`;
 
+});
 
-    document.head.appendChild(
-        temporaryStyle
-    );
 
+try{
 
-    const fullWidth =
-        Math.max(
-            document.documentElement.scrollWidth,
-            document.body.scrollWidth,
-            document.documentElement.clientWidth
-        );
+/*
+   Current viewport-এর screen position capture।
+   scrollY ব্যবহার করে পেজের বর্তমান অবস্থান
+   crop করা হচ্ছে।
+*/
 
+const scrollX=window.scrollX;
+const scrollY=window.scrollY;
 
-    const fullHeight =
-        Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            document.documentElement.clientHeight
-        );
+const canvas=
+await html2canvas(
+document.body,
+{
 
+x:scrollX,
+y:scrollY,
 
-    window.scrollTo(
-        0,
-        0
-    );
+width:window.innerWidth,
+height:window.innerHeight,
 
+windowWidth:
+document.documentElement.scrollWidth,
 
-    await new Promise(
-        function(resolve) {
+windowHeight:
+document.documentElement.scrollHeight,
 
-            requestAnimationFrame(
-                function() {
+scrollX:0,
+scrollY:-scrollY,
 
-                    requestAnimationFrame(
-                        resolve
-                    );
+useCORS:true,
+allowTaint:true,
 
-                }
-            );
+scale:
+window.devicePixelRatio||1,
 
-        }
-    );
+backgroundColor:null
 
+}
+);
 
-    try {
 
-        const canvas =
-            await html2canvas(
-                document.documentElement,
-                {
+/*
+   controls ফিরিয়ে দেওয়া
+*/
 
-                    x:
-                        0,
+controls.forEach(function(el,i){
 
-                    y:
-                        0,
+if(el){
 
-                    width:
-                        fullWidth,
+el.style.display=
+oldDisplay[i]||"";
 
-                    height:
-                        fullHeight,
+}
 
-                    windowWidth:
-                        fullWidth,
+});
 
-                    windowHeight:
-                        fullHeight,
 
-                    scrollX:
-                        0,
+const link=
+document.createElement("a");
 
-                    scrollY:
-                        0,
+link.download=
+(
+document.title||
+"PPPP_Current_Screen"
+)
+.replace(
+/[^\w\u0980-\u09FF-]+/g,
+"_"
+)+
+".png";
 
-                    useCORS:
-                        true,
+link.href=
+canvas.toDataURL("image/png");
 
-                    allowTaint:
-                        false,
+document.body.appendChild(link);
 
-                    backgroundColor:
-                        "#ffffff",
+link.click();
 
-                    scale:
-                        Math.min(
-                            2,
-                            window.devicePixelRatio ||
-                            1
-                        ),
+link.remove();
 
-                    logging:
-                        false,
 
-                    imageTimeout:
-                        30000,
+}catch(e){
 
-                    foreignObjectRendering:
-                        false
+controls.forEach(function(el,i){
 
-                }
+if(el){
 
-            );
+el.style.display=
+oldDisplay[i]||"";
 
+}
 
-        const link =
-            document.createElement("a");
+});
 
-
-        link.download =
-            (
-                document.title ||
-                "PPPP_Full_Page_Screenshot"
-            )
-            .replace(
-                /[^\w\u0980-\u09FF-]+/g,
-                "_"
-            ) +
-            ".png";
-
-
-        link.href =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        link.remove();
-
-
-    } catch (e) {
-
-        console.error(
-            "PPPP Screenshot Error:",
-            e
-        );
-
-
-        alert(
-            "📸 Full Page Screenshot তৈরি করা সম্ভব হয়নি।"
-        );
-
-    }
-
-
-    if (temporaryStyle) {
-
-        temporaryStyle.remove();
-
-    }
-
-
-    controls.forEach(
-        function(el, i) {
-
-            if (el) {
-
-                el.style.display =
-                    oldDisplay[i] || "";
-
-            }
-
-        }
-    );
-
-
-    window.scrollTo(
-        oldX,
-        oldY
-    );
+alert(
+"📸 Current Screen Screenshot তৈরি করা সম্ভব হয়নি।"
+);
+
+}
 
 }
 
