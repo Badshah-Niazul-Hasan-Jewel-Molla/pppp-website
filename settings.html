@@ -7500,35 +7500,35 @@ function ppppPrepareFullPageClone() {
     });
 
 
-    clone.querySelectorAll(
-        "script"
-    )
-    .forEach(function(script) {
+    clone.querySelectorAll("script")
+        .forEach(function(script) {
 
-        script.remove();
+            script.remove();
 
-    });
+        });
 
 
     const style =
-        document.createElement(
-            "style"
-        );
+        document.createElement("style");
 
 
     style.textContent = `
 *{
     box-sizing:border-box !important;
 }
-html,body{
+
+html,
+body{
     height:auto !important;
     min-height:100% !important;
     overflow:visible !important;
 }
+
 body{
     position:static !important;
     top:auto !important;
 }
+
 [style*="position:fixed"],
 [style*="position:sticky"]{
     position:static !important;
@@ -7542,17 +7542,14 @@ body{
 
     if (head) {
 
-        head.appendChild(
-            style
-        );
+        head.appendChild(style);
 
     }
 
 
     const base =
-        document.createElement(
-            "base"
-        );
+        document.createElement("base");
+
 
     base.href =
         window.location.href;
@@ -7561,9 +7558,8 @@ body{
     if (head) {
 
         const oldBase =
-            head.querySelector(
-                "base"
-            );
+            head.querySelector("base");
+
 
         if (oldBase) {
 
@@ -7587,6 +7583,10 @@ body{
 }
 
 
+/* =========================================================
+   DOWNLOAD PAGE
+========================================================= */
+
 function ppppDownloadPage() {
 
     const clone =
@@ -7609,18 +7609,15 @@ function ppppDownloadPage() {
 
 
     const url =
-        URL.createObjectURL(
-            blob
-        );
+        URL.createObjectURL(blob);
 
 
     const a =
-        document.createElement(
-            "a"
-        );
+        document.createElement("a");
 
 
-    a.href = url;
+    a.href =
+        url;
 
 
     a.download =
@@ -7637,7 +7634,9 @@ function ppppDownloadPage() {
 
     document.body.appendChild(a);
 
+
     a.click();
+
 
     a.remove();
 
@@ -7652,18 +7651,439 @@ function ppppDownloadPage() {
 
 
 /* =========================================================
-   SAVE AS PDF
+   LOAD HTML2PDF
 ========================================================= */
 
-function ppppSavePDF() {
+function ppppLoadHTML2PDF() {
 
-    closePPPPSettings();
+    return new Promise(function(resolve, reject) {
 
-    setTimeout(function() {
+        if (
+            typeof html2pdf !==
+            "undefined"
+        ) {
 
-        window.print();
+            resolve();
 
-    }, 300);
+            return;
+
+        }
+
+
+        const existing =
+            document.querySelector(
+                'script[data-pppp-html2pdf="true"]'
+            );
+
+
+        if (existing) {
+
+            existing.addEventListener(
+                "load",
+                resolve,
+                {
+                    once: true
+                }
+            );
+
+
+            existing.addEventListener(
+                "error",
+                reject,
+                {
+                    once: true
+                }
+            );
+
+
+            return;
+
+        }
+
+
+        const script =
+            document.createElement("script");
+
+
+        script.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/" +
+            "html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+
+
+        script.async = true;
+
+
+        script.dataset.ppppHtml2pdf =
+            "true";
+
+
+        script.onload =
+            function() {
+
+                resolve();
+
+            };
+
+
+        script.onerror =
+            function() {
+
+                reject(
+                    new Error(
+                        "HTML2PDF library load failed"
+                    )
+                );
+
+            };
+
+
+        document.head.appendChild(script);
+
+    });
+
+}
+
+
+/* =========================================================
+   SAVE AS PDF
+   DIRECT AUTOMATIC PDF DOWNLOAD
+========================================================= */
+
+async function ppppSavePDF() {
+
+    let temporaryStyle = null;
+
+    let controls = [];
+
+    let oldDisplay = [];
+
+    const oldX =
+        window.scrollX;
+
+    const oldY =
+        window.scrollY;
+
+
+    try {
+
+        /*
+           Settings panel বন্ধ
+        */
+
+        if (
+            typeof closePPPPSettings ===
+            "function"
+        ) {
+
+            closePPPPSettings();
+
+        }
+
+
+        /*
+           HTML2PDF library load
+        */
+
+        await ppppLoadHTML2PDF();
+
+
+        /*
+           যে elementগুলো PDF-এ থাকবে না
+        */
+
+        controls = [
+
+            document.getElementById(
+                "ppppSettingsBtn"
+            ),
+
+            document.getElementById(
+                "ppppSettingsPanel"
+            ),
+
+            document.getElementById(
+                "ppppSettingsOverlay"
+            ),
+
+            document.getElementById(
+                "shareBtn"
+            ),
+
+            document.getElementById(
+                "topBtn"
+            ),
+
+            document.getElementById(
+                "ppppSavedPagesBox"
+            ),
+
+            document.getElementById(
+                "google_translate_element"
+            )
+
+        ];
+
+
+        /*
+           আগের display সংরক্ষণ
+        */
+
+        controls.forEach(
+            function(el, i) {
+
+                if (el) {
+
+                    oldDisplay[i] =
+                        el.style.display;
+
+                    el.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        /*
+           PDF temporary CSS
+        */
+
+        temporaryStyle =
+            document.createElement("style");
+
+
+        temporaryStyle.id =
+            "ppppPDFTemporaryStyle";
+
+
+        temporaryStyle.textContent = `
+html,
+body{
+    height:auto !important;
+    min-height:100% !important;
+    overflow:visible !important;
+}
+
+body{
+    position:static !important;
+    width:100% !important;
+}
+
+[style*="position:fixed"],
+[style*="position:sticky"]{
+    position:static !important;
+}
+
+@page{
+    size:A4 portrait;
+    margin:8mm;
+}
+`;
+
+
+        document.head.appendChild(
+            temporaryStyle
+        );
+
+
+        /*
+           পেজের একদম উপরে
+        */
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+
+        /*
+           DOM update হওয়ার জন্য অপেক্ষা
+        */
+
+        await new Promise(
+            function(resolve) {
+
+                requestAnimationFrame(
+                    function() {
+
+                        requestAnimationFrame(
+                            resolve
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /*
+           PDF filename
+        */
+
+        const filename =
+            (
+                document.title ||
+                "PPPP_Settings"
+            )
+            .replace(
+                /[^\w\u0980-\u09FF-]+/g,
+                "_"
+            ) +
+            ".pdf";
+
+
+        /*
+           PDF settings
+        */
+
+        const options = {
+
+            margin: [
+                8,
+                8,
+                8,
+                8
+            ],
+
+            filename:
+                filename,
+
+            image: {
+
+                type:
+                    "jpeg",
+
+                quality:
+                    0.98
+
+            },
+
+            html2canvas: {
+
+                scale:
+                    1.5,
+
+                useCORS:
+                    true,
+
+                allowTaint:
+                    false,
+
+                backgroundColor:
+                    "#ffffff",
+
+                logging:
+                    false,
+
+                imageTimeout:
+                    30000,
+
+                scrollX:
+                    0,
+
+                scrollY:
+                    0
+
+            },
+
+            jsPDF: {
+
+                unit:
+                    "mm",
+
+                format:
+                    "a4",
+
+                orientation:
+                    "portrait",
+
+                compress:
+                    true
+
+            },
+
+            pagebreak: {
+
+                mode: [
+                    "css",
+                    "legacy"
+                ]
+
+            }
+
+        };
+
+
+        /*
+           ⭐ সরাসরি PDF download
+           
+           এখানে window.print()
+           ব্যবহার করা হয়নি।
+        */
+
+        await html2pdf()
+            .set(options)
+            .from(document.body)
+            .save();
+
+
+    } catch (e) {
+
+        console.error(
+            "PPPP PDF Error:",
+            e
+        );
+
+
+        alert(
+            "📕 PDF তৈরি করা সম্ভব হয়নি।\n" +
+            "দয়া করে আবার চেষ্টা করুন।"
+        );
+
+
+    } finally {
+
+        /*
+           Temporary CSS remove
+        */
+
+        if (temporaryStyle) {
+
+            temporaryStyle.remove();
+
+        }
+
+
+        /*
+           Controls restore
+        */
+
+        controls.forEach(
+            function(el, i) {
+
+                if (el) {
+
+                    el.style.display =
+                        oldDisplay[i] || "";
+
+                }
+
+            }
+        );
+
+
+        /*
+           আগের scroll position
+        */
+
+        window.scrollTo(
+            oldX,
+            oldY
+        );
+
+    }
 
 }
 
@@ -7674,7 +8094,15 @@ function ppppSavePDF() {
 
 function ppppPrintPage() {
 
-    closePPPPSettings();
+    if (
+        typeof closePPPPSettings ===
+        "function"
+    ) {
+
+        closePPPPSettings();
+
+    }
+
 
     setTimeout(function() {
 
@@ -7719,9 +8147,7 @@ async function ppppScreenshot() {
     ) {
 
         const script =
-            document.createElement(
-                "script"
-            );
+            document.createElement("script");
 
 
         script.src =
@@ -7750,6 +8176,7 @@ async function ppppScreenshot() {
         document.head.appendChild(
             script
         );
+
 
         return;
 
@@ -7787,6 +8214,10 @@ async function ppppScreenshot() {
 
         document.getElementById(
             "ppppSavedPagesBox"
+        ),
+
+        document.getElementById(
+            "google_translate_element"
         )
 
     ];
@@ -7813,9 +8244,7 @@ async function ppppScreenshot() {
 
 
     const temporaryStyle =
-        document.createElement(
-            "style"
-        );
+        document.createElement("style");
 
 
     temporaryStyle.id =
@@ -7829,6 +8258,7 @@ body{
     min-height:100% !important;
     overflow:visible !important;
 }
+
 body{
     position:static !important;
 }
@@ -7886,8 +8316,11 @@ body{
                 document.documentElement,
                 {
 
-                    x: 0,
-                    y: 0,
+                    x:
+                        0,
+
+                    y:
+                        0,
 
                     width:
                         fullWidth,
@@ -7901,12 +8334,17 @@ body{
                     windowHeight:
                         fullHeight,
 
-                    scrollX: 0,
-                    scrollY: 0,
+                    scrollX:
+                        0,
 
-                    useCORS: true,
+                    scrollY:
+                        0,
 
-                    allowTaint: false,
+                    useCORS:
+                        true,
+
+                    allowTaint:
+                        false,
 
                     backgroundColor:
                         "#ffffff",
@@ -7918,7 +8356,8 @@ body{
                             1
                         ),
 
-                    logging: false,
+                    logging:
+                        false,
 
                     imageTimeout:
                         30000,
@@ -7927,13 +8366,12 @@ body{
                         false
 
                 }
+
             );
 
 
         const link =
-            document.createElement(
-                "a"
-            );
+            document.createElement("a");
 
 
         link.download =
@@ -7958,12 +8396,20 @@ body{
             link
         );
 
+
         link.click();
+
 
         link.remove();
 
 
     } catch (e) {
+
+        console.error(
+            "PPPP Screenshot Error:",
+            e
+        );
+
 
         alert(
             "📸 Full Page Screenshot তৈরি করা সম্ভব হয়নি।"
@@ -7973,7 +8419,9 @@ body{
 
 
     if (temporaryStyle) {
+
         temporaryStyle.remove();
+
     }
 
 
