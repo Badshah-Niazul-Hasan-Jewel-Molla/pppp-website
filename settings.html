@@ -3938,70 +3938,84 @@ if (ppppDarkMedia.addEventListener) {
 }
 
 /* =========================================================
-HIGH CONTRAST
+   HIGH CONTRAST
 ========================================================= */
 
 function ppppToggleHighContrast() {
 
-const enabled =
-    document.body.classList.toggle(
-        "pppp-high-contrast"
+    const enabled =
+        document.body.classList.toggle(
+            "pppp-high-contrast"
+        );
+
+    localStorage.setItem(
+        "ppppHighContrast",
+        enabled ? "on" : "off"
     );
 
-localStorage.setItem(
-    "ppppHighContrast",
-    enabled ? "on" : "off"
-);
+    const button =
+        document.getElementById(
+            "ppppHighContrastBtn"
+        );
 
-const button =
-    document.getElementById(
-        "ppppHighContrastBtn"
-    );
+    if (button) {
 
-if (button) {
+        button.textContent =
+            enabled
+                ? "🔲 Normal Contrast"
+                : "🔳 High Contrast";
 
-    button.textContent =
-        enabled
-            ? "🔲 Normal Contrast"
-            : "🔳 High Contrast";
+    }
 
 }
 
-}
 
 function ppppLoadHighContrast() {
 
-const enabled =
-    localStorage.getItem(
-        "ppppHighContrast"
-    ) === "on";
+    const enabled =
+        localStorage.getItem(
+            "ppppHighContrast"
+        ) === "on";
 
 
-if (enabled) {
+    if (enabled) {
 
-    document.body.classList.add(
-        "pppp-high-contrast"
-    );
+        document.body.classList.add(
+            "pppp-high-contrast"
+        );
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "ppppHighContrastBtn"
+        );
+
+    if (button) {
+
+        button.textContent =
+            enabled
+                ? "🔲 Normal Contrast"
+                : "🔳 High Contrast";
+
+    }
 
 }
 
 
-const button =
-    document.getElementById(
-        "ppppHighContrastBtn"
-    );
+/* =========================================================
+   LOAD SAVED HIGH CONTRAST
+========================================================= */
 
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-if (button) {
+        ppppLoadHighContrast();
 
-    button.textContent =
-        enabled
-            ? "🔲 Normal Contrast"
-            : "🔳 High Contrast";
-
-}
-
-}
+    }
+);
 
 
 /* =========================================================
