@@ -270,14 +270,12 @@ alert("Website link copied successfully!");
 <!-- =========================================================
      ⚙️ PPPP SETTINGS & CONTROL CENTER
      COMPLETE UPDATED VERSION
-     ALL NOTED UPDATES INCLUDED
 ========================================================= -->
 
 <style>
 
 /* =========================================================
    ⚙️ SETTINGS BUTTON
-   Share Button-এর সমান 65x65
 ========================================================= */
 
 #ppppSettingsBtn{
@@ -494,9 +492,6 @@ display:none;
 
 /* =========================================================
    PPPP STRUCTURE MAIN HEADINGS
-   Main / Get Involved / Media & Communication /
-   PPPP Special
-   অন্য category heading-এর মতো বড় নীল + ▼
 ========================================================= */
 
 .pppp-structure-heading{
@@ -667,6 +662,164 @@ padding:3px 8px;
 border-radius:20px;
 background:#e3f2fd;
 color:#1565c0;
+}
+
+/* =========================================================
+   SPECIAL TOOLS
+========================================================= */
+
+.pppp-tool-box{
+margin:8px 0;
+padding:12px;
+border-radius:12px;
+background:#fff;
+border:1px solid #e1e5ea;
+}
+
+.pppp-tool-display{
+width:100%;
+box-sizing:border-box;
+padding:12px;
+margin-bottom:8px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:20px;
+font-weight:700;
+text-align:right;
+background:#f8f9fb;
+}
+
+.pppp-calculator-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+}
+
+.pppp-calc-btn{
+padding:13px 5px;
+border:none;
+border-radius:9px;
+background:#e3f2fd;
+color:#0d47a1;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+.pppp-calc-btn:hover{
+background:#bbdefb;
+}
+
+
+/* =========================================================
+   COMPASS
+========================================================= */
+
+.pppp-compass{
+width:190px;
+height:190px;
+border-radius:50%;
+margin:10px auto;
+border:8px solid #1e88e5;
+position:relative;
+background:radial-gradient(
+circle,
+#fff 0,
+#eef7ff 60%,
+#dbeeff 100%
+);
+box-shadow:0 5px 20px rgba(0,0,0,.18);
+}
+
+.pppp-compass-arrow{
+position:absolute;
+left:50%;
+top:50%;
+width:8px;
+height:75px;
+background:#e53935;
+transform-origin:50% 100%;
+transform:translate(-50%,-100%);
+border-radius:8px;
+}
+
+.pppp-compass-arrow:after{
+content:"";
+position:absolute;
+left:50%;
+top:-14px;
+transform:translateX(-50%);
+border-left:9px solid transparent;
+border-right:9px solid transparent;
+border-bottom:18px solid #e53935;
+}
+
+.pppp-compass-label{
+position:absolute;
+font-weight:800;
+font-size:14px;
+}
+
+.pppp-compass-n{top:8px;left:50%;transform:translateX(-50%);}
+.pppp-compass-s{bottom:8px;left:50%;transform:translateX(-50%);}
+.pppp-compass-e{right:10px;top:50%;transform:translateY(-50%);}
+.pppp-compass-w{left:10px;top:50%;transform:translateY(-50%);}
+
+
+/* =========================================================
+   VOLUME
+========================================================= */
+
+.pppp-volume-row{
+margin:10px 0;
+}
+
+.pppp-volume-row label{
+display:block;
+font-weight:700;
+margin-bottom:5px;
+}
+
+.pppp-volume-row input{
+width:100%;
+}
+
+
+/* =========================================================
+   TASBIH
+========================================================= */
+
+#ppppTasbihCount{
+font-size:45px;
+font-weight:900;
+text-align:center;
+color:#1565c0;
+padding:10px;
+}
+
+#ppppTasbihTarget{
+width:100%;
+box-sizing:border-box;
+padding:10px;
+border:1px solid #ddd;
+border-radius:9px;
+margin-bottom:8px;
+}
+
+#ppppTasbihTap{
+width:100%;
+height:90px;
+border:none;
+border-radius:50px;
+background:linear-gradient(
+135deg,
+#1565c0,
+#1e88e5
+);
+color:#fff;
+font-size:25px;
+font-weight:900;
+cursor:pointer;
 }
 
 
@@ -967,6 +1120,14 @@ padding:10px;
 
 }
 
+body{
+    padding-bottom:100px;
+}
+
+footer{
+    padding-bottom:100px;
+}
+
 </style>
 
 
@@ -1049,8 +1210,176 @@ placeholder="🔍 Search PPPP Settings...">
 
 
 <!-- =====================================================
+     📆 TODAY & LIVE INFORMATION
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>📆 Today & Live Information</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<div id="ppppLiveInformation"
+class="pppp-live-box">
+
+<div class="pppp-live-title">
+📆 Today & Live Information
+</div>
+
+<div class="pppp-live-row">
+🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
+</div>
+
+<div class="pppp-live-row">
+🌅 বাংলা দিন শুরু: সূর্যোদয়ের পর
+</div>
+
+<div class="pppp-live-row">
+🌙 হিজরি দিন শুরু: সূর্যাস্তের পর
+</div>
+
+<div class="pppp-live-row">
+🕛 ইংরেজি দিন শুরু: রাত ১২টার পর
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     🕌 AZAN
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🕌 Azan</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Bangladesh')">
+🇧🇩 Azan Bangladesh
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Makkah')">
+🕋 Azan Makkah
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppPlayAzan('Madinah')">
+🌙 Azan Madinah
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppAzanMute()"
+id="ppppAzanMuteBtn">
+🔇 Mute Azan
+</button>
+
+<button
+class="pppp-action"
+onclick="ppppAzanUnmute()"
+id="ppppAzanUnmuteBtn">
+🔊 Unmute Azan
+</button>
+
+<audio id="ppppAzanAudio" preload="auto"></audio>
+
+<div class="pppp-info-item">
+🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজবে
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
      🏛️ PPPP STRUCTURE
-     MASTER / LOCKED ORDER
 ===================================================== -->
 
 <div class="pppp-category open">
@@ -1063,20 +1392,19 @@ placeholder="🔍 Search PPPP Settings...">
 <div class="pppp-category-content">
 
 
-<!-- MAIN -->
+<!-- =====================================================
+     🏠 MAIN
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppMainGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>🏠 Main</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppMainGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/index.html" class="pppp-btn">
 🏠 PPPP Home
@@ -1101,20 +1429,19 @@ class="pppp-structure-group">
 </div>
 
 
-<!-- GET INVOLVED -->
+<!-- =====================================================
+     🤝 GET INVOLVED
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppInvolvedGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>🤝 Get Involved</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppInvolvedGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/join.html" class="pppp-btn">
 📬 PPPP Join
@@ -1139,20 +1466,19 @@ class="pppp-structure-group">
 </div>
 
 
-<!-- MEDIA & COMMUNICATION -->
+<!-- =====================================================
+     📰 MEDIA & COMMUNICATION
+===================================================== -->
 
-<div
+<button
 class="pppp-structure-heading"
-data-target="ppppMediaCommunicationGroup">
-
+type="button"
+onclick="ppppToggleStructureGroup(this)">
 <span>📰 Media & Communication</span>
-<span class="pppp-arrow">▼</span>
+<span>▼</span>
+</button>
 
-</div>
-
-<div
-id="ppppMediaCommunicationGroup"
-class="pppp-structure-group">
+<div class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/news.html" class="pppp-btn">
 📰 PPPP News
@@ -1202,6 +1528,23 @@ class="pppp-structure-group">
 🌐 PPPP Social Media
 </a>
 
+</div>
+
+
+<!-- =====================================================
+     🌍 PPPP SPECIAL
+===================================================== -->
+
+<button
+class="pppp-structure-heading"
+type="button"
+onclick="ppppToggleStructureGroup(this)">
+<span>🌍 PPPP Special</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-structure-group">
+
 <a href="/pppp_bangladesh/islam.html" class="pppp-btn">
 🕋 PPPP Islam
 </a>
@@ -1248,24 +1591,6 @@ class="pppp-structure-group">
 
 </div>
 
-
-<!-- PPPP SPECIAL -->
-
-<div
-class="pppp-structure-heading"
-data-target="ppppSpecialGroup">
-
-<span>🌍 PPPP Special</span>
-<span class="pppp-arrow">▼</span>
-
-</div>
-
-<div
-id="ppppSpecialGroup"
-class="pppp-structure-group">
-
-</div>
-
 </div>
 </div>
 
@@ -1293,6 +1618,10 @@ class="pppp-structure-group">
 
 <a href="/pppp_bangladesh/photos.html" class="pppp-btn">
 📷 PPPP Photos
+</a>
+
+<a href="/pppp_bangladesh/pictures.html" class="pppp-btn">
+🏞️ PPPP Pictures
 </a>
 
 <a href="/pppp_bangladesh/lyrics.html" class="pppp-btn">
@@ -1531,7 +1860,7 @@ onclick="window.scrollTo({top:0,behavior:'smooth'})">
 </button>
 
 <button class="pppp-action"
-onclick="window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'})">
+onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
 ⬇️ Back to Bottom
 </button>
 
@@ -1687,28 +2016,45 @@ onclick="ppppStatistics()">
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('liked')">
+
 ❤️ Liked Pages
-<span id="ppppLikedCount" class="pppp-count">0</span>
+
+<span id="ppppLikedCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('favorite')">
+
 ⭐ Favorited Pages
-<span id="ppppFavoriteCount" class="pppp-count">0</span>
+
+<span id="ppppFavoriteCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action pppp-saved-btn"
 onclick="ppppShowSavedPages('pinned')">
+
 📌 Pinned Pages
-<span id="ppppPinnedCount" class="pppp-count">0</span>
+
+<span id="ppppPinnedCount" class="pppp-count">
+0
+</span>
+
 </button>
 
 <button
 class="pppp-action"
 onclick="ppppClearSavedPages()">
+
 🗑️ Clear Saved Pages
+
 </button>
 
 </div>
@@ -1729,18 +2075,18 @@ onclick="ppppClearSavedPages()">
 <div class="pppp-category-content">
 
 <button class="pppp-action"
-onclick="ppppThemeDay()">
-☀️ Day
+onclick="ppppDarkMode()">
+🌙 Dark Mode
 </button>
 
 <button class="pppp-action"
-onclick="ppppThemeNight()">
-🌙 Night
+onclick="ppppLightMode()">
+☀️ Light Mode
 </button>
 
 <button class="pppp-action"
-onclick="ppppThemeAuto()">
-🌓 Auto
+onclick="ppppAutoMode()">
+🌓 Auto Mode
 </button>
 
 <button class="pppp-action"
@@ -1768,11 +2114,6 @@ onclick="ppppZoomReset()">
 🔍 Zoom Reset
 </button>
 
-<button class="pppp-action"
-onclick="ppppContrast()">
-◐ High Contrast
-</button>
-
 </div>
 </div>
 
@@ -1792,12 +2133,12 @@ onclick="ppppContrast()">
 
 <button class="pppp-action"
 onclick="ppppMainLanguage()">
-🇧🇩 Main
+🌐 Main
 </button>
 
 <button class="pppp-action"
 onclick="ppppBangla()">
-🅱️ বাংলা
+🇧🇩 বাংলা
 </button>
 
 <button class="pppp-action"
@@ -1810,18 +2151,19 @@ onclick="ppppEnglish()">
 
 
 <!-- =====================================================
-     🔤 ALPHABETS & LANGUAGE LISTS
+     🔤 ALPHABET LIST
 ===================================================== -->
 
 <div class="pppp-category">
 
 <button class="pppp-category-title">
-<span>🔤 Alphabets & Calendar Names</span>
+<span>🔤 Alphabet List</span>
 <span>▼</span>
 </button>
 
 <div class="pppp-category-content">
 
+<!-- বাংলা স্বরবর্ণ -->
 
 <button class="pppp-info-toggle">
 <span>🇧🇩 বাংলা স্বরবর্ণ</span>
@@ -1845,6 +2187,8 @@ onclick="ppppEnglish()">
 </div>
 
 
+<!-- বাংলা ব্যঞ্জনবর্ণ -->
+
 <button class="pppp-info-toggle">
 <span>🅱️ বাংলা ব্যঞ্জনবর্ণ</span>
 <span class="arrow">▼</span>
@@ -1852,40 +2196,19 @@ onclick="ppppEnglish()">
 
 <div class="pppp-info-content">
 
-<div class="pppp-info-item">
-ক খ গ ঘ ঙ
-</div>
-
-<div class="pppp-info-item">
-চ ছ জ ঝ ঞ
-</div>
-
-<div class="pppp-info-item">
-ট ঠ ড ঢ ণ
-</div>
-
-<div class="pppp-info-item">
-ত থ দ ধ ন
-</div>
-
-<div class="pppp-info-item">
-প ফ ব ভ ম
-</div>
-
-<div class="pppp-info-item">
-য র ল শ ষ স হ
-</div>
-
-<div class="pppp-info-item">
-ড় ঢ় য়
-</div>
-
-<div class="pppp-info-item">
-ৎ ং ঃ ঁ
-</div>
+<div class="pppp-info-item">ক খ গ ঘ ঙ</div>
+<div class="pppp-info-item">চ ছ জ ঝ ঞ</div>
+<div class="pppp-info-item">ট ঠ ড ঢ ণ</div>
+<div class="pppp-info-item">ত থ দ ধ ন</div>
+<div class="pppp-info-item">প ফ ব ভ ম</div>
+<div class="pppp-info-item">য র ল শ ষ স হ</div>
+<div class="pppp-info-item">ড় ঢ় য়</div>
+<div class="pppp-info-item">ৎ ং ঃ ঁ</div>
 
 </div>
 
+
+<!-- English Alphabet -->
 
 <button class="pppp-info-toggle">
 <span>🔤 English Alphabet</span>
@@ -1904,8 +2227,24 @@ N O P Q R S T U V W X Y Z
 
 </div>
 
+</div>
+</div>
 
-<!-- BANGLA MONTHS -->
+
+<!-- =====================================================
+     🗓️ CALENDAR LIST
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🗓️ Calendar List</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<!-- বাংলা ১২ মাস -->
 
 <button class="pppp-info-toggle">
 <span>🇧🇩 বাংলা ১২ মাসের নাম</span>
@@ -1930,7 +2269,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ENGLISH MONTHS -->
+<!-- ইংরেজি ১২ মাস -->
 
 <button class="pppp-info-toggle">
 <span>🗓️ ইংরেজি ১২ মাসের নাম</span>
@@ -1955,7 +2294,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ARABIC MONTHS -->
+<!-- আরবি ১২ মাস -->
 
 <button class="pppp-info-toggle">
 <span>🌙 আরবি ১২ মাসের নাম</span>
@@ -1980,7 +2319,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- BANGLA SEASONS -->
+<!-- বাংলা ৬ ঋতু -->
 
 <button class="pppp-info-toggle">
 <span>🇧🇩 বাংলা ৬ ঋতুর নাম</span>
@@ -1999,7 +2338,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ENGLISH SEASONS -->
+<!-- ইংরেজি ৬ ঋতু -->
 
 <button class="pppp-info-toggle">
 <span>🗓️ ইংরেজি ৬ ঋতুর নাম</span>
@@ -2018,7 +2357,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ARABIC SEASONS -->
+<!-- আরবি ৬ ঋতু -->
 
 <button class="pppp-info-toggle">
 <span>🌙 আরবি ৬ ঋতুর নাম</span>
@@ -2037,7 +2376,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- BANGLA DAYS -->
+<!-- বাংলা ৭ দিন -->
 
 <button class="pppp-info-toggle">
 <span>🇧🇩 বাংলা ৭ দিনের নাম</span>
@@ -2057,7 +2396,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ENGLISH DAYS -->
+<!-- ইংরেজি ৭ দিন -->
 
 <button class="pppp-info-toggle">
 <span>🗓️ ইংরেজি ৭ দিনের নাম</span>
@@ -2077,7 +2416,7 @@ N O P Q R S T U V W X Y Z
 </div>
 
 
-<!-- ARABIC DAYS -->
+<!-- আরবি ৭ দিন -->
 
 <button class="pppp-info-toggle">
 <span>🌙 আরবি ৭ দিনের নাম</span>
@@ -2094,175 +2433,6 @@ N O P Q R S T U V W X Y Z
 <div class="pppp-info-item">⚡ Al-Khamis</div>
 <div class="pppp-info-item">🕌 Al-Jumuah</div>
 
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     📆 TODAY & LIVE INFORMATION
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>📆 Today & Live Information</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<div id="ppppLiveInformation"
-class="pppp-live-box">
-
-<div class="pppp-live-title">
-📆 Today & Live Information
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
-</div>
-
-<div class="pppp-live-row">
-🌅 বাংলা দিন: সূর্যোদয়ের পর শুরু হয়
-</div>
-
-<div class="pppp-live-row">
-🌙 হিজরি দিন: সূর্যাস্তের পর শুরু হয়
-</div>
-
-<div class="pppp-live-row">
-🕛 ইংরেজি দিন: রাত ১২টার পর শুরু হয়
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🕌 AZAN
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🕌 Azan</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Bangladesh')">
-🇧🇩 Azan Bangladesh
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Makkah')">
-🕋 Azan Makkah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppPlayAzan('Madinah')">
-🌙 Azan Madinah
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanMute()"
-id="ppppAzanMuteBtn">
-🔇 Mute Azan
-</button>
-
-<button
-class="pppp-action"
-onclick="ppppAzanUnmute()"
-id="ppppAzanUnmuteBtn">
-🔊 Unmute Azan
-</button>
-
-<audio id="ppppAzanAudio" preload="auto"></audio>
-
-<div class="pppp-info-item">
-🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজানোর ব্যবস্থা থাকবে।
 </div>
 
 </div>
@@ -2336,106 +2506,56 @@ class="pppp-btn">
 
 <div class="pppp-category-content">
 
-<button class="pppp-action"
-onclick="ppppVolumeDown()">
-🔉 Volume −
-</button>
+<div class="pppp-tool-box">
 
-<button class="pppp-action"
-onclick="ppppVolumeUp()">
-🔊 Volume +
-</button>
-
-<button class="pppp-action"
-onclick="ppppMuteAllMedia()">
-🔇 Mute All
-</button>
-
-<button class="pppp-action"
-onclick="ppppUnmuteAllMedia()">
-🔊 Unmute All
-</button>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-     🧮 CALCULATOR
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🧮 Calculator</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
+<div class="pppp-volume-row">
+<label>🔔 Notification Sound</label>
 <input
-id="ppppCalculatorInput"
-type="text"
-placeholder="যেমন: 25 × 4 + 10"
-style="
-width:100%;
-box-sizing:border-box;
-padding:12px;
-border:1px solid #ddd;
-border-radius:10px;
-font-size:15px;
-">
-
-<button
-class="pppp-action"
-onclick="ppppCalculate()">
-🧮 Calculate
-</button>
-
-<div
-id="ppppCalculatorResult"
-class="pppp-info-item">
-ফলাফল এখানে দেখা যাবে।
+type="range"
+id="ppppNotificationVolume"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="ppppSetVolume('notification',this.value)">
 </div>
 
-</div>
-</div>
-
-
-<!-- =====================================================
-     🎂 AGE CALCULATOR
-===================================================== -->
-
-<div class="pppp-category">
-
-<button class="pppp-category-title">
-<span>🎂 Age Calculator</span>
-<span>▼</span>
-</button>
-
-<div class="pppp-category-content">
-
+<div class="pppp-volume-row">
+<label>🎵 Music Sound</label>
 <input
-id="ppppBirthDate"
-type="date"
-style="
-width:100%;
-box-sizing:border-box;
-padding:12px;
-border:1px solid #ddd;
-border-radius:10px;
-">
+type="range"
+id="ppppMusicVolume"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="ppppSetVolume('music',this.value)">
+</div>
 
-<button
-class="pppp-action"
-onclick="ppppCalculateAge()">
-🎂 Calculate Age
-</button>
+<div class="pppp-volume-row">
+<label>🎥 Video Sound</label>
+<input
+type="range"
+id="ppppVideoVolume"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="ppppSetVolume('video',this.value)">
+</div>
 
-<div
-id="ppppAgeResult"
-class="pppp-info-item">
-বয়স এখানে দেখা যাবে।
+<div class="pppp-volume-row">
+<label>🔊 Master Volume</label>
+<input
+type="range"
+id="ppppMasterVolume"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="ppppSetVolume('master',this.value)">
+</div>
+
 </div>
 
 </div>
@@ -2455,33 +2575,27 @@ class="pppp-info-item">
 
 <div class="pppp-category-content">
 
-<div
-id="ppppCompass"
-style="
-width:180px;
-height:180px;
-margin:15px auto;
-border:5px solid #1e88e5;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-font-weight:800;
-position:relative;
-">
+<div class="pppp-tool-box">
 
-🧭
+<div
+class="pppp-compass"
+id="ppppCompass">
+
+<div class="pppp-compass-label pppp-compass-n">N</div>
+<div class="pppp-compass-label pppp-compass-s">S</div>
+<div class="pppp-compass-label pppp-compass-e">E</div>
+<div class="pppp-compass-label pppp-compass-w">W</div>
+
+<div
+class="pppp-compass-arrow"
+id="ppppCompassArrow">
+</div>
 
 </div>
 
 <div
-id="ppppCompassDegree"
-style="
-text-align:center;
-font-weight:700;
-padding:10px;
-">
+style="text-align:center;font-weight:700;"
+id="ppppCompassDegree">
 0°
 </div>
 
@@ -2492,11 +2606,114 @@ onclick="ppppStartCompass()">
 </button>
 
 </div>
+
+</div>
 </div>
 
 
 <!-- =====================================================
-     📿 TASBIH
+     🧮 CALCULATOR
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🧮 Calculator</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<div class="pppp-tool-box">
+
+<input
+id="ppppCalcDisplay"
+class="pppp-tool-display"
+type="text"
+readonly
+value="0">
+
+<div class="pppp-calculator-grid">
+
+<button class="pppp-calc-btn" onclick="ppppCalcClear()">C</button>
+<button class="pppp-calc-btn" onclick="ppppCalcBack()">⌫</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('%')">%</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('/')">÷</button>
+
+<button class="pppp-calc-btn" onclick="ppppCalcInput('7')">7</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('8')">8</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('9')">9</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('*')">×</button>
+
+<button class="pppp-calc-btn" onclick="ppppCalcInput('4')">4</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('5')">5</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('6')">6</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('-')">−</button>
+
+<button class="pppp-calc-btn" onclick="ppppCalcInput('1')">1</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('2')">2</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('3')">3</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('+')">+</button>
+
+<button class="pppp-calc-btn" onclick="ppppCalcInput('0')">0</button>
+<button class="pppp-calc-btn" onclick="ppppCalcInput('.')">.</button>
+<button
+class="pppp-calc-btn"
+style="grid-column:span 2;"
+onclick="ppppCalcEqual()">
+=
+</button>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     🎂 AGE CALCULATOR
+===================================================== -->
+
+<div class="pppp-category">
+
+<button class="pppp-category-title">
+<span>🎂 Age Calculator</span>
+<span>▼</span>
+</button>
+
+<div class="pppp-category-content">
+
+<div class="pppp-tool-box">
+
+<label>
+🎂 Date of Birth
+</label>
+
+<input
+type="date"
+id="ppppBirthDate"
+style="width:100%;box-sizing:border-box;padding:11px;border:1px solid #ddd;border-radius:9px;margin:8px 0;">
+
+<button
+class="pppp-action"
+onclick="ppppCalculateAge()">
+🎂 Calculate Age
+</button>
+
+<div
+id="ppppAgeResult"
+style="font-weight:700;line-height:1.8;">
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =====================================================
+     📿 TASBIH COUNTER
 ===================================================== -->
 
 <div class="pppp-category">
@@ -2508,22 +2725,22 @@ onclick="ppppStartCompass()">
 
 <div class="pppp-category-content">
 
-<div
-id="ppppTasbihCount"
-style="
-text-align:center;
-font-size:42px;
-font-weight:800;
-padding:15px;
-color:#1565c0;
-">
+<div class="pppp-tool-box">
+
+<div id="ppppTasbihCount">
 0
 </div>
 
+<input
+id="ppppTasbihTarget"
+type="number"
+min="1"
+placeholder="🎯 Target">
+
 <button
-class="pppp-action"
-onclick="ppppTasbihAdd()">
-📿 Tasbih +1
+id="ppppTasbihTap"
+onclick="ppppTasbihIncrement()">
+📿 TAP
 </button>
 
 <button
@@ -2531,6 +2748,8 @@ class="pppp-action"
 onclick="ppppTasbihReset()">
 🔄 Reset Tasbih
 </button>
+
+</div>
 
 </div>
 </div>
@@ -4494,94 +4713,239 @@ const PPPP_HIJRI_DAYS=[
 
 /* =========================================================
    BANGLA DATE
-   বাংলাদেশে প্রচলিত Bangla Academy calendar-এর
-   আধুনিক গণনার জন্য astronomical/seasonal correction
+   Bangladesh Revised Bangla Calendar
+   বাংলা একাডেমি/বাংলাদেশের প্রচলিত ক্যালেন্ডার
 ========================================================= */
+
+const PPPP_BANGLA_MONTHS=[
+"বৈশাখ",
+"জ্যৈষ্ঠ",
+"আষাঢ়",
+"শ্রাবণ",
+"ভাদ্র",
+"আশ্বিন",
+"কার্তিক",
+"অগ্রহায়ণ",
+"পৌষ",
+"মাঘ",
+"ফাল্গুন",
+"চৈত্র"
+];
+
+
+/*
+   বাংলাদেশে বাংলা নববর্ষ শুরু হয়
+   ১৪ এপ্রিল থেকে।
+
+   প্রথম ৬ মাস = ৩১ দিন
+   পরের ৫ মাস = ৩০ দিন
+   ফাল্গুন = ২৯ দিন
+   অধিবর্ষে ফাল্গুন = ৩০ দিন
+*/
+
+
+function ppppIsLeapYear(year){
+
+return(
+year%400===0 ||
+(
+year%4===0 &&
+year%100!==0
+)
+);
+
+}
+
 
 function ppppBanglaDate(date){
 
 const year=date.getFullYear();
 
-let banglaYear=year-593;
+const startOfBanglaYear=
+new Date(
+year,
+3,
+14,
+0,
+0,
+0,
+0
+);
 
-const start=new Date(year,3,14);
 
-if(date<start){
-banglaYear--;
+/*
+   জানুয়ারি ১ থেকে ১৩ এপ্রিল হলে
+   বাংলা বছর = ইংরেজি বছর - 594
+
+   ১৪ এপ্রিল থেকে পরবর্তী বাংলা বছর
+   = ইংরেজি বছর - 593
+*/
+
+let banglaYear;
+
+if(date>=startOfBanglaYear){
+
+banglaYear=year-593;
+
+}else{
+
+banglaYear=year-594;
+
 }
 
-const monthStarts=[
-[3,14],
-[4,15],
-[5,15],
-[6,16],
-[7,16],
-[8,16],
-[9,16],
-[10,15],
-[11,15],
-[0,14],
-[1,13],
-[2,15]
+
+/*
+   বাংলা বছরের শুরু নির্ধারণ
+*/
+
+let banglaYearStart;
+
+if(date>=startOfBanglaYear){
+
+banglaYearStart=
+new Date(
+year,
+3,
+14,
+0,
+0,
+0,
+0
+);
+
+}else{
+
+banglaYearStart=
+new Date(
+year-1,
+3,
+14,
+0,
+0,
+0,
+0
+);
+
+}
+
+
+/*
+   বাংলা বছরের কততম দিন
+*/
+
+const difference=
+Math.floor(
+(
+date-banglaYearStart
+)/86400000
+);
+
+let remainingDays=
+difference;
+
+
+/*
+   মাসের দিন সংখ্যা
+
+   বৈশাখ থেকে আশ্বিন = ৩১ দিন
+   কার্তিক থেকে মাঘ = ৩০ দিন
+   ফাল্গুন = ২৯/৩০ দিন
+   চৈত্র = ৩০ দিন
+*/
+
+const monthLengths=[
+31, // বৈশাখ
+31, // জ্যৈষ্ঠ
+31, // আষাঢ়
+31, // শ্রাবণ
+31, // ভাদ্র
+31, // আশ্বিন
+30, // কার্তিক
+30, // অগ্রহায়ণ
+30, // পৌষ
+30, // মাঘ
+29, // ফাল্গুন
+30  // চৈত্র
 ];
 
-let monthIndex=-1;
 
-for(let i=0;i<monthStarts.length;i++){
+/*
+   অধিবর্ষে ফাল্গুন ৩০ দিন
+*/
 
-let m=monthStarts[i][0];
-let d=monthStarts[i][1];
+if(ppppIsLeapYear(year)){
 
-let testYear=year;
+monthLengths[10]=30;
 
-if(m===0||m===1||m===2){
-testYear=year;
 }
 
-const startDate=
-new Date(testYear,m,d);
 
-if(date>=startDate){
+/*
+   মাস নির্ধারণ
+*/
+
+let monthIndex=0;
+
+for(
+let i=0;
+i<monthLengths.length;
+i++
+){
+
+if(
+remainingDays<
+monthLengths[i]
+){
 
 monthIndex=i;
 
-}
+break;
 
 }
 
-if(monthIndex<0){
+remainingDays-=monthLengths[i];
 
-monthIndex=11;
 }
 
-let startMonth=
-monthStarts[monthIndex][0];
 
-let startDay=
-monthStarts[monthIndex][1];
+/*
+   বাংলা তারিখ
+*/
 
-let startYear=year;
+const banglaDay=
+remainingDays+1;
 
-if(startMonth>date.getMonth()){
-startYear--;
-}
 
-const startDate=
-new Date(
-startYear,
-startMonth,
-startDay
-);
+/*
+   নিরাপত্তার জন্য
+   অস্বাভাবিক ফলাফল আটকানো
+*/
 
-const day=
-Math.floor(
-(date-startDate)/86400000
-)+1;
+if(
+banglaDay<1 ||
+banglaDay>31
+){
 
 return{
-day:day,
-month:PPPP_BANGLA_MONTHS[monthIndex],
+day:date.getDate(),
+month:"",
 year:banglaYear
+};
+
+}
+
+
+return{
+
+day:banglaDay,
+
+month:
+PPPP_BANGLA_MONTHS[
+monthIndex
+],
+
+year:banglaYear
+
 };
 
 }
