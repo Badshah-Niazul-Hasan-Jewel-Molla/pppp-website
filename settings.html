@@ -2254,6 +2254,11 @@ onclick="ppppLargeControls()">
 🖱️ Large Controls
 </button>
 
+<button class="pppp-action"
+onclick="ppppNormalControls()">
+🖱️ Normal Controls
+</button>
+
 <a href="/pppp_bangladesh/accessibility.html"
 class="pppp-btn">
 ♿ PPPP Accessibility
@@ -4757,6 +4762,18 @@ function ppppUnmute() {
 function ppppLargeControls() {
 
     document.body.classList.toggle(
+        "pppp-large-controls"
+    );
+
+}
+
+/* =========================================================
+   NORMAL CONTROLS
+========================================================= */
+
+function ppppNormalControls() {
+
+    document.body.classList.remove(
         "pppp-large-controls"
     );
 
