@@ -102,6 +102,7 @@
 ├── 🌙 PPPP Osman Hadi
 ├── 💎 PPPP Badshah Niazul
 ├── 💍 PPPP Begum Nazmun
+├── 💎 PPPP Priyo
 ├── 🕊️ PPPP Freedom
 ├── 🔰 PPPP Fighter
 └── 🌐 PPPP Social
@@ -153,7 +154,8 @@
 
 ⚙️ Administration
 │
-└── 👤 PPPP Chat Admin
+├── 👤 PPPP Chat Admin
+└── ⚙️ PPPP Settings
 </pre>
 
 ---
