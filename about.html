@@ -712,58 +712,551 @@ background:#bbdefb;
 
 
 /* =========================================================
-   COMPASS
+   🧭 PPPP REAL MOBILE COMPASS
+========================================================= */
+
+.pppp-compass-wrapper{
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   DIRECTION
+========================================================= */
+
+.pppp-compass-direction{
+    font-size:26px;
+    font-weight:800;
+    line-height:1.2;
+    margin:8px 0 12px;
+    color:#1e88e5;
+}
+
+
+/* =========================================================
+   MAIN COMPASS
 ========================================================= */
 
 .pppp-compass{
-width:190px;
-height:190px;
-border-radius:50%;
-margin:10px auto;
-border:8px solid #1e88e5;
-position:relative;
-background:radial-gradient(
-circle,
-#fff 0,
-#eef7ff 60%,
-#dbeeff 100%
-);
-box-shadow:0 5px 20px rgba(0,0,0,.18);
+    width:300px;
+    height:300px;
+    max-width:82vw;
+    max-height:82vw;
+
+    margin:10px auto 18px;
+
+    position:relative;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #f4faff 48%,
+            #dceeff 100%
+        );
+
+    border:8px solid #1e88e5;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.20),
+        inset 0 0 0 2px rgba(255,255,255,.8);
+
+    overflow:hidden;
+
+    box-sizing:border-box;
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    touch-action:none;
 }
 
-.pppp-compass-arrow{
-position:absolute;
-left:50%;
-top:50%;
-width:8px;
-height:75px;
-background:#e53935;
-transform-origin:50% 100%;
-transform:translate(-50%,-100%);
-border-radius:8px;
+
+/* =========================================================
+   ROTATING DIAL
+========================================================= */
+
+.pppp-compass-dial{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    left:0;
+    top:0;
+
+    border-radius:50%;
+
+    transform:rotate(0deg);
+
+    will-change:transform;
+
+    transition:
+        transform .08s linear;
 }
 
-.pppp-compass-arrow:after{
-content:"";
-position:absolute;
-left:50%;
-top:-14px;
-transform:translateX(-50%);
-border-left:9px solid transparent;
-border-right:9px solid transparent;
-border-bottom:18px solid #e53935;
+
+/* =========================================================
+   DEGREE SCALE
+========================================================= */
+
+.pppp-compass-scale{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    left:0;
+    top:0;
+
+    border-radius:50%;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(30,136,229,.75) 0deg 1deg,
+            transparent 1deg 5deg
+        );
+
+    -webkit-mask:
+        radial-gradient(
+            circle,
+            transparent 0 40%,
+            #000 40.5% 100%
+        );
+
+    mask:
+        radial-gradient(
+            circle,
+            transparent 0 40%,
+            #000 40.5% 100%
+        );
 }
+
+
+/* =========================================================
+   DEGREE NUMBERS
+========================================================= */
+
+.degree{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform-origin:0 0;
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#34495e;
+
+    white-space:nowrap;
+}
+
+
+/*
+   Degree positions
+*/
+
+.d000{
+    transform:
+        translate(-50%,-125px);
+}
+
+.d030{
+    transform:
+        rotate(30deg)
+        translateY(-125px)
+        rotate(-30deg);
+}
+
+.d060{
+    transform:
+        rotate(60deg)
+        translateY(-125px)
+        rotate(-60deg);
+}
+
+.d090{
+    transform:
+        rotate(90deg)
+        translateY(-125px)
+        rotate(-90deg);
+}
+
+.d120{
+    transform:
+        rotate(120deg)
+        translateY(-125px)
+        rotate(-120deg);
+}
+
+.d150{
+    transform:
+        rotate(150deg)
+        translateY(-125px)
+        rotate(-150deg);
+}
+
+.d180{
+    transform:
+        rotate(180deg)
+        translateY(-125px)
+        rotate(-180deg);
+}
+
+.d210{
+    transform:
+        rotate(210deg)
+        translateY(-125px)
+        rotate(-210deg);
+}
+
+.d240{
+    transform:
+        rotate(240deg)
+        translateY(-125px)
+        rotate(-240deg);
+}
+
+.d270{
+    transform:
+        rotate(270deg)
+        translateY(-125px)
+        rotate(-270deg);
+}
+
+.d300{
+    transform:
+        rotate(300deg)
+        translateY(-125px)
+        rotate(-300deg);
+}
+
+.d330{
+    transform:
+        rotate(330deg)
+        translateY(-125px)
+        rotate(-330deg);
+}
+
+
+/* =========================================================
+   COMPASS DIRECTIONS
+========================================================= */
 
 .pppp-compass-label{
-position:absolute;
-font-weight:800;
-font-size:14px;
+    position:absolute;
+
+    font-weight:900;
+
+    font-size:18px;
+
+    color:#1e88e5;
+
+    line-height:1;
+
+    z-index:5;
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.15);
 }
 
-.pppp-compass-n{top:8px;left:50%;transform:translateX(-50%);}
-.pppp-compass-s{bottom:8px;left:50%;transform:translateX(-50%);}
-.pppp-compass-e{right:10px;top:50%;transform:translateY(-50%);}
-.pppp-compass-w{left:10px;top:50%;transform:translateY(-50%);}
+
+/* North */
+
+.pppp-compass-n{
+    left:50%;
+    top:34px;
+    transform:translateX(-50%);
+
+    color:#e53935;
+}
+
+
+/* North East */
+
+.pppp-compass-ne{
+    right:68px;
+    top:68px;
+}
+
+
+/* East */
+
+.pppp-compass-e{
+    right:34px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+
+/* South East */
+
+.pppp-compass-se{
+    right:68px;
+    bottom:68px;
+}
+
+
+/* South */
+
+.pppp-compass-s{
+    left:50%;
+    bottom:34px;
+    transform:translateX(-50%);
+}
+
+
+/* South West */
+
+.pppp-compass-sw{
+    left:68px;
+    bottom:68px;
+}
+
+
+/* West */
+
+.pppp-compass-w{
+    left:34px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+
+/* North West */
+
+.pppp-compass-nw{
+    left:68px;
+    top:68px;
+}
+
+
+/* =========================================================
+   FIXED RED POINTER
+========================================================= */
+
+.pppp-compass-pointer{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:0;
+    height:0;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:20;
+
+    pointer-events:none;
+}
+
+
+/* Red north pointer */
+
+.pppp-compass-pointer span{
+    display:block;
+
+    position:absolute;
+
+    left:-6px;
+    top:-112px;
+
+    width:12px;
+    height:112px;
+
+    background:#e53935;
+
+    border-radius:
+        7px 7px 3px 3px;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.25);
+}
+
+
+/* Pointer arrow */
+
+.pppp-compass-pointer span::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:-14px;
+
+    transform:translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:
+        10px solid transparent;
+
+    border-right:
+        10px solid transparent;
+
+    border-bottom:
+        18px solid #e53935;
+}
+
+
+/* =========================================================
+   CENTER
+========================================================= */
+
+.pppp-compass-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:110px;
+    height:110px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border:
+        4px solid #1e88e5;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.18);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:30;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.pppp-compass-heading{
+    font-size:34px;
+
+    font-weight:900;
+
+    line-height:1;
+
+    color:#222;
+
+    letter-spacing:0;
+}
+
+
+/* =========================================================
+   CENTER LABEL
+========================================================= */
+
+.pppp-compass-center-label{
+    margin-top:7px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    color:#777;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.pppp-compass-status{
+    min-height:24px;
+
+    margin:
+        5px 0 14px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#666;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.pppp-compass-start,
+.pppp-compass-stop{
+    min-width:180px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:420px){
+
+    .pppp-compass{
+        width:280px;
+        height:280px;
+    }
+
+    .d000{
+        transform:
+            translate(-50%,-116px);
+    }
+
+    .d030,
+    .d060,
+    .d090,
+    .d120,
+    .d150,
+    .d180,
+    .d210,
+    .d240,
+    .d270,
+    .d300,
+    .d330{
+        /* JS/CSS dial remains scalable */
+    }
+
+    .pppp-compass-center{
+        width:100px;
+        height:100px;
+    }
+
+    .pppp-compass-heading{
+        font-size:30px;
+    }
+
+    .pppp-compass-pointer span{
+        top:-102px;
+        height:102px;
+    }
+
+}
 
 
 /* =========================================================
@@ -2680,51 +3173,144 @@ oninput="ppppSetVolume('master',this.value)">
 
 
 <!-- =====================================================
-     🧭 COMPASS
+     🧭 PPPP COMPASS
 ===================================================== -->
 
 <div class="pppp-category">
 
-<button class="pppp-category-title">
-<span>🧭 Compass</span>
-<span>▼</span>
-</button>
+    <button class="pppp-category-title" type="button">
+        <span>🧭 Compass</span>
+        <span>▼</span>
+    </button>
 
-<div class="pppp-category-content">
+    <div class="pppp-category-content">
 
-<div class="pppp-tool-box">
+        <div class="pppp-tool-box">
 
-<div
-class="pppp-compass"
-id="ppppCompass">
+            <div class="pppp-compass-wrapper">
 
-<div class="pppp-compass-label pppp-compass-n">N</div>
-<div class="pppp-compass-label pppp-compass-s">S</div>
-<div class="pppp-compass-label pppp-compass-e">E</div>
-<div class="pppp-compass-label pppp-compass-w">W</div>
+                <!-- Direction -->
+                <div
+                    class="pppp-compass-direction"
+                    id="ppppCompassDirection">
+                    North
+                </div>
 
-<div
-class="pppp-compass-arrow"
-id="ppppCompassArrow">
-</div>
+                <!-- Main Compass -->
+                <div
+                    class="pppp-compass"
+                    id="ppppCompass">
 
-</div>
+                    <!-- Rotating Compass Dial -->
+                    <div
+                        class="pppp-compass-dial"
+                        id="ppppCompassDial">
 
-<div
-style="text-align:center;font-weight:700;"
-id="ppppCompassDegree">
-0°
-</div>
+                        <!-- Degree scale -->
+                        <div class="pppp-compass-scale">
 
-<button
-class="pppp-action"
-onclick="ppppStartCompass()">
-🧭 Start Compass
-</button>
+                            <span class="degree d000">000°</span>
+                            <span class="degree d030">030°</span>
+                            <span class="degree d060">060°</span>
+                            <span class="degree d090">090°</span>
+                            <span class="degree d120">120°</span>
+                            <span class="degree d150">150°</span>
+                            <span class="degree d180">180°</span>
+                            <span class="degree d210">210°</span>
+                            <span class="degree d240">240°</span>
+                            <span class="degree d270">270°</span>
+                            <span class="degree d300">300°</span>
+                            <span class="degree d330">330°</span>
 
-</div>
+                        </div>
 
-</div>
+                        <!-- Cardinal directions -->
+                        <div class="pppp-compass-label pppp-compass-n">
+                            N
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-ne">
+                            NE
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-e">
+                            E
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-se">
+                            SE
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-s">
+                            S
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-sw">
+                            SW
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-w">
+                            W
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-nw">
+                            NW
+                        </div>
+
+                    </div>
+
+                    <!-- Fixed red heading pointer -->
+                    <div class="pppp-compass-pointer">
+                        <span></span>
+                    </div>
+
+                    <!-- Center -->
+                    <div class="pppp-compass-center">
+                        <div
+                            class="pppp-compass-heading"
+                            id="ppppCompassDegree">
+                            0°
+                        </div>
+
+                        <div class="pppp-compass-center-label">
+                            HEADING
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Status -->
+                <div
+                    class="pppp-compass-status"
+                    id="ppppCompassStatus">
+                    🧭 Compass Ready
+                </div>
+
+                <!-- Start -->
+                <button
+                    type="button"
+                    class="pppp-action pppp-compass-start"
+                    id="ppppCompassStartButton"
+                    onclick="ppppStartCompass()">
+                    🧭 Start Compass
+                </button>
+
+                <!-- Stop -->
+                <button
+                    type="button"
+                    class="pppp-action pppp-compass-stop"
+                    id="ppppCompassStopButton"
+                    onclick="ppppStopCompass()"
+                    style="display:none;">
+                    🛑 Stop Compass
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 
@@ -6035,76 +6621,513 @@ ${birthdayRows}
 
 
 /* =========================================================
-   COMPASS
+   🧭 PPPP REAL MOBILE COMPASS ENGINE
 ========================================================= */
 
 let ppppCompassHandler = null;
 
+let ppppCompassRunning = false;
 
-function ppppStopCompass() {
+let ppppCurrentHeading = 0;
 
-    if (!ppppCompassHandler) return;
+let ppppLastRawHeading = null;
 
-    window.removeEventListener(
-        "deviceorientationabsolute",
-        ppppCompassHandler,
-        true
-    );
 
-    window.removeEventListener(
-        "deviceorientation",
-        ppppCompassHandler,
-        true
-    );
+/* =========================================================
+   DIRECTION NAMES
+========================================================= */
 
-    ppppCompassHandler = null;
+const ppppCompassDirections = [
+    "North",
+    "North East",
+    "East",
+    "South East",
+    "South",
+    "South West",
+    "West",
+    "North West"
+];
+
+
+/* =========================================================
+   NORMALIZE HEADING
+   Always returns 0–359
+========================================================= */
+
+function ppppNormalizeHeading(value){
+
+    let heading = Number(value);
+
+    if (!Number.isFinite(heading)){
+        return null;
+    }
+
+    heading =
+        ((heading % 360) + 360) % 360;
+
+    /*
+       360° and 0° are identical.
+       Display range is strictly 0°–359°.
+    */
+
+    if (heading >= 359.5){
+        heading = 0;
+    }
+
+    return Math.round(heading) % 360;
+}
+
+
+/* =========================================================
+   GET DIRECTION
+========================================================= */
+
+function ppppGetDirection(heading){
+
+    const index =
+        Math.round(heading / 45) % 8;
+
+    return ppppCompassDirections[index];
+}
+
+
+/* =========================================================
+   SMOOTH ANGLE
+   Prevents 359° → 0° visual jump
+========================================================= */
+
+function ppppShortestAngleDifference(
+    from,
+    to
+){
+
+    let difference =
+        to - from;
+
+    while (difference > 180){
+        difference -= 360;
+    }
+
+    while (difference < -180){
+        difference += 360;
+    }
+
+    return difference;
+}
+
+
+/* =========================================================
+   UPDATE VISUAL COMPASS
+========================================================= */
+
+function ppppUpdateCompass(
+    rawHeading
+){
+
+    const heading =
+        ppppNormalizeHeading(
+            rawHeading
+        );
+
+    if (heading === null){
+        return;
+    }
+
+
+    ppppCurrentHeading =
+        heading;
+
+
+    /*
+       Center heading
+    */
+
+    const degree =
+        document.getElementById(
+            "ppppCompassDegree"
+        );
+
+    if (degree){
+
+        degree.textContent =
+            heading + "°";
+
+    }
+
+
+    /*
+       Direction
+    */
+
+    const direction =
+        document.getElementById(
+            "ppppCompassDirection"
+        );
+
+    if (direction){
+
+        direction.textContent =
+            ppppGetDirection(
+                heading
+            );
+
+    }
+
+
+    /*
+       Status
+    */
+
+    const status =
+        document.getElementById(
+            "ppppCompassStatus"
+        );
+
+    if (status){
+
+        status.textContent =
+            "🧭 Live Compass • " +
+            heading +
+            "°";
+
+    }
+
+
+    /*
+       Rotate dial so the direction
+       currently facing the user
+       appears at the fixed top pointer.
+    */
+
+    const dial =
+        document.getElementById(
+            "ppppCompassDial"
+        );
+
+    if (dial){
+
+        let target =
+            -heading;
+
+
+        /*
+           Smooth shortest-path rotation.
+        */
+
+        if (
+            ppppLastRawHeading !== null
+        ){
+
+            const previous =
+                ppppLastRawHeading;
+
+            const difference =
+                ppppShortestAngleDifference(
+                    previous,
+                    heading
+                );
+
+            target =
+                previous +
+                difference;
+
+        }
+
+
+        dial.style.transform =
+            "rotate(" +
+            target +
+            "deg)";
+
+
+        ppppLastRawHeading =
+            target;
+
+    }
 
 }
 
 
-async function ppppStartCompass() {
+/* =========================================================
+   GET DEVICE HEADING
+========================================================= */
+
+function ppppGetDeviceHeading(
+    event
+){
+
+    /*
+       Apple Safari / iOS
+       webkitCompassHeading is
+       the preferred compass heading.
+    */
 
     if (
-        !window.DeviceOrientationEvent
-    ) {
+        typeof event.webkitCompassHeading ===
+        "number" &&
+        Number.isFinite(
+            event.webkitCompassHeading
+        )
+    ){
+
+        return ppppNormalizeHeading(
+            event.webkitCompassHeading
+        );
+
+    }
+
+
+    /*
+       Standard absolute orientation.
+    */
+
+    if (
+        typeof event.absolute ===
+        "boolean" &&
+        event.absolute === true &&
+        typeof event.alpha ===
+        "number"
+    ){
+
+        return ppppNormalizeHeading(
+            360 - event.alpha
+        );
+
+    }
+
+
+    /*
+       Android/browser fallback.
+    */
+
+    if (
+        typeof event.alpha ===
+        "number" &&
+        Number.isFinite(event.alpha)
+    ){
+
+        return ppppNormalizeHeading(
+            360 - event.alpha
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   SENSOR EVENT
+========================================================= */
+
+function ppppHandleCompassEvent(
+    event
+){
+
+    if (!ppppCompassRunning){
+        return;
+    }
+
+
+    const heading =
+        ppppGetDeviceHeading(
+            event
+        );
+
+
+    if (heading === null){
+        return;
+    }
+
+
+    ppppUpdateCompass(
+        heading
+    );
+
+}
+
+
+/* =========================================================
+   STOP COMPASS
+========================================================= */
+
+function ppppStopCompass(){
+
+    if (
+        ppppCompassHandler
+    ){
+
+        window.removeEventListener(
+            "deviceorientationabsolute",
+            ppppCompassHandler,
+            true
+        );
+
+        window.removeEventListener(
+            "deviceorientation",
+            ppppCompassHandler,
+            true
+        );
+
+    }
+
+
+    ppppCompassHandler =
+        null;
+
+    ppppCompassRunning =
+        false;
+
+    ppppLastRawHeading =
+        null;
+
+
+    /*
+       Restore buttons
+    */
+
+    const startButton =
+        document.getElementById(
+            "ppppCompassStartButton"
+        );
+
+    const stopButton =
+        document.getElementById(
+            "ppppCompassStopButton"
+        );
+
+
+    if (startButton){
+
+        startButton.style.display =
+            "inline-block";
+
+    }
+
+
+    if (stopButton){
+
+        stopButton.style.display =
+            "none";
+
+    }
+
+
+    /*
+       Status
+    */
+
+    const status =
+        document.getElementById(
+            "ppppCompassStatus"
+        );
+
+    if (status){
+
+        status.textContent =
+            "🧭 Compass stopped";
+
+    }
+
+}
+
+
+/* =========================================================
+   START COMPASS
+========================================================= */
+
+async function ppppStartCompass(){
+
+    /*
+       Browser support
+    */
+
+    if (
+        typeof DeviceOrientationEvent ===
+        "undefined"
+    ){
 
         alert(
-            "🧭 এই ডিভাইসে Compass support নেই।"
+            "🧭 এই ডিভাইস বা Browser-এ Compass support নেই।"
         );
 
         return;
 
     }
 
+
     /*
-       iPhone/iPad-এর permission
+       HTTPS check
+    */
+
+    if (
+        !window.isSecureContext
+    ){
+
+        alert(
+            "🧭 Compass চালাতে HTTPS connection প্রয়োজন।"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Stop any existing listener first.
+    */
+
+    ppppStopCompass();
+
+
+    /*
+       iOS / Safari permission
     */
 
     if (
         typeof DeviceOrientationEvent
             .requestPermission ===
         "function"
-    ) {
+    ){
 
-        try {
+        try{
 
             const permission =
                 await DeviceOrientationEvent
                     .requestPermission();
 
-            if (
-                permission !== "granted"
-            ) {
 
-                alert(
-                    "🧭 Compass permission দেওয়া হয়নি।"
-                );
+            if (
+                permission !==
+                "granted"
+            ){
+
+                const status =
+                    document.getElementById(
+                        "ppppCompassStatus"
+                    );
+
+                if (status){
+
+                    status.textContent =
+                        "⚠️ Compass permission দেওয়া হয়নি।";
+
+                }
 
                 return;
 
             }
 
-        } catch (e) {
+        }
+        catch(error){
+
+            console.error(
+                "PPPP Compass permission error:",
+                error
+            );
+
 
             alert(
                 "🧭 Compass permission নেওয়া সম্ভব হয়নি।"
@@ -6116,65 +7139,22 @@ async function ppppStartCompass() {
 
     }
 
-    ppppStopCompass();
+
+    /*
+       Create ONE shared handler.
+    */
 
     ppppCompassHandler =
-        function(event) {
+        ppppHandleCompassEvent;
 
-            let heading = null;
 
-            if (
-                typeof event.webkitCompassHeading ===
-                "number"
-            ) {
+    ppppCompassRunning =
+        true;
 
-                heading =
-                    event.webkitCompassHeading;
 
-            } else if (
-                typeof event.alpha ===
-                "number"
-            ) {
-
-                heading =
-                    360 - event.alpha;
-
-            }
-
-            if (heading === null) return;
-
-            heading =
-                (heading + 360) % 360;
-
-            const compass =
-                document.getElementById(
-                    "ppppCompass"
-                );
-
-            const degree =
-                document.getElementById(
-                    "ppppCompassDegree"
-                );
-
-            if (compass) {
-
-                compass.style.transform =
-                    "rotate(" +
-                    (-heading) +
-                    "deg)";
-
-            }
-
-            if (degree) {
-
-                degree.textContent =
-                    Math.round(heading) +
-                    "°";
-
-            }
-
-        };
-
+    /*
+       Absolute orientation first.
+    */
 
     window.addEventListener(
         "deviceorientationabsolute",
@@ -6182,13 +7162,80 @@ async function ppppStartCompass() {
         true
     );
 
+
+    /*
+       Standard fallback.
+    */
+
     window.addEventListener(
         "deviceorientation",
         ppppCompassHandler,
         true
     );
 
+
+    /*
+       Buttons
+    */
+
+    const startButton =
+        document.getElementById(
+            "ppppCompassStartButton"
+        );
+
+    const stopButton =
+        document.getElementById(
+            "ppppCompassStopButton"
+        );
+
+
+    if (startButton){
+
+        startButton.style.display =
+            "none";
+
+    }
+
+
+    if (stopButton){
+
+        stopButton.style.display =
+            "inline-block";
+
+    }
+
+
+    /*
+       Status
+    */
+
+    const status =
+        document.getElementById(
+            "ppppCompassStatus"
+        );
+
+    if (status){
+
+        status.textContent =
+            "🧭 Starting Compass…";
+
+    }
+
 }
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        ppppUpdateCompass(0);
+
+    }
+);
 
 
 /* =========================================================
