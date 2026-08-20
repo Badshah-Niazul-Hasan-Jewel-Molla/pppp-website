@@ -3761,6 +3761,2465 @@ onclick="ppppAboutSettings()">
 </div>
 
 
+<!-- =========================================================
+     🎮 PPPP — 19 MOST POPULAR CLASSIC OFFLINE GAMES
+     SELF-CONTAINED HTML + CSS + JAVASCRIPT
+========================================================= -->
+
+<style>
+/* =========================================================
+   🎮 PPPP OFFLINE GAMES
+========================================================= */
+
+#ppppOfflineGames{
+    width:100%;
+    box-sizing:border-box;
+    margin:18px 0;
+}
+
+#ppppOfflineGames *,
+#ppppGameModal *{
+    box-sizing:border-box;
+}
+
+.pppp-games-title{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:14px 16px;
+    background:linear-gradient(135deg,#1e88e5,#1565c0);
+    color:#fff;
+    font-size:17px;
+    font-weight:800;
+    text-align:left;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+.pppp-games-title span:last-child{
+    transition:transform .25s ease;
+}
+
+.pppp-games-title.pppp-open span:last-child{
+    transform:rotate(180deg);
+}
+
+.pppp-games-content{
+    display:none;
+    margin-top:10px;
+}
+
+.pppp-games-content.pppp-show{
+    display:block;
+}
+
+.pppp-games-note{
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:12px;
+    background:rgba(30,136,229,.08);
+    font-size:14px;
+    line-height:1.6;
+    text-align:center;
+}
+
+.pppp-games-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+.pppp-game-card{
+    border:0;
+    border-radius:13px;
+    padding:13px 8px;
+    min-height:72px;
+    background:#fff;
+    color:#263238;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    transition:transform .15s ease,box-shadow .15s ease;
+}
+
+.pppp-game-card:active{
+    transform:scale(.96);
+}
+
+.pppp-game-icon{
+    display:block;
+    font-size:26px;
+    margin-bottom:5px;
+}
+
+#ppppGameModal{
+    display:none;
+    position:fixed;
+    z-index:999999;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    padding:12px;
+    align-items:center;
+    justify-content:center;
+}
+
+#ppppGameModal.pppp-modal-show{
+    display:flex;
+}
+
+.pppp-game-window{
+    width:min(96vw,520px);
+    max-height:94vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+
+.pppp-game-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.pppp-game-name{
+    font-size:18px;
+    font-weight:800;
+}
+
+.pppp-game-close{
+    border:0;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#e53935;
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.pppp-game-status{
+    text-align:center;
+    font-weight:700;
+    margin:8px 0;
+    min-height:24px;
+}
+
+.pppp-game-board{
+    width:100%;
+    margin:10px auto;
+    touch-action:manipulation;
+}
+
+.pppp-game-btn{
+    border:0;
+    border-radius:10px;
+    padding:10px;
+    background:#1e88e5;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+    margin:3px;
+}
+
+.pppp-reset-btn{
+    display:block;
+    margin:12px auto 4px;
+    border:0;
+    border-radius:10px;
+    padding:10px 18px;
+    background:#263238;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.pppp-ttt{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    max-width:330px;
+    margin:auto;
+}
+
+.pppp-ttt button{
+    aspect-ratio:1;
+    font-size:35px;
+    border:0;
+    border-radius:10px;
+    background:#e3f2fd;
+    cursor:pointer;
+}
+
+.pppp-memory{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+}
+
+.pppp-memory button{
+    aspect-ratio:1;
+    border:0;
+    border-radius:9px;
+    background:#1565c0;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.pppp-2048{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    max-width:360px;
+    margin:auto;
+}
+
+.pppp-2048 button{
+    aspect-ratio:1;
+    border:0;
+    border-radius:8px;
+    background:#eceff1;
+    font-size:20px;
+    font-weight:800;
+}
+
+.pppp-number-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+}
+
+.pppp-number-grid button{
+    padding:14px 5px;
+    border:0;
+    border-radius:9px;
+    background:#e3f2fd;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.pppp-canvas-wrap{
+    width:100%;
+    text-align:center;
+}
+
+.pppp-game-canvas{
+    display:block;
+    width:100%;
+    max-width:420px;
+    height:auto;
+    margin:auto;
+    border-radius:12px;
+    background:#111;
+    touch-action:none;
+}
+
+.pppp-choice-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:12px 0;
+}
+
+.pppp-choice{
+    border:0;
+    border-radius:12px;
+    padding:12px;
+    background:#e3f2fd;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.pppp-sudoku{
+    display:grid;
+    grid-template-columns:repeat(9,1fr);
+    max-width:360px;
+    margin:auto;
+    border:2px solid #263238;
+}
+
+.pppp-sudoku input{
+    width:100%;
+    aspect-ratio:1;
+    text-align:center;
+    border:1px solid #b0bec5;
+    font-size:18px;
+    font-weight:700;
+}
+
+.pppp-checker{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    max-width:360px;
+    margin:auto;
+}
+
+.pppp-checker button{
+    aspect-ratio:1;
+    border:0;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.pppp-sliding{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:5px;
+    max-width:360px;
+    margin:auto;
+}
+
+.pppp-sliding button{
+    aspect-ratio:1;
+    border:0;
+    border-radius:8px;
+    background:#e3f2fd;
+    font-size:20px;
+    font-weight:800;
+}
+
+.pppp-rps{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.pppp-rps button{
+    border:0;
+    border-radius:12px;
+    padding:15px;
+    font-size:30px;
+    background:#e3f2fd;
+    cursor:pointer;
+}
+
+@media(max-width:420px){
+    .pppp-games-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .pppp-game-window{
+        padding:10px;
+    }
+}
+</style>
+
+
+<!-- =========================================================
+     🎮 GAMES HTML
+========================================================= -->
+
+<section id="ppppOfflineGames">
+
+    <button
+        type="button"
+        class="pppp-games-title"
+        id="ppppGamesTitle">
+
+        <span>🎮 Play 19 Most Popular Classic Offline Games</span>
+        <span>▼</span>
+
+    </button>
+
+    <div
+        class="pppp-games-content"
+        id="ppppGamesContent">
+
+        <div class="pppp-games-note">
+            🎮 সব গেম সম্পূর্ণ Offline-এ খেলা যাবে।<br>
+            🌐 কোনো External Website বা Game Server প্রয়োজন নেই।
+        </div>
+
+        <div class="pppp-games-grid">
+
+            <button class="pppp-game-card" data-game="ttt">
+                <span class="pppp-game-icon">⭕</span>
+                Tic Tac Toe
+            </button>
+
+            <button class="pppp-game-card" data-game="snake">
+                <span class="pppp-game-icon">🐍</span>
+                Snake
+            </button>
+
+            <button class="pppp-game-card" data-game="tetris">
+                <span class="pppp-game-icon">🧱</span>
+                Tetris
+            </button>
+
+            <button class="pppp-game-card" data-game="pong">
+                <span class="pppp-game-icon">🏓</span>
+                Pong
+            </button>
+
+            <button class="pppp-game-card" data-game="memory">
+                <span class="pppp-game-icon">🧠</span>
+                Memory Match
+            </button>
+
+            <button class="pppp-game-card" data-game="mines">
+                <span class="pppp-game-icon">💣</span>
+                Minesweeper
+            </button>
+
+            <button class="pppp-game-card" data-game="2048">
+                <span class="pppp-game-icon">🔢</span>
+                2048
+            </button>
+
+            <button class="pppp-game-card" data-game="connect">
+                <span class="pppp-game-icon">🔴</span>
+                Connect Four
+            </button>
+
+            <button class="pppp-game-card" data-game="dots">
+                <span class="pppp-game-icon">🔵</span>
+                Dots & Boxes
+            </button>
+
+            <button class="pppp-game-card" data-game="checkers">
+                <span class="pppp-game-icon">⚫</span>
+                Checkers
+            </button>
+
+            <button class="pppp-game-card" data-game="chess">
+                <span class="pppp-game-icon">♟️</span>
+                Chess
+            </button>
+
+            <button class="pppp-game-card" data-game="sliding">
+                <span class="pppp-game-icon">🧩</span>
+                Sliding Puzzle
+            </button>
+
+            <button class="pppp-game-card" data-game="sudoku">
+                <span class="pppp-game-icon">🔢</span>
+                Sudoku
+            </button>
+
+            <button class="pppp-game-card" data-game="breakout">
+                <span class="pppp-game-icon">🧱</span>
+                Breakout
+            </button>
+
+            <button class="pppp-game-card" data-game="space">
+                <span class="pppp-game-icon">🚀</span>
+                Space Invaders
+            </button>
+
+            <button class="pppp-game-card" data-game="flappy">
+                <span class="pppp-game-icon">🐦</span>
+                Flappy Bird
+            </button>
+
+            <button class="pppp-game-card" data-game="racing">
+                <span class="pppp-game-icon">🏎️</span>
+                Racing
+            </button>
+
+            <button class="pppp-game-card" data-game="guess">
+                <span class="pppp-game-icon">❓</span>
+                Number Guessing
+            </button>
+
+            <button class="pppp-game-card" data-game="rps">
+                <span class="pppp-game-icon">✊</span>
+                Rock Paper Scissors
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     🎮 GAME MODAL
+========================================================= -->
+
+<div id="ppppGameModal">
+
+    <div class="pppp-game-window">
+
+        <div class="pppp-game-header">
+
+            <div
+                class="pppp-game-name"
+                id="ppppGameName">
+                🎮 Game
+            </div>
+
+            <button
+                type="button"
+                class="pppp-game-close"
+                id="ppppGameClose">
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="pppp-game-status"
+            id="ppppGameStatus">
+        </div>
+
+        <div
+            class="pppp-game-board"
+            id="ppppGameBoard">
+        </div>
+
+        <button
+            type="button"
+            class="pppp-reset-btn"
+            id="ppppGameReset">
+            🔄 Restart Game
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+/* =========================================================
+   🎮 PPPP OFFLINE GAMES — ISOLATED ENGINE
+========================================================= */
+
+(function(){
+
+"use strict";
+
+const G = {};
+
+G.modal =
+document.getElementById("ppppGameModal");
+
+G.board =
+document.getElementById("ppppGameBoard");
+
+G.name =
+document.getElementById("ppppGameName");
+
+G.status =
+document.getElementById("ppppGameStatus");
+
+G.current = null;
+
+
+/* =========================================================
+   SETTINGS OPEN/CLOSE
+========================================================= */
+
+const title =
+document.getElementById("ppppGamesTitle");
+
+const content =
+document.getElementById("ppppGamesContent");
+
+if(title && content){
+
+    title.addEventListener("click",function(){
+
+        content.classList.toggle("pppp-show");
+        title.classList.toggle("pppp-open");
+
+    });
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openGame(id){
+
+    G.current=id;
+
+    G.modal.classList.add("pppp-modal-show");
+
+    render(id);
+
+}
+
+
+function closeGame(){
+
+    G.modal.classList.remove("pppp-modal-show");
+
+    G.board.innerHTML="";
+
+    G.current=null;
+
+}
+
+
+document
+.getElementById("ppppGameClose")
+.addEventListener("click",closeGame);
+
+
+G.modal.addEventListener("click",function(e){
+
+    if(e.target===G.modal){
+        closeGame();
+    }
+
+});
+
+
+document
+.getElementById("ppppGameReset")
+.addEventListener("click",function(){
+
+    if(G.current){
+        render(G.current);
+    }
+
+});
+
+
+/* =========================================================
+   GAME CARDS
+========================================================= */
+
+document
+.querySelectorAll("#ppppOfflineGames .pppp-game-card")
+.forEach(function(btn){
+
+    btn.addEventListener("click",function(){
+
+        openGame(btn.dataset.game);
+
+    });
+
+});
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(id){
+
+    G.board.innerHTML="";
+
+    const games={
+        ttt:gameTTT,
+        snake:gameSnake,
+        tetris:gameTetris,
+        pong:gamePong,
+        memory:gameMemory,
+        mines:gameMines,
+        "2048":game2048,
+        connect:gameConnect,
+        dots:gameDots,
+        checkers:gameCheckers,
+        chess:gameChess,
+        sliding:gameSliding,
+        sudoku:gameSudoku,
+        breakout:gameBreakout,
+        space:gameSpace,
+        flappy:gameFlappy,
+        racing:gameRacing,
+        guess:gameGuess,
+        rps:gameRPS
+    };
+
+    if(games[id]){
+        games[id]();
+    }
+
+}
+
+
+/* =========================================================
+   1. TIC TAC TOE
+========================================================= */
+
+function gameTTT(){
+
+    G.name.textContent="⭕ Tic Tac Toe";
+
+    let board=Array(9).fill("");
+    let turn="X";
+    let over=false;
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-ttt";
+
+    board.forEach(function(_,i){
+
+        const b=document.createElement("button");
+
+        b.onclick=function(){
+
+            if(board[i] || over)return;
+
+            board[i]=turn;
+            b.textContent=turn;
+
+            const wins=[
+                [0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]
+            ];
+
+            if(
+                wins.some(
+                    w=>w.every(x=>board[x]===turn)
+                )
+            ){
+
+                G.status.textContent=
+                "🏆 "+turn+" wins!";
+
+                over=true;
+                return;
+
+            }
+
+            if(board.every(Boolean)){
+
+                G.status.textContent=
+                "🤝 Draw!";
+
+                over=true;
+                return;
+
+            }
+
+            turn=turn==="X"?"O":"X";
+
+            G.status.textContent=
+            "Turn: "+turn;
+
+        };
+
+        wrap.appendChild(b);
+
+    });
+
+    G.board.appendChild(wrap);
+
+    G.status.textContent="Turn: X";
+
+}
+
+
+/* =========================================================
+   2. SNAKE
+========================================================= */
+
+function gameSnake(){
+
+    G.name.textContent="🐍 Snake";
+
+    G.board.innerHTML=`
+    <div class="pppp-canvas-wrap">
+    <canvas class="pppp-game-canvas"
+    id="ppppSnakeCanvas"
+    width="320"
+    height="320"></canvas>
+    <div>🎯 Arrow Keys / Swipe</div>
+    </div>`;
+
+    const c=document.getElementById("ppppSnakeCanvas");
+    const x=c.getContext("2d");
+
+    let snake=[
+        {x:8,y:8},
+        {x:7,y:8},
+        {x:6,y:8}
+    ];
+
+    let dir={x:1,y:0};
+
+    let food={
+        x:Math.floor(Math.random()*16),
+        y:Math.floor(Math.random()*16)
+    };
+
+    let score=0;
+
+    function draw(){
+
+        x.clearRect(0,0,320,320);
+
+        x.fillStyle="#e53935";
+        x.fillRect(food.x*20,food.y*20,18,18);
+
+        x.fillStyle="#43a047";
+
+        snake.forEach(s=>{
+            x.fillRect(s.x*20,s.y*20,18,18);
+        });
+
+    }
+
+    function loop(){
+
+        const head={
+            x:snake[0].x+dir.x,
+            y:snake[0].y+dir.y
+        };
+
+        if(
+            head.x<0 ||
+            head.y<0 ||
+            head.x>=16 ||
+            head.y>=16 ||
+            snake.some(s=>s.x===head.x&&s.y===head.y)
+        ){
+
+            G.status.textContent=
+            "💥 Game Over — Score: "+score;
+
+            return;
+
+        }
+
+        snake.unshift(head);
+
+        if(head.x===food.x&&head.y===food.y){
+
+            score++;
+
+            food={
+                x:Math.floor(Math.random()*16),
+                y:Math.floor(Math.random()*16)
+            };
+
+        }else{
+
+            snake.pop();
+
+        }
+
+        G.status.textContent="Score: "+score;
+
+        draw();
+
+        G._timer=setTimeout(loop,130);
+
+    }
+
+    document.onkeydown=function(e){
+
+        if(e.key==="ArrowUp"&&dir.y!==1)
+            dir={x:0,y:-1};
+
+        if(e.key==="ArrowDown"&&dir.y!==-1)
+            dir={x:0,y:1};
+
+        if(e.key==="ArrowLeft"&&dir.x!==1)
+            dir={x:-1,y:0};
+
+        if(e.key==="ArrowRight"&&dir.x!==-1)
+            dir={x:1,y:0};
+
+    };
+
+    draw();
+    loop();
+
+}
+
+
+/* =========================================================
+   3. TETRIS
+========================================================= */
+
+function gameTetris(){
+
+    G.name.textContent="🧱 Tetris";
+
+    G.board.innerHTML=`
+    <div class="pppp-canvas-wrap">
+    <canvas class="pppp-game-canvas"
+    id="ppppTetrisCanvas"
+    width="240"
+    height="400"></canvas>
+    <div>
+    <button class="pppp-game-btn" id="tLeft">◀</button>
+    <button class="pppp-game-btn" id="tDown">▼</button>
+    <button class="pppp-game-btn" id="tRight">▶</button>
+    </div>
+    </div>`;
+
+    const c=document.getElementById("ppppTetrisCanvas");
+    const ctx=c.getContext("2d");
+
+    const cols=10,rows=20,size=20;
+
+    let grid=Array.from(
+        {length:rows},
+        ()=>Array(cols).fill(0)
+    );
+
+    let piece={
+        x:4,
+        y:0,
+        shape:[
+            [1,1],
+            [1,1]
+        ]
+    };
+
+    function draw(){
+
+        ctx.clearRect(0,0,c.width,c.height);
+
+        ctx.strokeStyle="#ddd";
+
+        for(let y=0;y<rows;y++){
+
+            for(let x=0;x<cols;x++){
+
+                if(grid[y][x]){
+
+                    ctx.fillStyle="#1e88e5";
+                    ctx.fillRect(
+                        x*size,
+                        y*size,
+                        size-1,
+                        size-1
+                    );
+
+                }
+
+            }
+
+        }
+
+        piece.shape.forEach((r,y)=>{
+
+            r.forEach((v,x)=>{
+
+                if(v){
+
+                    ctx.fillStyle="#e53935";
+
+                    ctx.fillRect(
+                        (piece.x+x)*size,
+                        (piece.y+y)*size,
+                        size-1,
+                        size-1
+                    );
+
+                }
+
+            });
+
+        });
+
+    }
+
+    function collision(){
+
+        return piece.shape.some((r,y)=>
+            r.some((v,x)=>
+                v &&
+                (
+                    piece.y+y>=rows ||
+                    piece.x+x<0 ||
+                    piece.x+x>=cols ||
+                    grid[piece.y+y][piece.x+x]
+                )
+            )
+        );
+
+    }
+
+    function drop(){
+
+        piece.y++;
+
+        if(collision()){
+
+            piece.y--;
+
+            piece.shape.forEach((r,y)=>
+                r.forEach((v,x)=>{
+
+                    if(v)
+                        grid[piece.y+y][piece.x+x]=1;
+
+                })
+            );
+
+            for(let y=rows-1;y>=0;y--){
+
+                if(grid[y].every(Boolean)){
+
+                    grid.splice(y,1);
+                    grid.unshift(Array(cols).fill(0));
+                    y++;
+
+                }
+
+            }
+
+            piece={
+                x:4,
+                y:0,
+                shape:[
+                    [1,1],
+                    [1,1]
+                ]
+            };
+
+        }
+
+        draw();
+
+    }
+
+    document.getElementById("tLeft").onclick=()=>{
+        piece.x--;
+        if(collision())piece.x++;
+        draw();
+    };
+
+    document.getElementById("tRight").onclick=()=>{
+        piece.x++;
+        if(collision())piece.x--;
+        draw();
+    };
+
+    document.getElementById("tDown").onclick=drop;
+
+    draw();
+
+    G._timer=setInterval(drop,600);
+
+}
+
+
+/* =========================================================
+   4. PONG
+========================================================= */
+
+function gamePong(){
+
+    G.name.textContent="🏓 Pong";
+
+    G.board.innerHTML=`
+    <canvas class="pppp-game-canvas"
+    id="ppppPongCanvas"
+    width="400"
+    height="280"></canvas>`;
+
+    const c=document.getElementById("ppppPongCanvas");
+    const ctx=c.getContext("2d");
+
+    let py=110;
+    let ay=110;
+    let bx=200;
+    let by=140;
+    let vx=3;
+    let vy=2;
+    let score=0;
+
+    c.addEventListener("pointermove",e=>{
+
+        const r=c.getBoundingClientRect();
+
+        py=
+        (e.clientY-r.top)
+        /r.height*280-35;
+
+    });
+
+    function loop(){
+
+        bx+=vx;
+        by+=vy;
+
+        if(by<0||by>280)vy*=-1;
+
+        ay+=(by-ay)*.08;
+
+        if(
+            bx<25 &&
+            by>py &&
+            by<py+70
+        )vx=Math.abs(vx);
+
+        if(
+            bx>375 &&
+            by>ay &&
+            by<ay+70
+        )vx=-Math.abs(vx);
+
+        if(bx<0){
+
+            bx=200;
+            by=140;
+            score=0;
+
+        }
+
+        if(bx>400){
+
+            bx=200;
+            by=140;
+            score++;
+
+        }
+
+        ctx.clearRect(0,0,400,280);
+
+        ctx.fillStyle="#fff";
+
+        ctx.fillRect(10,py,10,70);
+        ctx.fillRect(380,ay,10,70);
+        ctx.beginPath();
+        ctx.arc(bx,by,7,0,Math.PI*2);
+        ctx.fill();
+
+        G.status.textContent=
+        "Score: "+score;
+
+        G._timer=requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+/* =========================================================
+   5. MEMORY MATCH
+========================================================= */
+
+function gameMemory(){
+
+    G.name.textContent="🧠 Memory Match";
+
+    const icons=[
+        "🍎","🍌","🍇","🍉",
+        "🍎","🍌","🍇","🍉"
+    ].sort(()=>Math.random()-.5);
+
+    let first=null;
+    let lock=false;
+    let found=0;
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-memory";
+
+    icons.forEach((icon,i)=>{
+
+        const b=document.createElement("button");
+        b.textContent="❓";
+
+        b.onclick=function(){
+
+            if(lock||b.dataset.done)return;
+
+            b.textContent=icon;
+
+            if(first===null){
+
+                first={b,i};
+
+            }else{
+
+                if(icons[first.i]===icon){
+
+                    first.b.dataset.done="1";
+                    b.dataset.done="1";
+                    found+=2;
+                    first=null;
+
+                    if(found===8)
+                        G.status.textContent="🏆 You Win!";
+
+                }else{
+
+                    lock=true;
+
+                    setTimeout(()=>{
+
+                        b.textContent="❓";
+                        first.b.textContent="❓";
+                        first=null;
+                        lock=false;
+
+                    },700);
+
+                }
+
+            }
+
+        };
+
+        wrap.appendChild(b);
+
+    });
+
+    G.board.appendChild(wrap);
+
+    G.status.textContent="Find all matching pairs.";
+
+}
+
+
+/* =========================================================
+   6. MINESWEEPER
+========================================================= */
+
+function gameMines(){
+
+    G.name.textContent="💣 Minesweeper";
+
+    const n=6;
+    const mines=new Set();
+
+    while(mines.size<7)
+        mines.add(
+            Math.floor(Math.random()*n*n)
+        );
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-number-grid";
+
+    let opened=0;
+
+    for(let i=0;i<n*n;i++){
+
+        const b=document.createElement("button");
+        b.textContent="■";
+
+        b.onclick=function(){
+
+            if(b.dataset.open)return;
+
+            b.dataset.open="1";
+
+            if(mines.has(i)){
+
+                b.textContent="💣";
+                G.status.textContent="💥 Mine! Game Over.";
+
+                return;
+
+            }
+
+            let count=0;
+
+            const r=Math.floor(i/n);
+            const c=i%n;
+
+            for(let dr=-1;dr<=1;dr++)
+            for(let dc=-1;dc<=1;dc++){
+
+                if(
+                    mines.has(
+                        (r+dr)*n+(c+dc)
+                    )
+                )count++;
+
+            }
+
+            b.textContent=count||"·";
+            opened++;
+
+            if(opened>=n*n-mines.size)
+                G.status.textContent="🏆 You Win!";
+
+        };
+
+        wrap.appendChild(b);
+
+    }
+
+    G.board.appendChild(wrap);
+
+}
+
+
+/* =========================================================
+   7. 2048
+========================================================= */
+
+function game2048(){
+
+    G.name.textContent="🔢 2048";
+
+    let a=Array(16).fill(0);
+
+    function add(){
+
+        const z=a
+        .map((v,i)=>v?null:i)
+        .filter(v=>v!==null);
+
+        if(!z.length)return;
+
+        a[z[Math.floor(Math.random()*z.length)]]=
+        Math.random()<.9?2:4;
+
+    }
+
+    add();
+    add();
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-2048";
+
+    a.forEach((_,i)=>{
+
+        const b=document.createElement("button");
+        wrap.appendChild(b);
+
+    });
+
+    function draw(){
+
+        [...wrap.children]
+        .forEach((b,i)=>{
+            b.textContent=a[i]||"";
+        });
+
+    }
+
+    function move(dir){
+
+        let rows=[];
+
+        if(dir==="left"||dir==="right"){
+
+            for(let r=0;r<4;r++){
+
+                let row=a.slice(r*4,r*4+4);
+
+                if(dir==="right")row.reverse();
+
+                row=row.filter(Boolean);
+
+                for(let i=0;i<row.length-1;i++){
+
+                    if(row[i]===row[i+1]){
+
+                        row[i]*=2;
+                        row.splice(i+1,1);
+
+                    }
+
+                }
+
+                while(row.length<4)row.push(0);
+
+                if(dir==="right")row.reverse();
+
+                rows.push(...row);
+
+            }
+
+            a=rows;
+
+        }else{
+
+            for(let c=0;c<4;c++){
+
+                let row=[
+                    a[c],a[c+4],a[c+8],a[c+12]
+                ];
+
+                if(dir==="down")row.reverse();
+
+                row=row.filter(Boolean);
+
+                for(let i=0;i<row.length-1;i++){
+
+                    if(row[i]===row[i+1]){
+
+                        row[i]*=2;
+                        row.splice(i+1,1);
+
+                    }
+
+                }
+
+                while(row.length<4)row.push(0);
+
+                if(dir==="down")row.reverse();
+
+                for(let r=0;r<4;r++)
+                    a[r*4+c]=row[r];
+
+            }
+
+        }
+
+        add();
+        draw();
+
+    }
+
+    document.onkeydown=function(e){
+
+        if(
+            ["ArrowLeft","ArrowRight",
+             "ArrowUp","ArrowDown"].includes(e.key)
+        ){
+
+            move({
+                ArrowLeft:"left",
+                ArrowRight:"right",
+                ArrowUp:"up",
+                ArrowDown:"down"
+            }[e.key]);
+
+        }
+
+    };
+
+    draw();
+
+    G.status.textContent=
+    "Use Arrow Keys to move.";
+
+}
+
+
+/* =========================================================
+   8. CONNECT FOUR
+========================================================= */
+
+function gameConnect(){
+
+    G.name.textContent="🔴 Connect Four";
+
+    let a=Array(42).fill("");
+    let turn="🔴";
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-number-grid";
+
+    for(let c=0;c<7;c++){
+
+        const b=document.createElement("button");
+        b.textContent="↓";
+
+        b.onclick=function(){
+
+            for(let r=5;r>=0;r--){
+
+                let i=r*7+c;
+
+                if(!a[i]){
+
+                    a[i]=turn;
+                    draw();
+
+                    if(check(turn)){
+
+                        G.status.textContent=
+                        "🏆 "+turn+" wins!";
+
+                        return;
+
+                    }
+
+                    turn=
+                    turn==="🔴"?"🟡":"🔴";
+
+                    G.status.textContent=
+                    "Turn: "+turn;
+
+                    return;
+
+                }
+
+            }
+
+        };
+
+        wrap.appendChild(b);
+
+    }
+
+    G.board.appendChild(wrap);
+
+    const cells=document.createElement("div");
+    cells.className="pppp-number-grid";
+
+    for(let i=0;i<42;i++)
+        cells.appendChild(document.createElement("button"));
+
+    G.board.appendChild(cells);
+
+    function draw(){
+
+        [...cells.children]
+        .forEach((b,i)=>{
+            b.textContent=a[i]||"";
+        });
+
+    }
+
+    function check(p){
+
+        for(let r=0;r<6;r++)
+        for(let c=0;c<7;c++){
+
+            const i=r*7+c;
+
+            const dirs=[
+                [0,1],[1,0],[1,1],[1,-1]
+            ];
+
+            for(const [dr,dc] of dirs){
+
+                let ok=true;
+
+                for(let k=0;k<4;k++){
+
+                    let rr=r+dr*k;
+                    let cc=c+dc*k;
+
+                    if(
+                        rr<0||rr>=6||
+                        cc<0||cc>=7||
+                        a[rr*7+cc]!==p
+                    ){
+                        ok=false;
+                        break;
+                    }
+
+                }
+
+                if(ok)return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    draw();
+
+}
+
+
+/* =========================================================
+   9. DOTS & BOXES
+========================================================= */
+
+function gameDots(){
+
+    G.name.textContent="🔵 Dots & Boxes";
+
+    let turn=0;
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-number-grid";
+
+    for(let i=0;i<16;i++){
+
+        const b=document.createElement("button");
+
+        b.textContent="•";
+
+        b.onclick=function(){
+
+            if(b.dataset.used)return;
+
+            b.dataset.used="1";
+            b.textContent=
+            turn++%2===0?"🔵":"🔴";
+
+        };
+
+        wrap.appendChild(b);
+
+    }
+
+    G.board.appendChild(wrap);
+
+    G.status.textContent=
+    "Take turns selecting dots.";
+
+}
+
+
+/* =========================================================
+   10. CHECKERS
+========================================================= */
+
+function gameCheckers(){
+
+    G.name.textContent="⚫ Checkers";
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-checker";
+
+    for(let i=0;i<64;i++){
+
+        const b=document.createElement("button");
+
+        const r=Math.floor(i/8);
+        const c=i%8;
+
+        b.style.background=
+        (r+c)%2?"#8d6e63":"#efebe9";
+
+        if((r+c)%2){
+
+            if(r<3)b.textContent="⚫";
+            if(r>4)b.textContent="🔴";
+
+        }
+
+        b.onclick=function(){
+
+            if(b.textContent){
+
+                b.textContent=
+                b.textContent==="⚫"?"🔴":"⚫";
+
+            }
+
+        };
+
+        wrap.appendChild(b);
+
+    }
+
+    G.board.appendChild(wrap);
+
+}
+
+
+/* =========================================================
+   11. CHESS
+========================================================= */
+
+function gameChess(){
+
+    G.name.textContent="♟️ Chess";
+
+    const pieces=[
+        "♜","♞","♝","♛","♚","♝","♞","♜",
+        "♟","♟","♟","♟","♟","♟","♟","♟",
+        "","","","","","","","",
+        "","","","","","","","",
+        "","","","","","","","",
+        "","","","","","","","",
+        "♙","♙","♙","♙","♙","♙","♙","♙",
+        "♖","♘","♗","♕","♔","♗","♘","♖"
+    ];
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-checker";
+
+    pieces.forEach((p,i)=>{
+
+        const b=document.createElement("button");
+
+        const r=Math.floor(i/8);
+        const c=i%8;
+
+        b.style.background=
+        (r+c)%2?"#8d6e63":"#efebe9";
+
+        b.textContent=p;
+
+        b.onclick=function(){
+
+            const selected=
+            wrap.querySelector(".selected");
+
+            if(selected){
+
+                const temp=selected.textContent;
+
+                selected.textContent=b.textContent;
+                b.textContent=temp;
+
+                selected.classList.remove("selected");
+
+            }else if(b.textContent){
+
+                b.classList.add("selected");
+
+            }
+
+        };
+
+        wrap.appendChild(b);
+
+    });
+
+    G.board.appendChild(wrap);
+
+    G.status.textContent=
+    "♟️ Select a piece, then select a destination.";
+
+}
+
+
+/* =========================================================
+   12. SLIDING PUZZLE
+========================================================= */
+
+function gameSliding(){
+
+    G.name.textContent="🧩 Sliding Puzzle";
+
+    let a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+
+    a.sort(()=>Math.random()-.5);
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-sliding";
+
+    a.forEach((_,i)=>{
+
+        const b=document.createElement("button");
+        wrap.appendChild(b);
+
+    });
+
+    function draw(){
+
+        [...wrap.children]
+        .forEach((b,i)=>{
+            b.textContent=a[i]||"";
+        });
+
+    }
+
+    [...wrap.children]
+    .forEach((b,i)=>{
+
+        b.onclick=function(){
+
+            const z=a.indexOf(0);
+
+            const r=Math.floor(i/4);
+            const c=i%4;
+            const zr=Math.floor(z/4);
+            const zc=z%4;
+
+            if(
+                Math.abs(r-zr)+
+                Math.abs(c-zc)===1
+            ){
+
+                [a[i],a[z]]=
+                [a[z],a[i]];
+
+                draw();
+
+            }
+
+        };
+
+    });
+
+    draw();
+
+}
+
+
+/* =========================================================
+   13. SUDOKU
+========================================================= */
+
+function gameSudoku(){
+
+    G.name.textContent="🔢 Sudoku";
+
+    const puzzle=[
+        5,3,0,0,7,0,0,0,0,
+        6,0,0,1,9,5,0,0,0,
+        0,9,8,0,0,0,0,6,0,
+        8,0,0,0,6,0,0,0,3,
+        4,0,0,8,0,3,0,0,1,
+        7,0,0,0,2,0,0,0,6,
+        0,6,0,0,0,0,2,8,0,
+        0,0,0,4,1,9,0,0,5,
+        0,0,0,0,8,0,0,7,9
+    ];
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-sudoku";
+
+    puzzle.forEach(v=>{
+
+        const input=document.createElement("input");
+
+        input.maxLength=1;
+        input.inputMode="numeric";
+
+        if(v){
+
+            input.value=v;
+            input.disabled=true;
+
+        }
+
+        wrap.appendChild(input);
+
+    });
+
+    G.board.appendChild(wrap);
+
+    const btn=document.createElement("button");
+    btn.className="pppp-reset-btn";
+    btn.textContent="✅ Check Sudoku";
+
+    btn.onclick=function(){
+
+        const values=
+        [...wrap.querySelectorAll("input")]
+        .map(x=>Number(x.value));
+
+        if(values.every(Boolean))
+            G.status.textContent=
+            "🎉 Sudoku completed!";
+
+        else
+            G.status.textContent=
+            "✏️ Complete all cells first.";
+
+    };
+
+    G.board.appendChild(btn);
+
+}
+
+
+/* =========================================================
+   14. BREAKOUT
+========================================================= */
+
+function gameBreakout(){
+
+    G.name.textContent="🧱 Breakout";
+
+    G.board.innerHTML=`
+    <canvas class="pppp-game-canvas"
+    id="ppppBreakout"
+    width="400"
+    height="300"></canvas>`;
+
+    const c=document.getElementById("ppppBreakout");
+    const ctx=c.getContext("2d");
+
+    let x=200,y=260;
+    let vx=3,vy=-3;
+    let paddle=160;
+
+    let bricks=[];
+
+    for(let r=0;r<4;r++)
+    for(let col=0;col<8;col++)
+        bricks.push({
+            x:col*50+2,
+            y:r*20+20,
+            alive:true
+        });
+
+    c.onpointermove=e=>{
+
+        const r=c.getBoundingClientRect();
+
+        paddle=
+        (e.clientX-r.left)
+        /r.width*400-45;
+
+    };
+
+    function loop(){
+
+        x+=vx;
+        y+=vy;
+
+        if(x<5||x>395)vx*=-1;
+        if(y<5)vy*=-1;
+
+        if(
+            y>255 &&
+            x>paddle &&
+            x<paddle+90
+        )vy=-Math.abs(vy);
+
+        bricks.forEach(b=>{
+
+            if(
+                b.alive &&
+                x>b.x &&
+                x<b.x+46 &&
+                y>b.y &&
+                y<b.y+16
+            ){
+
+                b.alive=false;
+                vy*=-1;
+
+            }
+
+        });
+
+        if(y>300){
+
+            G.status.textContent=
+            "💥 Game Over";
+
+            return;
+
+        }
+
+        ctx.clearRect(0,0,400,300);
+
+        ctx.fillStyle="#1e88e5";
+
+        bricks.forEach(b=>{
+
+            if(b.alive)
+                ctx.fillRect(
+                    b.x,b.y,46,16
+                );
+
+        });
+
+        ctx.fillStyle="#e53935";
+        ctx.fillRect(paddle,275,90,10);
+
+        ctx.beginPath();
+        ctx.arc(x,y,6,0,Math.PI*2);
+        ctx.fill();
+
+        G._timer=
+        requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+/* =========================================================
+   15. SPACE INVADERS
+========================================================= */
+
+function gameSpace(){
+
+    G.name.textContent="🚀 Space Invaders";
+
+    G.board.innerHTML=`
+    <canvas class="pppp-game-canvas"
+    id="ppppSpace"
+    width="400"
+    height="300"></canvas>
+    <div style="text-align:center">
+    ◀ / ▶ to move — Tap to fire
+    </div>`;
+
+    const c=document.getElementById("ppppSpace");
+    const ctx=c.getContext("2d");
+
+    let player=180;
+    let bullets=[];
+    let enemies=[];
+
+    for(let r=0;r<3;r++)
+    for(let col=0;col<8;col++)
+        enemies.push({
+            x:35+col*45,
+            y:30+r*30,
+            alive:true
+        });
+
+    document.onkeydown=e=>{
+
+        if(e.key==="ArrowLeft")
+            player-=15;
+
+        if(e.key==="ArrowRight")
+            player+=15;
+
+        if(e.key===" ")
+            bullets.push({
+                x:player+20,
+                y:260
+            });
+
+    };
+
+    c.onclick=()=>{
+
+        bullets.push({
+            x:player+20,
+            y:260
+        });
+
+    };
+
+    function loop(){
+
+        bullets.forEach(b=>b.y-=5);
+
+        enemies.forEach(e=>{
+
+            if(!e.alive)return;
+
+            bullets.forEach(b=>{
+
+                if(
+                    b.x>e.x &&
+                    b.x<e.x+25 &&
+                    b.y>e.y &&
+                    b.y<e.y+18
+                ){
+
+                    e.alive=false;
+
+                }
+
+            });
+
+        });
+
+        ctx.clearRect(0,0,400,300);
+
+        ctx.fillStyle="#43a047";
+
+        enemies.forEach(e=>{
+
+            if(e.alive)
+                ctx.fillRect(
+                    e.x,e.y,25,18
+                );
+
+        });
+
+        ctx.fillStyle="#1e88e5";
+        ctx.fillRect(player,275,45,10);
+
+        ctx.fillStyle="#e53935";
+
+        bullets.forEach(b=>{
+            ctx.fillRect(b.x,b.y,3,8);
+        });
+
+        G._timer=
+        requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+/* =========================================================
+   16. FLAPPY BIRD
+========================================================= */
+
+function gameFlappy(){
+
+    G.name.textContent="🐦 Flappy Bird";
+
+    G.board.innerHTML=`
+    <canvas class="pppp-game-canvas"
+    id="ppppFlappy"
+    width="360"
+    height="480"></canvas>
+    <div style="text-align:center">
+    👆 Tap / Space to Fly
+    </div>`;
+
+    const c=document.getElementById("ppppFlappy");
+    const ctx=c.getContext("2d");
+
+    let bird=220;
+    let velocity=0;
+    let pipeX=360;
+    let gap=180;
+    let top=120;
+    let score=0;
+    let over=false;
+
+    function jump(){
+
+        if(over)return;
+
+        velocity=-7;
+
+    }
+
+    c.onclick=jump;
+
+    document.onkeydown=e=>{
+        if(e.key===" ")jump();
+    };
+
+    function loop(){
+
+        if(over)return;
+
+        velocity+=.35;
+        bird+=velocity;
+        pipeX-=3;
+
+        if(pipeX<-60){
+
+            pipeX=360;
+            top=60+Math.random()*180;
+            score++;
+
+        }
+
+        if(
+            bird<0 ||
+            bird>480 ||
+            (
+                pipeX<50 &&
+                pipeX+60>30 &&
+                (
+                    bird<top ||
+                    bird>top+gap
+                )
+            )
+        ){
+
+            over=true;
+
+            G.status.textContent=
+            "💥 Game Over — Score: "+score;
+
+        }
+
+        ctx.clearRect(0,0,360,480);
+
+        ctx.fillStyle="#43a047";
+
+        ctx.fillRect(
+            pipeX,0,60,top
+        );
+
+        ctx.fillRect(
+            pipeX,top+gap,
+            60,480
+        );
+
+        ctx.fillStyle="#fbc02d";
+
+        ctx.beginPath();
+        ctx.arc(45,bird,14,0,Math.PI*2);
+        ctx.fill();
+
+        G.status.textContent=
+        "Score: "+score;
+
+        G._timer=
+        requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+/* =========================================================
+   17. RACING
+========================================================= */
+
+function gameRacing(){
+
+    G.name.textContent="🏎️ Racing";
+
+    G.board.innerHTML=`
+    <canvas class="pppp-game-canvas"
+    id="ppppRacing"
+    width="360"
+    height="500"></canvas>
+    <div style="text-align:center">
+    ◀ / ▶ to steer
+    </div>`;
+
+    const c=document.getElementById("ppppRacing");
+    const ctx=c.getContext("2d");
+
+    let car=160;
+    let enemy=80;
+    let ey=-80;
+    let score=0;
+    let left=false;
+    let right=false;
+
+    document.onkeydown=e=>{
+
+        if(e.key==="ArrowLeft")left=true;
+        if(e.key==="ArrowRight")right=true;
+
+    };
+
+    document.onkeyup=e=>{
+
+        if(e.key==="ArrowLeft")left=false;
+        if(e.key==="ArrowRight")right=false;
+
+    };
+
+    c.onpointerdown=e=>{
+
+        const r=c.getBoundingClientRect();
+
+        if(e.clientX-r.left<180)
+            left=true;
+        else
+            right=true;
+
+    };
+
+    c.onpointerup=()=>{
+
+        left=false;
+        right=false;
+
+    };
+
+    function loop(){
+
+        if(left)car-=5;
+        if(right)car+=5;
+
+        car=Math.max(20,Math.min(300,car));
+
+        ey+=5;
+
+        if(ey>500){
+
+            ey=-80;
+            enemy=40+Math.random()*260;
+            score++;
+
+        }
+
+        if(
+            ey>420 &&
+            ey<480 &&
+            Math.abs(car-enemy)<45
+        ){
+
+            G.status.textContent=
+            "💥 Crash! Score: "+score;
+
+            return;
+
+        }
+
+        ctx.clearRect(0,0,360,500);
+
+        ctx.fillStyle="#455a64";
+        ctx.fillRect(50,0,260,500);
+
+        ctx.fillStyle="#fff";
+
+        for(let y=0;y<500;y+=60)
+            ctx.fillRect(175,y,10,35);
+
+        ctx.fillStyle="#e53935";
+        ctx.fillRect(car,430,40,60);
+
+        ctx.fillStyle="#1e88e5";
+        ctx.fillRect(enemy,ey,40,60);
+
+        G.status.textContent=
+        "Score: "+score;
+
+        G._timer=
+        requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+/* =========================================================
+   18. NUMBER GUESSING
+========================================================= */
+
+function gameGuess(){
+
+    G.name.textContent="❓ Number Guessing";
+
+    let target=
+    Math.floor(Math.random()*100)+1;
+
+    G.board.innerHTML=`
+    <div style="text-align:center">
+
+    <p>🎯 Guess a number between 1 and 100</p>
+
+    <input
+    id="ppppGuessInput"
+    type="number"
+    min="1"
+    max="100"
+    style="
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #bbb;
+    border-radius:10px;
+    ">
+
+    <button
+    class="pppp-game-btn"
+    id="ppppGuessBtn">
+    🎯 Guess
+    </button>
+
+    </div>`;
+
+    document
+    .getElementById("ppppGuessBtn")
+    .onclick=function(){
+
+        const n=
+        Number(
+            document.getElementById(
+                "ppppGuessInput"
+            ).value
+        );
+
+        if(n===target){
+
+            G.status.textContent=
+            "🎉 Correct! You Win!";
+
+        }else if(n<target){
+
+            G.status.textContent=
+            "⬆️ Try a higher number.";
+
+        }else{
+
+            G.status.textContent=
+            "⬇️ Try a lower number.";
+
+        }
+
+    };
+
+}
+
+
+/* =========================================================
+   19. ROCK PAPER SCISSORS
+========================================================= */
+
+function gameRPS(){
+
+    G.name.textContent="✊ Rock Paper Scissors";
+
+    const wrap=document.createElement("div");
+    wrap.className="pppp-rps";
+
+    const choices=[
+        ["✊","Rock"],
+        ["✋","Paper"],
+        ["✌️","Scissors"]
+    ];
+
+    choices.forEach(([icon,name])=>{
+
+        const b=document.createElement("button");
+
+        b.className="pppp-rps";
+        b.textContent=icon;
+
+        b.onclick=function(){
+
+            const computer=
+            choices[
+                Math.floor(Math.random()*3)
+            ];
+
+            let result="";
+
+            if(name===computer[1])
+                result="🤝 Draw!";
+
+            else if(
+                (name==="Rock"&&computer[1]==="Scissors")||
+                (name==="Paper"&&computer[1]==="Rock")||
+                (name==="Scissors"&&computer[1]==="Paper")
+            )
+                result="🏆 You Win!";
+
+            else
+                result="💻 Computer Wins!";
+
+            G.status.textContent=
+            result+
+            " Computer: "+computer[0];
+
+        };
+
+        wrap.appendChild(b);
+
+    });
+
+    G.board.appendChild(wrap);
+
+}
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+window.addEventListener("pagehide",function(){
+
+    if(G._timer){
+
+        cancelAnimationFrame(G._timer);
+        clearTimeout(G._timer);
+        clearInterval(G._timer);
+
+    }
+
+    document.onkeydown=null;
+    document.onkeyup=null;
+
+});
+
+
+})();
+</script>
+
+<!-- =========================================
+     🎮 END PPPP OFFLINE GAMES
+========================================= -->
+
+
 <!-- =====================================================
      SUPPORT
 ===================================================== -->
