@@ -10747,753 +10747,534 @@ window.addEventListener(
 
 <!-- =========================================================
      🎮 PPPP — 19 MOST POPULAR CLASSIC OFFLINE GAMES
-     
-     ONE SELF-CONTAINED CODE BLOCK
-     HTML + CSS + JAVASCRIPT
-     
-     PLACE THIS:
-     AFTER YOUR SETTINGS FINAL </script>
-     BEFORE </body>
-========================================================= -->
-
-
-<!-- =========================================================
-     🎮 GAMES SECTION
+     Self-contained HTML + CSS + JavaScript
+     Place this entire block immediately before </body>
 ========================================================= -->
 
 <style>
+/* =========================================================
+   🎮 PPPP OFFLINE GAMES — MAIN STYLE
+========================================================= */
 
-#ppppGamesSection{
+#ppppOfflineGames{
     width:100%;
+    box-sizing:border-box;
+    margin:25px auto;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+#ppppOfflineGames *,
+#ppppGameModal *{
     box-sizing:border-box;
 }
 
-#ppppGamesSection .pppp-games-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-    gap:12px;
-    margin-top:12px;
-}
-
-#ppppGamesSection .pppp-game-card{
-    border:0;
-    border-radius:16px;
-    min-height:82px;
-    padding:13px 8px;
-    cursor:pointer;
+.pppp-games-title{
+    background:linear-gradient(135deg,#1976d2,#2196f3);
+    color:#fff;
+    border-radius:22px;
+    padding:20px 22px;
+    font-size:25px;
     font-weight:800;
-    font-size:14px;
-    color:#17324d;
-    background:linear-gradient(135deg,#ffffff,#eaf4ff);
-    box-shadow:0 4px 14px rgba(0,0,0,.13);
+    line-height:1.2;
+    box-shadow:0 6px 18px rgba(0,0,0,.14);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+}
+
+.pppp-games-title span:last-child{
+    font-size:28px;
+}
+
+.pppp-games-content{
+    background:#f7f9fb;
+    border:1px solid #e0e5ea;
+    border-top:none;
+    border-radius:0 0 22px 22px;
+    padding:15px;
+}
+
+.pppp-games-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.pppp-game-card{
+    position:relative;
+    min-height:145px;
+    border:1px solid #dfe5eb;
+    border-radius:25px;
+    background:linear-gradient(145deg,#fff,#f1f6fa);
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:25px 12px 18px;
+    cursor:pointer;
     transition:.2s ease;
+    user-select:none;
 }
 
-#ppppGamesSection .pppp-game-card:hover{
+.pppp-game-card:hover{
     transform:translateY(-3px);
-    box-shadow:0 7px 20px rgba(0,0,0,.18);
+    box-shadow:0 9px 22px rgba(0,0,0,.16);
 }
 
-#ppppGamesSection .pppp-game-card:active{
-    transform:scale(.96);
+.pppp-game-card:active{
+    transform:scale(.97);
 }
 
-#ppppGamesSection .game-icon{
-    display:block;
-    font-size:27px;
-    margin-bottom:6px;
+.pppp-game-number{
+    position:absolute;
+    right:14px;
+    top:10px;
+    color:#62a7d7;
+    font-size:14px;
+    font-weight:800;
 }
 
-#ppppGamesSection .game-name{
-    display:block;
+.pppp-game-icon{
+    font-size:46px;
+    line-height:1;
+    margin-bottom:10px;
 }
 
+.pppp-game-name{
+    font-size:20px;
+    font-weight:800;
+    color:#303840;
+    text-align:center;
+}
+
+.pppp-game-hint{
+    text-align:center;
+    color:#68737c;
+    font-size:13px;
+    margin-top:14px;
+}
 
 /* =========================================================
    GAME MODAL
 ========================================================= */
 
-#ppppGamesModal{
+#ppppGameModal{
     display:none;
     position:fixed;
     inset:0;
     z-index:2147483000;
-    background:rgba(0,0,0,.76);
-    align-items:center;
-    justify-content:center;
-    padding:10px;
-    box-sizing:border-box;
-}
-
-#ppppGamesModal.pppp-games-visible{
-    display:flex;
-}
-
-#ppppGamesWindow{
-    width:min(720px,100%);
-    max-height:94vh;
-    overflow:hidden;
-    border-radius:20px;
-    background:#fff;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
-    display:flex;
-    flex-direction:column;
-}
-
-#ppppGamesHeader{
-    flex:0 0 auto;
-    min-height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:9px 12px 9px 17px;
-    box-sizing:border-box;
-    color:#fff;
-    background:linear-gradient(135deg,#1565c0,#1e88e5);
-}
-
-#ppppGamesTitle{
-    font-size:17px;
-    font-weight:900;
-}
-
-#ppppGamesClose{
-    width:40px;
-    height:40px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,255,255,.18);
-    color:#fff;
-    font-size:18px;
-    cursor:pointer;
-}
-
-#ppppGamesBody{
+    background:rgba(0,0,0,.72);
+    padding:12px;
     overflow:auto;
-    -webkit-overflow-scrolling:touch;
-    padding:15px;
-    box-sizing:border-box;
-    text-align:center;
 }
 
-.pppp-game-info{
-    font-weight:800;
-    margin:7px 0 13px;
-}
-
-.pppp-game-actions{
+#ppppGameModal.pppp-game-open{
     display:flex;
+    align-items:center;
     justify-content:center;
-    flex-wrap:wrap;
-    gap:6px;
-    margin:10px 0;
 }
 
-.pppp-g-btn{
-    border:0;
-    border-radius:10px;
-    padding:10px 15px;
-    background:#1e88e5;
+.pppp-game-window{
+    width:min(720px,100%);
+    max-height:96vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:25px;
+    box-shadow:0 15px 60px rgba(0,0,0,.45);
+    position:relative;
+}
+
+.pppp-game-header{
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:linear-gradient(135deg,#1976d2,#2196f3);
     color:#fff;
+    padding:15px 55px 15px 18px;
+    border-radius:25px 25px 0 0;
+}
+
+.pppp-game-header-title{
+    font-size:22px;
+    font-weight:800;
+}
+
+.pppp-game-close{
+    position:absolute;
+    right:12px;
+    top:10px;
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.20);
+    color:#fff;
+    font-size:25px;
     font-weight:800;
     cursor:pointer;
 }
 
-.pppp-g-btn:active{
-    transform:scale(.95);
+.pppp-game-body{
+    padding:18px;
+    min-height:250px;
 }
 
-.pppp-g-btn.secondary{
+.pppp-game-toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:15px;
+}
+
+.pppp-game-btn{
+    border:none;
+    border-radius:13px;
+    background:#1976d2;
+    color:#fff;
+    padding:11px 17px;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.pppp-game-btn.secondary{
     background:#607d8b;
 }
 
-
-/* =========================================================
-   COMMON CANVAS
-========================================================= */
-
-.pppp-game-canvas{
-    display:block;
-    width:min(100%,430px);
-    height:auto;
-    margin:8px auto;
-    border-radius:12px;
-    background:#111;
-    touch-action:none;
+.pppp-game-status{
+    text-align:center;
+    font-weight:800;
+    font-size:17px;
+    margin:10px 0 15px;
 }
 
+.pppp-game-board{
+    margin:auto;
+}
 
 /* =========================================================
    TIC TAC TOE
 ========================================================= */
 
-.pppp-ttt{
+.pppp-ttt-board{
     display:grid;
-    grid-template-columns:repeat(3,82px);
+    grid-template-columns:repeat(3,90px);
     gap:7px;
     justify-content:center;
-    margin:14px auto;
 }
 
-.pppp-ttt button{
-    width:82px;
-    height:82px;
-    border:0;
-    border-radius:12px;
-    background:#eaf4ff;
-    font-size:32px;
+.pppp-ttt-cell{
+    width:90px;
+    height:90px;
+    border:none;
+    border-radius:15px;
+    background:#eef5fa;
+    font-size:45px;
     font-weight:900;
     cursor:pointer;
 }
-
 
 /* =========================================================
    MEMORY
 ========================================================= */
 
-.pppp-memory{
+.pppp-memory-board{
     display:grid;
-    grid-template-columns:repeat(4,65px);
+    grid-template-columns:repeat(4,70px);
     gap:8px;
     justify-content:center;
-    margin:12px auto;
 }
 
-.pppp-memory button{
-    width:65px;
-    height:65px;
-    border:0;
-    border-radius:11px;
-    background:#1e88e5;
-    color:transparent;
-    font-size:27px;
+.pppp-memory-card{
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:12px;
+    background:#1976d2;
+    color:#fff;
+    font-size:30px;
     cursor:pointer;
 }
-
-.pppp-memory button.open,
-.pppp-memory button.done{
-    color:#222;
-    background:#e8f5e9;
-}
-
 
 /* =========================================================
    2048
 ========================================================= */
 
-.pppp-2048{
-    display:grid;
-    grid-template-columns:repeat(4,64px);
-    gap:6px;
-    justify-content:center;
+.pppp-2048-board{
+    width:min(330px,100%);
+    aspect-ratio:1;
+    padding:8px;
     background:#bbada0;
-    padding:6px;
-    border-radius:10px;
-    margin:10px auto;
+    border-radius:14px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin:auto;
 }
 
-.pppp-2048 div{
-    width:64px;
-    height:64px;
+.pppp-2048-cell{
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:6px;
     background:#cdc1b4;
-    font-size:20px;
+    border-radius:9px;
+    font-size:27px;
     font-weight:900;
+    color:#333;
 }
-
 
 /* =========================================================
-   CONNECT 4
+   CONNECT FOUR
 ========================================================= */
 
-.pppp-connect4{
+.pppp-connect-board{
     display:grid;
-    grid-template-columns:repeat(7,42px);
+    grid-template-columns:repeat(7,43px);
     gap:5px;
-    justify-content:center;
-    background:#1565c0;
+    background:#1976d2;
     padding:8px;
-    border-radius:12px;
+    border-radius:15px;
+    justify-content:center;
 }
 
-.pppp-connect4 button{
-    width:42px;
-    height:42px;
-    border:0;
+.pppp-connect-cell{
+    width:43px;
+    height:43px;
     border-radius:50%;
+    border:2px solid #1976d2;
     background:#fff;
     cursor:pointer;
 }
-
-
-/* =========================================================
-   DOTS
-========================================================= */
-
-.pppp-dots{
-    display:grid;
-    grid-template-columns:repeat(5,42px);
-    gap:0;
-    justify-content:center;
-    margin:15px auto;
-}
-
-.pppp-dot-cell{
-    width:42px;
-    height:42px;
-    border:0;
-    background:#fff;
-    position:relative;
-}
-
-.pppp-dot-cell:before{
-    content:"";
-    position:absolute;
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#222;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-}
-
 
 /* =========================================================
    SLIDING PUZZLE
 ========================================================= */
 
-.pppp-puzzle{
+.pppp-slide-board{
     display:grid;
     grid-template-columns:repeat(4,65px);
-    gap:5px;
+    gap:6px;
     justify-content:center;
 }
 
-.pppp-puzzle button{
+.pppp-slide-cell{
     width:65px;
     height:65px;
-    border:0;
-    border-radius:8px;
-    background:#1e88e5;
+    border:none;
+    border-radius:10px;
+    background:#1976d2;
     color:#fff;
-    font-size:20px;
+    font-size:22px;
     font-weight:900;
+    cursor:pointer;
 }
-
-.pppp-puzzle button.empty{
-    background:#eee;
-}
-
 
 /* =========================================================
    SUDOKU
 ========================================================= */
 
-.pppp-sudoku{
+.pppp-sudoku-board{
     display:grid;
     grid-template-columns:repeat(9,35px);
     justify-content:center;
-    margin:10px auto;
 }
 
-.pppp-sudoku input{
+.pppp-sudoku-cell{
     width:35px;
     height:35px;
-    box-sizing:border-box;
-    text-align:center;
-    font-weight:800;
     border:1px solid #aaa;
-    font-size:16px;
-}
-
-.pppp-sudoku input.fixed{
-    background:#e8f1f8;
-}
-
-
-/* =========================================================
-   NUMBER GUESS
-========================================================= */
-
-.pppp-guess-input{
-    width:150px;
-    padding:11px;
-    border:2px solid #1e88e5;
-    border-radius:10px;
     text-align:center;
-    font-size:18px;
+    font-size:17px;
+    font-weight:700;
 }
 
-
 /* =========================================================
-   RPS
+   CANVAS GAMES
 ========================================================= */
 
-.pppp-rps{
-    display:flex;
-    justify-content:center;
+.pppp-game-canvas{
+    display:block;
+    width:min(100%,420px);
+    height:auto;
+    margin:auto;
+    background:#101820;
+    border-radius:15px;
+    touch-action:none;
+}
+
+/* =========================================================
+   NUMBER GUESSING / RPS / TEXT GAMES
+========================================================= */
+
+.pppp-big-input{
+    display:block;
+    width:min(260px,100%);
+    margin:12px auto;
+    padding:13px;
+    border:2px solid #d7dfe6;
+    border-radius:12px;
+    font-size:20px;
+    text-align:center;
+}
+
+.pppp-choice-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
     gap:10px;
-    flex-wrap:wrap;
+    max-width:430px;
+    margin:auto;
 }
 
-.pppp-rps button{
-    width:72px;
-    height:72px;
-    border:0;
-    border-radius:50%;
-    background:#eef7ff;
-    font-size:32px;
+.pppp-choice{
+    min-height:80px;
+    border:none;
+    border-radius:15px;
+    background:#eef5fa;
+    font-size:30px;
     cursor:pointer;
 }
 
-
-/* =========================================================
-   CHESS / CHECKERS
-========================================================= */
-
-.pppp-board8{
-    display:grid;
-    grid-template-columns:repeat(8,42px);
-    justify-content:center;
-    border:5px solid #795548;
-    width:max-content;
-    margin:10px auto;
+.pppp-large-message{
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    margin:20px 0;
 }
-
-.pppp-board8 button{
-    width:42px;
-    height:42px;
-    border:0;
-    font-size:25px;
-    cursor:pointer;
-}
-
-.pppp-board8 button.light{
-    background:#f0d9b5;
-}
-
-.pppp-board8 button.dark{
-    background:#b58863;
-}
-
-
-/* =========================================================
-   MINESWEEPER
-========================================================= */
-
-.pppp-mines{
-    display:grid;
-    grid-template-columns:repeat(8,35px);
-    gap:2px;
-    justify-content:center;
-}
-
-.pppp-mines button{
-    width:35px;
-    height:35px;
-    border:0;
-    background:#90a4ae;
-    font-weight:900;
-    cursor:pointer;
-}
-
-.pppp-mines button.open{
-    background:#e8e8e8;
-}
-
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media(max-width:480px){
+@media(max-width:600px){
 
-    #ppppGamesWindow{
-        max-height:96vh;
-        border-radius:15px;
+    .pppp-games-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    #ppppGamesBody{
-        padding:10px;
+    .pppp-game-card{
+        min-height:145px;
     }
 
-    #ppppGamesSection .pppp-games-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:9px;
+    .pppp-game-icon{
+        font-size:42px;
     }
 
-    #ppppGamesSection .pppp-game-card{
-        min-height:78px;
-        font-size:13px;
+    .pppp-game-name{
+        font-size:18px;
     }
 
-    .pppp-ttt{
-        grid-template-columns:repeat(3,70px);
+    .pppp-ttt-board{
+        grid-template-columns:repeat(3,82px);
     }
 
-    .pppp-ttt button{
-        width:70px;
-        height:70px;
+    .pppp-ttt-cell{
+        width:82px;
+        height:82px;
     }
 
-    .pppp-2048{
+    .pppp-memory-board{
+        grid-template-columns:repeat(4,62px);
+    }
+
+    .pppp-memory-card{
+        width:62px;
+        height:62px;
+    }
+
+    .pppp-connect-board{
+        grid-template-columns:repeat(7,38px);
+    }
+
+    .pppp-connect-cell{
+        width:38px;
+        height:38px;
+    }
+
+    .pppp-slide-board{
         grid-template-columns:repeat(4,58px);
     }
 
-    .pppp-2048 div{
+    .pppp-slide-cell{
         width:58px;
         height:58px;
     }
 
-    .pppp-connect4{
-        grid-template-columns:repeat(7,37px);
-    }
-
-    .pppp-connect4 button{
-        width:37px;
-        height:37px;
-    }
-
-    .pppp-puzzle{
-        grid-template-columns:repeat(4,58px);
-    }
-
-    .pppp-puzzle button{
-        width:58px;
-        height:58px;
-    }
-
-    .pppp-sudoku{
+    .pppp-sudoku-board{
         grid-template-columns:repeat(9,31px);
     }
 
-    .pppp-sudoku input{
+    .pppp-sudoku-cell{
         width:31px;
         height:31px;
     }
-
-    .pppp-board8{
-        grid-template-columns:repeat(8,36px);
-    }
-
-    .pppp-board8 button{
-        width:36px;
-        height:36px;
-        font-size:21px;
-    }
-
-    .pppp-mines{
-        grid-template-columns:repeat(8,31px);
-    }
-
-    .pppp-mines button{
-        width:31px;
-        height:31px;
-    }
-
 }
-
-
-/* =========================================================
-   🎮 SECTION TITLE SUPPORT
-========================================================= */
-
-#ppppGamesSection .pppp-category-title{
-    width:100%;
-}
-
 </style>
 
 
 <!-- =========================================================
-     🎮 GAMES SECTION HTML
+     🎮 GAMES HTML MOUNT
 ========================================================= -->
 
-<div
-id="ppppGamesSection"
-class="pppp-category"
->
+<div id="ppppOfflineGames">
+    <div class="pppp-games-title" id="ppppGamesTitle">
+        <span>🎮 Play 19 Most Popular Classic Offline Games</span>
+        <span id="ppppGamesArrow">▼</span>
+    </div>
 
-<button
-class="pppp-category-title"
-type="button"
->
+    <div class="pppp-games-content" id="ppppGamesContent">
 
-<span>
-🎮 Play 19 Most Popular Classic Offline Games
-</span>
+        <div class="pppp-games-grid" id="ppppGamesGrid"></div>
 
-<span>▼</span>
+        <div class="pppp-game-hint">
+            🎮 সব গেম সম্পূর্ণ Offline-এ খেলা যাবে।
+            কোনো External Website বা Game Server প্রয়োজন নেই।
+        </div>
 
-</button>
-
-
-<div class="pppp-category-content">
-
-<div class="pppp-games-grid">
-
-
-<button class="pppp-game-card" data-game="tictactoe">
-<span class="game-icon">❌⭕</span>
-<span class="game-name">Tic Tac Toe</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="snake">
-<span class="game-icon">🐍</span>
-<span class="game-name">Snake</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="tetris">
-<span class="game-icon">🧱</span>
-<span class="game-name">Tetris</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="pong">
-<span class="game-icon">🏓</span>
-<span class="game-name">Pong</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="memory">
-<span class="game-icon">🧠</span>
-<span class="game-name">Memory Match</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="minesweeper">
-<span class="game-icon">💣</span>
-<span class="game-name">Minesweeper</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="2048">
-<span class="game-icon">🔢</span>
-<span class="game-name">2048</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="connect4">
-<span class="game-icon">🔴🟡</span>
-<span class="game-name">Connect Four</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="dots">
-<span class="game-icon">🔵</span>
-<span class="game-name">Dots and Boxes</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="checkers">
-<span class="game-icon">⚫⚪</span>
-<span class="game-name">Checkers</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="chess">
-<span class="game-icon">♟️</span>
-<span class="game-name">Chess</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="puzzle">
-<span class="game-icon">🧩</span>
-<span class="game-name">Sliding Puzzle</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="sudoku">
-<span class="game-icon">🔢</span>
-<span class="game-name">Sudoku</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="breakout">
-<span class="game-icon">🧱</span>
-<span class="game-name">Breakout</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="spaceinvaders">
-<span class="game-icon">👾</span>
-<span class="game-name">Space Invaders</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="flappy">
-<span class="game-icon">🐦</span>
-<span class="game-name">Flappy Bird</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="racing">
-<span class="game-icon">🏎️</span>
-<span class="game-name">Racing</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="guess">
-<span class="game-icon">🎯</span>
-<span class="game-name">Number Guessing</span>
-</button>
-
-
-<button class="pppp-game-card" data-game="rps">
-<span class="game-icon">✊✋✌️</span>
-<span class="game-name">Rock Paper Scissors</span>
-</button>
-
-
-</div>
-
-</div>
-
+    </div>
 </div>
 
 
 <!-- =========================================================
-     🎮 GAME MODAL HTML
+     🎮 GAME MODAL
 ========================================================= -->
 
-<div id="ppppGamesModal">
+<div id="ppppGameModal">
 
-<div id="ppppGamesWindow">
+    <div class="pppp-game-window">
 
-<div id="ppppGamesHeader">
+        <div class="pppp-game-header">
 
-<div id="ppppGamesTitle">
-🎮 Offline Game
+            <div
+                class="pppp-game-header-title"
+                id="ppppGameTitle">
+            </div>
+
+            <button
+                class="pppp-game-close"
+                id="ppppGameClose"
+                type="button">
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="pppp-game-body"
+            id="ppppGameBody">
+        </div>
+
+    </div>
+
 </div>
 
-<button
-id="ppppGamesClose"
-type="button"
->
-✖️
-</button>
-
-</div>
-
-<div id="ppppGamesBody"></div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-     🎮 COMPLETE JAVASCRIPT
-========================================================= -->
 
 <script>
+/* =========================================================
+   🎮 PPPP OFFLINE GAMES ENGINE
+========================================================= */
 
 (function(){
 
@@ -11501,3829 +11282,4416 @@ type="button"
 
 
 /* =========================================================
-   PPPP GAMES NAMESPACE
+   GAME DATA
 ========================================================= */
 
-const ppppGames = {
+const games = [
 
-modal:null,
-title:null,
-body:null,
-activeTimer:null,
-cleanup:null
+    {
+        id:"tictactoe",
+        icon:"❌⭕",
+        name:"Tic Tac Toe"
+    },
 
+    {
+        id:"snake",
+        icon:"🐍",
+        name:"Snake"
+    },
 
-};
+    {
+        id:"tetris",
+        icon:"🧱",
+        name:"Tetris"
+    },
+
+    {
+        id:"pong",
+        icon:"🏓",
+        name:"Pong"
+    },
+
+    {
+        id:"memory",
+        icon:"🧠",
+        name:"Memory Match"
+    },
+
+    {
+        id:"minesweeper",
+        icon:"💣",
+        name:"Minesweeper"
+    },
+
+    {
+        id:"2048",
+        icon:"🔢",
+        name:"2048"
+    },
+
+    {
+        id:"connect4",
+        icon:"🔵",
+        name:"Connect Four"
+    },
+
+    {
+        id:"dots",
+        icon:"🔴🔵",
+        name:"Dots and Boxes"
+    },
+
+    {
+        id:"checkers",
+        icon:"🏁",
+        name:"Checkers"
+    },
+
+    {
+        id:"chess",
+        icon:"♟️",
+        name:"Chess"
+    },
+
+    {
+        id:"sliding",
+        icon:"🧩",
+        name:"Sliding Puzzle"
+    },
+
+    {
+        id:"sudoku",
+        icon:"🔢",
+        name:"Sudoku"
+    },
+
+    {
+        id:"breakout",
+        icon:"🏓",
+        name:"Breakout"
+    },
+
+    {
+        id:"space",
+        icon:"🚀",
+        name:"Space Invaders"
+    },
+
+    {
+        id:"flappy",
+        icon:"🐦",
+        name:"Flappy Bird"
+    },
+
+    {
+        id:"racing",
+        icon:"🏎️",
+        name:"Racing"
+    },
+
+    {
+        id:"guess",
+        icon:"🎯",
+        name:"Number Guessing"
+    },
+
+    {
+        id:"rps",
+        icon:"✊",
+        name:"Rock Paper Scissors"
+    }
+
+];
 
 
 /* =========================================================
    ELEMENTS
 ========================================================= */
 
-ppppGames.modal =
-document.getElementById(
-"ppppGamesModal"
-);
+const mount =
+    document.getElementById("ppppOfflineGames");
 
-ppppGames.title =
-document.getElementById(
-"ppppGamesTitle"
-);
+const grid =
+    document.getElementById("ppppGamesGrid");
 
-ppppGames.body =
-document.getElementById(
-"ppppGamesBody"
-);
+const title =
+    document.getElementById("ppppGamesTitle");
 
+const content =
+    document.getElementById("ppppGamesContent");
 
-/* =========================================================
-   GAME TITLES
-========================================================= */
+const arrow =
+    document.getElementById("ppppGamesArrow");
 
-const gameTitles = {
+const modal =
+    document.getElementById("ppppGameModal");
 
-tictactoe:"❌⭕ Tic Tac Toe",
-snake:"🐍 Snake",
-tetris:"🧱 Tetris",
-pong:"🏓 Pong",
-memory:"🧠 Memory Match",
-minesweeper:"💣 Minesweeper",
-"2048":"🔢 2048",
-connect4:"🔴🟡 Connect Four",
-dots:"🔵 Dots and Boxes",
-checkers:"⚫⚪ Checkers",
-chess:"♟️ Chess",
-puzzle:"🧩 Sliding Puzzle",
-sudoku:"🔢 Sudoku",
-breakout:"🧱 Breakout",
-spaceinvaders:"👾 Space Invaders",
-flappy:"🐦 Flappy Bird",
-racing:"🏎️ Racing",
-guess:"🎯 Number Guessing",
-rps:"✊✋✌️ Rock Paper Scissors"
+const gameTitle =
+    document.getElementById("ppppGameTitle");
 
-};
+const gameBody =
+    document.getElementById("ppppGameBody");
+
+const closeButton =
+    document.getElementById("ppppGameClose");
 
 
 /* =========================================================
-   OPEN GAME
+   MOVE GAMES BEFORE "WE SUPPORT"
 ========================================================= */
 
-document
-.querySelectorAll(
-"#ppppGamesSection .pppp-game-card"
-)
-.forEach(function(card){
+function placeGamesBeforeSupport(){
 
-card.addEventListener(
-"click",
-function(){
+    if(!mount) return;
 
-openGame(
-card.dataset.game
-);
+    const all =
+        Array.from(document.body.querySelectorAll("*"));
 
-}
-);
+    const support =
+        all.find(function(el){
 
-});
+            if(!el.children.length){
 
+                return /We Support|আমরা সমর্থন/i
+                    .test(el.textContent || "");
 
-function openGame(game){
+            }
 
-cleanupGame();
+            return false;
 
-ppppGames.title.textContent =
-gameTitles[game] ||
-"🎮 Offline Game";
+        });
 
-ppppGames.body.innerHTML="";
+    if(support){
 
-ppppGames.modal.classList.add(
-"pppp-games-visible"
-);
+        const parent =
+            support.closest(
+                ".pppp-category, .pppp-tool-box, section, article"
+            ) || support.parentElement;
 
-if(game==="tictactoe")
-gameTicTacToe();
+        if(parent && parent !== mount){
 
-else if(game==="snake")
-gameSnake();
+            parent.parentNode.insertBefore(
+                mount,
+                parent
+            );
 
-else if(game==="tetris")
-gameTetris();
+            return;
 
-else if(game==="pong")
-gamePong();
+        }
 
-else if(game==="memory")
-gameMemory();
+        support.parentNode.insertBefore(
+            mount,
+            support
+        );
 
-else if(game==="minesweeper")
-gameMinesweeper();
-
-else if(game==="2048")
-game2048();
-
-else if(game==="connect4")
-gameConnect4();
-
-else if(game==="dots")
-gameDots();
-
-else if(game==="checkers")
-gameCheckers();
-
-else if(game==="chess")
-gameChess();
-
-else if(game==="puzzle")
-gamePuzzle();
-
-else if(game==="sudoku")
-gameSudoku();
-
-else if(game==="breakout")
-gameBreakout();
-
-else if(game==="spaceinvaders")
-gameSpaceInvaders();
-
-else if(game==="flappy")
-gameFlappy();
-
-else if(game==="racing")
-gameRacing();
-
-else if(game==="guess")
-gameGuess();
-
-else if(game==="rps")
-gameRPS();
+        return;
+    }
 
 }
 
 
 /* =========================================================
-   CLOSE
+   CREATE GAME CARDS
 ========================================================= */
 
-document
-.getElementById("ppppGamesClose")
-.addEventListener(
-"click",
-closeGame
+games.forEach(function(game,index){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "pppp-game-card";
+
+    card.innerHTML = `
+
+        <div class="pppp-game-number">
+            ${String(index+1).padStart(2,"0")}
+        </div>
+
+        <div class="pppp-game-icon">
+            ${game.icon}
+        </div>
+
+        <div class="pppp-game-name">
+            ${game.name}
+        </div>
+
+    `;
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            openGame(
+                game.id,
+                game.name
+            );
+
+        }
+    );
+
+    grid.appendChild(card);
+
+});
+
+
+/* =========================================================
+   COLLAPSE / EXPAND
+========================================================= */
+
+title.addEventListener(
+    "click",
+    function(){
+
+        const hidden =
+            content.style.display === "none";
+
+        content.style.display =
+            hidden ? "block" : "none";
+
+        arrow.textContent =
+            hidden ? "▼" : "▲";
+
+    }
 );
 
 
-ppppGames.modal.addEventListener(
-"click",
-function(e){
+/* =========================================================
+   OPEN / CLOSE
+========================================================= */
 
-if(e.target===ppppGames.modal)
-closeGame();
+let cleanupCurrentGame = null;
 
-});
+function openGame(id,name){
+
+    if(cleanupCurrentGame){
+
+        try{
+            cleanupCurrentGame();
+        }catch(e){}
+
+        cleanupCurrentGame =
+            null;
+
+    }
+
+    gameTitle.textContent =
+        "🎮 " + name;
+
+    gameBody.innerHTML = "";
+
+    modal.classList.add(
+        "pppp-game-open"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+    cleanupCurrentGame =
+        startGame(id);
+
+}
 
 
 function closeGame(){
 
-cleanupGame();
+    if(cleanupCurrentGame){
 
-ppppGames.modal.classList.remove(
-"pppp-games-visible"
+        try{
+            cleanupCurrentGame();
+        }catch(e){}
+
+        cleanupCurrentGame =
+            null;
+
+    }
+
+    modal.classList.remove(
+        "pppp-game-open"
+    );
+
+    gameBody.innerHTML = "";
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeButton.addEventListener(
+    "click",
+    closeGame
 );
 
-ppppGames.body.innerHTML="";
 
-}
+modal.addEventListener(
+    "click",
+    function(e){
 
+        if(e.target === modal){
 
-function cleanupGame(){
+            closeGame();
 
-if(ppppGames.activeTimer){
+        }
 
-clearInterval(
-ppppGames.activeTimer
+    }
 );
-
-clearTimeout(
-ppppGames.activeTimer
-);
-
-ppppGames.activeTimer=null;
-
-}
-
-if(ppppGames.cleanup){
-
-try{
-ppppGames.cleanup();
-}catch(e){}
-
-ppppGames.cleanup=null;
-
-}
-
-window.onkeydown=null;
-
-}
 
 
 /* =========================================================
-   COMMON BUTTON
+   ESCAPE
 ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Escape" &&
+            modal.classList.contains(
+                "pppp-game-open"
+            )
+        ){
+
+            closeGame();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HELPER
+========================================================= */
+
+function toolbar(){
+
+    const d =
+        document.createElement("div");
+
+    d.className =
+        "pppp-game-toolbar";
+
+    return d;
+
+}
+
 
 function button(text,fn){
 
-const b =
-document.createElement("button");
+    const b =
+        document.createElement("button");
 
-b.className="pppp-g-btn";
+    b.className =
+        "pppp-game-btn";
 
-b.textContent=text;
+    b.type =
+        "button";
 
-b.onclick=fn;
+    b.textContent =
+        text;
 
-return b;
+    b.addEventListener(
+        "click",
+        fn
+    );
+
+    return b;
+
+}
+
+
+function status(text){
+
+    const d =
+        document.createElement("div");
+
+    d.className =
+        "pppp-game-status";
+
+    d.textContent =
+        text;
+
+    return d;
+
+}
+
+
+function canvas(width,height){
+
+    const c =
+        document.createElement("canvas");
+
+    c.width =
+        width;
+
+    c.height =
+        height;
+
+    c.className =
+        "pppp-game-canvas";
+
+    gameBody.appendChild(c);
+
+    return c;
 
 }
 
 
 /* =========================================================
-   1. TIC TAC TOE
+   01 — TIC TAC TOE
 ========================================================= */
 
 function gameTicTacToe(){
 
-let board=Array(9).fill("");
-let turn="X";
-let over=false;
+    gameBody.innerHTML = "";
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="tttInfo">
-Your Turn: ❌
-</div>
+    const st =
+        status("Player X");
 
-<div class="pppp-ttt"
-id="tttBoard"></div>
+    const board =
+        document.createElement("div");
 
-<div class="pppp-game-actions"
-id="tttActions"></div>
-`;
+    board.className =
+        "pppp-ttt-board";
 
-const boardEl=
-document.getElementById("tttBoard");
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-const info=
-document.getElementById("tttInfo");
+    const cells =
+        Array(9).fill("");
 
-const actions=
-document.getElementById("tttActions");
+    let turn =
+        "X";
 
-function draw(){
+    let finished =
+        false;
 
-boardEl.innerHTML="";
 
-board.forEach(function(v,i){
+    function winner(){
 
-const b=
-document.createElement("button");
+        const lines = [
 
-b.textContent=
-v==="X"?"❌":
-v==="O"?"⭕":"";
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
 
-b.onclick=function(){
+        ];
 
-if(over || board[i]) return;
+        for(const l of lines){
 
-board[i]=turn;
+            if(
+                cells[l[0]] &&
+                cells[l[0]] === cells[l[1]] &&
+                cells[l[1]] === cells[l[2]]
+            ){
 
-if(win(board,turn)){
+                return cells[l[0]];
 
-over=true;
+            }
 
-info.textContent=
-(turn==="X"?"❌":"⭕")+" Wins!";
+        }
 
-}
-else if(board.every(Boolean)){
+        return null;
 
-over=true;
+    }
 
-info.textContent="🤝 Draw!";
 
-}
-else{
+    function reset(){
 
-turn=
-turn==="X"?"O":"X";
+        cells.fill("");
 
-info.textContent=
-turn==="X"
-?"Your Turn: ❌"
-:"Computer Turn: ⭕";
+        turn =
+            "X";
 
-if(turn==="O")
-setTimeout(computerMove,250);
+        finished =
+            false;
 
-}
+        render();
 
-draw();
+    }
 
-};
 
-boardEl.appendChild(b);
+    function render(){
 
-});
+        board.innerHTML = "";
 
-}
+        cells.forEach(function(value,i){
 
-function computerMove(){
+            const b =
+                document.createElement("button");
 
-if(over) return;
+            b.className =
+                "pppp-ttt-cell";
 
-const empty=
-board.map(
-(v,i)=>v?null:i
-).filter(
-(v)=>v!==null
-);
+            b.textContent =
+                value;
 
-if(!empty.length) return;
+            b.addEventListener(
+                "click",
+                function(){
 
-let move=null;
+                    if(
+                        finished ||
+                        cells[i]
+                    ) return;
 
-/* Win if possible */
+                    cells[i] =
+                        turn;
 
-for(const i of empty){
+                    const w =
+                        winner();
 
-board[i]="O";
+                    if(w){
 
-if(win(board,"O")){
+                        st.textContent =
+                            "🏆 " + w + " wins!";
 
-move=i;
-board[i]="";
+                        finished =
+                            true;
 
-break;
+                    }else if(
+                        cells.every(Boolean)
+                    ){
 
-}
+                        st.textContent =
+                            "🤝 Draw!";
 
-board[i]="";
+                        finished =
+                            true;
 
-}
+                    }else{
 
-/* Block player */
+                        turn =
+                            turn === "X"
+                            ? "O"
+                            : "X";
 
-if(move===null){
+                        st.textContent =
+                            "Player " + turn;
 
-for(const i of empty){
+                    }
 
-board[i]="X";
+                    render();
 
-if(win(board,"X")){
+                }
+            );
 
-move=i;
-board[i]="";
+            board.appendChild(b);
 
-break;
+        });
 
-}
+    }
 
-board[i]="";
 
-}
+    const bar =
+        toolbar();
 
-}
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
 
-/* Otherwise random */
+    gameBody.insertBefore(
+        bar,
+        board
+    );
 
-if(move===null)
-move=
-empty[
-Math.floor(
-Math.random()*empty.length
-)
-];
+    render();
 
-board[move]="O";
-
-if(win(board,"O")){
-
-over=true;
-info.textContent="⭕ Computer Wins!";
-
-}
-else if(board.every(Boolean)){
-
-over=true;
-info.textContent="🤝 Draw!";
-
-}
-else{
-
-turn="X";
-info.textContent="Your Turn: ❌";
-
-}
-
-draw();
-
-}
-
-actions.appendChild(
-button("🔄 New Game",gameTicTacToe)
-);
-
-draw();
-
-}
-
-
-function win(b,p){
-
-const w=[
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6]
-];
-
-return w.some(
-x =>
-b[x[0]]===p &&
-b[x[1]]===p &&
-b[x[2]]===p
-);
+    return function(){};
 
 }
 
 
 /* =========================================================
-   2. SNAKE
+   02 — SNAKE
 ========================================================= */
 
 function gameSnake(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="snakeScore">0</span>
-</div>
+    gameBody.innerHTML = "";
 
-<canvas
-id="snakeCanvas"
-class="pppp-game-canvas"
-width="360"
-height="360">
-</canvas>
+    const st =
+        status("Use Arrow Keys / Swipe");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="snakeStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(360,360);
 
-<p>
-⬆️ ⬇️ ⬅️ ➡️ অথবা Swipe
-</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById("snakeCanvas");
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
+    let snake;
+    let food;
+    let dir;
+    let nextDir;
+    let score;
+    let timer;
 
-const scoreEl=
-document.getElementById("snakeScore");
 
-const size=18;
-const cells=20;
+    function reset(){
 
-let snake;
-let food;
-let dx;
-let dy;
-let score;
-let running=false;
+        snake = [
 
-function reset(){
+            {x:9,y:9},
+            {x:8,y:9},
+            {x:7,y:9}
 
-snake=[
-{x:10,y:10},
-{x:9,y:10},
-{x:8,y:10}
-];
+        ];
 
-food=randomFood();
+        food =
+            randomFood();
 
-dx=1;
-dy=0;
-score=0;
+        dir =
+            {x:1,y:0};
 
-scoreEl.textContent=score;
+        nextDir =
+            {x:1,y:0};
 
-draw();
+        score =
+            0;
 
-}
+        clearInterval(timer);
 
-function randomFood(){
+        timer =
+            setInterval(
+                step,
+                110
+            );
 
-return{
-x:Math.floor(Math.random()*cells),
-y:Math.floor(Math.random()*cells)
-};
+        draw();
 
-}
+    }
 
-function draw(){
 
-ctx.fillStyle="#111";
-ctx.fillRect(0,0,c.width,c.height);
+    function randomFood(){
 
-ctx.fillStyle="#e53935";
+        let p;
 
-ctx.fillRect(
-food.x*size,
-food.y*size,
-size-1,
-size-1
-);
+        do{
 
-ctx.fillStyle="#43a047";
+            p = {
 
-snake.forEach(
-s=>ctx.fillRect(
-s.x*size,
-s.y*size,
-size-1,
-size-1
-)
-);
+                x:
+                    Math.floor(
+                        Math.random()*18
+                    ),
 
-}
+                y:
+                    Math.floor(
+                        Math.random()*18
+                    )
 
-function step(){
+            };
 
-if(!running)return;
+        }while(
+            snake &&
+            snake.some(
+                s =>
+                    s.x === p.x &&
+                    s.y === p.y
+            )
+        );
 
-const head={
-x:snake[0].x+dx,
-y:snake[0].y+dy
-};
+        return p;
 
-if(
-head.x<0 ||
-head.y<0 ||
-head.x>=cells ||
-head.y>=cells ||
-snake.some(
-s=>s.x===head.x &&
-s.y===head.y
-)
-){
+    }
 
-running=false;
 
-alert(
-"🐍 Game Over! Score: "+score
-);
+    function step(){
 
-return;
+        dir =
+            nextDir;
 
-}
+        const head = {
 
-snake.unshift(head);
+            x:
+                snake[0].x + dir.x,
 
-if(
-head.x===food.x &&
-head.y===food.y
-){
+            y:
+                snake[0].y + dir.y
 
-score++;
+        };
 
-scoreEl.textContent=score;
+        if(
+            head.x < 0 ||
+            head.y < 0 ||
+            head.x >= 18 ||
+            head.y >= 18 ||
+            snake.some(
+                s =>
+                    s.x === head.x &&
+                    s.y === head.y
+            )
+        ){
 
-food=randomFood();
+            clearInterval(timer);
 
-}
-else{
+            st.textContent =
+                "💥 Game Over — Score: " +
+                score;
 
-snake.pop();
+            return;
 
-}
+        }
 
-draw();
+        snake.unshift(head);
 
-}
+        if(
+            head.x === food.x &&
+            head.y === food.y
+        ){
 
-function setDirection(x,y){
+            score++;
 
-if(dx===-x && dy===-y)
-return;
+            food =
+                randomFood();
 
-dx=x;
-dy=y;
+        }else{
 
-}
+            snake.pop();
 
-document.getElementById(
-"snakeStart"
-).onclick=function(){
+        }
 
-reset();
+        st.textContent =
+            "🐍 Score: " + score;
 
-running=true;
+        draw();
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+    }
 
-ppppGames.activeTimer=
-setInterval(step,110);
 
-};
+    function draw(){
 
-window.onkeydown=function(e){
+        ctx.clearRect(
+            0,0,360,360
+        );
 
-if(e.key==="ArrowUp")
-setDirection(0,-1);
+        const size =
+            20;
 
-if(e.key==="ArrowDown")
-setDirection(0,1);
+        ctx.fillStyle =
+            "#16202a";
 
-if(e.key==="ArrowLeft")
-setDirection(-1,0);
+        ctx.fillRect(
+            0,0,360,360
+        );
 
-if(e.key==="ArrowRight")
-setDirection(1,0);
+        ctx.fillStyle =
+            "#e53935";
 
-};
+        ctx.fillRect(
+            food.x*size,
+            food.y*size,
+            size-2,
+            size-2
+        );
 
-let sx=0;
-let sy=0;
+        ctx.fillStyle =
+            "#43a047";
 
-c.addEventListener(
-"touchstart",
-function(e){
+        snake.forEach(
+            s =>
+                ctx.fillRect(
+                    s.x*size,
+                    s.y*size,
+                    size-2,
+                    size-2
+                )
+        );
 
-const t=e.touches[0];
+    }
 
-sx=t.clientX;
-sy=t.clientY;
 
-},
-{passive:true}
-);
+    function key(e){
 
-c.addEventListener(
-"touchend",
-function(e){
+        const map = {
 
-const t=e.changedTouches[0];
+            ArrowUp:
+                {x:0,y:-1},
 
-const x=t.clientX-sx;
-const y=t.clientY-sy;
+            ArrowDown:
+                {x:0,y:1},
 
-if(Math.abs(x)>Math.abs(y))
-setDirection(x>0?1:-1,0);
-else
-setDirection(0,y>0?1:-1);
+            ArrowLeft:
+                {x:-1,y:0},
 
-},
-{passive:true}
-);
+            ArrowRight:
+                {x:1,y:0}
 
-reset();
+        };
+
+        if(!map[e.key]) return;
+
+        const n =
+            map[e.key];
+
+        if(
+            n.x === -dir.x &&
+            n.y === -dir.y
+        ) return;
+
+        nextDir =
+            n;
+
+        e.preventDefault();
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        key
+    );
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){
+
+        clearInterval(timer);
+
+        document.removeEventListener(
+            "keydown",
+            key
+        );
+
+    };
 
 }
 
 
 /* =========================================================
-   3. TETRIS
+   03 — TETRIS
 ========================================================= */
 
 function gameTetris(){
 
-const W=10,H=20;
-
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="tetScore">0</span>
-</div>
-
-<canvas
-id="tetCanvas"
-class="pppp-game-canvas"
-width="300"
-height="600">
-</canvas>
-
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="tetStart">
-▶️ Start / Restart
-</button>
-</div>
-
-<p>⬅️ ➡️ Move &nbsp; ⬆️ Rotate &nbsp; ⬇️ Drop</p>
-`;
-
-const c=
-document.getElementById("tetCanvas");
-
-const ctx=c.getContext("2d");
+    gameBody.innerHTML = "";
 
-const scoreEl=
-document.getElementById("tetScore");
+    const st =
+        status("Score: 0");
 
-let board;
-let piece;
-let running=false;
-let drop=0;
+    const c =
+        canvas(240,480);
 
-const shapes=[
-[[1,1,1,1]],
-[[1,1],[1,1]],
-[[0,1,0],[1,1,1]],
-[[1,0,0],[1,1,1]],
-[[0,0,1],[1,1,1]],
-[[1,1,0],[0,1,1]],
-[[0,1,1],[1,1,0]]
-];
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-function reset(){
+    const ctx =
+        c.getContext("2d");
 
-board=
-Array.from(
-{length:H},
-()=>Array(W).fill(0)
-);
+    const W=10;
+    const H=20;
+    const S=24;
 
-piece=null;
+    let board;
+    let piece;
+    let x;
+    let y;
+    let timer;
+    let score=0;
 
-scoreEl.textContent="0";
 
-draw();
+    const shapes=[
 
-}
+        [[1,1,1,1]],
 
-function newPiece(){
+        [[1,1],[1,1]],
 
-const s=
-shapes[
-Math.floor(
-Math.random()*shapes.length
-)
-];
+        [[0,1,0],[1,1,1]],
 
-piece={
-shape:s.map(r=>r.slice()),
-x:Math.floor(
-(W-s[0].length)/2
-),
-y:0
-};
+        [[1,0,0],[1,1,1]],
 
-if(collide()){
+        [[0,0,1],[1,1,1]],
 
-running=false;
+        [[0,1,1],[1,1,0]],
 
-alert("🧱 Game Over!");
+        [[1,1,0],[0,1,1]]
 
-}
+    ];
 
-}
 
-function collide(){
+    function reset(){
 
-return piece.shape.some(
-(r,y)=>
-r.some(
-(v,x)=>
-v &&
-(
-piece.x+x<0 ||
-piece.x+x>=W ||
-piece.y+y>=H ||
-board[piece.y+y] &&
-board[piece.y+y][piece.x+x]
-)
-)
-);
+        board =
+            Array.from(
+                {length:H},
+                () =>
+                    Array(W).fill(0)
+            );
 
-}
+        score =
+            0;
 
-function merge(){
+        spawn();
 
-piece.shape.forEach(
-(r,y)=>
-r.forEach(
-(v,x)=>{
-if(v)
-board[piece.y+y][piece.x+x]=1;
-}
-)
-);
+        clearInterval(timer);
 
-clearLines();
+        timer =
+            setInterval(
+                tick,
+                450
+            );
 
-}
+        draw();
 
-function clearLines(){
+    }
 
-let count=0;
 
-board=
-board.filter(
-r=>{
+    function spawn(){
 
-if(r.every(Boolean)){
+        piece =
+            shapes[
+                Math.floor(
+                    Math.random()*shapes.length
+                )
+            ].map(
+                r => r.slice()
+            );
 
-count++;
-return false;
+        x =
+            Math.floor(
+                (W-piece[0].length)/2
+            );
 
-}
+        y =
+            0;
 
-return true;
+        if(collide()){
 
-}
-);
+            reset();
 
-while(board.length<H)
-board.unshift(Array(W).fill(0));
+        }
 
-if(count)
-scoreEl.textContent=
-Number(scoreEl.textContent)+
-count*100;
+    }
 
-}
 
-function rotate(){
+    function collide(px=x,py=y,p=piece){
 
-const old=
-piece.shape;
+        for(
+            let yy=0;
+            yy<p.length;
+            yy++
+        ){
 
-const rotated=
-old[0].map(
-(_,i)=>
-old.map(
-r=>r[i]
-).reverse()
-);
+            for(
+                let xx=0;
+                xx<p[yy].length;
+                xx++
+            ){
 
-piece.shape=rotated;
+                if(!p[yy][xx]) continue;
 
-if(collide())
-piece.shape=old;
+                const bx =
+                    px+xx;
 
-}
+                const by =
+                    py+yy;
 
-function move(x){
+                if(
+                    bx<0 ||
+                    bx>=W ||
+                    by>=H ||
+                    (by>=0 && board[by][bx])
+                ){
 
-piece.x+=x;
+                    return true;
 
-if(collide())
-piece.x-=x;
+                }
 
-}
+            }
 
-function tick(){
+        }
 
-if(!running)return;
+        return false;
 
-piece.y++;
+    }
 
-if(collide()){
 
-piece.y--;
+    function merge(){
 
-merge();
+        piece.forEach(
+            (r,yy) =>
+                r.forEach(
+                    (v,xx) => {
 
-newPiece();
+                        if(v)
+                            board[y+yy][x+xx]=1;
 
-}
+                    }
+                )
+        );
 
-draw();
+    }
 
-}
 
-function draw(){
+    function clearLines(){
 
-ctx.clearRect(
-0,0,c.width,c.height
-);
+        for(
+            let r=H-1;
+            r>=0;
+            r--
+        ){
 
-const cell=30;
+            if(
+                board[r].every(Boolean)
+            ){
 
-board.forEach(
-(r,y)=>
-r.forEach(
-(v,x)=>{
-if(v){
+                board.splice(
+                    r,
+                    1
+                );
 
-ctx.fillStyle="#1e88e5";
+                board.unshift(
+                    Array(W).fill(0)
+                );
 
-ctx.fillRect(
-x*cell,
-y*cell,
-cell-1,
-cell-1
-);
+                score += 100;
 
-}
-}
-)
-);
+                r++;
 
-if(piece){
+            }
 
-ctx.fillStyle="#e53935";
+        }
 
-piece.shape.forEach(
-(r,y)=>
-r.forEach(
-(v,x)=>{
-if(v)
-ctx.fillRect(
-(piece.x+x)*cell,
-(piece.y+y)*cell,
-cell-1,
-cell-1
-);
-}
-)
-);
+        st.textContent =
+            "🧱 Score: " + score;
 
-}
+    }
 
-}
 
-document.getElementById(
-"tetStart"
-).onclick=function(){
+    function tick(){
 
-reset();
-running=true;
-newPiece();
+        if(
+            !collide(
+                x,
+                y+1
+            )
+        ){
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+            y++;
 
-ppppGames.activeTimer=
-setInterval(tick,500);
+        }else{
 
-};
+            merge();
 
-window.onkeydown=function(e){
+            clearLines();
 
-if(!running || !piece)return;
+            spawn();
 
-if(e.key==="ArrowLeft")
-move(-1);
+        }
 
-if(e.key==="ArrowRight")
-move(1);
+        draw();
 
-if(e.key==="ArrowDown")
-tick();
+    }
 
-if(e.key==="ArrowUp")
-rotate();
 
-draw();
+    function rotate(){
 
-};
+        const p =
+            piece[0].map(
+                (_,i) =>
+                    piece.map(
+                        row =>
+                            row[i]
+                    ).reverse()
+            );
 
-reset();
+        if(
+            !collide(
+                x,
+                y,
+                p
+            )
+        ){
+
+            piece =
+                p;
+
+        }
+
+        draw();
+
+    }
+
+
+    function key(e){
+
+        if(e.key==="ArrowLeft"){
+
+            if(
+                !collide(
+                    x-1,
+                    y
+                )
+            ) x--;
+
+        }
+
+        if(e.key==="ArrowRight"){
+
+            if(
+                !collide(
+                    x+1,
+                    y
+                )
+            ) x++;
+
+        }
+
+        if(e.key==="ArrowDown"){
+
+            tick();
+
+        }
+
+        if(e.key==="ArrowUp"){
+
+            rotate();
+
+        }
+
+        draw();
+
+        if(
+            [
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowDown",
+                "ArrowUp"
+            ].includes(e.key)
+        ){
+
+            e.preventDefault();
+
+        }
+
+    }
+
+
+    function draw(){
+
+        ctx.clearRect(
+            0,0,c.width,c.height
+        );
+
+        ctx.fillStyle =
+            "#111";
+
+        ctx.fillRect(
+            0,0,c.width,c.height
+        );
+
+        ctx.fillStyle =
+            "#2196f3";
+
+        board.forEach(
+            (r,yy) =>
+                r.forEach(
+                    (v,xx) => {
+
+                        if(v){
+
+                            ctx.fillRect(
+                                xx*S,
+                                yy*S,
+                                S-1,
+                                S-1
+                            );
+
+                        }
+
+                    }
+                )
+        );
+
+        ctx.fillStyle =
+            "#e53935";
+
+        piece.forEach(
+            (r,yy) =>
+                r.forEach(
+                    (v,xx) => {
+
+                        if(v){
+
+                            ctx.fillRect(
+                                (x+xx)*S,
+                                (y+yy)*S,
+                                S-1,
+                                S-1
+                            );
+
+                        }
+
+                    }
+                )
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        key
+    );
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){
+
+        clearInterval(timer);
+
+        document.removeEventListener(
+            "keydown",
+            key
+        );
+
+    };
 
 }
 
 
 /* =========================================================
-   4. PONG
+   04 — PONG
 ========================================================= */
 
 function gamePong(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-You: <span id="pongYou">0</span>
-&nbsp; Computer:
-<span id="pongCPU">0</span>
-</div>
+    gameBody.innerHTML="";
 
-<canvas
-id="pongCanvas"
-class="pppp-game-canvas"
-width="420"
-height="260">
-</canvas>
+    const st =
+        status("Use ↑ ↓ or touch");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="pongStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(420,260);
 
-<p>Touch/Mouse or ⬆️⬇️</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById("pongCanvas");
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
+    let py=105;
+    let cy=105;
+    let bx=210;
+    let by=130;
+    let vx=4;
+    let vy=3;
+    let playerScore=0;
+    let cpuScore=0;
+    let timer;
 
-let py=105;
-let cy=105;
-let bx=210;
-let by=130;
-let vx=4;
-let vy=3;
-let running=false;
-let you=0;
-let cpu=0;
 
-function reset(){
+    function reset(){
 
-py=105;
-cy=105;
-bx=210;
-by=130;
-vx=4;
-vy=3;
+        py=105;
+        cy=105;
+        bx=210;
+        by=130;
+        vx=4;
+        vy=3;
 
-}
+        clearInterval(timer);
 
-function draw(){
+        timer =
+            setInterval(
+                step,
+                16
+            );
 
-ctx.fillStyle="#111";
-ctx.fillRect(0,0,c.width,c.height);
+    }
 
-ctx.fillStyle="#fff";
 
-ctx.fillRect(
-15,py,10,50
-);
+    function step(){
 
-ctx.fillRect(
-c.width-25,cy,10,50
-);
+        by += vy;
+        bx += vx;
 
-ctx.beginPath();
-ctx.arc(bx,by,7,0,Math.PI*2);
-ctx.fill();
+        if(
+            by<8 ||
+            by>252
+        ){
 
-}
+            vy *= -1;
 
-function step(){
+        }
 
-if(!running)return;
+        cy +=
+            (by - (cy+25))*0.08;
 
-bx+=vx;
-by+=vy;
+        if(
+            bx<25 &&
+            by>py &&
+            by<py+50
+        ){
 
-if(by<7 || by>c.height-7)
-vy*=-1;
+            vx =
+                Math.abs(vx);
 
-cy+=
-(by-(cy+25))*.08;
+        }
 
-if(
-bx<30 &&
-by>py &&
-by<py+50
-){
+        if(
+            bx>395 &&
+            by>cy &&
+            by<cy+50
+        ){
 
-vx=Math.abs(vx);
+            vx =
+                -Math.abs(vx);
 
-}
+        }
 
-if(
-bx>c.width-30 &&
-by>cy &&
-by<cy+50
-){
+        if(bx<0){
 
-vx=-Math.abs(vx);
+            cpuScore++;
 
-}
+            bx=210;
+            by=130;
+            vx=4;
 
-if(bx<0){
+        }
 
-cpu++;
+        if(bx>420){
 
-document.getElementById(
-"pongCPU"
-).textContent=cpu;
+            playerScore++;
 
-reset();
+            bx=210;
+            by=130;
+            vx=-4;
 
-}
+        }
 
-if(bx>c.width){
+        st.textContent =
+            "🏓 You " +
+            playerScore +
+            " : " +
+            cpuScore +
+            " CPU";
 
-you++;
+        draw();
 
-document.getElementById(
-"pongYou"
-).textContent=you;
+    }
 
-reset();
 
-}
+    function draw(){
 
-draw();
+        ctx.fillStyle =
+            "#101820";
 
-}
+        ctx.fillRect(
+            0,0,420,260
+        );
 
-document.getElementById(
-"pongStart"
-).onclick=function(){
+        ctx.fillStyle =
+            "#fff";
 
-you=0;
-cpu=0;
+        ctx.fillRect(
+            15,py,10,50
+        );
 
-document.getElementById("pongYou")
-.textContent="0";
+        ctx.fillRect(
+            395,cy,10,50
+        );
 
-document.getElementById("pongCPU")
-.textContent="0";
+        ctx.beginPath();
 
-reset();
-running=true;
+        ctx.arc(
+            bx,
+            by,
+            8,
+            0,
+            Math.PI*2
+        );
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+        ctx.fill();
 
-ppppGames.activeTimer=
-setInterval(step,16);
+    }
 
-};
 
-window.onkeydown=function(e){
+    function move(e){
 
-if(e.key==="ArrowUp")
-py=Math.max(0,py-20);
+        if(e.key==="ArrowUp")
+            py=Math.max(0,py-20);
 
-if(e.key==="ArrowDown")
-py=Math.min(
-c.height-50,
-py+20
-);
+        if(e.key==="ArrowDown")
+            py=Math.min(210,py+20);
 
-};
+    }
 
-c.addEventListener(
-"mousemove",
-function(e){
 
-const r=c.getBoundingClientRect();
+    document.addEventListener(
+        "keydown",
+        move
+    );
 
-py=
-(e.clientY-r.top)*
-(c.height/r.height)-25;
+    c.addEventListener(
+        "touchmove",
+        function(e){
 
-py=Math.max(
-0,
-Math.min(c.height-50,py)
-);
+            const r =
+                c.getBoundingClientRect();
 
-}
-);
+            const y =
+                e.touches[0].clientY-r.top;
 
-draw();
+            py =
+                Math.max(
+                    0,
+                    Math.min(
+                        210,
+                        y-25
+                    )
+                );
+
+            e.preventDefault();
+
+        },
+        {passive:false}
+    );
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){
+
+        clearInterval(timer);
+
+        document.removeEventListener(
+            "keydown",
+            move
+        );
+
+    };
 
 }
 
 
 /* =========================================================
-   5. MEMORY MATCH
+   05 — MEMORY MATCH
 ========================================================= */
 
 function gameMemory(){
 
-const icons=[
-"🍎","🍌","🍇","🍉",
-"🍒","🥝","🍋","🥕"
-];
+    gameBody.innerHTML="";
 
-let cards=
-[...icons,...icons]
-.sort(()=>Math.random()-.5);
+    const st =
+        status("Find all pairs");
 
-let first=null;
-let lock=false;
-let matched=0;
+    const board =
+        document.createElement("div");
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Matched: <span id="memScore">0</span>/16
-</div>
+    board.className =
+        "pppp-memory-board";
 
-<div
-class="pppp-memory"
-id="memoryBoard">
-</div>
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-<div
-class="pppp-game-actions"
-id="memActions">
-</div>
-`;
+    const icons =
+        ["🍎","🍌","🍇","🍉","🍒","🥝","🍋","🥕"];
 
-const board=
-document.getElementById(
-"memoryBoard"
-);
+    let cards;
+    let first=null;
+    let lock=false;
+    let matched=0;
 
-const score=
-document.getElementById(
-"memScore"
-);
 
-function draw(){
+    function reset(){
 
-board.innerHTML="";
+        cards =
+            [...icons,...icons]
+                .sort(
+                    () =>
+                        Math.random()-.5
+                );
 
-cards.forEach(
-(v,i)=>{
+        first=null;
+        lock=false;
+        matched=0;
 
-const b=
-document.createElement("button");
+        render();
 
-b.textContent="?";
+    }
 
-b.dataset.value=v;
 
-b.onclick=function(){
+    function render(){
 
-if(
-lock ||
-b.classList.contains("done") ||
-b===first
-)return;
+        board.innerHTML="";
 
-b.textContent=v;
-b.classList.add("open");
+        cards.forEach(
+            (icon,i) => {
 
-if(!first){
+                const b =
+                    document.createElement(
+                        "button"
+                    );
 
-first=b;
-return;
+                b.className =
+                    "pppp-memory-card";
 
-}
+                b.textContent =
+                    icon;
 
-lock=true;
+                b.dataset.index =
+                    i;
 
-if(
-first.dataset.value===
-b.dataset.value
-){
+                if(
+                    !matchedCards.has(i)
+                ){
 
-first.classList.add("done");
-b.classList.add("done");
+                    b.style.color =
+                        "transparent";
 
-matched+=2;
+                    b.style.background =
+                        "#1976d2";
 
-score.textContent=matched;
+                }else{
 
-first=null;
-lock=false;
+                    b.style.color =
+                        "#fff";
 
-if(matched===16)
-alert("🎉 You Won!");
+                    b.style.background =
+                        "#43a047";
 
-}
-else{
+                }
 
-setTimeout(
-function(){
+                b.addEventListener(
+                    "click",
+                    () => flip(i,b)
+                );
 
-first.textContent="?";
-b.textContent="?";
+                board.appendChild(b);
 
-first.classList.remove("open");
-b.classList.remove("open");
+            }
+        );
 
-first=null;
-lock=false;
+    }
 
-},
-650
-);
 
-}
+    const matchedCards =
+        new Set();
 
-};
 
-board.appendChild(b);
+    function flip(i,b){
 
-}
-);
+        if(
+            lock ||
+            matchedCards.has(i) ||
+            i===first
+        ) return;
 
-}
+        b.style.color =
+            "#fff";
 
-document.getElementById(
-"memActions"
-).appendChild(
-button("🔄 New Game",gameMemory)
-);
+        b.style.background =
+            "#43a047";
 
-draw();
+        if(first===null){
+
+            first=i;
+
+            return;
+
+        }
+
+        lock=true;
+
+        if(
+            cards[first] === cards[i]
+        ){
+
+            matchedCards.add(first);
+            matchedCards.add(i);
+
+            matched++;
+
+            first=null;
+            lock=false;
+
+            if(matched===icons.length){
+
+                st.textContent =
+                    "🏆 You found every pair!";
+
+            }
+
+        }else{
+
+            const old =
+                first;
+
+            setTimeout(
+                function(){
+
+                    matchedCards.delete(old);
+                    matchedCards.delete(i);
+
+                    first=null;
+                    lock=false;
+
+                    render();
+
+                },
+                650
+            );
+
+        }
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            function(){
+
+                matchedCards.clear();
+
+                reset();
+
+            }
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   6. MINESWEEPER
+   06 — MINESWEEPER
 ========================================================= */
 
 function gameMinesweeper(){
 
-const W=8;
-const H=8;
-const MINES=10;
+    gameBody.innerHTML="";
 
-let mines=[];
-let opened=[];
-let over=false;
+    const st =
+        status("Avoid the 💣");
 
-function reset(){
+    const board =
+        document.createElement("div");
 
-mines=
-Array.from(
-{length:H},
-()=>Array(W).fill(false)
-);
+    board.style.display="grid";
+    board.style.gridTemplateColumns=
+        "repeat(8,36px)";
+    board.style.gap="3px";
+    board.style.justifyContent="center";
 
-opened=
-Array.from(
-{length:H},
-()=>Array(W).fill(false)
-);
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-let n=0;
+    const N=8;
+    const mines=10;
 
-while(n<MINES){
+    let mineSet;
+    let revealed;
+    let gameOver;
 
-const x=
-Math.floor(Math.random()*W);
 
-const y=
-Math.floor(Math.random()*H);
+    function reset(){
 
-if(!mines[y][x]){
+        mineSet =
+            new Set();
 
-mines[y][x]=true;
-n++;
+        revealed =
+            new Set();
 
-}
+        gameOver =
+            false;
 
-}
+        while(
+            mineSet.size < mines
+        ){
 
-over=false;
+            mineSet.add(
+                Math.floor(
+                    Math.random()*64
+                )
+            );
 
-draw();
+        }
 
-}
+        render();
 
-function count(x,y){
+    }
 
-let n=0;
 
-for(let yy=-1;yy<=1;yy++)
-for(let xx=-1;xx<=1;xx++){
+    function adjacent(i){
 
-if(
-mines[y+yy] &&
-mines[y+yy][x+xx]
-)
-n++;
+        const x=i%N;
+        const y=Math.floor(i/N);
+        let count=0;
 
-}
+        for(let dy=-1;dy<=1;dy++){
 
-return n;
+            for(let dx=-1;dx<=1;dx++){
 
-}
+                if(!dx&&!dy) continue;
 
-function reveal(x,y){
+                const nx=x+dx;
+                const ny=y+dy;
 
-if(
-over ||
-opened[y][x]
-)return;
+                if(
+                    nx>=0 &&
+                    nx<N &&
+                    ny>=0 &&
+                    ny<N &&
+                    mineSet.has(
+                        ny*N+nx
+                    )
+                ){
 
-opened[y][x]=true;
+                    count++;
 
-if(mines[y][x]){
+                }
 
-over=true;
+            }
 
-for(let yy=0;yy<H;yy++)
-for(let xx=0;xx<W;xx++)
-if(mines[yy][xx])
-opened[yy][xx]=true;
+        }
 
-alert("💥 Mine! Game Over.");
+        return count;
 
-return;
+    }
 
-}
 
-if(count(x,y)===0){
+    function render(){
 
-for(let yy=-1;yy<=1;yy++)
-for(let xx=-1;xx<=1;xx++){
+        board.innerHTML="";
 
-const nx=x+xx;
-const ny=y+yy;
+        for(let i=0;i<64;i++){
 
-if(
-nx>=0 &&
-nx<W &&
-ny>=0 &&
-ny<H
-)
-reveal(nx,ny);
+            const b =
+                document.createElement("button");
 
-}
+            b.className =
+                "pppp-game-btn";
 
-}
+            b.style.padding="0";
+            b.style.width="36px";
+            b.style.height="36px";
+            b.style.background =
+                revealed.has(i)
+                ? "#dce5ec"
+                : "#1976d2";
 
-}
+            if(revealed.has(i)){
 
-function draw(){
+                if(mineSet.has(i)){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-💣 Mines: ${MINES}
-</div>
+                    b.textContent="💣";
 
-<div
-class="pppp-mines"
-id="mineBoard">
-</div>
+                }else{
 
-<div
-class="pppp-game-actions"
-id="mineActions">
-</div>
-`;
+                    b.textContent =
+                        adjacent(i) || "";
 
-const board=
-document.getElementById(
-"mineBoard"
-);
+                }
 
-for(let y=0;y<H;y++)
-for(let x=0;x<W;x++){
+            }
 
-const b=
-document.createElement("button");
+            b.addEventListener(
+                "click",
+                function(){
 
-b.className=
-opened[y][x]?"open":"";
+                    if(gameOver) return;
 
-if(opened[y][x]){
+                    if(mineSet.has(i)){
 
-b.textContent=
-mines[y][x]
-?"💣"
-:count(x,y)||"";
+                        gameOver=true;
 
-}
+                        revealed =
+                            new Set(
+                                Array.from(
+                                    {length:64},
+                                    (_,x)=>x
+                                )
+                            );
 
-b.onclick=function(){
+                        st.textContent =
+                            "💥 Mine hit!";
 
-reveal(x,y);
-draw();
+                        render();
 
-};
+                        return;
 
-board.appendChild(b);
+                    }
 
-}
+                    revealed.add(i);
 
-document.getElementById(
-"mineActions"
-).appendChild(
-button("🔄 New Game",reset)
-);
+                    if(
+                        revealed.size >=
+                        64-mines
+                    ){
 
-}
+                        gameOver=true;
 
-reset();
+                        st.textContent =
+                            "🏆 Minesweeper cleared!";
+
+                    }
+
+                    render();
+
+                }
+            );
+
+            board.appendChild(b);
+
+        }
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   7. 2048
+   07 — 2048
 ========================================================= */
 
 function game2048(){
 
-let board;
+    gameBody.innerHTML="";
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="g2048Score">0</span>
-</div>
+    const st =
+        status("Use Arrow Keys / Swipe");
 
-<div
-class="pppp-2048"
-id="g2048Board">
-</div>
+    const board =
+        document.createElement("div");
 
-<div
-class="pppp-game-actions"
-id="g2048Actions">
-</div>
+    board.className =
+        "pppp-2048-board";
 
-<p>Swipe or use Arrow Keys</p>
-`;
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-const scoreEl=
-document.getElementById(
-"g2048Score"
-);
+    let a;
 
-function add(){
 
-const empty=
-board.map(
-(v,i)=>v?null:i
-).filter(
-(v)=>v!==null
-);
+    function reset(){
 
-if(!empty.length)return;
+        a =
+            Array.from(
+                {length:4},
+                () =>
+                    Array(4).fill(0)
+            );
 
-board[
-empty[
-Math.floor(
-Math.random()*empty.length
-)
-]
-]=
-Math.random()<.9?2:4;
+        add();
+        add();
 
-}
+        render();
 
-function reset(){
+    }
 
-board=Array(16).fill(0);
 
-scoreEl.textContent="0";
+    function add(){
 
-add();
-add();
+        const empty=[];
 
-draw();
+        for(let r=0;r<4;r++)
+            for(let c=0;c<4;c++)
+                if(!a[r][c])
+                    empty.push([r,c]);
 
-}
+        if(!empty.length) return;
 
-function draw(){
+        const p =
+            empty[
+                Math.floor(
+                    Math.random()*empty.length
+                )
+            ];
 
-document.getElementById(
-"g2048Board"
-).innerHTML=
-board.map(
-v=>`<div>${v||""}</div>`
-).join("");
+        a[p[0]][p[1]] =
+            Math.random()<.9
+            ? 2
+            : 4;
 
-}
+    }
 
-function move(dir){
 
-let old=board.join(",");
+    function moveLeft(){
 
-let rows=
-Array.from(
-{length:4},
-(_,r)=>
-board.slice(r*4,r*4+4)
-);
+        let changed=false;
 
-if(dir==="left"||dir==="right"){
+        for(let r=0;r<4;r++){
 
-rows.forEach(function(row){
+            let row =
+                a[r].filter(Boolean);
 
-if(dir==="right")
-row.reverse();
+            for(let i=0;i<row.length-1;i++){
 
-for(let i=0;i<3;i++){
+                if(
+                    row[i]===row[i+1]
+                ){
 
-if(
-row[i] &&
-row[i]===row[i+1]
-){
+                    row[i]*=2;
 
-row[i]*=2;
+                    row.splice(
+                        i+1,
+                        1
+                    );
 
-scoreEl.textContent=
-Number(scoreEl.textContent)+
-row[i];
+                    changed=true;
 
-row[i+1]=0;
+                }
 
-}
+            }
 
-}
+            while(row.length<4)
+                row.push(0);
 
-let a=
-row.filter(Boolean);
+            if(
+                row.join() !==
+                a[r].join()
+            )
+                changed=true;
 
-while(a.length<4)
-a.push(0);
+            a[r]=row;
 
-if(dir==="right")
-a.reverse();
+        }
 
-row.splice(
-0,4,...a
-);
+        return changed;
 
-});
+    }
 
-}
-else{
 
-for(let c=0;c<4;c++){
+    function rotate(){
 
-let col=
-rows.map(r=>r[c]);
+        a =
+            a[0].map(
+                (_,c) =>
+                    a.map(
+                        row =>
+                            row[c]
+                    ).reverse()
+            );
 
-if(dir==="down")
-col.reverse();
+    }
 
-for(let i=0;i<3;i++){
 
-if(
-col[i] &&
-col[i]===col[i+1]
-){
+    function move(dir){
 
-col[i]*=2;
+        let turns =
+            {
+                left:0,
+                up:3,
+                right:2,
+                down:1
+            }[dir];
 
-scoreEl.textContent=
-Number(scoreEl.textContent)+
-col[i];
+        for(let i=0;i<turns;i++)
+            rotate();
 
-col[i+1]=0;
+        const changed =
+            moveLeft();
 
-}
+        for(let i=0;i<(4-turns)%4;i++)
+            rotate();
 
-}
+        if(changed)
+            add();
 
-let a=
-col.filter(Boolean);
+        render();
 
-while(a.length<4)
-a.push(0);
+    }
 
-if(dir==="down")
-a.reverse();
 
-for(let r=0;r<4;r++)
-rows[r][c]=a[r];
+    function render(){
 
-}
+        board.innerHTML="";
 
-}
+        a.flat().forEach(
+            v => {
 
-board=rows.flat();
+                const d =
+                    document.createElement("div");
 
-if(board.join(",")!==old)
-add();
+                d.className =
+                    "pppp-2048-cell";
 
-draw();
+                d.textContent =
+                    v || "";
 
-}
+                board.appendChild(d);
 
-window.onkeydown=function(e){
+            }
+        );
 
-const m={
-ArrowLeft:"left",
-ArrowRight:"right",
-ArrowUp:"up",
-ArrowDown:"down"
-};
+        st.textContent =
+            "🔢 Reach 2048!";
 
-if(m[e.key]){
+    }
 
-e.preventDefault();
 
-move(m[e.key]);
+    function key(e){
 
-}
+        const m = {
 
-};
+            ArrowLeft:"left",
+            ArrowRight:"right",
+            ArrowUp:"up",
+            ArrowDown:"down"
 
-document.getElementById(
-"g2048Actions"
-).appendChild(
-button("🔄 New Game",reset)
-);
+        };
 
-reset();
+        if(m[e.key]){
+
+            move(m[e.key]);
+
+            e.preventDefault();
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        key
+    );
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){
+
+        document.removeEventListener(
+            "keydown",
+            key
+        );
+
+    };
 
 }
 
 
 /* =========================================================
-   8. CONNECT FOUR
+   08 — CONNECT FOUR
 ========================================================= */
 
 function gameConnect4(){
 
-let b=
-Array.from(
-{length:6},
-()=>Array(7).fill("")
-);
+    gameBody.innerHTML="";
 
-let player="🔴";
-let over=false;
+    const st =
+        status("🔴 Player 1");
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="c4Info">
-Your Turn: 🔴
-</div>
+    const board =
+        document.createElement("div");
 
-<div
-class="pppp-connect4"
-id="c4Board">
-</div>
+    board.className =
+        "pppp-connect-board";
 
-<div
-class="pppp-game-actions"
-id="c4Actions">
-</div>
-`;
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-const board=
-document.getElementById("c4Board");
+    let a;
+    let turn;
 
-const info=
-document.getElementById("c4Info");
 
-function draw(){
+    function reset(){
 
-board.innerHTML="";
+        a =
+            Array.from(
+                {length:6},
+                () =>
+                    Array(7).fill("")
+            );
 
-for(let y=0;y<6;y++)
-for(let x=0;x<7;x++){
+        turn =
+            "🔴";
 
-const cell=
-document.createElement("button");
+        render();
 
-cell.style.background=
-b[y][x]||
-"#fff";
+    }
 
-cell.onclick=function(){
 
-if(over)return;
+    function check(){
 
-for(let yy=5;yy>=0;yy--){
+        for(let r=0;r<6;r++)
+            for(let c=0;c<7;c++){
 
-if(!b[yy][x]){
+                if(!a[r][c]) continue;
 
-b[yy][x]=player;
+                const dirs=[
+                    [1,0],
+                    [0,1],
+                    [1,1],
+                    [1,-1]
+                ];
 
-if(c4win(yy,x)){
+                for(const [dr,dc] of dirs){
 
-over=true;
+                    let ok=true;
 
-info.textContent=
-player+" Wins!";
+                    for(let k=1;k<4;k++){
 
-}
-else{
+                        const nr=r+dr*k;
+                        const nc=c+dc*k;
 
-player=
-player==="🔴"
-?"🟡":"🔴";
+                        if(
+                            nr<0 ||
+                            nr>=6 ||
+                            nc<0 ||
+                            nc>=7 ||
+                            a[nr][nc]!==a[r][c]
+                        ){
 
-info.textContent=
-"Your Turn: "+player;
+                            ok=false;
+                            break;
 
-}
+                        }
 
-draw();
+                    }
 
-break;
+                    if(ok)
+                        return a[r][c];
 
-}
+                }
 
-}
+            }
 
-};
+        return null;
 
-board.appendChild(cell);
+    }
 
-}
 
-}
+    function render(){
 
-function c4win(y,x){
+        board.innerHTML="";
 
-const p=b[y][x];
+        for(let r=0;r<6;r++)
+            for(let c=0;c<7;c++){
 
-function line(dy,dx){
+                const b =
+                    document.createElement("button");
 
-let n=1;
+                b.className =
+                    "pppp-connect-cell";
 
-for(let s=1;s<4;s++){
+                b.style.background =
+                    a[r][c] === "🔴"
+                    ? "#e53935"
+                    : a[r][c] === "🟡"
+                    ? "#fbc02d"
+                    : "#fff";
 
-let yy=y+dy*s;
-let xx=x+dx*s;
+                b.addEventListener(
+                    "click",
+                    function(){
 
-if(
-yy>=0&&yy<6&&
-xx>=0&&xx<7&&
-b[yy][xx]===p
-)n++;
-else break;
+                        for(
+                            let rr=5;
+                            rr>=0;
+                            rr--
+                        ){
 
-}
+                            if(!a[rr][c]){
 
-for(let s=1;s<4;s++){
+                                a[rr][c]=turn;
 
-let yy=y-dy*s;
-let xx=x-dx*s;
+                                const w =
+                                    check();
 
-if(
-yy>=0&&yy<6&&
-xx>=0&&xx<7&&
-b[yy][xx]===p
-)n++;
-else break;
+                                if(w){
 
-}
+                                    st.textContent =
+                                        "🏆 " +
+                                        w +
+                                        " wins!";
 
-return n>=4;
+                                }else{
 
-}
+                                    turn =
+                                        turn==="🔴"
+                                        ? "🟡"
+                                        : "🔴";
 
-return[
-[0,1],
-[1,0],
-[1,1],
-[1,-1]
-].some(d=>line(d[0],d[1]));
+                                    st.textContent =
+                                        turn +
+                                        " Player";
 
-}
+                                }
 
-document.getElementById(
-"c4Actions"
-).appendChild(
-button("🔄 New Game",gameConnect4)
-);
+                                render();
 
-draw();
+                                break;
+
+                            }
+
+                        }
+
+                    }
+                );
+
+                board.appendChild(b);
+
+            }
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   9. DOTS AND BOXES
+   09 — DOTS AND BOXES
 ========================================================= */
 
 function gameDots(){
 
-const N=4;
+    gameBody.innerHTML="";
 
-let h=
-Array.from(
-{length:N},
-()=>Array(N-1).fill(false)
-);
+    const st =
+        status("Player 🔴");
 
-let v=
-Array.from(
-{length:N-1},
-()=>Array(N).fill(false)
-);
+    const board =
+        document.createElement("div");
 
-let boxes=
-Array.from(
-{length:N-1},
-()=>Array(N-1).fill("")
-);
+    board.style.display="grid";
+    board.style.gridTemplateColumns=
+        "repeat(4,45px)";
+    board.style.gap="5px";
+    board.style.justifyContent="center";
 
-let player="🔵";
-let score=[0,0];
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="dotsInfo">
-🔵 0 — 🔴 0
-</div>
+    let cells =
+        Array(16).fill("");
 
-<div id="dotsBoard"></div>
+    let turn =
+        "🔴";
 
-<div
-class="pppp-game-actions"
-id="dotsActions">
-</div>
-`;
 
-const root=
-document.getElementById(
-"dotsBoard"
-);
+    function render(){
 
-const info=
-document.getElementById(
-"dotsInfo"
-);
+        board.innerHTML="";
 
-function draw(){
+        cells.forEach(
+            (_,i) => {
 
-root.innerHTML="";
+                const b =
+                    document.createElement("button");
 
-const wrap=
-document.createElement("div");
+                b.className =
+                    "pppp-game-btn";
 
-wrap.style.position="relative";
-wrap.style.width="210px";
-wrap.style.height="210px";
-wrap.style.margin="auto";
+                b.style.height="45px";
+                b.style.padding="0";
+                b.textContent =
+                    cells[i] || "•";
 
-for(let y=0;y<N;y++)
-for(let x=0;x<N;x++){
+                b.addEventListener(
+                    "click",
+                    function(){
 
-const dot=
-document.createElement("div");
+                        if(cells[i]) return;
 
-dot.style.position="absolute";
-dot.style.width="10px";
-dot.style.height="10px";
-dot.style.borderRadius="50%";
-dot.style.background="#222";
-dot.style.left=(x*70)+"px";
-dot.style.top=(y*70)+"px";
+                        cells[i]=turn;
 
-wrap.appendChild(dot);
+                        turn =
+                            turn==="🔴"
+                            ? "🔵"
+                            : "🔴";
 
-}
+                        st.textContent =
+                            "Player " + turn;
 
-for(let y=0;y<N;y++)
-for(let x=0;x<N-1;x++){
+                        render();
 
-const b=
-document.createElement("button");
+                    }
+                );
 
-b.style.position="absolute";
-b.style.left=(x*70+8)+"px";
-b.style.top=(y*70-4)+"px";
-b.style.width="62px";
-b.style.height="8px";
-b.style.border="0";
-b.style.background=
-h[y][x]?"#1e88e5":"#ddd";
-b.onclick=function(){
+                board.appendChild(b);
 
-if(h[y][x])return;
+            }
+        );
 
-h[y][x]=true;
+    }
 
-draw();
 
-};
+    const bar =
+        toolbar();
 
-wrap.appendChild(b);
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            function(){
 
-}
+                cells.fill("");
 
-for(let y=0;y<N-1;y++)
-for(let x=0;x<N;x++){
+                turn="🔴";
 
-const b=
-document.createElement("button");
+                render();
 
-b.style.position="absolute";
-b.style.left=(x*70-4)+"px";
-b.style.top=(y*70+8)+"px";
-b.style.width="8px";
-b.style.height="62px";
-b.style.border="0";
-b.style.background=
-v[y][x]?"#e53935":"#ddd";
+            }
+        )
+    );
 
-b.onclick=function(){
+    gameBody.insertBefore(
+        bar,
+        st
+    );
 
-if(v[y][x])return;
+    render();
 
-v[y][x]=true;
-
-draw();
-
-};
-
-wrap.appendChild(b);
-
-}
-
-for(let y=0;y<N-1;y++)
-for(let x=0;x<N-1;x++){
-
-if(
-h[y][x] &&
-h[y+1][x] &&
-v[y][x] &&
-v[y][x+1] &&
-!boxes[y][x]
-){
-
-boxes[y][x]=player;
-
-score[
-player==="🔵"?0:1
-]++;
-
-}
-
-}
-
-for(let y=0;y<N-1;y++)
-for(let x=0;x<N-1;x++){
-
-if(boxes[y][x]){
-
-const t=
-document.createElement("div");
-
-t.textContent=boxes[y][x];
-
-t.style.position="absolute";
-t.style.left=(x*70+20)+"px";
-t.style.top=(y*70+20)+"px";
-
-wrap.appendChild(t);
-
-}
-
-}
-
-root.appendChild(wrap);
-
-info.textContent=
-"🔵 "+score[0]+
-" — 🔴 "+score[1];
-
-}
-
-document.getElementById(
-"dotsActions"
-).appendChild(
-button("🔄 New Game",gameDots)
-);
-
-draw();
+    return function(){};
 
 }
 
 
 /* =========================================================
-   10. CHECKERS
+   10 — CHECKERS
 ========================================================= */
 
 function gameCheckers(){
 
-let b=Array.from(
-{length:8},
-()=>Array(8).fill("")
-);
+    gameBody.innerHTML="";
 
-for(let y=0;y<3;y++)
-for(let x=0;x<8;x++)
-if((x+y)%2)
-b[y][x]="⚫";
+    const st =
+        status("🔴 Red vs ⚫ Black");
 
-for(let y=5;y<8;y++)
-for(let x=0;x<8;x++)
-if((x+y)%2)
-b[y][x]="⚪";
+    const board =
+        document.createElement("div");
 
-let selected=null;
-let turn="⚪";
+    board.style.display="grid";
+    board.style.gridTemplateColumns=
+        "repeat(8,40px)";
+    board.style.justifyContent="center";
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="checkInfo">
-Your Turn: ⚪
-</div>
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-<div
-class="pppp-board8"
-id="checkBoard">
-</div>
+    let selected=null;
+    let pieces={};
 
-<div
-class="pppp-game-actions"
-id="checkActions">
-</div>
-`;
+    function reset(){
 
-const board=
-document.getElementById(
-"checkBoard"
-);
+        pieces={};
 
-const info=
-document.getElementById(
-"checkInfo"
-);
+        for(let r=0;r<3;r++)
+            for(let c=0;c<8;c++)
+                if((r+c)%2)
+                    pieces[r*8+c]="⚫";
 
-function draw(){
+        for(let r=5;r<8;r++)
+            for(let c=0;c<8;c++)
+                if((r+c)%2)
+                    pieces[r*8+c]="🔴";
 
-board.innerHTML="";
+        selected=null;
 
-for(let y=0;y<8;y++)
-for(let x=0;x<8;x++){
+        render();
 
-const c=
-document.createElement("button");
+    }
 
-c.className=
-(x+y)%2
-?"dark":"light";
 
-c.textContent=b[y][x];
+    function render(){
 
-if(
-selected &&
-selected.y===y &&
-selected.x===x
-)
-c.style.outline="3px solid #1e88e5";
+        board.innerHTML="";
 
-c.onclick=function(){
+        for(let r=0;r<8;r++)
+            for(let c=0;c<8;c++){
 
-if(b[y][x]===turn){
+                const i=r*8+c;
 
-selected={x,y};
+                const b =
+                    document.createElement("button");
 
-draw();
+                b.style.width="40px";
+                b.style.height="40px";
+                b.style.padding="0";
+                b.style.border="none";
+                b.style.background=
+                    (r+c)%2
+                    ? "#8d6e63"
+                    : "#eee";
 
-return;
+                b.textContent =
+                    pieces[i] || "";
 
-}
+                b.addEventListener(
+                    "click",
+                    function(){
 
-if(
-selected &&
-!b[y][x] &&
-Math.abs(x-selected.x)===1 &&
-Math.abs(y-selected.y)===1
-){
+                        if(pieces[i]){
 
-b[y][x]=turn;
+                            selected=i;
 
-b[selected.y][selected.x]="";
+                            st.textContent =
+                                "Selected — tap destination";
 
-turn=
-turn==="⚪"?"⚫":"⚪";
+                            return;
 
-selected=null;
+                        }
 
-info.textContent=
-"Turn: "+turn;
+                        if(selected!==null){
 
-draw();
+                            const sr =
+                                Math.floor(
+                                    selected/8
+                                );
 
-}
+                            const sc =
+                                selected%8;
 
-};
+                            const dr =
+                                Math.floor(
+                                    i/8
+                                );
 
-board.appendChild(c);
+                            const dc =
+                                i%8;
 
-}
+                            if(
+                                Math.abs(dr-sr)===1 &&
+                                Math.abs(dc-sc)===1
+                            ){
 
-}
+                                pieces[i]=
+                                    pieces[selected];
 
-document.getElementById(
-"checkActions"
-).appendChild(
-button("🔄 New Game",gameCheckers)
-);
+                                delete pieces[selected];
 
-draw();
+                                selected=null;
+
+                                st.textContent =
+                                    "Move complete";
+
+                                render();
+
+                            }
+
+                        }
+
+                    }
+                );
+
+                board.appendChild(b);
+
+            }
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   11. CHESS
+   11 — CHESS
 ========================================================= */
 
 function gameChess(){
 
-const pieces={
-"♜":"black","♞":"black","♝":"black",
-"♛":"black","♚":"black","♟":"black",
-"♖":"white","♘":"white","♗":"white",
-"♕":"white","♔":"white","♙":"white"
-};
+    gameBody.innerHTML="";
 
-let b=[
-["♜","♞","♝","♛","♚","♝","♞","♜"],
-["♟","♟","♟","♟","♟","♟","♟","♟"],
-["","","","","","","",""],
-["","","","","","","",""],
-["","","","","","","",""],
-["","","","","","","",""],
-["♙","♙","♙","♙","♙","♙","♙","♙"],
-["♖","♘","♗","♕","♔","♗","♘","♖"]
-];
+    const st =
+        status("♙ White");
 
-let selected=null;
-let turn="white";
+    const board =
+        document.createElement("div");
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="chessInfo">
-White Turn
-</div>
+    board.style.display="grid";
+    board.style.gridTemplateColumns=
+        "repeat(8,42px)";
+    board.style.justifyContent="center";
 
-<div
-class="pppp-board8"
-id="chessBoard">
-</div>
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-<p>
-♟️ Tap a piece, then tap its destination.
-</p>
+    const white=[
+        "♜","♞","♝","♛","♚","♝","♞","♜"
+    ];
 
-<div
-class="pppp-game-actions"
-id="chessActions">
-</div>
-`;
+    const black=[
+        "♖","♘","♗","♕","♔","♗","♘","♖"
+    ];
 
-const board=
-document.getElementById(
-"chessBoard"
-);
+    let a;
+    let selected=null;
+    let turn="white";
 
-const info=
-document.getElementById(
-"chessInfo"
-);
 
-function draw(){
+    function reset(){
 
-board.innerHTML="";
+        a=Array(64).fill("");
 
-for(let y=0;y<8;y++)
-for(let x=0;x<8;x++){
+        for(let c=0;c<8;c++){
 
-const c=
-document.createElement("button");
+            a[c]=black[c];
+            a[8+c]="♟";
+            a[48+c]="♙";
+            a[56+c]=white[c];
 
-c.className=
-(x+y)%2
-?"dark":"light";
+        }
 
-c.textContent=b[y][x];
+        selected=null;
+        turn="white";
 
-if(
-selected &&
-selected.x===x &&
-selected.y===y
-)
-c.style.outline=
-"3px solid #1e88e5";
+        render();
 
-c.onclick=function(){
+    }
 
-const p=b[y][x];
 
-if(p && pieces[p]===turn){
+    function isWhite(p){
 
-selected={x,y};
+        return "♔♕♖♗♘♙".includes(p);
 
-draw();
+    }
 
-return;
 
-}
+    function render(){
 
-if(
-selected &&
-(!p || pieces[p]!==turn)
-){
+        board.innerHTML="";
 
-b[y][x]=
-b[selected.y][selected.x];
+        for(let i=0;i<64;i++){
 
-b[selected.y][selected.x]="";
+            const b =
+                document.createElement("button");
 
-selected=null;
+            const r =
+                Math.floor(i/8);
 
-turn=
-turn==="white"
-?"black":"white";
+            const c =
+                i%8;
 
-info.textContent=
-turn==="white"
-?"White Turn"
-:"Black Turn";
+            b.style.width="42px";
+            b.style.height="42px";
+            b.style.padding="0";
+            b.style.border="1px solid #aaa";
 
-draw();
+            b.style.background =
+                (r+c)%2
+                ? "#b58863"
+                : "#f0d9b5";
 
-}
+            b.style.fontSize="27px";
 
-};
+            b.textContent =
+                a[i];
 
-board.appendChild(c);
+            b.addEventListener(
+                "click",
+                function(){
 
-}
+                    if(a[i]){
 
-}
+                        if(
+                            isWhite(a[i]) ===
+                            (turn==="white")
+                        ){
 
-document.getElementById(
-"chessActions"
-).appendChild(
-button("🔄 New Game",gameChess)
-);
+                            selected=i;
 
-draw();
+                            st.textContent =
+                                "♟ Selected — choose destination";
+
+                        }
+
+                        return;
+
+                    }
+
+                    if(selected!==null){
+
+                        const sr =
+                            Math.floor(
+                                selected/8
+                            );
+
+                        const sc =
+                            selected%8;
+
+                        const dr =
+                            Math.floor(i/8);
+
+                        const dc =
+                            i%8;
+
+                        if(
+                            Math.abs(dr-sr)<=2 &&
+                            Math.abs(dc-sc)<=2
+                        ){
+
+                            a[i]=
+                                a[selected];
+
+                            a[selected]="";
+
+                            turn =
+                                turn==="white"
+                                ? "black"
+                                : "white";
+
+                            selected=null;
+
+                            st.textContent =
+                                turn==="white"
+                                ? "♙ White"
+                                : "♟ Black";
+
+                            render();
+
+                        }
+
+                    }
+
+                }
+            );
+
+            board.appendChild(b);
+
+        }
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 New Game",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   12. SLIDING PUZZLE
+   12 — SLIDING PUZZLE
 ========================================================= */
 
-function gamePuzzle(){
+function gameSliding(){
 
-let a;
+    gameBody.innerHTML="";
 
-function reset(){
+    const st =
+        status("Arrange 1–15");
 
-a=[
-1,2,3,4,
-5,6,7,8,
-9,10,11,12,
-13,14,15,0
-];
+    const board =
+        document.createElement("div");
 
-for(let i=0;i<100;i++){
+    board.className =
+        "pppp-slide-board";
 
-const empty=a.indexOf(0);
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-const x=empty%4;
-const y=Math.floor(empty/4);
+    let a;
 
-const moves=[];
 
-if(x>0)moves.push(empty-1);
-if(x<3)moves.push(empty+1);
-if(y>0)moves.push(empty-4);
-if(y<3)moves.push(empty+4);
+    function reset(){
 
-const m=
-moves[
-Math.floor(Math.random()*moves.length)
-];
+        a =
+            [
+                1,2,3,4,
+                5,6,7,8,
+                9,10,11,12,
+                13,14,15,0
+            ];
 
-[a[empty],a[m]]=
-[a[m],a[empty]];
+        for(let i=0;i<120;i++){
 
-}
+            const z =
+                a.indexOf(0);
 
-draw();
+            const moves =
+                [];
 
-}
+            const r =
+                Math.floor(z/4);
 
-function draw(){
+            const c =
+                z%4;
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-🧩 Arrange 1–15
-</div>
+            if(r>0)
+                moves.push(z-4);
 
-<div
-class="pppp-puzzle"
-id="puzzleBoard">
-</div>
+            if(r<3)
+                moves.push(z+4);
 
-<div
-class="pppp-game-actions"
-id="puzzleActions">
-</div>
-`;
+            if(c>0)
+                moves.push(z-1);
 
-const root=
-document.getElementById(
-"puzzleBoard"
-);
+            if(c<3)
+                moves.push(z+1);
 
-a.forEach(
-(v,i)=>{
+            const m =
+                moves[
+                    Math.floor(
+                        Math.random()*moves.length
+                    )
+                ];
 
-const b=
-document.createElement("button");
+            [
+                a[z],
+                a[m]
+            ] =
+            [
+                a[m],
+                a[z]
+            ];
 
-b.textContent=v||"";
-if(!v)b.className="empty";
+        }
 
-b.onclick=function(){
+        render();
 
-const e=a.indexOf(0);
+    }
 
-if(
-Math.abs(
-(e%4)-(i%4)
-)+
-Math.abs(
-Math.floor(e/4)-
-Math.floor(i/4)
-)===1
-){
 
-[a[e],a[i]]=
-[a[i],a[e]];
+    function render(){
 
-draw();
+        board.innerHTML="";
 
-if(
-a.slice(0,15).every(
-(v,i)=>v===i+1
-)
-&& a[15]===0
-){
+        a.forEach(
+            (v,i) => {
 
-alert("🎉 Puzzle Solved!");
+                const b =
+                    document.createElement("button");
 
-}
+                b.className =
+                    "pppp-slide-cell";
 
-}
+                b.textContent =
+                    v || "";
 
-};
+                b.style.visibility =
+                    v ? "visible" : "hidden";
 
-root.appendChild(b);
+                b.addEventListener(
+                    "click",
+                    function(){
 
-}
-);
+                        const z =
+                            a.indexOf(0);
 
-document.getElementById(
-"puzzleActions"
-).appendChild(
-button("🔄 New Puzzle",reset)
-);
+                        const r =
+                            Math.floor(i/4);
 
-}
+                        const c =
+                            i%4;
 
-reset();
+                        const zr =
+                            Math.floor(z/4);
+
+                        const zc =
+                            z%4;
+
+                        if(
+                            Math.abs(r-zr)+
+                            Math.abs(c-zc)===1
+                        ){
+
+                            [
+                                a[i],
+                                a[z]
+                            ] =
+                            [
+                                a[z],
+                                a[i]
+                            ];
+
+                            render();
+
+                            if(
+                                a.every(
+                                    (v,j) =>
+                                        v ===
+                                        (
+                                            j===15
+                                            ? 0
+                                            : j+1
+                                        )
+                                )
+                            ){
+
+                                st.textContent =
+                                    "🏆 Puzzle solved!";
+
+                            }
+
+                        }
+
+                    }
+                );
+
+                board.appendChild(b);
+
+            }
+        );
+
+    }
+
+
+    const bar =
+        toolbar();
+
+    bar.appendChild(
+        button(
+            "🔄 Shuffle",
+            reset
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   13. SUDOKU
+   13 — SUDOKU
 ========================================================= */
 
 function gameSudoku(){
 
-const solution=[
-5,3,4,6,7,8,9,1,2,
-6,7,2,1,9,5,3,4,8,
-1,9,8,3,4,2,5,6,7,
-8,5,9,7,6,1,4,2,3,
-4,2,6,8,5,3,7,9,1,
-7,1,3,9,2,4,8,5,6,
-9,6,1,5,3,7,2,8,4,
-2,8,7,4,1,9,6,3,5,
-3,4,5,2,8,6,1,7,9
-];
+    gameBody.innerHTML="";
 
-const puzzle=solution.map(
-(v,i)=>
-[
-0,1,2,5,6,7,
-10,12,15,18,20,
-23,27,30,32,34,
-37,40,44,46,48,
-51,53,57,60,62,
-64,66,69,72,74,
-76,78,81
-].includes(i)
-?v:0
-);
+    const st =
+        status("Fill the empty cells");
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-🔢 Complete the Sudoku
-</div>
+    const board =
+        document.createElement("div");
 
-<div
-class="pppp-sudoku"
-id="sudokuBoard">
-</div>
+    board.className =
+        "pppp-sudoku-board";
 
-<div
-class="pppp-game-actions"
-id="sudokuActions">
-</div>
-`;
+    gameBody.appendChild(st);
+    gameBody.appendChild(board);
 
-const root=
-document.getElementById(
-"sudokuBoard"
-);
+    const puzzle=[
+        5,3,0,0,7,0,0,0,0,
+        6,0,0,1,9,5,0,0,0,
+        0,9,8,0,0,0,0,6,0,
+        8,0,0,0,6,0,0,0,3,
+        4,0,0,8,0,3,0,0,1,
+        7,0,0,0,2,0,0,0,6,
+        0,6,0,0,0,0,2,8,0,
+        0,0,0,4,1,9,0,0,5,
+        0,0,0,0,8,0,0,7,9
+    ];
 
-puzzle.forEach(
-(v,i)=>{
+    function render(){
 
-const input=
-document.createElement("input");
+        board.innerHTML="";
 
-input.type="text";
-input.inputMode="numeric";
-input.maxLength=1;
+        puzzle.forEach(
+            (v,i) => {
 
-if(v){
+                const input =
+                    document.createElement("input");
 
-input.value=v;
-input.disabled=true;
-input.className="fixed";
+                input.className =
+                    "pppp-sudoku-cell";
 
-}
+                input.maxLength=1;
+                input.inputMode="numeric";
 
-input.dataset.answer=
-solution[i];
+                if(v){
 
-root.appendChild(input);
+                    input.value=v;
+                    input.disabled=true;
 
-}
-);
+                }
 
-document.getElementById(
-"sudokuActions"
-).appendChild(
-button(
-"✅ Check",
-function(){
+                input.addEventListener(
+                    "input",
+                    function(){
 
-const inputs=
-root.querySelectorAll("input");
+                        this.value =
+                            this.value.replace(
+                                /[^1-9]/g,
+                                ""
+                            );
 
-let good=true;
-let complete=true;
+                    }
+                );
 
-inputs.forEach(
-input=>{
+                board.appendChild(input);
 
-if(!input.value)
-complete=false;
+            }
+        );
 
-if(
-input.value &&
-Number(input.value)!==
-Number(input.dataset.answer)
-)
-good=false;
+    }
 
-}
-);
 
-if(complete&&good)
-alert("🎉 Sudoku Completed!");
+    const bar =
+        toolbar();
 
-else if(!good)
-alert("❌ Some numbers are incorrect.");
+    bar.appendChild(
+        button(
+            "🔄 New Puzzle",
+            render
+        )
+    );
 
-else
-alert("📝 Sudoku is not complete yet.");
+    bar.appendChild(
+        button(
+            "✅ Check",
+            function(){
 
-}
-)
-);
+                const inputs =
+                    Array.from(
+                        board.querySelectorAll(
+                            "input"
+                        )
+                    );
 
-document.getElementById(
-"sudokuActions"
-).appendChild(
-button("🔄 New Puzzle",gameSudoku)
-);
+                const values =
+                    inputs.map(
+                        x =>
+                            Number(x.value)||0
+                    );
+
+                if(
+                    values.every(
+                        v => v>=1 && v<=9
+                    )
+                ){
+
+                    st.textContent =
+                        "🎉 Sudoku completed!";
+
+                }else{
+
+                    st.textContent =
+                        "⚠️ Complete all cells.";
+
+                }
+
+            }
+        )
+    );
+
+    gameBody.insertBefore(
+        bar,
+        st
+    );
+
+    render();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   14. BREAKOUT
+   14 — BREAKOUT
 ========================================================= */
 
 function gameBreakout(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="breakScore">0</span>
-</div>
+    gameBody.innerHTML="";
 
-<canvas
-id="breakCanvas"
-class="pppp-game-canvas"
-width="420"
-height="360">
-</canvas>
+    const st =
+        status("Move with ← →");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="breakStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(420,300);
 
-<p>Mouse / Touch / ⬅️ ➡️</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById("breakCanvas");
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
-
-let paddle=170;
-let ball={x:210,y:320,vx:3,vy:-3};
-let bricks=[];
-let running=false;
-let score=0;
+    let paddleX;
+    let ballX;
+    let ballY;
+    let vx;
+    let vy;
+    let bricks;
+    let timer;
 
-function reset(){
-
-paddle=170;
-
-ball={
-x:210,
-y:320,
-vx:3,
-vy:-3
-};
-
-bricks=[];
-
-for(let y=0;y<4;y++)
-for(let x=0;x<7;x++)
-bricks.push({
-x:20+x*57,
-y:30+y*25,
-hit:false
-});
 
-score=0;
+    function reset(){
 
-document.getElementById(
-"breakScore"
-).textContent="0";
+        paddleX=175;
+        ballX=210;
+        ballY=250;
+        vx=3;
+        vy=-3;
 
-draw();
+        bricks =
+            [];
 
-}
+        for(let r=0;r<4;r++)
+            for(let col=0;col<8;col++)
+                bricks.push({
+                    x:col*51+5,
+                    y:r*22+20,
+                    w:45,
+                    h:16,
+                    alive:true
+                });
 
-function draw(){
+        clearInterval(timer);
 
-ctx.fillStyle="#111";
-ctx.fillRect(0,0,c.width,c.height);
+        timer =
+            setInterval(
+                step,
+                16
+            );
 
-ctx.fillStyle="#1e88e5";
-ctx.fillRect(
-paddle,
-340,
-80,
-10
-);
+    }
 
-ctx.fillStyle="#e53935";
 
-bricks.forEach(
-b=>{
-if(!b.hit)
-ctx.fillRect(
-b.x,b.y,50,18
-);
-}
-);
+    function step(){
 
-ctx.fillStyle="#fff";
+        ballX+=vx;
+        ballY+=vy;
 
-ctx.beginPath();
+        if(
+            ballX<7 ||
+            ballX>413
+        )
+            vx*=-1;
 
-ctx.arc(
-ball.x,
-ball.y,
-7,
-0,
-Math.PI*2
-);
+        if(ballY<7)
+            vy*=-1;
 
-ctx.fill();
+        if(
+            ballY>270 &&
+            ballX>paddleX &&
+            ballX<paddleX+70
+        )
+            vy=-Math.abs(vy);
 
-}
+        bricks.forEach(
+            b => {
 
-function step(){
+                if(
+                    b.alive &&
+                    ballX>b.x &&
+                    ballX<b.x+b.w &&
+                    ballY>b.y &&
+                    ballY<b.y+b.h
+                ){
 
-if(!running)return;
+                    b.alive=false;
+                    vy*=-1;
 
-ball.x+=ball.vx;
-ball.y+=ball.vy;
+                }
 
-if(
-ball.x<7 ||
-ball.x>c.width-7
-)
-ball.vx*=-1;
+            }
+        );
 
-if(ball.y<7)
-ball.vy*=-1;
+        if(ballY>300){
 
-if(
-ball.y>332 &&
-ball.x>paddle &&
-ball.x<paddle+80
-)
-ball.vy=-Math.abs(ball.vy);
+            st.textContent =
+                "💥 Game Over";
 
-bricks.forEach(
-b=>{
+            clearInterval(timer);
 
-if(
-!b.hit &&
-ball.x>b.x &&
-ball.x<b.x+50 &&
-ball.y>b.y &&
-ball.y<b.y+18
-){
+        }
 
-b.hit=true;
-ball.vy*=-1;
-score+=10;
+        if(
+            bricks.every(
+                b=>!b.alive
+            )
+        ){
 
-document.getElementById(
-"breakScore"
-).textContent=score;
+            st.textContent =
+                "🏆 You win!";
 
-}
+            clearInterval(timer);
 
-}
-);
+        }
 
-if(ball.y>c.height){
+        draw();
 
-running=false;
+    }
 
-alert(
-"🧱 Game Over! Score: "+score
-);
 
-}
+    function draw(){
 
-if(
-bricks.every(b=>b.hit)
-){
+        ctx.fillStyle="#101820";
 
-running=false;
+        ctx.fillRect(
+            0,0,420,300
+        );
 
-alert("🎉 You cleared all blocks!");
+        ctx.fillStyle="#2196f3";
 
-}
+        bricks.forEach(
+            b => {
 
-draw();
+                if(b.alive)
+                    ctx.fillRect(
+                        b.x,
+                        b.y,
+                        b.w,
+                        b.h
+                    );
 
-}
+            }
+        );
 
-document.getElementById(
-"breakStart"
-).onclick=function(){
+        ctx.fillStyle="#fff";
 
-reset();
-running=true;
+        ctx.fillRect(
+            paddleX,
+            280,
+            70,
+            10
+        );
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+        ctx.beginPath();
 
-ppppGames.activeTimer=
-setInterval(step,16);
+        ctx.arc(
+            ballX,
+            ballY,
+            7,
+            0,
+            Math.PI*2
+        );
 
-};
+        ctx.fill();
 
-function paddleMove(x){
+    }
 
-paddle=Math.max(
-0,
-Math.min(c.width-80,x)
-);
 
-}
+    function key(e){
 
-window.onkeydown=function(e){
+        if(e.key==="ArrowLeft")
+            paddleX=Math.max(
+                0,
+                paddleX-25
+            );
 
-if(e.key==="ArrowLeft")
-paddleMove(paddle-25);
+        if(e.key==="ArrowRight")
+            paddleX=Math.min(
+                350,
+                paddleX+25
+            );
 
-if(e.key==="ArrowRight")
-paddleMove(paddle+25);
+    }
 
-};
 
-c.addEventListener(
-"mousemove",
-function(e){
+    document.addEventListener(
+        "keydown",
+        key
+    );
 
-const r=
-c.getBoundingClientRect();
 
-paddleMove(
-(e.clientX-r.left)*
-(c.width/r.width)-40
-);
+    const bar =
+        toolbar();
 
-}
-);
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
 
-c.addEventListener(
-"touchmove",
-function(e){
+    gameBody.insertBefore(
+        bar,
+        st
+    );
 
-const r=
-c.getBoundingClientRect();
+    reset();
 
-paddleMove(
-(e.touches[0].clientX-r.left)*
-(c.width/r.width)-40
-);
+    return function(){
 
-e.preventDefault();
+        clearInterval(timer);
 
-},
-{passive:false}
-);
+        document.removeEventListener(
+            "keydown",
+            key
+        );
 
-reset();
+    };
 
 }
 
 
 /* =========================================================
-   15. SPACE INVADERS
+   15 — SPACE INVADERS
 ========================================================= */
 
-function gameSpaceInvaders(){
+function gameSpace(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="spaceScore">0</span>
-</div>
+    gameBody.innerHTML="";
 
-<canvas
-id="spaceCanvas"
-class="pppp-game-canvas"
-width="420"
-height="420">
-</canvas>
+    const st =
+        status("Destroy the invaders!");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="spaceStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(420,400);
 
-<p>⬅️ ➡️ Move &nbsp; Space = Fire</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById(
-"spaceCanvas"
-);
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
+    let player;
+    let bullets;
+    let enemies;
+    let timer;
 
-let player;
-let bullets=[];
-let enemies=[];
-let running=false;
-let score=0;
-let direction=1;
 
-function reset(){
+    function reset(){
 
-player={
-x:190,
-y:380
-};
+        player=210;
+        bullets=[];
 
-bullets=[];
+        enemies=[];
 
-enemies=[];
+        for(let r=0;r<3;r++)
+            for(let col=0;col<8;col++)
+                enemies.push({
+                    x:35+col*48,
+                    y:35+r*35,
+                    alive:true
+                });
 
-for(let y=0;y<4;y++)
-for(let x=0;x<8;x++)
-enemies.push({
-x:35+x*45,
-y:35+y*35,
-alive:true
-});
+        clearInterval(timer);
 
-score=0;
-direction=1;
+        timer =
+            setInterval(
+                step,
+                25
+            );
 
-document.getElementById(
-"spaceScore"
-).textContent="0";
+    }
 
-draw();
 
-}
+    function step(){
 
-function fire(){
+        bullets.forEach(
+            b => b.y-=7
+        );
 
-bullets.push({
-x:player.x+18,
-y:player.y
-});
+        enemies.forEach(
+            e => {
 
-}
+                if(!e.alive) return;
 
-function step(){
+                bullets.forEach(
+                    b => {
 
-if(!running)return;
+                        if(
+                            Math.abs(
+                                b.x-e.x
+                            )<17 &&
+                            Math.abs(
+                                b.y-e.y
+                            )<14
+                        ){
 
-bullets.forEach(
-b=>b.y-=7
-);
+                            e.alive=false;
+                            b.dead=true;
 
-bullets=
-bullets.filter(
-b=>b.y>0
-);
+                        }
 
-let edge=false;
+                    }
+                );
 
-enemies.forEach(
-e=>{
-if(e.alive){
+            }
+        );
 
-e.x+=direction;
+        bullets =
+            bullets.filter(
+                b =>
+                    !b.dead &&
+                    b.y>0
+            );
 
-if(
-e.x<10 ||
-e.x>380
-)
-edge=true;
+        if(
+            enemies.every(
+                e=>!e.alive
+            )
+        ){
 
-}
-}
-);
+            st.textContent =
+                "🏆 All invaders destroyed!";
 
-if(edge){
+            clearInterval(timer);
 
-direction*=-1;
+        }
 
-enemies.forEach(
-e=>{
-e.y+=15;
-}
-);
+        draw();
 
-}
+    }
 
-bullets.forEach(
-b=>{
 
-enemies.forEach(
-e=>{
+    function draw(){
 
-if(
-e.alive &&
-b.x>e.x &&
-b.x<e.x+25 &&
-b.y>e.y &&
-b.y<e.y+18
-){
+        ctx.fillStyle="#101820";
 
-e.alive=false;
-b.y=-100;
+        ctx.fillRect(
+            0,0,420,400
+        );
 
-score+=10;
+        ctx.fillStyle="#43a047";
 
-document.getElementById(
-"spaceScore"
-).textContent=score;
+        ctx.fillRect(
+            player-25,
+            370,
+            50,
+            12
+        );
 
-}
+        ctx.fillStyle="#fff";
 
-}
-);
+        bullets.forEach(
+            b =>
+                ctx.fillRect(
+                    b.x-2,
+                    b.y,
+                    4,
+                    10
+                )
+        );
 
-}
-);
+        ctx.fillStyle="#e53935";
 
-if(
-enemies.some(
-e=>e.alive &&
-e.y>350
-)
-){
+        enemies.forEach(
+            e => {
 
-running=false;
+                if(e.alive)
+                    ctx.fillRect(
+                        e.x-15,
+                        e.y-10,
+                        30,
+                        20
+                    );
 
-alert("👾 Earth Lost!");
+            }
+        );
 
-}
+    }
 
-if(
-enemies.every(
-e=>!e.alive
-)
-){
 
-running=false;
+    function key(e){
 
-alert("🎉 You defeated all invaders!");
+        if(e.key==="ArrowLeft")
+            player=Math.max(
+                25,
+                player-20
+            );
 
-}
+        if(e.key==="ArrowRight")
+            player=Math.min(
+                395,
+                player+20
+            );
 
-draw();
+        if(e.key===" "){
 
-}
+            bullets.push({
+                x:player,
+                y:365
+            });
 
-function draw(){
+            e.preventDefault();
 
-ctx.fillStyle="#050505";
-ctx.fillRect(0,0,c.width,c.height);
+        }
 
-ctx.fillStyle="#43a047";
+    }
 
-ctx.fillRect(
-player.x,
-player.y,
-40,
-15
-);
 
-ctx.fillStyle="#fff";
+    c.addEventListener(
+        "click",
+        function(){
 
-bullets.forEach(
-b=>
-ctx.fillRect(
-b.x,b.y,4,10
-)
-);
+            bullets.push({
+                x:player,
+                y:365
+            });
 
-ctx.fillStyle="#e53935";
+        }
+    );
 
-enemies.forEach(
-e=>{
-if(e.alive)
-ctx.fillRect(
-e.x,e.y,25,18
-);
-}
-);
+    document.addEventListener(
+        "keydown",
+        key
+    );
 
-}
 
-document.getElementById(
-"spaceStart"
-).onclick=function(){
+    const bar =
+        toolbar();
 
-reset();
-running=true;
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+    gameBody.insertBefore(
+        bar,
+        st
+    );
 
-ppppGames.activeTimer=
-setInterval(step,30);
+    reset();
 
-};
+    return function(){
 
-window.onkeydown=function(e){
+        clearInterval(timer);
 
-if(e.key==="ArrowLeft")
-player.x=Math.max(0,player.x-20);
+        document.removeEventListener(
+            "keydown",
+            key
+        );
 
-if(e.key==="ArrowRight")
-player.x=Math.min(
-c.width-40,
-player.x+20
-);
-
-if(e.code==="Space")
-fire();
-
-};
-
-reset();
+    };
 
 }
 
 
 /* =========================================================
-   16. FLAPPY BIRD
+   16 — FLAPPY BIRD
 ========================================================= */
 
 function gameFlappy(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Score: <span id="flapScore">0</span>
-</div>
+    gameBody.innerHTML="";
 
-<canvas
-id="flapCanvas"
-class="pppp-game-canvas"
-width="360"
-height="500">
-</canvas>
+    const st =
+        status("Tap / Space to fly");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="flapStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(360,500);
 
-<p>Tap / Click / Space = Fly</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById("flapCanvas");
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
+    let birdY;
+    let velocity;
+    let pipes;
+    let score;
+    let timer;
 
-let bird;
-let pipes;
-let running=false;
-let score=0;
 
-function reset(){
+    function reset(){
 
-bird={
-x:70,
-y:230,
-v:0
-};
+        birdY=250;
+        velocity=0;
+        pipes=[];
+        score=0;
 
-pipes=[];
+        clearInterval(timer);
 
-score=0;
+        timer =
+            setInterval(
+                step,
+                30
+            );
 
-document.getElementById(
-"flapScore"
-).textContent="0";
+    }
 
-draw();
 
-}
+    function flap(){
 
-function flap(){
+        velocity=-7;
 
-if(!running)return;
+    }
 
-bird.v=-6;
 
-}
+    function step(){
 
-function addPipe(){
+        velocity+=0.4;
+        birdY+=velocity;
 
-const gap=135;
+        if(
+            pipes.length===0 ||
+            pipes[pipes.length-1].x<200
+        ){
 
-const top=
-70+
-Math.random()*210;
+            pipes.push({
+                x:360,
+                gap:
+                    150+
+                    Math.random()*180
+            });
 
-pipes.push({
-x:c.width,
-top:top,
-gap:gap,
-passed:false
-});
+        }
 
-}
+        pipes.forEach(
+            p => p.x-=3
+        );
 
-function step(){
+        pipes =
+            pipes.filter(
+                p=>p.x>-60
+            );
 
-if(!running)return;
+        for(const p of pipes){
 
-bird.v+=.35;
-bird.y+=bird.v;
+            if(
+                45>p.x &&
+                15<p.x+45 &&
+                (
+                    birdY<p.gap ||
+                    birdY+25>p.gap+110
+                )
+            ){
 
-if(
-pipes.length===0 ||
-pipes[pipes.length-1].x<190
-)
-addPipe();
+                gameOver();
 
-pipes.forEach(
-p=>p.x-=3
-);
+            }
 
-pipes.forEach(
-p=>{
+        }
 
-if(
-!p.passed &&
-p.x+45<bird.x
-){
+        if(
+            birdY<0 ||
+            birdY>475
+        ){
 
-p.passed=true;
-score++;
+            gameOver();
 
-document.getElementById(
-"flapScore"
-).textContent=score;
+        }
 
-}
+        score++;
 
-if(
-bird.x+18>p.x &&
-bird.x-18<p.x+45 &&
-(
-bird.y-18<p.top ||
-bird.y+18>p.top+p.gap
-)
-){
+        st.textContent =
+            "🐦 Score: " +
+            Math.floor(score/10);
 
-gameOver();
+        draw();
 
-}
+    }
 
-}
-);
 
-if(
-bird.y<0 ||
-bird.y>c.height
-)
-gameOver();
+    function gameOver(){
 
-pipes=
-pipes.filter(
-p=>p.x>-60
-);
+        clearInterval(timer);
 
-draw();
+        st.textContent =
+            "💥 Game Over";
 
-}
+    }
 
-function gameOver(){
 
-if(!running)return;
+    function draw(){
 
-running=false;
+        ctx.fillStyle="#87ceeb";
 
-alert(
-"🐦 Game Over! Score: "+score
-);
+        ctx.fillRect(
+            0,0,360,500
+        );
 
-}
+        ctx.fillStyle="#43a047";
 
-function draw(){
+        pipes.forEach(
+            p => {
 
-ctx.fillStyle="#87ceeb";
-ctx.fillRect(0,0,c.width,c.height);
+                ctx.fillRect(
+                    p.x,
+                    0,
+                    45,
+                    p.gap
+                );
 
-ctx.fillStyle="#43a047";
+                ctx.fillRect(
+                    p.x,
+                    p.gap+110,
+                    45,
+                    500
+                );
 
-pipes.forEach(
-p=>{
+            }
+        );
 
-ctx.fillRect(
-p.x,
-0,
-45,
-p.top
-);
+        ctx.fillStyle="#ffca28";
 
-ctx.fillRect(
-p.x,
-p.top+p.gap,
-45,
-c.height
-);
+        ctx.beginPath();
 
-}
-);
+        ctx.arc(
+            35,
+            birdY,
+            13,
+            0,
+            Math.PI*2
+        );
 
-ctx.fillStyle="#ffd600";
+        ctx.fill();
 
-ctx.beginPath();
+    }
 
-ctx.arc(
-bird.x,
-bird.y,
-18,
-0,
-Math.PI*2
-);
 
-ctx.fill();
+    function key(e){
 
-}
+        if(
+            e.key===" " ||
+            e.key==="ArrowUp"
+        ){
 
-document.getElementById(
-"flapStart"
-).onclick=function(){
+            flap();
 
-reset();
-running=true;
+            e.preventDefault();
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+        }
 
-ppppGames.activeTimer=
-setInterval(step,20);
+    }
 
-};
 
-c.addEventListener(
-"click",
-flap
-);
+    c.addEventListener(
+        "pointerdown",
+        flap
+    );
 
-c.addEventListener(
-"touchstart",
-function(e){
+    document.addEventListener(
+        "keydown",
+        key
+    );
 
-flap();
-e.preventDefault();
 
-},
-{passive:false}
-);
+    const bar =
+        toolbar();
 
-window.onkeydown=function(e){
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
 
-if(e.code==="Space"){
+    gameBody.insertBefore(
+        bar,
+        st
+    );
 
-e.preventDefault();
+    reset();
 
-flap();
+    return function(){
 
-}
+        clearInterval(timer);
 
-};
+        document.removeEventListener(
+            "keydown",
+            key
+        );
 
-reset();
+    };
 
 }
 
 
 /* =========================================================
-   17. RACING
+   17 — RACING
 ========================================================= */
 
 function gameRacing(){
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-Distance: <span id="raceScore">0</span>
-</div>
+    gameBody.innerHTML="";
 
-<canvas
-id="raceCanvas"
-class="pppp-game-canvas"
-width="360"
-height="500">
-</canvas>
+    const st =
+        status("Use ← →");
 
-<div class="pppp-game-actions">
-<button class="pppp-g-btn"
-id="raceStart">
-▶️ Start / Restart
-</button>
-</div>
+    const c =
+        canvas(360,500);
 
-<p>⬅️ ➡️ Move / Swipe</p>
-`;
+    gameBody.insertBefore(
+        st,
+        c
+    );
 
-const c=
-document.getElementById(
-"raceCanvas"
-);
+    const ctx =
+        c.getContext("2d");
 
-const ctx=c.getContext("2d");
+    let carX;
+    let enemies;
+    let distance;
+    let timer;
 
-let car;
-let obstacles;
-let running=false;
-let score=0;
 
-function reset(){
+    function reset(){
 
-car={
-x:155,
-y:420,
-w:50,
-h:70
-};
+        carX=160;
+        enemies=[];
+        distance=0;
 
-obstacles=[];
+        clearInterval(timer);
 
-score=0;
+        timer =
+            setInterval(
+                step,
+                30
+            );
 
-document.getElementById(
-"raceScore"
-).textContent="0";
+    }
 
-draw();
 
-}
+    function step(){
 
-function addObstacle(){
+        distance++;
 
-obstacles.push({
-x:
-60+
-Math.floor(Math.random()*5)*50,
-y:-80
-});
+        if(
+            Math.random()<.03
+        ){
 
-}
+            enemies.push({
 
-function step(){
+                x:
+                    55+
+                    Math.floor(
+                        Math.random()*3
+                    )*90,
 
-if(!running)return;
+                y:-60
 
-score++;
+            });
 
-document.getElementById(
-"raceScore"
-).textContent=
-Math.floor(score/10);
+        }
 
-obstacles.forEach(
-o=>o.y+=5
-);
+        enemies.forEach(
+            e => e.y+=5
+        );
 
-if(
-!obstacles.length ||
-obstacles[
-obstacles.length-1
-].y>130
-)
-addObstacle();
+        enemies =
+            enemies.filter(
+                e=>e.y<520
+            );
 
-obstacles.forEach(
-o=>{
+        for(const e of enemies){
 
-if(
-car.x<o.x+45 &&
-car.x+car.w>o.x &&
-car.y<o.y+70 &&
-car.y+car.h>o.y
-){
+            if(
+                Math.abs(e.x-carX)<35 &&
+                Math.abs(e.y-430)<55
+            ){
 
-running=false;
+                clearInterval(timer);
 
-alert(
-"🏎️ Crash! Distance: "+
-Math.floor(score/10)
-);
+                st.textContent =
+                    "💥 Crash! Distance: " +
+                    distance;
 
-}
+            }
 
-}
-);
+        }
 
-obstacles=
-obstacles.filter(
-o=>o.y<550
-);
+        draw();
 
-draw();
+    }
 
-}
 
-function draw(){
+    function draw(){
 
-ctx.fillStyle="#333";
-ctx.fillRect(0,0,c.width,c.height);
+        ctx.fillStyle="#333";
 
-ctx.strokeStyle="#fff";
-ctx.setLineDash([25,25]);
-ctx.lineWidth=3;
+        ctx.fillRect(
+            0,0,360,500
+        );
 
-ctx.beginPath();
+        ctx.fillStyle="#fff";
 
-ctx.moveTo(120,0);
-ctx.lineTo(120,c.height);
+        for(let y=0;y<500;y+=50){
 
-ctx.moveTo(240,0);
-ctx.lineTo(240,c.height);
+            ctx.fillRect(
+                175,
+                y,
+                10,
+                25
+            );
 
-ctx.stroke();
+        }
 
-ctx.setLineDash([]);
+        ctx.fillStyle="#1976d2";
 
-ctx.fillStyle="#e53935";
+        ctx.fillRect(
+            carX,
+            430,
+            40,
+            60
+        );
 
-ctx.fillRect(
-car.x,
-car.y,
-car.w,
-car.h
-);
+        ctx.fillStyle="#e53935";
 
-ctx.fillStyle="#ffd600";
+        enemies.forEach(
+            e =>
+                ctx.fillRect(
+                    e.x,
+                    e.y,
+                    40,
+                    60
+                )
+        );
 
-obstacles.forEach(
-o=>
-ctx.fillRect(
-o.x,o.y,45,70
-)
-);
+    }
 
-}
 
-function move(x){
+    function key(e){
 
-car.x=Math.max(
-5,
-Math.min(
-c.width-car.w-5,
-car.x+x
-)
-);
+        if(e.key==="ArrowLeft")
+            carX=Math.max(
+                40,
+                carX-25
+            );
 
-}
+        if(e.key==="ArrowRight")
+            carX=Math.min(
+                280,
+                carX+25
+            );
 
-document.getElementById(
-"raceStart"
-).onclick=function(){
+    }
 
-reset();
-running=true;
 
-if(ppppGames.activeTimer)
-clearInterval(ppppGames.activeTimer);
+    document.addEventListener(
+        "keydown",
+        key
+    );
 
-ppppGames.activeTimer=
-setInterval(step,30);
 
-};
+    c.addEventListener(
+        "pointermove",
+        function(e){
 
-window.onkeydown=function(e){
+            if(
+                e.buttons ||
+                e.pointerType==="touch"
+            ){
 
-if(e.key==="ArrowLeft")
-move(-20);
+                const r =
+                    c.getBoundingClientRect();
 
-if(e.key==="ArrowRight")
-move(20);
+                carX =
+                    Math.max(
+                        40,
+                        Math.min(
+                            280,
+                            e.clientX-r.left-20
+                        )
+                    );
 
-};
+            }
 
-let rsx=0;
+        }
+    );
 
-c.addEventListener(
-"touchstart",
-e=>{
-rsx=e.touches[0].clientX;
-},
-{passive:true}
-);
 
-c.addEventListener(
-"touchend",
-e=>{
+    const bar =
+        toolbar();
 
-const x=
-e.changedTouches[0].clientX-rsx;
+    bar.appendChild(
+        button(
+            "🔄 Restart",
+            reset
+        )
+    );
 
-if(Math.abs(x)>20)
-move(x>0?30:-30);
+    gameBody.insertBefore(
+        bar,
+        st
+    );
 
-},
-{passive:true}
-);
+    reset();
 
-reset();
+    return function(){
+
+        clearInterval(timer);
+
+        document.removeEventListener(
+            "keydown",
+            key
+        );
+
+    };
 
 }
 
 
 /* =========================================================
-   18. NUMBER GUESSING
+   18 — NUMBER GUESSING
 ========================================================= */
 
 function gameGuess(){
 
-let number=
-Math.floor(Math.random()*100)+1;
+    gameBody.innerHTML="";
 
-let attempts=0;
+    const st =
+        status("Guess a number from 1 to 100");
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info">
-🎯 Guess a number from 1 to 100
-</div>
+    const input =
+        document.createElement("input");
 
-<input
-id="guessNumber"
-class="pppp-guess-input"
-type="number"
-min="1"
-max="100"
-placeholder="1–100">
+    input.className =
+        "pppp-big-input";
 
-<div
-class="pppp-game-actions"
-id="guessActions">
-</div>
+    input.type="number";
+    input.min="1";
+    input.max="100";
+    input.placeholder="1–100";
 
-<p id="guessResult"></p>
-`;
+    const bar =
+        toolbar();
 
-const input=
-document.getElementById(
-"guessNumber"
-);
+    const check =
+        button(
+            "🎯 Guess",
+            checkGuess
+        );
 
-const result=
-document.getElementById(
-"guessResult"
-);
+    const resetButton =
+        button(
+            "🔄 New Game",
+            reset
+        );
 
-document.getElementById(
-"guessActions"
-).appendChild(
-button(
-"🎯 Guess",
-function(){
+    bar.appendChild(check);
+    bar.appendChild(resetButton);
 
-const n=
-Number(input.value);
+    gameBody.appendChild(st);
+    gameBody.appendChild(input);
+    gameBody.appendChild(bar);
 
-if(!n)return;
+    let target;
 
-attempts++;
 
-if(n===number){
+    function reset(){
 
-result.textContent=
-"🎉 Correct! Attempts: "+
-attempts;
+        target =
+            Math.floor(
+                Math.random()*100
+            )+1;
 
-}
-else if(n<number){
+        input.value="";
 
-result.textContent=
-"⬆️ Too low!";
+        st.textContent =
+            "Guess a number from 1 to 100";
 
-}
-else{
+    }
 
-result.textContent=
-"⬇️ Too high!";
 
-}
+    function checkGuess(){
 
-}
-)
-);
+        const n =
+            Number(input.value);
 
-document.getElementById(
-"guessActions"
-).appendChild(
-button("🔄 New Game",gameGuess)
-);
+        if(!n){
+
+            st.textContent =
+                "Enter a number.";
+
+            return;
+
+        }
+
+        if(n===target){
+
+            st.textContent =
+                "🎉 Correct! You won!";
+
+        }else if(n<target){
+
+            st.textContent =
+                "⬆️ Too low!";
+
+        }else{
+
+            st.textContent =
+                "⬇️ Too high!";
+
+        }
+
+    }
+
+
+    reset();
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   19. ROCK PAPER SCISSORS
+   19 — ROCK PAPER SCISSORS
 ========================================================= */
 
 function gameRPS(){
 
-const choices=[
-["✊","Rock"],
-["✋","Paper"],
-["✌️","Scissors"]
-];
+    gameBody.innerHTML="";
 
-ppppGames.body.innerHTML=`
-<div class="pppp-game-info"
-id="rpsInfo">
-Choose your move
-</div>
+    const st =
+        status("Choose your move");
 
-<div
-class="pppp-rps"
-id="rpsButtons">
-</div>
+    const grid =
+        document.createElement("div");
 
-<div
-class="pppp-game-actions"
-id="rpsActions">
-</div>
-`;
+    grid.className =
+        "pppp-choice-grid";
 
-const info=
-document.getElementById(
-"rpsInfo"
-);
+    const choices=[
+        ["✊","Rock"],
+        ["✋","Paper"],
+        ["✌️","Scissors"]
+    ];
 
-const root=
-document.getElementById(
-"rpsButtons"
-);
+    gameBody.appendChild(st);
+    gameBody.appendChild(grid);
 
-choices.forEach(
-choice=>{
 
-const b=
-document.createElement("button");
+    function play(user){
 
-b.textContent=choice[0];
+        const cpu =
+            Math.floor(
+                Math.random()*3
+            );
 
-b.title=choice[1];
+        let result;
 
-b.onclick=function(){
+        if(user===cpu){
 
-const computer=
-choices[
-Math.floor(
-Math.random()*3
-)
-];
+            result =
+                "🤝 Draw!";
 
-let result;
+        }else if(
+            (user===0&&cpu===2) ||
+            (user===1&&cpu===0) ||
+            (user===2&&cpu===1)
+        ){
 
-if(choice[1]===computer[1])
-result="🤝 Draw!";
+            result =
+                "🏆 You win!";
 
-else if(
-(
-choice[1]==="Rock" &&
-computer[1]==="Scissors"
-) ||
-(
-choice[1]==="Paper" &&
-computer[1]==="Rock"
-) ||
-(
-choice[1]==="Scissors" &&
-computer[1]==="Paper"
-)
-)
-result="🎉 You Win!";
+        }else{
 
-else
-result="🤖 Computer Wins!";
+            result =
+                "💻 Computer wins!";
 
-info.textContent=
-"You: "+choice[0]+
-"  |  Computer: "+computer[0]+
-"  |  "+result;
+        }
 
-};
+        st.textContent =
+            result +
+            " You: " +
+            choices[user][0] +
+            " | Computer: " +
+            choices[cpu][0];
 
-root.appendChild(b);
+    }
 
-}
-);
 
-document.getElementById(
-"rpsActions"
-).appendChild(
-button("🔄 Reset",gameRPS)
-);
+    choices.forEach(
+        (c,i) => {
+
+            const b =
+                document.createElement("button");
+
+            b.className =
+                "pppp-choice";
+
+            b.innerHTML =
+                c[0] +
+                "<br><small>" +
+                c[1] +
+                "</small>";
+
+            b.addEventListener(
+                "click",
+                () => play(i)
+            );
+
+            grid.appendChild(b);
+
+        }
+    );
+
+    return function(){};
 
 }
 
 
 /* =========================================================
-   INITIAL CLEANUP
+   GAME START ROUTER
 ========================================================= */
 
-window.addEventListener(
-"beforeunload",
-function(){
+function startGame(id){
 
-cleanupGame();
+    switch(id){
+
+        case "tictactoe":
+            return gameTicTacToe();
+
+        case "snake":
+            return gameSnake();
+
+        case "tetris":
+            return gameTetris();
+
+        case "pong":
+            return gamePong();
+
+        case "memory":
+            return gameMemory();
+
+        case "minesweeper":
+            return gameMinesweeper();
+
+        case "2048":
+            return game2048();
+
+        case "connect4":
+            return gameConnect4();
+
+        case "dots":
+            return gameDots();
+
+        case "checkers":
+            return gameCheckers();
+
+        case "chess":
+            return gameChess();
+
+        case "sliding":
+            return gameSliding();
+
+        case "sudoku":
+            return gameSudoku();
+
+        case "breakout":
+            return gameBreakout();
+
+        case "space":
+            return gameSpace();
+
+        case "flappy":
+            return gameFlappy();
+
+        case "racing":
+            return gameRacing();
+
+        case "guess":
+            return gameGuess();
+
+        case "rps":
+            return gameRPS();
+
+        default:
+            return function(){};
+
+    }
 
 }
+
+
+/* =========================================================
+   INITIAL PLACEMENT
+========================================================= */
+
+function initializeGames(){
+
+    placeGamesBeforeSupport();
+
+}
+
+
+/*
+   DOM সম্পূর্ণ তৈরি হওয়ার পর একবার চালানো
+*/
+
+if(
+    document.readyState ===
+    "loading"
+){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeGames,
+        {once:true}
+    );
+
+}else{
+
+    initializeGames();
+
+}
+
+
+/*
+   কিছু Settings page dynamicভাবে render হলে
+   সামান্য পরে আবার position নিশ্চিত করা হবে।
+*/
+
+setTimeout(
+    placeGamesBeforeSupport,
+    300
+);
+
+setTimeout(
+    placeGamesBeforeSupport,
+    1000
 );
 
 
 })();
 </script>
-
 
 <!-- =========================================================
      🎮 END PPPP OFFLINE GAMES
