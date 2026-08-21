@@ -1440,7 +1440,7 @@ footer{
     🌐 GOOGLE TRANSLATE — HIDE GOOGLE UI
  ========================================================= */
 
- /* উপরের Google Translate banner */
+ /* Google Translate banner above */
  .goog-te-banner-frame,
  .goog-te-banner-frame.skiptranslate,
  iframe.goog-te-banner-frame {
@@ -1448,7 +1448,7 @@ footer{
      visibility: hidden !important;
  }
 
- /* Google Translate-এর কারণে body উপরে নেমে যাওয়া বন্ধ */
+ /* Prevent the body from shifting upward due to Google Translate. */
  body {
      top: 0 !important;
  }
@@ -1465,12 +1465,12 @@ footer{
      visibility: hidden !important;
  }
 
- /* নিচের Google Translate box */
+ /* Google Translate box below */
  #google_translate_element {
      display: none !important;
  }
 
- /* Google Translate-এর অতিরিক্ত UI */
+ /* Additional Google Translate UI */
  .goog-te-gadget {
      display: none !important;
  }
@@ -1487,7 +1487,7 @@ footer{
      display: none !important;
  }
 
- /* Google Translate-এর injected text */
+ /* Google Translate injected text */
  .skiptranslate {
      display: none !important;
  }
@@ -1607,79 +1607,79 @@ class="pppp-live-box">
 </div>
 
 <div class="pppp-live-row">
-🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">লোড হচ্ছে...</span>
+🇧🇩 বাংলা তারিখ: <span id="ppppBanglaDate">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-📅 English Date: <span id="ppppEnglishDate">লোড হচ্ছে...</span>
+📅 English Date: <span id="ppppEnglishDate">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌙 Hijri Date: <span id="ppppHijriDate">লোড হচ্ছে...</span>
+🌙 Hijri Date: <span id="ppppHijriDate">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🇧🇩 বাংলা বার: <span id="ppppBanglaDay">লোড হচ্ছে...</span>
+🇧🇩 বাংলা বার: <span id="ppppBanglaDay">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-📅 English Day: <span id="ppppEnglishDay">লোড হচ্ছে...</span>
+📅 English Day: <span id="ppppEnglishDay">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌙 Hijri Day: <span id="ppppHijriDay">লোড হচ্ছে...</span>
+🌙 Hijri Day: <span id="ppppHijriDay">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕐 Current Time: <span id="ppppCurrentTime">লোড হচ্ছে...</span>
+🕐 Current Time: <span id="ppppCurrentTime">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌡️ Temperature: <span id="ppppTemperature">লোড হচ্ছে...</span>
+🌡️ Temperature: <span id="ppppTemperature">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌅 Sunrise: <span id="ppppSunrise">লোড হচ্ছে...</span>
+🌅 Sunrise: <span id="ppppSunrise">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌇 Sunset: <span id="ppppSunset">লোড হচ্ছে...</span>
+🌇 Sunset: <span id="ppppSunset">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕌 Fajr: <span id="ppppFajr">লোড হচ্ছে...</span>
+🕌 Fajr: <span id="ppppFajr">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕌 Juhr: <span id="ppppDhuhr">লোড হচ্ছে...</span>
+🕌 Juhr: <span id="ppppDhuhr">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕌 Asr: <span id="ppppAsr">লোড হচ্ছে...</span>
+🕌 Asr: <span id="ppppAsr">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕌 Maghrib: <span id="ppppMaghrib">লোড হচ্ছে...</span>
+🕌 Maghrib: <span id="ppppMaghrib">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🕌 Isha: <span id="ppppIsha">লোড হচ্ছে...</span>
+🕌 Isha: <span id="ppppIsha">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌙 Sehri: <span id="ppppSehri">লোড হচ্ছে...</span>
+🌙 Sehri: <span id="ppppSehri">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌙 Iftar: <span id="ppppIftar">লোড হচ্ছে...</span>
+🌙 Iftar: <span id="ppppIftar">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-☀️ Day: <span id="ppppDayLength">লোড হচ্ছে...</span>
+☀️ Day: <span id="ppppDayLength">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
-🌑 Night: <span id="ppppNightLength">লোড হচ্ছে...</span>
+🌑 Night: <span id="ppppNightLength">Loading…</span>
 </div>
 
 <div class="pppp-live-row">
@@ -4512,7 +4512,7 @@ document.getElementById(
 if(!Number.isFinite(value)){
 
     result.textContent =
-    "⚠️ একটি বৈধ সংখ্যা লিখুন।";
+    "⚠️ Please enter a valid number.";
 
     return;
 
@@ -4894,7 +4894,7 @@ const ppppBanglaTV = [
 
 ["🌐","Channel 16","https://channel-16tv.com/"],
 
-["📶","All Bangla TV","https://www.allbanglanewspaper.xyz/"]
+["📶","Ekhon TV","https://ekhon.tv/"]
 
 ];
 
@@ -4907,11 +4907,11 @@ const ppppBanglaRadio = [
 
 ["📻","Radio Today","https://radiotodaybd.fm/"],
 
-["🔊","Bangladesh Betar 100.0 FM","https://liveonlineradio.net/bangladesh-betar-100-0-fm"],
+["🔊","Radio Padma","https://radiopadma.com/"],
 
 ["📢","Dhaka FM 90.4","https://www.dhakafm904.com/"],
 
-["🎙️","Bangladesh Betar","https://liveonlineradio.net/bangladesh-betar-88-8"],
+["🎙️","Bangladesh Betar 88.8 FM","https://liveonlineradio.net/bangladesh-betar-88-8"],
 
 ["🎤","Radio Foorti","https://www.radiofoorti.fm/"],
 
@@ -4925,17 +4925,17 @@ const ppppBanglaRadio = [
 
 ["📯","Jago FM","https://jago.fm/"],
 
-["🗣️","BBC Bangla","https://www.bbc.com/bengali"],
+["🗣️","Radio Jamuna","https://onlineradiobox.com/bd/jamuna/"],
 
-["💬","VOA Bangla","https://www.voabangla.com/"],
+["💬","Radio Din Raat","https://radiodinraat.fm/"],
 
-["🛰️","DW Bangla","https://www.dw.com/bn/"],
+["🛰️","Radio Bushra","https://onlineradiobox.com/bd/bushra/"],
 
 ["🚀","Iran Radio Bangla","https://iranradio.ir/bn/"],
 
-["⚡","NHK World Bangla","https://www3.nhk.or.jp/nhkworld/bn/"],
+["⚡","Spice FM","https://spicefmbd.com/"],
 
-["💡","All Bangla Radio","https://www.allbanglanewspaper.xyz/"]
+["💡","Bangla FM","https://bangla.fm/"]
 
 ];
 
@@ -5080,7 +5080,7 @@ const ppppBanglaNewspapers = [
 
 ["🔁","Khobor Protidin","https://khoborprotidin24.com/"],
 
-["🔂","BD Cricteam","https://www.bdcricteam.com/"],
+["🔂","Bangladesh Times","https://bangladeshtimes.com/"],
 
 ["🔄","Kishor Kantha","https://kishorkanthabd.com/"],
 
@@ -5146,7 +5146,7 @@ const ppppCricket = [
 
 ["▶️","Cricbuzz","https://www.cricbuzz.com/"],
 
-["🔴","IPL","https://www.iplt20.com/en/"],
+["🔴","IPL t20","https://www.iplt20.com/en/"],
 
 ["🖥️","PSL t20","https://psl-t20.com/"],
 
@@ -9877,7 +9877,7 @@ function ppppCloseSavedPages() {
 function ppppClearSavedPages() {
 
     if (!confirm(
-        "🗑️ Liked, Favorited এবং Pinned Pages-এর সব তালিকা মুছে ফেলবেন?"
+        "🗑️ Do you want to clear all Liked, Favorited, and Pinned Pages lists?"
     )) return;
 
     localStorage.removeItem(
@@ -9906,7 +9906,7 @@ function ppppApp() {
 
     alert(
         "📱 PPPP App\n\n" +
-        "Browser-এর Add to Home Screen ব্যবহার করে PPPP App ব্যবহার করুন।"
+        "Use the browser’s “Add to Home Screen” feature to use the PPPP App."
     );
 
 }
@@ -9998,7 +9998,7 @@ function ppppCopyText(text) {
 function ppppBookmark() {
 
     alert(
-        "🔖 Browser-এর Bookmark ব্যবহার করে এই page bookmark করুন।"
+        "🔖 Use the browser’s Bookmark feature to bookmark this page."
     );
 
 }
@@ -10010,8 +10010,8 @@ function ppppBookmark() {
 function ppppShowHistoryMessage() {
 
     alert(
-        "🕒 Current page PPPP History List-এ সংরক্ষিত হয়েছে!\n\n" +
-        "অথবা Browser-এর History-তে সংরক্ষিত আছে!"
+        "🕒 Current page has been saved to the PPPP History List!\n\n" +
+        "And it has also been saved in the browser’s History!"
     );
 
 }
@@ -11542,17 +11542,7 @@ function ppppCalculate() {
 
 function ppppToBanglaNumber(value){
 
-return String(value)
-.replace(/0/g,"০")
-.replace(/1/g,"১")
-.replace(/2/g,"২")
-.replace(/3/g,"৩")
-.replace(/4/g,"৪")
-.replace(/5/g,"৫")
-.replace(/6/g,"৬")
-.replace(/7/g,"৭")
-.replace(/8/g,"৮")
-.replace(/9/g,"৯");
+return String(value);
 
 }
 
@@ -11564,7 +11554,7 @@ return String(value)
 function ppppFormatDate(date){
 
 return date.toLocaleDateString(
-"bn-BD",
+"en-US",
 {
 day:"numeric",
 month:"long",
@@ -11611,7 +11601,7 @@ if(!value){
 
 result.innerHTML=
 "<div style='padding:15px;text-align:center;color:#777;'>"+
-"🎂 জন্মতারিখ নির্বাচন করুন।"+
+"🎂 Select your date of birth."+
 "</div>";
 
 nextBirthday.innerHTML="";
@@ -11744,7 +11734,7 @@ padding:15px;
 text-align:center;
 font-weight:700;
 ">
-🎂 আপনার বয়স
+🎂 Your Age
 </div>
 
 <div style="
@@ -11754,9 +11744,9 @@ padding:15px;
 text-align:center;
 font-size:20px;
 ">
-${ppppToBanglaNumber(years)} বছর
-${ppppToBanglaNumber(months)} মাস
-${ppppToBanglaNumber(days)} দিন
+${ppppToBanglaNumber(years)} Years
+${ppppToBanglaNumber(months)} Months
+${ppppToBanglaNumber(days)} Days
 </div>
 `;
 
@@ -11884,7 +11874,7 @@ font-size:17px;
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total বছর
+Total Years
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(years)}
@@ -11893,7 +11883,7 @@ ${ppppToBanglaNumber(years)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total মাস
+Total Months
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalMonths)}
@@ -11902,7 +11892,7 @@ ${ppppToBanglaNumber(totalMonths)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total সপ্তাহ
+Total Weeks
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalWeeks)}
@@ -11911,7 +11901,7 @@ ${ppppToBanglaNumber(totalWeeks)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total দিন
+Total Days
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalDays)}
@@ -11920,7 +11910,7 @@ ${ppppToBanglaNumber(totalDays)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total ঘণ্টা
+Total Hours
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalHours)}
@@ -11929,7 +11919,7 @@ ${ppppToBanglaNumber(totalHours)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total মিনিট
+Total Minutes
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalMinutes)}
@@ -11938,7 +11928,7 @@ ${ppppToBanglaNumber(totalMinutes)}
 
 <tr>
 <td style="padding:12px;border:1px solid #aaa;">
-Total সেকেন্ড
+Total Seconds
 </td>
 <td style="padding:12px;border:1px solid #aaa;">
 ${ppppToBanglaNumber(totalSeconds)}
@@ -11998,7 +11988,7 @@ ${ppppToBanglaNumber(
 year-
 today.getFullYear()
 )}
- বছর পরে
+ Years Later
 </td>
 
 </tr>
@@ -12743,7 +12733,7 @@ function ppppTasbihIncrement() {
         }
 
         alert(
-            "🎯 Tasbih Target সম্পন্ন হয়েছে!\n\n" +
+            "🎯 Tasbih Target Completed!\n\n" +
             "📿 Count: " +
             ppppTasbih
         );
@@ -14646,7 +14636,7 @@ function ppppStartLive() {
 function ppppResetSettings() {
 
     if (!confirm(
-        "⚙️ সব PPPP Settings Default অবস্থায় ফিরিয়ে নিতে চান?"
+        "⚙️ Do you want to reset all PPPP Settings to their default values?"
     )) return;
 
 
@@ -14721,7 +14711,7 @@ function ppppResetSettings() {
 
 
     alert(
-        "✅ PPPP Settings Default অবস্থায় ফিরে গেছে।"
+        "✅ PPPP Settings have been restored to their default settings."
     );
 
 }
@@ -16106,6 +16096,5 @@ window.addEventListener(
 );
 
 </script>
-
 </body>
 </html>
