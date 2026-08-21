@@ -1748,7 +1748,7 @@ id="ppppAzanUnmuteBtn">
 <audio id="ppppAzanAudio" preload="auto"></audio>
 
 <div class="pppp-info-item">
-🕌 নির্ধারিত নামাজের সময়ে স্বয়ংক্রিয়ভাবে নির্বাচিত আজান বাজবে
+🕌 Automatically Play Selected Azan at Scheduled Prayer Times
 </div>
 
 </div>
@@ -3829,7 +3829,7 @@ onclick="ppppAboutSettings()">
 <textarea
 id="ppppNotepad"
 class="pppp-tool-textarea pppp-notepad-area"
-placeholder="📝 এখানে আপনার লেখা লিখুন..."></textarea>
+placeholder="📝 Enter Your Text Here..."></textarea>
 
 <br>
 
@@ -3921,7 +3921,7 @@ onclick="ppppConvertNow()">
 <div
 id="ppppConvertResult"
 class="pppp-converter-result">
-ফলাফল এখানে দেখা যাবে।
+📊 Results Will Appear Here
 </div>
 
 <div style="
@@ -3930,9 +3930,9 @@ font-size:13px;
 color:#607d8b;
 line-height:1.5;
 ">
-💡 KG ↔ Litre হিসাবের জন্য পানি-ভিত্তিক হিসাব ব্যবহার করা হবে:
-<strong>১ কেজি পানি ≈ ১ লিটার পানি</strong>।
-অন্যান্য তরলের ক্ষেত্রে ঘনত্ব ভিন্ন হতে পারে।
+💡 A water-based conversion will be used for KG ↔ Litre calculations:
+<strong>1 kg of water ≈ 1 litre of water.</strong>।
+The density may vary for other liquids.
 </div>
 
 </div>
@@ -4043,10 +4043,8 @@ line-height:1.5;
 text-align:center;
 margin-top:8px;
 ">
-📡 এটি আপনার বর্তমান Internet connection-এর browser-based
-download speed আনুমানিকভাবে পরিমাপ করবে।
-Wi-Fi-এর router-এর internal speed আলাদাভাবে browser থেকে
-নির্ভুলভাবে পড়া সম্ভব নয়।
+📡 This will approximately measure your current Internet connection’s browser-based download speed.
+The router’s internal Wi-Fi speed cannot be accurately read directly from a browser.
 </div>
 
 </div>
@@ -4197,7 +4195,7 @@ if(!note) return;
 if(note.value.trim() !== ""){
 
     if(!confirm(
-    "📝 বর্তমান লেখা মুছে নতুন Note শুরু করবেন?"
+    "📝 Do you want to clear the current text and start a new note?"
     )){
         return;
     }
@@ -4217,7 +4215,7 @@ document.getElementById("ppppNotepad");
 if(!note) return;
 
 if(confirm(
-"🗑️ সব লেখা মুছে ফেলবেন?"
+"🗑️ Do you want to clear all text?"
 )){
 
     note.value = "";
