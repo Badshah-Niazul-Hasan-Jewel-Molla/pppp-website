@@ -3761,701 +3761,563 @@ onclick="ppppAboutSettings()">
 </div>
 
 <!-- =========================================================
-     PPPP EXTRA TOOLS & LIVE MEDIA
-     INSERT THIS ENTIRE BLOCK BEFORE:
-     🎮 PPPP Games
+     PPPP TOOLS + LIVE MEDIA
+     PLACE THIS ENTIRE BLOCK BEFORE:
+     ✊ We Support 🇮🇷 Iran & 🇵🇸 Palestine
 ========================================================= -->
 
 <style>
 
 /* =========================================================
-   PPPP EXTRA SECTION
+   PPPP TOOLS & LIVE MEDIA
 ========================================================= */
 
-.pppp-extra-section{
+.pppp-tools-live-wrap{
     width:100%;
-    margin:22px 0;
     box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-/* Section title — same visual family as Games */
-.pppp-extra-title{
+/* ---------------------------------------------------------
+   INDIVIDUAL SECTION
+--------------------------------------------------------- */
+
+.pppp-live-section{
     width:100%;
-    min-height:78px;
-    border:0;
-    border-radius:22px;
-    padding:16px 24px;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+/* ---------------------------------------------------------
+   SECTION TITLE
+--------------------------------------------------------- */
+
+.pppp-live-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
     background:linear-gradient(135deg,#1976d2,#2196f3);
     color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    cursor:pointer;
-    font-size:25px;
+    font-size:21px;
     font-weight:800;
-    line-height:1.2;
-    box-shadow:0 8px 20px rgba(0,0,0,.14);
-    box-sizing:border-box;
+    line-height:1.25;
     text-align:left;
 }
 
-.pppp-extra-title:hover{
-    filter:brightness(1.04);
-}
+/* ---------------------------------------------------------
+   TOOL CONTENT
+--------------------------------------------------------- */
 
-.pppp-extra-title .arrow{
-    font-size:25px;
-    flex-shrink:0;
-    transition:transform .25s ease;
-}
-
-.pppp-extra-section.open .pppp-extra-title .arrow{
-    transform:rotate(180deg);
-}
-
-.pppp-extra-content{
-    display:none;
-    background:linear-gradient(180deg,#ffffff,#f5f9fc);
-    border:1px solid #e0e6eb;
-    border-top:0;
-    border-radius:0 0 22px 22px;
-    padding:14px;
-    box-sizing:border-box;
-}
-
-.pppp-extra-section.open .pppp-extra-content{
-    display:block;
-}
-
-/* =========================================================
-   CARD GRID — SAME STYLE AS PPPP GAMES
-========================================================= */
-
-.pppp-extra-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:14px;
-}
-
-/* =========================================================
-   MEDIA / TOOL CARDS
-========================================================= */
-
-.pppp-extra-card{
-    position:relative;
-    min-height:158px;
-    border-radius:25px;
-    border:1px solid #dfe5e9;
-    background:linear-gradient(145deg,#ffffff,#f3f7fa);
-    box-shadow:
-        0 7px 16px rgba(0,0,0,.09),
-        inset 0 1px 0 rgba(255,255,255,.9);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:22px 12px 16px;
-    cursor:pointer;
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease,
-        background .18s ease;
-    box-sizing:border-box;
-    user-select:none;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.pppp-extra-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 24px rgba(0,0,0,.14);
-}
-
-.pppp-extra-card:active{
-    transform:scale(.97);
-}
-
-.pppp-extra-number{
-    position:absolute;
-    top:10px;
-    right:13px;
-    font-size:14px;
-    font-weight:800;
-    color:#64a5d5;
-}
-
-.pppp-extra-icon{
-    font-size:42px;
-    line-height:1;
-    margin-bottom:12px;
-}
-
-.pppp-extra-name{
-    font-size:20px;
-    line-height:1.2;
-    font-weight:800;
-    color:#303840;
-}
-
-/* =========================================================
-   COLOR VARIATIONS
-========================================================= */
-
-.pppp-tool-card:nth-child(1){
-    background:linear-gradient(145deg,#fff8e1,#fffdf5);
-}
-
-.pppp-tool-card:nth-child(2){
-    background:linear-gradient(145deg,#e8f5e9,#fafffb);
-}
-
-.pppp-tool-card:nth-child(3){
-    background:linear-gradient(145deg,#e3f2fd,#fafdff);
-}
-
-.pppp-tool-card:nth-child(4){
-    background:linear-gradient(145deg,#f3e5f5,#fffaff);
-}
-
-.pppp-live-card:nth-child(1){
-    background:linear-gradient(145deg,#ffebee,#fff8f8);
-}
-
-.pppp-live-card:nth-child(2){
-    background:linear-gradient(145deg,#e8f5e9,#f8fff9);
-}
-
-.pppp-live-card:nth-child(3){
-    background:linear-gradient(145deg,#fff3e0,#fffaf4);
-}
-
-.pppp-live-card:nth-child(4){
-    background:linear-gradient(145deg,#e3f2fd,#f8fcff);
-}
-
-.pppp-live-card:nth-child(5){
-    background:linear-gradient(145deg,#f3e5f5,#fffaff);
-}
-
-.pppp-live-card:nth-child(6){
-    background:linear-gradient(145deg,#e0f7fa,#f8ffff);
-}
-
-.pppp-live-card:nth-child(7){
-    background:linear-gradient(145deg,#fff8e1,#fffef8);
-}
-
-.pppp-live-card:nth-child(8){
-    background:linear-gradient(145deg,#e8eaf6,#fafbff);
-}
-
-/* =========================================================
-   TOOL PANEL
-========================================================= */
-
-.pppp-tool-panel{
-    display:none;
-    margin-top:15px;
-    padding:18px;
-    border-radius:22px;
+.pppp-tool-content{
+    padding:15px;
     background:#fff;
-    border:1px solid #dce4ea;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.pppp-tool-panel.active{
-    display:block;
-}
-
-/* Notepad */
-
-.pppp-notepad{
-    width:100%;
-    min-height:300px;
-    resize:vertical;
-    border:2px solid #90caf9;
-    border-radius:16px;
-    padding:16px;
-    font-size:17px;
-    line-height:1.6;
-    outline:none;
     box-sizing:border-box;
-    background:#fffef5;
 }
 
-.pppp-notepad:focus{
-    border-color:#1976d2;
+/* ---------------------------------------------------------
+   COMMON INPUT
+--------------------------------------------------------- */
+
+.pppp-tool-input,
+.pppp-tool-select,
+.pppp-tool-textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px 14px;
+    margin:5px 0;
+    border:1px solid #d4dce5;
+    border-radius:12px;
+    background:#fff;
+    color:#263238;
+    font-size:16px;
+    outline:none;
 }
 
-.pppp-tool-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:12px;
+.pppp-tool-input:focus,
+.pppp-tool-select:focus,
+.pppp-tool-textarea:focus{
+    border-color:#2196f3;
+    box-shadow:0 0 0 3px rgba(33,150,243,.12);
 }
+
+/* ---------------------------------------------------------
+   TOOL BUTTON
+--------------------------------------------------------- */
 
 .pppp-tool-btn{
     border:0;
-    border-radius:12px;
-    padding:11px 16px;
+    border-radius:11px;
+    padding:11px 15px;
+    margin:5px 3px 5px 0;
+    background:#1976d2;
+    color:#fff;
     font-size:15px;
     font-weight:700;
     cursor:pointer;
-    background:#1976d2;
-    color:#fff;
+    transition:.18s;
 }
 
-.pppp-tool-btn.secondary{
-    background:#78909c;
+.pppp-tool-btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.05);
 }
 
-.pppp-tool-btn.danger{
-    background:#e53935;
+.pppp-tool-btn:active{
+    transform:scale(.97);
 }
 
-/* Converter */
+/* ---------------------------------------------------------
+   NOTEPAD
+--------------------------------------------------------- */
 
-.pppp-converter-row{
+.pppp-notepad-area{
+    min-height:230px;
+    resize:vertical;
+    line-height:1.6;
+}
+
+/* ---------------------------------------------------------
+   CONVERTER
+--------------------------------------------------------- */
+
+.pppp-converter-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.pppp-converter-box{
-    padding:14px;
-    border-radius:16px;
-    background:#f5f9fc;
-    border:1px solid #dce5eb;
-}
-
-.pppp-converter-box label{
-    display:block;
-    font-weight:800;
-    margin-bottom:7px;
-}
-
-.pppp-converter-box input,
-.pppp-converter-box select{
-    width:100%;
-    padding:12px;
-    border-radius:11px;
-    border:1px solid #cbd5dc;
-    font-size:16px;
-    box-sizing:border-box;
-    outline:none;
+    gap:10px;
 }
 
 .pppp-converter-result{
-    margin-top:14px;
-    padding:15px;
-    border-radius:14px;
-    background:#e3f2fd;
-    color:#1565c0;
-    font-size:20px;
-    font-weight:800;
-    text-align:center;
-}
-
-/* Stopwatch */
-
-.pppp-stopwatch{
-    text-align:center;
-}
-
-.pppp-stopwatch-time{
-    font-size:48px;
-    font-weight:900;
-    letter-spacing:2px;
-    color:#1565c0;
-    padding:20px 0;
-}
-
-.pppp-stopwatch-laps{
-    max-height:180px;
-    overflow:auto;
     margin-top:10px;
-    text-align:left;
+    padding:13px;
+    border-radius:12px;
+    background:#eef7ff;
+    color:#145a96;
+    font-size:17px;
+    font-weight:700;
+    min-height:24px;
 }
 
-.pppp-lap{
-    padding:9px 12px;
-    border-bottom:1px solid #e1e7eb;
-}
+/* ---------------------------------------------------------
+   STOPWATCH
+--------------------------------------------------------- */
 
-/* Speed meter */
-
-.pppp-speed-meter{
+.pppp-stopwatch-display{
     text-align:center;
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#1976d2;
+    padding:10px 0;
+}
+
+/* ---------------------------------------------------------
+   SPEED METER
+--------------------------------------------------------- */
+
+.pppp-speed-box{
+    text-align:center;
+    padding:12px 5px;
 }
 
 .pppp-speed-value{
-    font-size:42px;
+    font-size:38px;
     font-weight:900;
     color:#1976d2;
-    margin:14px 0;
 }
 
-.pppp-speed-bar{
-    width:100%;
-    height:18px;
-    border-radius:20px;
-    background:#e8eef2;
-    overflow:hidden;
-}
-
-.pppp-speed-progress{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,#00b894,#0984e3,#6c5ce7);
-    transition:width .3s ease;
+.pppp-speed-unit{
+    font-size:15px;
+    color:#607d8b;
+    font-weight:700;
 }
 
 .pppp-speed-status{
-    margin-top:12px;
+    margin-top:8px;
+    padding:10px;
+    border-radius:10px;
+    background:#eef7ff;
+    color:#145a96;
     font-weight:700;
-    color:#546e7a;
 }
 
-/* =========================================================
-   LIVE INFORMATION
-========================================================= */
+/* ---------------------------------------------------------
+   LIVE MEDIA GRID
+--------------------------------------------------------- */
 
-.pppp-live-note{
-    margin-bottom:14px;
-    padding:12px 14px;
-    border-radius:14px;
-    background:#e3f2fd;
-    color:#1565c0;
-    font-size:14px;
-    font-weight:700;
-    line-height:1.5;
+.pppp-live-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:14px;
+    background:#f7f9fc;
+    box-sizing:border-box;
 }
 
-/* =========================================================
-   LIVE CARD STATUS
-========================================================= */
+/* ---------------------------------------------------------
+   MEDIA CARD
+   SAME GENERAL LOOK AS PPPP GAMES CARDS
+--------------------------------------------------------- */
 
-.pppp-live-status{
-    margin-top:7px;
+.pppp-media-card{
+    position:relative;
+    min-height:118px;
+    border:1px solid #dfe5eb;
+    border-radius:24px;
+    background:linear-gradient(145deg,#ffffff,#f3f7fa);
+    box-shadow:0 5px 14px rgba(0,0,0,.08);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:18px 10px 12px;
+    box-sizing:border-box;
+    cursor:pointer;
+    transition:.18s;
+    text-decoration:none;
+    color:#263238;
+}
+
+.pppp-media-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.pppp-media-card:active{
+    transform:scale(.98);
+}
+
+.pppp-media-number{
+    position:absolute;
+    top:10px;
+    right:12px;
     font-size:13px;
     font-weight:800;
-    color:#00a67d;
+    color:#64a5d6;
 }
 
-/* =========================================================
+.pppp-media-emoji{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:8px;
+}
+
+.pppp-media-name{
+    font-size:16px;
+    line-height:1.2;
+    font-weight:800;
+}
+
+/* ---------------------------------------------------------
+   SMALL LIVE LABEL
+--------------------------------------------------------- */
+
+.pppp-live-label{
+    display:inline-block;
+    margin-top:7px;
+    padding:3px 8px;
+    border-radius:20px;
+    background:#e8f5e9;
+    color:#16843b;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* ---------------------------------------------------------
    RESPONSIVE
-========================================================= */
+--------------------------------------------------------- */
 
 @media(max-width:520px){
 
-    .pppp-extra-title{
-        min-height:76px;
-        font-size:23px;
-        padding:15px 20px;
-        border-radius:21px;
+    .pppp-live-title{
+        font-size:20px;
+        padding:15px 16px;
     }
 
-    .pppp-extra-grid{
-        gap:12px;
+    .pppp-live-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+        padding:14px;
     }
 
-    .pppp-extra-card{
-        min-height:150px;
-        padding:20px 9px 14px;
-        border-radius:23px;
+    .pppp-media-card{
+        min-height:116px;
+        border-radius:22px;
     }
 
-    .pppp-extra-icon{
-        font-size:39px;
+    .pppp-media-emoji{
+        font-size:31px;
     }
 
-    .pppp-extra-name{
-        font-size:18px;
+    .pppp-media-name{
+        font-size:15px;
     }
 
-    .pppp-extra-number{
-        font-size:13px;
-        top:9px;
-        right:11px;
-    }
-
-    .pppp-converter-row{
+    .pppp-converter-grid{
         grid-template-columns:1fr;
     }
-
-    .pppp-stopwatch-time{
-        font-size:39px;
-    }
-
 }
 
-@media(max-width:360px){
+@media(min-width:700px){
 
-    .pppp-extra-grid{
-        gap:9px;
+    .pppp-live-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
     }
 
-    .pppp-extra-card{
-        min-height:140px;
+    .pppp-media-card{
+        min-height:125px;
     }
-
-    .pppp-extra-name{
-        font-size:16px;
-    }
-
 }
 
 </style>
 
 
 <!-- =========================================================
-     📝 PPPP TOOLS
+     MAIN WRAPPER
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-tools-live-wrap">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-    <span>🛠️ PPPP Tools</span>
-    <span class="arrow">▼</span>
-</button>
 
-<div class="pppp-extra-content">
+<!-- =========================================================
+     📝 NOTEPAD
+========================================================= -->
 
-<div class="pppp-extra-grid">
+<div class="pppp-live-section">
 
-    <!-- 01 -->
-    <div class="pppp-extra-card pppp-tool-card"
-         onclick="ppppOpenTool('notepad')">
-        <span class="pppp-extra-number">01</span>
-        <span class="pppp-extra-icon">📝</span>
-        <span class="pppp-extra-name">Notepad</span>
-    </div>
-
-    <!-- 02 -->
-    <div class="pppp-extra-card pppp-tool-card"
-         onclick="ppppOpenTool('converter')">
-        <span class="pppp-extra-number">02</span>
-        <span class="pppp-extra-icon">🔁</span>
-        <span class="pppp-extra-name">Converter</span>
-    </div>
-
-    <!-- 03 -->
-    <div class="pppp-extra-card pppp-tool-card"
-         onclick="ppppOpenTool('stopwatch')">
-        <span class="pppp-extra-number">03</span>
-        <span class="pppp-extra-icon">⏰</span>
-        <span class="pppp-extra-name">Stop Watch</span>
-    </div>
-
-    <!-- 04 -->
-    <div class="pppp-extra-card pppp-tool-card"
-         onclick="ppppOpenTool('speed')">
-        <span class="pppp-extra-number">04</span>
-        <span class="pppp-extra-icon">📶</span>
-        <span class="pppp-extra-name">Internet Speed Meter</span>
-    </div>
-
+<div class="pppp-live-title">
+📝 Notepad
 </div>
 
-
-<!-- =====================================================
-     NOTEPAD
-===================================================== -->
-
-<div id="ppppToolNotepad"
-     class="pppp-tool-panel">
+<div class="pppp-tool-content">
 
 <textarea
-id="ppppNotepadText"
-class="pppp-notepad"
-placeholder="📝 এখানে লিখুন..."></textarea>
+id="ppppNotepad"
+class="pppp-tool-textarea pppp-notepad-area"
+placeholder="📝 এখানে আপনার লেখা লিখুন..."></textarea>
 
-<div class="pppp-tool-buttons">
+<br>
 
-<button class="pppp-tool-btn"
-        onclick="ppppSaveNotepad()">
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadNew()">
+🆕 New
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadSave()">
 💾 Save
 </button>
 
-<button class="pppp-tool-btn secondary"
-        onclick="ppppLoadNotepad()">
-📂 Load
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadDownload()">
+📥 Download
 </button>
 
-<button class="pppp-tool-btn danger"
-        onclick="ppppClearNotepad()">
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadClear()">
 🗑️ Clear
 </button>
 
 </div>
-
 </div>
 
 
-<!-- =====================================================
-     CONVERTER
-===================================================== -->
+<!-- =========================================================
+     🔁 CONVERTER
+========================================================= -->
 
-<div id="ppppToolConverter"
-     class="pppp-tool-panel">
+<div class="pppp-live-section">
 
-<div class="pppp-converter-row">
+<div class="pppp-live-title">
+🔁 Converter
+</div>
 
-<div class="pppp-converter-box">
+<div class="pppp-tool-content">
 
-<label>🔢 Value</label>
+<div class="pppp-converter-grid">
+
+<select
+id="ppppConvertCategory"
+class="pppp-tool-select"
+onchange="ppppUpdateConverterUnits()">
+
+<option value="length">📏 Length</option>
+<option value="weight">⚖️ Weight</option>
+<option value="volume">🧪 Volume</option>
+<option value="temperature">🌡️ Temperature</option>
+<option value="area">📐 Area</option>
+<option value="time">⏱️ Time</option>
+<option value="data">💾 Data</option>
+<option value="speed">🚀 Speed</option>
+<option value="pressure">🔵 Pressure</option>
+<option value="energy">⚡ Energy</option>
+
+</select>
 
 <input
 id="ppppConvertValue"
+class="pppp-tool-input"
 type="number"
 value="1"
-oninput="ppppConvert()">
-
-</div>
-
-
-<div class="pppp-converter-box">
-
-<label>🔄 Convert</label>
+placeholder="Value">
 
 <select
-id="ppppConvertType"
-onchange="ppppConvert()">
+id="ppppConvertFrom"
+class="pppp-tool-select">
+</select>
 
-<option value="km-mi">
-Kilometer → Mile
-</option>
-
-<option value="mi-km">
-Mile → Kilometer
-</option>
-
-<option value="kg-lb">
-Kilogram → Pound
-</option>
-
-<option value="lb-kg">
-Pound → Kilogram
-</option>
-
-<option value="c-f">
-Celsius → Fahrenheit
-</option>
-
-<option value="f-c">
-Fahrenheit → Celsius
-</option>
-
-<option value="m-ft">
-Meter → Feet
-</option>
-
-<option value="ft-m">
-Feet → Meter
-</option>
-
+<select
+id="ppppConvertTo"
+class="pppp-tool-select">
 </select>
 
 </div>
 
+<button
+class="pppp-tool-btn"
+onclick="ppppConvertNow()">
+🔁 Convert
+</button>
+
+<div
+id="ppppConvertResult"
+class="pppp-converter-result">
+ফলাফল এখানে দেখা যাবে।
 </div>
 
-<div id="ppppConverterResult"
-     class="pppp-converter-result">
-1.00
+<div style="
+margin-top:10px;
+font-size:13px;
+color:#607d8b;
+line-height:1.5;
+">
+💡 KG ↔ Litre হিসাবের জন্য পানি-ভিত্তিক হিসাব ব্যবহার করা হবে:
+<strong>১ কেজি পানি ≈ ১ লিটার পানি</strong>।
+অন্যান্য তরলের ক্ষেত্রে ঘনত্ব ভিন্ন হতে পারে।
 </div>
 
 </div>
+</div>
 
 
-<!-- =====================================================
-     STOPWATCH
-===================================================== -->
+<!-- =========================================================
+     ⏰ STOP WATCH
+========================================================= -->
 
-<div id="ppppToolStopwatch"
-     class="pppp-tool-panel">
+<div class="pppp-live-section">
 
-<div class="pppp-stopwatch">
+<div class="pppp-live-title">
+⏰ Stop Watch
+</div>
 
-<div id="ppppStopwatchTime"
-     class="pppp-stopwatch-time">
+<div class="pppp-tool-content">
+
+<div
+id="ppppStopwatchDisplay"
+class="pppp-stopwatch-display">
 00:00:00.000
 </div>
 
-<div class="pppp-tool-buttons"
-     style="justify-content:center;">
+<div style="text-align:center;">
 
-<button class="pppp-tool-btn"
-        onclick="ppppStartStopwatch()">
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchStart()">
 ▶️ Start
 </button>
 
-<button class="pppp-tool-btn secondary"
-        onclick="ppppPauseStopwatch()">
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchPause()">
 ⏸️ Pause
 </button>
 
-<button class="pppp-tool-btn"
-        onclick="ppppLapStopwatch()">
-🏁 Lap
-</button>
-
-<button class="pppp-tool-btn danger"
-        onclick="ppppResetStopwatch()">
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchReset()">
 🔄 Reset
 </button>
 
-</div>
-
-<div id="ppppStopwatchLaps"
-     class="pppp-stopwatch-laps">
-</div>
-
-</div>
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchLap()">
+🏁 Lap
+</button>
 
 </div>
 
-
-<!-- =====================================================
-     INTERNET SPEED METER
-===================================================== -->
-
-<div id="ppppToolSpeed"
-     class="pppp-tool-panel">
-
-<div class="pppp-speed-meter">
-
-<div class="pppp-speed-value">
-<span id="ppppSpeedValue">0</span>
- Mbps
+<div
+id="ppppLapList"
+style="
+margin-top:10px;
+font-size:14px;
+line-height:1.7;
+">
 </div>
 
-<div class="pppp-speed-bar">
-<div id="ppppSpeedProgress"
-     class="pppp-speed-progress">
 </div>
 </div>
 
-<div id="ppppSpeedStatus"
-     class="pppp-speed-status">
-Ready
+
+<!-- =========================================================
+     📶 INTERNET SPEED METER
+========================================================= -->
+
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📶 Internet Speed Meter
 </div>
 
-<div class="pppp-tool-buttons"
-     style="justify-content:center;">
+<div class="pppp-tool-content">
 
-<button class="pppp-tool-btn"
-        onclick="ppppRunSpeedTest()">
+<div class="pppp-speed-box">
+
+<div
+id="ppppSpeedValue"
+class="pppp-speed-value">
+0.00
+</div>
+
+<div class="pppp-speed-unit">
+Mbps
+</div>
+
+<div
+id="ppppSpeedStatus"
+class="pppp-speed-status">
+Ready — Wi-Fi / Mobile Internet
+</div>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStartSpeedTest()">
 🚀 Start Speed Test
 </button>
 
 </div>
 
-</div>
-
+<div style="
+font-size:13px;
+color:#607d8b;
+line-height:1.5;
+text-align:center;
+margin-top:8px;
+">
+📡 এটি আপনার বর্তমান Internet connection-এর browser-based
+download speed আনুমানিকভাবে পরিমাপ করবে।
+Wi-Fi-এর router-এর internal speed আলাদাভাবে browser থেকে
+নির্ভুলভাবে পড়া সম্ভব নয়।
 </div>
 
 </div>
@@ -4466,81 +4328,17 @@ Ready
      📺 BANGLA TV LIVE
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-live-section">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-
-<span>📺 Bangla TV Live</span>
-<span class="arrow">▼</span>
-
-</button>
-
-<div class="pppp-extra-content">
-
-<div class="pppp-live-note">
-📺 বাংলাদেশের জনপ্রিয় TV চ্যানেলের official live pages।
-কার্ডে চাপ দিলে সংশ্লিষ্ট official live broadcast খুলবে।
+<div class="pppp-live-title">
+📺 Bangla TV Live
 </div>
 
-<div class="pppp-extra-grid">
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.btvlive.gov.bd/')">
-<span class="pppp-extra-number">01</span>
-<span class="pppp-extra-icon">🇧🇩</span>
-<span class="pppp-extra-name">BTV Live</span>
-<span class="pppp-live-status">🔴 LIVE</span>
+<div
+id="ppppBanglaTVGrid"
+class="pppp-live-grid">
 </div>
 
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.somoynews.tv/tv')">
-<span class="pppp-extra-number">02</span>
-<span class="pppp-extra-icon">📺</span>
-<span class="pppp-extra-name">Somoy TV</span>
-<span class="pppp-live-status">🔴 LIVE</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.ntvbd.com/livetv')">
-<span class="pppp-extra-number">03</span>
-<span class="pppp-extra-icon">📺</span>
-<span class="pppp-extra-name">NTV</span>
-<span class="pppp-live-status">🔴 LIVE</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.channelionline.com/live-tv/')">
-<span class="pppp-extra-number">04</span>
-<span class="pppp-extra-icon">📺</span>
-<span class="pppp-extra-name">Channel i</span>
-<span class="pppp-live-status">🔴 LIVE</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.jamuna.tv/live')">
-<span class="pppp-extra-number">05</span>
-<span class="pppp-extra-icon">📺</span>
-<span class="pppp-extra-name">Jamuna TV</span>
-<span class="pppp-live-status">🔴 LIVE</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/live-tv')">
-<span class="pppp-extra-number">06</span>
-<span class="pppp-extra-icon">🏆</span>
-<span class="pppp-extra-name">T Sports</span>
-<span class="pppp-live-status">🔴 LIVE</span>
-</div>
-
-</div>
-</div>
 </div>
 
 
@@ -4548,59 +4346,17 @@ Ready
      📻 BANGLA RADIO LIVE
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-live-section">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-
-<span>📻 Bangla Radio Live</span>
-<span class="arrow">▼</span>
-
-</button>
-
-<div class="pppp-extra-content">
-
-<div class="pppp-live-note">
-📻 Official online radio streaming services।
+<div class="pppp-live-title">
+📻 Bangla Radio Live
 </div>
 
-<div class="pppp-extra-grid">
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://betar.gov.bd/')">
-
-<span class="pppp-extra-number">01</span>
-<span class="pppp-extra-icon">🇧🇩</span>
-<span class="pppp-extra-name">Bangladesh Betar</span>
-<span class="pppp-live-status">🔴 LIVE RADIO</span>
-
+<div
+id="ppppBanglaRadioGrid"
+class="pppp-live-grid">
 </div>
 
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://radiofoorti.fm/')">
-
-<span class="pppp-extra-number">02</span>
-<span class="pppp-extra-icon">🎵</span>
-<span class="pppp-extra-name">Radio Foorti</span>
-<span class="pppp-live-status">🔴 LIVE RADIO</span>
-
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.betar.gov.bd/')">
-
-<span class="pppp-extra-number">03</span>
-<span class="pppp-extra-icon">📻</span>
-<span class="pppp-extra-name">Bangla Radio</span>
-<span class="pppp-live-status">🔴 ONLINE</span>
-
-</div>
-
-</div>
-</div>
 </div>
 
 
@@ -4608,91 +4364,17 @@ Ready
      📰 BANGLA NEWSPAPER LIVE
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-live-section">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-
-<span>📰 Bangla Newspaper Live</span>
-<span class="arrow">▼</span>
-
-</button>
-
-<div class="pppp-extra-content">
-
-<div class="pppp-live-note">
-📰 বাংলাদেশের জনপ্রিয় বাংলা সংবাদপত্র ও e-paper।
-কার্ডে চাপ দিলে official newspaper/e-paper খুলবে।
+<div class="pppp-live-title">
+📰 Bangla Newspaper Live
 </div>
 
-<div class="pppp-extra-grid">
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.prothomalo.com/')">
-<span class="pppp-extra-number">01</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Prothom Alo</span>
+<div
+id="ppppBanglaNewspaperGrid"
+class="pppp-live-grid">
 </div>
 
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.ittefaq.com.bd/')">
-<span class="pppp-extra-number">02</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Ittefaq</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.jugantor.com/')">
-<span class="pppp-extra-number">03</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Jugantor</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.kalerkantho.com/')">
-<span class="pppp-extra-number">04</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Kaler Kantho</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://samakal.com/')">
-<span class="pppp-extra-number">05</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Samakal</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.bd-pratidin.com/')">
-<span class="pppp-extra-number">06</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Bangladesh Pratidin</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://epaper.jugantor.com/')">
-<span class="pppp-extra-number">07</span>
-<span class="pppp-extra-icon">📖</span>
-<span class="pppp-extra-name">Jugantor e-Paper</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.dainikbangla.com.bd/')">
-<span class="pppp-extra-number">08</span>
-<span class="pppp-extra-icon">📰</span>
-<span class="pppp-extra-name">Dainik Bangla</span>
-</div>
-
-</div>
-</div>
 </div>
 
 
@@ -4700,61 +4382,17 @@ Ready
      ⚽ FOOTBALL TV LIVE
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-live-section">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-
-<span>⚽ Football TV Live</span>
-<span class="arrow">▼</span>
-
-</button>
-
-<div class="pppp-extra-content">
-
-<div class="pppp-live-note">
-⚽ বাংলাদেশ ও আন্তর্জাতিক ফুটবলের official/live sports sources।
-লাইভ ম্যাচের availability সময় ও broadcasting rights অনুযায়ী পরিবর্তিত হতে পারে।
+<div class="pppp-live-title">
+⚽ Football TV Live
 </div>
 
-<div class="pppp-extra-grid">
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/live-tv')">
-<span class="pppp-extra-number">01</span>
-<span class="pppp-extra-icon">⚽</span>
-<span class="pppp-extra-name">T Sports</span>
-<span class="pppp-live-status">🔴 LIVE SPORTS</span>
+<div
+id="ppppFootballGrid"
+class="pppp-live-grid">
 </div>
 
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/live-schedule')">
-<span class="pppp-extra-number">02</span>
-<span class="pppp-extra-icon">🏟️</span>
-<span class="pppp-extra-name">T Sports Live Schedule</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.fifa.com/en/watch')">
-<span class="pppp-extra-number">03</span>
-<span class="pppp-extra-icon">🌍</span>
-<span class="pppp-extra-name">FIFA+</span>
-<span class="pppp-live-status">🌍 OFFICIAL</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/')">
-<span class="pppp-extra-number">04</span>
-<span class="pppp-extra-icon">🏆</span>
-<span class="pppp-extra-name">Football Live</span>
-</div>
-
-</div>
-</div>
 </div>
 
 
@@ -4762,562 +4400,1185 @@ Ready
      🏏 CRICKET TV LIVE
 ========================================================= -->
 
-<div class="pppp-extra-section">
+<div class="pppp-live-section">
 
-<button class="pppp-extra-title"
-        type="button"
-        onclick="ppppToggleExtraSection(this)">
-
-<span>🏏 Cricket TV Live</span>
-<span class="arrow">▼</span>
-
-</button>
-
-<div class="pppp-extra-content">
-
-<div class="pppp-live-note">
-🏏 বাংলাদেশ ও বিশ্বের ক্রিকেটের official/live sports sources।
-কোন ম্যাচ কোন channel/platform-এ থাকবে তা broadcasting rights অনুযায়ী পরিবর্তিত হতে পারে।
+<div class="pppp-live-title">
+🏏 Cricket TV Live
 </div>
 
-<div class="pppp-extra-grid">
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/live-tv')">
-<span class="pppp-extra-number">01</span>
-<span class="pppp-extra-icon">🏏</span>
-<span class="pppp-extra-name">T Sports</span>
-<span class="pppp-live-status">🔴 LIVE SPORTS</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/live-schedule')">
-<span class="pppp-extra-number">02</span>
-<span class="pppp-extra-icon">🏏</span>
-<span class="pppp-extra-name">Cricket Live Schedule</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/')">
-<span class="pppp-extra-number">03</span>
-<span class="pppp-extra-icon">🇧🇩</span>
-<span class="pppp-extra-name">Bangladesh Cricket</span>
-</div>
-
-
-<div class="pppp-extra-card pppp-live-card"
-     onclick="ppppOpenLive('https://www.tsports.com/')">
-<span class="pppp-extra-number">04</span>
-<span class="pppp-extra-icon">🌍</span>
-<span class="pppp-extra-name">World Cricket</span>
+<div
+id="ppppCricketGrid"
+class="pppp-live-grid">
 </div>
 
 </div>
-</div>
+
 </div>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
 
 <script>
 
 /* =========================================================
-   SECTION TOGGLE
+   📝 NOTEPAD
 ========================================================= */
 
-function ppppToggleExtraSection(button){
+(function(){
 
-    const section =
-        button.closest(".pppp-extra-section");
+const note =
+document.getElementById("ppppNotepad");
 
-    if(!section) return;
+if(note){
 
-    section.classList.toggle("open");
+    const saved =
+    localStorage.getItem("ppppNotepadText");
 
-}
-
-
-/* =========================================================
-   TOOL PANEL
-========================================================= */
-
-function ppppOpenTool(tool){
-
-    const panels = document.querySelectorAll(
-        ".pppp-tool-panel"
-    );
-
-    panels.forEach(function(panel){
-        panel.classList.remove("active");
-    });
-
-    const target =
-        document.getElementById(
-            "ppppTool" +
-            tool.charAt(0).toUpperCase() +
-            tool.slice(1)
-        );
-
-    if(target){
-        target.classList.add("active");
-
-        setTimeout(function(){
-
-            target.scrollIntoView({
-                behavior:"smooth",
-                block:"center"
-            });
-
-        },80);
+    if(saved !== null){
+        note.value = saved;
     }
 
 }
 
+})();
 
-/* =========================================================
-   NOTEPAD
-========================================================= */
 
-function ppppSaveNotepad(){
+function ppppNotepadSave(){
 
-    const text =
-        document.getElementById(
-            "ppppNotepadText"
-        ).value;
+const note =
+document.getElementById("ppppNotepad");
 
-    localStorage.setItem(
-        "PPPP_Notepad",
-        text
-    );
+if(!note) return;
 
-    alert("✅ Notepad saved successfully.");
+localStorage.setItem(
+"ppppNotepadText",
+note.value
+);
+
+alert("📝 Note saved successfully.");
 
 }
 
 
-function ppppLoadNotepad(){
+function ppppNotepadNew(){
 
-    const text =
-        localStorage.getItem(
-            "PPPP_Notepad"
-        ) || "";
+const note =
+document.getElementById("ppppNotepad");
 
-    document.getElementById(
-        "ppppNotepadText"
-    ).value = text;
+if(!note) return;
 
-}
+if(note.value.trim() !== ""){
 
-
-function ppppClearNotepad(){
-
-    if(
-        !confirm(
-            "🗑️ Clear all Notepad text?"
-        )
-    ){
+    if(!confirm(
+    "📝 বর্তমান লেখা মুছে নতুন Note শুরু করবেন?"
+    )){
         return;
     }
 
-    document.getElementById(
-        "ppppNotepadText"
-    ).value = "";
+}
+
+note.value = "";
+
+}
+
+
+function ppppNotepadClear(){
+
+const note =
+document.getElementById("ppppNotepad");
+
+if(!note) return;
+
+if(confirm(
+"🗑️ সব লেখা মুছে ফেলবেন?"
+)){
+
+    note.value = "";
 
     localStorage.removeItem(
-        "PPPP_Notepad"
+    "ppppNotepadText"
     );
 
 }
 
+}
 
-/* =========================================================
-   CONVERTER
-========================================================= */
 
-function ppppConvert(){
+function ppppNotepadDownload(){
 
-    const value =
-        parseFloat(
-            document.getElementById(
-                "ppppConvertValue"
-            ).value
-        );
+const note =
+document.getElementById("ppppNotepad");
 
-    const type =
-        document.getElementById(
-            "ppppConvertType"
-        ).value;
+if(!note) return;
 
-    if(isNaN(value)){
-        document.getElementById(
-            "ppppConverterResult"
-        ).textContent = "0.00";
+const blob =
+new Blob(
+[note.value],
+{type:"text/plain;charset=utf-8"}
+);
 
-        return;
-    }
+const url =
+URL.createObjectURL(blob);
 
-    let result = 0;
-    let unit = "";
+const a =
+document.createElement("a");
 
-    switch(type){
+a.href = url;
+a.download = "PPPP-Notepad.txt";
 
-        case "km-mi":
-            result = value * 0.621371;
-            unit = "mi";
-            break;
+document.body.appendChild(a);
 
-        case "mi-km":
-            result = value * 1.609344;
-            unit = "km";
-            break;
+a.click();
 
-        case "kg-lb":
-            result = value * 2.2046226218;
-            unit = "lb";
-            break;
+a.remove();
 
-        case "lb-kg":
-            result = value * 0.45359237;
-            unit = "kg";
-            break;
-
-        case "c-f":
-            result = (value * 9/5) + 32;
-            unit = "°F";
-            break;
-
-        case "f-c":
-            result = (value - 32) * 5/9;
-            unit = "°C";
-            break;
-
-        case "m-ft":
-            result = value * 3.280839895;
-            unit = "ft";
-            break;
-
-        case "ft-m":
-            result = value * 0.3048;
-            unit = "m";
-            break;
-
-    }
-
-    document.getElementById(
-        "ppppConverterResult"
-    ).textContent =
-        result.toFixed(2) + " " + unit;
+URL.revokeObjectURL(url);
 
 }
 
-ppppConvert();
+
+/* =========================================================
+   🔁 CONVERTER
+========================================================= */
+
+const ppppConverterData = {
+
+length:{
+    "Meter (m)":1,
+    "Kilometer (km)":1000,
+    "Centimeter (cm)":0.01,
+    "Millimeter (mm)":0.001,
+    "Mile":1609.344,
+    "Yard":0.9144,
+    "Foot":0.3048,
+    "Inch":0.0254
+},
+
+weight:{
+    "Kilogram (kg)":1,
+    "Gram (g)":0.001,
+    "Milligram (mg)":0.000001,
+    "Pound (lb)":0.45359237,
+    "Ounce (oz)":0.028349523125
+},
+
+volume:{
+    "Liter (L)":1,
+    "Milliliter (mL)":0.001,
+    "Cubic Meter (m³)":1000,
+    "US Gallon":3.785411784,
+    "US Quart":0.946352946,
+    "US Pint":0.473176473,
+    "Cup":0.2365882365
+},
+
+area:{
+    "Square Meter (m²)":1,
+    "Square Kilometer (km²)":1000000,
+    "Square Foot":0.09290304,
+    "Square Yard":0.83612736,
+    "Acre":4046.8564224,
+    "Hectare":10000
+},
+
+time:{
+    "Second":1,
+    "Minute":60,
+    "Hour":3600,
+    "Day":86400,
+    "Week":604800
+},
+
+data:{
+    "Byte":1,
+    "Kilobyte (KB)":1024,
+    "Megabyte (MB)":1024**2,
+    "Gigabyte (GB)":1024**3,
+    "Terabyte (TB)":1024**4
+},
+
+speed:{
+    "m/s":1,
+    "km/h":0.2777777778,
+    "mph":0.44704,
+    "knot":0.5144444444
+},
+
+pressure:{
+    "Pascal (Pa)":1,
+    "Kilopascal (kPa)":1000,
+    "Bar":100000,
+    "PSI":6894.757293
+},
+
+energy:{
+    "Joule (J)":1,
+    "Kilojoule (kJ)":1000,
+    "Calorie (cal)":4.184,
+    "Kilocalorie (kcal)":4184,
+    "Watt-hour (Wh)":3600,
+    "Kilowatt-hour (kWh)":3600000
+}
+
+};
+
+
+/* ---------------------------------------------------------
+   UPDATE UNITS
+--------------------------------------------------------- */
+
+function ppppUpdateConverterUnits(){
+
+const category =
+document.getElementById(
+"ppppConvertCategory"
+).value;
+
+const from =
+document.getElementById(
+"ppppConvertFrom"
+);
+
+const to =
+document.getElementById(
+"ppppConvertTo"
+);
+
+from.innerHTML="";
+to.innerHTML="";
+
+
+if(category === "temperature"){
+
+[
+"Celsius (°C)",
+"Fahrenheit (°F)",
+"Kelvin (K)"
+].forEach(unit=>{
+
+    from.add(
+    new Option(unit,unit)
+    );
+
+    to.add(
+    new Option(unit,unit)
+    );
+
+});
+
+return;
+
+}
+
+
+Object.keys(
+ppppConverterData[category]
+).forEach(unit=>{
+
+    from.add(
+    new Option(unit,unit)
+    );
+
+    to.add(
+    new Option(unit,unit)
+    );
+
+});
+
+
+/*
+   Default KG -> Liter option
+   for water-related conversion.
+*/
+
+if(category === "weight"){
+
+    const literOption =
+    new Option(
+    "Liter of Water (L)",
+    "LiterWater"
+    );
+
+    to.add(literOption);
+
+}
+
+if(category === "volume"){
+
+    const kgOption =
+    new Option(
+    "Kilogram of Water (kg)",
+    "KilogramWater"
+    );
+
+    to.add(kgOption);
+
+}
+
+}
+
+
+/* ---------------------------------------------------------
+   TEMPERATURE
+--------------------------------------------------------- */
+
+function ppppTemperatureConvert(
+value,
+from,
+to
+){
+
+let c;
+
+if(from === "Celsius (°C)")
+    c = value;
+
+else if(from === "Fahrenheit (°F)")
+    c = (value-32)*5/9;
+
+else
+    c = value-273.15;
+
+
+if(to === "Celsius (°C)")
+    return c;
+
+if(to === "Fahrenheit (°F)")
+    return c*9/5+32;
+
+return c+273.15;
+
+}
+
+
+/* ---------------------------------------------------------
+   CONVERT
+--------------------------------------------------------- */
+
+function ppppConvertNow(){
+
+const category =
+document.getElementById(
+"ppppConvertCategory"
+).value;
+
+const value =
+parseFloat(
+document.getElementById(
+"ppppConvertValue"
+).value
+);
+
+const from =
+document.getElementById(
+"ppppConvertFrom"
+).value;
+
+const to =
+document.getElementById(
+"ppppConvertTo"
+).value;
+
+const result =
+document.getElementById(
+"ppppConvertResult"
+);
+
+if(!Number.isFinite(value)){
+
+    result.textContent =
+    "⚠️ একটি বৈধ সংখ্যা লিখুন।";
+
+    return;
+
+}
+
+
+/* Temperature */
+
+if(category === "temperature"){
+
+    const converted =
+    ppppTemperatureConvert(
+    value,
+    from,
+    to
+    );
+
+    result.textContent =
+    `${value} ${from} = ${converted.toFixed(6)} ${to}`;
+
+    return;
+
+}
+
+
+/* KG -> Litre water */
+
+if(
+category === "weight" &&
+to === "LiterWater"
+){
+
+    result.textContent =
+    `${value} kg পানি ≈ ${value} L পানি`;
+
+    return;
+
+}
+
+
+/* Litre -> KG water */
+
+if(
+category === "volume" &&
+to === "KilogramWater"
+){
+
+    result.textContent =
+    `${value} L পানি ≈ ${value} kg পানি`;
+
+    return;
+
+}
+
+
+const data =
+ppppConverterData[category];
+
+const base =
+value * data[from];
+
+const converted =
+base / data[to];
+
+result.textContent =
+`${value} ${from} = ${converted.toFixed(6)} ${to}`;
+
+}
+
+
+/* Initialize converter */
+
+ppppUpdateConverterUnits();
 
 
 /* =========================================================
-   STOPWATCH
+   ⏰ STOPWATCH
 ========================================================= */
 
-let ppppStopwatchStart = 0;
+let ppppStopwatchRunning = false;
+
+let ppppStopwatchStartTime = 0;
+
 let ppppStopwatchElapsed = 0;
+
 let ppppStopwatchTimer = null;
-let ppppLapNumber = 0;
+
+let ppppLapCounter = 0;
 
 
 function ppppFormatStopwatch(ms){
 
-    const hours =
-        Math.floor(ms / 3600000);
+const h =
+Math.floor(ms/3600000);
 
-    const minutes =
-        Math.floor(
-            (ms % 3600000) / 60000
-        );
+const m =
+Math.floor(
+(ms%3600000)/60000
+);
 
-    const seconds =
-        Math.floor(
-            (ms % 60000) / 1000
-        );
+const s =
+Math.floor(
+(ms%60000)/1000
+);
 
-    const millis =
-        ms % 1000;
+const milli =
+ms%1000;
 
-    return String(hours).padStart(2,"0")
-        + ":"
-        + String(minutes).padStart(2,"0")
-        + ":"
-        + String(seconds).padStart(2,"0")
-        + "."
-        + String(millis).padStart(3,"0");
-
-}
-
-
-function ppppUpdateStopwatch(){
-
-    if(!ppppStopwatchTimer) return;
-
-    ppppStopwatchElapsed =
-        Date.now() - ppppStopwatchStart;
-
-    document.getElementById(
-        "ppppStopwatchTime"
-    ).textContent =
-        ppppFormatStopwatch(
-            ppppStopwatchElapsed
-        );
+return (
+String(h).padStart(2,"0")
++
+":"+
+String(m).padStart(2,"0")
++
+":"+
+String(s).padStart(2,"0")
++
+"."+
+String(milli).padStart(3,"0")
+);
 
 }
 
 
-function ppppStartStopwatch(){
+function ppppStopwatchUpdate(){
 
-    if(ppppStopwatchTimer) return;
+if(!ppppStopwatchRunning)
+    return;
 
-    ppppStopwatchStart =
-        Date.now() -
-        ppppStopwatchElapsed;
+ppppStopwatchElapsed =
+Date.now()
+-
+ppppStopwatchStartTime;
 
-    ppppStopwatchTimer =
-        setInterval(
-            ppppUpdateStopwatch,
-            10
-        );
-
-}
-
-
-function ppppPauseStopwatch(){
-
-    if(!ppppStopwatchTimer) return;
-
-    clearInterval(
-        ppppStopwatchTimer
-    );
-
-    ppppStopwatchTimer = null;
+document.getElementById(
+"ppppStopwatchDisplay"
+).textContent =
+ppppFormatStopwatch(
+ppppStopwatchElapsed
+);
 
 }
 
 
-function ppppLapStopwatch(){
+function ppppStopwatchStart(){
 
-    if(ppppStopwatchElapsed <= 0){
-        return;
-    }
+if(ppppStopwatchRunning)
+    return;
 
-    ppppLapNumber++;
+ppppStopwatchStartTime =
+Date.now()
+-
+ppppStopwatchElapsed;
 
-    const lap =
-        document.createElement("div");
+ppppStopwatchRunning = true;
 
-    lap.className =
-        "pppp-lap";
-
-    lap.textContent =
-        "🏁 Lap " +
-        ppppLapNumber +
-        " — " +
-        ppppFormatStopwatch(
-            ppppStopwatchElapsed
-        );
-
-    document.getElementById(
-        "ppppStopwatchLaps"
-    ).prepend(lap);
+ppppStopwatchTimer =
+setInterval(
+ppppStopwatchUpdate,
+20
+);
 
 }
 
 
-function ppppResetStopwatch(){
+function ppppStopwatchPause(){
 
-    clearInterval(
-        ppppStopwatchTimer
-    );
+if(!ppppStopwatchRunning)
+    return;
 
-    ppppStopwatchTimer = null;
+ppppStopwatchUpdate();
 
-    ppppStopwatchStart = 0;
-    ppppStopwatchElapsed = 0;
-    ppppLapNumber = 0;
+ppppStopwatchRunning = false;
 
-    document.getElementById(
-        "ppppStopwatchTime"
-    ).textContent =
-        "00:00:00.000";
+clearInterval(
+ppppStopwatchTimer
+);
 
-    document.getElementById(
-        "ppppStopwatchLaps"
-    ).innerHTML = "";
+ppppStopwatchTimer = null;
 
 }
 
 
-/* =========================================================
-   INTERNET SPEED METER
-========================================================= */
+function ppppStopwatchReset(){
 
-let ppppSpeedRunning = false;
+ppppStopwatchRunning = false;
+
+clearInterval(
+ppppStopwatchTimer
+);
+
+ppppStopwatchTimer = null;
+
+ppppStopwatchElapsed = 0;
+
+ppppLapCounter = 0;
+
+document.getElementById(
+"ppppStopwatchDisplay"
+).textContent =
+"00:00:00.000";
+
+document.getElementById(
+"ppppLapList"
+).innerHTML = "";
+
+}
 
 
-async function ppppRunSpeedTest(){
+function ppppStopwatchLap(){
 
-    if(ppppSpeedRunning) return;
+if(!ppppStopwatchRunning)
+    return;
 
-    ppppSpeedRunning = true;
+ppppLapCounter++;
 
-    const valueEl =
-        document.getElementById(
-            "ppppSpeedValue"
-        );
+const list =
+document.getElementById(
+"ppppLapList"
+);
 
-    const progressEl =
-        document.getElementById(
-            "ppppSpeedProgress"
-        );
+const row =
+document.createElement("div");
 
-    const statusEl =
-        document.getElementById(
-            "ppppSpeedStatus"
-        );
+row.textContent =
+`🏁 Lap ${ppppLapCounter}: ${ppppFormatStopwatch(ppppStopwatchElapsed)}`;
 
-    valueEl.textContent = "0";
+row.style.padding =
+"6px 10px";
 
-    progressEl.style.width = "0%";
+row.style.borderBottom =
+"1px solid #e5e5e5";
 
-    statusEl.textContent =
-        "🔄 Testing connection...";
-
-    /*
-       Browser-only speed estimation.
-       It does not require an external library.
-    */
-
-    const testURL =
-        "https://speed.cloudflare.com/__down?bytes=5000000";
-
-    const start =
-        performance.now();
-
-    try{
-
-        const response =
-            await fetch(
-                testURL +
-                "?t=" +
-                Date.now(),
-                {
-                    cache:"no-store"
-                }
-            );
-
-        const blob =
-            await response.blob();
-
-        const end =
-            performance.now();
-
-        const seconds =
-            (end - start) / 1000;
-
-        const bits =
-            blob.size * 8;
-
-        const mbps =
-            bits / seconds / 1000000;
-
-        const safeMbps =
-            Math.max(
-                0.1,
-                Math.min(
-                    mbps,
-                    1000
-                )
-            );
-
-        valueEl.textContent =
-            safeMbps.toFixed(2);
-
-        progressEl.style.width =
-            Math.min(
-                safeMbps / 100 * 100,
-                100
-            ) + "%";
-
-        statusEl.textContent =
-            "✅ Speed test completed";
-
-    }catch(error){
-
-        valueEl.textContent =
-            "—";
-
-        progressEl.style.width =
-            "0%";
-
-        statusEl.textContent =
-            "⚠️ Speed test could not be completed";
-
-    }
-
-    ppppSpeedRunning = false;
+list.prepend(row);
 
 }
 
 
 /* =========================================================
-   LIVE / OFFICIAL LINKS
+   📶 INTERNET SPEED METER
 ========================================================= */
 
-function ppppOpenLive(url){
+async function ppppStartSpeedTest(){
 
-    if(!url) return;
+const value =
+document.getElementById(
+"ppppSpeedValue"
+);
 
-    window.open(
-        url,
-        "_blank",
-        "noopener,noreferrer"
-    );
+const status =
+document.getElementById(
+"ppppSpeedStatus"
+);
+
+value.textContent = "…";
+
+status.textContent =
+"📡 Testing your Internet connection...";
+
+
+/*
+   Use a small public response with cache-busting.
+   Browser security prevents direct access to router/Wi-Fi
+   hardware speed.
+*/
+
+const testSize =
+2000000;
+
+const url =
+"https://speed.cloudflare.com/__down?bytes="
++
+testSize
++
+"&cache="
++
+Date.now();
+
+
+try{
+
+const start =
+performance.now();
+
+const response =
+await fetch(
+url,
+{
+cache:"no-store"
+}
+);
+
+if(!response.ok)
+    throw new Error("Network error");
+
+const data =
+await response.arrayBuffer();
+
+const elapsed =
+(performance.now()-start)/1000;
+
+const bits =
+data.byteLength*8;
+
+const mbps =
+bits/elapsed/1000000;
+
+value.textContent =
+mbps.toFixed(2);
+
+status.textContent =
+"✅ Internet speed test completed.";
+
+}catch(error){
+
+value.textContent =
+"0.00";
+
+status.textContent =
+"⚠️ Speed test could not be completed. Check Internet.";
+
+}
 
 }
 
 
 /* =========================================================
-   AUTO LOAD NOTEPAD
+   LIVE MEDIA DATA
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
 
-        const saved =
-            localStorage.getItem(
-                "PPPP_Notepad"
-            );
+/* ---------------------------------------------------------
+   📺 BANGLADESH TV
+   Based on the Bangladesh TV listings plus verified
+   official live destinations where available.
+--------------------------------------------------------- */
 
-        if(saved !== null){
+const ppppBanglaTV = [
 
-            const note =
-                document.getElementById(
-                    "ppppNotepadText"
-                );
+["📺","Channel I","https://www.channelionline.com/"],
 
-            if(note){
-                note.value = saved;
-            }
+["📡","Independent TV","https://www.itvbd.com/"],
 
-        }
+["🎥","Somoy News","https://www.somoynews.tv/tv"],
 
-    }
+["📽️","NTV BD","https://www.ntvbd.com/"],
+
+["▶️","Channel 24 BD","https://www.channel24bd.tv/live/"],
+
+["🔴","RTV","https://www.rtvbd.tv/live.php"],
+
+["🖥️","Ekushey TV","https://www.ekushey-tv.com/"],
+
+["🌐","ATN Bangla","https://www.atnbangla.tv/"],
+
+["📶","Jamuna TV","https://www.jamuna.tv/live"],
+
+["🎬","SATV","https://www.satv.tv/"],
+
+["📹","Desh TV","https://www.desh.tv/"],
+
+["📼","Maasranga TV","https://maasranga.tv/"],
+
+["🎞️","Bangla Vision","https://www.bvnews24.com/"],
+
+["📺","Ekattor TV","https://ekattor.tv/"],
+
+["📡","ATN News","https://www.atnnewstv.com/"],
+
+["🎥","My TV","https://www.mytvbd.tv/"],
+
+["📽️","Boishakhi TV","https://www.boishakhionline.com/"],
+
+["▶️","Mohona TV","https://www.mohona.tv/"],
+
+["🔴","Gazi TV (GTV)","https://www.gazitv.com/"],
+
+["🖥️","BTV","https://www.btvlive.gov.bd/"],
+
+["🌐","Channel 16","https://www.allbanglanewspaper.xyz/"],
+
+["📶","Gaan Bangla","https://www.allbanglanewspaper.xyz/"]
+
+];
+
+
+/* ---------------------------------------------------------
+   📻 BANGLA RADIO
+--------------------------------------------------------- */
+
+const ppppBanglaRadio = [
+
+["📻","Radio Today","https://radiotodaybd.fm/"],
+
+["🔊","ABC Radio","https://www.abcradio.fm/"],
+
+["📢","Dhaka FM 90.4","https://www.dhakafm904.com/"],
+
+["🎙️","Bangladesh Betar","https://betar.gov.bd/"],
+
+["🎤","Radio Foorti","https://www.radiofoorti.fm/"],
+
+["🎧","Peoples Radio","https://www.peoplesradio.fm/"],
+
+["🎶","Radio Shadhin","https://www.radioshadhin.fm/"],
+
+["🎵","Bangla Radio 24","https://banglaradio24.com/"],
+
+["🎼","Radio GoonGoon","https://radiogoongoon.com/"],
+
+["📯","Jago FM","https://jago.fm/"],
+
+["🗣️","BBC Bangla","https://www.bbc.com/bengali"],
+
+["💬","VOA Bangla","https://www.voabangla.com/"],
+
+["🛰️","DW Bangla","https://www.dw.com/bn/"],
+
+["🚀","Pars Today Bangla","https://parstoday.ir/bn"],
+
+["⚡","NHK World Bangla","https://www3.nhk.or.jp/nhkworld/bn/"],
+
+["💡","CRI Bangla","https://bengali.cri.cn/"]
+
+];
+
+
+/* ---------------------------------------------------------
+   📰 BANGLA NEWSPAPERS
+--------------------------------------------------------- */
+
+const ppppBanglaNewspapers = [
+
+["📰","Prothom Alo","https://www.prothomalo.com/"],
+
+["🗞️","Bangladesh Pratidin","https://www.bd-pratidin.com/"],
+
+["📄","Ittefaq","https://www.ittefaq.com.bd/"],
+
+["📃","Kaler Kantho","https://www.kalerkantho.com/"],
+
+["📜","Naya Diganta","https://www.dailynayadiganta.com/"],
+
+["📑","Amar Sangbad","https://www.amarsangbad.com/"],
+
+["📋","Protidiner Sangbad","https://www.protidinersangbad.com/"],
+
+["📖","Jugantor","https://www.jugantor.com/"],
+
+["📕","Daily Sangram","https://dailysangram.com/"],
+
+["📗","Manab Zamin","https://mzamin.com/"],
+
+["📘","Amader Shomoy","https://www.dainikamadershomoy.com/"],
+
+["📚","Bonik Barta","https://bonikbarta.net/"],
+
+["📝","Samakal","https://samakal.com/"],
+
+["✍️","Janakantha","https://www.dailyjanakantha.com/"],
+
+["🖊️","Jai Jai Din","https://www.jaijaidinbd.com/"],
+
+["🖋️","Bhorer Kagoj","https://www.bhorerkagoj.com/"],
+
+["✒️","Arthoniteer Kagoj","https://arthoniteerkagoj.com/"],
+
+["📌","Daily Inqilab","https://dailyinqilab.com/"],
+
+["📍","Sangbad","https://sangbad.net.bd/"],
+
+["🔖","Manob Kantha","https://www.manobkantha.com.bd/"],
+
+["🏷️","Bangladesh Journal","https://www.bd-journal.com/"],
+
+["📱","Daily Dinkal","https://www.dinkal.net/"],
+
+["💻","Alokito Bangladesh","https://www.alokitobangladesh.com/"],
+
+["📲","Ajker Bazar","https://www.ajkerbazar.com/"],
+
+["🎙️","Bangladesh Post","https://www.bangladeshpost.net/"],
+
+["🎤","Sorejomin Barta","https://www.sorejominbarta.com/"],
+
+["🎧","Khabar Patra","https://www.khabarpatra.com/"],
+
+["🎶","Vorer Pata","https://www.vorerpata.com/"],
+
+["🎵","Shomoyer Alo","https://www.shomoyeralo.com/"],
+
+["🎼","Kal Bela","https://www.kalbela.com/"],
+
+["📯","Daily Bartoman","https://www.dailybartoman.com/"],
+
+["🗣️","Ajkaler Khobor","https://www.ajkalerkhobor.com/"],
+
+["💬","Khola Kagoj","https://www.kholakagojbd.com/"],
+
+["🛰️","Gonokantho","https://www.gonokantho.com/"],
+
+["🚀","The Daily Star","https://www.thedailystar.net/"],
+
+["⚡","Daily Observer","https://www.observerbd.com/"],
+
+["💡","Financial Express","https://thefinancialexpress.com.bd/"],
+
+["✨","Desh Rupantor","https://www.deshrupantor.com/"],
+
+["⭐","Bangladesher Khabor","https://www.bangladesherkhabor.net/"],
+
+["🌟","Business Standard","https://www.tbsnews.net/"],
+
+["🔆","Dhaka Tribune","https://www.dhakatribune.com/"],
+
+["🌍","Business Post","https://businesspostbd.com/"],
+
+["🌎","Ajker Patrika","https://www.ajkerpatrika.com/"],
+
+["🌏","Dainik Bangla","https://www.dainikbangla.com.bd/"],
+
+["🗺️","BD News 24","https://bangla.bdnews24.com/"],
+
+["🔎","Bangla News 24","https://www.banglanews24.com/"],
+
+["🔍","Jago News 24","https://www.jagonews24.com/"],
+
+["📅","RisingBD","https://www.risingbd.com/"],
+
+["📆","Dhaka Post","https://www.dhakapost.com/"],
+
+["🗓️","Bangla Tribune","https://www.banglatribune.com/"],
+
+["📣","UNB","https://www.unb.com.bd/"],
+
+["📮","BSS","https://www.bssnews.net/"],
+
+["📬","Barta24","https://www.barta24.com/"],
+
+["📭","Sarabangla","https://sarabangla.net/"],
+
+["📦","Dhaka Times","https://www.dhakatimes24.com/"],
+
+["🖲️","Somoyer Konthosor","https://www.somoyerkonthosor.com/"],
+
+["🕹️","Artho Suchak","https://www.arthosuchak.com/"],
+
+["🎮","Share News 24","https://www.sharenews24.com/"],
+
+["🔘","Orthosongbad","https://orthosongbad.com/"],
+
+["⏺️","Desh News","https://www.deshnews24.com/"],
+
+["⏯️","Desher Sangbad","https://www.deshersangbad.com/"],
+
+["⏭️","Bangla Daily 24","https://bangladaily24.com/"],
+
+["⏮️","Protikhon","https://www.protikhon.com/"],
+
+["⏩","Zoom Bangla","https://zoombangla.com/"],
+
+["⏪","SNN24","https://snn24.com/"],
+
+["🔀","Alert News","https://alertnews24.com/"],
+
+["🔁","Khobor Protidin","https://khoborprotidin24.com/"],
+
+["🔂","BD Cricteam","https://www.bdcricteam.com/"],
+
+["🔄","Latest BD News","https://latestbdnews.com/"],
+
+["🎞️","Barta Bazar","https://bartabazar.com/"],
+
+["🎟️","Dhaka Protidin","https://dhakaprotidin.com/"],
+
+["🎫","Eibela","https://eibela.com/"],
+
+["🖼️","Techshohor","https://www.techshohor.com/"],
+
+["📸","Tech Zoom","https://techzoom.tv/"],
+
+["🎦","All Bangladesh Newspapers","https://www.allbanglanewspaper.xyz/"]
+
+];
+
+
+/* ---------------------------------------------------------
+   ⚽ FOOTBALL
+--------------------------------------------------------- */
+
+const ppppFootball = [
+
+["⚽","T Sports","https://www.tsports.com/"],
+
+["📺","T Sports Live","https://www.tsports.com/"],
+
+["📡","FIFA+","https://www.plus.fifa.com/"],
+
+["🎥","FIFA","https://www.fifa.com/"],
+
+["📽️","AFC","https://www.the-afc.com/"],
+
+["▶️","UEFA","https://www.uefa.com/"],
+
+["🔴","UEFA.tv","https://www.uefa.tv/"],
+
+["🖥️","OneFootball","https://onefootball.com/"],
+
+["🌐","GOAL","https://www.goal.com/"],
+
+["📶","Live Football Updates","https://www.tsports.com/"]
+
+];
+
+
+/* ---------------------------------------------------------
+   🏏 CRICKET
+--------------------------------------------------------- */
+
+const ppppCricket = [
+
+["🏏","T Sports","https://www.tsports.com/"],
+
+["📺","T Sports Live","https://www.tsports.com/"],
+
+["📡","ICC","https://www.icc-cricket.com/"],
+
+["🎥","ICC.tv","https://www.icc.tv/"],
+
+["📽️","ESPNcricinfo","https://www.espncricinfo.com/"],
+
+["▶️","Cricbuzz","https://www.cricbuzz.com/"],
+
+["🔴","BCCI","https://www.bcci.tv/"],
+
+["🖥️","PCB","https://www.pcb.com.pk/"],
+
+["🌐","BCB","https://www.tigercricket.com.bd/"],
+
+["📶","Cricket Live Updates","https://www.tsports.com/"]
+
+];
+
+
+/* =========================================================
+   GENERIC MEDIA RENDERER
+========================================================= */
+
+function ppppRenderMedia(
+containerId,
+items
+){
+
+const container =
+document.getElementById(
+containerId
+);
+
+if(!container)
+    return;
+
+container.innerHTML = "";
+
+items.forEach(
+(item,index)=>{
+
+const a =
+document.createElement("a");
+
+a.className =
+"pppp-media-card";
+
+a.href =
+item[2];
+
+a.target =
+"_blank";
+
+a.rel =
+"noopener noreferrer";
+
+const number =
+String(index+1)
+.padStart(2,"0");
+
+a.innerHTML = `
+
+<span class="pppp-media-number">
+${number}
+</span>
+
+<span class="pppp-media-emoji">
+${item[0]}
+</span>
+
+<span class="pppp-media-name">
+${item[1]}
+</span>
+
+<span class="pppp-live-label">
+LIVE / OPEN
+</span>
+
+`;
+
+container.appendChild(a);
+
+});
+
+}
+
+
+/* =========================================================
+   INITIALIZE ALL MEDIA
+========================================================= */
+
+ppppRenderMedia(
+"ppppBanglaTVGrid",
+ppppBanglaTV
+);
+
+ppppRenderMedia(
+"ppppBanglaRadioGrid",
+ppppBanglaRadio
+);
+
+ppppRenderMedia(
+"ppppBanglaNewspaperGrid",
+ppppBanglaNewspapers
+);
+
+ppppRenderMedia(
+"ppppFootballGrid",
+ppppFootball
+);
+
+ppppRenderMedia(
+"ppppCricketGrid",
+ppppCricket
+);
+
+
+/* =========================================================
+   AUTO SAVE NOTEPAD
+========================================================= */
+
+const ppppNoteElement =
+document.getElementById(
+"ppppNotepad"
+);
+
+if(ppppNoteElement){
+
+ppppNoteElement.addEventListener(
+"input",
+function(){
+
+localStorage.setItem(
+"ppppNotepadText",
+this.value
+);
+
+});
+
+}
+
+
+/* =========================================================
+   PREVENT TOOLS FROM INTERFERING WITH OTHER SETTINGS
+========================================================= */
+
+document
+.querySelectorAll(
+".pppp-tools-live-wrap button"
+)
+.forEach(
+button=>{
+
+button.addEventListener(
+"click",
+function(event){
+
+event.stopPropagation();
+
+});
+
+}
 );
 
 </script>
 
 <!-- =========================================================
-     END PPPP EXTRA TOOLS & LIVE MEDIA
+     END PPPP TOOLS + LIVE MEDIA
 ========================================================= -->
 
 
