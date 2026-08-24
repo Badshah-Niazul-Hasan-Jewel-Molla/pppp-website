@@ -154,7 +154,7 @@
 
 ⚙️ Administration
 │
-├── 👤 PPPP Chat Admin
+├── 👤 PPPP Admin
 └── ⚙️ PPPP Settings
 </pre>
 
