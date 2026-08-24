@@ -1137,7 +1137,7 @@ footer hr{
 
     position:fixed;
 
-    right:25px;
+    right:20px;
 
     bottom:25px;
 
@@ -1149,7 +1149,7 @@ footer hr{
 
     border-radius:50%;
 
-    background:var(--primary);
+    background:#1e88e5;
 
     color:#fff;
 
@@ -1157,17 +1157,17 @@ footer hr{
 
     cursor:pointer;
 
-    z-index:9999;
+    z-index:99999;
 
-    box-shadow:var(--shadow);
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
 
-    transition:.25s;
+    transition:.3s;
 
 }
 
 #topBtn:hover{
 
-    background:var(--primary-dark);
+    background:#1565c0;
 
     transform:scale(1.08);
 
@@ -1300,20 +1300,6 @@ footer hr{
     footer p{
 
         white-space:normal;
-
-    }
-
-    #topBtn{
-
-        width:55px;
-
-        height:55px;
-
-        font-size:24px;
-
-        right:15px;
-
-        bottom:15px;
 
     }
 
