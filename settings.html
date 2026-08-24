@@ -5,634 +5,198 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>
-⚙️ PPPP Settings | People's Power & Peace Party Bangladesh
-</title>
-
-<meta
-    name="description"
-    content="PPPP Settings & Control Center"
->
+<title>⚙️ PPPP Settings | People's Power & Peace Party Bangladesh</title>
 
 <link rel="icon" href="favicon.ico">
 
-
-<!-- =========================================================
-     SETTINGS PAGE BASIC STYLE
-========================================================= -->
-
 <style>
 
-*,
-*::before,
-*::after{
+*{
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
+html,
 body{
     margin:0;
     padding:0;
-    min-height:100vh;
-    font-family:
-        Arial,
-        "Noto Sans Bengali",
-        sans-serif;
-}
-
-
-/* =========================================================
-   SETTINGS PAGE CONTAINER
-========================================================= */
-
-#ppppSettingsPage{
     width:100%;
-    min-height:100vh;
+    min-height:100%;
+    background:#fff;
+    overflow-x:hidden;
 }
-
 
 /* =========================================================
-   SHARE & BACK TO TOP
+   FULL SETTINGS PAGE
 ========================================================= */
 
-.pppp-page-floating-btn{
-
-    position:fixed;
-
-    right:20px;
-
-    width:65px;
-    height:65px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#1e88e5;
-
-    color:#fff;
-
-    font-size:30px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 6px 16px rgba(0,0,0,.35);
-
-    transition:.3s;
-
-    z-index:999999;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
+#ppppSettingsPageFrame{
+    width:100%;
+    height:100vh;
+    min-height:100vh;
+    border:0;
+    display:block;
+    background:#fff;
 }
 
-.pppp-page-floating-btn:hover{
+/* =========================================================
+   FALLBACK
+========================================================= */
 
-    background:#1565c0;
-
-    transform:scale(1.08);
-
-}
-
-
-#ppppPageShareBtn{
-    bottom:105px;
-}
-
-
-#ppppPageTopBtn{
-
-    bottom:25px;
-
+#ppppSettingsFallback{
     display:none;
-
+    padding:30px 20px;
+    text-align:center;
+    font-family:Arial,sans-serif;
 }
 
+#ppppSettingsFallback h2{
+    color:#1976d2;
+}
 
-/* =========================================================
-   LOADING MESSAGE
-========================================================= */
-
-#ppppSettingsLoading{
-
-    min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:30px;
-
-    font-size:18px;
-    font-weight:700;
-
+#ppppSettingsFallback a{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    border-radius:25px;
+    background:#1976d2;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 </style>
 
 </head>
 
-
 <body>
+
+<!-- =========================================================
+     ⚙️ COMPLETE PPPP SETTINGS
+     বর্তমান কাজ করা setting.html সরাসরি এখানে দেখানো হবে
+========================================================= -->
+
+<iframe
+    id="ppppSettingsPageFrame"
+    src="setting.html"
+    title="PPPP Settings">
+</iframe>
 
 
 <!-- =========================================================
-     ⚙️ PPPP SETTINGS MASTER CONTAINER
+     FALLBACK
 ========================================================= -->
 
-<div id="ppppSettingsPage">
+<div id="ppppSettingsFallback">
 
-    <div id="ppppSettingsLoading">
+    <h2>⚙️ PPPP Settings</h2>
 
-        ⚙️ PPPP Settings Loading...
+    <p>
+        PPPP Settings লোড করা যাচ্ছে না।
+    </p>
 
-    </div>
+    <a href="setting.html">
+        ⚙️ Open PPPP Settings
+    </a>
 
 </div>
 
 
-
-<!-- =========================================================
-     🔗 SHARE BUTTON
-========================================================= -->
-
-<button
-    id="ppppPageShareBtn"
-    class="pppp-page-floating-btn"
-    title="Share"
-    aria-label="Share">
-
-    🔗
-
-</button>
-
-
-
-<!-- =========================================================
-     ↑ BACK TO TOP BUTTON
-========================================================= -->
-
-<button
-    id="ppppPageTopBtn"
-    class="pppp-page-floating-btn"
-    title="Back to Top"
-    aria-label="Back to Top">
-
-    ↑
-
-</button>
-
-
-
-<!-- =========================================================
-     ⚙️ LOAD MASTER SETTING.HTML
-========================================================= -->
-
 <script>
-
-(async function(){
-
-    const MASTER_SETTINGS =
-        "setting.html";
-
-    const container =
-        document.getElementById(
-            "ppppSettingsPage"
-        );
-
-
-    try{
-
-        /*
-         * -----------------------------------------------------
-         * LOAD MASTER SETTING FILE
-         * -----------------------------------------------------
-         */
-
-        const response =
-            await fetch(
-                MASTER_SETTINGS,
-                {
-                    cache:"no-cache"
-                }
-            );
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "setting.html could not be loaded."
-            );
-
-        }
-
-
-        const source =
-            await response.text();
-
-
-
-        /*
-         * -----------------------------------------------------
-         * EXTRACT CSS
-         * -----------------------------------------------------
-         */
-
-        const styleMatches =
-            source.match(
-                /<style\b[^>]*>[\s\S]*?<\/style>/gi
-            ) || [];
-
-
-        styleMatches.forEach(
-            function(styleBlock){
-
-                const style =
-                    document.createElement(
-                        "style"
-                    );
-
-
-                style.textContent =
-                    styleBlock
-                    .replace(
-                        /^<style\b[^>]*>/i,
-                        ""
-                    )
-                    .replace(
-                        /<\/style>$/i,
-                        ""
-                    );
-
-
-                style.dataset.ppppSettings =
-                    "master";
-
-
-                document.head.appendChild(
-                    style
-                );
-
-            }
-        );
-
-
-
-        /*
-         * -----------------------------------------------------
-         * REMOVE CSS FROM SOURCE
-         * -----------------------------------------------------
-         */
-
-        let content =
-            source.replace(
-                /<style\b[^>]*>[\s\S]*?<\/style>/gi,
-                ""
-            );
-
-
-
-        /*
-         * -----------------------------------------------------
-         * EXTRACT JAVASCRIPT
-         * -----------------------------------------------------
-         */
-
-        const scriptMatches =
-            content.match(
-                /<script\b[^>]*>[\s\S]*?<\/script>/gi
-            ) || [];
-
-
-
-        /*
-         * -----------------------------------------------------
-         * REMOVE JAVASCRIPT FROM HTML
-         * -----------------------------------------------------
-         */
-
-        content =
-            content.replace(
-                /<script\b[^>]*>[\s\S]*?<\/script>/gi,
-                ""
-            );
-
-
-
-        /*
-         * -----------------------------------------------------
-         * INSERT SETTINGS HTML
-         * -----------------------------------------------------
-         */
-
-        container.innerHTML =
-            content;
-
-
-
-        /*
-         * -----------------------------------------------------
-         * EXECUTE MASTER SETTINGS JAVASCRIPT
-         * -----------------------------------------------------
-         */
-
-        for(
-            const scriptBlock
-            of scriptMatches
-        ){
-
-            const temp =
-                document.createElement(
-                    "div"
-                );
-
-
-            temp.innerHTML =
-                scriptBlock;
-
-
-            const oldScript =
-                temp.querySelector(
-                    "script"
-                );
-
-
-            if(!oldScript)
-                continue;
-
-
-            const newScript =
-                document.createElement(
-                    "script"
-                );
-
-
-            /*
-             * External JavaScript
-             */
-
-            if(
-                oldScript.getAttribute(
-                    "src"
-                )
-            ){
-
-                newScript.src =
-                    new URL(
-                        oldScript.getAttribute(
-                            "src"
-                        ),
-                        window.location.href
-                    ).href;
-
-            }
-
-
-            /*
-             * Inline JavaScript
-             */
-
-            else{
-
-                newScript.textContent =
-                    oldScript.textContent;
-
-            }
-
-
-            /*
-             * Preserve script attributes
-             */
-
-            Array.from(
-                oldScript.attributes
-            ).forEach(
-                function(attr){
-
-                    if(
-                        attr.name !== "src"
-                    ){
-
-                        newScript.setAttribute(
-                            attr.name,
-                            attr.value
-                        );
-
-                    }
-
-                }
-            );
-
-
-            newScript.dataset.ppppSettings =
-                "master";
-
-
-            document.body.appendChild(
-                newScript
-            );
-
-        }
-
-
-
-        /*
-         * -----------------------------------------------------
-         * MASTER SETTINGS LOADED
-         * -----------------------------------------------------
-         */
-
-        document.dispatchEvent(
-            new CustomEvent(
-                "ppppSettingsLoaded"
-            )
-        );
-
-
-        console.log(
-            "⚙️ PPPP Master Settings loaded successfully."
-        );
-
-
-    }
-
-    catch(error){
-
-        console.error(
-            "⚙️ PPPP Settings Error:",
-            error
-        );
-
-
-        container.innerHTML = `
-
-            <div
-                style="
-                    padding:30px;
-                    text-align:center;
-                    font-weight:700;
-                "
-            >
-
-                ⚠️ PPPP Settings load করা সম্ভব হয়নি।<br><br>
-
-                Please check <b>setting.html</b>.
-
-            </div>
-
-        `;
-
-    }
-
-})();
-
-</script>
-
-
-
-<!-- =========================================================
-     🔗 SHARE + ↑ BACK TO TOP JAVASCRIPT
-========================================================= -->
-
-<script>
-
 
 /* =========================================================
-   ↑ BACK TO TOP
+   SETTINGS FRAME CHECK
 ========================================================= */
 
-window.addEventListener(
-    "scroll",
+const settingsFrame =
+    document.getElementById("ppppSettingsPageFrame");
+
+const settingsFallback =
+    document.getElementById("ppppSettingsFallback");
+
+
+settingsFrame.addEventListener(
+    "error",
     function(){
 
-        const topBtn =
-            document.getElementById(
-                "ppppPageTopBtn"
-            );
+        settingsFrame.style.display = "none";
 
-
-        if(
-            window.scrollY > 300
-        ){
-
-            topBtn.style.display =
-                "flex";
-
-        }
-
-        else{
-
-            topBtn.style.display =
-                "none";
-
-        }
+        settingsFallback.style.display = "block";
 
     }
 );
 
 
-document.getElementById(
-    "ppppPageTopBtn"
-).onclick = function(){
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-};
-
-
-
 /* =========================================================
-   🔗 SHARE
+   FRAME HEIGHT PROTECTION
 ========================================================= */
 
-document.getElementById(
-    "ppppPageShareBtn"
-).onclick = async function(){
+function ppppResizeSettingsFrame(){
 
-    const shareData = {
+    try{
 
-        title:
-            document.title,
+        const frameDocument =
+            settingsFrame.contentDocument ||
+            settingsFrame.contentWindow.document;
 
-        text:
-            "People's Power & Peace Party (PPPP) Bangladesh Official Website",
+        if(frameDocument){
 
-        url:
-            window.location.href
+            const height =
+                Math.max(
+                    frameDocument.body.scrollHeight,
+                    frameDocument.documentElement.scrollHeight,
+                    window.innerHeight
+                );
 
-    };
-
-
-    if(
-        navigator.share
-    ){
-
-        try{
-
-            await navigator.share(
-                shareData
-            );
+            settingsFrame.style.height =
+                height + "px";
 
         }
 
-        catch(error){
+    }catch(error){
 
-            /*
-             * User cancelled Share dialog.
-             * No action required.
-             */
+        /*
+          Cross-origin হলে browser নিরাপত্তার কারণে
+          height read করা যাবে না।
+          সেক্ষেত্রে 100vh ব্যবহার হবে।
+        */
 
-        }
+        settingsFrame.style.height =
+            "100vh";
 
     }
 
-    else{
+}
 
-        try{
 
-            await navigator.clipboard.writeText(
-                window.location.href
-            );
+settingsFrame.addEventListener(
+    "load",
+    function(){
 
-            alert(
-                "Website link copied successfully!"
-            );
+        ppppResizeSettingsFrame();
 
-        }
+        setTimeout(
+            ppppResizeSettingsFrame,
+            500
+        );
 
-        catch(error){
-
-            alert(
-                "Website link copy করা সম্ভব হয়নি।"
-            );
-
-        }
+        setTimeout(
+            ppppResizeSettingsFrame,
+            1500
+        );
 
     }
+);
 
-};
+
+window.addEventListener(
+    "resize",
+    ppppResizeSettingsFrame
+);
 
 </script>
-
 
 </body>
 
