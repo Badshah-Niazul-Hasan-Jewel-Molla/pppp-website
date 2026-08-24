@@ -47,6 +47,10 @@
 </div>
 
 <div>
+🔁 Oa Likumus Salam Oa Rahmatullahi Oa Barakatuh
+</div>
+
+<div>
 ☪️ Bismillahir Rahmanir Rahim
 </div>
 
@@ -747,7 +751,7 @@ onclick="ppppToggleStructureGroup(this)">
 
 <a href="/pppp_bangladesh/admin/admin.html"
 class="pppp-btn">
-👤 PPPP Chat Admin
+👤 PPPP Admin
 </a>
 
 <a href="/pppp_bangladesh/settings.html" class="pppp-btn">⚙️ PPPP Settings</a>
@@ -1587,46 +1591,139 @@ oninput="ppppSetVolume('master',this.value)">
 
 <div class="pppp-category">
 
-<button class="pppp-category-title">
-<span>🧭 Compass</span>
-<span>▼</span>
-</button>
+    <button class="pppp-category-title" type="button">
+        <span>🧭 Compass</span>
+        <span>▼</span>
+    </button>
 
-<div class="pppp-category-content">
+    <div class="pppp-category-content">
 
-<div class="pppp-tool-box">
+        <div class="pppp-tool-box">
 
-<div
-class="pppp-compass"
-id="ppppCompass">
+            <div class="pppp-compass-wrapper">
 
-<div class="pppp-compass-label pppp-compass-n">N</div>
-<div class="pppp-compass-label pppp-compass-s">S</div>
-<div class="pppp-compass-label pppp-compass-e">E</div>
-<div class="pppp-compass-label pppp-compass-w">W</div>
+                <!-- Direction -->
+                <div
+                    class="pppp-compass-direction"
+                    id="ppppCompassDirection">
+                    North
+                </div>
 
-<div
-class="pppp-compass-arrow"
-id="ppppCompassArrow">
-</div>
+                <!-- Main Compass -->
+                <div
+                    class="pppp-compass"
+                    id="ppppCompass">
 
-</div>
+                    <!-- Rotating Compass Dial -->
+                    <div
+                        class="pppp-compass-dial"
+                        id="ppppCompassDial">
 
-<div
-style="text-align:center;font-weight:700;"
-id="ppppCompassDegree">
-0°
-</div>
+                        <!-- Degree scale -->
+                        <div class="pppp-compass-scale">
 
-<button
-class="pppp-action"
-onclick="ppppStartCompass()">
-🧭 Start Compass
-</button>
+                            <span class="degree d000">000°</span>
+                            <span class="degree d030">030°</span>
+                            <span class="degree d060">060°</span>
+                            <span class="degree d090">090°</span>
+                            <span class="degree d120">120°</span>
+                            <span class="degree d150">150°</span>
+                            <span class="degree d180">180°</span>
+                            <span class="degree d210">210°</span>
+                            <span class="degree d240">240°</span>
+                            <span class="degree d270">270°</span>
+                            <span class="degree d300">300°</span>
+                            <span class="degree d330">330°</span>
 
-</div>
+                        </div>
 
-</div>
+                        <!-- Cardinal directions -->
+                        <div class="pppp-compass-label pppp-compass-n">
+                            N
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-ne">
+                            NE
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-e">
+                            E
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-se">
+                            SE
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-s">
+                            S
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-sw">
+                            SW
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-w">
+                            W
+                        </div>
+
+                        <div class="pppp-compass-label pppp-compass-nw">
+                            NW
+                        </div>
+
+                    </div>
+
+                    <!-- Fixed red heading pointer -->
+                    <div class="pppp-compass-pointer">
+                        <span></span>
+                    </div>
+
+                    <!-- Center -->
+                    <div class="pppp-compass-center">
+                        <div
+                            class="pppp-compass-heading"
+                            id="ppppCompassDegree">
+                            0°
+                        </div>
+
+                        <div class="pppp-compass-center-label">
+                            HEADING
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Status -->
+                <div
+                    class="pppp-compass-status"
+                    id="ppppCompassStatus">
+                    🧭 Compass Ready
+                </div>
+
+                <!-- Start -->
+                <button
+                    type="button"
+                    class="pppp-action pppp-compass-start"
+                    id="ppppCompassStartButton"
+                    onclick="ppppStartCompass()">
+                    🧭 Start Compass
+                </button>
+
+                <!-- Stop -->
+                <button
+                    type="button"
+                    class="pppp-action pppp-compass-stop"
+                    id="ppppCompassStopButton"
+                    onclick="ppppStopCompass()"
+                    style="display:none;">
+                    🛑 Stop Compass
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 </section>
