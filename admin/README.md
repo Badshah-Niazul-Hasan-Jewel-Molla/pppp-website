@@ -1,6 +1,6 @@
-# 👤 PPPP Chat Admin Panel v1.0
+# 👤 PPPP Admin Panel v1.0
 
-📘 The **PPPP Chat Admin Panel** is the secure dashboard for managing visitor conversations in real time.
+📘 The **PPPP Admin Panel** is the secure dashboard for managing visitor conversations in real time.
 
 🧱 Built with:
 🔥 Firebase Authentication  
@@ -43,7 +43,7 @@
 
 ---
 
-# 👤 PPPP Chat Admin Structure
+# 👤 PPPP Admin Structure
 
 <pre>
 admin/
