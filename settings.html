@@ -2112,6 +2112,880 @@ onclick="ppppAboutSettings()">
 
 </section>
 
+<!-- =========================================================
+     📝 NOTEPAD
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📝 Notepad
+</div>
+
+<div class="pppp-tool-content">
+
+<textarea
+id="ppppNotepad"
+class="pppp-tool-textarea pppp-notepad-area"
+placeholder="📝 Enter Your Text Here..."></textarea>
+
+<br>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadNew()">
+🆕 New
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadSave()">
+💾 Save
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadDownload()">
+📥 Download
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppNotepadClear()">
+🗑️ Clear
+</button>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     🔁 CONVERTER
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+🔁 Converter
+</div>
+
+<div class="pppp-tool-content">
+
+<div class="pppp-converter-grid">
+
+<select
+id="ppppConvertCategory"
+class="pppp-tool-select"
+onchange="ppppUpdateConverterUnits()">
+
+<option value="length">📏 Length</option>
+<option value="weight">⚖️ Weight</option>
+<option value="volume">🧪 Volume</option>
+<option value="temperature">🌡️ Temperature</option>
+<option value="area">📐 Area</option>
+<option value="time">⏱️ Time</option>
+<option value="data">💾 Data</option>
+<option value="speed">🚀 Speed</option>
+<option value="pressure">🔵 Pressure</option>
+<option value="energy">⚡ Energy</option>
+
+</select>
+
+<input
+id="ppppConvertValue"
+class="pppp-tool-input"
+type="number"
+value="1"
+placeholder="Value">
+
+<select
+id="ppppConvertFrom"
+class="pppp-tool-select">
+</select>
+
+<select
+id="ppppConvertTo"
+class="pppp-tool-select">
+</select>
+
+</div>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppConvertNow()">
+🔁 Convert
+</button>
+
+<div
+id="ppppConvertResult"
+class="pppp-converter-result">
+📊 Results Will Appear Here
+</div>
+
+<div style="
+margin-top:10px;
+font-size:13px;
+color:#607d8b;
+line-height:1.5;
+">
+
+💡 A water-based conversion will be used for KG ↔ Litre calculations:
+<strong>1 kg of water ≈ 1 litre of water.</strong>।
+The density may vary for other liquids.
+
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     ⏰ STOP WATCH
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+⏰ Stop Watch
+</div>
+
+<div class="pppp-tool-content">
+
+<div
+id="ppppStopwatchDisplay"
+class="pppp-stopwatch-display">
+00:00:00.000
+</div>
+
+<div style="text-align:center;">
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchStart()">
+▶️ Start
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchPause()">
+⏸️ Pause
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchReset()">
+🔄 Reset
+</button>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStopwatchLap()">
+🏁 Lap
+</button>
+
+</div>
+
+<div
+id="ppppLapList"
+style="
+margin-top:10px;
+font-size:14px;
+line-height:1.7;
+">
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     📶 INTERNET SPEED METER
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📶 Internet Speed Meter
+</div>
+
+<div class="pppp-tool-content">
+
+<div class="pppp-speed-box">
+
+<div
+id="ppppSpeedValue"
+class="pppp-speed-value">
+0.00
+</div>
+
+<div class="pppp-speed-unit">
+Mbps
+</div>
+
+<div
+id="ppppSpeedStatus"
+class="pppp-speed-status">
+Ready — Wi-Fi / Mobile Internet
+</div>
+
+<button
+class="pppp-tool-btn"
+onclick="ppppStartSpeedTest()">
+🚀 Start Speed Test
+</button>
+
+</div>
+
+<div style="
+font-size:13px;
+color:#607d8b;
+line-height:1.5;
+text-align:center;
+margin-top:8px;
+">
+
+📡 This will approximately measure your current Internet connection’s browser-based download speed.
+The router’s internal Wi-Fi speed cannot be accurately read directly from a browser.
+
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     📺 BANGLA TV LIVE
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📺 Bangla TV Live
+</div>
+
+<div
+id="ppppBanglaTVGrid"
+class="pppp-live-grid">
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     📻 BANGLA RADIO LIVE
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📻 Bangla Radio Live
+</div>
+
+<div
+id="ppppBanglaRadioGrid"
+class="pppp-live-grid">
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     📰 BANGLA NEWSPAPER LIVE
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+📰 Bangla Newspaper Live
+</div>
+
+<div
+id="ppppBanglaNewspaperGrid"
+class="pppp-live-grid">
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     ⚽ FOOTBALL TV LIVE
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+⚽ Football TV Live
+</div>
+
+<div
+id="ppppFootballGrid"
+class="pppp-live-grid">
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     🏏 CRICKET TV LIVE
+========================================================= -->
+<section>
+<div class="pppp-tools-live-wrap">
+<div class="pppp-live-section">
+
+<div class="pppp-live-title">
+🏏 Cricket TV Live
+</div>
+
+<div
+id="ppppCricketGrid"
+class="pppp-live-grid">
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     🎮 PPPP GAMES SECTION
+========================================================= -->
+<section>
+<div id="ppppGamesSection">
+
+<button
+class="pppp-games-title"
+type="button"
+onclick="ppppToggleGames()">
+
+<span>🎮 PPPP Games</span>
+
+<span id="ppppGamesArrow">
+▼
+</span>
+
+</button>
+
+<div id="ppppGamesBody">
+
+<div id="ppppGamesGrid">
+
+
+<!-- =========================================================
+     01 — TIC TAC TOE
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('ttt')">
+
+<span class="pppp-game-number">
+01
+</span>
+
+<div class="pppp-game-icon">
+❌⭕
+</div>
+
+<div class="pppp-game-name">
+Tic Tac Toe
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     02 — SNAKE
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('snake')">
+
+<span class="pppp-game-number">
+02
+</span>
+
+<div class="pppp-game-icon">
+🐍
+</div>
+
+<div class="pppp-game-name">
+Snake
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     03 — TETRIS
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('tetris')">
+
+<span class="pppp-game-number">
+03
+</span>
+
+<div class="pppp-game-icon">
+🧱
+</div>
+
+<div class="pppp-game-name">
+Tetris
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     04 — PONG
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('pong')">
+
+<span class="pppp-game-number">
+04
+</span>
+
+<div class="pppp-game-icon">
+🏓
+</div>
+
+<div class="pppp-game-name">
+Pong
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     05 — MEMORY MATCH
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('memory')">
+
+<span class="pppp-game-number">
+05
+</span>
+
+<div class="pppp-game-icon">
+🧠
+</div>
+
+<div class="pppp-game-name">
+Memory Match
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     06 — MINESWEEPER
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('mine')">
+
+<span class="pppp-game-number">
+06
+</span>
+
+<div class="pppp-game-icon">
+💣
+</div>
+
+<div class="pppp-game-name">
+Minesweeper
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     07 — 2048
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('2048')">
+
+<span class="pppp-game-number">
+07
+</span>
+
+<div class="pppp-game-icon">
+🔢
+</div>
+
+<div class="pppp-game-name">
+2048
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     08 — CONNECT FOUR
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('connect')">
+
+<span class="pppp-game-number">
+08
+</span>
+
+<div class="pppp-game-icon">
+🔵
+</div>
+
+<div class="pppp-game-name">
+Connect Four
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     09 — DOTS AND BOXES
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('dots')">
+
+<span class="pppp-game-number">
+09
+</span>
+
+<div class="pppp-game-icon">
+🔴🔵
+</div>
+
+<div class="pppp-game-name">
+Dots and Boxes
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     10 — CHECKERS
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('checkers')">
+
+<span class="pppp-game-number">
+10
+</span>
+
+<div class="pppp-game-icon">
+🏁
+</div>
+
+<div class="pppp-game-name">
+Checkers
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     11 — CHESS
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('chess')">
+
+<span class="pppp-game-number">
+11
+</span>
+
+<div class="pppp-game-icon">
+♟️
+</div>
+
+<div class="pppp-game-name">
+Chess
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     12 — SLIDING PUZZLE
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('slide')">
+
+<span class="pppp-game-number">
+12
+</span>
+
+<div class="pppp-game-icon">
+🧩
+</div>
+
+<div class="pppp-game-name">
+Sliding Puzzle
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     13 — SUDOKU
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('sudoku')">
+
+<span class="pppp-game-number">
+13
+</span>
+
+<div class="pppp-game-icon">
+🔢
+</div>
+
+<div class="pppp-game-name">
+Sudoku
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     14 — BREAKOUT
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('breakout')">
+
+<span class="pppp-game-number">
+14
+</span>
+
+<div class="pppp-game-icon">
+🏓
+</div>
+
+<div class="pppp-game-name">
+Breakout
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     15 — SPACE INVADERS
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('invaders')">
+
+<span class="pppp-game-number">
+15
+</span>
+
+<div class="pppp-game-icon">
+🚀
+</div>
+
+<div class="pppp-game-name">
+Space Invaders
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     16 — FLAPPY BIRD
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('flappy')">
+
+<span class="pppp-game-number">
+16
+</span>
+
+<div class="pppp-game-icon">
+🐦
+</div>
+
+<div class="pppp-game-name">
+Flappy Bird
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     17 — RACING
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('racing')">
+
+<span class="pppp-game-number">
+17
+</span>
+
+<div class="pppp-game-icon">
+🏎️
+</div>
+
+<div class="pppp-game-name">
+Racing
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     18 — NUMBER GUESSING
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('guess')">
+
+<span class="pppp-game-number">
+18
+</span>
+
+<div class="pppp-game-icon">
+🎯
+</div>
+
+<div class="pppp-game-name">
+Number Guessing
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     19 — ROCK PAPER SCISSORS
+========================================================= -->
+<section>
+<div
+class="pppp-game-card"
+onclick="ppppOpenGame('rps')">
+
+<span class="pppp-game-number">
+19
+</span>
+
+<div class="pppp-game-icon">
+✊
+</div>
+
+<div class="pppp-game-name">
+Rock Paper Scissors
+</div>
+
+</div>
+</section>
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- =========================================================
+     🎮 GAME MODAL
+========================================================= -->
+<section>
+<div id="ppppGameModal">
+
+<div id="ppppGamePanel">
+
+<div id="ppppGameHeader">
+
+<div id="ppppGameTitle">
+🎮 PPPP Games
+</div>
+
+<button
+id="ppppGameClose"
+type="button"
+onclick="ppppCloseGame()">
+×
+</button>
+
+</div>
+
+<div id="ppppGameContent">
+</div>
+
+</div>
+</div>
+</section>
+
 
 <!-- =====================================================
      SUPPORT
