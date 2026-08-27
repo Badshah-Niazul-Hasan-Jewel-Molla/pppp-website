@@ -5320,6 +5320,998 @@ event.stopPropagation();
      END PPPP TOOLS + LIVE MEDIA
 ========================================================= -->
 
+<!-- =========================================================
+     📢 PPPP SOCIAL MEDIA
+     Floating Settings Button / Settings Page
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   📢 PPPP SOCIAL MEDIA WRAPPER
+========================================================= */
+
+.pppp-social-media-wrap{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SOCIAL MEDIA SECTION
+========================================================= */
+
+.pppp-social-section{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.pppp-social-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
+    background:linear-gradient(
+        135deg,
+        #1976d2,
+        #2196f3
+    );
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.25;
+    text-align:left;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA GRID
+========================================================= */
+
+.pppp-social-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    padding:14px;
+
+    background:#f7f9fc;
+
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA CARD
+========================================================= */
+
+.pppp-social-card{
+    position:relative;
+
+    min-height:118px;
+
+    border:1px solid #dfe5eb;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f3f7fa
+        );
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:18px 10px 12px;
+
+    box-sizing:border-box;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+    text-decoration:none;
+
+    color:#263238;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+.pppp-social-card:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.12);
+}
+
+
+.pppp-social-card:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   SERIAL NUMBER
+========================================================= */
+
+.pppp-social-number{
+    position:absolute;
+
+    top:10px;
+
+    right:12px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:#64a5d6;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA EMOJI
+========================================================= */
+
+.pppp-social-emoji{
+    font-size:34px;
+
+    line-height:1;
+
+    margin-bottom:8px;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA NAME
+========================================================= */
+
+.pppp-social-name{
+    font-size:16px;
+
+    line-height:1.2;
+
+    font-weight:800;
+
+    word-break:break-word;
+}
+
+
+/* =========================================================
+   OPEN LABEL
+========================================================= */
+
+.pppp-social-open{
+    display:inline-block;
+
+    margin-top:7px;
+
+    padding:3px 8px;
+
+    border-radius:20px;
+
+    background:#e8f5e9;
+
+    color:#16843b;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SECTION COLORS
+========================================================= */
+
+.pppp-social-section:nth-child(1)
+.pppp-social-title{
+    background:
+        linear-gradient(
+            135deg,
+            #1976d2,
+            #2196f3
+        );
+}
+
+
+.pppp-social-section:nth-child(2)
+.pppp-social-title{
+    background:
+        linear-gradient(
+            135deg,
+            #e84393,
+            #fd79a8
+        );
+}
+
+
+.pppp-social-section:nth-child(3)
+.pppp-social-title{
+    background:
+        linear-gradient(
+            135deg,
+            #00b894,
+            #00cec9
+        );
+}
+
+
+.pppp-social-section:nth-child(4)
+.pppp-social-title{
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #a29bfe
+        );
+}
+
+
+.pppp-social-section:nth-child(5)
+.pppp-social-title{
+    background:
+        linear-gradient(
+            135deg,
+            #e17055,
+            #d63031
+        );
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:520px){
+
+    .pppp-social-title{
+        font-size:20px;
+
+        padding:
+            15px 16px;
+    }
+
+    .pppp-social-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px;
+
+        padding:14px;
+    }
+
+    .pppp-social-card{
+        min-height:116px;
+
+        border-radius:22px;
+    }
+
+    .pppp-social-emoji{
+        font-size:31px;
+    }
+
+    .pppp-social-name{
+        font-size:15px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+    .pppp-social-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-social-card{
+        min-height:125px;
+    }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media(min-width:1100px){
+
+    .pppp-social-grid{
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     📢 PPPP SOCIAL MEDIA
+========================================================= -->
+
+<div
+class="pppp-social-media-wrap"
+id="ppppSocialMediaWrap">
+
+
+<!-- =========================================================
+     📢 SOCIAL MEDIA — BADSHAH NIAZUL
+========================================================= -->
+
+<div class="pppp-social-section">
+
+<div class="pppp-social-title">
+📢 Social Media (Badshah Niazul)
+</div>
+
+<div
+id="ppppSocialBadshahGrid"
+class="pppp-social-grid">
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     📣 SOCIAL MEDIA — BEGUM NAZMUN
+========================================================= -->
+
+<div class="pppp-social-section">
+
+<div class="pppp-social-title">
+📣 Social Media (Begum Nazmun)
+</div>
+
+<div
+id="ppppSocialBegumGrid"
+class="pppp-social-grid">
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     🔊 SOCIAL MEDIA — MAHADI HASAN JAVED
+========================================================= -->
+
+<div class="pppp-social-section">
+
+<div class="pppp-social-title">
+🔊 Social Media (Mahadi Hasan Javed)
+</div>
+
+<div
+id="ppppSocialMahadiGrid"
+class="pppp-social-grid">
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     🎙️ SOCIAL MEDIA — PPPP
+========================================================= -->
+
+<div class="pppp-social-section">
+
+<div class="pppp-social-title">
+🎙️ Social Media (PPPP)
+</div>
+
+<div
+id="ppppSocialPPPPGrid"
+class="pppp-social-grid">
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     📡 SOCIAL MEDIA — OTHERS
+========================================================= -->
+
+<div class="pppp-social-section">
+
+<div class="pppp-social-title">
+📡 Social Media (Others)
+</div>
+
+<div
+id="ppppSocialOthersGrid"
+class="pppp-social-grid">
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   📢 PPPP SOCIAL MEDIA DATA
+========================================================= */
+
+
+/* =========================================================
+   📢 BADSHAH NIAZUL
+========================================================= */
+
+const ppppSocialBadshah = [
+
+["💻","Naz-Niaz Blogspot","https://naz-niaz.blogspot.com/"],
+
+["🖥️","Naz-Niaz WordPress","https://nazniaz7.wordpress.com/"],
+
+["👥","Naz-Niaz","https://naz-niaz.github.io/pppp_bangladesh/"],
+
+["🪶","Valo Kobita","https://www.valo-kobita.com/2023/08/bnhjm.html"],
+
+["✍️","Lekhok Dot Me","https://www.lekhok.me/profile/niazulhasanjewel/"],
+
+["📋","Pratilipi","https://pratilipi.page.link/RrfvLhUiJnpMTAJD6"],
+
+["📝","Golpo Kobita","https://golpokobita.com/profile/niazulhasanjewel"],
+
+["✒️","Banglar Kobita","https://banglarkobita.com/niazulhasanjewel/"],
+
+["📕","Bangla Kobita","https://www.bangla-kobita.com/niazulhasanjewel/"],
+
+["🖋️","Kobita Cocktail","https://www.kobitacocktail.com/new/user/2207/"],
+
+["📘","Kobita Kosh","https://www.kobitakosh.com/niazulhasanjewel/"],
+
+["🎵","Gaaner Pata","https://www.gaanerpata.com/niazulhasanjewel/"],
+
+["🌟","Tarunyo","https://www.tarunyo.com/niazulhasanjewel/"],
+
+["🌐","Somewhere in Blog","https://www.somewhereinblog.net/blog/niazulhasanjewel"],
+
+["📗","Grathor","https://grathor.com/niazulhasanjewel"],
+
+["💻","Tech Tunes","https://www.techtunes.io/techtuner/niazulhasanjewel/profile/"],
+
+["💰","J-IT","https://blog.jit.com.bd/author/niazulhasanjewel"],
+
+["🔗","J-IT Refer","https://blog.jit.com.bd/ref/niazulhasanjewel"],
+
+["❓","Bissoy","https://www.bissoy.com/BadshahNiazul"],
+
+["💬","Ask Proshno","https://www.askproshno.com/user/Badshah+Niazul"],
+
+["🗣️","Kotha","https://link.kotha.app/profile/badshahniazulhasanjewelmolla"],
+
+["👥","Facebook","https://www.facebook.com/badshahniazulhasanjewel"],
+
+["🔵","Facebook Pages","https://www.facebook.com/badshahniazulhasanjewelmolla1"],
+
+["👨‍👩‍👧","Facebook Groups","https://www.facebook.com/groups/badshahniazulhasanjewelmolla"],
+
+["📅","Facebook Events","https://www.facebook.com/events/188368819033524/"],
+
+["🐦","Twitter (X)","https://twitter.com/Badshah_Niazul"],
+
+["📸","Instagram","https://www.instagram.com/badshah_niazul/"],
+
+["▶️","YouTube","https://www.youtube.com/@badshahniazulhasanjewelmolla"],
+
+["📖","Wikipedia","https://bn.wikipedia.org/wiki/Badshah_Niazul_Hasan_Jewel_Molla"],
+
+["📜","Scribd","https://www.scribd.com/user/569532080/Badshah-Niazul-Hasan-Jewel-Molla"],
+
+["📞","Imo","https://call.imo.im/badshahniazulhasanjewelmolla1"],
+
+["👥","Imo Big Group","https://bgroup.imo.im/_xgnzmYCNs1vLQJWj"],
+
+["💬","WhatsApp","https://www.whatsapp.com/badshah_niazul"],
+
+["💙","Messenger","https://www.messenger.com/badshahniazulhasanjewel"],
+
+["📧","Gmail","mailto:badshahniazulhasanjewelmolla@gmail.com"],
+
+["💼","LinkedIn","https://www.linkedin.com/in/badshah-niazul-hasan-jewel-molla"],
+
+["💻","Bdjobs","https://www.bdjobs.com/Profile/Md._Niazul_Hasan_Jewel_Molla"],
+
+["❓","Quora","https://bn.quora.com/profile/Badshah-Niazul-Hasan-Jewel-Molla"],
+
+["💖","Qeep","https://www.qeep.net/badshahniazulhasanjewelmolla"],
+
+["🛒","Daraz","https://www.daraz.com.bd/user/badshahniazulhasanjewelmolla"],
+
+["📚","Rokomari","https://www.rokomari.com/user/badshahniazulhasanjewelmolla"],
+
+["🧵","Threads","https://www.threads.net/@badshah_niazul"],
+
+["🎬","Edits","https://edits.meta.com/badshah_niazul"],
+
+["🎵","TikTok","https://www.tiktok.com/@badshah_niazul"],
+
+["📺","Likee","https://likee.video/@badshah_niazul"],
+
+["👻","SnapChat","https://www.snapchat.com/@badshah_niazul"],
+
+["➕","SnapChat Add","https://www.snapchat.com/add/badshah_niazul"],
+
+["✈️","Telegram","https://t.me/Badshah_Niazul"],
+
+["👤","Telegram Profile","https://t.me/Badshah_Niazul_Hasan_Jewel_Molla"],
+
+["📍","Pinterest","https://www.pinterest.com/badshah_niazul/"],
+
+["📚","Wikimedia Commons","https://commons.m.wikimedia.org/wiki/User_talk:Badshah_Niazul_Hasan_Jewel_Molla"],
+
+["🔊","Notun Kishor Kantha","https://www.kishorkanthabd.com/writer-kishorkantha/niazulhasanjewel"],
+
+["💻","GitHub","https://github.com/naz-niaz"]
+
+];
+
+
+/* =========================================================
+   📣 BEGUM NAZMUN
+========================================================= */
+
+const ppppSocialBegum = [
+
+["💻","Naz-Niaz Blogspot","https://naz-niaz.blogspot.com/"],
+
+["🖥️","Naz-Niaz WordPress","https://nazniaz7.wordpress.com/"],
+
+["👥","Naz-Niaz","https://naz-niaz.github.io/pppp_bangladesh/"],
+
+["🪶","Valo Kobita","https://www.valo-kobita.com/2023/08/bnnjm.html"],
+
+["✍️","Lekhok Dot Me","https://www.lekhok.me/profile/nazmunnaharjuthi/"],
+
+["📋","Pratilipi","https://pratilipi.page.link/bcs9wPFgLnpLBJhP7"],
+
+["📝","Golpo Kobita","https://golpokobita.com/profile/nazmunnaharjuthi"],
+
+["✒️","Banglar Kobita","https://banglarkobita.com/nazmunnaharjuthi/"],
+
+["📕","Bangla Kobita","https://www.bangla-kobita.com/nazmunnaharjuthi/"],
+
+["🖋️","Kobita Cocktail","https://www.kobitacocktail.com/new/user/2208/"],
+
+["📘","Kobita Kosh","https://www.kobitakosh.com/nazmunnaharjuthi/"],
+
+["🎵","Gaaner Pata","https://www.gaanerpata.com/nazmunnaharjuthi/"],
+
+["🌟","Tarunyo","https://www.tarunyo.com/nazmunnaharjuthi/"],
+
+["🌐","Somewhere in Blog","https://www.somewhereinblog.net/blog/nazmunnaharjuthi"],
+
+["📗","Grathor","https://grathor.com/nazmunnaharjuthi"],
+
+["💻","Tech Tunes","https://www.techtunes.io/techtuner/nazmunnaharjuthi/profile/"],
+
+["💰","J-IT","https://blog.jit.com.bd/author/nazmunnaharjuthi"],
+
+["🔗","J-IT Refer","https://blog.jit.com.bd/ref/nazmunnaharjuthi"],
+
+["❓","Bissoy","https://www.bissoy.com/BegumNazmun"],
+
+["💬","Ask Proshno","https://www.askproshno.com/user/Begum+Nazmun"],
+
+["🗣️","Kotha","https://link.kotha.app/profile/begumnazmunnaharjuthimozumder"],
+
+["👥","Facebook","https://www.facebook.com/begumnazmunnaharjuthi"],
+
+["🔵","Facebook Pages","https://www.facebook.com/begumnazmunnaharjuthimozumder1"],
+
+["👨‍👩‍👧","Facebook Groups","https://www.facebook.com/groups/begumnazmunnaharjuthimozumder"],
+
+["📅","Facebook Events","https://www.facebook.com/events/187674952292838/"],
+
+["🐦","Twitter (X)","https://twitter.com/Begum_Nazmun"],
+
+["📸","Instagram","https://www.instagram.com/begum_nazmun/"],
+
+["▶️","YouTube","https://www.youtube.com/@begumnazmunnaharjuthimozumder"],
+
+["📖","Wikipedia","https://bn.wikipedia.org/wiki/Begum_Nazmun_Nahar_Juthi_Mozumder"],
+
+["📜","Scribd","https://www.scribd.com/user/597556011/Begum-Nazmun-Nahar-Juthi-Mozumder"],
+
+["📞","Imo","https://call.imo.im/begumnazmunnaharjuthimozumder1"],
+
+["👥","Imo Big Group","https://bgroup.imo.im/_44abyGg1WeNg9sXK"],
+
+["💬","WhatsApp","https://www.whatsapp.com/begum_nazmun"],
+
+["💙","Messenger","https://www.messenger.com/begumnazmunnaharjuthi"],
+
+["📧","Gmail","mailto:begumnazmunnaharjuthimozumder@gmail.com"],
+
+["💼","LinkedIn","https://www.linkedin.com/in/begum-nazmun-nahar-juthi-mozumder"],
+
+["💻","Bdjobs","https://www.bdjobs.com/Profile/Mst._Nazmun_Nahar_Juthi_Mozumder"],
+
+["❓","Quora","https://bn.quora.com/profile/Begum-Nazmun-Nahar-Juthi-Mozumder"],
+
+["💖","Qeep","https://www.qeep.net/begumnazmunnaharjuthimozumder"],
+
+["🛒","Daraz","https://www.daraz.com.bd/user/begumnazmunnaharjuthimozumder"],
+
+["📚","Rokomari","https://www.rokomari.com/user/begumnazmunnaharjuthimozumder"],
+
+["🧵","Threads","https://www.threads.net/@begum_nazmun"],
+
+["🎬","Edits","https://edits.meta.com/begum_nazmun"],
+
+["🎵","TikTok","https://www.tiktok.com/@begum_nazmun"],
+
+["📺","Likee","https://likee.video/@begum_nazmun"],
+
+["👻","SnapChat","https://www.snapchat.com/@begum_nazmun"],
+
+["➕","SnapChat Add","https://www.snapchat.com/add/begum_nazmun"],
+
+["✈️","Telegram","https://t.me/Begum_Nazmun"],
+
+["👤","Telegram Profile","https://t.me/Begum_Nazmun_Nahar_Juthi_Mozumdr"],
+
+["📍","Pinterest","https://www.pinterest.com/begum_nazmun/"],
+
+["📚","Wikimedia Commons","https://commons.m.wikimedia.org/wiki/User_talk:Begum_Nazmun_Nahar_Juthi_Mozumder"],
+
+["🔊","Notun Kishor Kantha","https://www.kishorkanthabd.com/writer-kishorkantha/nazmunnaharjuthi"],
+
+["💻","GitHub","https://github.com/jewel-juthi"]
+
+];
+
+
+/* =========================================================
+   🔊 MAHADI HASAN JAVED
+========================================================= */
+
+const ppppSocialMahadi = [
+
+["❓","Bissoy","https://www.bissoy.com/mahadihasanjaved"],
+
+["🗣️","Kotha","https://link.kotha.app/profile/mahadihasanjaved"],
+
+["👥","Facebook","https://www.facebook.com/mahadihasanjaved"],
+
+["🐦","Twitter (X)","https://twitter.com/mahdihasanjaved"],
+
+["📸","Instagram","https://www.instagram.com/mahadi_hasan_javed"],
+
+["▶️","YouTube","https://www.youtube.com/@mahadihasanjaved"],
+
+["💙","Messenger","https://www.messenger.com/mahadihasanjaved"],
+
+["📧","Gmail","mailto:mahadihasanjaved@gmail.com"],
+
+["💼","LinkedIn","https://www.linkedin.com/in/mahadi-hasan-javed"],
+
+["💻","Bdjobs","https://www.bdjobs.com/Profile/Md._Mahadi_Hasan_Javed_Molla"],
+
+["🖥️","GitHub","https://naz-niaz.github.io/pppp_bangladesh/"]
+
+];
+
+
+/* =========================================================
+   🎙️ PPPP
+========================================================= */
+
+const ppppSocialPPPP = [
+
+["📧","Gmail","mailto:pppp.bangladesh@gmail.com"],
+
+["🔵","Facebook Page","https://www.facebook.com/pppp.bangladesh"],
+
+["👥","Facebook Group","https://facebook.com/groups/pppp.bangladesh/"],
+
+["🐦","Twitter (X)","https://twitter.com/pppp_bangladesh"],
+
+["▶️","YouTube","https://youtube.com/@pppp_bangladesh"],
+
+["📸","Instagram","https://www.instagram.com/pppp_bangladesh"],
+
+["📍","Pinterest","https://www.pinterest.com/pppp_bangladesh/"],
+
+["🌐","Official Website","https://naz-niaz.github.io/pppp_bangladesh/"]
+
+];
+
+
+/* =========================================================
+   📡 OTHERS
+========================================================= */
+
+const ppppSocialOthers = [
+
+["💻","Naz-Niaz Blogspot","https://naz-niaz.blogspot.com/"],
+
+["🖥️","Naz-Niaz WordPress","https://nazniaz7.wordpress.com/"],
+
+["👥","Naz-Niaz","https://www.nazniaz.com/"],
+
+["🪶","Valo Kobita","https://www.valo-kobita.com/"],
+
+["📋","Pratilipi","https://pratilipi.page.link/"],
+
+["📝","Golpo Kobita","https://golpokobita.com/"],
+
+["✒️","Banglar Kobita","https://banglarkobita.com/"],
+
+["📕","Bangla Kobita","https://www.bangla-kobita.com/"],
+
+["🖋️","Kobita Cocktail","https://www.kobitacocktail.com/"],
+
+["📘","Kobita Kosh","https://www.kobitakosh.com/"],
+
+["🎵","Gaaner Pata","https://www.gaanerpata.com/"],
+
+["🌟","Tarunyo","https://www.tarunyo.com/"],
+
+["🌐","Somewhere in Blog","https://www.somewhereinblog.net/"],
+
+["📗","Grathor","https://grathor.com/"],
+
+["💻","Tech Tunes","https://www.techtunes.io/"],
+
+["💰","J-IT","https://blog.jit.com.bd/"],
+
+["❓","Bissoy","https://www.bissoy.com/"],
+
+["💬","Ask Proshno","https://www.askproshno.com/"],
+
+["🗣️","Kotha","https://kotha.app/"],
+
+["👥","Facebook","https://www.facebook.com/"],
+
+["🐦","Twitter (X)","https://twitter.com/"],
+
+["📸","Instagram","https://www.instagram.com/"],
+
+["▶️","YouTube","https://www.youtube.com/"],
+
+["📖","Wikipedia","https://www.wikipedia.org/"],
+
+["📜","Scribd","https://www.scribd.com/"],
+
+["📞","Imo","https://imo.im/"],
+
+["💬","WhatsApp","https://www.whatsapp.com/"],
+
+["💙","Messenger","https://www.messenger.com/"],
+
+["📧","Gmail","https://www.gmail.com/"],
+
+["🔎","Google","https://www.google.com/"],
+
+["💼","LinkedIn","https://www.linkedin.com/"],
+
+["💻","Bdjobs","https://www.bdjobs.com/"],
+
+["❓","Quora","https://bn.quora.com/"],
+
+["💖","Qeep","https://www.qeep.net/"],
+
+["💍","Bangladeshi Matrimony","https://www.bangladeshimatrimony.com/"],
+
+["🛒","Daraz","https://www.daraz.com.bd/"],
+
+["📚","Rokomari","https://www.rokomari.com/"],
+
+["💻","Google Blogger","https://www.blogger.com/"],
+
+["🖥️","WordPress","https://wordpress.com/"],
+
+["🧵","Threads","https://www.threads.net/"],
+
+["🎬","Edits","https://edits.meta.com/"],
+
+["🎵","TikTok","https://www.tiktok.com/"],
+
+["📺","Likee","https://likee.video/"],
+
+["👻","SnapChat","https://www.snapchat.com/"],
+
+["✈️","Telegram","https://t.me/"],
+
+["📍","Pinterest","https://www.pinterest.com/"],
+
+["📚","Wikimedia Commons","https://commons.m.wikimedia.org/"],
+
+["🔊","Notun Kishor Kantha","https://www.kishorkanthabd.com/"],
+
+["🗣️","Notun Kishor Kantha Joke","https://www.kishorkanthabd.com/post/হাসির-বকসো-8199"],
+
+["🎙️","Notun Kishor Kantha Story","https://www.kishorkanthabd.com/post/আবিরের-মাধবী-লতা-9485"],
+
+["📢","Notun Kishor Kantha Post","https://www.kishorkanthabd.com/post/%E0%A6%B9%E0%A6%BE%E0%A6%B8%E0%A6%BF%E0%A6%B0-%E0%A6%AC%E0%A6%95%E0%A6%B8%E0%A7%8B-8199"],
+
+["📣","Notun Kishor Kantha Writing","https://www.kishorkanthabd.com/post/%E0%A6%86%E0%A6%AC%E0%A6%BF%E0%A6%B0%E0%A7%87%E0%A6%B0-%E0%A6%AE%E0%A6%BE%E0%A6%A7%E0%A6%AC%E0%A7%80-%E0%A6%B2%E0%A6%A4%E0%A6%BE-9485"],
+
+["📚","Youth Wave","https://youthwavebd.com/"],
+
+["💻","GitHub","https://github.com/"]
+
+];
+
+
+/* =========================================================
+   GENERIC SOCIAL MEDIA RENDERER
+========================================================= */
+
+function ppppRenderSocialMedia(
+    containerId,
+    items
+){
+
+    const container =
+        document.getElementById(containerId);
+
+    if(!container){
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    items.forEach(
+        function(item,index){
+
+            const a =
+                document.createElement("a");
+
+
+            a.className =
+                "pppp-social-card";
+
+
+            a.href =
+                item[2];
+
+
+            a.target =
+                "_blank";
+
+
+            a.rel =
+                "noopener noreferrer";
+
+
+            const number =
+                String(index + 1)
+                .padStart(2,"0");
+
+
+            a.innerHTML = `
+
+                <span class="pppp-social-number">
+                    ${number}
+                </span>
+
+                <span class="pppp-social-emoji">
+                    ${item[0]}
+                </span>
+
+                <span class="pppp-social-name">
+                    ${item[1]}
+                </span>
+
+                <span class="pppp-social-open">
+                    OPEN
+                </span>
+
+            `;
+
+
+            container.appendChild(a);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE SOCIAL MEDIA
+========================================================= */
+
+ppppRenderSocialMedia(
+    "ppppSocialBadshahGrid",
+    ppppSocialBadshah
+);
+
+
+ppppRenderSocialMedia(
+    "ppppSocialBegumGrid",
+    ppppSocialBegum
+);
+
+
+ppppRenderSocialMedia(
+    "ppppSocialMahadiGrid",
+    ppppSocialMahadi
+);
+
+
+ppppRenderSocialMedia(
+    "ppppSocialPPPPGrid",
+    ppppSocialPPPP
+);
+
+
+ppppRenderSocialMedia(
+    "ppppSocialOthersGrid",
+    ppppSocialOthers
+);
+
+
+/* =========================================================
+   PREVENT CLICK EVENTS FROM INTERFERING
+   WITH OTHER SETTINGS CONTROLS
+========================================================= */
+
+document
+    .querySelectorAll(
+        "#ppppSocialMediaWrap .pppp-social-card"
+    )
+    .forEach(
+        function(card){
+
+            card.addEventListener(
+                "click",
+                function(event){
+
+                    event.stopPropagation();
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+<!-- =========================================================
+     END PPPP SOCIAL MEDIA
+========================================================= -->
+
 
 <!-- =========================================================
      🎮 PPPP GAMES
