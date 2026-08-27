@@ -4856,6 +4856,10 @@ status.textContent =
 
 const ppppBanglaTV = [
 
+["🕌","Quran TV","https://play.google.com/store/apps/details?id=com.alquranbd.alquranbd"],
+
+["📿","Hadith TV","https://play.google.com/store/apps/details?id=com.ihadis.ihadis"],
+
 ["☪️","Islamic TV","https://islamictv.news/"],
 
 ["🌙","Diganta TV","https://diganta.tv/"],
@@ -7376,6 +7380,674 @@ document
 
 <!-- =========================================================
      END PPPP FERTILITY / INFERTILITY / IVF
+========================================================= -->
+
+
+<!-- =========================================================
+     🎈 PPPP CHILDHOOD GAMES
+     Floating Settings Button / Settings Page
+     HTML + CSS + JavaScript
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   🎈 CHILDHOOD GAMES WRAPPER
+========================================================= */
+
+.pppp-childhood-games-wrap{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.pppp-childhood-games-section{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.pppp-childhood-games-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
+    background:linear-gradient(135deg,#e17055,#fdcb6e);
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.3;
+    text-align:left;
+}
+
+/* =========================================================
+   GAME GRID
+========================================================= */
+
+.pppp-childhood-games-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:14px;
+    background:#f7f9fc;
+    box-sizing:border-box;
+}
+
+/* =========================================================
+   GAME CARD
+========================================================= */
+
+.pppp-childhood-game-card{
+    position:relative;
+    min-height:150px;
+    border:1px solid #dfe5eb;
+    border-radius:24px;
+    background:linear-gradient(145deg,#ffffff,#f3f7fa);
+    box-shadow:0 5px 14px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    padding:20px 10px 13px;
+
+    box-sizing:border-box;
+
+    cursor:pointer;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+
+    text-decoration:none;
+    color:#263238;
+}
+
+.pppp-childhood-game-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.13);
+}
+
+.pppp-childhood-game-card:active{
+    transform:scale(.98);
+}
+
+/* =========================================================
+   SERIAL NUMBER
+========================================================= */
+
+.pppp-childhood-game-number{
+    position:absolute;
+    top:9px;
+    right:12px;
+
+    font-size:13px;
+    font-weight:800;
+    color:#64a5d6;
+}
+
+/* =========================================================
+   GAME EMOJI
+========================================================= */
+
+.pppp-childhood-game-emoji{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:8px;
+}
+
+/* =========================================================
+   BANGLA GAME NAME
+========================================================= */
+
+.pppp-childhood-game-bangla{
+    font-size:16px;
+    line-height:1.25;
+    font-weight:800;
+}
+
+/* =========================================================
+   ENGLISH GAME NAME
+========================================================= */
+
+.pppp-childhood-game-english{
+    margin-top:3px;
+
+    font-size:13px;
+    line-height:1.25;
+    font-weight:600;
+
+    color:#607d8b;
+}
+
+/* =========================================================
+   OPEN LINK LABEL
+========================================================= */
+
+.pppp-childhood-game-link{
+    display:inline-block;
+
+    margin-top:9px;
+    padding:4px 9px;
+
+    border-radius:20px;
+
+    background:#e8f5e9;
+    color:#16843b;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:520px){
+
+    .pppp-childhood-games-title{
+        font-size:20px;
+        padding:15px 16px;
+    }
+
+    .pppp-childhood-games-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:9px;
+        padding:12px;
+    }
+
+    .pppp-childhood-game-card{
+        min-height:145px;
+        border-radius:22px;
+        padding:19px 8px 12px;
+    }
+
+    .pppp-childhood-game-emoji{
+        font-size:30px;
+    }
+
+    .pppp-childhood-game-bangla{
+        font-size:14px;
+    }
+
+    .pppp-childhood-game-english{
+        font-size:12px;
+    }
+
+}
+
+@media(min-width:700px){
+
+    .pppp-childhood-games-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-childhood-game-card{
+        min-height:155px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     MAIN WRAPPER
+========================================================= -->
+
+<div class="pppp-childhood-games-wrap">
+
+    <!-- =====================================================
+         🎈 CHILDHOOD GAMES
+    ====================================================== -->
+
+    <div class="pppp-childhood-games-section">
+
+        <div class="pppp-childhood-games-title">
+            🎈 শৈশবের খেলাধুলা — Childhood Games
+        </div>
+
+        <div
+            id="ppppChildhoodGamesGrid"
+            class="pppp-childhood-games-grid">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   🎈 PPPP CHILDHOOD GAMES DATA
+   100 DISTINCT GAMES
+========================================================= */
+
+const ppppChildhoodGames = [
+
+    ["🏃","গোল্লাছুট","Gollachhut",
+    "https://www.google.com/search?q=গোল্লাছুট+খেলা+বাংলাদেশ"],
+
+    ["🏃‍♂️","দাঁড়িয়াবান্ধা","Dariabandha",
+    "https://www.google.com/search?q=দাঁড়িয়াবান্ধা+খেলা+বাংলাদেশ"],
+
+    ["🔵","মার্বেল","Marbles",
+    "https://www.google.com/search?q=মার্বেল+খেলা+বাংলাদেশ"],
+
+    ["🌀","লাটিম","Spinning Top",
+    "https://www.google.com/search?q=লাটিম+খেলা+বাংলাদেশ"],
+
+    ["🪵","ডাংগুলি","Gilli-Danda",
+    "https://www.google.com/search?q=ডাংগুলি+খেলা+বাংলাদেশ"],
+
+    ["🪃","গুলতি","Slingshot",
+    "https://www.google.com/search?q=গুলতি+খেলা+বাংলাদেশ"],
+
+    ["🫣","কানামাছি","Blind Man's Buff",
+    "https://www.google.com/search?q=কানামাছি+খেলা+বাংলাদেশ"],
+
+    ["🏃‍♀️","বউচি","Bouchi",
+    "https://www.google.com/search?q=বউচি+খেলা+বাংলাদেশ"],
+
+    ["🐓","মোরগ লড়াই","Cock Fight",
+    "https://www.google.com/search?q=মোরগ+লড়াই+খেলা+বাংলাদেশ"],
+
+    ["🪨","সাতচাড়া","Seven Stones",
+    "https://www.google.com/search?q=সাতচাড়া+খেলা+বাংলাদেশ"],
+
+    ["🦶","এক্কাদোক্কা","Hopscotch",
+    "https://www.google.com/search?q=এক্কাদোক্কা+খেলা+বাংলাদেশ"],
+
+    ["🤸","ইচিং-বিচিং","Iching-Biching",
+    "https://www.google.com/search?q=ইচিং+বিচিং+খেলা+বাংলাদেশ"],
+
+    ["🚪","ওপেন টু বাইস্কোপ","Open to Bioscope",
+    "https://www.google.com/search?q=ওপেন+টু+বাইস্কোপ+খেলা"],
+
+    ["🪙","কড়ি","Cowrie Game",
+    "https://www.google.com/search?q=কড়ি+খেলা+বাংলাদেশ"],
+
+    ["🦶","কুতকুত","Kutkut",
+    "https://www.google.com/search?q=কুতকুত+খেলা+বাংলাদেশ"],
+
+    ["🏠","লুকোচুরি","Hide and Seek",
+    "https://www.google.com/search?q=লুকোচুরি+খেলা+বাংলাদেশ"],
+
+    ["🌸","ফুলটোকা","Phul Tokka",
+    "https://www.google.com/search?q=ফুলটোকা+খেলা+বাংলাদেশ"],
+
+    ["🔩","নাট-বল্টু","Nut and Bolt Game",
+    "https://www.google.com/search?q=নাট+বল্টু+খেলা+বাংলাদেশ"],
+
+    ["🛹","বেয়ারিং গাড়ি","Bearing Car",
+    "https://www.google.com/search?q=বেয়ারিং+গাড়ি+খেলা+বাংলাদেশ"],
+
+    ["🛞","টায়ার দৌড়","Tyre Race",
+    "https://www.google.com/search?q=টায়ার+দৌড়+খেলা+বাংলাদেশ"],
+
+    ["🪢","দড়ি লাফ","Jump Rope",
+    "https://www.google.com/search?q=দড়ি+লাফ+খেলা+বাংলাদেশ"],
+
+    ["🍃","সুপারি পাতার খোলের গাড়ি","Areca Leaf-Sheath Cart",
+    "https://www.google.com/search?q=সুপারি+পাতার+খোলের+গাড়ি+খেলা"],
+
+    ["👮","চোর-পুলিশ-ডাকাত","Cops, Thieves and Robbers",
+    "https://www.google.com/search?q=চোর+পুলিশ+ডাকাত+বাবু+খেলা"],
+
+    ["🔤","শব্দ গঠন","Word Formation",
+    "https://www.google.com/search?q=শব্দ+গঠন+খেলা+শিশু"],
+
+    ["⬛","ছক কাটা","Grid Game",
+    "https://www.google.com/search?q=ছক+কাটা+খেলা+বাংলাদেশ"],
+
+    ["🟢","ষোলগুটি","Sixteen Pieces Game",
+    "https://www.google.com/search?q=ষোলগুটি+খেলা+বাংলাদেশ"],
+
+    ["🎲","লুডু","Ludo",
+    "https://www.google.com/search?q=লুডু+খেলা+বাংলাদেশ"],
+
+    ["🎯","ক্যারাম বোর্ড","Carrom",
+    "https://www.google.com/search?q=ক্যারাম+বোর্ড+বাংলাদেশ"],
+
+    ["🤸‍♂️","দৌড়-লাফ","Running and Jumping",
+    "https://www.google.com/search?q=দৌড়+লাফ+খেলা+বাংলাদেশ"],
+
+    ["🪁","ঘুড়ি উড়ানো","Kite Flying",
+    "https://www.google.com/search?q=ঘুড়ি+উড়ানো+বাংলাদেশ"],
+
+    ["🌀","চরকি ঘুরানো","Spinning Toy",
+    "https://www.google.com/search?q=চরকি+ঘুরানো+খেলা+বাংলাদেশ"],
+
+    ["🎈","বেলুন খেলা","Balloon Game",
+    "https://www.google.com/search?q=বেলুন+খেলা+শিশু+বাংলাদেশ"],
+
+    ["🛞","মেড্ডা ও কদমের গাড়ি","Traditional Wooden Cart",
+    "https://www.google.com/search?q=মেড্ডা+ও+কদমের+গাড়ি+খেলা"],
+
+    ["🎠","দোলনায় দোল খাওয়া","Swinging",
+    "https://www.google.com/search?q=দোলনায়+দোল+খাওয়া+শৈশব"],
+
+    ["🤼","হা-ডু-ডু","Ha-Du-Du",
+    "https://www.google.com/search?q=হা+ডু+ডু+খেলা+বাংলাদেশ"],
+
+    ["🚣","নৌকা বাইচ","Boat Racing",
+    "https://www.google.com/search?q=নৌকা+বাইচ+বাংলাদেশ"],
+
+    ["🪵","লাঠিখেলা","Stick Fighting",
+    "https://www.google.com/search?q=লাঠিখেলা+বাংলাদেশ"],
+
+    ["🤼‍♂️","কুস্তি","Wrestling",
+    "https://www.google.com/search?q=কুস্তি+খেলা+বাংলাদেশ"],
+
+    ["🐂","ষাঁড়ের লড়াই","Bull Fighting",
+    "https://www.google.com/search?q=ষাঁড়ের+লড়াই+বাংলাদেশ"],
+
+    ["🧣","রুমাল চুরি","Rumaal Churi",
+    "https://www.google.com/search?q=রুমাল+চুরি+খেলা+বাংলাদেশ"],
+
+    ["🧊","বরফ-পানি","Ice-Water",
+    "https://www.google.com/search?q=বরফ+পানি+খেলা+বাংলাদেশ"],
+
+    ["🪆","পুতুল খেলা","Doll Play",
+    "https://www.google.com/search?q=পুতুল+খেলা+বাংলাদেশ"],
+
+    ["🍚","টোপাভাতি","Topabhati",
+    "https://www.google.com/search?q=টোপাভাতি+খেলা+বাংলাদেশ"],
+
+    ["🐯","বাঘ-ছাগল","Tiger and Goat",
+    "https://www.google.com/search?q=বাঘ+ছাগল+খেলা+বাংলাদেশ"],
+
+    ["🪨","চারগুটি","Four Pieces Game",
+    "https://www.google.com/search?q=চারগুটি+খেলা+বাংলাদেশ"],
+
+    ["🍃","সাতপাতা","Seven Leaves",
+    "https://www.google.com/search?q=সাতপাতা+খেলা+বাংলাদেশ"],
+
+    ["🪢","দড়ি টানাটানি","Tug of War",
+    "https://www.google.com/search?q=দড়ি+টানাটানি+বাংলাদেশ+খেলা"],
+
+    ["🏃","বস্তা দৌড়","Sack Race",
+    "https://www.google.com/search?q=বস্তা+দৌড়+বাংলাদেশ"],
+
+    ["🏃‍♂️","তিন পায়ের দৌড়","Three-Legged Race",
+    "https://www.google.com/search?q=তিন+পায়ের+দৌড়+বাংলাদেশ"],
+
+    ["🥚","চামচে ডিম দৌড়","Egg-and-Spoon Race",
+    "https://www.google.com/search?q=চামচে+ডিম+দৌড়+খেলা"],
+
+    ["🐸","ব্যাঙ লাফ","Frog Jump",
+    "https://www.google.com/search?q=ব্যাঙ+লাফ+খেলা+বাংলাদেশ"],
+
+    ["🏊","ডুবসাঁতার","Diving and Swimming",
+    "https://www.google.com/search?q=ডুবসাঁতার+গ্রামবাংলা+শৈশব"],
+
+    ["💦","ডুবাডুবি","Duba-Dubi",
+    "https://www.google.com/search?q=ডুবাডুবি+খেলা+বাংলাদেশ"],
+
+    ["🌹","গোলাপ-টগর","Golap-Tagar",
+    "https://www.google.com/search?q=গোলাপ+টগর+খেলা+বাংলাদেশ"],
+
+    ["👧","বউরানী","Baurani",
+    "https://www.google.com/search?q=বউরানী+খেলা+বাংলাদেশ"],
+
+    ["🐔","চিলমোরগ","Chil-Morog",
+    "https://www.google.com/search?q=চিলমোরগ+খেলা+বাংলাদেশ"],
+
+    ["🪵","কাঠি খেলা","Stick Game",
+    "https://www.google.com/search?q=কাঠি+খেলা+বাংলাদেশ+লোকজ"],
+
+    ["🦵","ল্যাংচা","Langcha",
+    "https://www.google.com/search?q=ল্যাংচা+খেলা+বাংলাদেশ"],
+
+    ["🏺","হাড়িভাঙা","Pot Breaking",
+    "https://www.google.com/search?q=হাড়িভাঙা+খেলা+বাংলাদেশ"],
+
+    ["🐯","বাঘবন্দী","Bagh-Bandi",
+    "https://www.google.com/search?q=বাঘবন্দী+খেলা+বাংলাদেশ"],
+
+    ["🪨","পাঁচগুটি","Five Stones",
+    "https://www.google.com/search?q=পাঁচগুটি+খেলা+বাংলাদেশ"],
+
+    ["🪙","পাঁচঘুঁটি","Five Pieces",
+    "https://www.google.com/search?q=পাঁচঘুঁটি+খেলা+বাংলাদেশ"],
+
+    ["🧩","খুঁটিদাড়া","Khuti-Dara",
+    "https://www.google.com/search?q=খুঁটিদাড়া+খেলা+বাংলাদেশ"],
+
+    ["🪵","লাইখেলা","Lai Khela",
+    "https://www.google.com/search?q=লাইখেলা+বাংলাদেশ"],
+
+    ["🍊","কমলাচুরি","Komola Churi",
+    "https://www.google.com/search?q=কমলাচুরি+খেলা+বাংলাদেশ"],
+
+    ["🌱","সীমবীচি খেলা","Bean Seed Game",
+    "https://www.google.com/search?q=সীম+বীচি+খেলা+বাংলাদেশ"],
+
+    ["👧","কুমারী খেলা","Kumari Game",
+    "https://www.google.com/search?q=কুমারী+খেলা+বাংলাদেশ+লোকজ"],
+
+    ["🏇","ঘোড়দৌড়","Horse Racing",
+    "https://www.google.com/search?q=ঘোড়দৌড়+গ্রামবাংলার+খেলা"],
+
+    ["🕊️","পায়রা উড়ানো","Pigeon Flying",
+    "https://www.google.com/search?q=পায়রা+উড়ানো+বাংলাদেশ+শৈশব"],
+
+    ["🪢","এলাতিং-বেলাতিং","Elating-Belating",
+    "https://www.google.com/search?q=এলাতিং+বেলাতিং+খেলা+বাংলাদেশ"],
+
+    ["🤼","বলী খেলা","Bali Khela",
+    "https://www.google.com/search?q=বলী+খেলা+বাংলাদেশ"],
+
+    ["🎲","পাশা খেলা","Dice Game",
+    "https://www.google.com/search?q=পাশা+খেলা+বাংলাদেশ"],
+
+    ["🏃","খো-খো","Kho-Kho",
+    "https://www.google.com/search?q=খো+খো+খেলা+বাংলাদেশ"],
+
+    ["🐐","গাইগোদানি","Gai-Godani",
+    "https://www.google.com/search?q=গাইগোদানি+খেলা+বাংলাদেশ"],
+
+    ["🐊","কুমির ডাঙ্গা","Crocodile-Crocodile",
+    "https://www.google.com/search?q=কুমির+ডাঙ্গা+খেলা+বাংলাদেশ"],
+
+    ["🏹","ধনুক-বাণ খেলা","Bow and Arrow Game",
+    "https://www.google.com/search?q=ধনুক+বাণ+খেলা+বাংলাদেশ"],
+
+    ["🐍","সাপ-লুডু","Snakes and Ladders",
+    "https://www.google.com/search?q=সাপ+লুডু+বাংলাদেশ"],
+
+    ["👑","রাজা-মন্ত্রী","King and Minister",
+    "https://www.google.com/search?q=রাজা+মন্ত্রী+খেলা+শিশু"],
+
+    ["🕵️","চোর-ডাকাত","Thief and Robber",
+    "https://www.google.com/search?q=চোর+ডাকাত+খেলা+বাংলাদেশ"],
+
+    ["👰","বউ সাজা","Dress-Up Play",
+    "https://www.google.com/search?q=বউ+সাজা+খেলা+শিশু+বাংলাদেশ"],
+
+    ["💍","পুতুল বিয়ে","Doll Wedding",
+    "https://www.google.com/search?q=পুতুল+বিয়ে+খেলা+বাংলাদেশ"],
+
+    ["🏠","ঘর-ঘর খেলা","House Play",
+    "https://www.google.com/search?q=ঘর+ঘর+খেলা+শিশু+বাংলাদেশ"],
+
+    ["🪵","কাঠের তলোয়ার খেলা","Wooden Sword Play",
+    "https://www.google.com/search?q=কাঠের+তলোয়ার+খেলা+শিশু"],
+
+    ["⛵","কাগজের নৌকা","Paper Boat",
+    "https://www.google.com/search?q=কাগজের+নৌকা+শৈশব+বাংলাদেশ"],
+
+    ["✈️","কাগজের বিমান","Paper Plane",
+    "https://www.google.com/search?q=কাগজের+বিমান+শৈশব+বাংলাদেশ"],
+
+    ["🎭","আগডুম-বাগডুম","Agdum-Bagdum",
+    "https://www.google.com/search?q=আগডুম+বাগডুম+খেলা+বাংলাদেশ"],
+
+    ["🔢","ইকড়ি-মিকড়ি","Ikri-Mikri",
+    "https://www.google.com/search?q=ইকড়ি+মিকড়ি+খেলা+বাংলাদেশ"],
+
+    ["🗣️","নোনতা খেলা","Nonta Game",
+    "https://www.google.com/search?q=নোনতা+খেলা+বাংলাদেশ"],
+
+    ["🔄","লাপা-লাপি","Lapa-Lapi",
+    "https://www.google.com/search?q=লাপা+লাপি+খেলা+বাংলাদেশ"],
+
+    ["🏃","দাপ্পা","Dappa",
+    "https://www.google.com/search?q=দাপ্পা+খেলা+বাংলাদেশ"],
+
+    ["🟢","রস-কস","Ros-Kos",
+    "https://www.google.com/search?q=রস+কস+খেলা+বাংলাদেশ"],
+
+    ["🍖","গোশত চুরি","Goshto Churi",
+    "https://www.google.com/search?q=গোশত+চুরি+খেলা+বাংলাদেশ"],
+
+    ["🔴","ডালিম খেলা","Dalim Game",
+    "https://www.google.com/search?q=ডালিম+খেলা+বাংলাদেশ"],
+
+    ["💧","পানি ঝুপ্পা","Pani Jhup",
+    "https://www.google.com/search?q=পানি+ঝুপ্পা+খেলা+বাংলাদেশ"],
+
+    ["🧠","বুঝাবুঝি","Bujhabujhi",
+    "https://www.google.com/search?q=বুঝাবুঝি+খেলা+বাংলাদেশ"],
+
+    ["🪨","খোলামকুচি","Kholamkuchi",
+    "https://www.google.com/search?q=খোলামকুচি+খেলা+বাংলাদেশ"],
+
+    ["🪙","ঘুঁটি খেলা","Guti Game",
+    "https://www.google.com/search?q=ঘুঁটি+খেলা+বাংলাদেশ+লোকজ"],
+
+    ["🪁","ঘুড়ি কাটাকাটি","Kite Fighting",
+    "https://www.google.com/search?q=ঘুড়ি+কাটাকাটি+বাংলাদেশ"],
+
+    ["🥎","বল ধরা","Ball Catching",
+    "https://www.google.com/search?q=বল+ধরা+খেলা+শিশু+বাংলাদেশ"],
+
+    ["🪨","ঢিল ছোঁড়া","Stone Toss",
+    "https://www.google.com/search?q=ঢিল+ছোঁড়া+শৈশবের+খেলা+বাংলাদেশ"]
+
+];
+
+
+/* =========================================================
+   🎈 RENDER CHILDHOOD GAMES
+========================================================= */
+
+function ppppRenderChildhoodGames(){
+
+    const container =
+        document.getElementById(
+            "ppppChildhoodGamesGrid"
+        );
+
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    ppppChildhoodGames.forEach(
+        (game,index)=>{
+
+            const number =
+                String(index + 1).padStart(2,"0");
+
+            const card =
+                document.createElement("a");
+
+            card.className =
+                "pppp-childhood-game-card";
+
+            /*
+               Exact user-provided Google Search URL
+               is preserved.
+            */
+
+            card.href = game[3];
+
+            card.target = "_blank";
+
+            card.rel =
+                "noopener noreferrer";
+
+            card.innerHTML = `
+
+                <span class="pppp-childhood-game-number">
+                    ${number}
+                </span>
+
+                <span class="pppp-childhood-game-emoji">
+                    ${game[0]}
+                </span>
+
+                <span class="pppp-childhood-game-bangla">
+                    ${game[1]}
+                </span>
+
+                <span class="pppp-childhood-game-english">
+                    ${game[2]}
+                </span>
+
+                <span class="pppp-childhood-game-link">
+                    🔗 OPEN / SEARCH
+                </span>
+
+            `;
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+ppppRenderChildhoodGames();
+
+
+/* =========================================================
+   PREVENT SETTINGS CONTAINER INTERFERENCE
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".pppp-childhood-games-wrap a"
+    )
+    .forEach(
+        link=>{
+
+            link.addEventListener(
+                "click",
+                function(event){
+
+                    event.stopPropagation();
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+<!-- =========================================================
+     END 🎈 PPPP CHILDHOOD GAMES
 ========================================================= -->
 
 
