@@ -6317,1697 +6317,994 @@ document
 ========================================================= -->
 
 <!-- =========================================================
-     🛒 GOOGLE PLAY STORE APP (SUGGESTED)
-     PPPP Floating Settings Button / Settings Page
-     ========================================================= -->
-
-<section id="pppp-playstore-apps-section">
-
-    <!-- SECTION TITLE -->
-    <div class="pppp-playstore-apps-title">
-        🛒 Google Play Store App (Suggested)
-    </div>
-
-    <!-- SUB TITLE -->
-    <div class="pppp-playstore-apps-subtitle">
-        📱 Suggested Apps & Useful Services
-    </div>
-
-    <!-- SEARCH -->
-    <div class="pppp-playstore-search-wrap">
-        <input
-            type="text"
-            id="ppppPlayStoreSearch"
-            class="pppp-playstore-search"
-            placeholder="🔍 Search Apps..."
-            autocomplete="off"
-        >
-    </div>
-
-    <!-- APP GRID -->
-    <div
-        id="ppppPlayStoreAppsGrid"
-        class="pppp-playstore-apps-grid">
-    </div>
-
-    <!-- NO RESULT -->
-    <div
-        id="ppppPlayStoreNoResult"
-        class="pppp-playstore-no-result">
-        ❌ No App Found
-    </div>
-
-</section>
-
+     🛒 PPPP GOOGLE PLAY STORE APP — SUGGESTED
+     Floating Settings Button / Settings Page
+========================================================= -->
 
 <style>
 
 /* =========================================================
-   🛒 GOOGLE PLAY STORE APP SECTION
-   ========================================================= */
+   🛒 GOOGLE PLAY STORE WRAPPER
+========================================================= */
 
-#pppp-playstore-apps-section{
+.pppp-playstore-wrap{
     width:100%;
-    margin:0;
-    padding:0 0 25px 0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 
 /* =========================================================
-   SECTION TITLE
-   ========================================================= */
+   🛒 GOOGLE PLAY STORE SECTION
+========================================================= */
 
-.pppp-playstore-apps-title{
+.pppp-playstore-section{
     width:100%;
-    min-height:120px;
-    padding:25px 28px;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   🛒 SECTION TITLE
+========================================================= */
+
+.pppp-playstore-title{
+    width:100%;
     box-sizing:border-box;
 
-    display:flex;
-    align-items:center;
+    padding:15px 18px;
 
-    background:linear-gradient(
-        135deg,
-        #e85b43,
-        #ed1c24
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #f4511e,
+            #e91e63
+        );
 
-    color:#ffffff;
-    font-size:34px;
+    color:#fff;
+
+    font-size:21px;
     font-weight:800;
     line-height:1.25;
 
-    border-radius:0;
+    text-align:left;
 }
 
 
 /* =========================================================
-   SUB TITLE
-   ========================================================= */
+   📱 SUB TITLE
+========================================================= */
 
-.pppp-playstore-apps-subtitle{
+.pppp-playstore-subtitle{
     width:100%;
     box-sizing:border-box;
 
-    padding:30px 15px 20px 15px;
+    padding:18px 18px 10px;
+
+    background:#fff;
+
+    color:#616161;
+
+    font-size:20px;
+    font-weight:800;
 
     text-align:center;
-
-    color:#666;
-    font-size:25px;
-    font-weight:700;
 }
 
 
 /* =========================================================
-   SEARCH BOX
-   ========================================================= */
+   🔎 SEARCH BOX
+========================================================= */
 
 .pppp-playstore-search-wrap{
-    width:92%;
-    margin:0 auto 28px auto;
+    width:100%;
     box-sizing:border-box;
+
+    padding:10px 14px 14px;
+
+    background:#fff;
 }
+
 
 .pppp-playstore-search{
     width:100%;
-    height:70px;
-
-    padding:0 25px;
-
     box-sizing:border-box;
 
-    border:4px solid #dedede;
-    border-radius:40px;
+    padding:14px 18px;
+
+    border:
+        3px solid
+        #e0e0e0;
+
+    border-radius:32px;
+
+    background:#fff;
+
+    color:#424242;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    font-size:18px;
 
     outline:none;
 
-    background:#ffffff;
-
-    color:#333;
-
-    font-size:24px;
-
     box-shadow:
-        0 2px 8px rgba(0,0,0,0.04);
-
-    transition:all 0.2s ease;
+        0 2px 8px
+        rgba(0,0,0,.04);
 }
+
 
 .pppp-playstore-search:focus{
-    border-color:#8bc7e8;
+    border-color:#90caf9;
+
     box-shadow:
-        0 3px 12px rgba(0,0,0,0.08);
+        0 3px 12px
+        rgba(33,150,243,.12);
 }
 
+
 .pppp-playstore-search::placeholder{
-    color:#777;
+    color:#757575;
 }
 
 
 /* =========================================================
-   TWO COLUMN GRID
-   ========================================================= */
+   🛒 GOOGLE PLAY STORE GRID
+========================================================= */
 
-.pppp-playstore-apps-grid{
-    width:100%;
-
-    padding:0 25px;
-
-    box-sizing:border-box;
-
+.pppp-playstore-grid{
     display:grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(2,minmax(0,1fr));
 
-    gap:18px;
+    gap:10px;
+
+    padding:14px;
+
+    background:#f7f9fc;
+
+    box-sizing:border-box;
 }
 
 
 /* =========================================================
-   APP CARD
-   SAME SIZE / STYLE AS SOCIAL MEDIA (OTHERS)
-   ========================================================= */
+   📱 APP CARD
+   SAME SIZE AS PPPP SOCIAL MEDIA CARD
+========================================================= */
 
-.pppp-playstore-app-card{
-
+.pppp-playstore-card{
     position:relative;
 
-    width:100%;
+    min-height:118px;
 
-    height:200px;
-    min-height:200px;
-    max-height:200px;
+    border:
+        1px solid
+        #dfe5eb;
 
-    box-sizing:border-box;
-
-    padding:18px 12px 15px 12px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-
-    text-align:center;
+    border-radius:24px;
 
     background:
         linear-gradient(
             145deg,
             #ffffff,
-            #f5f9fc
+            #f3f7fa
         );
 
-    border:1px solid #dfe4e8;
-
-    border-radius:38px;
-
     box-shadow:
-        0 5px 14px rgba(0,0,0,0.07);
-
-    overflow:hidden;
-
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-}
-
-
-/* =========================================================
-   CARD HOVER / ACTIVE
-   ========================================================= */
-
-.pppp-playstore-app-card:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 18px rgba(0,0,0,0.10);
-}
-
-.pppp-playstore-app-card:active{
-    transform:scale(0.98);
-}
-
-
-/* =========================================================
-   SERIAL NUMBER
-   ========================================================= */
-
-.pppp-playstore-app-number{
-
-    position:absolute;
-
-    top:18px;
-    right:13px;
-
-    color:#69a6c7;
-
-    font-size:21px;
-    font-weight:800;
-
-    line-height:1;
-}
-
-
-/* =========================================================
-   APP EMOJI / ICON
-   ========================================================= */
-
-.pppp-playstore-app-icon{
-
-    width:62px;
-    height:62px;
-
-    margin-top:5px;
-    margin-bottom:6px;
+        0 5px 14px
+        rgba(0,0,0,.08);
 
     display:flex;
-    align-items:center;
+
+    flex-direction:column;
+
     justify-content:center;
 
-    font-size:48px;
+    align-items:center;
 
-    line-height:1;
+    text-align:center;
 
-    flex-shrink:0;
-}
-
-
-/* =========================================================
-   APP NAME
-   FIXED AREA — PREVENTS LARGE CARDS
-   ========================================================= */
-
-.pppp-playstore-app-name{
-
-    width:100%;
-
-    height:52px;
-    min-height:52px;
-    max-height:52px;
-
-    padding:0 8px;
+    padding:
+        18px 10px 12px;
 
     box-sizing:border-box;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    cursor:pointer;
 
-    color:#29343a;
-
-    font-size:22px;
-    font-weight:800;
-
-    line-height:1.2;
-
-    overflow:hidden;
-
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-
-    text-overflow:ellipsis;
-}
-
-
-/* =========================================================
-   OPEN BUTTON
-   ========================================================= */
-
-.pppp-playstore-open-btn{
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    min-width:78px;
-    height:40px;
-
-    margin-top:7px;
-
-    padding:0 17px;
-
-    border:0;
-    border-radius:25px;
-
-    background:#e9f8ed;
-
-    color:#27834c;
-
-    font-size:18px;
-    font-weight:800;
+    transition:.18s;
 
     text-decoration:none;
 
-    cursor:pointer;
+    color:#263238;
 
-    flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
 
-    transition:
-        background 0.18s ease,
-        transform 0.18s ease;
+    overflow:hidden;
 }
 
-.pppp-playstore-open-btn:hover{
-    background:#d8f1df;
+
+.pppp-playstore-card:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0,0,0,.12);
 }
 
-.pppp-playstore-open-btn:active{
-    transform:scale(0.94);
+
+.pppp-playstore-card:active{
+    transform:scale(.98);
 }
 
 
 /* =========================================================
-   NO RESULT
-   ========================================================= */
+   🔢 SERIAL NUMBER
+========================================================= */
+
+.pppp-playstore-number{
+    position:absolute;
+
+    top:10px;
+
+    right:12px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:#64a5d6;
+}
+
+
+/* =========================================================
+   😀 APP EMOJI
+   SAME AS SOCIAL MEDIA
+========================================================= */
+
+.pppp-playstore-emoji{
+    font-size:34px;
+
+    line-height:1;
+
+    margin-bottom:8px;
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   📝 APP NAME
+   SAME AS SOCIAL MEDIA
+========================================================= */
+
+.pppp-playstore-name{
+    font-size:16px;
+
+    line-height:1.2;
+
+    font-weight:800;
+
+    word-break:break-word;
+
+    overflow-wrap:anywhere;
+
+    max-width:100%;
+}
+
+
+/* =========================================================
+   🟢 OPEN LABEL
+   SAME AS SOCIAL MEDIA
+========================================================= */
+
+.pppp-playstore-open{
+    display:inline-block;
+
+    margin-top:7px;
+
+    padding:
+        3px 8px;
+
+    border-radius:20px;
+
+    background:#e8f5e9;
+
+    color:#16843b;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    line-height:1.25;
+}
+
+
+/* =========================================================
+   🚫 NO RESULT
+========================================================= */
 
 .pppp-playstore-no-result{
     display:none;
 
-    padding:35px 15px;
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:25px 15px;
 
     text-align:center;
 
     color:#777;
 
-    font-size:22px;
+    font-size:16px;
+
     font-weight:700;
+
+    background:#f7f9fc;
 }
 
 
 /* =========================================================
-   TABLET / SMALL SCREEN
-   ========================================================= */
+   📱 MOBILE
+========================================================= */
 
-@media(max-width:600px){
+@media(max-width:520px){
 
-    .pppp-playstore-apps-title{
-        min-height:110px;
-        padding:23px 25px;
-
-        font-size:32px;
-    }
-
-    .pppp-playstore-apps-subtitle{
-        font-size:22px;
-        padding:28px 10px 18px 10px;
-    }
-
-    .pppp-playstore-search-wrap{
-        width:92%;
-        margin-bottom:26px;
-    }
-
-    .pppp-playstore-search{
-        height:68px;
-        font-size:23px;
-    }
-
-    .pppp-playstore-apps-grid{
-        padding:0 25px;
-        gap:18px;
-    }
-
-    .pppp-playstore-app-card{
-        height:200px;
-        min-height:200px;
-        max-height:200px;
-
-        border-radius:36px;
-
-        padding-left:10px;
-        padding-right:10px;
-    }
-
-    .pppp-playstore-app-icon{
-        font-size:46px;
-        width:60px;
-        height:60px;
-    }
-
-    .pppp-playstore-app-name{
-        font-size:21px;
-    }
-
-    .pppp-playstore-app-number{
+    .pppp-playstore-title{
         font-size:20px;
+
+        padding:
+            15px 16px;
     }
 
-    .pppp-playstore-open-btn{
-        font-size:17px;
-        min-width:76px;
-        height:39px;
+
+    .pppp-playstore-subtitle{
+        font-size:20px;
+
+        padding:
+            18px 14px 10px;
     }
+
+
+    .pppp-playstore-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px;
+
+        padding:14px;
+    }
+
+
+    .pppp-playstore-card{
+        min-height:116px;
+
+        border-radius:22px;
+    }
+
+
+    .pppp-playstore-emoji{
+        font-size:31px;
+    }
+
+
+    .pppp-playstore-name{
+        font-size:15px;
+    }
+
+
+    .pppp-playstore-open{
+        font-size:11px;
+
+        padding:
+            3px 8px;
+    }
+
 }
 
 
 /* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
+   💻 TABLET / DESKTOP
+========================================================= */
 
-@media(max-width:380px){
+@media(min-width:700px){
 
-    .pppp-playstore-apps-grid{
-        padding:0 16px;
-        gap:14px;
+    .pppp-playstore-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
     }
 
-    .pppp-playstore-app-card{
-        height:195px;
-        min-height:195px;
-        max-height:195px;
 
-        border-radius:32px;
+    .pppp-playstore-card{
+        min-height:125px;
     }
 
-    .pppp-playstore-app-icon{
-        font-size:42px;
+}
+
+
+/* =========================================================
+   🖥️ LARGE DESKTOP
+========================================================= */
+
+@media(min-width:1100px){
+
+    .pppp-playstore-grid{
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
     }
 
-    .pppp-playstore-app-name{
-        font-size:18px;
-    }
-
-    .pppp-playstore-app-number{
-        font-size:18px;
-        top:16px;
-        right:11px;
-    }
-
-    .pppp-playstore-open-btn{
-        height:37px;
-        min-width:70px;
-        font-size:16px;
-    }
 }
 
 </style>
 
 
+<!-- =========================================================
+     🛒 PPPP GOOGLE PLAY STORE APP
+========================================================= -->
+
+<div
+class="pppp-playstore-wrap"
+id="ppppPlayStoreWrap">
+
+
+<!-- =========================================================
+     🛒 SECTION
+========================================================= -->
+
+<div class="pppp-playstore-section">
+
+
+<div class="pppp-playstore-title">
+🛒 Google Play Store App (Suggested)
+</div>
+
+
+<div class="pppp-playstore-subtitle">
+📱 Suggested Apps &amp; Useful Services
+</div>
+
+
+<!-- =========================================================
+     🔎 SEARCH
+========================================================= -->
+
+<div class="pppp-playstore-search-wrap">
+
+<input
+type="search"
+id="ppppPlayStoreSearch"
+class="pppp-playstore-search"
+placeholder="🔍 Search Apps..."
+autocomplete="off">
+
+</div>
+
+
+<!-- =========================================================
+     📱 APP GRID
+========================================================= -->
+
+<div
+id="ppppPlayStoreGrid"
+class="pppp-playstore-grid">
+</div>
+
+
+<div
+id="ppppPlayStoreNoResult"
+class="pppp-playstore-no-result">
+🔍 No app found.
+</div>
+
+
+</div>
+
+</div>
+
+
 <script>
 
 /* =========================================================
-   🛒 GOOGLE PLAY STORE APP DATA
-   ========================================================= */
+   🛒 PPPP GOOGLE PLAY STORE APP DATA
+========================================================= */
 
 const ppppPlayStoreApps = [
 
-{
-    no:"01",
-    icon:"🕌",
-    name:"বাংলা কুরআন - Bangla Quran",
-    url:"https://play.google.com/store/apps/details?id=com.alquranbd.alquranbd"
-},
-
-{
-    no:"02",
-    icon:"📿",
-    name:"আল হাদিস (Al Hadith)",
-    url:"https://play.google.com/store/apps/details?id=com.ihadis.ihadis"
-},
-
-{
-    no:"03",
-    icon:"🎧",
-    name:"Al Quran MP3 Full OFFLINE",
-    url:"https://play.google.com/store/apps/details?id=com.andromo.dev442089.app510450"
-},
-
-{
-    no:"04",
-    icon:"🔊",
-    name:"Small 26 Surah (২৬ টি ছোট সূরা)",
-    url:"https://play.google.com/store/apps/details?id=com.sahell.small26surah"
-},
-
-{
-    no:"05",
-    icon:"❤️",
-    name:"হযরত মোহাম্মদ (সাঃ) এর জীবনী",
-    url:"https://play.google.com/store/apps/details?id=com.sahell.muhammadsaw"
-},
-
-{
-    no:"06",
-    icon:"📜",
-    name:"নবীদের জীবনী",
-    url:"https://play.google.com/store/apps/details?id=com.royal_bengal_apps.nobider_jiboni"
-},
-
-{
-    no:"07",
-    icon:"💚",
-    name:"সাহাবাদের জীবনী - ১৯৩ জন সাহাবা",
-    url:"https://play.google.com/store/apps/details?id=com.sahell.sahabalife"
-},
-
-{
-    no:"08",
-    icon:"🎵",
-    name:"ইসলামিক গজল",
-    url:"https://play.google.com/store/apps/details?id=com.app.banglaislamicaudiogojol"
-},
-
-{
-    no:"09",
-    icon:"🕋",
-    name:"Allah Wallpapers",
-    url:"https://play.google.com/store/apps/details?id=com.bakur30.allah"
-},
-
-{
-    no:"10",
-    icon:"🕌",
-    name:"Quran Wallpapers",
-    url:"https://play.google.com/store/apps/details?id=com.ibrahimtornado.AyatQuranWallpapers"
-},
-
-{
-    no:"11",
-    icon:"🔔",
-    name:"Islamic Ringtones",
-    url:"https://play.google.com/store/apps/details?id=com.clear.islam"
-},
-
-{
-    no:"12",
-    icon:"☪️",
-    name:"Islamic Names Dictionary",
-    url:"https://play.google.com/store/apps/details?id=com.zhystudio.IslamicUrduNamesDictionary"
-},
-
-{
-    no:"13",
-    icon:"🌙",
-    name:"ইসলামিক পোস্ট ছবি সহ স্ট্যাটাস",
-    url:"https://play.google.com/store/apps/details?id=com.cap.islamic_status_image_post_wallpaper_with_quotes"
-},
-
-{
-    no:"14",
-    icon:"🤲",
-    name:"দোআ ও যিকির (হিসনুল মুসলিম)",
-    url:"https://play.google.com/store/apps/details?id=com.greentech.hisnulmuslimbn"
-},
-
-{
-    no:"15",
-    icon:"❓",
-    name:"ইসলামিক প্রশ্ন ও উত্তর",
-    url:"https://play.google.com/store/apps/details?id=com.greenappstudio.islamic_questions_and_answers"
-},
-
-{
-    no:"16",
-    icon:"📚",
-    name:"সাধারণ জ্ঞান বই সম্পূর্ণ খন্ড",
-    url:"https://play.google.com/store/apps/details?id=com.Bangla.General.Knowledge.Book"
-},
-
-{
-    no:"17",
-    icon:"💡",
-    name:"ব‍্যবসার আইডিয়া",
-    url:"https://play.google.com/store/apps/details?id=com.hutapps.businessideas"
-},
-
-{
-    no:"18",
-    icon:"💼",
-    name:"ক্ষুদ্র ব‍্যবসার আইডিয়া",
-    url:"https://play.google.com/store/apps/details?id=com.greenappstudio.uddokta_business_micro_credit"
-},
-
-{
-    no:"19",
-    icon:"🎂",
-    name:"বয়স ক‍্যালকুলেটর Age Calculator",
-    url:"https://play.google.com/store/apps/details?id=com.apps.age_calculator_bangla"
-},
-
-{
-    no:"20",
-    icon:"🕐",
-    name:"বাংলা ঘড়ি (Bangla Clock)",
-    url:"https://play.google.com/store/apps/details?id=com.alfeesoft.banglaclock"
-},
-
-{
-    no:"21",
-    icon:"📗",
-    name:"Bangla to Bangla Dictionary",
-    url:"https://play.google.com/store/apps/details?id=com.dict.bnbn"
-},
-
-{
-    no:"22",
-    icon:"📘",
-    name:"Bangla to English Dictionary",
-    url:"https://play.google.com/store/apps/details?id=com.dictionary.bn"
-},
-
-{
-    no:"23",
-    icon:"📕",
-    name:"Word Book English to Bangla",
-    url:"https://play.google.com/store/apps/details?id=com.wrdbk.engbangla"
-},
-
-{
-    no:"24",
-    icon:"🗣️",
-    name:"Spoken English E2B সহজে ইংরেজি বলি",
-    url:"https://play.google.com/store/apps/details?id=com.lenglishveryway.lenway"
-},
-
-{
-    no:"25",
-    icon:"🅿️",
-    name:"PPPP",
-    url:"https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk"
-},
-
-{
-    no:"26",
-    icon:"👥",
-    name:"পিপিপিপি",
-    url:"https://github.com/naz-niaz/pppp_bangladesh/releases/download/v1.0/PPPP.apk"
-},
-
-{
-    no:"27",
-    icon:"🇧🇩",
-    name:"PPPP Bangladesh",
-    url:"https://upload.app/download/pppp/io.github.naz_niaz.twa/4b0f19ba20feb4682e8c5964aa1a385993cadc329ec490434799554198fd95eb"
-},
-
-{
-    no:"28",
-    icon:"⚽",
-    name:"FotMob - Soccer Live Scores",
-    url:"https://play.google.com/store/apps/details?id=com.mobilefootie.wc2010"
-},
-
-{
-    no:"29",
-    icon:"🏏",
-    name:"Cricbuzz - Live Cricket Scores",
-    url:"https://play.google.com/store/apps/details?id=com.cricbuzz.android"
-},
-
-{
-    no:"30",
-    icon:"💯",
-    name:"Free Basics by Facebook",
-    url:"https://play.google.com/store/apps/details?id=com.freebasics"
-},
-
-{
-    no:"31",
-    icon:"🔵",
-    name:"Facebook Lite",
-    url:"https://play.google.com/store/apps/details?id=com.facebook.lite"
-},
-
-{
-    no:"32",
-    icon:"👥",
-    name:"Facebook",
-    url:"https://play.google.com/store/apps/details?id=com.facebook.katana"
-},
-
-{
-    no:"33",
-    icon:"💙",
-    name:"Messenger",
-    url:"https://play.google.com/store/apps/details?id=com.facebook.orca"
-},
-
-{
-    no:"34",
-    icon:"🎥",
-    name:"imo HD - Video Calls & Chats",
-    url:"https://play.google.com/store/apps/details?id=com.imo.android.imoimhd"
-},
-
-{
-    no:"35",
-    icon:"📞",
-    name:"imo Lite - video calls and chat",
-    url:"https://play.google.com/store/apps/details?id=com.imo.android.imoimlite"
-},
-
-{
-    no:"36",
-    icon:"▶️",
-    name:"YouTube",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.youtube"
-},
-
-{
-    no:"37",
-    icon:"🎬",
-    name:"YouTube Studio",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.creator"
-},
-
-{
-    no:"38",
-    icon:"❓",
-    name:"Bissoy",
-    url:"https://play.google.com/store/apps/details?id=com.bissoy.call"
-},
-
-{
-    no:"39",
-    icon:"🗣️",
-    name:"Kotha - Made in Bangladesh",
-    url:"https://play.google.com/store/apps/details?id=com.bs.kotha"
-},
-
-{
-    no:"40",
-    icon:"📸",
-    name:"Instagram",
-    url:"https://play.google.com/store/apps/details?id=com.instagram.android"
-},
-
-{
-    no:"41",
-    icon:"💬",
-    name:"WhatsApp Messenger",
-    url:"https://play.google.com/store/apps/details?id=com.whatsapp"
-},
-
-{
-    no:"42",
-    icon:"💻",
-    name:"Bdjobs",
-    url:"https://play.google.com/store/apps/details?id=com.bdjobs.app"
-},
-
-{
-    no:"43",
-    icon:"💼",
-    name:"LinkedIn: Community & Network",
-    url:"https://play.google.com/store/apps/details?id=com.linkedin.android"
-},
-
-{
-    no:"44",
-    icon:"📥",
-    name:"VidMate",
-    url:"https://www.vidmate-official.com/"
-},
-
-{
-    no:"45",
-    icon:"🤖",
-    name:"ChatGPT",
-    url:"https://play.google.com/store/apps/details?id=com.openai.chatgpt"
-},
-
-{
-    no:"46",
-    icon:"🎬",
-    name:"Edits: Video Editor",
-    url:"https://play.google.com/store/apps/details?id=com.instagram.basel"
-},
-
-{
-    no:"47",
-    icon:"🧵",
-    name:"Threads",
-    url:"https://play.google.com/store/apps/details?id=com.instagram.barcelona"
-},
-
-{
-    no:"48",
-    icon:"🐦",
-    name:"X (Twitter)",
-    url:"https://play.google.com/store/apps/details?id=com.twitter.android"
-},
-
-{
-    no:"49",
-    icon:"🐙",
-    name:"GitHub",
-    url:"https://play.google.com/store/apps/details?id=com.github.android"
-},
-
-{
-    no:"50",
-    icon:"🧾",
-    name:"টালিখাতা - হিসাব ও বাংলা QR",
-    url:"https://play.google.com/store/apps/details?id=com.progoti.tallykhata"
-},
-
-{
-    no:"51",
-    icon:"💵",
-    name:"bKash",
-    url:"https://play.google.com/store/apps/details?id=com.bKash.customerapp"
-},
-
-{
-    no:"52",
-    icon:"💸",
-    name:"Rocket",
-    url:"https://play.google.com/store/apps/details?id=com.dbbl.mbs.apps.main"
-},
-
-{
-    no:"53",
-    icon:"💲",
-    name:"NexusPay",
-    url:"https://play.google.com/store/apps/details?id=com.dbbl.nexus.pay"
-},
-
-{
-    no:"54",
-    icon:"📍",
-    name:"Pinterest",
-    url:"https://play.google.com/store/apps/details?id=com.pinterest"
-},
-
-{
-    no:"55",
-    icon:"💖",
-    name:"Qeep (The old Qeep app was the best)",
-    url:"https://play.google.com/store/apps/details?id=com.bluelionmobile.qeep.client.android"
-},
-
-{
-    no:"56",
-    icon:"💍",
-    name:"Bangladeshi Matrimony®",
-    url:"https://play.google.com/store/apps/details?id=com.banglamatrimony"
-},
-
-{
-    no:"57",
-    icon:"📡",
-    name:"JagoBD (Official) - TV & Radio Live",
-    url:"https://play.google.com/store/apps/details?id=com.jagoapp.jagobd"
-},
-
-{
-    no:"58",
-    icon:"📺",
-    name:"Toffee - TV & Sports",
-    url:"https://play.google.com/store/apps/details?id=com.banglalink.toffee"
-},
-
-{
-    no:"59",
-    icon:"📶",
-    name:"My Banglalink",
-    url:"https://play.google.com/store/apps/details?id=com.arena.banglalinkmela.app"
-},
-
-{
-    no:"60",
-    icon:"🛜",
-    name:"My GP",
-    url:"https://play.google.com/store/apps/details?id=com.portonics.mygp"
-},
-
-{
-    no:"61",
-    icon:"📡",
-    name:"My Robi",
-    url:"https://play.google.com/store/apps/details?id=net.omobio.robisc"
-},
-
-{
-    no:"62",
-    icon:"🛰️",
-    name:"My Airtel",
-    url:"https://play.google.com/store/apps/details?id=net.omobio.airtelsc"
-},
-
-{
-    no:"63",
-    icon:"📞",
-    name:"My TeleTalk",
-    url:"https://play.google.com/store/apps/details?id=teletalk.teletalkcustomerapp"
-},
-
-{
-    no:"64",
-    icon:"📤",
-    name:"SHAREit Lite - Fast File Share",
-    url:"https://play.google.com/store/apps/details?id=shareit.lite"
-},
-
-{
-    no:"65",
-    icon:"🛒",
-    name:"Rokomari: Trusted Online Store",
-    url:"https://play.google.com/store/apps/details?id=com.rokomari"
-},
-
-{
-    no:"66",
-    icon:"🛍️",
-    name:"Daraz Online Shopping App",
-    url:"https://play.google.com/store/apps/details?id=com.daraz.android"
-},
-
-{
-    no:"67",
-    icon:"🔊",
-    name:"Kishor Kantha - কিশোর কন্ঠ",
-    url:"https://play.google.com/store/apps/details?id=com.mrsoftit.kishorkontho"
-},
-
-{
-    no:"68",
-    icon:"✍️",
-    name:"লেখক ডট মি - lekhok.me",
-    url:"https://www.lekhok.me/"
-},
-
-{
-    no:"69",
-    icon:"📋",
-    name:"Pratilipi - Read Stories",
-    url:"https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android"
-},
-
-{
-    no:"70",
-    icon:"📗",
-    name:"Grathor - লাল সবুজের লেখক",
-    url:"https://play.google.com/store/apps/details?id=com.grathor.blog"
-},
-
-{
-    no:"71",
-    icon:"💻",
-    name:"WordPress - Website Builder",
-    url:"https://play.google.com/store/apps/details?id=org.wordpress.android"
-},
-
-{
-    no:"72",
-    icon:"🖥️",
-    name:"Blogger",
-    url:"https://www.blogger.com/"
-},
-
-{
-    no:"73",
-    icon:"🎒",
-    name:"Jetpack - Website Builder",
-    url:"https://play.google.com/store/apps/details?id=com.jetpack.android"
-},
-
-{
-    no:"74",
-    icon:"❓",
-    name:"Quora: the knowledge platform",
-    url:"https://play.google.com/store/apps/details?id=com.quora.android"
-},
-
-{
-    no:"75",
-    icon:"🎨",
-    name:"ইন শো - InShow",
-    url:"https://play.google.com/store/apps/details?id=com.jblabs.inshow"
-},
-
-{
-    no:"76",
-    icon:"✍️",
-    name:"লিপিয়ন - Lipton",
-    url:"https://play.google.com/store/apps/details?id=com.jblabs.lipiyon"
-},
-
-{
-    no:"77",
-    icon:"🖼️",
-    name:"Zedge™ Wallpapers & Ringtones",
-    url:"https://play.google.com/store/apps/details?id=net.zedge.android"
-},
-
-{
-    no:"78",
-    icon:"🔁",
-    name:"Converter NOW: Unit Converter",
-    url:"https://play.google.com/store/apps/details?id=com.ferrarid.converterpro"
-},
-
-{
-    no:"79",
-    icon:"🎤",
-    name:"SingPlay - KineMaster",
-    url:"https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree"
-},
-
-{
-    no:"80",
-    icon:"📷",
-    name:"Shotcom - Image Compressor",
-    url:"https://play.google.com/store/apps/details?id=com.arthur.hritik.shotcom"
-},
-
-{
-    no:"81",
-    icon:"🎥",
-    name:"Proton - Video Compressor",
-    url:"https://play.google.com/store/apps/details?id=com.arthur.hritik.proton.video.compressor"
-},
-
-{
-    no:"82",
-    icon:"🎵",
-    name:"Video to MP3",
-    url:"https://play.google.com/store/apps/details?id=mp3videoconverter.videotomp3.videotomp3converter"
-},
-
-{
-    no:"83",
-    icon:"🇧🇩",
-    name:"Bangladesh Flag - Live Wallpaper",
-    url:"https://3dflag.wordpress.com/"
-},
-
-{
-    no:"84",
-    icon:"📜",
-    name:"বাংলাদেশের সংবিধান",
-    url:"https://play.google.com/store/apps/details?id=com.lawbook.edu.a1972"
-},
-
-{
-    no:"85",
-    icon:"🗺️",
-    name:"৬৪ জেলার ইতিহাস ও মানচিত্র",
-    url:"https://play.google.com/store/apps/details?id=com.rsnapp.district_map_of_bangladesh"
-},
-
-{
-    no:"86",
-    icon:"💬",
-    name:"বিশ্ব বিখ্যাত ব‍্যক্তিদের উক্তি",
-    url:"https://play.google.com/store/apps/details?id=com.munimstudio.banglaquotes"
-},
-
-{
-    no:"87",
-    icon:"🌐",
-    name:"Google Translate",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.apps.translate"
-},
-
-{
-    no:"88",
-    icon:"⌨️",
-    name:"Google Indic Keyboard",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.apps.inputmethod.hindi"
-},
-
-{
-    no:"89",
-    icon:"📱",
-    name:"QR & Barcode Scanner",
-    url:"https://play.google.com/store/apps/details?id=com.gamma.scan"
-},
-
-{
-    no:"90",
-    icon:"📶",
-    name:"Internet Speed Meter Lite",
-    url:"https://play.google.com/store/apps/details?id=com.internet.speed.meter.lite"
-},
-
-{
-    no:"91",
-    icon:"📝",
-    name:"Samakal",
-    url:"https://samakal.com/"
-},
-
-{
-    no:"92",
-    icon:"▶️",
-    name:"Channel 24",
-    url:"https://play.google.com/store/apps/details?id=channel24.bd"
-},
-
-{
-    no:"93",
-    icon:"📰",
-    name:"Prothom Alo",
-    url:"https://play.google.com/store/apps/details?id=com.mcc.prothomalo"
-},
-
-{
-    no:"94",
-    icon:"📖",
-    name:"Jugantor",
-    url:"https://www.jugantor.com/apps"
-},
-
-{
-    no:"95",
-    icon:"🗞️",
-    name:"Bangladesh Pratidin",
-    url:"https://play.google.com/store/apps/details?id=com.bangladesh.pratidin"
-},
-
-{
-    no:"96",
-    icon:"📺",
-    name:"News 24",
-    url:"https://play.google.com/store/apps/details?id=com.tv.news24"
-},
-
-{
-    no:"97",
-    icon:"📃",
-    name:"Kaler Kantho",
-    url:"https://play.google.com/store/apps/details?id=com.kalerkantho"
-},
-
-{
-    no:"98",
-    icon:"🎫",
-    name:"Kalbela",
-    url:"https://play.google.com/store/apps/details?id=apps.newspaper.kalbela"
-},
-
-{
-    no:"99",
-    icon:"🔍",
-    name:"Jago News 24",
-    url:"https://play.google.com/store/apps/details?id=com.jagonews24.bangla"
-},
-
-{
-    no:"100",
-    icon:"🔎",
-    name:"Bangla News 24",
-    url:"https://play.google.com/store/apps/details?id=com.ewmgl.banglanews"
-},
-
-{
-    no:"101",
-    icon:"📑",
-    name:"BD 24 Live",
-    url:"https://play.google.com/store/apps/details?id=com.primexsystems.bd24livecom"
-},
-
-{
-    no:"102",
-    icon:"📺",
-    name:"Somoy News",
-    url:"https://www.somoynews.tv/"
-},
-
-{
-    no:"103",
-    icon:"📽️",
-    name:"Boishakhi TV",
-    url:"https://play.google.com/store/apps/details?id=apps.newspaper.boishakhionline"
-},
-
-{
-    no:"104",
-    icon:"📡",
-    name:"NTV Live",
-    url:"https://play.google.com/store/apps/details?id=com.ntvbd.ntvprime"
-},
-
-{
-    no:"105",
-    icon:"📹",
-    name:"ETV Live",
-    url:"https://play.google.com/store/apps/details?id=com.ekusheytv.etvlive"
-},
-
-{
-    no:"106",
-    icon:"🎞️",
-    name:"ATN Live",
-    url:"https://play.google.com/store/apps/details?id=tv.atn.mob.and"
-},
-
-{
-    no:"107",
-    icon:"📼",
-    name:"Maasranga TV",
-    url:"https://play.google.com/store/apps/details?id=com.sslwireless.maasranga_tv"
-},
-
-{
-    no:"108",
-    icon:"🏏",
-    name:"T Sports",
-    url:"https://play.google.com/store/apps/details?id=com.nex.tsports"
-},
-
-{
-    no:"109",
-    icon:"📺",
-    name:"Bangladesh Television (BTV)",
-    url:"https://play.google.com/store/apps/details?id=cm.btv.world"
-},
-
-{
-    no:"110",
-    icon:"📻",
-    name:"Bangladesh Betar",
-    url:"https://play.google.com/store/apps/details?id=com.bangladesh.betar"
-},
-
-{
-    no:"111",
-    icon:"🔊",
-    name:"Radio Capital: 94.8 FM",
-    url:"https://play.google.com/store/apps/details?id=com.ewmgl.radiocapital"
-},
-
-{
-    no:"112",
-    icon:"🎙️",
-    name:"Radio Din Raat",
-    url:"https://play.google.com/store/apps/details?id=com.sslwireless.radio_dinraat"
-},
-
-{
-    no:"113",
-    icon:"🎵",
-    name:"Radio Bhumi - 92.8 FM",
-    url:"https://play.google.com/store/apps/details?id=com.rock.radio.bhumi"
-},
-
-{
-    no:"114",
-    icon:"🎧",
-    name:"Jago FM 94.4",
-    url:"https://play.google.com/store/apps/details?id=com.jagofm.app"
-},
-
-{
-    no:"115",
-    icon:"🗳️",
-    name:"Smart Election Management BD",
-    url:"https://play.google.com/store/apps/details?id=com.electioncommissionsecretariat.sembd"
-},
-
-{
-    no:"116",
-    icon:"📮",
-    name:"Postal Code BD",
-    url:"https://play.google.com/store/apps/details?id=com.magicalbyte.postal_code_bd"
-},
-
-{
-    no:"117",
-    icon:"💱",
-    name:"Fast Bangladeshi BDT Converter",
-    url:"https://play.google.com/store/apps/details?id=com.deadsimpleapps.bdt"
-},
-
-{
-    no:"118",
-    icon:"🎓",
-    name:"উন্মুক্ত বাউবি ৷ BOU All Info",
-    url:"https://play.google.com/store/apps/details?id=com.islam_khairul.islam_bd_open_university"
-},
-
-{
-    no:"119",
-    icon:"🧩",
-    name:"PWA Builder",
-    url:"https://www.pwabuilder.com/"
-},
-
-{
-    no:"120",
-    icon:"🔧",
-    name:"Appy Pie - App Maker",
-    url:"https://play.google.com/store/apps/details?id=com.letsappbuilder"
-},
-
-{
-    no:"121",
-    icon:"🧰",
-    name:"Thunkable Live",
-    url:"https://play.google.com/store/apps/details?id=com.thunkable.live"
-},
-
-{
-    no:"122",
-    icon:"📊",
-    name:"AppSheet",
-    url:"https://play.google.com/store/apps/details?id=x1Trackmaster.x1Trackmaster"
-},
-
-{
-    no:"123",
-    icon:"🎮",
-    name:"Google Play Console",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.apps.playconsole"
-},
-
-{
-    no:"124",
-    icon:"🔎",
-    name:"Google Search Console",
-    url:"https://search.google.com/search-console"
-},
-
-{
-    no:"125",
-    icon:"💻",
-    name:"Kodular Companion",
-    url:"https://play.google.com/store/apps/details?id=io.makeroid.companion"
-},
-
-{
-    no:"126",
-    icon:"🖥️",
-    name:"MIT Companion",
-    url:"https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3"
-},
-
-{
-    no:"127",
-    icon:"👨‍💻",
-    name:"AppMaster Developer",
-    url:"https://play.google.com/store/apps/details?id=io.appmaster.developer"
-},
-
-{
-    no:"128",
-    icon:"🩺",
-    name:"ডাক্তার এইড",
-    url:"https://play.google.com/store/apps/details?id=com.Healthtipsbd.konowsudakihoi"
-},
-
-{
-    no:"129",
-    icon:"🪧",
-    name:"Bangla Poster",
-    url:"https://play.google.com/store/apps/details?id=bd.com.kayesh.banglaposter"
-},
-
-{
-    no:"130",
-    icon:"🎉",
-    name:"Posterly - EID Mubarak Poster",
-    url:"https://play.google.com/store/apps/details?id=com.eidmubarak.poster"
-},
-
-{
-    no:"131",
-    icon:"🖼️",
-    name:"সকল দিবসের ফটো ফ্রেম",
-    url:"https://play.google.com/store/apps/details?id=com.SMdev.photo_frame"
-},
-
-{
-    no:"132",
-    icon:"🍎",
-    name:"ফলমূলের গুণাগুণ",
-    url:"https://play.google.com/store/apps/details?id=com.Healthtipsbd.fruit"
-},
-
-{
-    no:"133",
-    icon:"🥦",
-    name:"শাকসবজির গুণাগুণ",
-    url:"https://play.google.com/store/apps/details?id=com.allinoneappstore.saksobjirgunagun"
-},
-
-{
-    no:"134",
-    icon:"🌿",
-    name:"ঔষধি গাছের গুণাগুণ",
-    url:"https://play.google.com/store/apps/details?id=com.Healthtipsbd.ousudegas"
-},
-
-{
-    no:"135",
-    icon:"🌱",
-    name:"ঔষধি গাছের উপকারিতা",
-    url:"https://play.google.com/store/apps/details?id=com.ram.medicinalplant"
-},
-
-{
-    no:"136",
-    icon:"🎵",
-    name:"TikTok Lite",
-    url:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go"
-},
-
-{
-    no:"137",
-    icon:"🎥",
-    name:"Likee - Short Video Community",
-    url:"https://play.google.com/store/apps/details?id=video.like"
-},
-
-{
-    no:"138",
-    icon:"👻",
-    name:"SnapChat",
-    url:"https://play.google.com/store/apps/details?id=com.snapchat.android"
-},
-
-{
-    no:"139",
-    icon:"✈️",
-    name:"Telegram",
-    url:"https://play.google.com/store/apps/details?id=org.telegram.messenger"
-},
-
-{
-    no:"140",
-    icon:"🎬",
-    name:"CapCut: Photo & Video Editor",
-    url:"https://play.google.com/store/apps/details?id=com.lemon.lvoverseas"
-},
-
-{
-    no:"141",
-    icon:"🎨",
-    name:"Canva: Photo & Video Editor",
-    url:"https://play.google.com/store/apps/details?id=com.canva.editor"
-},
-
-{
-    no:"142",
-    icon:"🎵",
-    name:"Suno - Music",
-    url:"https://play.google.com/store/apps/details?id=com.suno.android"
-},
-
-{
-    no:"143",
-    icon:"🎞️",
-    name:"MP3 to Video Converter",
-    url:"https://play.google.com/store/apps/details?id=mp3.to.video"
-},
-
-{
-    no:"144",
-    icon:"🗣️",
-    name:"Narakeet",
-    url:"https://www.narakeet.com/"
-},
-
-{
-    no:"145",
-    icon:"🔊",
-    name:"TTSFree",
-    url:"https://ttsfree.com/"
-},
-
-{
-    no:"146",
-    icon:"🌐",
-    name:"GitHub Website",
-    url:"https://naz-niaz.github.io/pppp_bangladesh/"
-},
-
-{
-    no:"147",
-    icon:"⚙️",
-    name:"GitHub Website Live",
-    url:"https://github.com/naz-niaz/pppp_bangladesh/settings/pages"
-},
-
-{
-    no:"148",
-    icon:"📤",
-    name:"GitHub File Upload",
-    url:"https://github.com/naz-niaz/pppp_bangladesh/upload"
-},
-
-{
-    no:"149",
-    icon:"🗑️",
-    name:"GitHub File Delete",
-    url:"https://github.com/naz-niaz/pppp_bangladesh"
-},
-
-{
-    no:"150",
-    icon:"🔥",
-    name:"Firebase Console",
-    url:"https://console.firebase.google.com"
-},
-
-{
-    no:"151",
-    icon:"💬",
-    name:"PPPP Chat",
-    url:"https://console.firebase.google.com/project/pppp-chat"
-},
-
-{
-    no:"152",
-    icon:"🔐",
-    name:"Firebase Authentication",
-    url:"https://console.firebase.google.com/project/pppp-chat/authentication"
-},
-
-{
-    no:"153",
-    icon:"🗄️",
-    name:"Firestore Database",
-    url:"https://console.firebase.google.com/project/pppp-chat/firestore"
-},
-
-{
-    no:"154",
-    icon:"📦",
-    name:"Firebase Storage",
-    url:"https://console.firebase.google.com/project/pppp-chat/storage"
-},
-
-{
-    no:"155",
-    icon:"⚙️",
-    name:"Firebase Config",
-    url:"https://console.firebase.google.com/project/pppp-chat/settings/general"
-},
-
-{
-    no:"156",
-    icon:"🔐",
-    name:"Google Authenticator",
-    url:"https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"
-},
-
-{
-    no:"157",
-    icon:"🛡️",
-    name:"Super VPN - Fast VPN Client",
-    url:"https://play.google.com/store/apps/details?id=com.jrzheng.supervpnfree"
-},
-
-{
-    no:"158",
-    icon:"🏏",
-    name:"Sportzfy",
-    url:"https://sportzfyapk.org/"
-}
+["🕌","বাংলা কুরআন - Bangla Quran","https://play.google.com/store/apps/details?id=com.alquranbd.alquranbd"],
+
+["📿","আল হাদিস (Al Hadith)","https://play.google.com/store/apps/details?id=com.ihadis.ihadis"],
+
+["🎧","Al Quran MP3 Full OFFLINE","https://play.google.com/store/apps/details?id=com.andromo.dev442089.app510450"],
+
+["🔊","Small 26 Surah (২৬ টি ছোট সূরা)","https://play.google.com/store/apps/details?id=com.sahell.small26surah"],
+
+["❤️","হযরত মোহাম্মদ (সাঃ) এর জীবনী","https://play.google.com/store/apps/details?id=com.sahell.muhammadsaw"],
+
+["📜","নবীদের জীবনী","https://play.google.com/store/apps/details?id=com.royal_bengal_apps.nobider_jiboni"],
+
+["💚","সাহাবাদের জীবনী - ১৯৩ জন সাহাবা","https://play.google.com/store/apps/details?id=com.sahell.sahabalife"],
+
+["🎵","ইসলামিক গজল","https://play.google.com/store/apps/details?id=com.app.banglaislamicaudiogojol"],
+
+["🕋","Allah Wallpapers","https://play.google.com/store/apps/details?id=com.bakur30.allah"],
+
+["🕌","Quran Wallpapers","https://play.google.com/store/apps/details?id=com.ibrahimtornado.AyatQuranWallpapers"],
+
+["🔔","Islamic Ringtones","https://play.google.com/store/apps/details?id=com.clear.islam"],
+
+["☪️","Islamic Names Dictionary","https://play.google.com/store/apps/details?id=com.zhystudio.IslamicUrduNamesDictionary"],
+
+["🌙","ইসলামিক পোস্ট ছবি সহ স্ট্যাটাস","https://play.google.com/store/apps/details?id=com.cap.islamic_status_image_post_wallpaper_with_quotes"],
+
+["🤲","দোআ ও যিকির (হিসনুল মুসলিম)","https://play.google.com/store/apps/details?id=com.greentech.hisnulmuslimbn"],
+
+["❓","ইসলামিক প্রশ্ন ও উত্তর","https://play.google.com/store/apps/details?id=com.greenappstudio.islamic_questions_and_answers"],
+
+["📚","সাধারণ জ্ঞান বই সম্পূর্ণ খন্ড","https://play.google.com/store/apps/details?id=com.Bangla.General.Knowledge.Book"],
+
+["💡","ব‍্যবসার আইডিয়া","https://play.google.com/store/apps/details?id=com.hutapps.businessideas"],
+
+["💼","ক্ষুদ্র ব‍্যবসার আইডিয়া","https://play.google.com/store/apps/details?id=com.greenappstudio.uddokta_business_micro_credit"],
+
+["🎂","বয়স ক‍্যালকুলেটর Age Calculator","https://play.google.com/store/apps/details?id=com.apps.age_calculator_bangla"],
+
+["🕐","বাংলা ঘড়ি (Bangla Clock)","https://play.google.com/store/apps/details?id=com.alfeesoft.banglaclock"],
+
+["📗","Bangla to Bangla Dictionary","https://play.google.com/store/apps/details?id=com.dict.bnbn"],
+
+["📘","Bangla to English Dictionary","https://play.google.com/store/apps/details?id=com.dictionary.bn"],
+
+["📕","Word Book English to Bangla","https://play.google.com/store/apps/details?id=com.wrdbk.engbangla"],
+
+["🗣️","Spoken English E2B সহজে ইংরেজি বলি","https://play.google.com/store/apps/details?id=com.lenglishveryway.lenway"],
+
+["🅿️","PPPP","https://naz-niaz.github.io/pppp_bangladesh/PPPP.apk"],
+
+["👥","পিপিপিপি","https://github.com/naz-niaz/pppp_bangladesh/releases/download/v1.0/PPPP.apk"],
+
+["🇧🇩","PPPP Bangladesh","https://upload.app/download/pppp/io.github.naz_niaz.twa/4b0f19ba20feb4682e8c5964aa1a385993cadc329ec490434799554198fd95eb"],
+
+["⚽","FotMob - Soccer Live Scores","https://play.google.com/store/apps/details?id=com.mobilefootie.wc2010"],
+
+["🏏","Cricbuzz - Live Cricket Scores","https://play.google.com/store/apps/details?id=com.cricbuzz.android"],
+
+["💯","Free Basics by Facebook","https://play.google.com/store/apps/details?id=com.freebasics"],
+
+["🔵","Facebook Lite","https://play.google.com/store/apps/details?id=com.facebook.lite"],
+
+["👥","Facebook","https://play.google.com/store/apps/details?id=com.facebook.katana"],
+
+["💙","Messenger","https://play.google.com/store/apps/details?id=com.facebook.orca"],
+
+["🎥","imo HD - Video Calls & Chats","https://play.google.com/store/apps/details?id=com.imo.android.imoimhd"],
+
+["📞","imo Lite - video calls and chat","https://play.google.com/store/apps/details?id=com.imo.android.imoimlite"],
+
+["▶️","YouTube","https://play.google.com/store/apps/details?id=com.google.android.youtube"],
+
+["🎬","YouTube Studio","https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.creator"],
+
+["❓","Bissoy","https://play.google.com/store/apps/details?id=com.bissoy.call"],
+
+["🗣️","Kotha - Made in Bangladesh","https://play.google.com/store/apps/details?id=com.bs.kotha"],
+
+["📸","Instagram","https://play.google.com/store/apps/details?id=com.instagram.android"],
+
+["💬","WhatsApp Messenger","https://play.google.com/store/apps/details?id=com.whatsapp"],
+
+["💻","Bdjobs","https://play.google.com/store/apps/details?id=com.bdjobs.app"],
+
+["💼","LinkedIn: Community & Network","https://play.google.com/store/apps/details?id=com.linkedin.android"],
+
+["📥","VidMate","https://www.vidmate-official.com/"],
+
+["🤖","ChatGPT","https://play.google.com/store/apps/details?id=com.openai.chatgpt"],
+
+["🎬","Edits: Video Editor","https://play.google.com/store/apps/details?id=com.instagram.basel"],
+
+["🧵","Threads","https://play.google.com/store/apps/details?id=com.instagram.barcelona"],
+
+["🐦","X (Twitter)","https://play.google.com/store/apps/details?id=com.twitter.android"],
+
+["🐙","GitHub","https://play.google.com/store/apps/details?id=com.github.android"],
+
+["🧾","টালিখাতা - হিসাব ও বাংলা QR","https://play.google.com/store/apps/details?id=com.progoti.tallykhata"],
+
+["💵","bKash","https://play.google.com/store/apps/details?id=com.bKash.customerapp"],
+
+["💸","Rocket","https://play.google.com/store/apps/details?id=com.dbbl.mbs.apps.main"],
+
+["💲","NexusPay","https://play.google.com/store/apps/details?id=com.dbbl.nexus.pay"],
+
+["📍","Pinterest","https://play.google.com/store/apps/details?id=com.pinterest"],
+
+["💖","Qeep (The old Qeep app was the best)","https://play.google.com/store/apps/details?id=com.bluelionmobile.qeep.client.android"],
+
+["💍","Bangladeshi Matrimony®","https://play.google.com/store/apps/details?id=com.banglamatrimony"],
+
+["📡","JagoBD (Official) - TV & Radio Live","https://play.google.com/store/apps/details?id=com.jagoapp.jagobd"],
+
+["📺","Toffee - TV & Sports","https://play.google.com/store/apps/details?id=com.banglalink.toffee"],
+
+["📶","My Banglalink","https://play.google.com/store/apps/details?id=com.arena.banglalinkmela.app"],
+
+["🛜","My GP","https://play.google.com/store/apps/details?id=com.portonics.mygp"],
+
+["📡","My Robi","https://play.google.com/store/apps/details?id=net.omobio.robisc"],
+
+["🛰️","My Airtel","https://play.google.com/store/apps/details?id=net.omobio.airtelsc"],
+
+["📞","My TeleTalk","https://play.google.com/store/apps/details?id=teletalk.teletalkcustomerapp"],
+
+["📤","SHAREit Lite - Fast File Share","https://play.google.com/store/apps/details?id=shareit.lite"],
+
+["🛒","Rokomari: Trusted Online Store","https://play.google.com/store/apps/details?id=com.rokomari"],
+
+["🛍️","Daraz Online Shopping App","https://play.google.com/store/apps/details?id=com.daraz.android"],
+
+["🔊","Kishor Kantha - কিশোর কন্ঠ","https://play.google.com/store/apps/details?id=com.mrsoftit.kishorkontho"],
+
+["✍️","লেখক ডট মি - lekhok.me","https://www.lekhok.me/"],
+
+["📋","Pratilipi - Read Stories","https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android"],
+
+["📗","Grathor - লাল সবুজের লেখক","https://play.google.com/store/apps/details?id=com.grathor.blog"],
+
+["💻","WordPress - Website Builder","https://play.google.com/store/apps/details?id=org.wordpress.android"],
+
+["🖥️","Blogger","https://www.blogger.com/"],
+
+["🎒","Jetpack - Website Builder","https://play.google.com/store/apps/details?id=com.jetpack.android"],
+
+["❓","Quora: the knowledge platform","https://play.google.com/store/apps/details?id=com.quora.android"],
+
+["🎨","ইন শো - InShow","https://play.google.com/store/apps/details?id=com.jblabs.inshow"],
+
+["✍️","লিপিয়ন - Lipton","https://play.google.com/store/apps/details?id=com.jblabs.lipiyon"],
+
+["🖼️","Zedge™ Wallpapers & Ringtones","https://play.google.com/store/apps/details?id=net.zedge.android"],
+
+["🔁","Converter NOW: Unit Converter","https://play.google.com/store/apps/details?id=com.ferrarid.converterpro"],
+
+["🎤","SingPlay - KineMaster","https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree"],
+
+["📷","Shotcom - Image Compressor","https://play.google.com/store/apps/details?id=com.arthur.hritik.shotcom"],
+
+["🎥","Proton - Video Compressor","https://play.google.com/store/apps/details?id=com.arthur.hritik.proton.video.compressor"],
+
+["🎵","Video to MP3","https://play.google.com/store/apps/details?id=mp3videoconverter.videotomp3.videotomp3converter"],
+
+["🇧🇩","Bangladesh Flag - Live Wallpaper","https://3dflag.wordpress.com/"],
+
+["📜","বাংলাদেশের সংবিধান","https://play.google.com/store/apps/details?id=com.lawbook.edu.a1972"],
+
+["🗺️","৬৪ জেলার ইতিহাস ও মানচিত্র","https://play.google.com/store/apps/details?id=com.rsnapp.district_map_of_bangladesh"],
+
+["💬","বিশ্ব বিখ্যাত ব‍্যক্তিদের উক্তি","https://play.google.com/store/apps/details?id=com.munimstudio.banglaquotes"],
+
+["🌐","Google Translate","https://play.google.com/store/apps/details?id=com.google.android.apps.translate"],
+
+["⌨️","Google Indic Keyboard","https://play.google.com/store/apps/details?id=com.google.android.apps.inputmethod.hindi"],
+
+["📱","QR & Barcode Scanner","https://play.google.com/store/apps/details?id=com.gamma.scan"],
+
+["📶","Internet Speed Meter Lite","https://play.google.com/store/apps/details?id=com.internet.speed.meter.lite"],
+
+["📝","Samakal","https://samakal.com/"],
+
+["▶️","Channel 24","https://play.google.com/store/apps/details?id=channel24.bd"],
+
+["📰","Prothom Alo","https://play.google.com/store/apps/details?id=com.mcc.prothomalo"],
+
+["📖","Jugantor","https://www.jugantor.com/apps"],
+
+["🗞️","Bangladesh Pratidin","https://play.google.com/store/apps/details?id=com.bangladesh.pratidin"],
+
+["📺","News 24","https://play.google.com/store/apps/details?id=com.tv.news24"],
+
+["📃","Kaler Kantho","https://play.google.com/store/apps/details?id=com.kalerkantho"],
+
+["🎫","Kalbela","https://play.google.com/store/apps/details?id=apps.newspaper.kalbela"],
+
+["🔍","Jago News 24","https://play.google.com/store/apps/details?id=com.jagonews24.bangla"],
+
+["🔎","Bangla News 24","https://play.google.com/store/apps/details?id=com.ewmgl.banglanews"],
+
+["📑","BD 24 Live","https://play.google.com/store/apps/details?id=com.primexsystems.bd24livecom"],
+
+["📺","Somoy News","https://www.somoynews.tv/"],
+
+["📽️","Boishakhi TV","https://play.google.com/store/apps/details?id=apps.newspaper.boishakhionline"],
+
+["📡","NTV Live","https://play.google.com/store/apps/details?id=com.ntvbd.ntvprime"],
+
+["📹","ETV Live","https://play.google.com/store/apps/details?id=com.ekusheytv.etvlive"],
+
+["🎞️","ATN Live","https://play.google.com/store/apps/details?id=tv.atn.mob.and"],
+
+["📼","Maasranga TV","https://play.google.com/store/apps/details?id=com.sslwireless.maasranga_tv"],
+
+["🏏","T Sports","https://play.google.com/store/apps/details?id=com.nex.tsports"],
+
+["📺","Bangladesh Television (BTV)","https://play.google.com/store/apps/details?id=cm.btv.world"],
+
+["📻","Bangladesh Betar","https://play.google.com/store/apps/details?id=com.bangladesh.betar"],
+
+["🔊","Radio Capital: 94.8 FM","https://play.google.com/store/apps/details?id=com.ewmgl.radiocapital"],
+
+["🎙️","Radio Din Raat","https://play.google.com/store/apps/details?id=com.sslwireless.radio_dinraat"],
+
+["🎵","Radio Bhumi - 92.8 FM","https://play.google.com/store/apps/details?id=com.rock.radio.bhumi"],
+
+["🎧","Jago FM 94.4","https://play.google.com/store/apps/details?id=com.jagofm.app"],
+
+["🗳️","Smart Election Management BD","https://play.google.com/store/apps/details?id=com.electioncommissionsecretariat.sembd"],
+
+["📮","Postal Code BD","https://play.google.com/store/apps/details?id=com.magicalbyte.postal_code_bd"],
+
+["💱","Fast Bangladeshi BDT Converter","https://play.google.com/store/apps/details?id=com.deadsimpleapps.bdt"],
+
+["🎓","উন্মুক্ত বাউবি ৷ BOU All Info","https://play.google.com/store/apps/details?id=com.islam_khairul.islam_bd_open_university"],
+
+["🧩","PWA Builder","https://www.pwabuilder.com/"],
+
+["🔧","Appy Pie - App Maker","https://play.google.com/store/apps/details?id=com.letsappbuilder"],
+
+["🧰","Thunkable Live","https://play.google.com/store/apps/details?id=com.thunkable.live"],
+
+["📊","AppSheet","https://play.google.com/store/apps/details?id=x1Trackmaster.x1Trackmaster"],
+
+["🎮","Google Play Console","https://play.google.com/store/apps/details?id=com.google.android.apps.playconsole"],
+
+["🔎","Google Search Console","https://search.google.com/search-console"],
+
+["💻","Kodular Companion","https://play.google.com/store/apps/details?id=io.makeroid.companion"],
+
+["🖥️","MIT Companion","https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3"],
+
+["👨‍💻","AppMaster Developer","https://play.google.com/store/apps/details?id=io.appmaster.developer"],
+
+["🩺","ডাক্তার এইড","https://play.google.com/store/apps/details?id=com.Healthtipsbd.konowsudakihoi"],
+
+["🪧","Bangla Poster","https://play.google.com/store/apps/details?id=bd.com.kayesh.banglaposter"],
+
+["🎉","Posterly - EID Mubarak Poster","https://play.google.com/store/apps/details?id=com.eidmubarak.poster"],
+
+["🖼️","সকল দিবসের ফটো ফ্রেম","https://play.google.com/store/apps/details?id=com.SMdev.photo_frame"],
+
+["🍎","ফলমূলের গুণাগুণ","https://play.google.com/store/apps/details?id=com.Healthtipsbd.fruit"],
+
+["🥦","শাকসবজির গুণাগুণ","https://play.google.com/store/apps/details?id=com.allinoneappstore.saksobjirgunagun"],
+
+["🌿","ঔষধি গাছের গুণাগুণ","https://play.google.com/store/apps/details?id=com.Healthtipsbd.ousudegas"],
+
+["🌱","ঔষধি গাছের উপকারিতা","https://play.google.com/store/apps/details?id=com.ram.medicinalplant"],
+
+["🎵","TikTok Lite","https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go"],
+
+["🎥","Likee - Short Video Community","https://play.google.com/store/apps/details?id=video.like"],
+
+["👻","SnapChat","https://play.google.com/store/apps/details?id=com.snapchat.android"],
+
+["✈️","Telegram","https://play.google.com/store/apps/details?id=org.telegram.messenger"],
+
+["🎬","CapCut: Photo & Video Editor","https://play.google.com/store/apps/details?id=com.lemon.lvoverseas"],
+
+["🎨","Canva: Photo & Video Editor","https://play.google.com/store/apps/details?id=com.canva.editor"],
+
+["🎵","Suno - Music","https://play.google.com/store/apps/details?id=com.suno.android"],
+
+["🎞️","MP3 to Video Converter","https://play.google.com/store/apps/details?id=mp3.to.video"],
+
+["🗣️","Narakeet","https://www.narakeet.com/"],
+
+["🔊","TTSFree","https://ttsfree.com/"],
+
+["🌐","GitHub Website","https://naz-niaz.github.io/pppp_bangladesh/"],
+
+["⚙️","GitHub Website Live","https://github.com/naz-niaz/pppp_bangladesh/settings/pages"],
+
+["📤","GitHub File Upload","https://github.com/naz-niaz/pppp_bangladesh/upload"],
+
+["🗑️","GitHub File Delete","https://github.com/naz-niaz/pppp_bangladesh"],
+
+["🔥","Firebase Console","https://console.firebase.google.com/"],
+
+["💬","PPPP Chat","https://console.firebase.google.com/project/pppp-chat"],
+
+["🔐","Firebase Authentication","https://console.firebase.google.com/project/pppp-chat/authentication"],
+
+["🗄️","Firestore Database","https://console.firebase.google.com/project/pppp-chat/firestore"],
+
+["📦","Firebase Storage","https://console.firebase.google.com/project/pppp-chat/storage"],
+
+["⚙️","Firebase Config","https://console.firebase.google.com/project/pppp-chat/settings/general"],
+
+["🔐","Google Authenticator","https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"],
+
+["🛡️","Super VPN - Fast VPN Client","https://play.google.com/store/apps/details?id=com.jrzheng.supervpnfree"],
+
+["🏏","Sportzfy","https://sportzfyapk.org/"]
 
 ];
 
 
 /* =========================================================
-   RENDER APP CARDS
-   ========================================================= */
+   🛒 RENDER GOOGLE PLAY STORE APPS
+========================================================= */
 
-const ppppPlayStoreGrid =
-    document.getElementById(
-        "ppppPlayStoreAppsGrid"
-    );
+function ppppRenderPlayStoreApps(items){
 
-const ppppPlayStoreNoResult =
-    document.getElementById(
-        "ppppPlayStoreNoResult"
-    );
+    const container =
+        document.getElementById(
+            "ppppPlayStoreGrid"
+        );
 
+    const noResult =
+        document.getElementById(
+            "ppppPlayStoreNoResult"
+        );
 
-function renderPPPPPlayStoreApps(apps){
-
-    ppppPlayStoreGrid.innerHTML = "";
-
-    if(apps.length === 0){
-
-        ppppPlayStoreNoResult.style.display = "block";
-
+    if(!container){
         return;
     }
 
-    ppppPlayStoreNoResult.style.display = "none";
+
+    container.innerHTML = "";
 
 
-    apps.forEach(app => {
+    if(items.length === 0){
 
-        const card =
-            document.createElement("div");
+        noResult.style.display =
+            "block";
 
-        card.className =
-            "pppp-playstore-app-card";
+        return;
 
-
-        card.innerHTML = `
-
-            <div class="pppp-playstore-app-number">
-                ${app.no}
-            </div>
-
-            <div class="pppp-playstore-app-icon">
-                ${app.icon}
-            </div>
-
-            <div
-                class="pppp-playstore-app-name"
-                title="${app.name}">
-                ${app.name}
-            </div>
-
-            <a
-                class="pppp-playstore-open-btn"
-                href="${app.url}"
-                target="_blank"
-                rel="noopener noreferrer">
-                OPEN
-            </a>
-
-        `;
+    }
 
 
-        ppppPlayStoreGrid.appendChild(card);
+    noResult.style.display =
+        "none";
 
-    });
+
+    items.forEach(
+        function(item,index){
+
+            const originalIndex =
+                ppppPlayStoreApps.indexOf(item);
+
+
+            const number =
+                String(
+                    originalIndex + 1
+                ).padStart(2,"0");
+
+
+            const a =
+                document.createElement("a");
+
+
+            a.className =
+                "pppp-playstore-card";
+
+
+            a.href =
+                item[2];
+
+
+            a.target =
+                "_blank";
+
+
+            a.rel =
+                "noopener noreferrer";
+
+
+            a.innerHTML = `
+
+                <span
+                class="pppp-playstore-number">
+                    ${number}
+                </span>
+
+                <span
+                class="pppp-playstore-emoji">
+                    ${item[0]}
+                </span>
+
+                <span
+                class="pppp-playstore-name">
+                    ${item[1]}
+                </span>
+
+                <span
+                class="pppp-playstore-open">
+                    OPEN
+                </span>
+
+            `;
+
+
+            container.appendChild(a);
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   INITIAL LOAD
-   ========================================================= */
+   🔎 SEARCH APPS
+========================================================= */
 
-renderPPPPPlayStoreApps(
-    ppppPlayStoreApps
-);
+function ppppSearchPlayStoreApps(){
+
+    const search =
+        document.getElementById(
+            "ppppPlayStoreSearch"
+        );
+
+    if(!search){
+        return;
+    }
+
+
+    const keyword =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    if(keyword === ""){
+
+        ppppRenderPlayStoreApps(
+            ppppPlayStoreApps
+        );
+
+        return;
+
+    }
+
+
+    const filtered =
+        ppppPlayStoreApps.filter(
+            function(item){
+
+                const text =
+                    (
+                        item[0] +
+                        " " +
+                        item[1] +
+                        " " +
+                        item[2]
+                    ).toLowerCase();
+
+                return text.includes(
+                    keyword
+                );
+
+            }
+        );
+
+
+    ppppRenderPlayStoreApps(
+        filtered
+    );
+
+}
 
 
 /* =========================================================
-   SEARCH
-   ========================================================= */
+   🔎 SEARCH EVENT
+========================================================= */
 
 const ppppPlayStoreSearch =
     document.getElementById(
@@ -8015,49 +7312,55 @@ const ppppPlayStoreSearch =
     );
 
 
-ppppPlayStoreSearch.addEventListener(
-    "input",
-    function(){
+if(ppppPlayStoreSearch){
 
-        const searchText =
-            this.value
-                .toLowerCase()
-                .trim();
+    ppppPlayStoreSearch.addEventListener(
+        "input",
+        ppppSearchPlayStoreApps
+    );
 
-
-        const filteredApps =
-            ppppPlayStoreApps.filter(app => {
-
-                return (
-
-                    app.no
-                        .toLowerCase()
-                        .includes(searchText)
-
-                    ||
-
-                    app.name
-                        .toLowerCase()
-                        .includes(searchText)
-
-                    ||
-
-                    app.icon
-                        .includes(searchText)
-
-                );
-
-            });
+}
 
 
-        renderPPPPPlayStoreApps(
-            filteredApps
+/* =========================================================
+   🚀 INITIALIZE
+========================================================= */
+
+ppppRenderPlayStoreApps(
+    ppppPlayStoreApps
+);
+
+
+/* =========================================================
+   🛑 PREVENT SETTINGS CONTROLS
+   FROM INTERFERING
+========================================================= */
+
+document
+.querySelectorAll(
+    "#ppppPlayStoreWrap .pppp-playstore-card"
+)
+.forEach(
+    function(card){
+
+        card.addEventListener(
+            "click",
+            function(event){
+
+                event.stopPropagation();
+
+            }
         );
 
     }
 );
 
 </script>
+
+
+<!-- =========================================================
+     END PPPP GOOGLE PLAY STORE APP
+========================================================= -->
 
 <!-- =========================================================
      🇧🇩 PPPP FERTILITY, INFERTILITY & IVF
