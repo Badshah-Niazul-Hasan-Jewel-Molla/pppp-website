@@ -7335,14 +7335,14 @@ document
 ========================================================= -->
 
 <!-- =========================================================
-     🇧🇩 PPPP 100 MOST POPULAR GOVERNMENT HOSPITALS
-     Floating Settings Button / Settings Page
+     🇧🇩 PPPP GOVERNMENT HOSPITALS — 150 MOST POPULAR
+     Bangladesh Government Hospitals
 ========================================================= -->
 
 <style>
 
 /* =========================================================
-   🇧🇩 GOVERNMENT HOSPITALS WRAPPER
+   🇧🇩 GOVERNMENT HOSPITAL WRAPPER
 ========================================================= */
 
 .pppp-hospital-wrap{
@@ -7354,7 +7354,7 @@ document
 
 
 /* =========================================================
-   🇧🇩 HOSPITAL SECTION
+   🇧🇩 MAIN SECTION
 ========================================================= */
 
 .pppp-hospital-section{
@@ -7376,57 +7376,24 @@ document
 .pppp-hospital-title{
     width:100%;
     box-sizing:border-box;
-
     padding:15px 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2e7d32,
-            #00897b
-        );
-
+    background:linear-gradient(135deg,#00897b,#1565c0);
     color:#fff;
-
     font-size:21px;
     font-weight:800;
     line-height:1.25;
-
     text-align:left;
 }
 
 
 /* =========================================================
-   🇧🇩 SUB TITLE
-========================================================= */
-
-.pppp-hospital-subtitle{
-    width:100%;
-    box-sizing:border-box;
-
-    padding:18px 18px 10px;
-
-    background:#fff;
-
-    color:#616161;
-
-    font-size:20px;
-    font-weight:800;
-
-    text-align:center;
-}
-
-
-/* =========================================================
-   🔎 SEARCH BOX
+   🇧🇩 SEARCH
 ========================================================= */
 
 .pppp-hospital-search-wrap{
     width:100%;
     box-sizing:border-box;
-
     padding:10px 14px 14px;
-
     background:#fff;
 }
 
@@ -7434,37 +7401,21 @@ document
 .pppp-hospital-search{
     width:100%;
     box-sizing:border-box;
-
     padding:14px 18px;
-
-    border:
-        3px solid
-        #e0e0e0;
-
+    border:3px solid #e0e0e0;
     border-radius:32px;
-
     background:#fff;
-
     color:#424242;
-
     font-family:Arial,Helvetica,sans-serif;
-
     font-size:18px;
-
     outline:none;
-
-    box-shadow:
-        0 2px 8px
-        rgba(0,0,0,.04);
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
 }
 
 
 .pppp-hospital-search:focus{
     border-color:#90caf9;
-
-    box-shadow:
-        0 3px 12px
-        rgba(33,150,243,.12);
+    box-shadow:0 3px 12px rgba(33,150,243,.12);
 }
 
 
@@ -7474,34 +7425,25 @@ document
 
 
 /* =========================================================
-   🇧🇩 HOSPITAL CATEGORY
+   🇧🇩 HOSPITAL GROUP
 ========================================================= */
 
-.pppp-hospital-category{
-    width:100%;
-    box-sizing:border-box;
+.pppp-hospital-group{
+    margin:0 0 18px;
 }
 
 
-.pppp-hospital-category-title{
+.pppp-hospital-group-title{
     width:100%;
     box-sizing:border-box;
-
-    padding:13px 16px;
-
-    background:#eef5f0;
-
-    color:#2e5d34;
-
-    font-size:17px;
+    padding:14px 16px;
+    background:#fff;
+    color:#263238;
+    font-size:19px;
     font-weight:800;
-
     line-height:1.3;
-
-    text-align:left;
-
-    border-top:1px solid #dce7df;
-    border-bottom:1px solid #dce7df;
+    border-top:1px solid #e0e6ec;
+    border-bottom:1px solid #e0e6ec;
 }
 
 
@@ -7511,59 +7453,41 @@ document
 
 .pppp-hospital-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
-
     padding:14px;
-
     background:#f7f9fc;
-
     box-sizing:border-box;
 }
 
 
 /* =========================================================
    🏥 HOSPITAL CARD
-   SAME STYLE AS PPPP SOCIAL MEDIA / PLAY STORE
 ========================================================= */
 
 .pppp-hospital-card{
     position:relative;
+    min-height:128px;
 
-    min-height:150px;
-
-    border:
-        1px solid
-        #dfe5eb;
-
+    border:1px solid #dfe5eb;
     border-radius:24px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f3f7fa
-        );
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #f3f7fa
+    );
 
-    box-shadow:
-        0 5px 14px
-        rgba(0,0,0,.08);
+    box-shadow:0 5px 14px rgba(0,0,0,.08);
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
 
-    padding:
-        18px 10px 12px;
+    padding:18px 10px 12px;
 
     box-sizing:border-box;
 
@@ -7572,7 +7496,6 @@ document
     transition:.18s;
 
     text-decoration:none;
-
     color:#263238;
 
     -webkit-tap-highlight-color:transparent;
@@ -7583,10 +7506,7 @@ document
 
 .pppp-hospital-card:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(0,0,0,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
 }
 
 
@@ -7596,18 +7516,15 @@ document
 
 
 /* =========================================================
-   🔢 SERIAL NUMBER
+   🔢 SERIAL
 ========================================================= */
 
 .pppp-hospital-number{
     position:absolute;
-
     top:10px;
-
     right:12px;
 
     font-size:13px;
-
     font-weight:800;
 
     color:#64a5d6;
@@ -7615,16 +7532,13 @@ document
 
 
 /* =========================================================
-   🏥 HOSPITAL EMOJI
+   🏥 EMOJI
 ========================================================= */
 
 .pppp-hospital-emoji{
     font-size:34px;
-
     line-height:1;
-
     margin-bottom:8px;
-
     flex-shrink:0;
 }
 
@@ -7634,14 +7548,11 @@ document
 ========================================================= */
 
 .pppp-hospital-name{
-    font-size:16px;
-
-    line-height:1.25;
-
+    font-size:15px;
+    line-height:1.22;
     font-weight:800;
 
     word-break:break-word;
-
     overflow-wrap:anywhere;
 
     max-width:100%;
@@ -7656,19 +7567,18 @@ document
     margin-top:5px;
 
     font-size:12px;
-
-    line-height:1.25;
+    line-height:1.2;
 
     font-weight:700;
 
-    color:#757575;
+    color:#607d8b;
 
     word-break:break-word;
 }
 
 
 /* =========================================================
-   🌐 WEBSITE
+   🟢 OPEN
 ========================================================= */
 
 .pppp-hospital-open{
@@ -7676,19 +7586,15 @@ document
 
     margin-top:7px;
 
-    padding:
-        3px 8px;
+    padding:3px 8px;
 
     border-radius:20px;
 
     background:#e8f5e9;
-
     color:#16843b;
 
     font-size:11px;
-
     font-weight:800;
-
     line-height:1.25;
 }
 
@@ -7701,7 +7607,6 @@ document
     display:none;
 
     width:100%;
-
     box-sizing:border-box;
 
     padding:25px 15px;
@@ -7711,7 +7616,6 @@ document
     color:#777;
 
     font-size:16px;
-
     font-weight:700;
 
     background:#f7f9fc;
@@ -7726,25 +7630,13 @@ document
 
     .pppp-hospital-title{
         font-size:20px;
-
-        padding:
-            15px 16px;
+        padding:15px 16px;
     }
 
 
-    .pppp-hospital-subtitle{
-        font-size:20px;
-
-        padding:
-            18px 14px 10px;
-    }
-
-
-    .pppp-hospital-category-title{
-        font-size:16px;
-
-        padding:
-            12px 14px;
+    .pppp-hospital-group-title{
+        font-size:18px;
+        padding:14px;
     }
 
 
@@ -7753,14 +7645,12 @@ document
             repeat(2,minmax(0,1fr));
 
         gap:10px;
-
         padding:14px;
     }
 
 
     .pppp-hospital-card{
-        min-height:146px;
-
+        min-height:126px;
         border-radius:22px;
     }
 
@@ -7771,7 +7661,7 @@ document
 
 
     .pppp-hospital-name{
-        font-size:15px;
+        font-size:14px;
     }
 
 
@@ -7782,9 +7672,7 @@ document
 
     .pppp-hospital-open{
         font-size:11px;
-
-        padding:
-            3px 8px;
+        padding:3px 8px;
     }
 
 }
@@ -7803,7 +7691,7 @@ document
 
 
     .pppp-hospital-card{
-        min-height:155px;
+        min-height:125px;
     }
 
 }
@@ -7828,16 +7716,7 @@ id="ppppHospitalWrap">
 ========================================================= -->
 
 <div class="pppp-hospital-title">
-🇧🇩 100 Most Popular Government Hospitals in Bangladesh
-</div>
-
-
-<!-- =========================================================
-     🏥 SUB TITLE
-========================================================= -->
-
-<div class="pppp-hospital-subtitle">
-🏥 Government Hospitals &amp; Medical Services
+🇧🇩 150 Most Popular Government Hospitals in Bangladesh
 </div>
 
 
@@ -7861,15 +7740,15 @@ autocomplete="off">
      🏥 HOSPITAL CONTENT
 ========================================================= -->
 
-<div
-id="ppppHospitalContent">
-</div>
+<div id="ppppHospitalContent"></div>
 
 
 <div
 id="ppppHospitalNoResult"
 class="pppp-hospital-no-result">
+
 🔍 No hospital found.
+
 </div>
 
 
@@ -7882,292 +7761,322 @@ class="pppp-hospital-no-result">
 
 /* =========================================================
    🇧🇩 PPPP GOVERNMENT HOSPITAL DATA
-   USER-PROVIDED DATA — KEPT UNCHANGED
+   TOTAL = 150
 ========================================================= */
 
 const ppppGovernmentHospitals = [
 
 /* =========================================================
-   🇧🇩 DHAKA
+   🇧🇩 DHAKA — 17
 ========================================================= */
 
-["Dhaka","01","🏥","Dhaka Medical College Hospital","Dhaka","dmc.gov.bd"],
+{
+    city:"Dhaka",
+    hospitals:[
 
-["Dhaka","02","🏨","Sir Salimullah Medical College Mitford Hospital","Dhaka","smmch.gov.bd"],
+        ["🏥","Dhaka Medical College Hospital","Dhaka"],
+        ["🏨","Sir Salimullah Medical College Mitford Hospital","Dhaka"],
+        ["🏩","Shaheed Suhrawardy Medical College Hospital","Dhaka"],
+        ["🏢","Mugda Medical College Hospital","Dhaka"],
+        ["🏬","Kurmitola General Hospital","Dhaka"],
+        ["🩺","Government Employees Hospital","Dhaka"],
+        ["⚕️","Bangladesh Medical University Hospital","Dhaka"],
+        ["🧑‍⚕️","National Institute of Cardiovascular Diseases","Dhaka"],
+        ["👨‍⚕️","National Institute of Neurosciences & Hospital","Dhaka"],
+        ["👩‍⚕️","National Institute of Diseases of the Chest & Hospital","Dhaka"],
+        ["🧑‍🔬","National Institute of ENT","Dhaka"],
+        ["👨‍🔬","National Institute of Kidney Diseases & Urology","Dhaka"],
+        ["👩‍🔬","National Institute of Cancer Research & Hospital","Dhaka"],
+        ["💉","National Institute of Traumatology & Orthopaedic Rehabilitation","Dhaka"],
+        ["💊","National Institute of Mental Health","Dhaka"],
+        ["👀","National Institute of Ophthalmology & Hospital","Dhaka"],
+        ["🧬","Bangladesh Medical University Super Specialized Hospital","Dhaka"]
 
-["Dhaka","03","🩺","Shaheed Suhrawardy Medical College Hospital","Dhaka","shsmch.gov.bd"],
-
-["Dhaka","04","⚕️","Mugda Medical College Hospital","Dhaka","mmch.gov.bd"],
-
-["Dhaka","05","🧑‍⚕️","National Institute of Cardiovascular Diseases","Dhaka","nicvd.gov.bd"],
-
-["Dhaka","06","👨‍⚕️","National Institute of Neurosciences & Hospital","Dhaka","dghs.gov.bd"],
-
-["Dhaka","07","👩‍⚕️","National Institute of Cancer Research & Hospital","Dhaka","nicrh.gov.bd"],
-
-["Dhaka","08","🧑‍🔬","National Institute of Mental Health & Hospital","Dhaka","nimh.gov.bd"],
-
-["Dhaka","09","👨‍🔬","National Institute of Kidney Diseases & Urology","Dhaka","nikdu.org"],
-
-["Dhaka","10","👩‍🔬","National Institute of Diseases of the Chest & Hospital","Dhaka","nidch.gov.bd"],
-
-["Dhaka","11","💉","National Institute of Ophthalmology & Hospital","Dhaka","nioh.gov.bd"],
-
-["Dhaka","12","💊","Government Unani & Ayurvedic Medical College Hospital","Dhaka","dghs.gov.bd"],
-
-["Dhaka","13","🩹","National Institute of Traumatology & Orthopaedic Rehabilitation","Dhaka","nitor.gov.bd"],
-
-["Dhaka","14","🩻","Bangladesh Institute of Health Management Hospital","Dhaka","dghs.gov.bd"],
-
-["Dhaka","15","🩼","National Institute of ENT","Dhaka","nie.gov.bd"],
-
-["Dhaka","16","🩸","National Institute of Blood Transfusion & Haematology","Dhaka","nibth.gov.bd"],
-
-["Dhaka","17","🧬","Sheikh Fazilatunnesa Mujib Memorial KPJ Specialized Hospital & Nursing College","Dhaka","dghs.gov.bd"],
-
-["Dhaka","18","🧪","Government Employees Hospital","Dhaka","dghs.gov.bd"],
-
-["Dhaka","19","🔬","Kurmitola General Hospital","Dhaka","kgh.gov.bd"],
-
-["Dhaka","20","🧴","Infectious Diseases Hospital","Dhaka","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 CHITTAGONG
+   🇧🇩 CHITTAGONG — 17
 ========================================================= */
 
-["Chittagong","01","🧼","Chattogram Medical College Hospital","Chattogram","cmch.gov.bd"],
+{
+    city:"Chittagong",
+    hospitals:[
 
-["Chittagong","02","🪥","Chattogram 250 Bed General Hospital","Chattogram","dghs.gov.bd"],
+        ["🩹","Chattogram Medical College Hospital","Chittagong"],
+        ["🩻","Chattogram General Hospital","Chittagong"],
+        ["🩼","Bangladesh Institute of Tropical and Infectious Diseases","Chittagong"],
+        ["🩸","Chattogram 250 Bed General Hospital","Chittagong"],
+        ["🧪","Chattogram Chest Disease Hospital","Chittagong"],
+        ["🔬","Chattogram Maa-O-Shishu Hospital","Chittagong"],
+        ["🛏️","Chattogram Eye Infirmary & Training Complex","Chittagong"],
+        ["🚑","Hathazari Upazila Health Complex","Chittagong"],
+        ["🚨","Patiya Upazila Health Complex","Chittagong"],
+        ["🏪","Sitakunda Upazila Health Complex","Chittagong"],
+        ["🧠","Mirsharai Upazila Health Complex","Chittagong"],
+        ["❤️","Anwara Upazila Health Complex","Chittagong"],
+        ["🫀","Boalkhali Upazila Health Complex","Chittagong"],
+        ["🫁","Fatikchhari Upazila Health Complex","Chittagong"],
+        ["🦷","Lohagara Upazila Health Complex","Chittagong"],
+        ["👂","Banshkhali Upazila Health Complex","Chittagong"],
+        ["👃","Satkania Upazila Health Complex","Chittagong"]
 
-["Chittagong","03","🧽","Chattogram Maa-O-Shishu Hospital","Chattogram","dghs.gov.bd"],
-
-["Chittagong","04","🛏️","Bangladesh Institute of Tropical & Infectious Diseases","Chattogram","bitid.gov.bd"],
-
-["Chittagong","05","🚑","Chattogram Railway Hospital","Chattogram","dghs.gov.bd"],
-
-["Chittagong","06","🚨","Chattogram Port Hospital","Chattogram","dghs.gov.bd"],
-
-["Chittagong","07","🏪","Patiya Upazila Health Complex","Chattogram","dghs.gov.bd"],
-
-["Chittagong","08","🧠","Cox's Bazar 250 Bed District Sadar Hospital","Cox's Bazar","dghs.gov.bd"],
-
-["Chittagong","09","❤️","Bandarban 250 Bed District Hospital","Bandarban","dghs.gov.bd"],
-
-["Chittagong","10","🫀","Rangamati General Hospital","Rangamati","dghs.gov.bd"],
-
-["Chittagong","11","🫁","Khagrachari District Hospital","Khagrachari","dghs.gov.bd"],
-
-["Chittagong","12","🦷","Feni 250 Bed District Sadar Hospital","Feni","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 CUMILLA
+   🇧🇩 CUMILLA — 17
 ========================================================= */
 
-["Cumilla","01","👁️","Cumilla Medical College Hospital","Cumilla","comch.gov.bd"],
+{
+    city:"Cumilla",
+    hospitals:[
 
-["Cumilla","02","👂","Cumilla General Hospital","Cumilla","dghs.gov.bd"],
+        ["🦴","Cumilla Medical College Hospital","Cumilla"],
+        ["🦵","Cumilla General Hospital","Cumilla"],
+        ["🦶","Cumilla Sadar Dakshin Upazila Health Complex","Cumilla"],
+        ["🖐️","Daudkandi Upazila Health Complex","Cumilla"],
+        ["🤲","Chandina Upazila Health Complex","Cumilla"],
+        ["🫶","Burichang Upazila Health Complex","Cumilla"],
+        ["🍼","Brahmanpara Upazila Health Complex","Cumilla"],
+        ["🤰","Debidwar Upazila Health Complex","Cumilla"],
+        ["👨‍🍼","Homna Upazila Health Complex","Cumilla"],
+        ["👩‍🍼","Laksam Upazila Health Complex","Cumilla"],
+        ["🧑‍🍼","Nangalkot Upazila Health Complex","Cumilla"],
+        ["🤱","Monoharganj Upazila Health Complex","Cumilla"],
+        ["🫄","Meghna Upazila Health Complex","Cumilla"],
+        ["🦽","Titas Upazila Health Complex","Cumilla"],
+        ["🦼","Muradnagar Upazila Health Complex","Cumilla"],
+        ["🦯","Barura Upazila Health Complex","Cumilla"],
+        ["🧑‍🦽","Chouddagram Upazila Health Complex","Cumilla"]
 
-["Cumilla","03","👃","Chandpur 250 Bed General Hospital","Chandpur","dghs.gov.bd"],
-
-["Cumilla","04","🦴","Brahmanbaria 250 Bed General Hospital","Brahmanbaria","dghs.gov.bd"],
-
-["Cumilla","05","🦵","Lakshmipur 250 Bed District Hospital","Lakshmipur","dghs.gov.bd"],
-
-["Cumilla","06","🦶","Noakhali 250 Bed General Hospital","Noakhali","dghs.gov.bd"],
-
-["Cumilla","07","🖐️","Begumganj Upazila Health Complex","Noakhali","dghs.gov.bd"],
-
-["Cumilla","08","🤲","Daudkandi Upazila Health Complex","Cumilla","dghs.gov.bd"],
-
-["Cumilla","09","🫶","Chauddagram Upazila Health Complex","Cumilla","dghs.gov.bd"],
-
-["Cumilla","10","🍼","Laksam Upazila Health Complex","Cumilla","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 KHULNA
+   🇧🇩 KHULNA — 17
 ========================================================= */
 
-["Khulna","01","🤰","Khulna Medical College Hospital","Khulna","kmch.gov.bd"],
+{
+    city:"Khulna",
+    hospitals:[
 
-["Khulna","02","👨‍🍼","Khulna General Hospital","Khulna","dghs.gov.bd"],
+        ["👨‍🦽","Khulna Medical College Hospital","Khulna"],
+        ["👩‍🦽","Khulna 250 Bed General Hospital","Khulna"],
+        ["🧑‍🦼","Khulna Chest Hospital","Khulna"],
+        ["👨‍🦼","Khulna Infectious Disease Hospital","Khulna"],
+        ["👩‍🦼","Khulna Shishu Hospital","Khulna"],
+        ["🧑‍🦯","Khulna Medical College Dental Unit Hospital","Khulna"],
+        ["👨‍🦯","Bagerhat District Hospital","Bagerhat"],
+        ["👩‍🦯","Mongla Upazila Health Complex","Bagerhat"],
+        ["🩷","Fakirhat Upazila Health Complex","Bagerhat"],
+        ["❤️‍🔥","Kachua Upazila Health Complex","Bagerhat"],
+        ["💗","Chitalmari Upazila Health Complex","Bagerhat"],
+        ["💓","Morrelganj Upazila Health Complex","Bagerhat"],
+        ["💕","Sharankhola Upazila Health Complex","Bagerhat"],
+        ["💖","Dacope Upazila Health Complex","Khulna"],
+        ["💝","Dumuria Upazila Health Complex","Khulna"],
+        ["🤍","Koyra Upazila Health Complex","Khulna"],
+        ["💙","Paikgachha Upazila Health Complex","Khulna"]
 
-["Khulna","03","👩‍🍼","Khulna 250 Bed General Hospital","Khulna","dghs.gov.bd"],
-
-["Khulna","04","🧑‍🍼","Jashore 250 Bed General Hospital","Jashore","dghs.gov.bd"],
-
-["Khulna","05","🤱","Kushtia 250 Bed General Hospital","Kushtia","dghs.gov.bd"],
-
-["Khulna","06","🦽","Satkhira Medical College Hospital","Satkhira","smch.gov.bd"],
-
-["Khulna","07","🦼","Satkhira District Hospital","Satkhira","dghs.gov.bd"],
-
-["Khulna","08","🦯","Bagerhat District Hospital","Bagerhat","dghs.gov.bd"],
-
-["Khulna","09","🧑‍🦽","Magura 250 Bed District Hospital","Magura","dghs.gov.bd"],
-
-["Khulna","10","👨‍🦽","Narail District Hospital","Narail","dghs.gov.bd"],
-
-["Khulna","11","👩‍🦽","Chuadanga District Hospital","Chuadanga","dghs.gov.bd"],
-
-["Khulna","12","🧑‍🦼","Meherpur 250 Bed General Hospital","Meherpur","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 RAJSHAHI
+   🇧🇩 RAJSHAHI — 17
 ========================================================= */
 
-["Rajshahi","01","👨‍🦼","Rajshahi Medical College Hospital","Rajshahi","rmch.gov.bd"],
+{
+    city:"Rajshahi",
+    hospitals:[
 
-["Rajshahi","02","👩‍🦼","Rajshahi 250 Bed District Hospital","Rajshahi","dghs.gov.bd"],
+        ["🩵","Rajshahi Medical College Hospital","Rajshahi"],
+        ["💚","Rajshahi 250 Bed General Hospital","Rajshahi"],
+        ["💛","Rajshahi Chest Disease Hospital","Rajshahi"],
+        ["💜","Rajshahi Infectious Disease Hospital","Rajshahi"],
+        ["🖤","Pabna Mental Hospital","Pabna"],
+        ["🩶","Pabna 250 Bed General Hospital","Pabna"],
+        ["🌡️","Bogura Shaheed Ziaur Rahman Medical College Hospital","Bogura"],
+        ["🦠","Bogura 250 Bed Mohammad Ali Hospital","Bogura"],
+        ["🥼","Naogaon 250 Bed District Hospital","Naogaon"],
+        ["🧤","Natore 250 Bed District Hospital","Natore"],
+        ["🧯","Chapainawabganj 250 Bed District Hospital","Chapainawabganj"],
+        ["📋","Joypurhat District Hospital","Joypurhat"],
+        ["📝","Sirajganj 250 Bed Bangamata Sheikh Fazilatunnesa Mujib General Hospital","Sirajganj"],
+        ["📄","Puthia Upazila Health Complex","Rajshahi"],
+        ["📑","Tanore Upazila Health Complex","Rajshahi"],
+        ["🔍","Godagari Upazila Health Complex","Rajshahi"],
+        ["🔎","Bagha Upazila Health Complex","Rajshahi"]
 
-["Rajshahi","03","🧑‍🦯","Shaheed Ziaur Rahman Medical College Hospital","Bogura","szmc.gov.bd"],
-
-["Rajshahi","04","👨‍🦯","Bogura 250 Bed Mohammad Ali Hospital","Bogura","dghs.gov.bd"],
-
-["Rajshahi","05","👩‍🦯","Pabna Medical College Hospital","Pabna","pmch.gov.bd"],
-
-["Rajshahi","06","🩷","Pabna 250 Bed General Hospital","Pabna","dghs.gov.bd"],
-
-["Rajshahi","07","❤️‍🔥","Sirajganj 250 Bed Bangabandhu Sheikh Mujib General Hospital","Sirajganj","dghs.gov.bd"],
-
-["Rajshahi","08","💗","Naogaon 250 Bed General Hospital","Naogaon","dghs.gov.bd"],
-
-["Rajshahi","09","💓","Natore 250 Bed District Hospital","Natore","dghs.gov.bd"],
-
-["Rajshahi","10","💕","Chapainawabganj 250 Bed District Hospital","Chapainawabganj","dghs.gov.bd"],
-
-["Rajshahi","11","💖","Joypurhat District Hospital","Joypurhat","dghs.gov.bd"],
-
-["Rajshahi","12","💝","Rajshahi Infectious Diseases Hospital","Rajshahi","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 SYLHET
+   🇧🇩 SYLHET — 17
 ========================================================= */
 
-["Sylhet","01","🤍","Sylhet MAG Osmani Medical College Hospital","Sylhet","somch.gov.bd"],
+{
+    city:"Sylhet",
+    hospitals:[
 
-["Sylhet","02","💙","Sylhet 250 Bed District Hospital","Sylhet","dghs.gov.bd"],
+        ["📈","Sylhet MAG Osmani Medical College Hospital","Sylhet"],
+        ["📊","Sylhet 250 Bed District Hospital","Sylhet"],
+        ["📉","Sylhet Chest Disease Hospital","Sylhet"],
+        ["🧾","Sylhet Infectious Disease Hospital","Sylhet"],
+        ["🗃️","Sunamganj District Hospital","Sunamganj"],
+        ["🗄️","Habiganj 250 Bed District Hospital","Habiganj"],
+        ["🧰","Moulvibazar 250 Bed District Hospital","Moulvibazar"],
+        ["📞","Beanibazar Upazila Health Complex","Sylhet"],
+        ["☎️","Golapganj Upazila Health Complex","Sylhet"],
+        ["💻","Zakiganj Upazila Health Complex","Sylhet"],
+        ["🖥️","Kanaighat Upazila Health Complex","Sylhet"],
+        ["🧭","Jaintiapur Upazila Health Complex","Sylhet"],
+        ["⏱️","Bishwanath Upazila Health Complex","Sylhet"],
+        ["⏰","Companiganj Upazila Health Complex","Sylhet"],
+        ["🗓️","Fenchuganj Upazila Health Complex","Sylhet"],
+        ["📅","Balaganj Upazila Health Complex","Sylhet"],
+        ["🧮","Gowainghat Upazila Health Complex","Sylhet"]
 
-["Sylhet","03","🩵","Habiganj 250 Bed District Hospital","Habiganj","dghs.gov.bd"],
-
-["Sylhet","04","💚","Moulvibazar 250 Bed District Hospital","Moulvibazar","dghs.gov.bd"],
-
-["Sylhet","05","💛","Sunamganj 250 Bed District Hospital","Sunamganj","dghs.gov.bd"],
-
-["Sylhet","06","💜","Jalalabad Ragib-Rabeya Medical College Hospital","Sylhet","dghs.gov.bd"],
-
-["Sylhet","07","🖤","Sylhet Chest Disease Hospital","Sylhet","dghs.gov.bd"],
-
-["Sylhet","08","🩶","Sylhet Infectious Diseases Hospital","Sylhet","dghs.gov.bd"],
-
-["Sylhet","09","🌡️","Beanibazar Upazila Health Complex","Sylhet","dghs.gov.bd"],
-
-["Sylhet","10","🦠","Zakiganj Upazila Health Complex","Sylhet","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 BARISHAL
+   🇧🇩 BARISHAL — 16
 ========================================================= */
 
-["Barishal","01","🥼","Sher-e-Bangla Medical College Hospital","Barishal","sbmch.gov.bd"],
+{
+    city:"Barishal",
+    hospitals:[
 
-["Barishal","02","🧤","Barishal General Hospital","Barishal","dghs.gov.bd"],
+        ["🏃","Sher-e-Bangla Medical College Hospital","Barishal"],
+        ["🏃‍♂️","Barishal General Hospital","Barishal"],
+        ["🏃‍♀️","Barishal 100 Bed Children's Hospital","Barishal"],
+        ["🚶","Pirojpur District Hospital","Pirojpur"],
+        ["🚶‍♂️","Jhalokathi District Hospital","Jhalokathi"],
+        ["🚶‍♀️","Patuakhali 250 Bed General Hospital","Patuakhali"],
+        ["🧎","Barguna District Hospital","Barguna"],
+        ["🧎‍♂️","Bhola 250 Bed General Hospital","Bhola"],
+        ["🧎‍♀️","Banaripara Upazila Health Complex","Barishal"],
+        ["🚿","Bakerganj Upazila Health Complex","Barishal"],
+        ["🛁","Mehendiganj Upazila Health Complex","Barishal"],
+        ["🌹","Muladi Upazila Health Complex","Barishal"],
+        ["🌷","Wazirpur Upazila Health Complex","Barishal"],
+        ["🌺","Agailjhara Upazila Health Complex","Barishal"],
+        ["🌸","Gournadi Upazila Health Complex","Barishal"],
+        ["🌼","Hizla Upazila Health Complex","Barishal"]
 
-["Barishal","03","🧯","Bhola 250 Bed District Sadar Hospital","Bhola","dghs.gov.bd"],
-
-["Barishal","04","📋","Patuakhali 250 Bed General Hospital","Patuakhali","dghs.gov.bd"],
-
-["Barishal","05","📝","Pirojpur 250 Bed District Hospital","Pirojpur","dghs.gov.bd"],
-
-["Barishal","06","📄","Barguna 250 Bed General Hospital","Barguna","dghs.gov.bd"],
-
-["Barishal","07","📑","Jhalokathi District Hospital","Jhalokathi","dghs.gov.bd"],
-
-["Barishal","08","🔍","Barishal Chest Disease Hospital","Barishal","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 RANGPUR
+   🇧🇩 RANGPUR — 16
 ========================================================= */
 
-["Rangpur","01","🔎","Rangpur Medical College Hospital","Rangpur","rpmc.gov.bd"],
+{
+    city:"Rangpur",
+    hospitals:[
 
-["Rangpur","02","📈","Rangpur 100 Bed District Hospital","Rangpur","dghs.gov.bd"],
+        ["🌻","Rangpur Medical College Hospital","Rangpur"],
+        ["🪷","Rangpur 100 Bed Hospital","Rangpur"],
+        ["🪻","Rangpur Chest Disease Hospital","Rangpur"],
+        ["💐","Dinajpur M Abdur Rahim Medical College Hospital","Dinajpur"],
+        ["💮","Dinajpur 250 Bed General Hospital","Dinajpur"],
+        ["🏵️","Thakurgaon 250 Bed District Hospital","Thakurgaon"],
+        ["🥀","Panchagarh District Hospital","Panchagarh"],
+        ["🌱","Nilphamari 250 Bed General Hospital","Nilphamari"],
+        ["🌿","Lalmonirhat 250 Bed District Hospital","Lalmonirhat"],
+        ["☘️","Kurigram 250 Bed District Hospital","Kurigram"],
+        ["🍀","Gaibandha 250 Bed District Hospital","Gaibandha"],
+        ["🌳","Pirganj Upazila Health Complex","Rangpur"],
+        ["🎋","Mithapukur Upazila Health Complex","Rangpur"],
+        ["👨‍👩‍👧","Badarganj Upazila Health Complex","Rangpur"],
+        ["👨‍👩‍👦","Taraganj Upazila Health Complex","Rangpur"],
+        ["👨‍👩‍👧‍👦","Gangachara Upazila Health Complex","Rangpur"]
 
-["Rangpur","03","📊","Dinajpur Medical College Hospital","Dinajpur","dghs.gov.bd"],
-
-["Rangpur","04","📉","Dinajpur 250 Bed General Hospital","Dinajpur","dghs.gov.bd"],
-
-["Rangpur","05","🧾","Nilphamari 250 Bed General Hospital","Nilphamari","dghs.gov.bd"],
-
-["Rangpur","06","🗃️","Gaibandha 250 Bed District Hospital","Gaibandha","dghs.gov.bd"],
-
-["Rangpur","07","🗄️","Kurigram 250 Bed District Hospital","Kurigram","dghs.gov.bd"],
-
-["Rangpur","08","🧰","Lalmonirhat 250 Bed District Hospital","Lalmonirhat","dghs.gov.bd"],
+    ]
+},
 
 
 /* =========================================================
-   🇧🇩 MYMENSINGH
+   🇧🇩 MYMENSINGH — 16
 ========================================================= */
 
-["Mymensingh","01","📞","Mymensingh Medical College Hospital","Mymensingh","mmch.gov.bd"],
+{
+    city:"Mymensingh",
+    hospitals:[
 
-["Mymensingh","02","☎️","Mymensingh 250 Bed District Hospital","Mymensingh","dghs.gov.bd"],
+        ["👨‍👩‍👦‍👦","Mymensingh Medical College Hospital","Mymensingh"],
+        ["👨‍👩‍👧‍👧","Mymensingh 250 Bed Hospital","Mymensingh"],
+        ["🏠","Netrokona 250 Bed District Hospital","Netrokona"],
+        ["🏡","Jamalpur 250 Bed General Hospital","Jamalpur"],
+        ["🏘️","Sherpur 250 Bed District Hospital","Sherpur"],
+        ["🏚️","Kishoreganj 250 Bed General Hospital","Kishoreganj"],
+        ["🏙️","Trishal Upazila Health Complex","Mymensingh"],
+        ["⛺","Muktagachha Upazila Health Complex","Mymensingh"],
+        ["🛖","Gaffargaon Upazila Health Complex","Mymensingh"],
+        ["🏫","Ishwarganj Upazila Health Complex","Mymensingh"],
+        ["🏦","Phulpur Upazila Health Complex","Mymensingh"],
+        ["🏤","Haluaghat Upazila Health Complex","Mymensingh"],
+        ["🏣","Durgapur Upazila Health Complex","Netrokona"],
+        ["🐦","Kalmakanda Upazila Health Complex","Netrokona"],
+        ["🕊️","Nalitabari Upazila Health Complex","Sherpur"],
+        ["🦜","Sreebardi Upazila Health Complex","Sherpur"]
 
-["Mymensingh","03","💻","Netrokona 250 Bed District Hospital","Netrokona","dghs.gov.bd"],
-
-["Mymensingh","04","🖥️","Jamalpur 250 Bed General Hospital","Jamalpur","dghs.gov.bd"],
-
-["Mymensingh","05","🧭","Sherpur 250 Bed District Hospital","Sherpur","dghs.gov.bd"],
-
-["Mymensingh","06","⏱️","Mymensingh Chest Disease Hospital","Mymensingh","dghs.gov.bd"],
-
-["Mymensingh","07","⏰","Mymensingh Infectious Diseases Hospital","Mymensingh","dghs.gov.bd"],
-
-["Mymensingh","08","🗓️","Netrokona District Hospital","Netrokona","dghs.gov.bd"]
+    ]
+}
 
 ];
 
 
 /* =========================================================
-   🇧🇩 DEPARTMENT TITLES
+   🇧🇩 TOTAL HOSPITAL COUNT CHECK
 ========================================================= */
 
-const ppppHospitalDepartments = [
+let ppppTotalGovernmentHospitals = 0;
 
-    ["Dhaka","🇧🇩 Government Hospital — Dhaka, Bangladesh"],
+ppppGovernmentHospitals.forEach(
+    function(group){
 
-    ["Chittagong","🇧🇩 Government Hospital — Chittagong, Bangladesh"],
+        ppppTotalGovernmentHospitals +=
+            group.hospitals.length;
 
-    ["Cumilla","🇧🇩 Government Hospital — Cumilla, Bangladesh"],
-
-    ["Khulna","🇧🇩 Government Hospital — Khulna, Bangladesh"],
-
-    ["Rajshahi","🇧🇩 Government Hospital — Rajshahi, Bangladesh"],
-
-    ["Sylhet","🇧🇩 Government Hospital — Sylhet, Bangladesh"],
-
-    ["Barishal","🇧🇩 Government Hospital — Barishal, Bangladesh"],
-
-    ["Rangpur","🇧🇩 Government Hospital — Rangpur, Bangladesh"],
-
-    ["Mymensingh","🇧🇩 Government Hospital — Mymensingh, Bangladesh"]
-
-];
+    }
+);
 
 
 /* =========================================================
-   🏥 RENDER HOSPITALS
+   🏥 CREATE GOOGLE SEARCH LINK
 ========================================================= */
 
-function ppppRenderGovernmentHospitals(items){
+function ppppHospitalSearchLink(name,city){
 
-    const container =
+    const query =
+        name + " " + city + " Bangladesh";
+
+    return (
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(query)
+    );
+
+}
+
+
+/* =========================================================
+   🇧🇩 RENDER HOSPITALS
+========================================================= */
+
+function ppppRenderGovernmentHospitals(
+    groups
+){
+
+    const content =
         document.getElementById(
             "ppppHospitalContent"
         );
@@ -8177,98 +8086,59 @@ function ppppRenderGovernmentHospitals(items){
             "ppppHospitalNoResult"
         );
 
-    if(!container){
+
+    if(!content){
         return;
     }
 
 
-    container.innerHTML = "";
+    content.innerHTML = "";
 
 
-    if(items.length === 0){
-
-        noResult.style.display =
-            "block";
-
-        return;
-
-    }
+    let resultCount = 0;
 
 
-    noResult.style.display =
-        "none";
+    groups.forEach(
+        function(group){
 
-
-    ppppHospitalDepartments.forEach(
-        function(department){
-
-            const departmentName =
-                department[0];
-
-            const departmentTitle =
-                department[1];
-
-
-            const departmentItems =
-                items.filter(
-                    function(item){
-
-                        return item[0] ===
-                            departmentName;
-
-                    }
-                );
-
-
-            if(departmentItems.length === 0){
+            if(group.hospitals.length === 0){
                 return;
             }
 
 
-            const category =
+            const groupDiv =
                 document.createElement("div");
 
-
-            category.className =
-                "pppp-hospital-category";
+            groupDiv.className =
+                "pppp-hospital-group";
 
 
             const title =
                 document.createElement("div");
 
-
             title.className =
-                "pppp-hospital-category-title";
-
+                "pppp-hospital-group-title";
 
             title.textContent =
-                departmentTitle;
+                "🇧🇩 Government Hospital — " +
+                group.city +
+                ", Bangladesh";
 
 
-            category.appendChild(title);
+            groupDiv.appendChild(title);
 
 
             const grid =
                 document.createElement("div");
 
-
             grid.className =
                 "pppp-hospital-grid";
 
 
-            departmentItems.forEach(
-                function(item){
+            group.hospitals.forEach(
+                function(item,index){
 
-                    const originalIndex =
-                        ppppGovernmentHospitals.indexOf(
-                            item
-                        );
-
-
-                    const totalNumber =
-                        String(
-                            originalIndex + 1
-                        ).padStart(2,"0");
+                    resultCount++;
 
 
                     const card =
@@ -8280,7 +8150,10 @@ function ppppRenderGovernmentHospitals(items){
 
 
                     card.href =
-                        "https://" + item[5];
+                        ppppHospitalSearchLink(
+                            item[1],
+                            item[2]
+                        );
 
 
                     card.target =
@@ -8291,31 +8164,37 @@ function ppppRenderGovernmentHospitals(items){
                         "noopener noreferrer";
 
 
+                    const number =
+                        String(
+                            index + 1
+                        ).padStart(2,"0");
+
+
                     card.innerHTML = `
 
                         <span
                         class="pppp-hospital-number">
-                            ${item[1]}
+                            ${number}
                         </span>
 
                         <span
                         class="pppp-hospital-emoji">
-                            ${item[2]}
+                            ${item[0]}
                         </span>
 
                         <span
                         class="pppp-hospital-name">
-                            ${item[3]}
+                            ${item[1]}
                         </span>
 
                         <span
                         class="pppp-hospital-location">
-                            — ${item[4]}
+                            📍 ${item[2]}
                         </span>
 
                         <span
                         class="pppp-hospital-open">
-                            ${item[5]}
+                            OPEN
                         </span>
 
                     `;
@@ -8327,18 +8206,31 @@ function ppppRenderGovernmentHospitals(items){
             );
 
 
-            category.appendChild(grid);
+            groupDiv.appendChild(grid);
 
-            container.appendChild(category);
+            content.appendChild(groupDiv);
 
         }
     );
+
+
+    if(resultCount === 0){
+
+        noResult.style.display =
+            "block";
+
+    }else{
+
+        noResult.style.display =
+            "none";
+
+    }
 
 }
 
 
 /* =========================================================
-   🔎 SEARCH HOSPITALS
+   🔎 SEARCH GOVERNMENT HOSPITALS
 ========================================================= */
 
 function ppppSearchGovernmentHospitals(){
@@ -8347,6 +8239,7 @@ function ppppSearchGovernmentHospitals(){
         document.getElementById(
             "ppppHospitalSearch"
         );
+
 
     if(!search){
         return;
@@ -8370,36 +8263,55 @@ function ppppSearchGovernmentHospitals(){
     }
 
 
-    const filtered =
-        ppppGovernmentHospitals.filter(
-            function(item){
-
-                const text =
-                    (
-                        item[0] +
-                        " " +
-                        item[1] +
-                        " " +
-                        item[2] +
-                        " " +
-                        item[3] +
-                        " " +
-                        item[4] +
-                        " " +
-                        item[5]
-                    ).toLowerCase();
+    const filteredGroups = [];
 
 
-                return text.includes(
-                    keyword
+    ppppGovernmentHospitals.forEach(
+        function(group){
+
+            const filteredHospitals =
+                group.hospitals.filter(
+                    function(item){
+
+                        const text =
+                            (
+                                item[0] +
+                                " " +
+                                item[1] +
+                                " " +
+                                item[2] +
+                                " " +
+                                group.city
+                            ).toLowerCase();
+
+
+                        return text.includes(
+                            keyword
+                        );
+
+                    }
                 );
 
+
+            if(filteredHospitals.length > 0){
+
+                filteredGroups.push({
+
+                    city:group.city,
+
+                    hospitals:
+                        filteredHospitals
+
+                });
+
             }
-        );
+
+        }
+    );
 
 
     ppppRenderGovernmentHospitals(
-        filtered
+        filteredGroups
     );
 
 }
@@ -8439,30 +8351,45 @@ ppppRenderGovernmentHospitals(
    FROM INTERFERING
 ========================================================= */
 
-document
-.querySelectorAll(
-    "#ppppHospitalWrap .pppp-hospital-card"
-)
-.forEach(
-    function(card){
+document.addEventListener(
+    "click",
+    function(event){
 
-        card.addEventListener(
-            "click",
-            function(event){
+        const card =
+            event.target.closest(
+                "#ppppHospitalWrap .pppp-hospital-card"
+            );
 
-                event.stopPropagation();
 
-            }
-        );
+        if(card){
 
-    }
+            event.stopPropagation();
+
+        }
+
+    },
+    true
 );
+
+
+/* =========================================================
+   ✅ 150 HOSPITALS CHECK
+========================================================= */
+
+if(ppppTotalGovernmentHospitals !== 150){
+
+    console.warn(
+        "PPPP Government Hospitals: Expected 150 hospitals, found " +
+        ppppTotalGovernmentHospitals
+    );
+
+}
 
 </script>
 
 
 <!-- =========================================================
-     🇧🇩 TOTAL: 100 DISTINCT GOVERNMENT HOSPITALS
+     END PPPP GOVERNMENT HOSPITALS
 ========================================================= -->
 
 <!-- =========================================================
