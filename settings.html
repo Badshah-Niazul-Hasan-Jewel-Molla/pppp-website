@@ -3519,6 +3519,7 @@ alert("Website link copied successfully!");
 <!-- =========================================================
      ⚙️ PPPP SHARED FLOATING SETTINGS LOADER
      Source: setting.html
+     FIX: Preserve DOMContentLoaded initialization
 ========================================================= -->
 
 <script>
@@ -3534,9 +3535,11 @@ alert("Website link copied successfully!");
         );
 
         if (!response.ok) {
+
             throw new Error(
                 "setting.html could not be loaded."
             );
+
         }
 
         const source =
@@ -3553,30 +3556,34 @@ alert("Website link copied successfully!");
             ) || [];
 
 
-        styleMatches.forEach(function (styleBlock) {
+        styleMatches.forEach(
+            function (styleBlock) {
 
-            const style =
-                document.createElement("style");
-
-            style.textContent =
-                styleBlock
-                    .replace(
-                        /^<style\b[^>]*>/i,
-                        ""
-                    )
-                    .replace(
-                        /<\/style>$/i,
-                        ""
+                const style =
+                    document.createElement(
+                        "style"
                     );
 
-            style.dataset.ppppSettings =
-                "true";
+                style.textContent =
+                    styleBlock
+                        .replace(
+                            /^<style\b[^>]*>/i,
+                            ""
+                        )
+                        .replace(
+                            /<\/style>$/i,
+                            ""
+                        );
 
-            document.head.appendChild(
-                style
-            );
+                style.dataset.ppppSettings =
+                    "true";
 
-        });
+                document.head.appendChild(
+                    style
+                );
+
+            }
+        );
 
 
         /* =====================================================
@@ -3616,7 +3623,9 @@ alert("Website link copied successfully!");
         ===================================================== */
 
         const settingsContainer =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         settingsContainer.id =
             "ppppSharedSettings";
@@ -3631,6 +3640,8 @@ alert("Website link copied successfully!");
 
         /* =====================================================
            6. EXECUTE JAVASCRIPT
+           IMPORTANT:
+           DOMContentLoaded listenerগুলোকে এখনই চালানো হবে।
         ===================================================== */
 
         for (
@@ -3639,7 +3650,9 @@ alert("Website link copied successfully!");
         ) {
 
             const temp =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             temp.innerHTML =
                 scriptBlock;
@@ -3649,20 +3662,25 @@ alert("Website link copied successfully!");
                     "script"
                 );
 
-            if (!oldScript) continue;
+            if (!oldScript) {
+                continue;
+            }
 
 
-            const newScript =
-                document.createElement(
-                    "script"
-                );
-
-
-            /* External JavaScript */
+            /* =================================================
+               EXTERNAL JAVASCRIPT
+            ================================================= */
 
             if (
-                oldScript.getAttribute("src")
+                oldScript.getAttribute(
+                    "src"
+                )
             ) {
+
+                const newScript =
+                    document.createElement(
+                        "script"
+                    );
 
                 newScript.src =
                     new URL(
@@ -3672,37 +3690,127 @@ alert("Website link copied successfully!");
                         window.location.href
                     ).href;
 
+
+                Array.from(
+                    oldScript.attributes
+                ).forEach(
+                    function (attr) {
+
+                        if (
+                            attr.name !==
+                            "src"
+                        ) {
+
+                            newScript.setAttribute(
+                                attr.name,
+                                attr.value
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                newScript.dataset.ppppSettings =
+                    "true";
+
+                document.body.appendChild(
+                    newScript
+                );
+
+                continue;
+
             }
 
 
-            /* Inline JavaScript */
+            /* =================================================
+               INLINE JAVASCRIPT
+            ================================================= */
 
-            else {
-
-                newScript.textContent =
-                    oldScript.textContent;
-
-            }
+            let js =
+                oldScript.textContent;
 
 
-            /* Preserve important attributes */
+            /*
+               -------------------------------------------------
+               IMPORTANT FIX
+
+               setting.html-এর অনেক code:
+
+               document.addEventListener(
+                   "DOMContentLoaded",
+                   function(){ ... }
+               );
+
+               ব্যবহার করে।
+
+               কিন্তু Loader async হওয়ায় তখন DOMContentLoaded
+               ইতোমধ্যে চলে যেতে পারে।
+
+               তাই সেই listener-গুলোকে document-এর পরবর্তী
+               event-এর জন্য অপেক্ষা না করিয়ে এখনই চালানো হবে।
+               -------------------------------------------------
+            */
+
+
+            js =
+                js.replace(
+                    /document\.addEventListener\s*\(\s*["']DOMContentLoaded["']\s*,\s*function\s*\(\s*\)\s*\{/g,
+                    "/* PPPP LOADER: DOMContentLoaded → immediate */\n(function(){"
+                );
+
+
+            /*
+               উপরের replacement-এর ফলে listener-এর closing
+               অংশটিও ঠিক করতে হবে।
+            */
+
+            js =
+                js.replace(
+                    /\}\s*\)\s*;\s*$/gm,
+                    "})();"
+                );
+
+
+            /*
+               নিরাপদ fallback:
+               DOMContentLoaded event dispatch করা হবে।
+            */
+
+            const newScript =
+                document.createElement(
+                    "script"
+                );
+
+
+            /*
+               Script attributes preserve
+            */
 
             Array.from(
                 oldScript.attributes
-            ).forEach(function (attr) {
+            ).forEach(
+                function (attr) {
 
-                if (
-                    attr.name !== "src"
-                ) {
+                    if (
+                        attr.name !==
+                        "src"
+                    ) {
 
-                    newScript.setAttribute(
-                        attr.name,
-                        attr.value
-                    );
+                        newScript.setAttribute(
+                            attr.name,
+                            attr.value
+                        );
+
+                    }
 
                 }
+            );
 
-            });
+
+            newScript.textContent =
+                js;
 
 
             newScript.dataset.ppppSettings =
@@ -3717,7 +3825,19 @@ alert("Website link copied successfully!");
 
 
         /* =====================================================
-           7. SETTINGS LOADED EVENT
+           7. FORCE INITIALIZATION
+           DOMContentLoaded-এর প্রয়োজনীয় state পুনরায় trigger
+        ===================================================== */
+
+        document.dispatchEvent(
+            new Event(
+                "DOMContentLoaded"
+            )
+        );
+
+
+        /* =====================================================
+           8. SETTINGS LOADED EVENT
         ===================================================== */
 
         document.dispatchEvent(
