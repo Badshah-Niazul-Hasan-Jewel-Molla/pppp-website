@@ -3496,6 +3496,3595 @@ onclick="ppppAboutSettings()">
 </div>
 
 <!-- =========================================================
+     🛠️ PPPP SETTINGS — 15 TOOLS
+     Floating Settings Button / Settings Page
+     HTML + CSS + JavaScript
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   🛠️ PPPP 15 TOOLS WRAPPER
+========================================================= */
+
+.pppp-tools15-wrap{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =========================================================
+   🛠️ TOOL SECTION
+========================================================= */
+
+.pppp-tool15-section{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.pppp-tool15-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
+    background:linear-gradient(
+        135deg,
+        #1976d2,
+        #2196f3
+    );
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.25;
+    text-align:left;
+}
+
+
+/* =========================================================
+   TOOL BODY
+========================================================= */
+
+.pppp-tool15-body{
+    padding:14px;
+    box-sizing:border-box;
+    background:#f7f9fc;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.pppp-tool15-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+
+/* =========================================================
+   COMMON BOX
+========================================================= */
+
+.pppp-tool15-box{
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f3f7fa
+        );
+
+    border:1px solid #dfe5eb;
+    border-radius:22px;
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.08);
+
+    padding:15px;
+
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   TOOL LABEL
+========================================================= */
+
+.pppp-tool15-label{
+    display:block;
+    font-size:15px;
+    font-weight:800;
+    color:#263238;
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.pppp-tool15-input,
+.pppp-tool15-select,
+.pppp-tool15-textarea{
+    width:100%;
+    box-sizing:border-box;
+
+    border:1px solid #d6dde3;
+    border-radius:14px;
+
+    padding:11px 12px;
+
+    background:#fff;
+
+    color:#263238;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+
+.pppp-tool15-input:focus,
+.pppp-tool15-select:focus,
+.pppp-tool15-textarea:focus{
+    border-color:#2196f3;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.pppp-tool15-btn{
+    width:100%;
+
+    border:0;
+    border-radius:16px;
+
+    padding:11px 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e3f2fd,
+            #d5ebfa
+        );
+
+    color:#14559a;
+
+    font-size:15px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.08);
+
+    transition:.18s;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+.pppp-tool15-btn:hover{
+    transform:translateY(-1px);
+}
+
+
+.pppp-tool15-btn:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   GREEN BUTTON
+========================================================= */
+
+.pppp-tool15-btn-green{
+    background:#e8f5e9;
+    color:#16843b;
+}
+
+
+/* =========================================================
+   RED BUTTON
+========================================================= */
+
+.pppp-tool15-btn-red{
+    background:#ffebee;
+    color:#c62828;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.pppp-tool15-result{
+    margin-top:10px;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    border:1px solid #dfe5eb;
+
+    color:#263238;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+    min-height:20px;
+}
+
+
+/* =========================================================
+   BIG RESULT
+========================================================= */
+
+.pppp-tool15-big-result{
+    font-size:24px;
+    font-weight:800;
+    text-align:center;
+    color:#1769aa;
+}
+
+
+/* =========================================================
+   WORLD CLOCK
+========================================================= */
+
+.pppp-world-clock{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    gap:8px;
+}
+
+
+.pppp-clock-card{
+    padding:12px;
+
+    background:#fff;
+
+    border:1px solid #dfe5eb;
+
+    border-radius:16px;
+
+    text-align:center;
+}
+
+
+.pppp-clock-name{
+    font-size:14px;
+    font-weight:800;
+}
+
+
+.pppp-clock-time{
+    margin-top:5px;
+    font-size:19px;
+    font-weight:800;
+    color:#1769aa;
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.pppp-image-preview{
+    width:100%;
+    max-height:260px;
+
+    object-fit:contain;
+
+    display:none;
+
+    margin-top:10px;
+
+    border-radius:16px;
+
+    border:1px solid #dfe5eb;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   VIDEO / AUDIO
+========================================================= */
+
+.pppp-tool15-media{
+    width:100%;
+    margin-top:10px;
+    border-radius:14px;
+}
+
+
+/* =========================================================
+   RANGE
+========================================================= */
+
+.pppp-tool15-range{
+    width:100%;
+}
+
+
+/* =========================================================
+   SMALL NOTE
+========================================================= */
+
+.pppp-tool15-note{
+    font-size:12px;
+    line-height:1.5;
+    color:#607d8b;
+    margin-top:8px;
+}
+
+
+/* =========================================================
+   BANGLADESH INFORMATION
+========================================================= */
+
+.pppp-bd-info-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+
+.pppp-bd-info-card{
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f3f7fa
+        );
+
+    border:1px solid #dfe5eb;
+    border-radius:20px;
+
+    padding:14px;
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.07);
+}
+
+
+.pppp-bd-info-card h4{
+    margin:0 0 8px;
+
+    font-size:16px;
+
+    color:#263238;
+}
+
+
+.pppp-bd-info-card p{
+    margin:5px 0;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:520px){
+
+    .pppp-tool15-title{
+        font-size:20px;
+        padding:15px 16px;
+    }
+
+    .pppp-tool15-body{
+        padding:14px;
+    }
+
+    .pppp-tool15-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .pppp-tool15-box{
+        border-radius:22px;
+    }
+
+    .pppp-bd-info-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+    .pppp-tool15-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-bd-info-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media(min-width:1100px){
+
+    .pppp-tool15-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-bd-info-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     🛠️ PPPP 15 TOOLS
+========================================================= -->
+
+<div
+class="pppp-tools15-wrap"
+id="ppppTools15Wrap">
+
+
+<!-- =========================================================
+     01 🌍 WORLD CLOCK
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🌍 World Clock
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-world-clock">
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇧🇩 Dhaka</div>
+<div class="pppp-clock-time" id="clockDhaka">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇬🇧 London</div>
+<div class="pppp-clock-time" id="clockLondon">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇺🇸 New York</div>
+<div class="pppp-clock-time" id="clockNewYork">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇦🇪 Dubai</div>
+<div class="pppp-clock-time" id="clockDubai">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇸🇦 Riyadh</div>
+<div class="pppp-clock-time" id="clockRiyadh">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇯🇵 Tokyo</div>
+<div class="pppp-clock-time" id="clockTokyo">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇮🇳 Kolkata</div>
+<div class="pppp-clock-time" id="clockKolkata">--:--:--</div>
+</div>
+
+<div class="pppp-clock-card">
+<div class="pppp-clock-name">🇦🇺 Sydney</div>
+<div class="pppp-clock-time" id="clockSydney">--:--:--</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     02 📱 QR & BARCODE SCANNER
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+📱 QR & Barcode Scanner
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📷 Scan Image
+</label>
+
+<input
+type="file"
+id="qrImageInput"
+class="pppp-tool15-input"
+accept="image/*">
+
+<button
+class="pppp-tool15-btn"
+onclick="ppppScanQRImage()">
+🔍 Scan
+</button>
+
+</div>
+
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📷 Camera Scanner
+</label>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppStartQRScanner()">
+▶️ Start Camera
+</button>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-red"
+onclick="ppppStopQRScanner()">
+⏹️ Stop Camera
+</button>
+
+<video
+id="ppppQRVideo"
+class="pppp-tool15-media"
+autoplay
+playsinline
+style="display:none">
+</video>
+
+</div>
+
+</div>
+
+<div
+id="ppppQRResult"
+class="pppp-tool15-result">
+Scan result will appear here.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     03 🎓 GPA CALCULATOR
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🎓 GPA Calculator
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 1
+</label>
+
+<input
+type="number"
+id="gpa1"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 2
+</label>
+
+<input
+type="number"
+id="gpa2"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 3
+</label>
+
+<input
+type="number"
+id="gpa3"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 4
+</label>
+
+<input
+type="number"
+id="gpa4"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 5
+</label>
+
+<input
+type="number"
+id="gpa5"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📚 Subject 6
+</label>
+
+<input
+type="number"
+id="gpa6"
+class="pppp-tool15-input"
+min="0"
+max="5"
+step="0.01"
+placeholder="GPA">
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCalculateGPA()"
+style="margin-top:10px">
+🎓 Calculate GPA
+</button>
+
+<div
+id="gpaResult"
+class="pppp-tool15-result pppp-tool15-big-result">
+GPA: 0.00
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     04 🕌 ZAKAT CALCULATOR
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🕌 Zakat Calculator
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+💵 Cash
+</label>
+
+<input
+type="number"
+id="zakatCash"
+class="pppp-tool15-input"
+placeholder="৳">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+🏦 Bank Balance
+</label>
+
+<input
+type="number"
+id="zakatBank"
+class="pppp-tool15-input"
+placeholder="৳">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+🥇 Gold / Silver Value
+</label>
+
+<input
+type="number"
+id="zakatGold"
+class="pppp-tool15-input"
+placeholder="৳">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📦 Business Assets
+</label>
+
+<input
+type="number"
+id="zakatBusiness"
+class="pppp-tool15-input"
+placeholder="৳">
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCalculateZakat()"
+style="margin-top:10px">
+🕌 Calculate 2.5% Zakat
+</button>
+
+<div
+id="zakatResult"
+class="pppp-tool15-result pppp-tool15-big-result">
+Zakat: ৳0.00
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     05 🖼️ IMAGE COMPRESSOR
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🖼️ Image Compressor
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="compressImageInput"
+class="pppp-tool15-input"
+accept="image/*">
+
+<label
+class="pppp-tool15-label"
+style="margin-top:10px">
+📊 Quality
+</label>
+
+<input
+type="range"
+id="imageQuality"
+class="pppp-tool15-range"
+min="10"
+max="100"
+value="70">
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCompressImage()"
+style="margin-top:10px">
+🗜️ Compress Image
+</button>
+
+<img
+id="compressPreview"
+class="pppp-image-preview">
+
+<div
+id="compressResult"
+class="pppp-tool15-result">
+Select an image.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     06 📐 RESIZE IMAGE
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+📐 Resize Image
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+🖼️ Image
+</label>
+
+<input
+type="file"
+id="resizeImageInput"
+class="pppp-tool15-input"
+accept="image/*">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+↔️ Width
+</label>
+
+<input
+type="number"
+id="resizeWidth"
+class="pppp-tool15-input"
+placeholder="Width">
+
+<label
+class="pppp-tool15-label"
+style="margin-top:8px">
+↕️ Height
+</label>
+
+<input
+type="number"
+id="resizeHeight"
+class="pppp-tool15-input"
+placeholder="Height">
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppResizeImage()"
+style="margin-top:10px">
+📐 Resize & Download
+</button>
+
+<div
+id="resizeResult"
+class="pppp-tool15-result">
+Select image and enter dimensions.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     07 ✂️ CROP IMAGE
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+✂️ Crop Image
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="cropImageInput"
+class="pppp-tool15-input"
+accept="image/*">
+
+<div class="pppp-tool15-grid"
+style="margin-top:10px">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+↔️ X
+</label>
+
+<input
+type="number"
+id="cropX"
+class="pppp-tool15-input"
+value="0">
+
+<label class="pppp-tool15-label"
+style="margin-top:8px">
+↕️ Y
+</label>
+
+<input
+type="number"
+id="cropY"
+class="pppp-tool15-input"
+value="0">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📏 Width
+</label>
+
+<input
+type="number"
+id="cropW"
+class="pppp-tool15-input"
+placeholder="Width">
+
+<label class="pppp-tool15-label"
+style="margin-top:8px">
+📏 Height
+</label>
+
+<input
+type="number"
+id="cropH"
+class="pppp-tool15-input"
+placeholder="Height">
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCropImage()"
+style="margin-top:10px">
+✂️ Crop & Download
+</button>
+
+<div
+id="cropResult"
+class="pppp-tool15-result">
+Select image and enter crop area.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     08 🔄 IMAGE CONVERTER
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🔄 Image Converter
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+🖼️ Select Image
+</label>
+
+<input
+type="file"
+id="convertImageInput"
+class="pppp-tool15-input"
+accept="image/*">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+📄 Convert To
+</label>
+
+<select
+id="imageFormat"
+class="pppp-tool15-select">
+
+<option value="image/png">PNG</option>
+<option value="image/jpeg">JPG / JPEG</option>
+<option value="image/webp">WEBP</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppConvertImage()"
+style="margin-top:10px">
+🔄 Convert & Download
+</button>
+
+<div
+id="convertResult"
+class="pppp-tool15-result">
+Select an image.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     09 🗣️ TEXT TO SPEECH
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🗣️ Text to Speech
+</div>
+
+<div class="pppp-tool15-body">
+
+<textarea
+id="ttsText"
+class="pppp-tool15-textarea"
+rows="5"
+placeholder="Write or paste text here..."></textarea>
+
+<div class="pppp-tool15-grid"
+style="margin-top:10px">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+🌐 Language
+</label>
+
+<select
+id="ttsLanguage"
+class="pppp-tool15-select">
+
+<option value="bn-BD">বাংলা</option>
+<option value="en-US">English</option>
+<option value="hi-IN">Hindi</option>
+<option value="ar-SA">Arabic</option>
+
+</select>
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+⚡ Speed
+</label>
+
+<input
+type="range"
+id="ttsRate"
+class="pppp-tool15-range"
+min="0.5"
+max="2"
+step="0.1"
+value="1">
+
+</div>
+
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppSpeakText()"
+style="margin-top:10px">
+🔊 Speak
+</button>
+
+<button
+class="pppp-tool15-btn"
+onclick="ppppStopSpeech()"
+style="margin-top:8px">
+⏹️ Stop
+</button>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     10 🎧 AUDIO COMPRESSOR
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🎧 Audio Compressor
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="audioInput"
+class="pppp-tool15-input"
+accept="audio/*">
+
+<label
+class="pppp-tool15-label"
+style="margin-top:10px">
+🎚️ Bitrate
+</label>
+
+<select
+id="audioBitrate"
+class="pppp-tool15-select">
+
+<option value="48000">48 kbps</option>
+<option value="64000" selected>64 kbps</option>
+<option value="96000">96 kbps</option>
+<option value="128000">128 kbps</option>
+
+</select>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCompressAudio()"
+style="margin-top:10px">
+🗜️ Compress Audio
+</button>
+
+<div
+id="audioResult"
+class="pppp-tool15-result">
+Select an audio file.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     11 🎥 VIDEO COMPRESSOR
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🎥 Video Compressor
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="videoInput"
+class="pppp-tool15-input"
+accept="video/*">
+
+<label
+class="pppp-tool15-label"
+style="margin-top:10px">
+📊 Video Quality
+</label>
+
+<select
+id="videoQuality"
+class="pppp-tool15-select">
+
+<option value="1200000">Low — 1.2 Mbps</option>
+<option value="2500000" selected>Medium — 2.5 Mbps</option>
+<option value="4000000">High — 4 Mbps</option>
+
+</select>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppCompressVideo()"
+style="margin-top:10px">
+🗜️ Compress Video
+</button>
+
+<div
+id="videoResult"
+class="pppp-tool15-result">
+Select a video file.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     12 🎵 VIDEO TO MP3
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🎵 Video to MP3
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="videoMp3Input"
+class="pppp-tool15-input"
+accept="video/*">
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppVideoToMP3()"
+style="margin-top:10px">
+🎵 Convert to Audio
+</button>
+
+<div
+id="videoMp3Result"
+class="pppp-tool15-result">
+Select a video file.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     13 🎞️ MP3 TO VIDEO
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🎞️ MP3 to Video
+</div>
+
+<div class="pppp-tool15-body">
+
+<input
+type="file"
+id="mp3VideoInput"
+class="pppp-tool15-input"
+accept="audio/*">
+
+<label
+class="pppp-tool15-label"
+style="margin-top:10px">
+🖼️ Background Color
+</label>
+
+<input
+type="color"
+id="mp3VideoColor"
+value="#1976d2"
+class="pppp-tool15-input">
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppMP3ToVideo()"
+style="margin-top:10px">
+🎞️ Create Video
+</button>
+
+<div
+id="mp3VideoResult"
+class="pppp-tool15-result">
+Select an MP3/audio file.
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     14 💱 BDT CONVERTER
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+💱 BDT Converter
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-tool15-grid">
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+💰 Amount
+</label>
+
+<input
+type="number"
+id="bdtAmount"
+class="pppp-tool15-input"
+value="1000">
+
+</div>
+
+<div class="pppp-tool15-box">
+
+<label class="pppp-tool15-label">
+💱 Currency
+</label>
+
+<select
+id="bdtCurrency"
+class="pppp-tool15-select">
+
+<option value="USD">USD — US Dollar</option>
+<option value="EUR">EUR — Euro</option>
+<option value="GBP">GBP — Pound</option>
+<option value="SAR">SAR — Saudi Riyal</option>
+<option value="AED">AED — UAE Dirham</option>
+<option value="INR">INR — Indian Rupee</option>
+<option value="JPY">JPY — Japanese Yen</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="pppp-tool15-note">
+Exchange rates below are editable reference rates. Update them when needed.
+</div>
+
+<button
+class="pppp-tool15-btn pppp-tool15-btn-green"
+onclick="ppppConvertBDT()"
+style="margin-top:10px">
+💱 Convert
+</button>
+
+<div
+id="bdtResult"
+class="pppp-tool15-result pppp-tool15-big-result">
+৳1,000 = —
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
+     15 🇧🇩 BANGLADESH INFORMATION
+========================================================= -->
+
+<div class="pppp-tool15-section">
+
+<div class="pppp-tool15-title">
+🇧🇩 Bangladesh Information
+</div>
+
+<div class="pppp-tool15-body">
+
+<div class="pppp-bd-info-grid">
+
+<!-- DIVISIONS -->
+
+<div class="pppp-bd-info-card">
+
+<h4>🏛️ Divisions</h4>
+
+<p>১. ঢাকা</p>
+<p>২. চট্টগ্রাম</p>
+<p>৩. রাজশাহী</p>
+<p>৪. খুলনা</p>
+<p>৫. বরিশাল</p>
+<p>৬. সিলেট</p>
+<p>৭. রংপুর</p>
+<p>৮. ময়মনসিংহ</p>
+
+</div>
+
+
+<!-- DISTRICTS -->
+
+<div class="pppp-bd-info-card">
+
+<h4>🗺️ Districts — 64</h4>
+
+<p>
+ঢাকা, গাজীপুর, নারায়ণগঞ্জ, নরসিংদী,
+মুন্সীগঞ্জ, মানিকগঞ্জ, টাঙ্গাইল, কিশোরগঞ্জ,
+ফরিদপুর, গোপালগঞ্জ, মাদারীপুর, শরীয়তপুর,
+রাজবাড়ী
+</p>
+
+<p>
+চট্টগ্রাম, কক্সবাজার, কুমিল্লা, ফেনী,
+নোয়াখালী, লক্ষ্মীপুর, চাঁদপুর, ব্রাহ্মণবাড়িয়া,
+রাঙ্গামাটি, খাগড়াছড়ি, বান্দরবান
+</p>
+
+<p>
+রাজশাহী, বগুড়া, পাবনা, সিরাজগঞ্জ,
+নাটোর, নওগাঁ, জয়পুরহাট, চাঁপাইনবাবগঞ্জ
+</p>
+
+<p>
+খুলনা, যশোর, সাতক্ষীরা, বাগেরহাট,
+ঝিনাইদহ, মাগুরা, নড়াইল, কুষ্টিয়া,
+চুয়াডাঙ্গা, মেহেরপুর
+</p>
+
+<p>
+বরিশাল, ভোলা, পটুয়াখালী, পিরোজপুর,
+ঝালকাঠি, বরগুনা
+</p>
+
+<p>
+সিলেট, মৌলভীবাজার, হবিগঞ্জ, সুনামগঞ্জ
+</p>
+
+<p>
+রংপুর, দিনাজপুর, ঠাকুরগাঁও, পঞ্চগড়,
+নীলফামারী, লালমনিরহাট, কুড়িগ্রাম, গাইবান্ধা
+</p>
+
+<p>
+ময়মনসিংহ, জামালপুর, শেরপুর, নেত্রকোনা
+</p>
+
+</div>
+
+
+<!-- POSTAL CODE -->
+
+<div class="pppp-bd-info-card">
+
+<h4>📮 Postal Code</h4>
+
+<input
+type="text"
+id="postalSearch"
+class="pppp-tool15-input"
+placeholder="District / Post Office">
+
+<div
+id="postalResult"
+class="pppp-tool15-result">
+Postal Code search.
+</div>
+
+<div class="pppp-tool15-note">
+বাংলাদেশের পোস্টাল কোড অঞ্চল/পোস্ট অফিস অনুযায়ী পরিবর্তিত হয়। নির্দিষ্ট পোস্ট অফিসের নাম দিয়ে অনুসন্ধান করুন।
+</div>
+
+</div>
+
+
+<!-- EMERGENCY -->
+
+<div class="pppp-bd-info-card">
+
+<h4>🚨 Emergency Numbers</h4>
+
+<p>🚨 National Emergency — <b>999</b></p>
+<p>👮 Police — <b>999</b></p>
+<p>🚒 Fire Service — <b>999</b></p>
+<p>🚑 Ambulance — <b>999</b></p>
+<p>ℹ️ Information Service — <b>333</b></p>
+<p>🧑‍⚕️ Health Call — <b>16263</b></p>
+
+</div>
+
+
+<!-- NATIONAL SYMBOLS -->
+
+<div class="pppp-bd-info-card">
+
+<h4>🇧🇩 National Symbols</h4>
+
+<p>🇧🇩 জাতীয় পতাকা — বাংলাদেশের পতাকা</p>
+<p>🎵 জাতীয় সংগীত — আমার সোনার বাংলা</p>
+<p>🌸 জাতীয় ফুল — শাপলা</p>
+<p>🐯 জাতীয় পশু — রয়েল বেঙ্গল টাইগার</p>
+<p>🐦 জাতীয় পাখি — দোয়েল</p>
+<p>🐟 জাতীয় মাছ — ইলিশ</p>
+<p>🥭 জাতীয় ফল — কাঁঠাল</p>
+<p>🌳 জাতীয় বৃক্ষ — আমগাছ</p>
+<p>🏵️ জাতীয় প্রতীক — শাপলা ও ধানের শীষ</p>
+
+</div>
+
+
+<!-- NATIONAL INFO -->
+
+<div class="pppp-bd-info-card">
+
+<h4>📋 Basic Information</h4>
+
+<p>🇧🇩 দেশ — বাংলাদেশ</p>
+<p>🏛️ রাজধানী — ঢাকা</p>
+<p>🗣️ রাষ্ট্রভাষা — বাংলা</p>
+<p>💰 মুদ্রা — বাংলাদেশি টাকা (BDT)</p>
+<p>🕐 সময় — Bangladesh Standard Time</p>
+<p>🌏 মহাদেশ — এশিয়া</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   🛠️ PPPP 15 TOOLS JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
+   01 🌍 WORLD CLOCK
+========================================================= */
+
+function ppppUpdateWorldClock(){
+
+    const clocks = {
+
+        clockDhaka:
+            "Asia/Dhaka",
+
+        clockLondon:
+            "Europe/London",
+
+        clockNewYork:
+            "America/New_York",
+
+        clockDubai:
+            "Asia/Dubai",
+
+        clockRiyadh:
+            "Asia/Riyadh",
+
+        clockTokyo:
+            "Asia/Tokyo",
+
+        clockKolkata:
+            "Asia/Kolkata",
+
+        clockSydney:
+            "Australia/Sydney"
+
+    };
+
+
+    Object.keys(clocks).forEach(function(id){
+
+        const el =
+            document.getElementById(id);
+
+        if(!el) return;
+
+        el.textContent =
+            new Intl.DateTimeFormat(
+                "en-GB",
+                {
+                    timeZone:clocks[id],
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    second:"2-digit",
+                    hour12:true
+                }
+            ).format(new Date());
+
+    });
+
+}
+
+ppppUpdateWorldClock();
+
+setInterval(
+    ppppUpdateWorldClock,
+    1000
+);
+
+
+/* =========================================================
+   02 📱 QR / BARCODE
+========================================================= */
+
+let ppppQRStream = null;
+
+
+async function ppppStartQRScanner(){
+
+    const video =
+        document.getElementById(
+            "ppppQRVideo"
+        );
+
+    const result =
+        document.getElementById(
+            "ppppQRResult"
+        );
+
+
+    if(!("BarcodeDetector" in window)){
+
+        result.innerHTML =
+            "⚠️ এই browser-এ native QR/Barcode camera scanner নেই। Chrome/Android-এর সাম্প্রতিক version ব্যবহার করুন।";
+
+        return;
+    }
+
+
+    try{
+
+        const detector =
+            new BarcodeDetector({
+                formats:[
+                    "qr_code",
+                    "code_128",
+                    "code_39",
+                    "ean_13",
+                    "ean_8",
+                    "upc_a",
+                    "upc_e"
+                ]
+            });
+
+
+        ppppQRStream =
+            await navigator.mediaDevices.getUserMedia({
+                video:{
+                    facingMode:{
+                        ideal:"environment"
+                    }
+                }
+            });
+
+
+        video.srcObject =
+            ppppQRStream;
+
+        video.style.display =
+            "block";
+
+
+        async function scan(){
+
+            if(!ppppQRStream)
+                return;
+
+
+            try{
+
+                const codes =
+                    await detector.detect(video);
+
+
+                if(codes.length){
+
+                    result.innerHTML =
+                        "✅ Result: " +
+                        codes
+                            .map(x => x.rawValue)
+                            .join("<br>");
+
+                }
+
+            }catch(e){}
+
+
+            requestAnimationFrame(scan);
+
+        }
+
+
+        scan();
+
+
+    }catch(error){
+
+        result.textContent =
+            "❌ Camera permission পাওয়া যায়নি।";
+
+    }
+
+}
+
+
+function ppppStopQRScanner(){
+
+    if(ppppQRStream){
+
+        ppppQRStream
+            .getTracks()
+            .forEach(
+                track =>
+                    track.stop()
+            );
+
+        ppppQRStream = null;
+
+    }
+
+
+    const video =
+        document.getElementById(
+            "ppppQRVideo"
+        );
+
+    video.srcObject = null;
+    video.style.display = "none";
+
+}
+
+
+async function ppppScanQRImage(){
+
+    const input =
+        document.getElementById(
+            "qrImageInput"
+        );
+
+    const result =
+        document.getElementById(
+            "ppppQRResult"
+        );
+
+
+    if(!input.files.length){
+
+        result.textContent =
+            "⚠️ প্রথমে একটি QR/Barcode image নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    if(!("BarcodeDetector" in window)){
+
+        result.textContent =
+            "⚠️ এই browser-এ image QR/Barcode detector নেই। Chrome-এর সাম্প্রতিক version ব্যবহার করুন।";
+
+        return;
+    }
+
+
+    try{
+
+        const bitmap =
+            await createImageBitmap(
+                input.files[0]
+            );
+
+
+        const detector =
+            new BarcodeDetector({
+                formats:[
+                    "qr_code",
+                    "code_128",
+                    "code_39",
+                    "ean_13",
+                    "ean_8",
+                    "upc_a",
+                    "upc_e"
+                ]
+            });
+
+
+        const codes =
+            await detector.detect(
+                bitmap
+            );
+
+
+        if(codes.length){
+
+            result.innerHTML =
+                "✅ Result:<br>" +
+                codes
+                    .map(x => x.rawValue)
+                    .join("<br>");
+
+        }else{
+
+            result.textContent =
+                "❌ কোনো QR/Barcode পাওয়া যায়নি।";
+
+        }
+
+    }catch(error){
+
+        result.textContent =
+            "❌ Scan করা সম্ভব হয়নি।";
+
+    }
+
+}
+
+
+/* =========================================================
+   03 🎓 GPA
+========================================================= */
+
+function ppppCalculateGPA(){
+
+    const values = [];
+
+    for(let i=1;i<=6;i++){
+
+        const value =
+            parseFloat(
+                document.getElementById(
+                    "gpa"+i
+                ).value
+            );
+
+        if(!isNaN(value) &&
+           value >= 0 &&
+           value <= 5){
+
+            values.push(value);
+
+        }
+
+    }
+
+
+    if(!values.length){
+
+        document.getElementById(
+            "gpaResult"
+        ).textContent =
+            "GPA: 0.00";
+
+        return;
+    }
+
+
+    const total =
+        values.reduce(
+            (a,b)=>a+b,
+            0
+        );
+
+
+    const gpa =
+        total / values.length;
+
+
+    document.getElementById(
+        "gpaResult"
+    ).textContent =
+        "GPA: " +
+        gpa.toFixed(2);
+
+}
+
+
+/* =========================================================
+   04 🕌 ZAKAT
+========================================================= */
+
+function ppppCalculateZakat(){
+
+    const ids = [
+        "zakatCash",
+        "zakatBank",
+        "zakatGold",
+        "zakatBusiness"
+    ];
+
+
+    let total = 0;
+
+
+    ids.forEach(function(id){
+
+        const value =
+            parseFloat(
+                document.getElementById(
+                    id
+                ).value
+            );
+
+
+        if(!isNaN(value))
+            total += value;
+
+    });
+
+
+    const zakat =
+        total * 0.025;
+
+
+    document.getElementById(
+        "zakatResult"
+    ).textContent =
+        "Zakat: ৳" +
+        zakat.toLocaleString(
+            "en-BD",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================================================
+   IMAGE LOADER
+========================================================= */
+
+function ppppLoadImage(file){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const img =
+                new Image();
+
+            img.onload =
+                function(){
+                    resolve(img);
+                };
+
+            img.onerror =
+                reject;
+
+            img.src =
+                URL.createObjectURL(file);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   05 🖼️ IMAGE COMPRESSOR
+========================================================= */
+
+async function ppppCompressImage(){
+
+    const input =
+        document.getElementById(
+            "compressImageInput"
+        );
+
+
+    if(!input.files.length){
+
+        document.getElementById(
+            "compressResult"
+        ).textContent =
+            "⚠️ প্রথমে একটি image নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    const img =
+        await ppppLoadImage(
+            input.files[0]
+        );
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        img.naturalWidth;
+
+    canvas.height =
+        img.naturalHeight;
+
+
+    canvas
+        .getContext("2d")
+        .drawImage(
+            img,
+            0,
+            0
+        );
+
+
+    const quality =
+        parseInt(
+            document.getElementById(
+                "imageQuality"
+            ).value
+        ) / 100;
+
+
+    canvas.toBlob(
+        function(blob){
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const preview =
+                document.getElementById(
+                    "compressPreview"
+                );
+
+            preview.src =
+                url;
+
+            preview.style.display =
+                "block";
+
+
+            ppppDownload(
+                url,
+                "PPPP_Compressed_Image.jpg"
+            );
+
+
+            document.getElementById(
+                "compressResult"
+            ).textContent =
+                "✅ Image compressed successfully.";
+
+        },
+        "image/jpeg",
+        quality
+    );
+
+}
+
+
+/* =========================================================
+   06 📐 RESIZE
+========================================================= */
+
+async function ppppResizeImage(){
+
+    const input =
+        document.getElementById(
+            "resizeImageInput"
+        );
+
+
+    if(!input.files.length){
+
+        document.getElementById(
+            "resizeResult"
+        ).textContent =
+            "⚠️ Image নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    const width =
+        parseInt(
+            document.getElementById(
+                "resizeWidth"
+            ).value
+        );
+
+
+    const height =
+        parseInt(
+            document.getElementById(
+                "resizeHeight"
+            ).value
+        );
+
+
+    if(!width || !height){
+
+        document.getElementById(
+            "resizeResult"
+        ).textContent =
+            "⚠️ Width ও Height দিন।";
+
+        return;
+    }
+
+
+    const img =
+        await ppppLoadImage(
+            input.files[0]
+        );
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        width;
+
+    canvas.height =
+        height;
+
+
+    canvas
+        .getContext("2d")
+        .drawImage(
+            img,
+            0,
+            0,
+            width,
+            height
+        );
+
+
+    canvas.toBlob(
+        function(blob){
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            ppppDownload(
+                url,
+                "PPPP_Resized_Image.jpg"
+            );
+
+
+            document.getElementById(
+                "resizeResult"
+            ).textContent =
+                "✅ Image resized successfully.";
+
+        },
+        "image/jpeg",
+        .92
+    );
+
+}
+
+
+/* =========================================================
+   07 ✂️ CROP
+========================================================= */
+
+async function ppppCropImage(){
+
+    const input =
+        document.getElementById(
+            "cropImageInput"
+        );
+
+
+    if(!input.files.length){
+
+        document.getElementById(
+            "cropResult"
+        ).textContent =
+            "⚠️ Image নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    const x =
+        parseInt(
+            document.getElementById(
+                "cropX"
+            ).value
+        ) || 0;
+
+
+    const y =
+        parseInt(
+            document.getElementById(
+                "cropY"
+            ).value
+        ) || 0;
+
+
+    const w =
+        parseInt(
+            document.getElementById(
+                "cropW"
+            ).value
+        );
+
+
+    const h =
+        parseInt(
+            document.getElementById(
+                "cropH"
+            ).value
+        );
+
+
+    if(!w || !h){
+
+        document.getElementById(
+            "cropResult"
+        ).textContent =
+            "⚠️ Crop Width ও Height দিন।";
+
+        return;
+    }
+
+
+    const img =
+        await ppppLoadImage(
+            input.files[0]
+        );
+
+
+    if(
+        x < 0 ||
+        y < 0 ||
+        x+w > img.naturalWidth ||
+        y+h > img.naturalHeight
+    ){
+
+        document.getElementById(
+            "cropResult"
+        ).textContent =
+            "❌ Crop area image-এর বাইরে চলে গেছে।";
+
+        return;
+    }
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        w;
+
+    canvas.height =
+        h;
+
+
+    canvas
+        .getContext("2d")
+        .drawImage(
+            img,
+            x,
+            y,
+            w,
+            h,
+            0,
+            0,
+            w,
+            h
+        );
+
+
+    canvas.toBlob(
+        function(blob){
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            ppppDownload(
+                url,
+                "PPPP_Cropped_Image.jpg"
+            );
+
+
+            document.getElementById(
+                "cropResult"
+            ).textContent =
+                "✅ Image cropped successfully.";
+
+        },
+        "image/jpeg",
+        .92
+    );
+
+}
+
+
+/* =========================================================
+   08 🔄 IMAGE CONVERTER
+========================================================= */
+
+async function ppppConvertImage(){
+
+    const input =
+        document.getElementById(
+            "convertImageInput"
+        );
+
+
+    if(!input.files.length){
+
+        document.getElementById(
+            "convertResult"
+        ).textContent =
+            "⚠️ Image নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    const img =
+        await ppppLoadImage(
+            input.files[0]
+        );
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        img.naturalWidth;
+
+    canvas.height =
+        img.naturalHeight;
+
+
+    canvas
+        .getContext("2d")
+        .drawImage(
+            img,
+            0,
+            0
+        );
+
+
+    const type =
+        document.getElementById(
+            "imageFormat"
+        ).value;
+
+
+    const ext =
+        type === "image/png"
+            ? "png"
+            : type === "image/webp"
+                ? "webp"
+                : "jpg";
+
+
+    canvas.toBlob(
+        function(blob){
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            ppppDownload(
+                url,
+                "PPPP_Converted_Image."+
+                ext
+            );
+
+
+            document.getElementById(
+                "convertResult"
+            ).textContent =
+                "✅ Image converted to " +
+                ext.toUpperCase() +
+                ".";
+
+        },
+        type,
+        .92
+    );
+
+}
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+function ppppDownload(
+    url,
+    filename
+){
+
+    const a =
+        document.createElement(
+            "a"
+        );
+
+    a.href =
+        url;
+
+    a.download =
+        filename;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+}
+
+
+/* =========================================================
+   09 🗣️ TEXT TO SPEECH
+========================================================= */
+
+function ppppSpeakText(){
+
+    const text =
+        document.getElementById(
+            "ttsText"
+        ).value.trim();
+
+
+    if(!text)
+        return;
+
+
+    speechSynthesis.cancel();
+
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+
+    utterance.lang =
+        document.getElementById(
+            "ttsLanguage"
+        ).value;
+
+
+    utterance.rate =
+        parseFloat(
+            document.getElementById(
+                "ttsRate"
+            ).value
+        );
+
+
+    speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+
+function ppppStopSpeech(){
+
+    speechSynthesis.cancel();
+
+}
+
+
+/* =========================================================
+   10 🎧 AUDIO COMPRESSOR
+========================================================= */
+
+async function ppppCompressAudio(){
+
+    const input =
+        document.getElementById(
+            "audioInput"
+        );
+
+
+    const result =
+        document.getElementById(
+            "audioResult"
+        );
+
+
+    if(!input.files.length){
+
+        result.textContent =
+            "⚠️ Audio file নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    if(!window.MediaRecorder){
+
+        result.textContent =
+            "⚠️ এই browser-এ MediaRecorder support নেই।";
+
+        return;
+    }
+
+
+    try{
+
+        const file =
+            input.files[0];
+
+
+        const audio =
+            new Audio(
+                URL.createObjectURL(
+                    file
+                )
+            );
+
+
+        audio.crossOrigin =
+            "anonymous";
+
+
+        await new Promise(
+            function(resolve,reject){
+
+                audio.onloadedmetadata =
+                    resolve;
+
+                audio.onerror =
+                    reject;
+
+            }
+        );
+
+
+        const context =
+            new AudioContext();
+
+
+        const source =
+            context.createMediaElementSource(
+                audio
+            );
+
+
+        const destination =
+            context.createMediaStreamDestination();
+
+
+        source.connect(
+            destination
+        );
+
+
+        const bitrate =
+            parseInt(
+                document.getElementById(
+                    "audioBitrate"
+                ).value
+            );
+
+
+        const recorder =
+            new MediaRecorder(
+                destination.stream,
+                {
+                    mimeType:
+                        "audio/webm;codecs=opus",
+                    audioBitsPerSecond:
+                        bitrate
+                }
+            );
+
+
+        const chunks = [];
+
+
+        recorder.ondataavailable =
+            e => {
+
+                if(e.data.size)
+                    chunks.push(e.data);
+
+            };
+
+
+        recorder.onstop =
+            function(){
+
+                const blob =
+                    new Blob(
+                        chunks,
+                        {
+                            type:
+                                "audio/webm"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                ppppDownload(
+                    url,
+                    "PPPP_Compressed_Audio.webm"
+                );
+
+
+                result.textContent =
+                    "✅ Compressed audio downloaded as WebM/Opus.";
+
+                context.close();
+
+            };
+
+
+        recorder.start();
+
+        audio.play();
+
+
+        audio.onended =
+            function(){
+
+                recorder.stop();
+
+            };
+
+
+    }catch(error){
+
+        result.textContent =
+            "❌ Audio compression এই browser-এ সম্ভব হয়নি।";
+
+    }
+
+}
+
+
+/* =========================================================
+   11 🎥 VIDEO COMPRESSOR
+========================================================= */
+
+async function ppppCompressVideo(){
+
+    const input =
+        document.getElementById(
+            "videoInput"
+        );
+
+
+    const result =
+        document.getElementById(
+            "videoResult"
+        );
+
+
+    if(!input.files.length){
+
+        result.textContent =
+            "⚠️ Video file নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    if(!window.MediaRecorder){
+
+        result.textContent =
+            "⚠️ এই browser-এ MediaRecorder support নেই।";
+
+        return;
+    }
+
+
+    try{
+
+        const video =
+            document.createElement(
+                "video"
+            );
+
+
+        video.src =
+            URL.createObjectURL(
+                input.files[0]
+            );
+
+        video.muted =
+            true;
+
+        video.playsInline =
+            true;
+
+
+        await new Promise(
+            function(resolve,reject){
+
+                video.onloadedmetadata =
+                    resolve;
+
+                video.onerror =
+                    reject;
+
+            }
+        );
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        const maxWidth =
+            1280;
+
+
+        const scale =
+            Math.min(
+                1,
+                maxWidth /
+                video.videoWidth
+            );
+
+
+        canvas.width =
+            Math.round(
+                video.videoWidth *
+                scale
+            );
+
+
+        canvas.height =
+            Math.round(
+                video.videoHeight *
+                scale
+            );
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        const stream =
+            canvas.captureStream(
+                30
+            );
+
+
+        const recorder =
+            new MediaRecorder(
+                stream,
+                {
+                    mimeType:
+                        "video/webm;codecs=vp8",
+                    videoBitsPerSecond:
+                        parseInt(
+                            document.getElementById(
+                                "videoQuality"
+                            ).value
+                        )
+                }
+            );
+
+
+        const chunks = [];
+
+
+        recorder.ondataavailable =
+            e => {
+
+                if(e.data.size)
+                    chunks.push(e.data);
+
+            };
+
+
+        recorder.onstop =
+            function(){
+
+                const blob =
+                    new Blob(
+                        chunks,
+                        {
+                            type:
+                                "video/webm"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                ppppDownload(
+                    url,
+                    "PPPP_Compressed_Video.webm"
+                );
+
+
+                result.textContent =
+                    "✅ Compressed video downloaded as WebM.";
+
+            };
+
+
+        recorder.start();
+
+
+        video.play();
+
+
+        function draw(){
+
+            if(video.ended){
+
+                recorder.stop();
+
+                return;
+            }
+
+
+            ctx.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            requestAnimationFrame(
+                draw
+            );
+
+        }
+
+
+        draw();
+
+
+    }catch(error){
+
+        result.textContent =
+            "❌ Video compression এই browser-এ সম্ভব হয়নি।";
+
+    }
+
+}
+
+
+/* =========================================================
+   12 🎵 VIDEO TO AUDIO
+========================================================= */
+
+async function ppppVideoToMP3(){
+
+    const input =
+        document.getElementById(
+            "videoMp3Input"
+        );
+
+
+    const result =
+        document.getElementById(
+            "videoMp3Result"
+        );
+
+
+    if(!input.files.length){
+
+        result.textContent =
+            "⚠️ Video file নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    if(!window.MediaRecorder){
+
+        result.textContent =
+            "⚠️ এই browser-এ MediaRecorder support নেই।";
+
+        return;
+    }
+
+
+    try{
+
+        const video =
+            document.createElement(
+                "video"
+            );
+
+
+        video.src =
+            URL.createObjectURL(
+                input.files[0]
+            );
+
+        video.muted =
+            false;
+
+        video.playsInline =
+            true;
+
+
+        await new Promise(
+            function(resolve,reject){
+
+                video.onloadedmetadata =
+                    resolve;
+
+                video.onerror =
+                    reject;
+
+            }
+        );
+
+
+        const context =
+            new AudioContext();
+
+
+        const source =
+            context.createMediaElementSource(
+                video
+            );
+
+
+        const destination =
+            context.createMediaStreamDestination();
+
+
+        source.connect(
+            destination
+        );
+
+
+        const recorder =
+            new MediaRecorder(
+                destination.stream,
+                {
+                    mimeType:
+                        "audio/webm;codecs=opus"
+                }
+            );
+
+
+        const chunks = [];
+
+
+        recorder.ondataavailable =
+            e => {
+
+                if(e.data.size)
+                    chunks.push(e.data);
+
+            };
+
+
+        recorder.onstop =
+            function(){
+
+                const blob =
+                    new Blob(
+                        chunks,
+                        {
+                            type:
+                                "audio/webm"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                ppppDownload(
+                    url,
+                    "PPPP_Video_Audio.webm"
+                );
+
+
+                result.textContent =
+                    "✅ Video audio extracted. Browser output is WebM/Opus; true MP3 requires an MP3 encoder.";
+
+                context.close();
+
+            };
+
+
+        recorder.start();
+
+        video.play();
+
+
+        video.onended =
+            function(){
+
+                recorder.stop();
+
+            };
+
+
+    }catch(error){
+
+        result.textContent =
+            "❌ Audio extraction সম্ভব হয়নি।";
+
+    }
+
+}
+
+
+/* =========================================================
+   13 🎞️ MP3 TO VIDEO
+========================================================= */
+
+async function ppppMP3ToVideo(){
+
+    const input =
+        document.getElementById(
+            "mp3VideoInput"
+        );
+
+
+    const result =
+        document.getElementById(
+            "mp3VideoResult"
+        );
+
+
+    if(!input.files.length){
+
+        result.textContent =
+            "⚠️ Audio file নির্বাচন করুন।";
+
+        return;
+    }
+
+
+    if(!window.MediaRecorder){
+
+        result.textContent =
+            "⚠️ এই browser-এ MediaRecorder support নেই।";
+
+        return;
+    }
+
+
+    try{
+
+        const audio =
+            new Audio(
+                URL.createObjectURL(
+                    input.files[0]
+                )
+            );
+
+
+        await new Promise(
+            function(resolve,reject){
+
+                audio.onloadedmetadata =
+                    resolve;
+
+                audio.onerror =
+                    reject;
+
+            }
+        );
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.width =
+            1280;
+
+        canvas.height =
+            720;
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        const videoStream =
+            canvas.captureStream(
+                30
+            );
+
+
+        const context =
+            new AudioContext();
+
+
+        const source =
+            context.createMediaElementSource(
+                audio
+            );
+
+
+        const destination =
+            context.createMediaStreamDestination();
+
+
+        source.connect(
+            destination
+        );
+
+
+        destination.stream
+            .getAudioTracks()
+            .forEach(
+                track =>
+                    videoStream.addTrack(
+                        track
+                    )
+            );
+
+
+        const recorder =
+            new MediaRecorder(
+                videoStream,
+                {
+                    mimeType:
+                        "video/webm;codecs=vp8,opus"
+                }
+            );
+
+
+        const chunks = [];
+
+
+        recorder.ondataavailable =
+            e => {
+
+                if(e.data.size)
+                    chunks.push(e.data);
+
+            };
+
+
+        recorder.onstop =
+            function(){
+
+                const blob =
+                    new Blob(
+                        chunks,
+                        {
+                            type:
+                                "video/webm"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                ppppDownload(
+                    url,
+                    "PPPP_MP3_To_Video.webm"
+                );
+
+
+                result.textContent =
+                    "✅ Video created with audio.";
+
+                context.close();
+
+            };
+
+
+        recorder.start();
+
+
+        audio.play();
+
+
+        function draw(){
+
+            if(audio.ended){
+
+                recorder.stop();
+
+                return;
+            }
+
+
+            ctx.fillStyle =
+                document.getElementById(
+                    "mp3VideoColor"
+                ).value;
+
+
+            ctx.fillRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            ctx.fillStyle =
+                "#ffffff";
+
+
+            ctx.font =
+                "bold 48px Arial";
+
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.fillText(
+                "PPPP",
+                canvas.width/2,
+                canvas.height/2
+            );
+
+
+            requestAnimationFrame(
+                draw
+            );
+
+        }
+
+
+        draw();
+
+
+    }catch(error){
+
+        result.textContent =
+            "❌ MP3 to Video conversion সম্ভব হয়নি।";
+
+    }
+
+}
+
+
+/* =========================================================
+   14 💱 BDT CONVERTER
+========================================================= */
+
+/*
+   Reference rates:
+   1 foreign currency ≈ BDT
+   এগুলো editable reference rates।
+*/
+
+const ppppBDTRates = {
+
+    USD:122,
+    EUR:142,
+    GBP:165,
+    SAR:32.5,
+    AED:33.2,
+    INR:1.31,
+    JPY:0.82
+
+};
+
+
+function ppppConvertBDT(){
+
+    const amount =
+        parseFloat(
+            document.getElementById(
+                "bdtAmount"
+            ).value
+        ) || 0;
+
+
+    const currency =
+        document.getElementById(
+            "bdtCurrency"
+        ).value;
+
+
+    const rate =
+        ppppBDTRates[
+            currency
+        ];
+
+
+    const result =
+        amount / rate;
+
+
+    document.getElementById(
+        "bdtResult"
+    ).textContent =
+        "৳" +
+        amount.toLocaleString(
+            "en-BD"
+        ) +
+        " ≈ " +
+        result.toFixed(2) +
+        " " +
+        currency;
+
+}
+
+
+ppppConvertBDT();
+
+
+/* =========================================================
+   15 🇧🇩 POSTAL SEARCH
+========================================================= */
+
+/*
+   Common Bangladesh postal codes.
+   User can search district/post office.
+*/
+
+const ppppPostalCodes = [
+
+["Dhaka","Dhaka GPO","1000"],
+["Dhaka","Motijheel","1000"],
+["Dhaka","Mirpur","1216"],
+["Dhaka","Uttara","1230"],
+["Dhaka","Dhanmondi","1209"],
+
+["Chattogram","Chattogram GPO","4000"],
+["Chattogram","Pahartali","4202"],
+["Chattogram","Patenga","4204"],
+
+["Cumilla","Cumilla HO","3500"],
+["Feni","Feni HO","3900"],
+["Noakhali","Maijdee Court","3800"],
+
+["Rajshahi","Rajshahi GPO","6000"],
+["Bogra","Bogra HO","5800"],
+["Pabna","Pabna HO","6600"],
+
+["Khulna","Khulna GPO","9000"],
+["Jessore","Jessore HO","7400"],
+["Kushtia","Kushtia HO","7000"],
+
+["Barishal","Barishal GPO","8200"],
+["Bhola","Bhola HO","8300"],
+["Patuakhali","Patuakhali HO","8600"],
+
+["Sylhet","Sylhet GPO","3100"],
+["Moulvibazar","Moulvibazar HO","3200"],
+["Habiganj","Habiganj HO","3300"],
+
+["Rangpur","Rangpur GPO","5400"],
+["Dinajpur","Dinajpur HO","5200"],
+["Kurigram","Kurigram HO","5600"],
+
+["Mymensingh","Mymensingh HO","2200"],
+["Jamalpur","Jamalpur HO","2000"],
+["Netrokona","Netrokona HO","2400"]
+
+];
+
+
+document
+    .getElementById(
+        "postalSearch"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            const q =
+                this.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const result =
+                document.getElementById(
+                    "postalResult"
+                );
+
+
+            if(!q){
+
+                result.textContent =
+                    "Postal Code search.";
+
+                return;
+
+            }
+
+
+            const matches =
+                ppppPostalCodes.filter(
+                    row =>
+                        row.join(" ")
+                           .toLowerCase()
+                           .includes(q)
+                );
+
+
+            if(!matches.length){
+
+                result.textContent =
+                    "❌ Matching postal code পাওয়া যায়নি।";
+
+                return;
+            }
+
+
+            result.innerHTML =
+                matches
+                    .slice(0,10)
+                    .map(
+                        row =>
+                            "📮 " +
+                            row[0] +
+                            " — " +
+                            row[1] +
+                            " — <b>" +
+                            row[2] +
+                            "</b>"
+                    )
+                    .join("<br>");
+
+        }
+    );
+
+
+/* =========================================================
+   PREVENT OUTSIDE SETTINGS EVENTS
+========================================================= */
+
+document
+    .querySelectorAll(
+        "#ppppTools15Wrap button"
+    )
+    .forEach(
+        function(button){
+
+            button.addEventListener(
+                "click",
+                function(event){
+
+                    event.stopPropagation();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   END PPPP 15 TOOLS
+========================================================= */
+
+</script>
+
+<!-- =========================================================
+     END PPPP SETTINGS — 15 TOOLS
+========================================================= -->
+
+<!-- =========================================================
      PPPP TOOLS + LIVE MEDIA
 ========================================================= -->
 
