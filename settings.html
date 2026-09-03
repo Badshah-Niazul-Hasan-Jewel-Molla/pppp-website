@@ -2202,19 +2202,20 @@ id="ppppTools15Wrap">
 <div class="pppp-tool15-box">
 
 <label class="pppp-tool15-label">
-📷 Scan Image
+🖼️ Scan Image
 </label>
 
 <input
 type="file"
-id="qrImageInput"
 class="pppp-tool15-input"
+id="ppppQRImage"
 accept="image/*">
 
 <button
+type="button"
 class="pppp-tool15-btn"
 onclick="ppppScanQRImage()">
-🔍 Scan
+📱 Scan QR / Barcode Image
 </button>
 
 </div>
@@ -2227,24 +2228,27 @@ onclick="ppppScanQRImage()">
 </label>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppStartQRScanner()">
-▶️ Start Camera
-</button>
-
-<button
-class="pppp-tool15-btn pppp-tool15-btn-red"
-onclick="ppppStopQRScanner()">
-⏹️ Stop Camera
+📷 Start Camera Scanner
 </button>
 
 <video
 id="ppppQRVideo"
 class="pppp-tool15-media"
-autoplay
 playsinline
-style="display:none">
+autoplay
+muted
+style="display:none;">
 </video>
+
+<button
+type="button"
+class="pppp-tool15-btn pppp-tool15-btn-red"
+onclick="ppppStopQRScanner()">
+🛑 Stop Scanner
+</button>
 
 </div>
 
@@ -2253,7 +2257,11 @@ style="display:none">
 <div
 id="ppppQRResult"
 class="pppp-tool15-result">
-Scan result will appear here.
+📱 Scanner Ready
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ QR/Barcode scanning uses the browser's native BarcodeDetector when supported.
 </div>
 
 </div>
@@ -2274,68 +2282,97 @@ Scan result will appear here.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <div class="pppp-tool15-grid">
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 01</label>
-<input type="number" id="gpa1"
+<div>
+<label class="pppp-tool15-label">📚 Subject 01</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa1"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 02</label>
-<input type="number" id="gpa2"
+<div>
+<label class="pppp-tool15-label">📚 Subject 02</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa2"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 03</label>
-<input type="number" id="gpa3"
+<div>
+<label class="pppp-tool15-label">📚 Subject 03</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa3"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 04</label>
-<input type="number" id="gpa4"
+<div>
+<label class="pppp-tool15-label">📚 Subject 04</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa4"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 05</label>
-<input type="number" id="gpa5"
+<div>
+<label class="pppp-tool15-label">📚 Subject 05</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa5"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
-<div class="pppp-tool15-box">
-<label class="pppp-tool15-label">GPA 06</label>
-<input type="number" id="gpa6"
+<div>
+<label class="pppp-tool15-label">📚 Subject 06</label>
+<input
+type="number"
+step="0.01"
+min="0"
+max="5"
+id="gpa6"
 class="pppp-tool15-input"
-min="0" max="5" step="0.01"
-placeholder="0 - 5">
+placeholder="GPA">
 </div>
 
 </div>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppCalculateGPA()">
 🎓 Calculate GPA
 </button>
 
 <div
 id="gpaResult"
-class="pppp-tool15-result pppp-tool15-big-result">
-GPA: 0.00
+class="pppp-tool15-result">
+GPA Result
+</div>
+
 </div>
 
 </div>
@@ -2356,9 +2393,11 @@ GPA: 0.00
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <div class="pppp-tool15-grid">
 
-<div class="pppp-tool15-box">
+<div>
 <label class="pppp-tool15-label">
 💵 Cash
 </label>
@@ -2366,54 +2405,65 @@ GPA: 0.00
 type="number"
 id="zakatCash"
 class="pppp-tool15-input"
-value="0">
+value="0"
+min="0">
 </div>
 
-<div class="pppp-tool15-box">
+<div>
 <label class="pppp-tool15-label">
-🏦 Bank
+🏦 Bank Balance
 </label>
 <input
 type="number"
 id="zakatBank"
 class="pppp-tool15-input"
-value="0">
+value="0"
+min="0">
 </div>
 
-<div class="pppp-tool15-box">
+<div>
 <label class="pppp-tool15-label">
-🥇 Gold / Silver
+💎 Gold / Silver
 </label>
 <input
 type="number"
 id="zakatGold"
 class="pppp-tool15-input"
-value="0">
+value="0"
+min="0">
 </div>
 
-<div class="pppp-tool15-box">
+<div>
 <label class="pppp-tool15-label">
-🏢 Business Assets
+🏪 Business Assets
 </label>
 <input
 type="number"
 id="zakatBusiness"
 class="pppp-tool15-input"
-value="0">
+value="0"
+min="0">
 </div>
 
 </div>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppCalculateZakat()">
 🕌 Calculate Zakat
 </button>
 
 <div
 id="zakatResult"
-class="pppp-tool15-result pppp-tool15-big-result">
-Zakat: ৳0.00
+class="pppp-tool15-result">
+Zakat Result
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ Basic calculation uses 2.5% of the entered eligible amount. Consult a qualified scholar for personal Zakat rulings.
+</div>
+
 </div>
 
 </div>
@@ -2434,44 +2484,43 @@ Zakat: ৳0.00
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="compressImageInput"
+id="ppppCompressImageInput"
 class="pppp-tool15-input"
 accept="image/*">
 
-<label
-class="pppp-tool15-label"
-style="margin-top:10px">
+<label class="pppp-tool15-label">
 🎚️ Quality
 </label>
 
-<select
-id="imageQuality"
-class="pppp-tool15-select">
-
-<option value="40">40%</option>
-<option value="60">60%</option>
-<option value="75" selected>75%</option>
-<option value="85">85%</option>
-<option value="92">92%</option>
-
-</select>
+<input
+type="range"
+id="ppppImageQuality"
+class="pppp-tool15-range"
+min="10"
+max="100"
+value="70">
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppCompressImage()">
-🗜️ Compress & Download
+🖼️ Compress Image
 </button>
 
 <img
-id="compressPreview"
+id="ppppCompressPreview"
 class="pppp-tool15-preview">
 
 <div
-id="compressResult"
+id="ppppCompressResult"
 class="pppp-tool15-result">
-Select an image.
+Image Compressor Ready
+</div>
+
 </div>
 
 </div>
@@ -2492,56 +2541,53 @@ Select an image.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="resizeImageInput"
+id="ppppResizeImageInput"
 class="pppp-tool15-input"
 accept="image/*">
 
-<div
-class="pppp-tool15-grid"
-style="margin-top:10px">
+<div class="pppp-tool15-grid">
 
-<div class="pppp-tool15-box">
-
+<div>
 <label class="pppp-tool15-label">
-📏 Width (px)
+↔️ Width
 </label>
-
 <input
 type="number"
-id="resizeWidth"
+id="ppppResizeWidth"
 class="pppp-tool15-input"
-placeholder="800">
-
+placeholder="Width">
 </div>
 
-<div class="pppp-tool15-box">
-
+<div>
 <label class="pppp-tool15-label">
-📏 Height (px)
+↕️ Height
 </label>
-
 <input
 type="number"
-id="resizeHeight"
+id="ppppResizeHeight"
 class="pppp-tool15-input"
-placeholder="600">
-
+placeholder="Height">
 </div>
 
 </div>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppResizeImage()">
 📐 Resize & Download
 </button>
 
 <div
-id="resizeResult"
+id="ppppResizeResult"
 class="pppp-tool15-result">
-Select image and enter dimensions.
+Resize Image Ready
+</div>
+
 </div>
 
 </div>
@@ -2551,7 +2597,6 @@ Select image and enter dimensions.
 
 <!-- =========================================================
      07 🔄 IMAGE CONVERTER
-     ✂️ CROP IMAGE REMOVED
 ========================================================= -->
 
 <section>
@@ -2563,52 +2608,49 @@ Select image and enter dimensions.
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-grid">
-
 <div class="pppp-tool15-box">
-
-<label class="pppp-tool15-label">
-🖼️ Select Image
-</label>
 
 <input
 type="file"
-id="convertImageInput"
+id="ppppConvertImageInput"
 class="pppp-tool15-input"
 accept="image/*">
-
-</div>
-
-<div class="pppp-tool15-box">
 
 <label class="pppp-tool15-label">
 📄 Convert To
 </label>
 
 <select
-id="imageFormat"
+id="ppppConvertFormat"
 class="pppp-tool15-select">
 
-<option value="image/png">PNG</option>
-<option value="image/jpeg">JPG / JPEG</option>
-<option value="image/webp">WEBP</option>
+<option value="image/png">
+PNG
+</option>
+
+<option value="image/jpeg">
+JPG / JPEG
+</option>
+
+<option value="image/webp">
+WEBP
+</option>
 
 </select>
 
-</div>
-
-</div>
-
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppConvertImage()">
 🔄 Convert & Download
 </button>
 
 <div
-id="convertResult"
+id="ppppConvertResult"
 class="pppp-tool15-result">
-Select an image.
+Image Converter Ready
+</div>
+
 </div>
 
 </div>
@@ -2618,7 +2660,6 @@ Select an image.
 
 <!-- =========================================================
      08 🗣️ TEXT TO SPEECH
-     WITH DOWNLOAD
 ========================================================= -->
 
 <section>
@@ -2630,36 +2671,46 @@ Select an image.
 
 <div class="pppp-tool15-body">
 
-<textarea
-id="ttsText"
-class="pppp-tool15-textarea"
-rows="5"
-placeholder="Write or paste text here..."></textarea>
-
-<div
-class="pppp-tool15-grid"
-style="margin-top:10px">
-
 <div class="pppp-tool15-box">
+
+<textarea
+id="ppppTTSInput"
+class="pppp-tool15-textarea"
+placeholder="এখানে লেখা লিখুন..."></textarea>
+
+<div class="pppp-tool15-grid">
+
+<div>
 
 <label class="pppp-tool15-label">
 🌐 Language
 </label>
 
 <select
-id="ttsLanguage"
+id="ppppTTSLang"
 class="pppp-tool15-select">
 
-<option value="bn-BD">বাংলা</option>
-<option value="en-US">English</option>
-<option value="hi-IN">Hindi</option>
-<option value="ar-SA">Arabic</option>
+<option value="bn-BD">
+🇧🇩 বাংলা
+</option>
+
+<option value="en-US">
+🇺🇸 English
+</option>
+
+<option value="hi-IN">
+🇮🇳 Hindi
+</option>
+
+<option value="ar-SA">
+🇸🇦 Arabic
+</option>
 
 </select>
 
 </div>
 
-<div class="pppp-tool15-box">
+<div>
 
 <label class="pppp-tool15-label">
 ⚡ Speed
@@ -2667,7 +2718,7 @@ class="pppp-tool15-select">
 
 <input
 type="range"
-id="ttsRate"
+id="ppppTTSRate"
 class="pppp-tool15-range"
 min="0.5"
 max="2"
@@ -2679,31 +2730,36 @@ value="1">
 </div>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppSpeakText()">
-🔊 Speak
+🗣️ Speak
 </button>
 
 <button
-class="pppp-tool15-btn"
+type="button"
+class="pppp-tool15-btn pppp-tool15-btn-red"
 onclick="ppppStopSpeech()">
-⏹️ Stop
+🛑 Stop Speech
 </button>
 
 <button
-class="pppp-tool15-btn"
+type="button"
+class="pppp-tool15-btn pppp-tool15-btn-green"
 onclick="ppppDownloadSpeech()">
 📥 Download Speech
 </button>
 
 <div
-id="ttsResult"
+id="ppppTTSResult"
 class="pppp-tool15-result">
-Enter text and choose Speak or Download Speech.
+🔊 Text to Speech Ready
 </div>
 
 <div class="pppp-tool15-note">
 ℹ️ Speech download uses the browser's screen/tab audio capture when supported. The browser may ask you to select the current tab/window and share its audio.
+</div>
+
 </div>
 
 </div>
@@ -2724,39 +2780,31 @@ Enter text and choose Speak or Download Speech.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="audioInput"
+id="ppppAudioInput"
 class="pppp-tool15-input"
 accept="audio/*">
 
-<label
-class="pppp-tool15-label"
-style="margin-top:10px">
-🎚️ Bitrate
-</label>
-
-<select
-id="audioBitrate"
-class="pppp-tool15-select">
-
-<option value="48000">48 kbps</option>
-<option value="64000" selected>64 kbps</option>
-<option value="96000">96 kbps</option>
-<option value="128000">128 kbps</option>
-
-</select>
-
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppCompressAudio()">
-🗜️ Compress Audio
+🎧 Compress Audio
 </button>
 
 <div
-id="audioResult"
+id="ppppAudioResult"
 class="pppp-tool15-result">
-Select an audio file.
+Audio Compressor Ready
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ Browser-supported output is WebM/Opus. A true MP3 encoder is not built into MediaRecorder.
+</div>
+
 </div>
 
 </div>
@@ -2777,46 +2825,27 @@ Select an audio file.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="videoInput"
+id="ppppVideoInput"
 class="pppp-tool15-input"
 accept="video/*">
 
-<label
-class="pppp-tool15-label"
-style="margin-top:10px">
-📊 Video Quality
-</label>
-
-<select
-id="videoQuality"
-class="pppp-tool15-select">
-
-<option value="1200000">
-Low — 1.2 Mbps
-</option>
-
-<option value="2500000" selected>
-Medium — 2.5 Mbps
-</option>
-
-<option value="4000000">
-High — 4 Mbps
-</option>
-
-</select>
-
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppCompressVideo()">
-🗜️ Compress Video
+🎥 Compress Video
 </button>
 
 <div
-id="videoResult"
+id="ppppVideoResult"
 class="pppp-tool15-result">
-Select a video file.
+Video Compressor Ready
+</div>
+
 </div>
 
 </div>
@@ -2837,22 +2866,31 @@ Select a video file.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="videoMp3Input"
+id="ppppVideoToMP3Input"
 class="pppp-tool15-input"
 accept="video/*">
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppVideoToMP3()">
-🎵 Convert to Audio
+🎵 Extract Audio
 </button>
 
 <div
-id="videoMp3Result"
+id="ppppVideoToMP3Result"
 class="pppp-tool15-result">
-Select a video file.
+Video to Audio Ready
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ Browser MediaRecorder normally produces WebM/Opus audio rather than a true MP3 file. A dedicated MP3 encoder is required for true MP3 output.
+</div>
+
 </div>
 
 </div>
@@ -2862,7 +2900,6 @@ Select a video file.
 
 <!-- =========================================================
      12 🎞️ MP3 TO VIDEO
-     BACKGROUND COLOR + BACKGROUND IMAGE
 ========================================================= -->
 
 <section>
@@ -2874,18 +2911,13 @@ Select a video file.
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-tool15-box">
+
 <input
 type="file"
-id="mp3VideoInput"
+id="ppppMP3Input"
 class="pppp-tool15-input"
 accept="audio/*">
-
-
-<div
-class="pppp-tool15-grid"
-style="margin-top:10px">
-
-<div class="pppp-tool15-box">
 
 <label class="pppp-tool15-label">
 🎨 Background Color
@@ -2893,14 +2925,9 @@ style="margin-top:10px">
 
 <input
 type="color"
-id="mp3VideoColor"
-value="#1976d2"
-class="pppp-tool15-input">
-
-</div>
-
-
-<div class="pppp-tool15-box">
+id="ppppMP3BgColor"
+class="pppp-tool15-input"
+value="#1565c0">
 
 <label class="pppp-tool15-label">
 🖼️ Background Image
@@ -2908,37 +2935,53 @@ class="pppp-tool15-input">
 
 <input
 type="file"
-id="mp3VideoImage"
+id="ppppMP3BgImage"
 class="pppp-tool15-input"
 accept="image/*">
 
-</div>
-
-</div>
-
-
-<div
-id="mp3VideoImagePreviewBox"
-style="display:none;margin-top:10px">
-
 <img
-id="mp3VideoImagePreview"
-class="pppp-tool15-preview"
-style="display:block">
+id="ppppMP3BgPreview"
+class="pppp-bg-preview">
 
-</div>
+<label class="pppp-tool15-label">
+📐 Video Size
+</label>
 
+<select
+id="ppppMP3VideoSize"
+class="pppp-tool15-select">
+
+<option value="1280x720">
+1280 × 720
+</option>
+
+<option value="854x480">
+854 × 480
+</option>
+
+<option value="640x360">
+640 × 360
+</option>
+
+</select>
 
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppMP3ToVideo()">
 🎞️ Create Video
 </button>
 
 <div
-id="mp3VideoResult"
+id="ppppMP3ToVideoResult"
 class="pppp-tool15-result">
-Select an MP3/audio file.
+MP3 to Video Ready
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ Browser output is WebM video with audio. Background Image takes priority over Background Color when selected.
+</div>
+
 </div>
 
 </div>
@@ -2959,82 +3002,74 @@ Select an MP3/audio file.
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-grid">
-
 <div class="pppp-tool15-box">
 
 <label class="pppp-tool15-label">
-💰 Amount (৳)
+💰 Amount
 </label>
 
 <input
 type="number"
-id="bdtAmount"
+id="ppppBDTAmount"
 class="pppp-tool15-input"
-value="1000">
-
-</div>
-
-
-<div class="pppp-tool15-box">
+value="1"
+min="0">
 
 <label class="pppp-tool15-label">
-💱 Currency
+🌐 Currency
 </label>
 
 <select
-id="bdtCurrency"
+id="ppppBDTCurrency"
 class="pppp-tool15-select">
 
 <option value="USD">
-USD — US Dollar
+🇺🇸 USD
 </option>
 
 <option value="EUR">
-EUR — Euro
+🇪🇺 EUR
 </option>
 
 <option value="GBP">
-GBP — Pound
+🇬🇧 GBP
 </option>
 
 <option value="SAR">
-SAR — Saudi Riyal
+🇸🇦 SAR
 </option>
 
 <option value="AED">
-AED — UAE Dirham
+🇦🇪 AED
 </option>
 
 <option value="INR">
-INR — Indian Rupee
+🇮🇳 INR
 </option>
 
 <option value="JPY">
-JPY — Japanese Yen
+🇯🇵 JPY
 </option>
 
 </select>
 
-</div>
-
-</div>
-
-<div class="pppp-tool15-note">
-Exchange rates below are editable reference rates.
-Update them when needed.
-</div>
-
 <button
-class="pppp-tool15-btn pppp-tool15-btn-green"
+type="button"
+class="pppp-tool15-btn"
 onclick="ppppConvertBDT()">
-💱 Convert
+💱 Convert to BDT
 </button>
 
 <div
-id="bdtResult"
-class="pppp-tool15-result pppp-tool15-big-result">
-৳1,000 = —
+id="ppppBDTResult"
+class="pppp-tool15-result">
+BDT Converter Ready
+</div>
+
+<div class="pppp-tool15-note">
+ℹ️ Reference rates are editable in JavaScript and are for approximate conversion only.
+</div>
+
 </div>
 
 </div>
@@ -3063,6 +3098,7 @@ class="pppp-tool15-result pppp-tool15-big-result">
 <div class="pppp-bd-subsection">
 
 <button
+type="button"
 class="pppp-bd-toggle"
 onclick="ppppBDToggle(this)">
 
@@ -3078,37 +3114,14 @@ onclick="ppppBDToggle(this)">
 
 <div class="pppp-bd-content">
 
-<div class="pppp-bd-line">
-🏙️ Dhaka
-</div>
-
-<div class="pppp-bd-line">
-🌊 Chattogram
-</div>
-
-<div class="pppp-bd-line">
-🏛️ Rajshahi
-</div>
-
-<div class="pppp-bd-line">
-🌿 Khulna
-</div>
-
-<div class="pppp-bd-line">
-🚤 Barishal
-</div>
-
-<div class="pppp-bd-line">
-🍃 Sylhet
-</div>
-
-<div class="pppp-bd-line">
-🌱 Rangpur
-</div>
-
-<div class="pppp-bd-line">
-🏞️ Mymensingh
-</div>
+<div class="pppp-bd-line">🏙️ Dhaka</div>
+<div class="pppp-bd-line">🌊 Chattogram</div>
+<div class="pppp-bd-line">🏛️ Rajshahi</div>
+<div class="pppp-bd-line">🌿 Khulna</div>
+<div class="pppp-bd-line">🚤 Barishal</div>
+<div class="pppp-bd-line">🍃 Sylhet</div>
+<div class="pppp-bd-line">🌱 Rangpur</div>
+<div class="pppp-bd-line">🏞️ Mymensingh</div>
 
 </div>
 </div>
@@ -3119,6 +3132,7 @@ onclick="ppppBDToggle(this)">
 <div class="pppp-bd-subsection">
 
 <button
+type="button"
 class="pppp-bd-toggle"
 onclick="ppppBDToggle(this)">
 
@@ -3126,9 +3140,7 @@ onclick="ppppBDToggle(this)">
 📍 Districts — 64
 </span>
 
-<span class="arrow">
-▼
-</span>
+<span class="arrow">▼</span>
 
 </button>
 
@@ -3287,6 +3299,7 @@ onclick="ppppBDToggle(this)">
 <div class="pppp-bd-subsection">
 
 <button
+type="button"
 class="pppp-bd-toggle"
 onclick="ppppBDToggle(this)">
 
@@ -3294,9 +3307,7 @@ onclick="ppppBDToggle(this)">
 📮 POSTAL CODES
 </span>
 
-<span class="arrow">
-▼
-</span>
+<span class="arrow">▼</span>
 
 </button>
 
@@ -3455,6 +3466,7 @@ onclick="ppppBDToggle(this)">
 <div class="pppp-bd-subsection">
 
 <button
+type="button"
 class="pppp-bd-toggle"
 onclick="ppppBDToggle(this)">
 
@@ -3462,9 +3474,7 @@ onclick="ppppBDToggle(this)">
 🔰 National Symbols
 </span>
 
-<span class="arrow">
-▼
-</span>
+<span class="arrow">▼</span>
 
 </button>
 
@@ -3547,6 +3557,7 @@ onclick="ppppBDToggle(this)">
 <div class="pppp-bd-subsection">
 
 <button
+type="button"
 class="pppp-bd-toggle"
 onclick="ppppBDToggle(this)">
 
@@ -3554,9 +3565,7 @@ onclick="ppppBDToggle(this)">
 📋 About Bangladesh
 </span>
 
-<span class="arrow">
-▼
-</span>
+<span class="arrow">▼</span>
 
 </button>
 
@@ -3646,8 +3655,7 @@ onclick="ppppBDToggle(this)">
 
 
 <!-- =========================================================
-     15 🇧🇩 BANGLADESH GOVERNMENT EMERGENCY
-        & IMPORTANT HELPLINES
+     15 🇧🇩 GOVERNMENT EMERGENCY & IMPORTANT HELPLINES
 ========================================================= -->
 
 <section>
@@ -3659,460 +3667,11 @@ onclick="ppppBDToggle(this)">
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-help-grid">
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">01.</span>
-<div class="pppp-help-text">
-🚨 National Emergency Service — Police / Fire Service / Ambulance — 999 🆓
-</div>
-<a class="pppp-call-btn" href="tel:999" aria-label="Call 999">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">02.</span>
-<div class="pppp-help-text">
-🔥 Fire Service — 102 🆓
-</div>
-<a class="pppp-call-btn" href="tel:102" aria-label="Call 102">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">03.</span>
-<div class="pppp-help-text">
-📋 Government Information & Services — 333
-</div>
-<a class="pppp-call-btn" href="tel:333" aria-label="Call 333">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">04.</span>
-<div class="pppp-help-text">
-🚌 BRTA Service Portal (BSP) — 16107
-</div>
-<a class="pppp-call-btn" href="tel:16107" aria-label="Call 16107">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">05.</span>
-<div class="pppp-help-text">
-⚖️ Supreme Court Helpline — 103
-</div>
-<a class="pppp-call-btn" href="tel:103" aria-label="Call 103">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">06.</span>
-<div class="pppp-help-text">
-👩 Prevention of Violence Against Women & Children — 109 🆓*
-</div>
-<a class="pppp-call-btn" href="tel:109" aria-label="Call 109">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">07.</span>
-<div class="pppp-help-text">
-🚫 Anti-Corruption Commission (ACC) — 106 🆓
-</div>
-<a class="pppp-call-btn" href="tel:106" aria-label="Call 106">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">08.</span>
-<div class="pppp-help-text">
-🌪️ Disaster Early Warning — 1090 🆓
-</div>
-<a class="pppp-call-btn" href="tel:1090" aria-label="Call 1090">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">09.</span>
-<div class="pppp-help-text">
-🧒 Child Helpline — 1098 🆓
-</div>
-<a class="pppp-call-btn" href="tel:1098" aria-label="Call 1098">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">10.</span>
-<div class="pppp-help-text">
-🏠 Smart Land Service — 16122
-</div>
-<a class="pppp-call-btn" href="tel:16122" aria-label="Call 16122">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">11.</span>
-<div class="pppp-help-text">
-👨‍💼 Bangladesh Employees Welfare Board — 16109
-</div>
-<a class="pppp-call-btn" href="tel:16109" aria-label="Call 16109">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">12.</span>
-<div class="pppp-help-text">
-💊 Department of Narcotics Control — 01908888888
-</div>
-<a class="pppp-call-btn" href="tel:01908888888" aria-label="Call 01908888888">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">13.</span>
-<div class="pppp-help-text">
-🚢 Bangladesh Inland Water Transport Authority (BIWTA) — 16113
-</div>
-<a class="pppp-call-btn" href="tel:16113" aria-label="Call 16113">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">14.</span>
-<div class="pppp-help-text">
-🛂 Passport Information Service — 16445
-</div>
-<a class="pppp-call-btn" href="tel:16445" aria-label="Call 16445">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">15.</span>
-<div class="pppp-help-text">
-✊ Bangladesh Muktijoddha Kalyan Trust — 16171
-</div>
-<a class="pppp-call-btn" href="tel:16171" aria-label="Call 16171">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">16.</span>
-<div class="pppp-help-text">
-🌍 Expatriate Call Center — 16135 🆓
-</div>
-<a class="pppp-call-btn" href="tel:16135" aria-label="Call 16135">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">17.</span>
-<div class="pppp-help-text">
-💻 e-GP Emergency Hotline — 16575
-</div>
-<a class="pppp-call-btn" href="tel:16575" aria-label="Call 16575">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">18.</span>
-<div class="pppp-help-text">
-📡 Bangladesh Telecommunication Regulatory Commission (BTRC) — 100 🆓*
-</div>
-<a class="pppp-call-btn" href="tel:100" aria-label="Call 100">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">19.</span>
-<div class="pppp-help-text">
-⚡ Electricity Division — 16999
-</div>
-<a class="pppp-call-btn" href="tel:16999" aria-label="Call 16999">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">20.</span>
-<div class="pppp-help-text">
-🧑‍⚖️ National Legal Aid Helpline — 16699 🆓
-</div>
-<a class="pppp-call-btn" href="tel:16699" aria-label="Call 16699">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">21.</span>
-<div class="pppp-help-text">
-👷 Workers' Helpline — 16357 🆓
-</div>
-<a class="pppp-call-btn" href="tel:16357" aria-label="Call 16357">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">22.</span>
-<div class="pppp-help-text">
-💰 Universal Pension Scheme — 16131
-</div>
-<a class="pppp-call-btn" href="tel:16131" aria-label="Call 16131">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">23.</span>
-<div class="pppp-help-text">
-🛡️ Bangladesh Coast Guard — 16111
-</div>
-<a class="pppp-call-btn" href="tel:16111" aria-label="Call 16111">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">24.</span>
-<div class="pppp-help-text">
-🪪 National Identity Card (NID) — 105
-</div>
-<a class="pppp-call-btn" href="tel:105" aria-label="Call 105">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">25.</span>
-<div class="pppp-help-text">
-🏦 Bangladesh Bank Customer Complaint — 16236
-</div>
-<a class="pppp-call-btn" href="tel:16236" aria-label="Call 16236">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">26.</span>
-<div class="pppp-help-text">
-⚕️ Health Call Center / Health Services — 16263
-</div>
-<a class="pppp-call-btn" href="tel:16263" aria-label="Call 16263">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">27.</span>
-<div class="pppp-help-text">
-🌱 Agriculture Call Center — 16123
-</div>
-<a class="pppp-call-btn" href="tel:16123" aria-label="Call 16123">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">28.</span>
-<div class="pppp-help-text">
-📞 BTCL Call Center — 16402
-</div>
-<a class="pppp-call-btn" href="tel:16402" aria-label="Call 16402">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">29.</span>
-<div class="pppp-help-text">
-🚰 Dhaka WASA — 16162
-</div>
-<a class="pppp-call-btn" href="tel:16162" aria-label="Call 16162">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">30.</span>
-<div class="pppp-help-text">
-🚆 Bangladesh Railway Call Center — 131
-</div>
-<a class="pppp-call-btn" href="tel:131" aria-label="Call 131">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">31.</span>
-<div class="pppp-help-text">
-🏢 National Human Rights Commission — 16108
-</div>
-<a class="pppp-call-btn" href="tel:16108" aria-label="Call 16108">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">32.</span>
-<div class="pppp-help-text">
-🏘️ Union Support Call Center — 16256
-</div>
-<a class="pppp-call-btn" href="tel:16256" aria-label="Call 16256">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">33.</span>
-<div class="pppp-help-text">
-☎️ BTCL Call Center — Alternative Government Listed Number — 16420
-</div>
-<a class="pppp-call-btn" href="tel:16420" aria-label="Call 16420">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">34.</span>
-<div class="pppp-help-text">
-💵 National Board of Revenue (NBR) — Tax / VAT e-Payment — 16555
-</div>
-<a class="pppp-call-btn" href="tel:16555" aria-label="Call 16555">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">35.</span>
-<div class="pppp-help-text">
-🛃 Bangladesh Single Window (BSW) — 16139
-</div>
-<a class="pppp-call-btn" href="tel:16139" aria-label="Call 16139">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">36.</span>
-<div class="pppp-help-text">
-🌿 Farmer Friend Phone Service — 3331
-</div>
-<a class="pppp-call-btn" href="tel:3331" aria-label="Call 3331">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">37.</span>
-<div class="pppp-help-text">
-👩 Women Affairs / Information Apa — 10922
-</div>
-<a class="pppp-call-btn" href="tel:10922" aria-label="Call 10922">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">38.</span>
-<div class="pppp-help-text">
-⚡ Dhaka Power Distribution Company (DPDC) Call Center — 16116
+<div
+class="pppp-help-grid"
+id="ppppGovernmentHelplinesGrid">
 </div>
-<a class="pppp-call-btn" href="tel:16116" aria-label="Call 16116">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">39.</span>
-<div class="pppp-help-text">
-🔌 Northern Electricity Supply Company (NESCO) Call Center — 16603
-</div>
-<a class="pppp-call-btn" href="tel:16603" aria-label="Call 16603">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">40.</span>
-<div class="pppp-help-text">
-💡 Dhaka Electric Supply Company (DESCO) Call Center — 16120
-</div>
-<a class="pppp-call-btn" href="tel:16120" aria-label="Call 16120">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">41.</span>
-<div class="pppp-help-text">
-🔋 West Zone Power Distribution Company (WZPDCL) Call Center — 16117
-</div>
-<a class="pppp-call-btn" href="tel:16117" aria-label="Call 16117">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">42.</span>
-<div class="pppp-help-text">
-🔥 Titas Gas Transmission & Distribution Company — 16496
-</div>
-<a class="pppp-call-btn" href="tel:16496" aria-label="Call 16496">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">43.</span>
-<div class="pppp-help-text">
-⛽ Bakhrabad Gas Distribution Company (BGDCL) — 16523
-</div>
-<a class="pppp-call-btn" href="tel:16523" aria-label="Call 16523">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">44.</span>
-<div class="pppp-help-text">
-🏭 Jalalabad Gas Transmission & Distribution System (JGTDSL) — 16511
-</div>
-<a class="pppp-call-btn" href="tel:16511" aria-label="Call 16511">☎</a>
-</div>
 
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">45.</span>
-<div class="pppp-help-text">
-🛢️ Pashchimanchal Gas Company Limited (PGCL) — 16514
-</div>
-<a class="pppp-call-btn" href="tel:16514" aria-label="Call 16514">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">46.</span>
-<div class="pppp-help-text">
-💨 Karnaphuli Gas Distribution Company (KGDCL) — 16512
-</div>
-<a class="pppp-call-btn" href="tel:16512" aria-label="Call 16512">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">47.</span>
-<div class="pppp-help-text">
-🧯 Sundarban Gas Company Limited (SGCL) — 16539
-</div>
-<a class="pppp-call-btn" href="tel:16539" aria-label="Call 16539">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">48.</span>
-<div class="pppp-help-text">
-🏥 Institute of Epidemiology, Disease Control and Research (IEDCR) / Health Telephone Service — 10655
-</div>
-<a class="pppp-call-btn" href="tel:10655" aria-label="Call 10655">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">49.</span>
-<div class="pppp-help-text">
-🚒 Fire Service — Central Emergency Alternative Number — 02-223355555
-</div>
-<a class="pppp-call-btn" href="tel:02-223355555" aria-label="Call 02-223355555">☎</a>
-</div>
-
-
-<div class="pppp-help-card">
-<span class="pppp-help-number">50.</span>
-<div class="pppp-help-text">
-🏛️ Bangladesh Power Development Board (BPDB) — 16200
-</div>
-<a class="pppp-call-btn" href="tel:16200" aria-label="Call 16200">☎</a>
-</div>
-
-
-</div>
 </div>
 </div>
 </section>
