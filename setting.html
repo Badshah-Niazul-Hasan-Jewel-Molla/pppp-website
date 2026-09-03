@@ -3497,88 +3497,54 @@ onclick="ppppAboutSettings()">
 
 <!-- =========================================================
      🛠️ PPPP SETTINGS — 15 TOOLS
-     COMPLETE UPDATED VERSION
-     
-     ✅ 01 World Clock
-     ✅ 02 QR & Barcode Scanner
-     ✅ 03 GPA Calculator
-     ✅ 04 Zakat Calculator
-     ✅ 05 Image Compressor
-     ✅ 06 Resize Image
-     ✅ 07 Image Converter
-     ✅ 08 Text to Speech + Download
-     ✅ 09 Audio Compressor
-     ✅ 10 Video Compressor
-     ✅ 11 Video to MP3
-     ✅ 12 MP3 to Video + Background Color/Image
-     ✅ 13 BDT Converter
-     ✅ 14 PPPP Bangladesh
-     ✅ 15 Bangladesh Government Emergency & Important Helplines
+     ✅ COMPLETE UPDATED VERSION
 ========================================================= -->
 
 <style>
 /* =========================================================
-   🛠️ PPPP 15 TOOLS
+   🛠️ PPPP 15 TOOLS — COMMON
 ========================================================= */
 
 .pppp-tools15-wrap{
     width:100%;
     box-sizing:border-box;
-    margin:0 auto 20px;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
 .pppp-tool15-section{
-    width:100%;
-    box-sizing:border-box;
-    margin:0 0 18px;
-    background:#f7f9fc;
-    border-radius:18px;
+    margin:10px 0;
+    border:1px solid #e1e5ea;
+    border-radius:14px;
     overflow:hidden;
-    border:1px solid #e0e6ec;
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    background:#fff;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 .pppp-tool15-title{
-    width:100%;
-    box-sizing:border-box;
-    padding:15px 18px;
-    background:linear-gradient(135deg,#1976d2,#2196f3);
+    padding:13px 14px;
+    background:linear-gradient(135deg,#1565c0,#1e88e5);
     color:#fff;
-    font-size:21px;
+    font-size:16px;
     font-weight:800;
-    line-height:1.25;
-    text-align:left;
 }
 
 .pppp-tool15-body{
-    padding:14px;
-    box-sizing:border-box;
+    padding:10px;
     background:#f7f9fc;
 }
 
 .pppp-tool15-box{
-    background:linear-gradient(145deg,#fff,#f3f7fa);
-    border:1px solid #dfe5eb;
-    border-radius:20px;
-    box-shadow:0 5px 14px rgba(0,0,0,.08);
-    padding:15px;
-    box-sizing:border-box;
-    margin-bottom:10px;
-}
-
-.pppp-tool15-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px;
+    padding:10px;
+    margin:6px 0;
+    background:#fff;
+    border:1px solid #e0e5ea;
+    border-radius:11px;
 }
 
 .pppp-tool15-label{
     display:block;
-    font-size:14px;
-    font-weight:800;
-    color:#263238;
-    margin-bottom:7px;
+    margin:7px 0 5px;
+    font-size:13px;
+    font-weight:700;
 }
 
 .pppp-tool15-input,
@@ -3586,11 +3552,10 @@ onclick="ppppAboutSettings()">
 .pppp-tool15-textarea{
     width:100%;
     box-sizing:border-box;
-    padding:11px 12px;
-    border:1px solid #d7dde3;
-    border-radius:12px;
+    padding:10px 11px;
+    border:1px solid #d5dbe1;
+    border-radius:9px;
     background:#fff;
-    color:#263238;
     font-size:14px;
     outline:none;
 }
@@ -3598,376 +3563,302 @@ onclick="ppppAboutSettings()">
 .pppp-tool15-input:focus,
 .pppp-tool15-select:focus,
 .pppp-tool15-textarea:focus{
-    border-color:#2196f3;
-    box-shadow:0 0 0 2px rgba(33,150,243,.10);
+    border-color:#1e88e5;
 }
 
 .pppp-tool15-textarea{
+    min-height:130px;
     resize:vertical;
-    min-height:120px;
 }
 
-.pppp-tool15-btn{
-    width:100%;
-    box-sizing:border-box;
-    border:none;
-    border-radius:12px;
-    padding:11px 14px;
-    margin-top:8px;
-    background:#1976d2;
+.pppp-tool15-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    min-height:40px;
+    padding:9px 12px;
+    margin:4px 2px;
+    border:0;
+    border-radius:9px;
+    background:#1e88e5;
     color:#fff;
-    font-size:14px;
-    font-weight:800;
+    font-size:13px;
+    font-weight:700;
     cursor:pointer;
-    transition:.2s;
+    text-decoration:none;
+    box-sizing:border-box;
 }
 
-.pppp-tool15-btn:hover{
-    transform:translateY(-1px);
-    box-shadow:0 4px 10px rgba(0,0,0,.12);
+.pppp-tool15-button:hover{
+    background:#1565c0;
 }
 
-.pppp-tool15-btn:active{
-    transform:scale(.98);
-}
-
-.pppp-tool15-btn-green{
-    background:#16803c;
-}
-
-.pppp-tool15-btn-red{
-    background:#d32f2f;
+.pppp-tool15-button:active{
+    transform:scale(.97);
 }
 
 .pppp-tool15-result{
-    width:100%;
-    box-sizing:border-box;
-    margin-top:10px;
-    padding:11px 12px;
-    border-radius:12px;
+    margin-top:8px;
+    padding:10px;
+    border-radius:9px;
     background:#eef6ff;
-    border:1px solid #d6e9fb;
-    color:#263238;
-    font-size:13px;
+    border:1px solid #cfe5ff;
+    font-size:14px;
+    font-weight:700;
     line-height:1.6;
-    word-break:break-word;
 }
 
 .pppp-tool15-note{
+    margin-top:7px;
+    padding:8px;
+    border-radius:8px;
+    background:#fff8e1;
+    border:1px solid #ffe082;
     font-size:12px;
-    line-height:1.55;
-    color:#607d8b;
-    margin-top:8px;
+    line-height:1.6;
 }
 
-.pppp-tool15-media{
-    width:100%;
-    max-height:280px;
-    margin-top:10px;
-    border-radius:14px;
-    background:#000;
+.pppp-tool15-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+}
+
+.pppp-tool15-grid-3{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+}
+
+.pppp-tool15-center{
+    text-align:center;
+}
+
+.pppp-tool15-hidden{
+    display:none!important;
 }
 
 .pppp-tool15-preview{
-    display:none;
-    width:100%;
-    max-height:260px;
-    object-fit:contain;
-    margin-top:10px;
-    border-radius:14px;
-    border:1px solid #ddd;
-    background:#fff;
+    max-width:100%;
+    max-height:250px;
+    display:block;
+    margin:8px auto;
+    border-radius:10px;
 }
 
 /* =========================================================
    🌍 WORLD CLOCK
 ========================================================= */
 
-.pppp-world-clock{
+.pppp-world15-grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px;
+    gap:7px;
 }
 
-.pppp-clock-card{
-    padding:15px;
+.pppp-world15-card{
+    padding:10px 7px;
     text-align:center;
+    border:1px solid #e1e5ea;
+    border-radius:10px;
     background:#fff;
-    border:1px solid #dfe5eb;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.07);
 }
 
-.pppp-clock-name{
-    font-size:14px;
+.pppp-world15-city{
+    font-size:12px;
     font-weight:800;
-    color:#263238;
+    color:#1565c0;
 }
 
-.pppp-clock-time{
-    margin-top:7px;
-    font-size:19px;
-    font-weight:900;
-    color:#1976d2;
-}
-
-/* =========================================================
-   🇧🇩 BANGLADESH INFORMATION
-========================================================= */
-
-.pppp-bangladesh-main{
-    width:100%;
-}
-
-.pppp-bd-subsection{
-    margin:8px 0;
-    border-radius:15px;
-    overflow:hidden;
-    background:#fff;
-    border:1px solid #dfe5eb;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-
-.pppp-bd-toggle{
-    width:100%;
-    border:none;
-    background:#fff;
-    color:#263238;
-    padding:14px 15px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    text-align:left;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.pppp-bd-toggle .arrow{
-    transition:.25s;
-}
-
-.pppp-bd-toggle.open .arrow{
-    transform:rotate(180deg);
-}
-
-.pppp-bd-content{
-    display:none;
-    padding:12px;
-    background:#f7f9fc;
-    border-top:1px solid #e3e8ed;
-}
-
-.pppp-bd-content.open{
-    display:block;
-}
-
-.pppp-bd-line{
-    padding:6px 8px;
-    margin:2px 0;
-    background:#fff;
-    border-radius:9px;
-    font-size:14px;
-    font-weight:600;
-    line-height:1.5;
-}
-
-.pppp-bd-division{
-    margin:10px 0;
-    padding:10px;
-    background:#fff;
-    border-radius:12px;
-    border:1px solid #e0e6ec;
-}
-
-.pppp-bd-division-title{
+.pppp-world15-time{
+    margin-top:4px;
     font-size:15px;
     font-weight:900;
-    margin-bottom:6px;
-}
-
-.pppp-bd-postal-group{
-    margin:10px 0;
-}
-
-.pppp-bd-postal-title{
-    padding:9px 10px;
-    margin-bottom:5px;
-    border-radius:9px;
-    background:#f1f4f7;
-    font-size:14px;
-    font-weight:900;
-}
-
-.pppp-bd-symbol{
-    padding:7px 8px;
-    font-size:14px;
-    font-weight:600;
-    line-height:1.5;
-    background:#fff;
-    border-radius:8px;
-    margin:3px 0;
+    color:#222;
 }
 
 /* =========================================================
-   ☎️ GOVERNMENT HELPLINES
+   🎓 GPA
+========================================================= */
+
+.pppp-gpa-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:6px;
+}
+
+.pppp-gpa-item{
+    padding:7px;
+    background:#f8fbff;
+    border:1px solid #e0e8f0;
+    border-radius:9px;
+}
+
+.pppp-gpa-item span{
+    display:block;
+    margin-bottom:4px;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =========================================================
+   🕌 ZAKAT
+========================================================= */
+
+.pppp-zakat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+}
+
+/* =========================================================
+   📱 QR SCANNER
+========================================================= */
+
+#ppppQRVideo{
+    width:100%;
+    max-height:280px;
+    object-fit:cover;
+    border-radius:10px;
+    background:#111;
+}
+
+#ppppQRCanvas{
+    display:none;
+}
+
+/* =========================================================
+   🇧🇩 HELPLINES
 ========================================================= */
 
 .pppp-help-grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px;
+    gap:7px;
 }
 
 .pppp-help-card{
-    position:relative;
     min-width:0;
-    padding:13px 50px 13px 12px;
-    box-sizing:border-box;
-    background:linear-gradient(145deg,#fff,#f3f7fa);
+}
+
+.pppp-help-btn{
+    width:100%;
+    min-height:58px;
+    padding:7px;
     border:1px solid #dfe5eb;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    border-radius:10px;
+    background:#fff;
+    color:#222;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    box-sizing:border-box;
+    transition:.2s;
+}
+
+.pppp-help-btn:hover{
+    background:#e3f2fd;
+    border-color:#1e88e5;
 }
 
 .pppp-help-number{
-    display:block;
-    color:#1976d2;
-    font-size:15px;
+    font-size:14px;
     font-weight:900;
-    margin-bottom:4px;
+    color:#1565c0;
 }
 
-.pppp-help-text{
-    color:#263238;
-    font-size:13px;
+.pppp-help-name{
+    margin-top:2px;
+    font-size:10px;
+    line-height:1.25;
     font-weight:700;
-    line-height:1.45;
-}
-
-.pppp-call-btn{
-    position:absolute;
-    right:10px;
-    top:50%;
-    transform:translateY(-50%);
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:50%;
-    background:#16a34a;
-    color:#fff;
-    font-size:18px;
-    font-weight:900;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
-}
-
-.pppp-call-btn:hover{
-    background:#12833b;
-    transform:translateY(-50%) scale(1.05);
 }
 
 /* =========================================================
-   🎨 BACKGROUND IMAGE
+   🇧🇩 BANGLADESH INFORMATION
+   Existing style preserved
 ========================================================= */
 
-.pppp-bg-preview{
+.pppp-bd15-group{
+    margin:6px 0;
+}
+
+.pppp-bd15-toggle{
     width:100%;
-    max-height:220px;
-    object-fit:cover;
+    padding:11px;
+    border:1px solid #dfe5eb;
+    border-radius:10px;
+    background:#fff;
+    color:#222;
+    font-size:13px;
+    font-weight:800;
+    text-align:left;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.pppp-bd15-content{
     display:none;
-    margin-top:10px;
-    border-radius:14px;
-    border:1px solid #ddd;
+    padding:8px;
+    margin-top:4px;
+    background:#f3f7fb;
+    border-radius:9px;
+    border:1px solid #e2e8ef;
+}
+
+.pppp-bd15-content.open{
+    display:block;
+}
+
+.pppp-bd15-item{
+    padding:4px 5px;
+    font-size:12px;
+    font-weight:600;
+    line-height:1.5;
 }
 
 /* =========================================================
    📱 RESPONSIVE
 ========================================================= */
 
-@media(max-width:520px){
-
-    .pppp-tool15-title{
-        font-size:20px;
-        padding:15px 16px;
-    }
-
-    .pppp-tool15-body{
-        padding:10px;
-    }
-
-    .pppp-tool15-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
-    }
-
-    .pppp-tool15-box{
-        padding:12px;
-        border-radius:18px;
-    }
-
-    .pppp-world-clock{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
-    }
-
-    .pppp-clock-card{
-        padding:11px 7px;
-    }
-
-    .pppp-clock-time{
-        font-size:16px;
-    }
-
-    .pppp-help-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
-    }
-
-    .pppp-help-card{
-        padding:11px 43px 11px 10px;
-        border-radius:15px;
-    }
-
-    .pppp-help-number{
-        font-size:14px;
-    }
-
-    .pppp-help-text{
-        font-size:12px;
-    }
-
-    .pppp-call-btn{
-        width:34px;
-        height:34px;
-        right:7px;
-        font-size:17px;
-    }
-}
-
 @media(min-width:700px){
 
-    .pppp-tool15-grid{
+    .pppp-tool15-grid-3{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
 
-    .pppp-world-clock{
+    .pppp-world15-grid{
         grid-template-columns:repeat(4,minmax(0,1fr));
     }
 
+    .pppp-gpa-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
     .pppp-help-grid{
         grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+}
+
+@media(max-width:380px){
+
+    .pppp-world15-grid{
+        grid-template-columns:1fr;
+    }
+
+    .pppp-gpa-grid,
+    .pppp-zakat-grid{
+        grid-template-columns:1fr;
     }
 }
 </style>
 
-
-<!-- =========================================================
-     🛠️ PPPP 15 TOOLS
-========================================================= -->
 
 <div
 class="pppp-tools15-wrap"
@@ -3986,46 +3877,46 @@ id="ppppTools15Wrap">
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-world-clock">
+<div class="pppp-world15-grid">
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇧🇩 Dhaka</div>
-<div class="pppp-clock-time" id="clockDhaka">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇧🇩 Dhaka</div>
+<div class="pppp-world15-time" id="clockDhaka">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇬🇧 London</div>
-<div class="pppp-clock-time" id="clockLondon">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇬🇧 London</div>
+<div class="pppp-world15-time" id="clockLondon">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇺🇸 New York</div>
-<div class="pppp-clock-time" id="clockNewYork">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇺🇸 New York</div>
+<div class="pppp-world15-time" id="clockNewYork">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇦🇪 Dubai</div>
-<div class="pppp-clock-time" id="clockDubai">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇦🇪 Dubai</div>
+<div class="pppp-world15-time" id="clockDubai">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇸🇦 Riyadh</div>
-<div class="pppp-clock-time" id="clockRiyadh">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇸🇦 Riyadh</div>
+<div class="pppp-world15-time" id="clockRiyadh">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇯🇵 Tokyo</div>
-<div class="pppp-clock-time" id="clockTokyo">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇯🇵 Tokyo</div>
+<div class="pppp-world15-time" id="clockTokyo">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇮🇳 Kolkata</div>
-<div class="pppp-clock-time" id="clockKolkata">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇮🇳 Kolkata</div>
+<div class="pppp-world15-time" id="clockKolkata">--:--:-- --</div>
 </div>
 
-<div class="pppp-clock-card">
-<div class="pppp-clock-name">🇦🇺 Sydney</div>
-<div class="pppp-clock-time" id="clockSydney">--:--:--</div>
+<div class="pppp-world15-card">
+<div class="pppp-world15-city">🇦🇺 Sydney</div>
+<div class="pppp-world15-time" id="clockSydney">--:--:-- --</div>
 </div>
 
 </div>
@@ -4046,57 +3937,55 @@ id="ppppTools15Wrap">
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-grid">
-
 <div class="pppp-tool15-box">
 
 <label class="pppp-tool15-label">
-🖼️ Scan Image
+📁 Scan from Image
 </label>
 
 <input
-type="file"
 class="pppp-tool15-input"
+type="file"
 id="ppppQRImage"
 accept="image/*">
 
+<div class="pppp-tool15-center">
+
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppScanQRImage()">
-📱 Scan QR / Barcode Image
+class="pppp-tool15-button"
+id="ppppQRImageBtn">
+📷 Scan Image
 </button>
 
 </div>
 
+</div>
 
 <div class="pppp-tool15-box">
 
-<label class="pppp-tool15-label">
-📷 Camera Scanner
-</label>
-
-<button
-type="button"
-class="pppp-tool15-btn"
-onclick="ppppStartQRScanner()">
-📷 Start Camera Scanner
-</button>
-
 <video
 id="ppppQRVideo"
-class="pppp-tool15-media"
 playsinline
 autoplay
-muted
-style="display:none;">
-</video>
+muted></video>
+
+<canvas id="ppppQRCanvas"></canvas>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn pppp-tool15-btn-red"
-onclick="ppppStopQRScanner()">
-🛑 Stop Scanner
+class="pppp-tool15-button"
+id="ppppQRStart">
+▶️ Start Camera
+</button>
+
+<button
+type="button"
+class="pppp-tool15-button"
+id="ppppQRStop">
+⏹️ Stop Camera
 </button>
 
 </div>
@@ -4104,13 +3993,9 @@ onclick="ppppStopQRScanner()">
 </div>
 
 <div
-id="ppppQRResult"
-class="pppp-tool15-result">
-📱 Scanner Ready
-</div>
-
-<div class="pppp-tool15-note">
-ℹ️ QR/Barcode scanning uses the browser's native BarcodeDetector when supported.
+class="pppp-tool15-result"
+id="ppppQRResult">
+Result will appear here.
 </div>
 
 </div>
@@ -4118,7 +4003,7 @@ class="pppp-tool15-result">
 
 
 <!-- =========================================================
-     03 🎓 GPA CALCULATOR
+     03 🎓 GPA CALCULATOR — 12 SUBJECTS
 ========================================================= -->
 
 <div class="pppp-tool15-section">
@@ -4129,97 +4014,43 @@ class="pppp-tool15-result">
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
+<div class="pppp-gpa-grid">
 
-<div class="pppp-tool15-grid">
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 01</label>
+<script>
+for(let i=1;i<=12;i++){
+document.write(`
+<div class="pppp-gpa-item">
+<span>Subject ${i}</span>
 <input
+class="pppp-tool15-input pppp-gpa-input"
 type="number"
-step="0.01"
 min="0"
-max="5"
-id="gpa1"
-class="pppp-tool15-input"
+max="4"
+step="0.01"
+id="gpa${i}"
 placeholder="GPA">
 </div>
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 02</label>
-<input
-type="number"
-step="0.01"
-min="0"
-max="5"
-id="gpa2"
-class="pppp-tool15-input"
-placeholder="GPA">
-</div>
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 03</label>
-<input
-type="number"
-step="0.01"
-min="0"
-max="5"
-id="gpa3"
-class="pppp-tool15-input"
-placeholder="GPA">
-</div>
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 04</label>
-<input
-type="number"
-step="0.01"
-min="0"
-max="5"
-id="gpa4"
-class="pppp-tool15-input"
-placeholder="GPA">
-</div>
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 05</label>
-<input
-type="number"
-step="0.01"
-min="0"
-max="5"
-id="gpa5"
-class="pppp-tool15-input"
-placeholder="GPA">
-</div>
-
-<div>
-<label class="pppp-tool15-label">📚 Subject 06</label>
-<input
-type="number"
-step="0.01"
-min="0"
-max="5"
-id="gpa6"
-class="pppp-tool15-input"
-placeholder="GPA">
-</div>
+`);
+}
+</script>
 
 </div>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppCalculateGPA()">
+class="pppp-tool15-button"
+id="ppppGPACalculate">
 🎓 Calculate GPA
 </button>
 
-<div
-id="gpaResult"
-class="pppp-tool15-result">
-GPA Result
 </div>
 
+<div
+class="pppp-tool15-result"
+id="ppppGPAResult">
+GPA will appear here.
 </div>
 
 </div>
@@ -4238,77 +4069,73 @@ GPA Result
 
 <div class="pppp-tool15-body">
 
+<div class="pppp-zakat-grid">
+
 <div class="pppp-tool15-box">
-
-<div class="pppp-tool15-grid">
-
-<div>
 <label class="pppp-tool15-label">
-💵 Cash
+💰 Cash
 </label>
 <input
-type="number"
-id="zakatCash"
 class="pppp-tool15-input"
-value="0"
-min="0">
+id="zakatCash"
+type="number"
+min="0"
+placeholder="Enter amount">
 </div>
 
-<div>
+<div class="pppp-tool15-box">
 <label class="pppp-tool15-label">
 🏦 Bank Balance
 </label>
 <input
-type="number"
+class="pppp-tool15-input"
 id="zakatBank"
-class="pppp-tool15-input"
-value="0"
-min="0">
+type="number"
+min="0"
+placeholder="Enter amount">
 </div>
 
-<div>
+<div class="pppp-tool15-box">
 <label class="pppp-tool15-label">
-💎 Gold / Silver
+🥇 Gold Value
 </label>
 <input
-type="number"
+class="pppp-tool15-input"
 id="zakatGold"
-class="pppp-tool15-input"
-value="0"
-min="0">
+type="number"
+min="0"
+placeholder="Enter amount">
 </div>
 
-<div>
+<div class="pppp-tool15-box">
 <label class="pppp-tool15-label">
-🏪 Business Assets
+💎 Other Assets
 </label>
 <input
-type="number"
-id="zakatBusiness"
 class="pppp-tool15-input"
-value="0"
-min="0">
+id="zakatAssets"
+type="number"
+min="0"
+placeholder="Enter amount">
 </div>
 
 </div>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppCalculateZakat()">
+class="pppp-tool15-button"
+id="ppppZakatCalculate">
 🕌 Calculate Zakat
 </button>
 
+</div>
+
 <div
-id="zakatResult"
-class="pppp-tool15-result">
-Zakat Result
-</div>
-
-<div class="pppp-tool15-note">
-ℹ️ Basic calculation uses 2.5% of the entered eligible amount. Consult a qualified scholar for personal Zakat rulings.
-</div>
-
+class="pppp-tool15-result"
+id="ppppZakatResult">
+Zakat amount will appear here.
 </div>
 
 </div>
@@ -4327,43 +4154,40 @@ Zakat Result
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
-type="file"
-id="ppppCompressImageInput"
 class="pppp-tool15-input"
+type="file"
+id="ppppImageCompressInput"
 accept="image/*">
 
 <label class="pppp-tool15-label">
-🎚️ Quality
+Quality:
+<span id="ppppImageQualityText">70%</span>
 </label>
 
 <input
 type="range"
 id="ppppImageQuality"
-class="pppp-tool15-range"
 min="10"
 max="100"
-value="70">
+value="70"
+style="width:100%;">
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppCompressImage()">
-🖼️ Compress Image
+class="pppp-tool15-button"
+id="ppppImageCompressBtn">
+🗜️ Compress & Download
 </button>
 
-<img
-id="ppppCompressPreview"
-class="pppp-tool15-preview">
-
-<div
-id="ppppCompressResult"
-class="pppp-tool15-result">
-Image Compressor Ready
 </div>
 
+<div
+class="pppp-tool15-result"
+id="ppppImageCompressResult">
+Ready.
 </div>
 
 </div>
@@ -4382,53 +4206,49 @@ Image Compressor Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
-type="file"
-id="ppppResizeImageInput"
 class="pppp-tool15-input"
+type="file"
+id="ppppResizeInput"
 accept="image/*">
 
 <div class="pppp-tool15-grid">
 
 <div>
-<label class="pppp-tool15-label">
-↔️ Width
-</label>
+<label class="pppp-tool15-label">Width</label>
 <input
+class="pppp-tool15-input"
 type="number"
 id="ppppResizeWidth"
-class="pppp-tool15-input"
 placeholder="Width">
 </div>
 
 <div>
-<label class="pppp-tool15-label">
-↕️ Height
-</label>
+<label class="pppp-tool15-label">Height</label>
 <input
+class="pppp-tool15-input"
 type="number"
 id="ppppResizeHeight"
-class="pppp-tool15-input"
 placeholder="Height">
 </div>
 
 </div>
 
+<div class="pppp-tool15-center">
+
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppResizeImage()">
+class="pppp-tool15-button"
+id="ppppResizeBtn">
 📐 Resize & Download
 </button>
 
-<div
-id="ppppResizeResult"
-class="pppp-tool15-result">
-Resize Image Ready
 </div>
 
+<div
+class="pppp-tool15-result"
+id="ppppResizeResult">
+Ready.
 </div>
 
 </div>
@@ -4447,49 +4267,42 @@ Resize Image Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
-type="file"
-id="ppppConvertImageInput"
 class="pppp-tool15-input"
+type="file"
+id="ppppImageConvertInput"
 accept="image/*">
 
 <label class="pppp-tool15-label">
-📄 Convert To
+Convert To
 </label>
 
 <select
-id="ppppConvertFormat"
-class="pppp-tool15-select">
+class="pppp-tool15-select"
+id="ppppImageConvertFormat">
 
-<option value="image/png">
-PNG
-</option>
-
-<option value="image/jpeg">
-JPG / JPEG
-</option>
-
-<option value="image/webp">
-WEBP
-</option>
+<option value="png">PNG</option>
+<option value="jpg">JPG</option>
+<option value="jpeg">JPEG</option>
+<option value="webp">WEBP</option>
 
 </select>
 
+<div class="pppp-tool15-center">
+
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppConvertImage()">
+class="pppp-tool15-button"
+id="ppppImageConvertBtn">
 🔄 Convert & Download
 </button>
 
-<div
-id="ppppConvertResult"
-class="pppp-tool15-result">
-Image Converter Ready
 </div>
 
+<div
+class="pppp-tool15-result"
+id="ppppImageConvertResult">
+Ready.
 </div>
 
 </div>
@@ -4508,95 +4321,45 @@ Image Converter Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <textarea
-id="ppppTTSInput"
 class="pppp-tool15-textarea"
-placeholder="এখানে লেখা লিখুন..."></textarea>
-
-<div class="pppp-tool15-grid">
-
-<div>
-
-<label class="pppp-tool15-label">
-🌐 Language
-</label>
-
-<select
-id="ppppTTSLang"
-class="pppp-tool15-select">
-
-<option value="bn-BD">
-🇧🇩 বাংলা
-</option>
-
-<option value="en-US">
-🇺🇸 English
-</option>
-
-<option value="hi-IN">
-🇮🇳 Hindi
-</option>
-
-<option value="ar-SA">
-🇸🇦 Arabic
-</option>
-
-</select>
-
-</div>
+id="ppppTTSInput"
+placeholder="🗣️ Enter Your Text Here..."></textarea>
 
 <div>
-
-<label class="pppp-tool15-label">
-⚡ Speed
-</label>
-
-<input
-type="range"
-id="ppppTTSRate"
-class="pppp-tool15-range"
-min="0.5"
-max="2"
-step="0.1"
-value="1">
-
-</div>
-
-</div>
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppSpeakText()">
-🗣️ Speak
+class="pppp-tool15-button"
+id="ppppTTSSpeak">
+▶️ Speak
 </button>
 
 <button
 type="button"
-class="pppp-tool15-btn pppp-tool15-btn-red"
-onclick="ppppStopSpeech()">
-🛑 Stop Speech
+class="pppp-tool15-button"
+id="ppppTTSStop">
+⏹️ Stop
 </button>
 
 <button
 type="button"
-class="pppp-tool15-btn pppp-tool15-btn-green"
-onclick="ppppDownloadSpeech()">
+class="pppp-tool15-button"
+id="ppppTTSDownload">
 📥 Download Speech
 </button>
 
+</div>
+
 <div
-id="ppppTTSResult"
-class="pppp-tool15-result">
-🔊 Text to Speech Ready
+class="pppp-tool15-result"
+id="ppppTTSResult">
+Ready.
 </div>
 
 <div class="pppp-tool15-note">
-ℹ️ Speech download uses the browser's screen/tab audio capture when supported. The browser may ask you to select the current tab/window and share its audio.
-</div>
-
+🎧 Audio download uses browser-supported speech/audio capture when available.
+If the browser blocks audio capture, the text can still be downloaded as a fallback.
 </div>
 
 </div>
@@ -4615,31 +4378,42 @@ class="pppp-tool15-result">
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
+class="pppp-tool15-input"
 type="file"
 id="ppppAudioInput"
-class="pppp-tool15-input"
 accept="audio/*">
+
+<label class="pppp-tool15-label">
+Output Bitrate
+</label>
+
+<select
+class="pppp-tool15-select"
+id="ppppAudioBitrate">
+
+<option value="48000">48 kbps</option>
+<option value="64000">64 kbps</option>
+<option value="96000">96 kbps</option>
+<option value="128000">128 kbps</option>
+
+</select>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppCompressAudio()">
-🎧 Compress Audio
+class="pppp-tool15-button"
+id="ppppAudioCompressBtn">
+🗜️ Compress & Download
 </button>
 
+</div>
+
 <div
-id="ppppAudioResult"
-class="pppp-tool15-result">
-Audio Compressor Ready
-</div>
-
-<div class="pppp-tool15-note">
-ℹ️ Browser-supported output is WebM/Opus. A true MP3 encoder is not built into MediaRecorder.
-</div>
-
+class="pppp-tool15-result"
+id="ppppAudioResult">
+Ready.
 </div>
 
 </div>
@@ -4658,27 +4432,41 @@ Audio Compressor Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
-type="file"
-id="ppppVideoInput"
 class="pppp-tool15-input"
+type="file"
+id="ppppVideoCompressInput"
 accept="video/*">
+
+<label class="pppp-tool15-label">
+Video Quality
+</label>
+
+<select
+class="pppp-tool15-select"
+id="ppppVideoQuality">
+
+<option value="360">360p — Fast</option>
+<option value="480">480p — Balanced</option>
+<option value="720">720p — High</option>
+
+</select>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppCompressVideo()">
-🎥 Compress Video
+class="pppp-tool15-button"
+id="ppppVideoCompressBtn">
+🗜️ Compress & Download
 </button>
 
-<div
-id="ppppVideoResult"
-class="pppp-tool15-result">
-Video Compressor Ready
 </div>
 
+<div
+class="pppp-tool15-result"
+id="ppppVideoResult">
+Ready.
 </div>
 
 </div>
@@ -4697,31 +4485,46 @@ Video Compressor Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
+class="pppp-tool15-input"
 type="file"
 id="ppppVideoToMP3Input"
-class="pppp-tool15-input"
 accept="video/*">
+
+<label class="pppp-tool15-label">
+Audio Size / Bitrate
+</label>
+
+<select
+class="pppp-tool15-select"
+id="ppppVideoToMP3Bitrate">
+
+<option value="48000">Small — 48 kbps</option>
+<option value="64000">Low — 64 kbps</option>
+<option value="96000">Medium — 96 kbps</option>
+<option value="128000">High — 128 kbps</option>
+
+</select>
+
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppVideoToMP3()">
-🎵 Extract Audio
+class="pppp-tool15-button"
+id="ppppVideoToMP3Btn">
+🎵 Convert & Download
 </button>
 
+</div>
+
 <div
-id="ppppVideoToMP3Result"
-class="pppp-tool15-result">
-Video to Audio Ready
+class="pppp-tool15-result"
+id="ppppVideoToMP3Result">
+Ready.
 </div>
 
 <div class="pppp-tool15-note">
-ℹ️ Browser MediaRecorder normally produces WebM/Opus audio rather than a true MP3 file. A dedicated MP3 encoder is required for true MP3 output.
-</div>
-
+ℹ️ The browser will use a supported audio encoder. If native MP3 encoding is unavailable, the compatible audio format will be used rather than creating a fake MP3 file.
 </div>
 
 </div>
@@ -4740,77 +4543,67 @@ Video to Audio Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <input
-type="file"
-id="ppppMP3Input"
 class="pppp-tool15-input"
-accept="audio/*">
+type="file"
+id="ppppMP3ToVideoInput"
+accept="audio/mpeg,audio/mp3,audio/*">
+
+<label class="pppp-tool15-label">
+🎬 Video Size
+</label>
+
+<select
+class="pppp-tool15-select"
+id="ppppMP3VideoSize">
+
+<option value="1920x1080">1920 × 1080 — Full HD</option>
+<option value="1280x720">1280 × 720 — HD</option>
+<option value="854x480">854 × 480 — SD</option>
+<option value="640x360">640 × 360 — Small</option>
+<option value="426x240">426 × 240 — Very Small</option>
+
+</select>
 
 <label class="pppp-tool15-label">
 🎨 Background Color
 </label>
 
 <input
-type="color"
-id="ppppMP3BgColor"
 class="pppp-tool15-input"
-value="#1565c0">
+type="color"
+id="ppppMP3VideoColor"
+value="#000000">
 
 <label class="pppp-tool15-label">
 🖼️ Background Image
 </label>
 
 <input
-type="file"
-id="ppppMP3BgImage"
 class="pppp-tool15-input"
+type="file"
+id="ppppMP3VideoImage"
 accept="image/*">
 
-<img
-id="ppppMP3BgPreview"
-class="pppp-bg-preview">
-
-<label class="pppp-tool15-label">
-📐 Video Size
-</label>
-
-<select
-id="ppppMP3VideoSize"
-class="pppp-tool15-select">
-
-<option value="1280x720">
-1280 × 720
-</option>
-
-<option value="854x480">
-854 × 480
-</option>
-
-<option value="640x360">
-640 × 360
-</option>
-
-</select>
+<div class="pppp-tool15-center">
 
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppMP3ToVideo()">
-🎞️ Create Video
+class="pppp-tool15-button"
+id="ppppMP3ToVideoBtn">
+🎞️ Create Video & Download
 </button>
 
+</div>
+
 <div
-id="ppppMP3ToVideoResult"
-class="pppp-tool15-result">
-MP3 to Video Ready
+class="pppp-tool15-result"
+id="ppppMP3ToVideoResult">
+Ready.
 </div>
 
 <div class="pppp-tool15-note">
-ℹ️ Browser output is WebM video with audio. Background Image takes priority over Background Color when selected.
-</div>
-
+ℹ️ The selected video dimensions are applied before encoding. MP4 is used when the browser provides a compatible MP4 encoder; otherwise the supported video format is used safely.
 </div>
 
 </div>
@@ -4829,74 +4622,73 @@ MP3 to Video Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-tool15-box">
-
 <label class="pppp-tool15-label">
-💰 Amount
-</label>
-
-<input
-type="number"
-id="ppppBDTAmount"
-class="pppp-tool15-input"
-value="1"
-min="0">
-
-<label class="pppp-tool15-label">
-🌐 Currency
+Direction
 </label>
 
 <select
-id="ppppBDTCurrency"
-class="pppp-tool15-select">
+class="pppp-tool15-select"
+id="ppppBDTDirection">
 
-<option value="USD">
-🇺🇸 USD
+<option value="bdtForeign">
+🇧🇩 BDT → Other Currency
 </option>
 
-<option value="EUR">
-🇪🇺 EUR
-</option>
-
-<option value="GBP">
-🇬🇧 GBP
-</option>
-
-<option value="SAR">
-🇸🇦 SAR
-</option>
-
-<option value="AED">
-🇦🇪 AED
-</option>
-
-<option value="INR">
-🇮🇳 INR
-</option>
-
-<option value="JPY">
-🇯🇵 JPY
+<option value="foreignBDT">
+💱 Other Currency → BDT
 </option>
 
 </select>
 
+<label class="pppp-tool15-label">
+Currency
+</label>
+
+<select
+class="pppp-tool15-select"
+id="ppppBDTCurrency">
+
+<option value="USD">🇺🇸 USD — US Dollar</option>
+<option value="EUR">🇪🇺 EUR — Euro</option>
+<option value="GBP">🇬🇧 GBP — British Pound</option>
+<option value="SAR">🇸🇦 SAR — Saudi Riyal</option>
+<option value="AED">🇦🇪 AED — UAE Dirham</option>
+<option value="INR">🇮🇳 INR — Indian Rupee</option>
+<option value="JPY">🇯🇵 JPY — Japanese Yen</option>
+
+</select>
+
+<label class="pppp-tool15-label">
+Amount
+</label>
+
+<input
+class="pppp-tool15-input"
+type="number"
+id="ppppBDTAmount"
+min="0"
+step="any"
+placeholder="Enter amount">
+
+<div class="pppp-tool15-center">
+
 <button
 type="button"
-class="pppp-tool15-btn"
-onclick="ppppConvertBDT()">
-💱 Convert to BDT
+class="pppp-tool15-button"
+id="ppppBDTConvertBtn">
+💱 Convert
 </button>
 
+</div>
+
 <div
-id="ppppBDTResult"
-class="pppp-tool15-result">
-BDT Converter Ready
+class="pppp-tool15-result"
+id="ppppBDTResult">
+Conversion result will appear here.
 </div>
 
 <div class="pppp-tool15-note">
-ℹ️ Reference rates are editable in JavaScript and are for approximate conversion only.
-</div>
-
+ℹ️ Exchange rates are reference rates and may differ from current market/bank rates.
 </div>
 
 </div>
@@ -4905,6 +4697,7 @@ BDT Converter Ready
 
 <!-- =========================================================
      14 🇧🇩 PPPP BANGLADESH
+     ⚠️ CONTENT MUST REMAIN UNCHANGED
 ========================================================= -->
 
 <div class="pppp-tool15-section">
@@ -4915,38 +4708,30 @@ BDT Converter Ready
 
 <div class="pppp-tool15-body">
 
-<div class="pppp-bangladesh-main">
-
 
 <!-- DIVISIONS -->
 
-<div class="pppp-bd-subsection">
+<div class="pppp-bd15-group">
 
 <button
 type="button"
-class="pppp-bd-toggle"
-onclick="ppppBDToggle(this)">
+class="pppp-bd15-toggle">
 
-<span>
-🗺️ Divisions — 08
-</span>
-
-<span class="arrow">
-▼
-</span>
+<span>🗺️ Divisions — 08</span>
+<span>▼</span>
 
 </button>
 
-<div class="pppp-bd-content">
+<div class="pppp-bd15-content">
 
-<div class="pppp-bd-line">🏙️ Dhaka</div>
-<div class="pppp-bd-line">🌊 Chattogram</div>
-<div class="pppp-bd-line">🏛️ Rajshahi</div>
-<div class="pppp-bd-line">🌿 Khulna</div>
-<div class="pppp-bd-line">🚤 Barishal</div>
-<div class="pppp-bd-line">🍃 Sylhet</div>
-<div class="pppp-bd-line">🌱 Rangpur</div>
-<div class="pppp-bd-line">🏞️ Mymensingh</div>
+<div class="pppp-bd15-item">🏙️ Dhaka</div>
+<div class="pppp-bd15-item">🌊 Chattogram</div>
+<div class="pppp-bd15-item">🏛️ Rajshahi</div>
+<div class="pppp-bd15-item">🌿 Khulna</div>
+<div class="pppp-bd15-item">🚤 Barishal</div>
+<div class="pppp-bd15-item">🍃 Sylhet</div>
+<div class="pppp-bd15-item">🌱 Rangpur</div>
+<div class="pppp-bd15-item">🏞️ Mymensingh</div>
 
 </div>
 </div>
@@ -4954,166 +4739,98 @@ onclick="ppppBDToggle(this)">
 
 <!-- DISTRICTS -->
 
-<div class="pppp-bd-subsection">
+<div class="pppp-bd15-group">
 
 <button
 type="button"
-class="pppp-bd-toggle"
-onclick="ppppBDToggle(this)">
+class="pppp-bd15-toggle">
 
-<span>
-📍 Districts — 64
-</span>
-
-<span class="arrow">▼</span>
+<span>📍 Districts — 64</span>
+<span>▼</span>
 
 </button>
 
-<div class="pppp-bd-content">
+<div class="pppp-bd15-content">
 
+<div class="pppp-bd15-item"><b>🟨 DHAKA DIVISION</b></div>
+<div class="pppp-bd15-item">🏙️ Dhaka</div>
+<div class="pppp-bd15-item">🏭 Gazipur</div>
+<div class="pppp-bd15-item">🌆 Narayanganj</div>
+<div class="pppp-bd15-item">🏗️ Narsingdi</div>
+<div class="pppp-bd15-item">🚢 Munshiganj</div>
+<div class="pppp-bd15-item">🛣️ Manikganj</div>
+<div class="pppp-bd15-item">🛤️ Tangail</div>
+<div class="pppp-bd15-item">🕌 Kishoreganj</div>
+<div class="pppp-bd15-item">🌉 Faridpur</div>
+<div class="pppp-bd15-item">🌴 Gopalganj</div>
+<div class="pppp-bd15-item">🌳 Madaripur</div>
+<div class="pppp-bd15-item">🌊 Shariatpur</div>
+<div class="pppp-bd15-item">🏰 Rajbari</div>
 
-<div class="pppp-bd-division">
+<div class="pppp-bd15-item"><b>🟩 CHATTOGRAM DIVISION</b></div>
+<div class="pppp-bd15-item">⚓ Chattogram</div>
+<div class="pppp-bd15-item">🏖️ Cox’s Bazar</div>
+<div class="pppp-bd15-item">🕌 Cumilla</div>
+<div class="pppp-bd15-item">🌺 Feni</div>
+<div class="pppp-bd15-item">🌊 Noakhali</div>
+<div class="pppp-bd15-item">🥥 Lakshmipur</div>
+<div class="pppp-bd15-item">🚢 Chandpur</div>
+<div class="pppp-bd15-item">🏛️ Brahmanbaria</div>
+<div class="pppp-bd15-item">⛰️ Rangamati</div>
+<div class="pppp-bd15-item">🏔️ Khagrachhari</div>
+<div class="pppp-bd15-item">🌳 Bandarban</div>
 
-<div class="pppp-bd-division-title">
-🟨 DHAKA DIVISION
-</div>
+<div class="pppp-bd15-item"><b>🟥 RAJSHAHI DIVISION</b></div>
+<div class="pppp-bd15-item">🏛️ Rajshahi</div>
+<div class="pppp-bd15-item">🍎 Bogura</div>
+<div class="pppp-bd15-item">🌊 Pabna</div>
+<div class="pppp-bd15-item">🌉 Sirajganj</div>
+<div class="pppp-bd15-item">🏰 Natore</div>
+<div class="pppp-bd15-item">🥭 Naogaon</div>
+<div class="pppp-bd15-item">⭐ Joypurhat</div>
+<div class="pppp-bd15-item">🥭 Chapainawabganj</div>
 
-<div class="pppp-bd-line">🏙️ Dhaka</div>
-<div class="pppp-bd-line">🏭 Gazipur</div>
-<div class="pppp-bd-line">🌆 Narayanganj</div>
-<div class="pppp-bd-line">🏗️ Narsingdi</div>
-<div class="pppp-bd-line">🚢 Munshiganj</div>
-<div class="pppp-bd-line">🛣️ Manikganj</div>
-<div class="pppp-bd-line">🛤️ Tangail</div>
-<div class="pppp-bd-line">🕌 Kishoreganj</div>
-<div class="pppp-bd-line">🌉 Faridpur</div>
-<div class="pppp-bd-line">🌴 Gopalganj</div>
-<div class="pppp-bd-line">🌳 Madaripur</div>
-<div class="pppp-bd-line">🌊 Shariatpur</div>
-<div class="pppp-bd-line">🏰 Rajbari</div>
+<div class="pppp-bd15-item"><b>🟧 KHULNA DIVISION</b></div>
+<div class="pppp-bd15-item">⚓ Khulna</div>
+<div class="pppp-bd15-item">🌴 Jashore</div>
+<div class="pppp-bd15-item">🌻 Satkhira</div>
+<div class="pppp-bd15-item">🕌 Bagerhat</div>
+<div class="pppp-bd15-item">🌺 Jhenaidah</div>
+<div class="pppp-bd15-item">🌿 Magura</div>
+<div class="pppp-bd15-item">🏞️ Narail</div>
+<div class="pppp-bd15-item">🕌 Kushtia</div>
+<div class="pppp-bd15-item">🌱 Chuadanga</div>
+<div class="pppp-bd15-item">🏛️ Meherpur</div>
 
-</div>
+<div class="pppp-bd15-item"><b>🟦 BARISHAL DIVISION</b></div>
+<div class="pppp-bd15-item">🚤 Barishal</div>
+<div class="pppp-bd15-item">🏝️ Bhola</div>
+<div class="pppp-bd15-item">🌴 Patuakhali</div>
+<div class="pppp-bd15-item">🌊 Pirojpur</div>
+<div class="pppp-bd15-item">🌺 Jhalokathi</div>
+<div class="pppp-bd15-item">🏖️ Barguna</div>
 
+<div class="pppp-bd15-item"><b>⬜ SYLHET DIVISION</b></div>
+<div class="pppp-bd15-item">🍵 Sylhet</div>
+<div class="pppp-bd15-item">🍃 Moulvibazar</div>
+<div class="pppp-bd15-item">🌿 Habiganj</div>
+<div class="pppp-bd15-item">⛰️ Sunamganj</div>
 
-<div class="pppp-bd-division">
+<div class="pppp-bd15-item"><b>🟫 RANGPUR DIVISION</b></div>
+<div class="pppp-bd15-item">🏙️ Rangpur</div>
+<div class="pppp-bd15-item">🕌 Dinajpur</div>
+<div class="pppp-bd15-item">🌿 Thakurgaon</div>
+<div class="pppp-bd15-item">🏔️ Panchagarh</div>
+<div class="pppp-bd15-item">🌱 Nilphamari</div>
+<div class="pppp-bd15-item">🚂 Lalmonirhat</div>
+<div class="pppp-bd15-item">🌊 Kurigram</div>
+<div class="pppp-bd15-item">🌳 Gaibandha</div>
 
-<div class="pppp-bd-division-title">
-🟩 CHATTOGRAM DIVISION
-</div>
-
-<div class="pppp-bd-line">⚓ Chattogram</div>
-<div class="pppp-bd-line">🏖️ Cox’s Bazar</div>
-<div class="pppp-bd-line">🕌 Cumilla</div>
-<div class="pppp-bd-line">🌺 Feni</div>
-<div class="pppp-bd-line">🌊 Noakhali</div>
-<div class="pppp-bd-line">🥥 Lakshmipur</div>
-<div class="pppp-bd-line">🚢 Chandpur</div>
-<div class="pppp-bd-line">🏛️ Brahmanbaria</div>
-<div class="pppp-bd-line">⛰️ Rangamati</div>
-<div class="pppp-bd-line">🏔️ Khagrachhari</div>
-<div class="pppp-bd-line">🌳 Bandarban</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-🟥 RAJSHAHI DIVISION
-</div>
-
-<div class="pppp-bd-line">🏛️ Rajshahi</div>
-<div class="pppp-bd-line">🍎 Bogura</div>
-<div class="pppp-bd-line">🌊 Pabna</div>
-<div class="pppp-bd-line">🌉 Sirajganj</div>
-<div class="pppp-bd-line">🏰 Natore</div>
-<div class="pppp-bd-line">🥭 Naogaon</div>
-<div class="pppp-bd-line">⭐ Joypurhat</div>
-<div class="pppp-bd-line">🥭 Chapainawabganj</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-🟧 KHULNA DIVISION
-</div>
-
-<div class="pppp-bd-line">⚓ Khulna</div>
-<div class="pppp-bd-line">🌴 Jashore</div>
-<div class="pppp-bd-line">🌻 Satkhira</div>
-<div class="pppp-bd-line">🕌 Bagerhat</div>
-<div class="pppp-bd-line">🌺 Jhenaidah</div>
-<div class="pppp-bd-line">🌿 Magura</div>
-<div class="pppp-bd-line">🏞️ Narail</div>
-<div class="pppp-bd-line">🕌 Kushtia</div>
-<div class="pppp-bd-line">🌱 Chuadanga</div>
-<div class="pppp-bd-line">🏛️ Meherpur</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-🟦 BARISHAL DIVISION
-</div>
-
-<div class="pppp-bd-line">🚤 Barishal</div>
-<div class="pppp-bd-line">🏝️ Bhola</div>
-<div class="pppp-bd-line">🌴 Patuakhali</div>
-<div class="pppp-bd-line">🌊 Pirojpur</div>
-<div class="pppp-bd-line">🌺 Jhalokathi</div>
-<div class="pppp-bd-line">🏖️ Barguna</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-⬜ SYLHET DIVISION
-</div>
-
-<div class="pppp-bd-line">🍵 Sylhet</div>
-<div class="pppp-bd-line">🍃 Moulvibazar</div>
-<div class="pppp-bd-line">🌿 Habiganj</div>
-<div class="pppp-bd-line">⛰️ Sunamganj</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-🟫 RANGPUR DIVISION
-</div>
-
-<div class="pppp-bd-line">🏙️ Rangpur</div>
-<div class="pppp-bd-line">🕌 Dinajpur</div>
-<div class="pppp-bd-line">🌿 Thakurgaon</div>
-<div class="pppp-bd-line">🏔️ Panchagarh</div>
-<div class="pppp-bd-line">🌱 Nilphamari</div>
-<div class="pppp-bd-line">🚂 Lalmonirhat</div>
-<div class="pppp-bd-line">🌊 Kurigram</div>
-<div class="pppp-bd-line">🌳 Gaibandha</div>
-
-</div>
-
-
-<div class="pppp-bd-division">
-
-<div class="pppp-bd-division-title">
-🟪 MYMENSINGH DIVISION
-</div>
-
-<div class="pppp-bd-line">🏞️ Mymensingh</div>
-<div class="pppp-bd-line">🚢 Jamalpur</div>
-<div class="pppp-bd-line">🌳 Sherpur</div>
-<div class="pppp-bd-line">⛰️ Netrokona</div>
-
-</div>
+<div class="pppp-bd15-item"><b>🟪 MYMENSINGH DIVISION</b></div>
+<div class="pppp-bd15-item">🏞️ Mymensingh</div>
+<div class="pppp-bd15-item">🚢 Jamalpur</div>
+<div class="pppp-bd15-item">🌳 Sherpur</div>
+<div class="pppp-bd15-item">⛰️ Netrokona</div>
 
 </div>
 </div>
@@ -5121,166 +4838,98 @@ onclick="ppppBDToggle(this)">
 
 <!-- POSTAL CODES -->
 
-<div class="pppp-bd-subsection">
+<div class="pppp-bd15-group">
 
 <button
 type="button"
-class="pppp-bd-toggle"
-onclick="ppppBDToggle(this)">
+class="pppp-bd15-toggle">
 
-<span>
-📮 POSTAL CODES
-</span>
-
-<span class="arrow">▼</span>
+<span>📮 POSTAL CODES</span>
+<span>▼</span>
 
 </button>
 
-<div class="pppp-bd-content">
+<div class="pppp-bd15-content">
 
+<div class="pppp-bd15-item"><b>🟨 DHAKA DIVISION</b></div>
+<div class="pppp-bd15-item">🏙️ Dhaka — 1000</div>
+<div class="pppp-bd15-item">🌉 Faridpur — 7800</div>
+<div class="pppp-bd15-item">🏭 Gazipur — 1700</div>
+<div class="pppp-bd15-item">🌴 Gopalganj — 8100</div>
+<div class="pppp-bd15-item">🕌 Kishoreganj — 2300</div>
+<div class="pppp-bd15-item">🌳 Madaripur — 7900</div>
+<div class="pppp-bd15-item">🛣️ Manikganj — 1800</div>
+<div class="pppp-bd15-item">🚢 Munshiganj — 1500</div>
+<div class="pppp-bd15-item">🌆 Narayanganj — 1400</div>
+<div class="pppp-bd15-item">🏗️ Narsingdi — 1600</div>
+<div class="pppp-bd15-item">🏰 Rajbari — 7700</div>
+<div class="pppp-bd15-item">🌊 Shariatpur — 8000</div>
+<div class="pppp-bd15-item">🛤️ Tangail — 1900</div>
 
-<div class="pppp-bd-postal-group">
+<div class="pppp-bd15-item"><b>🟩 CHATTOGRAM DIVISION</b></div>
+<div class="pppp-bd15-item">🌳 Bandarban — 4600</div>
+<div class="pppp-bd15-item">🏛️ Brahmanbaria — 3400</div>
+<div class="pppp-bd15-item">🚢 Chandpur — 3600</div>
+<div class="pppp-bd15-item">⚓ Chattogram — 4000</div>
+<div class="pppp-bd15-item">🕌 Cumilla — 3500</div>
+<div class="pppp-bd15-item">🏖️ Cox's Bazar — 4700</div>
+<div class="pppp-bd15-item">🌺 Feni — 3900</div>
+<div class="pppp-bd15-item">🏔️ Khagrachhari — 4400</div>
+<div class="pppp-bd15-item">🥥 Lakshmipur — 3700</div>
+<div class="pppp-bd15-item">🌊 Noakhali — 3800</div>
+<div class="pppp-bd15-item">⛰️ Rangamati — 4500</div>
 
-<div class="pppp-bd-postal-title">
-🟨 DHAKA DIVISION
-</div>
+<div class="pppp-bd15-item"><b>🟥 RAJSHAHI DIVISION</b></div>
+<div class="pppp-bd15-item">🍎 Bogura — 5800</div>
+<div class="pppp-bd15-item">🥭 Chapainawabganj — 6300</div>
+<div class="pppp-bd15-item">⭐ Joypurhat — 5900</div>
+<div class="pppp-bd15-item">🥭 Naogaon — 6500</div>
+<div class="pppp-bd15-item">🏰 Natore — 6400</div>
+<div class="pppp-bd15-item">🌊 Pabna — 6600</div>
+<div class="pppp-bd15-item">🏛️ Rajshahi — 6000</div>
+<div class="pppp-bd15-item">🌉 Sirajganj — 6700</div>
 
-<div class="pppp-bd-line">🏙️ Dhaka — 1000</div>
-<div class="pppp-bd-line">🌉 Faridpur — 7800</div>
-<div class="pppp-bd-line">🏭 Gazipur — 1700</div>
-<div class="pppp-bd-line">🌴 Gopalganj — 8100</div>
-<div class="pppp-bd-line">🕌 Kishoreganj — 2300</div>
-<div class="pppp-bd-line">🌳 Madaripur — 7900</div>
-<div class="pppp-bd-line">🛣️ Manikganj — 1800</div>
-<div class="pppp-bd-line">🚢 Munshiganj — 1500</div>
-<div class="pppp-bd-line">🌆 Narayanganj — 1400</div>
-<div class="pppp-bd-line">🏗️ Narsingdi — 1600</div>
-<div class="pppp-bd-line">🏰 Rajbari — 7700</div>
-<div class="pppp-bd-line">🌊 Shariatpur — 8000</div>
-<div class="pppp-bd-line">🛤️ Tangail — 1900</div>
+<div class="pppp-bd15-item"><b>🟧 KHULNA DIVISION</b></div>
+<div class="pppp-bd15-item">🕌 Bagerhat — 9300</div>
+<div class="pppp-bd15-item">🌱 Chuadanga — 7200</div>
+<div class="pppp-bd15-item">🌴 Jashore — 7400</div>
+<div class="pppp-bd15-item">🌺 Jhenaidah — 7300</div>
+<div class="pppp-bd15-item">⚓ Khulna — 9000</div>
+<div class="pppp-bd15-item">🕌 Kushtia — 7000</div>
+<div class="pppp-bd15-item">🌿 Magura — 7600</div>
+<div class="pppp-bd15-item">🏛️ Meherpur — 7100</div>
+<div class="pppp-bd15-item">🏞️ Narail — 7500</div>
+<div class="pppp-bd15-item">🌻 Satkhira — 9400</div>
 
-</div>
+<div class="pppp-bd15-item"><b>🟦 BARISHAL DIVISION</b></div>
+<div class="pppp-bd15-item">🏖️ Barguna — 8700</div>
+<div class="pppp-bd15-item">🚤 Barishal — 8200</div>
+<div class="pppp-bd15-item">🏝️ Bhola — 8300</div>
+<div class="pppp-bd15-item">🌺 Jhalokathi — 8400</div>
+<div class="pppp-bd15-item">🌴 Patuakhali — 8600</div>
+<div class="pppp-bd15-item">🌊 Pirojpur — 8500</div>
 
+<div class="pppp-bd15-item"><b>⬜ SYLHET DIVISION</b></div>
+<div class="pppp-bd15-item">🌿 Habiganj — 3300</div>
+<div class="pppp-bd15-item">🍃 Moulvibazar — 3200</div>
+<div class="pppp-bd15-item">⛰️ Sunamganj — 3000</div>
+<div class="pppp-bd15-item">🍵 Sylhet — 3100</div>
 
-<div class="pppp-bd-postal-group">
+<div class="pppp-bd15-item"><b>🟫 RANGPUR DIVISION</b></div>
+<div class="pppp-bd15-item">🕌 Dinajpur — 5200</div>
+<div class="pppp-bd15-item">🌳 Gaibandha — 5700</div>
+<div class="pppp-bd15-item">🌊 Kurigram — 5600</div>
+<div class="pppp-bd15-item">🚂 Lalmonirhat — 5500</div>
+<div class="pppp-bd15-item">🌱 Nilphamari — 5300</div>
+<div class="pppp-bd15-item">🏔️ Panchagarh — 5000</div>
+<div class="pppp-bd15-item">🏙️ Rangpur — 5400</div>
+<div class="pppp-bd15-item">🌿 Thakurgaon — 5100</div>
 
-<div class="pppp-bd-postal-title">
-🟩 CHATTOGRAM DIVISION
-</div>
-
-<div class="pppp-bd-line">🌳 Bandarban — 4600</div>
-<div class="pppp-bd-line">🏛️ Brahmanbaria — 3400</div>
-<div class="pppp-bd-line">🚢 Chandpur — 3600</div>
-<div class="pppp-bd-line">⚓ Chattogram — 4000</div>
-<div class="pppp-bd-line">🕌 Cumilla — 3500</div>
-<div class="pppp-bd-line">🏖️ Cox's Bazar — 4700</div>
-<div class="pppp-bd-line">🌺 Feni — 3900</div>
-<div class="pppp-bd-line">🏔️ Khagrachhari — 4400</div>
-<div class="pppp-bd-line">🥥 Lakshmipur — 3700</div>
-<div class="pppp-bd-line">🌊 Noakhali — 3800</div>
-<div class="pppp-bd-line">⛰️ Rangamati — 4500</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-🟥 RAJSHAHI DIVISION
-</div>
-
-<div class="pppp-bd-line">🍎 Bogura — 5800</div>
-<div class="pppp-bd-line">🥭 Chapainawabganj — 6300</div>
-<div class="pppp-bd-line">⭐ Joypurhat — 5900</div>
-<div class="pppp-bd-line">🥭 Naogaon — 6500</div>
-<div class="pppp-bd-line">🏰 Natore — 6400</div>
-<div class="pppp-bd-line">🌊 Pabna — 6600</div>
-<div class="pppp-bd-line">🏛️ Rajshahi — 6000</div>
-<div class="pppp-bd-line">🌉 Sirajganj — 6700</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-🟧 KHULNA DIVISION
-</div>
-
-<div class="pppp-bd-line">🕌 Bagerhat — 9300</div>
-<div class="pppp-bd-line">🌱 Chuadanga — 7200</div>
-<div class="pppp-bd-line">🌴 Jashore — 7400</div>
-<div class="pppp-bd-line">🌺 Jhenaidah — 7300</div>
-<div class="pppp-bd-line">⚓ Khulna — 9000</div>
-<div class="pppp-bd-line">🕌 Kushtia — 7000</div>
-<div class="pppp-bd-line">🌿 Magura — 7600</div>
-<div class="pppp-bd-line">🏛️ Meherpur — 7100</div>
-<div class="pppp-bd-line">🏞️ Narail — 7500</div>
-<div class="pppp-bd-line">🌻 Satkhira — 9400</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-🟦 BARISHAL DIVISION
-</div>
-
-<div class="pppp-bd-line">🏖️ Barguna — 8700</div>
-<div class="pppp-bd-line">🚤 Barishal — 8200</div>
-<div class="pppp-bd-line">🏝️ Bhola — 8300</div>
-<div class="pppp-bd-line">🌺 Jhalokathi — 8400</div>
-<div class="pppp-bd-line">🌴 Patuakhali — 8600</div>
-<div class="pppp-bd-line">🌊 Pirojpur — 8500</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-⬜ SYLHET DIVISION
-</div>
-
-<div class="pppp-bd-line">🌿 Habiganj — 3300</div>
-<div class="pppp-bd-line">🍃 Moulvibazar — 3200</div>
-<div class="pppp-bd-line">⛰️ Sunamganj — 3000</div>
-<div class="pppp-bd-line">🍵 Sylhet — 3100</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-🟫 RANGPUR DIVISION
-</div>
-
-<div class="pppp-bd-line">🕌 Dinajpur — 5200</div>
-<div class="pppp-bd-line">🌳 Gaibandha — 5700</div>
-<div class="pppp-bd-line">🌊 Kurigram — 5600</div>
-<div class="pppp-bd-line">🚂 Lalmonirhat — 5500</div>
-<div class="pppp-bd-line">🌱 Nilphamari — 5300</div>
-<div class="pppp-bd-line">🏔️ Panchagarh — 5000</div>
-<div class="pppp-bd-line">🏙️ Rangpur — 5400</div>
-<div class="pppp-bd-line">🌿 Thakurgaon — 5100</div>
-
-</div>
-
-
-<div class="pppp-bd-postal-group">
-
-<div class="pppp-bd-postal-title">
-🟪 MYMENSINGH DIVISION
-</div>
-
-<div class="pppp-bd-line">🚢 Jamalpur — 2000</div>
-<div class="pppp-bd-line">🏞️ Mymensingh — 2200</div>
-<div class="pppp-bd-line">⛰️ Netrokona — 2400</div>
-<div class="pppp-bd-line">🌳 Sherpur — 2100</div>
-
-</div>
+<div class="pppp-bd15-item"><b>🟪 MYMENSINGH DIVISION</b></div>
+<div class="pppp-bd15-item">🚢 Jamalpur — 2000</div>
+<div class="pppp-bd15-item">🏞️ Mymensingh — 2200</div>
+<div class="pppp-bd15-item">⛰️ Netrokona — 2400</div>
+<div class="pppp-bd15-item">🌳 Sherpur — 2100</div>
 
 </div>
 </div>
@@ -5288,90 +4937,36 @@ onclick="ppppBDToggle(this)">
 
 <!-- NATIONAL SYMBOLS -->
 
-<div class="pppp-bd-subsection">
+<div class="pppp-bd15-group">
 
 <button
 type="button"
-class="pppp-bd-toggle"
-onclick="ppppBDToggle(this)">
+class="pppp-bd15-toggle">
 
-<span>
-🔰 National Symbols
-</span>
-
-<span class="arrow">▼</span>
+<span>🔰 National Symbols</span>
+<span>▼</span>
 
 </button>
 
-<div class="pppp-bd-content">
+<div class="pppp-bd15-content">
 
-<div class="pppp-bd-symbol">
-🇧🇩 National Flag — Flag of Bangladesh
-</div>
-
-<div class="pppp-bd-symbol">
-🛡️ National Emblem — Water Lily, Rice Sheaves, Jute Leaves and Four Stars
-</div>
-
-<div class="pppp-bd-symbol">
-🎵 National Anthem — Amar Sonar Bangla
-</div>
-
-<div class="pppp-bd-symbol">
-🪷 National Flower — Water Lily/Shapla
-</div>
-
-<div class="pppp-bd-symbol">
-🐅 National Animal — Royal Bengal Tiger
-</div>
-
-<div class="pppp-bd-symbol">
-🐦 National Bird — Oriental Magpie/Robin/Doel
-</div>
-
-<div class="pppp-bd-symbol">
-🐟 National Fish — Hilsa/Ilish
-</div>
-
-<div class="pppp-bd-symbol">
-🍈 National Fruit — Jackfruit
-</div>
-
-<div class="pppp-bd-symbol">
-🥭 National Tree — Mango Tree
-</div>
-
-<div class="pppp-bd-symbol">
-🤼 National Sport — Ha-du-du/Kabaddi
-</div>
-
-<div class="pppp-bd-symbol">
-📅 National Day — Independence and National Day — 26 March
-</div>
-
-<div class="pppp-bd-symbol">
-🪶 National Poet — Kazi Nazrul Islam
-</div>
-
-<div class="pppp-bd-symbol">
-💰 National Currency — Taka (৳)
-</div>
-
-<div class="pppp-bd-symbol">
-🏛️ National Parliament — Jatiya Sangsad
-</div>
-
-<div class="pppp-bd-symbol">
-🕌 National Mosque — Baitul Mukarram National Mosque
-</div>
-
-<div class="pppp-bd-symbol">
-🏛️ National Martyrs' Memorial — Savar National Martyrs' Memorial
-</div>
-
-<div class="pppp-bd-symbol">
-🏞️ National Park — Bhawal National Park
-</div>
+<div class="pppp-bd15-item">🇧🇩 National Flag — Flag of Bangladesh</div>
+<div class="pppp-bd15-item">🛡️ National Emblem — Water Lily, Rice Sheaves, Jute Leaves and Four Stars</div>
+<div class="pppp-bd15-item">🎵 National Anthem — Amar Sonar Bangla</div>
+<div class="pppp-bd15-item">🪷 National Flower — Water Lily/Shapla</div>
+<div class="pppp-bd15-item">🐅 National Animal — Royal Bengal Tiger</div>
+<div class="pppp-bd15-item">🐦 National Bird — Oriental Magpie/Robin/Doel</div>
+<div class="pppp-bd15-item">🐟 National Fish — Hilsa/Ilish</div>
+<div class="pppp-bd15-item">🍈 National Fruit — Jackfruit</div>
+<div class="pppp-bd15-item">🥭 National Tree — Mango Tree</div>
+<div class="pppp-bd15-item">🤼 National Sport — Ha-du-du/Kabaddi</div>
+<div class="pppp-bd15-item">📅 National Day — Independence and National Day — 26 March</div>
+<div class="pppp-bd15-item">🪶 National Poet — Kazi Nazrul Islam</div>
+<div class="pppp-bd15-item">💰 National Currency — Taka (৳)</div>
+<div class="pppp-bd15-item">🏛️ National Parliament — Jatiya Sangsad</div>
+<div class="pppp-bd15-item">🕌 National Mosque — Baitul Mukarram National Mosque</div>
+<div class="pppp-bd15-item">🏛️ National Martyrs' Memorial — Savar National Martyrs' Memorial</div>
+<div class="pppp-bd15-item">🏞️ National Park — Bhawal National Park</div>
 
 </div>
 </div>
@@ -5379,107 +4974,49 @@ onclick="ppppBDToggle(this)">
 
 <!-- ABOUT BANGLADESH -->
 
-<div class="pppp-bd-subsection">
+<div class="pppp-bd15-group">
 
 <button
 type="button"
-class="pppp-bd-toggle"
-onclick="ppppBDToggle(this)">
+class="pppp-bd15-toggle">
 
-<span>
-📋 About Bangladesh
-</span>
-
-<span class="arrow">▼</span>
+<span>📋 About Bangladesh</span>
+<span>▼</span>
 
 </button>
 
-<div class="pppp-bd-content">
+<div class="pppp-bd15-content">
 
-<div class="pppp-bd-symbol">
-🇧🇩 Country — Bangladesh
-</div>
-
-<div class="pppp-bd-symbol">
-🏛️ Capital — Dhaka
-</div>
-
-<div class="pppp-bd-symbol">
-🗣️ Official Language — Bengali
-</div>
-
-<div class="pppp-bd-symbol">
-💰 Currency — Bangladeshi Taka (BDT)
-</div>
-
-<div class="pppp-bd-symbol">
-🕐 Time Zone — Bangladesh Standard Time (BST), UTC+6
-</div>
-
-<div class="pppp-bd-symbol">
-🌏 Continent — Asia
-</div>
-
-<div class="pppp-bd-symbol">
-📍 Region — South Asia
-</div>
-
-<div class="pppp-bd-symbol">
-🗺️ Area — Approx. 147,570 square kilometers
-</div>
-
-<div class="pppp-bd-symbol">
-👥 Population — Approx. 170+ million
-</div>
-
-<div class="pppp-bd-symbol">
-🏞️ Administrative Divisions — 08
-</div>
-
-<div class="pppp-bd-symbol">
-🏙️ Districts — 64
-</div>
-
-<div class="pppp-bd-symbol">
-🏘️ Upazilas — 495
-</div>
-
-<div class="pppp-bd-symbol">
-🌊 Major Rivers — Padma, Meghna, Jamuna
-</div>
-
-<div class="pppp-bd-symbol">
-📅 Independence Day — 26 March
-</div>
-
-<div class="pppp-bd-symbol">
-🇧🇩 Victory Day — 16 December
-</div>
-
-<div class="pppp-bd-symbol">
-🕊️ Independence Achieved — 1971
-</div>
-
-<div class="pppp-bd-symbol">
-🌐 Internet Domain — .bd
-</div>
-
-<div class="pppp-bd-symbol">
-☎️ International Calling Code — +880
-</div>
+<div class="pppp-bd15-item">🇧🇩 Country — Bangladesh</div>
+<div class="pppp-bd15-item">🏛️ Capital — Dhaka</div>
+<div class="pppp-bd15-item">🗣️ Official Language — Bengali</div>
+<div class="pppp-bd15-item">💰 Currency — Bangladeshi Taka (BDT)</div>
+<div class="pppp-bd15-item">🕐 Time Zone — Bangladesh Standard Time (BST), UTC+6</div>
+<div class="pppp-bd15-item">🌏 Continent — Asia</div>
+<div class="pppp-bd15-item">📍 Region — South Asia</div>
+<div class="pppp-bd15-item">🗺️ Area — Approx. 147,570 square kilometers</div>
+<div class="pppp-bd15-item">👥 Population — Approx. 170+ million</div>
+<div class="pppp-bd15-item">🏞️ Administrative Divisions — 08</div>
+<div class="pppp-bd15-item">🏙️ Districts — 64</div>
+<div class="pppp-bd15-item">🏘️ Upazilas — 495</div>
+<div class="pppp-bd15-item">🌊 Major Rivers — Padma, Meghna, Jamuna</div>
+<div class="pppp-bd15-item">📅 Independence Day — 26 March</div>
+<div class="pppp-bd15-item">🇧🇩 Victory Day — 16 December</div>
+<div class="pppp-bd15-item">🕊️ Independence Achieved — 1971</div>
+<div class="pppp-bd15-item">🌐 Internet Domain — .bd</div>
+<div class="pppp-bd15-item">☎️ International Calling Code — +880</div>
 
 </div>
 </div>
 
-
-</div>
 
 </div>
 </div>
 
 
 <!-- =========================================================
-     15 🇧🇩 GOVERNMENT EMERGENCY & IMPORTANT HELPLINES
+     15 🇧🇩 BANGLADESH GOVERNMENT EMERGENCY & IMPORTANT HELPLINES
+     ⚠️ DATA PRESERVED
 ========================================================= -->
 
 <div class="pppp-tool15-section">
@@ -5492,7 +5029,7 @@ onclick="ppppBDToggle(this)">
 
 <div
 class="pppp-help-grid"
-id="ppppGovernmentHelplinesGrid">
+id="ppppHelpGrid15">
 </div>
 
 </div>
@@ -5501,25 +5038,34 @@ id="ppppGovernmentHelplinesGrid">
 
 </div>
 
-
-<!-- =========================================================
-     🛠️ JAVASCRIPT
-========================================================= -->
 
 <script>
+(function(){
+
+"use strict";
 
 /* =========================================================
-   COMMON DOWNLOAD
+   COMMON HELPERS
 ========================================================= */
 
-function ppppDownloadBlob(blob,filename){
+function $(id){
+    return document.getElementById(id);
+}
+
+function safeText(id,text){
+    const el=$(id);
+    if(el) el.textContent=text;
+}
+
+function downloadBlob(blob,name){
+    if(!blob) return;
 
     const url=URL.createObjectURL(blob);
-
     const a=document.createElement("a");
 
     a.href=url;
-    a.download=filename;
+    a.download=name;
+    a.style.display="none";
 
     document.body.appendChild(a);
     a.click();
@@ -5530,12 +5076,54 @@ function ppppDownloadBlob(blob,filename){
     },1000);
 }
 
+function downloadURL(url,name){
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=name;
+    a.style.display="none";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
+
+function getSupportedMime(types){
+
+    if(!window.MediaRecorder){
+        return "";
+    }
+
+    for(const type of types){
+
+        try{
+            if(MediaRecorder.isTypeSupported(type)){
+                return type;
+            }
+        }catch(e){}
+
+    }
+
+    return "";
+}
+
+function extensionFromMime(mime){
+
+    if(!mime) return "webm";
+
+    if(mime.includes("mp4")) return "mp4";
+    if(mime.includes("mpeg")) return "mp3";
+    if(mime.includes("ogg")) return "ogg";
+    if(mime.includes("wav")) return "wav";
+    if(mime.includes("webm")) return "webm";
+
+    return "webm";
+}
+
 
 /* =========================================================
    01 🌍 WORLD CLOCK
 ========================================================= */
 
-const ppppClockZones={
+const clocks15={
     clockDhaka:"Asia/Dhaka",
     clockLondon:"Europe/London",
     clockNewYork:"America/New_York",
@@ -5546,1212 +5134,210 @@ const ppppClockZones={
     clockSydney:"Australia/Sydney"
 };
 
-function ppppUpdateWorldClock(){
+function updateWorldClock15(){
 
-    Object.keys(ppppClockZones).forEach(function(id){
+    Object.keys(clocks15).forEach(function(id){
 
-        const el=document.getElementById(id);
+        const el=$(id);
+        if(!el) return;
 
-        if(!el)return;
+        try{
 
-        el.textContent=
-            new Intl.DateTimeFormat(
-                "en-GB",
+            let value=new Intl.DateTimeFormat("en-US",{
+                timeZone:clocks15[id],
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:true,
+                hourCycle:"h12"
+            }).format(new Date());
+
+            value=value
+                .replace(/\bam\b/gi,"AM")
+                .replace(/\bpm\b/gi,"PM");
+
+            el.textContent=value;
+
+        }catch(e){
+
+            el.textContent=new Date().toLocaleTimeString(
+                "en-US",
                 {
-                    timeZone:ppppClockZones[id],
                     hour:"2-digit",
                     minute:"2-digit",
                     second:"2-digit",
-                    hour12:false
+                    hour12:true
                 }
-            ).format(new Date());
+            );
+
+        }
 
     });
 
 }
 
-ppppUpdateWorldClock();
-
-setInterval(
-    ppppUpdateWorldClock,
-    1000
-);
+updateWorldClock15();
+setInterval(updateWorldClock15,1000);
 
 
 /* =========================================================
    02 📱 QR & BARCODE SCANNER
 ========================================================= */
 
-let ppppQRStream=null;
-let ppppQRTimer=null;
+let qrStream15=null;
+let qrAnimation15=null;
+let jsQRLoaded15=false;
 
-async function ppppScanQRImage(){
+function loadJsQR15(){
 
-    const input=
-        document.getElementById(
-            "ppppQRImage"
-        );
+    return new Promise(function(resolve,reject){
 
-    const result=
-        document.getElementById(
-            "ppppQRResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select an image.";
-
-        return;
-    }
-
-    if(!("BarcodeDetector" in window)){
-
-        result.textContent=
-            "⚠️ This browser does not support native QR/Barcode detection.";
-
-        return;
-    }
-
-    try{
-
-        const detector=
-            new BarcodeDetector();
-
-        const image=
-            await createImageBitmap(
-                input.files[0]
-            );
-
-        const codes=
-            await detector.detect(
-                image
-            );
-
-        if(codes.length){
-
-            result.innerHTML=
-                "✅ Detected: " +
-                codes.map(
-                    c=>c.rawValue
-                ).join("<br>");
-
-        }else{
-
-            result.textContent=
-                "❌ No QR code or barcode detected.";
-
-        }
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Unable to scan this image.";
-
-    }
-
-}
-
-
-async function ppppStartQRScanner(){
-
-    const video=
-        document.getElementById(
-            "ppppQRVideo"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppQRResult"
-        );
-
-    if(!("BarcodeDetector" in window)){
-
-        result.textContent=
-            "⚠️ Camera scanner requires BarcodeDetector support.";
-
-        return;
-    }
-
-    try{
-
-        ppppQRStream=
-            await navigator.mediaDevices.getUserMedia({
-                video:{
-                    facingMode:{
-                        ideal:"environment"
-                    }
-                },
-                audio:false
-            });
-
-        video.srcObject=
-            ppppQRStream;
-
-        video.style.display=
-            "block";
-
-        const detector=
-            new BarcodeDetector();
-
-        clearInterval(ppppQRTimer);
-
-        ppppQRTimer=
-            setInterval(async function(){
-
-                if(video.readyState<2)
-                    return;
-
-                try{
-
-                    const codes=
-                        await detector.detect(video);
-
-                    if(codes.length){
-
-                        result.innerHTML=
-                            "✅ Detected: " +
-                            codes.map(
-                                c=>c.rawValue
-                            ).join("<br>");
-
-                    }
-
-                }catch(e){}
-
-            },500);
-
-        result.textContent=
-            "📷 Camera scanner running...";
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Camera permission was denied or unavailable.";
-
-    }
-
-}
-
-
-function ppppStopQRScanner(){
-
-    clearInterval(
-        ppppQRTimer
-    );
-
-    ppppQRTimer=null;
-
-    if(ppppQRStream){
-
-        ppppQRStream
-            .getTracks()
-            .forEach(
-                track=>track.stop()
-            );
-
-        ppppQRStream=null;
-
-    }
-
-    const video=
-        document.getElementById(
-            "ppppQRVideo"
-        );
-
-    if(video){
-
-        video.srcObject=null;
-        video.style.display="none";
-
-    }
-
-    const result=
-        document.getElementById(
-            "ppppQRResult"
-        );
-
-    if(result)
-        result.textContent=
-            "📱 Scanner stopped.";
-
-}
-
-
-/* =========================================================
-   03 🎓 GPA
-========================================================= */
-
-function ppppCalculateGPA(){
-
-    const values=[];
-
-    for(let i=1;i<=6;i++){
-
-        const input=
-            document.getElementById(
-                "gpa"+i
-            );
-
-        if(input && input.value!==""){
-
-            const value=
-                Number(input.value);
-
-            if(
-                !Number.isNaN(value) &&
-                value>=0 &&
-                value<=5
-            ){
-
-                values.push(value);
-
-            }
-
-        }
-
-    }
-
-    const result=
-        document.getElementById(
-            "gpaResult"
-        );
-
-    if(!values.length){
-
-        result.textContent=
-            "⚠️ Please enter at least one GPA.";
-
-        return;
-    }
-
-    const total=
-        values.reduce(
-            (a,b)=>a+b,
-            0
-        );
-
-    const average=
-        total/values.length;
-
-    result.innerHTML=
-        "🎓 GPA: <strong>" +
-        average.toFixed(2) +
-        "</strong><br>" +
-        "📚 Subjects: " +
-        values.length;
-
-}
-
-
-/* =========================================================
-   04 🕌 ZAKAT
-========================================================= */
-
-function ppppCalculateZakat(){
-
-    const ids=[
-        "zakatCash",
-        "zakatBank",
-        "zakatGold",
-        "zakatBusiness"
-    ];
-
-    let total=0;
-
-    ids.forEach(function(id){
-
-        const el=
-            document.getElementById(id);
-
-        if(el)
-            total+=
-                Number(el.value)||0;
-
-    });
-
-    const zakat=
-        total*0.025;
-
-    document.getElementById(
-        "zakatResult"
-    ).innerHTML=
-        "💰 Eligible Amount: <strong>" +
-        total.toFixed(2) +
-        "</strong><br>" +
-        "🕌 Zakat @ 2.5%: <strong>" +
-        zakat.toFixed(2) +
-        "</strong>";
-
-}
-
-
-/* =========================================================
-   🖼️ IMAGE LOADER
-========================================================= */
-
-function ppppLoadImageFile(file){
-
-    return new Promise(
-        function(resolve,reject){
-
-            if(!file){
-
-                reject(
-                    new Error(
-                        "No file"
-                    )
-                );
-
-                return;
-            }
-
-            const img=
-                new Image();
-
-            img.onload=
-                function(){
-                    resolve(img);
-                };
-
-            img.onerror=
-                reject;
-
-            img.src=
-                URL.createObjectURL(file);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   05 🖼️ IMAGE COMPRESSOR
-========================================================= */
-
-async function ppppCompressImage(){
-
-    const input=
-        document.getElementById(
-            "ppppCompressImageInput"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppCompressResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select an image.";
-
-        return;
-    }
-
-    try{
-
-        const file=
-            input.files[0];
-
-        const img=
-            await ppppLoadImageFile(
-                file
-            );
-
-        const canvas=
-            document.createElement(
-                "canvas"
-            );
-
-        canvas.width=
-            img.naturalWidth;
-
-        canvas.height=
-            img.naturalHeight;
-
-        const ctx=
-            canvas.getContext("2d");
-
-        ctx.drawImage(
-            img,
-            0,
-            0
-        );
-
-        const quality=
-            Number(
-                document.getElementById(
-                    "ppppImageQuality"
-                ).value
-            )/100;
-
-        canvas.toBlob(
-            function(blob){
-
-                if(!blob){
-
-                    result.textContent=
-                        "❌ Compression failed.";
-
-                    return;
-                }
-
-                const preview=
-                    document.getElementById(
-                        "ppppCompressPreview"
-                    );
-
-                preview.src=
-                    URL.createObjectURL(blob);
-
-                preview.style.display=
-                    "block";
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-compressed-image.jpg"
-                );
-
-                result.innerHTML=
-                    "✅ Compressed successfully.<br>" +
-                    "📦 Original: " +
-                    (file.size/1024).toFixed(1) +
-                    " KB<br>" +
-                    "📦 New: " +
-                    (blob.size/1024).toFixed(1) +
-                    " KB";
-
-            },
-            "image/jpeg",
-            quality
-        );
-
-    }catch(error){
-
-        result.textContent=
-            "❌ Unable to compress image.";
-
-    }
-
-}
-
-
-/* =========================================================
-   06 📐 RESIZE IMAGE
-========================================================= */
-
-async function ppppResizeImage(){
-
-    const input=
-        document.getElementById(
-            "ppppResizeImageInput"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppResizeResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select an image.";
-
-        return;
-    }
-
-    const width=
-        Number(
-            document.getElementById(
-                "ppppResizeWidth"
-            ).value
-        );
-
-    const height=
-        Number(
-            document.getElementById(
-                "ppppResizeHeight"
-            ).value
-        );
-
-    if(
-        !width ||
-        !height ||
-        width<1 ||
-        height<1
-    ){
-
-        result.textContent=
-            "⚠️ Enter valid width and height.";
-
-        return;
-    }
-
-    try{
-
-        const img=
-            await ppppLoadImageFile(
-                input.files[0]
-            );
-
-        const canvas=
-            document.createElement(
-                "canvas"
-            );
-
-        canvas.width=width;
-        canvas.height=height;
-
-        canvas
-            .getContext("2d")
-            .drawImage(
-                img,
-                0,
-                0,
-                width,
-                height
-            );
-
-        canvas.toBlob(
-            function(blob){
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-resized-image.png"
-                );
-
-                result.textContent=
-                    "✅ Resized image downloaded.";
-
-            },
-            "image/png"
-        );
-
-    }catch(error){
-
-        result.textContent=
-            "❌ Resize failed.";
-
-    }
-
-}
-
-
-/* =========================================================
-   07 🔄 IMAGE CONVERTER
-========================================================= */
-
-async function ppppConvertImage(){
-
-    const input=
-        document.getElementById(
-            "ppppConvertImageInput"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppConvertResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select an image.";
-
-        return;
-    }
-
-    try{
-
-        const img=
-            await ppppLoadImageFile(
-                input.files[0]
-            );
-
-        const canvas=
-            document.createElement(
-                "canvas"
-            );
-
-        canvas.width=
-            img.naturalWidth;
-
-        canvas.height=
-            img.naturalHeight;
-
-        canvas
-            .getContext("2d")
-            .drawImage(
-                img,
-                0,
-                0
-            );
-
-        const format=
-            document.getElementById(
-                "ppppConvertFormat"
-            ).value;
-
-        const extension=
-            format==="image/png"
-                ? "png"
-                : format==="image/webp"
-                    ? "webp"
-                    : "jpg";
-
-        canvas.toBlob(
-            function(blob){
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-converted-image."+
-                    extension
-                );
-
-                result.textContent=
-                    "✅ Image converted and downloaded.";
-
-            },
-            format,
-            .92
-        );
-
-    }catch(error){
-
-        result.textContent=
-            "❌ Image conversion failed.";
-
-    }
-
-}
-
-
-/* =========================================================
-   08 🗣️ TEXT TO SPEECH
-========================================================= */
-
-let ppppTTSRecorder=null;
-let ppppTTSChunks=[];
-let ppppTTSStream=null;
-
-
-function ppppSpeakText(){
-
-    const text=
-        document.getElementById(
-            "ppppTTSInput"
-        ).value.trim();
-
-    const lang=
-        document.getElementById(
-            "ppppTTSLang"
-        ).value;
-
-    const rate=
-        Number(
-            document.getElementById(
-                "ppppTTSRate"
-            ).value
-        );
-
-    const result=
-        document.getElementById(
-            "ppppTTSResult"
-        );
-
-    if(!text){
-
-        result.textContent=
-            "⚠️ Please enter text.";
-
-        return;
-    }
-
-    if(!("speechSynthesis" in window)){
-
-        result.textContent=
-            "⚠️ Speech synthesis is not supported.";
-
-        return;
-    }
-
-    speechSynthesis.cancel();
-
-    const utterance=
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-    utterance.lang=lang;
-    utterance.rate=rate;
-    utterance.pitch=.9;
-
-    speechSynthesis.speak(
-        utterance
-    );
-
-    result.textContent=
-        "🔊 Speaking...";
-
-    utterance.onend=
-        function(){
-
-            result.textContent=
-                "✅ Speech finished.";
-
-        };
-
-}
-
-
-function ppppStopSpeech(){
-
-    if("speechSynthesis" in window)
-        speechSynthesis.cancel();
-
-    const result=
-        document.getElementById(
-            "ppppTTSResult"
-        );
-
-    if(result)
-        result.textContent=
-            "🛑 Speech stopped.";
-
-}
-
-
-/*
-   Browser speechSynthesis does not expose
-   generated audio directly.
-
-   This function uses display/tab audio capture
-   where supported.
-*/
-
-async function ppppDownloadSpeech(){
-
-    const text=
-        document.getElementById(
-            "ppppTTSInput"
-        ).value.trim();
-
-    const lang=
-        document.getElementById(
-            "ppppTTSLang"
-        ).value;
-
-    const rate=
-        Number(
-            document.getElementById(
-                "ppppTTSRate"
-            ).value
-        );
-
-    const result=
-        document.getElementById(
-            "ppppTTSResult"
-        );
-
-    if(!text){
-
-        result.textContent=
-            "⚠️ Please enter text.";
-
-        return;
-    }
-
-    if(!navigator.mediaDevices ||
-       !navigator.mediaDevices.getDisplayMedia){
-
-        result.textContent=
-            "⚠️ This browser does not support speech audio capture.";
-
-        return;
-    }
-
-    try{
-
-        ppppTTSStream=
-            await navigator.mediaDevices.getDisplayMedia({
-                video:true,
-                audio:true
-            });
-
-        const audioTracks=
-            ppppTTSStream.getAudioTracks();
-
-        if(!audioTracks.length){
-
-            ppppTTSStream
-                .getTracks()
-                .forEach(
-                    track=>track.stop()
-                );
-
-            result.textContent=
-                "⚠️ No tab/system audio was shared.";
-
+        if(window.jsQR){
+            jsQRLoaded15=true;
+            resolve();
             return;
         }
 
-        const audioStream=
-            new MediaStream(
-                audioTracks
-            );
+        const script=document.createElement("script");
 
-        ppppTTSChunks=[];
+        script.src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js";
 
-        ppppTTSRecorder=
-            new MediaRecorder(
-                audioStream
-            );
+        script.onload=function(){
+            jsQRLoaded15=true;
+            resolve();
+        };
 
-        ppppTTSRecorder.ondataavailable=
-            function(e){
+        script.onerror=function(){
+            reject(new Error("QR fallback library could not be loaded."));
+        };
 
-                if(e.data.size)
-                    ppppTTSChunks.push(
-                        e.data
-                    );
+        document.head.appendChild(script);
 
-            };
+    });
 
-        ppppTTSRecorder.onstop=
-            function(){
+}
 
-                const blob=
-                    new Blob(
-                        ppppTTSChunks,
-                        {
-                            type:
-                                ppppTTSRecorder.mimeType ||
-                                "audio/webm"
-                        }
-                    );
+function scanImageWithBarcodeDetector15(file){
 
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-speech.webm"
-                );
+    if(!("BarcodeDetector" in window)){
+        return Promise.reject(new Error("BarcodeDetector unavailable"));
+    }
 
-                ppppTTSStream
-                    .getTracks()
-                    .forEach(
-                        track=>track.stop()
-                    );
+    return createImageBitmap(file).then(function(bitmap){
 
-                result.textContent=
-                    "✅ Speech audio downloaded.";
+        const detector=new BarcodeDetector();
 
-            };
+        return detector.detect(bitmap);
 
-        ppppTTSRecorder.start();
+    });
 
-        const utterance=
-            new SpeechSynthesisUtterance(
-                text
-            );
+}
 
-        utterance.lang=lang;
-        utterance.rate=rate;
-        utterance.pitch=.9;
+function showQRResult15(text){
 
-        utterance.onend=
-            function(){
+    const result=$( "ppppQRResult" );
 
-                setTimeout(
-                    function(){
-
-                        if(
-                            ppppTTSRecorder &&
-                            ppppTTSRecorder.state==="recording"
-                        ){
-
-                            ppppTTSRecorder.stop();
-
-                        }
-
-                    },
-                    500
-                );
-
-            };
-
-        speechSynthesis.cancel();
-
-        speechSynthesis.speak(
-            utterance
-        );
-
-        result.textContent=
-            "🎙️ Recording speech audio...";
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Speech download was cancelled or unsupported.";
-
+    if(result){
+        result.textContent=text || "No QR/Barcode detected.";
     }
 
 }
 
+async function scanQRImage15(){
 
-/* =========================================================
-   09 🎧 AUDIO COMPRESSOR
-========================================================= */
+    const input=$("ppppQRImage");
 
-async function ppppCompressAudio(){
-
-    const input=
-        document.getElementById(
-            "ppppAudioInput"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppAudioResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select an audio file.";
-
+    if(!input || !input.files.length){
+        showQRResult15("Please select an image first.");
         return;
     }
 
-    try{
-
-        const audio=
-            new Audio();
-
-        audio.src=
-            URL.createObjectURL(
-                input.files[0]
-            );
-
-        await audio.play();
-
-        audio.pause();
-
-        const context=
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
-        const source=
-            context.createMediaElementSource(
-                audio
-            );
-
-        const destination=
-            context.createMediaStreamDestination();
-
-        source.connect(destination);
-
-        const recorder=
-            new MediaRecorder(
-                destination.stream,
-                {
-                    mimeType:
-                        "audio/webm;codecs=opus"
-                }
-            );
-
-        const chunks=[];
-
-        recorder.ondataavailable=
-            e=>{
-                if(e.data.size)
-                    chunks.push(e.data);
-            };
-
-        recorder.onstop=
-            function(){
-
-                const blob=
-                    new Blob(
-                        chunks,
-                        {
-                            type:
-                                "audio/webm"
-                        }
-                    );
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-compressed-audio.webm"
-                );
-
-                result.textContent=
-                    "✅ Compressed audio downloaded.";
-
-                context.close();
-
-            };
-
-        recorder.start();
-
-        audio.onended=
-            function(){
-
-                if(
-                    recorder.state==="recording"
-                ){
-
-                    recorder.stop();
-
-                }
-
-            };
-
-        audio.currentTime=0;
-        await audio.play();
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Audio compression is not supported for this file/browser.";
-
-    }
-
-}
-
-
-/* =========================================================
-   10 🎥 VIDEO COMPRESSOR
-========================================================= */
-
-async function ppppCompressVideo(){
-
-    const input=
-        document.getElementById(
-            "ppppVideoInput"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppVideoResult"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select a video.";
-
-        return;
-    }
+    const file=input.files[0];
 
     try{
 
-        const video=
-            document.createElement(
-                "video"
-            );
+        if("BarcodeDetector" in window){
 
-        video.src=
-            URL.createObjectURL(
-                input.files[0]
-            );
+            const codes=await scanImageWithBarcodeDetector15(file);
 
-        video.muted=true;
-        video.playsInline=true;
+            if(codes.length){
 
-        await new Promise(
-            resolve=>{
-                video.onloadedmetadata=
-                    resolve;
-            }
-        );
+                showQRResult15(codes.map(function(x){
+                    return x.rawValue || "";
+                }).join(" | "));
 
-        const scale=
-            Math.min(
-                1,
-                720/video.videoWidth
-            );
-
-        const canvas=
-            document.createElement(
-                "canvas"
-            );
-
-        canvas.width=
-            Math.max(
-                1,
-                Math.round(
-                    video.videoWidth*scale
-                )
-            );
-
-        canvas.height=
-            Math.max(
-                1,
-                Math.round(
-                    video.videoHeight*scale
-                )
-            );
-
-        const ctx=
-            canvas.getContext("2d");
-
-        const stream=
-            canvas.captureStream(25);
-
-        const recorder=
-            new MediaRecorder(
-                stream,
-                {
-                    mimeType:
-                        "video/webm;codecs=vp8"
-                }
-            );
-
-        const chunks=[];
-
-        recorder.ondataavailable=
-            e=>{
-                if(e.data.size)
-                    chunks.push(e.data);
-            };
-
-        recorder.onstop=
-            function(){
-
-                const blob=
-                    new Blob(
-                        chunks,
-                        {
-                            type:
-                                "video/webm"
-                        }
-                    );
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-compressed-video.webm"
-                );
-
-                result.textContent=
-                    "✅ Compressed video downloaded.";
-
-            };
-
-        recorder.start();
-
-        video.currentTime=0;
-
-        await video.play();
-
-        function draw(){
-
-            if(
-                recorder.state!=="recording"
-            )
                 return;
+            }
+
+        }
+
+    }catch(e){}
+
+    try{
+
+        await loadJsQR15();
+
+        const bitmap=await createImageBitmap(file);
+
+        const canvas=$("ppppQRCanvas");
+        const ctx=canvas.getContext("2d",{willReadFrequently:true});
+
+        canvas.width=bitmap.width;
+        canvas.height=bitmap.height;
+
+        ctx.drawImage(bitmap,0,0);
+
+        const imageData=ctx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        const code=window.jsQR(
+            imageData.data,
+            imageData.width,
+            imageData.height
+        );
+
+        if(code){
+
+            showQRResult15(code.data);
+
+        }else{
+
+            showQRResult15("No QR code detected in this image.");
+
+        }
+
+    }catch(e){
+
+        showQRResult15(
+            "This browser cannot scan the selected image. Please try another browser or use a clearer QR image."
+        );
+
+    }
+
+}
+
+function scanCameraFrame15(){
+
+    const video=$("ppppQRVideo");
+    const canvas=$("ppppQRCanvas");
+
+    if(!video || !canvas || !qrStream15) return;
+
+    if(video.readyState>=2){
+
+        const ctx=canvas.getContext(
+            "2d",
+            {willReadFrequently:true}
+        );
+
+        canvas.width=video.videoWidth;
+        canvas.height=video.videoHeight;
+
+        if(canvas.width && canvas.height){
 
             ctx.drawImage(
                 video,
@@ -6761,472 +5347,1444 @@ async function ppppCompressVideo(){
                 canvas.height
             );
 
-            requestAnimationFrame(
-                draw
-            );
+            if(window.jsQR){
+
+                const data=ctx.getImageData(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+                const code=window.jsQR(
+                    data.data,
+                    data.width,
+                    data.height
+                );
+
+                if(code){
+
+                    showQRResult15(code.data);
+
+                    stopQR15();
+
+                    return;
+                }
+
+            }
 
         }
 
-        draw();
-
-        video.onended=
-            function(){
-
-                if(
-                    recorder.state==="recording"
-                )
-                    recorder.stop();
-
-            };
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Video compression failed.";
-
     }
+
+    qrAnimation15=requestAnimationFrame(
+        scanCameraFrame15
+    );
 
 }
 
-
-/* =========================================================
-   11 🎵 VIDEO TO MP3
-========================================================= */
-
-async function ppppVideoToMP3(){
-
-    const input=
-        document.getElementById(
-            "ppppVideoToMP3Input"
-        );
-
-    const result=
-        document.getElementById(
-            "ppppVideoToMP3Result"
-        );
-
-    if(!input.files.length){
-
-        result.textContent=
-            "⚠️ Please select a video.";
-
-        return;
-    }
+async function startQR15(){
 
     try{
 
-        const video=
-            document.createElement(
-                "video"
+        if(!navigator.mediaDevices ||
+           !navigator.mediaDevices.getUserMedia){
+
+            showQRResult15(
+                "Camera is not supported. Please scan a QR image instead."
             );
-
-        video.src=
-            URL.createObjectURL(
-                input.files[0]
-            );
-
-        video.muted=false;
-
-        await new Promise(
-            resolve=>{
-                video.onloadedmetadata=
-                    resolve;
-            }
-        );
-
-        const context=
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
-        const source=
-            context.createMediaElementSource(
-                video
-            );
-
-        const destination=
-            context.createMediaStreamDestination();
-
-        source.connect(destination);
-
-        const recorder=
-            new MediaRecorder(
-                destination.stream,
-                {
-                    mimeType:
-                        "audio/webm;codecs=opus"
-                }
-            );
-
-        const chunks=[];
-
-        recorder.ondataavailable=
-            e=>{
-                if(e.data.size)
-                    chunks.push(e.data);
-            };
-
-        recorder.onstop=
-            function(){
-
-                const blob=
-                    new Blob(
-                        chunks,
-                        {
-                            type:
-                                "audio/webm"
-                        }
-                    );
-
-                ppppDownloadBlob(
-                    blob,
-                    "pppp-video-audio.webm"
-                );
-
-                result.innerHTML=
-                    "✅ Audio extracted and downloaded as WebM/Opus.<br>" +
-                    "ℹ️ True MP3 requires an MP3 encoder.";
-
-                context.close();
-
-            };
-
-        recorder.start();
-
-        video.currentTime=0;
-
-        await video.play();
-
-        video.onended=
-            function(){
-
-                if(
-                    recorder.state==="recording"
-                )
-                    recorder.stop();
-
-            };
-
-        result.textContent=
-            "🎵 Extracting audio...";
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ Video to audio conversion failed.";
-
-    }
-
-}
-
-
-/* =========================================================
-   12 🎞️ MP3 TO VIDEO
-========================================================= */
-
-let ppppMP3BgImageData=null;
-
-document
-.getElementById(
-    "ppppMP3BgImage"
-)
-.addEventListener(
-    "change",
-    function(){
-
-        const file=
-            this.files[0];
-
-        const preview=
-            document.getElementById(
-                "ppppMP3BgPreview"
-            );
-
-        if(!file){
-
-            ppppMP3BgImageData=null;
-
-            preview.style.display=
-                "none";
 
             return;
         }
 
-        const reader=
-            new FileReader();
+        await loadJsQR15();
 
-        reader.onload=
-            function(){
+        qrStream15=await navigator.mediaDevices.getUserMedia({
+            video:{
+                facingMode:{
+                    ideal:"environment"
+                }
+            },
+            audio:false
+        });
 
-                ppppMP3BgImageData=
-                    reader.result;
+        const video=$("ppppQRVideo");
 
-                preview.src=
-                    reader.result;
+        video.srcObject=qrStream15;
 
-                preview.style.display=
-                    "block";
+        await video.play();
 
-            };
+        showQRResult15("Camera scanning...");
 
-        reader.readAsDataURL(
-            file
+        scanCameraFrame15();
+
+    }catch(e){
+
+        showQRResult15(
+            "Camera access is unavailable. Please allow camera permission or use image scanning."
+        );
+
+    }
+
+}
+
+function stopQR15(){
+
+    if(qrAnimation15){
+        cancelAnimationFrame(qrAnimation15);
+        qrAnimation15=null;
+    }
+
+    if(qrStream15){
+
+        qrStream15.getTracks().forEach(function(track){
+            track.stop();
+        });
+
+        qrStream15=null;
+    }
+
+    const video=$("ppppQRVideo");
+
+    if(video){
+        video.srcObject=null;
+    }
+
+}
+
+$("ppppQRImageBtn")?.addEventListener(
+    "click",
+    scanQRImage15
+);
+
+$("ppppQRStart")?.addEventListener(
+    "click",
+    startQR15
+);
+
+$("ppppQRStop")?.addEventListener(
+    "click",
+    stopQR15
+);
+
+
+/* =========================================================
+   03 🎓 GPA CALCULATOR — 12 SUBJECTS
+========================================================= */
+
+$("ppppGPACalculate")?.addEventListener(
+    "click",
+    function(){
+
+        let total=0;
+        let count=0;
+
+        for(let i=1;i<=12;i++){
+
+            const el=$("gpa"+i);
+            if(!el) continue;
+
+            const value=parseFloat(el.value);
+
+            if(!isNaN(value) && value>=0 && value<=4){
+
+                total+=value;
+                count++;
+
+            }
+
+        }
+
+        if(!count){
+
+            safeText(
+                "ppppGPAResult",
+                "Please enter at least one valid GPA."
+            );
+
+            return;
+        }
+
+        const gpa=total/count;
+
+        safeText(
+            "ppppGPAResult",
+            "GPA: "+gpa.toFixed(2)
         );
 
     }
 );
 
 
-async function ppppMP3ToVideo(){
+/* =========================================================
+   04 🕌 ZAKAT CALCULATOR
+========================================================= */
 
-    const audioInput=
-        document.getElementById(
-            "ppppMP3Input"
+$("ppppZakatCalculate")?.addEventListener(
+    "click",
+    function(){
+
+        const cash=parseFloat($("zakatCash")?.value)||0;
+        const bank=parseFloat($("zakatBank")?.value)||0;
+        const gold=parseFloat($("zakatGold")?.value)||0;
+        const assets=parseFloat($("zakatAssets")?.value)||0;
+
+        const total=cash+bank+gold+assets;
+        const zakat=total*0.025;
+
+        safeText(
+            "ppppZakatResult",
+            "Total Assets: "+total.toFixed(2)+
+            " | Zakat (2.5%): "+zakat.toFixed(2)
         );
 
-    const result=
-        document.getElementById(
-            "ppppMP3ToVideoResult"
+    }
+);
+
+
+/* =========================================================
+   05 🖼️ IMAGE COMPRESSOR
+========================================================= */
+
+$("ppppImageQuality")?.addEventListener(
+    "input",
+    function(){
+
+        safeText(
+            "ppppImageQualityText",
+            this.value+"%"
         );
 
-    if(!audioInput.files.length){
+    }
+);
 
-        result.textContent=
-            "⚠️ Please select an audio file.";
+$("ppppImageCompressBtn")?.addEventListener(
+    "click",
+    function(){
+
+        const input=$("ppppImageCompressInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppImageCompressResult",
+                "Please select an image."
+            );
+
+            return;
+        }
+
+        const file=input.files[0];
+        const quality=(parseInt($("ppppImageQuality").value)||70)/100;
+
+        const img=new Image();
+
+        img.onload=function(){
+
+            const canvas=document.createElement("canvas");
+
+            canvas.width=img.naturalWidth;
+            canvas.height=img.naturalHeight;
+
+            const ctx=canvas.getContext("2d");
+
+            ctx.drawImage(img,0,0);
+
+            canvas.toBlob(
+                function(blob){
+
+                    if(!blob){
+
+                        safeText(
+                            "ppppImageCompressResult",
+                            "Compression failed."
+                        );
+
+                        return;
+                    }
+
+                    downloadBlob(
+                        blob,
+                        "compressed_"+file.name.replace(/\.[^.]+$/,"")+".jpg"
+                    );
+
+                    safeText(
+                        "ppppImageCompressResult",
+                        "Compressed image downloaded."
+                    );
+
+                },
+                "image/jpeg",
+                quality
+            );
+
+        };
+
+        img.onerror=function(){
+
+            safeText(
+                "ppppImageCompressResult",
+                "Could not read image."
+            );
+
+        };
+
+        img.src=URL.createObjectURL(file);
+
+    }
+);
+
+
+/* =========================================================
+   06 📐 RESIZE IMAGE
+========================================================= */
+
+$("ppppResizeBtn")?.addEventListener(
+    "click",
+    function(){
+
+        const input=$("ppppResizeInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppResizeResult",
+                "Please select an image."
+            );
+
+            return;
+        }
+
+        const width=parseInt($("ppppResizeWidth").value);
+        const height=parseInt($("ppppResizeHeight").value);
+
+        if(!width || !height || width<1 || height<1){
+
+            safeText(
+                "ppppResizeResult",
+                "Please enter valid width and height."
+            );
+
+            return;
+        }
+
+        const img=new Image();
+
+        img.onload=function(){
+
+            const canvas=document.createElement("canvas");
+
+            canvas.width=width;
+            canvas.height=height;
+
+            canvas.getContext("2d").drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
+
+            canvas.toBlob(function(blob){
+
+                downloadBlob(
+                    blob,
+                    "resized_"+input.files[0].name.replace(/\.[^.]+$/,"")+".jpg"
+                );
+
+                safeText(
+                    "ppppResizeResult",
+                    "Resized image downloaded."
+                );
+
+            },"image/jpeg",.90);
+
+        };
+
+        img.src=URL.createObjectURL(input.files[0]);
+
+    }
+);
+
+
+/* =========================================================
+   07 🔄 IMAGE CONVERTER
+========================================================= */
+
+$("ppppImageConvertBtn")?.addEventListener(
+    "click",
+    function(){
+
+        const input=$("ppppImageConvertInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppImageConvertResult",
+                "Please select an image."
+            );
+
+            return;
+        }
+
+        const format=$("ppppImageConvertFormat").value;
+
+        const mime={
+            png:"image/png",
+            jpg:"image/jpeg",
+            jpeg:"image/jpeg",
+            webp:"image/webp"
+        }[format];
+
+        const img=new Image();
+
+        img.onload=function(){
+
+            const canvas=document.createElement("canvas");
+
+            canvas.width=img.naturalWidth;
+            canvas.height=img.naturalHeight;
+
+            canvas.getContext("2d").drawImage(
+                img,
+                0,
+                0
+            );
+
+            canvas.toBlob(function(blob){
+
+                const base=input.files[0].name
+                    .replace(/\.[^.]+$/,"");
+
+                downloadBlob(
+                    blob,
+                    base+"."+format
+                );
+
+                safeText(
+                    "ppppImageConvertResult",
+                    "Converted to "+format.toUpperCase()+" and downloaded."
+                );
+
+            },mime,.92);
+
+        };
+
+        img.src=URL.createObjectURL(input.files[0]);
+
+    }
+);
+
+
+/* =========================================================
+   08 🗣️ TEXT TO SPEECH
+========================================================= */
+
+let ttsAudioStream15=null;
+let ttsRecorder15=null;
+let ttsChunks15=[];
+
+$("ppppTTSSpeak")?.addEventListener(
+    "click",
+    function(){
+
+        const text=$("ppppTTSInput").value.trim();
+
+        if(!text){
+
+            safeText(
+                "ppppTTSResult",
+                "Please enter text."
+            );
+
+            return;
+        }
+
+        if(!("speechSynthesis" in window)){
+
+            safeText(
+                "ppppTTSResult",
+                "Speech synthesis is not supported in this browser."
+            );
+
+            return;
+        }
+
+        speechSynthesis.cancel();
+
+        const utterance=new SpeechSynthesisUtterance(text);
+
+        utterance.onstart=function(){
+            safeText(
+                "ppppTTSResult",
+                "Speaking..."
+            );
+        };
+
+        utterance.onend=function(){
+            safeText(
+                "ppppTTSResult",
+                "Speech finished."
+            );
+        };
+
+        utterance.onerror=function(){
+            safeText(
+                "ppppTTSResult",
+                "Speech could not be played."
+            );
+        };
+
+        speechSynthesis.speak(utterance);
+
+    }
+);
+
+$("ppppTTSStop")?.addEventListener(
+    "click",
+    function(){
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        safeText(
+            "ppppTTSResult",
+            "Speech stopped."
+        );
+
+    }
+);
+
+async function downloadSpeech15(){
+
+    const text=$("ppppTTSInput").value.trim();
+
+    if(!text){
+
+        safeText(
+            "ppppTTSResult",
+            "Please enter text."
+        );
 
         return;
     }
 
-    try{
+    /*
+       Browser speechSynthesis normally does not expose
+       its generated audio stream.
 
-        const audio=
-            new Audio();
+       Where display-media audio capture is supported,
+       capture is attempted. Otherwise text is downloaded
+       as an honest fallback instead of creating a fake
+       audio file.
+    */
 
-        audio.src=
-            URL.createObjectURL(
-                audioInput.files[0]
+    if(
+        navigator.mediaDevices &&
+        navigator.mediaDevices.getDisplayMedia &&
+        window.MediaRecorder
+    ){
+
+        try{
+
+            safeText(
+                "ppppTTSResult",
+                "Select this tab/window and enable audio sharing..."
             );
 
-        audio.crossOrigin=
-            "anonymous";
+            const stream=await navigator.mediaDevices.getDisplayMedia({
+                video:true,
+                audio:true
+            });
 
-        await new Promise(
-            resolve=>{
-                audio.onloadedmetadata=
-                    resolve;
+            const mime=getSupportedMime([
+                "audio/webm;codecs=opus",
+                "video/webm;codecs=vp8,opus",
+                "video/webm"
+            ]);
+
+            if(!mime){
+
+                stream.getTracks().forEach(
+                    track=>track.stop()
+                );
+
+                throw new Error("No supported recorder format.");
             }
-        );
 
-        const size=
-            document.getElementById(
-                "ppppMP3VideoSize"
-            ).value.split("x");
+            ttsChunks15=[];
 
-        const width=
-            Number(size[0]);
-
-        const height=
-            Number(size[1]);
-
-        const canvas=
-            document.createElement(
-                "canvas"
+            ttsRecorder15=new MediaRecorder(
+                stream,
+                {mimeType:mime}
             );
 
-        canvas.width=width;
-        canvas.height=height;
+            ttsRecorder15.ondataavailable=function(e){
 
-        const ctx=
-            canvas.getContext("2d");
-
-        const videoStream=
-            canvas.captureStream(25);
-
-        const audioContext=
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
-        const source=
-            audioContext.createMediaElementSource(
-                audio
-            );
-
-        const audioDestination=
-            audioContext.createMediaStreamDestination();
-
-        source.connect(
-            audioDestination
-        );
-
-        source.connect(
-            audioContext.destination
-        );
-
-        audioDestination.stream
-            .getAudioTracks()
-            .forEach(
-                track=>{
-                    videoStream.addTrack(
-                        track
-                    );
+                if(e.data && e.data.size){
+                    ttsChunks15.push(e.data);
                 }
-            );
 
-        const recorder=
-            new MediaRecorder(
-                videoStream,
-                {
-                    mimeType:
-                        "video/webm;codecs=vp8,opus"
-                }
-            );
-
-        const chunks=[];
-
-        recorder.ondataavailable=
-            e=>{
-                if(e.data.size)
-                    chunks.push(e.data);
             };
 
-        recorder.onstop=
-            function(){
+            ttsRecorder15.onstop=function(){
+
+                const blob=new Blob(
+                    ttsChunks15,
+                    {type:mime}
+                );
+
+                downloadBlob(
+                    blob,
+                    "text-to-speech.webm"
+                );
+
+                stream.getTracks().forEach(
+                    track=>track.stop()
+                );
+
+                safeText(
+                    "ppppTTSResult",
+                    "Speech audio downloaded."
+                );
+
+            };
+
+            ttsRecorder15.start();
+
+            if("speechSynthesis" in window){
+
+                speechSynthesis.cancel();
+
+                const utterance=new SpeechSynthesisUtterance(text);
+
+                utterance.onend=function(){
+
+                    setTimeout(function(){
+
+                        if(ttsRecorder15 &&
+                           ttsRecorder15.state!=="inactive"){
+
+                            ttsRecorder15.stop();
+
+                        }
+
+                    },500);
+
+                };
+
+                utterance.onerror=function(){
+
+                    if(ttsRecorder15 &&
+                       ttsRecorder15.state!=="inactive"){
+
+                        ttsRecorder15.stop();
+
+                    }
+
+                };
+
+                speechSynthesis.speak(utterance);
+
+            }
+
+            return;
+
+        }catch(e){}
+
+    }
+
+    /*
+       Safe fallback: download the actual text.
+    */
+
+    const blob=new Blob(
+        [text],
+        {type:"text/plain;charset=utf-8"}
+    );
+
+    downloadBlob(
+        blob,
+        "text-to-speech-text.txt"
+    );
+
+    safeText(
+        "ppppTTSResult",
+        "Audio capture is unavailable in this browser. Text fallback downloaded."
+    );
+
+}
+
+$("ppppTTSDownload")?.addEventListener(
+    "click",
+    downloadSpeech15
+);
+
+
+/* =========================================================
+   09 🎧 AUDIO COMPRESSOR
+========================================================= */
+
+$("ppppAudioCompressBtn")?.addEventListener(
+    "click",
+    async function(){
+
+        const input=$("ppppAudioInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppAudioResult",
+                "Please select an audio file."
+            );
+
+            return;
+        }
+
+        if(!window.AudioContext ||
+           !window.MediaRecorder){
+
+            safeText(
+                "ppppAudioResult",
+                "Audio compression is not supported in this browser."
+            );
+
+            return;
+        }
+
+        const file=input.files[0];
+
+        try{
+
+            const arrayBuffer=await file.arrayBuffer();
+
+            const AudioCtx=
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+            const ctx=new AudioCtx();
+
+            const audioBuffer=
+                await ctx.decodeAudioData(arrayBuffer);
+
+            const source=
+                ctx.createBufferSource();
+
+            source.buffer=audioBuffer;
+
+            const destination=
+                ctx.createMediaStreamDestination();
+
+            const gain=
+                ctx.createGain();
+
+            gain.gain.value=.8;
+
+            source.connect(gain);
+            gain.connect(destination);
+
+            const bitrate=
+                parseInt(
+                    $("ppppAudioBitrate").value
+                )||64000;
+
+            const mime=getSupportedMime([
+                "audio/webm;codecs=opus",
+                "audio/webm"
+            ]);
+
+            if(!mime){
+
+                safeText(
+                    "ppppAudioResult",
+                    "No supported audio compression format is available."
+                );
+
+                ctx.close();
+
+                return;
+            }
+
+            const recorder=
+                new MediaRecorder(
+                    destination.stream,
+                    {
+                        mimeType:mime,
+                        audioBitsPerSecond:bitrate
+                    }
+                );
+
+            const chunks=[];
+
+            recorder.ondataavailable=function(e){
+
+                if(e.data.size){
+                    chunks.push(e.data);
+                }
+
+            };
+
+            recorder.onstop=function(){
+
+                const blob=new Blob(
+                    chunks,
+                    {type:mime}
+                );
+
+                const ext=extensionFromMime(mime);
+
+                downloadBlob(
+                    blob,
+                    "compressed_audio."+ext
+                );
+
+                safeText(
+                    "ppppAudioResult",
+                    "Compressed audio downloaded."
+                );
+
+                ctx.close();
+
+            };
+
+            source.onended=function(){
+
+                if(recorder.state!=="inactive"){
+                    recorder.stop();
+                }
+
+            };
+
+            recorder.start();
+
+            source.start(0);
+
+        }catch(e){
+
+            safeText(
+                "ppppAudioResult",
+                "Audio compression failed. Please try a smaller file."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   10 🎥 VIDEO COMPRESSOR
+========================================================= */
+
+$("ppppVideoCompressBtn")?.addEventListener(
+    "click",
+    async function(){
+
+        const input=$("ppppVideoCompressInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppVideoResult",
+                "Please select a video file."
+            );
+
+            return;
+        }
+
+        if(!window.MediaRecorder){
+
+            safeText(
+                "ppppVideoResult",
+                "Video recording is not supported in this browser."
+            );
+
+            return;
+        }
+
+        const file=input.files[0];
+
+        const video=document.createElement("video");
+
+        video.muted=true;
+        video.playsInline=true;
+        video.src=URL.createObjectURL(file);
+
+        video.onloadedmetadata=async function(){
+
+            try{
+
+                await video.play();
+
+                const selected=
+                    parseInt(
+                        $("ppppVideoQuality").value
+                    )||480;
+
+                const scale=
+                    Math.min(
+                        1,
+                        selected/video.videoHeight
+                    );
+
+                const width=
+                    Math.max(
+                        2,
+                        Math.round(video.videoWidth*scale/2)*2
+                    );
+
+                const height=
+                    Math.max(
+                        2,
+                        Math.round(video.videoHeight*scale/2)*2
+                    );
+
+                const canvas=document.createElement("canvas");
+
+                canvas.width=width;
+                canvas.height=height;
+
+                const ctx=canvas.getContext("2d");
+
+                const stream=
+                    canvas.captureStream(30);
+
+                const mime=getSupportedMime([
+                    "video/webm;codecs=vp9,opus",
+                    "video/webm;codecs=vp8,opus",
+                    "video/webm"
+                ]);
+
+                if(!mime){
+
+                    safeText(
+                        "ppppVideoResult",
+                        "No supported video encoder is available."
+                    );
+
+                    return;
+                }
+
+                const recorder=
+                    new MediaRecorder(
+                        stream,
+                        {
+                            mimeType:mime,
+                            videoBitsPerSecond:
+                                selected<=360?500000:
+                                selected<=480?900000:
+                                1600000
+                        }
+                    );
+
+                const chunks=[];
+
+                recorder.ondataavailable=function(e){
+
+                    if(e.data.size){
+                        chunks.push(e.data);
+                    }
+
+                };
+
+                recorder.onstop=function(){
+
+                    const blob=new Blob(
+                        chunks,
+                        {type:mime}
+                    );
+
+                    downloadBlob(
+                        blob,
+                        "compressed_video.webm"
+                    );
+
+                    safeText(
+                        "ppppVideoResult",
+                        "Compressed video downloaded."
+                    );
+
+                    URL.revokeObjectURL(video.src);
+
+                };
+
+                recorder.start();
+
+                function drawFrame(){
+
+                    if(video.ended ||
+                       video.paused){
+
+                        if(recorder.state!=="inactive"){
+                            recorder.stop();
+                        }
+
+                        return;
+                    }
+
+                    ctx.drawImage(
+                        video,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+
+                    requestAnimationFrame(
+                        drawFrame
+                    );
+
+                }
+
+                drawFrame();
+
+            }catch(e){
+
+                safeText(
+                    "ppppVideoResult",
+                    "Video compression failed."
+                );
+
+            }
+
+        };
+
+    }
+);
+
+
+/* =========================================================
+   11 🎵 VIDEO TO MP3
+========================================================= */
+
+$("ppppVideoToMP3Btn")?.addEventListener(
+    "click",
+    async function(){
+
+        const input=$("ppppVideoToMP3Input");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppVideoToMP3Result",
+                "Please select a video file."
+            );
+
+            return;
+        }
+
+        if(!window.AudioContext ||
+           !window.MediaRecorder){
+
+            safeText(
+                "ppppVideoToMP3Result",
+                "Audio extraction is not supported in this browser."
+            );
+
+            return;
+        }
+
+        try{
+
+            const file=input.files[0];
+
+            const video=document.createElement("video");
+
+            video.src=URL.createObjectURL(file);
+            video.muted=false;
+            video.playsInline=true;
+
+            await new Promise(function(resolve,reject){
+
+                video.onloadedmetadata=resolve;
+                video.onerror=reject;
+
+            });
+
+            const AudioCtx=
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+            const ctx=new AudioCtx();
+
+            const source=
+                ctx.createMediaElementSource(video);
+
+            const destination=
+                ctx.createMediaStreamDestination();
+
+            source.connect(destination);
+
+            const bitrate=
+                parseInt(
+                    $("ppppVideoToMP3Bitrate").value
+                )||96000;
+
+            const mime=getSupportedMime([
+                "audio/mpeg",
+                "audio/webm;codecs=opus",
+                "audio/webm"
+            ]);
+
+            if(!mime){
+
+                safeText(
+                    "ppppVideoToMP3Result",
+                    "No compatible audio encoder is available."
+                );
+
+                ctx.close();
+
+                return;
+            }
+
+            const recorder=
+                new MediaRecorder(
+                    destination.stream,
+                    {
+                        mimeType:mime,
+                        audioBitsPerSecond:bitrate
+                    }
+                );
+
+            const chunks=[];
+
+            recorder.ondataavailable=function(e){
+
+                if(e.data.size){
+                    chunks.push(e.data);
+                }
+
+            };
+
+            recorder.onstop=function(){
+
+                const blob=new Blob(
+                    chunks,
+                    {type:mime}
+                );
+
+                const ext=extensionFromMime(mime);
+
+                downloadBlob(
+                    blob,
+                    "video_to_audio."+ext
+                );
+
+                safeText(
+                    "ppppVideoToMP3Result",
+                    mime.includes("mpeg")
+                    ? "MP3 downloaded."
+                    : "Compatible audio file downloaded because native MP3 encoding is unavailable."
+                );
+
+                ctx.close();
+                URL.revokeObjectURL(video.src);
+
+            };
+
+            video.onended=function(){
+
+                if(recorder.state!=="inactive"){
+                    recorder.stop();
+                }
+
+            };
+
+            recorder.start();
+
+            await video.play();
+
+        }catch(e){
+
+            safeText(
+                "ppppVideoToMP3Result",
+                "Video-to-audio conversion failed."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   12 🎞️ MP3 TO VIDEO
+========================================================= */
+
+$("ppppMP3ToVideoBtn")?.addEventListener(
+    "click",
+    async function(){
+
+        const input=$("ppppMP3ToVideoInput");
+
+        if(!input || !input.files.length){
+
+            safeText(
+                "ppppMP3ToVideoResult",
+                "Please select an MP3/audio file."
+            );
+
+            return;
+        }
+
+        if(!window.AudioContext ||
+           !window.MediaRecorder ||
+           !HTMLCanvasElement.prototype.captureStream){
+
+            safeText(
+                "ppppMP3ToVideoResult",
+                "Video creation is not supported in this browser."
+            );
+
+            return;
+        }
+
+        try{
+
+            const size=
+                $("ppppMP3VideoSize").value.split("x");
+
+            const width=parseInt(size[0]);
+            const height=parseInt(size[1]);
+
+            const color=
+                $("ppppMP3VideoColor").value||"#000000";
+
+            const imageInput=
+                $("ppppMP3VideoImage");
+
+            let backgroundImage=null;
+
+            if(imageInput && imageInput.files.length){
+
+                backgroundImage=
+                    await new Promise(function(resolve,reject){
+
+                        const img=new Image();
+
+                        img.onload=function(){
+                            resolve(img);
+                        };
+
+                        img.onerror=reject;
+
+                        img.src=
+                            URL.createObjectURL(
+                                imageInput.files[0]
+                            );
+
+                    });
+
+            }
+
+            const audioURL=
+                URL.createObjectURL(
+                    input.files[0]
+                );
+
+            const audio=
+                document.createElement("audio");
+
+            audio.src=audioURL;
+            audio.preload="auto";
+
+            await new Promise(function(resolve,reject){
+
+                audio.onloadedmetadata=resolve;
+                audio.onerror=reject;
+
+            });
+
+            const canvas=
+                document.createElement("canvas");
+
+            canvas.width=width;
+            canvas.height=height;
+
+            const ctx=
+                canvas.getContext("2d");
+
+            const videoStream=
+                canvas.captureStream(30);
+
+            const AudioCtx=
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+            const audioCtx=new AudioCtx();
+
+            const source=
+                audioCtx.createMediaElementSource(
+                    audio
+                );
+
+            const destination=
+                audioCtx.createMediaStreamDestination();
+
+            source.connect(destination);
+
+            const combined=
+                new MediaStream();
+
+            videoStream.getVideoTracks().forEach(
+                track=>combined.addTrack(track)
+            );
+
+            destination.stream
+                .getAudioTracks()
+                .forEach(
+                    track=>combined.addTrack(track)
+                );
+
+            const mime=getSupportedMime([
+                "video/mp4;codecs=avc1,mp4a.40.2",
+                "video/mp4",
+                "video/webm;codecs=vp9,opus",
+                "video/webm;codecs=vp8,opus",
+                "video/webm"
+            ]);
+
+            if(!mime){
+
+                safeText(
+                    "ppppMP3ToVideoResult",
+                    "No compatible video encoder is available."
+                );
+
+                return;
+            }
+
+            const recorder=
+                new MediaRecorder(
+                    combined,
+                    {
+                        mimeType:mime,
+                        videoBitsPerSecond:
+                            width>=1280
+                            ?2500000
+                            :width>=854
+                            ?1500000
+                            :900000
+                    }
+                );
+
+            const chunks=[];
+
+            recorder.ondataavailable=function(e){
+
+                if(e.data.size){
+                    chunks.push(e.data);
+                }
+
+            };
+
+            recorder.onstop=function(){
 
                 const blob=
                     new Blob(
                         chunks,
-                        {
-                            type:
-                                "video/webm"
-                        }
+                        {type:mime}
                     );
 
-                ppppDownloadBlob(
+                const ext=
+                    mime.includes("mp4")
+                    ?"mp4"
+                    :"webm";
+
+                downloadBlob(
                     blob,
-                    "pppp-mp3-to-video.webm"
+                    "mp3_to_video."+ext
                 );
 
-                audioContext.close();
+                safeText(
+                    "ppppMP3ToVideoResult",
+                    mime.includes("mp4")
+                    ?"MP4 video downloaded."
+                    :"MP4 encoding is unavailable in this browser; compatible WebM video downloaded."
+                );
 
-                result.textContent=
-                    "✅ Video created and downloaded.";
+                audioCtx.close();
+                URL.revokeObjectURL(audioURL);
 
             };
 
-        let bgImage=null;
+            recorder.start();
 
-        if(ppppMP3BgImageData){
+            await audio.play();
 
-            bgImage=
-                new Image();
+            function draw(){
 
-            await new Promise(
-                resolve=>{
-                    bgImage.onload=
-                        resolve;
+                if(
+                    audio.ended ||
+                    audio.paused
+                ){
 
-                    bgImage.src=
-                        ppppMP3BgImageData;
+                    if(recorder.state!=="inactive"){
+                        recorder.stop();
+                    }
+
+                    return;
                 }
-            );
 
-        }
+                if(backgroundImage){
 
-        function drawBackground(){
-
-            if(bgImage){
-
-                const scale=
-                    Math.max(
-                        width/bgImage.width,
-                        height/bgImage.height
+                    const scale=Math.max(
+                        width/backgroundImage.naturalWidth,
+                        height/backgroundImage.naturalHeight
                     );
 
-                const w=
-                    bgImage.width*scale;
+                    const w=
+                        backgroundImage.naturalWidth*scale;
 
-                const h=
-                    bgImage.height*scale;
+                    const h=
+                        backgroundImage.naturalHeight*scale;
 
-                ctx.drawImage(
-                    bgImage,
-                    (width-w)/2,
-                    (height-h)/2,
-                    w,
-                    h
-                );
+                    ctx.drawImage(
+                        backgroundImage,
+                        (width-w)/2,
+                        (height-h)/2,
+                        w,
+                        h
+                    );
 
-            }else{
+                }else{
 
-                ctx.fillStyle=
-                    document.getElementById(
-                        "ppppMP3BgColor"
-                    ).value;
+                    ctx.fillStyle=color;
+                    ctx.fillRect(
+                        0,
+                        0,
+                        width,
+                        height
+                    );
 
-                ctx.fillRect(
-                    0,
-                    0,
-                    width,
-                    height
-                );
+                }
+
+                requestAnimationFrame(draw);
 
             }
 
-        }
+            draw();
 
-        recorder.start();
+        }catch(e){
 
-        await audio.play();
-
-        function draw(){
-
-            if(
-                recorder.state!=="recording"
-            )
-                return;
-
-            drawBackground();
-
-            requestAnimationFrame(
-                draw
+            safeText(
+                "ppppMP3ToVideoResult",
+                "MP3-to-video conversion failed."
             );
 
         }
 
-        draw();
-
-        audio.onended=
-            function(){
-
-                if(
-                    recorder.state==="recording"
-                )
-                    recorder.stop();
-
-            };
-
-        result.textContent=
-            "🎞️ Creating video...";
-
-    }catch(error){
-
-        result.textContent=
-            "⚠️ MP3 to Video conversion failed in this browser.";
-
     }
-
-}
+);
 
 
 /* =========================================================
    13 💱 BDT CONVERTER
 ========================================================= */
 
-const PPPP_BDT_RATES={
-
+const PPPP_BDT_RATES15={
     USD:122,
     EUR:142,
     GBP:165,
@@ -7234,476 +6792,240 @@ const PPPP_BDT_RATES={
     AED:33.2,
     INR:1.31,
     JPY:.82
-
 };
 
+function updateBDTDirection15(){
 
-function ppppConvertBDT(){
+    const direction=$("ppppBDTDirection");
+    const currency=$("ppppBDTCurrency");
+    const amount=$("ppppBDTAmount");
 
-    const amount=
-        Number(
-            document.getElementById(
-                "ppppBDTAmount"
-            ).value
-        );
+    if(!direction || !currency || !amount) return;
 
-    const currency=
-        document.getElementById(
-            "ppppBDTCurrency"
-        ).value;
+    if(direction.value==="bdtForeign"){
 
-    const result=
-        document.getElementById(
-            "ppppBDTResult"
-        );
+        amount.placeholder="Enter BDT amount";
 
-    if(
-        Number.isNaN(amount) ||
-        amount<0
-    ){
+    }else{
 
-        result.textContent=
-            "⚠️ Enter a valid amount.";
+        amount.placeholder=
+            "Enter "+currency.value+" amount";
 
-        return;
     }
 
-    const rate=
-        PPPP_BDT_RATES[
-            currency
-        ];
-
-    const bdt=
-        amount*rate;
-
-    result.innerHTML=
-        "💱 " +
-        amount +
-        " " +
-        currency +
-        " ≈ <strong>" +
-        bdt.toFixed(2) +
-        " BDT</strong>";
-
 }
 
-
-/* =========================================================
-   14 🇧🇩 BANGLADESH TOGGLE
-========================================================= */
-
-function ppppBDToggle(button){
-
-    const content=
-        button.nextElementSibling;
-
-    if(!content)
-        return;
-
-    const isOpen=
-        content.classList.toggle(
-            "open"
-        );
-
-    button.classList.toggle(
-        "open",
-        isOpen
-    );
-
-}
-
-
-/* =========================================================
-   15 ☎️ GOVERNMENT HELPLINES
-========================================================= */
-
-const PPPP_GOVERNMENT_HELPLINES=[
-
-[
-"🚨",
-"National Emergency Service — Police / Fire Service / Ambulance — 999 🆓",
-"999"
-],
-
-[
-"🔥",
-"Fire Service — 102 🆓",
-"102"
-],
-
-[
-"📋",
-"Government Information & Services — 333",
-"333"
-],
-
-[
-"🚌",
-"BRTA Service Portal (BSP) — 16107",
-"16107"
-],
-
-[
-"⚖️",
-"Supreme Court Helpline — 103",
-"103"
-],
-
-[
-"👩",
-"Prevention of Violence Against Women & Children — 109 🆓*",
-"109"
-],
-
-[
-"🚫",
-"Anti-Corruption Commission (ACC) — 106 🆓",
-"106"
-],
-
-[
-"🌪️",
-"Disaster Early Warning — 1090 🆓",
-"1090"
-],
-
-[
-"🧒",
-"Child Helpline — 1098 🆓",
-"1098"
-],
-
-[
-"🏠",
-"Smart Land Service — 16122",
-"16122"
-],
-
-[
-"👨‍💼",
-"Bangladesh Employees Welfare Board — 16109",
-"16109"
-],
-
-[
-"💊",
-"Department of Narcotics Control — 01908888888",
-"01908888888"
-],
-
-[
-"🚢",
-"Bangladesh Inland Water Transport Authority (BIWTA) — 16113",
-"16113"
-],
-
-[
-"🛂",
-"Passport Information Service — 16445",
-"16445"
-],
-
-[
-"✊",
-"Bangladesh Muktijoddha Kalyan Trust — 16171",
-"16171"
-],
-
-[
-"🌍",
-"Expatriate Call Center — 16135 🆓",
-"16135"
-],
-
-[
-"💻",
-"e-GP Emergency Hotline — 16575",
-"16575"
-],
-
-[
-"📡",
-"Bangladesh Telecommunication Regulatory Commission (BTRC) — 100 🆓*",
-"100"
-],
-
-[
-"⚡",
-"Electricity Division — 16999",
-"16999"
-],
-
-[
-"🧑‍⚖️",
-"National Legal Aid Helpline — 16699 🆓",
-"16699"
-],
-
-[
-"👷",
-"Workers' Helpline — 16357 🆓",
-"16357"
-],
-
-[
-"💰",
-"Universal Pension Scheme — 16131",
-"16131"
-],
-
-[
-"🛡️",
-"Bangladesh Coast Guard — 16111",
-"16111"
-],
-
-[
-"🪪",
-"National Identity Card (NID) — 105",
-"105"
-],
-
-[
-"🏦",
-"Bangladesh Bank Customer Complaint — 16236",
-"16236"
-],
-
-[
-"⚕️",
-"Health Call Center / Health Services — 16263",
-"16263"
-],
-
-[
-"🌱",
-"Agriculture Call Center — 16123",
-"16123"
-],
-
-[
-"📞",
-"BTCL Call Center — 16402",
-"16402"
-],
-
-[
-"🚰",
-"Dhaka WASA — 16162",
-"16162"
-],
-
-[
-"🚆",
-"Bangladesh Railway Call Center — 131",
-"131"
-],
-
-[
-"🏢",
-"National Human Rights Commission — 16108",
-"16108"
-],
-
-[
-"🏘️",
-"Union Support Call Center — 16256",
-"16256"
-],
-
-[
-"☎️",
-"BTCL Call Center — Alternative Government Listed Number — 16420",
-"16420"
-],
-
-[
-"💵",
-"National Board of Revenue (NBR) — Tax / VAT e-Payment — 16555",
-"16555"
-],
-
-[
-"🛃",
-"Bangladesh Single Window (BSW) — 16139",
-"16139"
-],
-
-[
-"🌿",
-"Farmer Friend Phone Service — 3331",
-"3331"
-],
-
-[
-"👩",
-"Women Affairs / Information Apa — 10922",
-"10922"
-],
-
-[
-"⚡",
-"Dhaka Power Distribution Company (DPDC) Call Center — 16116",
-"16116"
-],
-
-[
-"🔌",
-"Northern Electricity Supply Company (NESCO) Call Center — 16603",
-"16603"
-],
-
-[
-"💡",
-"Dhaka Electric Supply Company (DESCO) Call Center — 16120",
-"16120"
-],
-
-[
-"🔋",
-"West Zone Power Distribution Company (WZPDCL) Call Center — 16117",
-"16117"
-],
-
-[
-"🔥",
-"Titas Gas Transmission & Distribution Company — 16496",
-"16496"
-],
-
-[
-"⛽",
-"Bakhrabad Gas Distribution Company (BGDCL) — 16523",
-"16523"
-],
-
-[
-"🏭",
-"Jalalabad Gas Transmission & Distribution System (JGTDSL) — 16511",
-"16511"
-],
-
-[
-"🛢️",
-"Pashchimanchal Gas Company Limited (PGCL) — 16514",
-"16514"
-],
-
-[
-"💨",
-"Karnaphuli Gas Distribution Company (KGDCL) — 16512",
-"16512"
-],
-
-[
-"🧯",
-"Sundarban Gas Company Limited (SGCL) — 16539",
-"16539"
-],
-
-[
-"🏥",
-"Institute of Epidemiology, Disease Control and Research (IEDCR) / Health Telephone Service — 10655",
-"10655"
-],
-
-[
-"🚒",
-"Fire Service — Central Emergency Alternative Number — 02-223355555",
-"02-223355555"
-],
-
-[
-"🏛️",
-"Bangladesh Power Development Board (BPDB) — 16200",
-"16200"
-]
-
-];
-
-
-function ppppRenderGovernmentHelplines(){
-
-    const grid=
-        document.getElementById(
-            "ppppGovernmentHelplinesGrid"
-        );
-
-    if(!grid)
-        return;
-
-    grid.innerHTML="";
-
-    PPPP_GOVERNMENT_HELPLINES
-    .forEach(
-        function(item,index){
-
-            const card=
-                document.createElement(
-                    "div"
-                );
-
-            card.className=
-                "pppp-help-card";
-
-            const number=
-                String(index+1)
-                .padStart(2,"0");
-
-            card.innerHTML=
-
-                '<span class="pppp-help-number">' +
-                number +
-                ' ' +
-                item[0] +
-                '</span>' +
-
-                '<div class="pppp-help-text">' +
-                item[1] +
-                '</div>' +
-
-                '<a ' +
-                'class="pppp-call-btn" ' +
-                'href="tel:' +
-                item[2] +
-                '" ' +
-                'aria-label="Call ' +
-                item[2] +
-                '">' +
-                '☎️' +
-                '</a>';
-
-            grid.appendChild(
-                card
+$("ppppBDTDirection")?.addEventListener(
+    "change",
+    updateBDTDirection15
+);
+
+$("ppppBDTCurrency")?.addEventListener(
+    "change",
+    updateBDTDirection15
+);
+
+updateBDTDirection15();
+
+$("ppppBDTConvertBtn")?.addEventListener(
+    "click",
+    function(){
+
+        const direction=
+            $("ppppBDTDirection").value;
+
+        const currency=
+            $("ppppBDTCurrency").value;
+
+        const amount=
+            parseFloat(
+                $("ppppBDTAmount").value
             );
+
+        if(isNaN(amount) || amount<0){
+
+            safeText(
+                "ppppBDTResult",
+                "Please enter a valid amount."
+            );
+
+            return;
+        }
+
+        const rate=
+            PPPP_BDT_RATES15[currency];
+
+        let result;
+
+        if(direction==="bdtForeign"){
+
+            result=amount/rate;
+
+            safeText(
+                "ppppBDTResult",
+                amount.toFixed(2)+
+                " BDT ≈ "+
+                result.toFixed(2)+" "+currency
+            );
+
+        }else{
+
+            result=amount*rate;
+
+            safeText(
+                "ppppBDTResult",
+                amount.toFixed(2)+" "+currency+
+                " ≈ "+
+                result.toFixed(2)+" BDT"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   14 🇧🇩 BANGLADESH INFORMATION TOGGLE
+========================================================= */
+
+document
+.querySelectorAll("#ppppTools15Wrap .pppp-bd15-toggle")
+.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            const content=
+                this.nextElementSibling;
+
+            if(!content) return;
+
+            content.classList.toggle("open");
 
         }
     );
 
-}
-
-ppppRenderGovernmentHelplines();
+});
 
 
 /* =========================================================
-   🛡️ SAFETY INITIALIZATION
+   15 🇧🇩 GOVERNMENT EMERGENCY & IMPORTANT HELPLINES
+========================================================= */
+
+const PPPP_HELPINES15=[
+
+["01","999","National Emergency Service"],
+["02","102","Fire Service & Civil Defence"],
+["03","333","National Information Service"],
+["04","16107","Anti-Corruption Commission"],
+["05","103","Police Information Service"],
+["06","109","Women & Child Helpline"],
+["07","106","Human Rights Commission"],
+["08","1090","Disaster Management"],
+["09","1098","Child Helpline"],
+["10","16122","Electricity Helpline"],
+["11","16109","Power Division"],
+["12","01908888888","Health Service"],
+["13","16113","Road Transport"],
+["14","16445","Passport Helpline"],
+["15","16171","NID Helpline"],
+["16","16135","Birth & Death Registration"],
+["17","16575","Land Service"],
+["18","100","Police"],
+["19","16999","National Legal Aid"],
+["20","16699","Consumer Rights"],
+["21","16357","Railway"],
+["22","16131","Bangladesh Bank"],
+["23","16111","BTRC"],
+["24","105","COVID-19 / Health"],
+["25","16236","Agriculture Information"],
+["26","16263","Health Batayon"],
+["27","16123","Fisheries"],
+["28","16402","Livestock"],
+["29","16162","Social Services"],
+["30","131","Bangladesh Railway Information"],
+["31","16108","Election Commission"],
+["32","16256","ICT Helpline"],
+["33","16420","EPB"],
+["34","16555","BEPZA"],
+["35","16139","Tax Helpline"],
+["36","3331","Digital Centre"],
+["37","10922","National Women Organization"],
+["38","16116","Food Safety"],
+["39","16603","BRTA"],
+["40","16120","Power Grid"],
+["41","16117","DESCO"],
+["42","16496","DPDC"],
+["43","16523","Titas Gas"],
+["44","16511","WASA"],
+["45","16514","Chittagong WASA"],
+["46","16512","Khulna WASA"],
+["47","16539","Dhaka North City"],
+["48","10655","Dhaka South City"],
+["49","02-223355555","Bangladesh Customs"],
+["50","16200","Bangladesh Post"]
+
+];
+
+const helpGrid15=$("ppppHelpGrid15");
+
+if(helpGrid15){
+
+    PPPP_HELPINES15.forEach(function(item){
+
+        const serial=item[0];
+        const number=item[1];
+        const name=item[2];
+
+        const card=
+            document.createElement("div");
+
+        card.className=
+            "pppp-help-card";
+
+        const cleanNumber=
+            number.replace(/[^0-9+]/g,"");
+
+        card.innerHTML=`
+<a
+class="pppp-help-btn"
+href="tel:${cleanNumber}"
+aria-label="Call ${name} ${number}">
+
+<span class="pppp-help-number">
+${serial}. ${number}
+</span>
+
+<span class="pppp-help-name">
+${name}
+</span>
+
+</a>
+`;
+
+        helpGrid15.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   🛑 IMPORTANT BUTTON FIX
+   NO CAPTURE-PHASE STOP PROPAGATION
 ========================================================= */
 
 /*
-   IMPORTANT:
-   There is intentionally NO global click listener here.
+   Do NOT add:
 
-   We do NOT use:
+   document.addEventListener("click", ..., true)
 
-   document.addEventListener(
-       "click",
-       function(e){
-           e.stopPropagation();
-       },
-       true
-   );
+   with stopPropagation() for this tools wrapper.
 
-   Therefore 02–14 onclick handlers remain functional.
+   All tool buttons are normal target-phase buttons,
+   so 02–14 work correctly.
 */
 
 
@@ -7715,20 +7037,18 @@ window.addEventListener(
     "beforeunload",
     function(){
 
-        try{
-            ppppStopQRScanner();
-        }catch(e){}
+        stopQR15();
 
-        try{
-            if(
-                "speechSynthesis" in window
-            )
-                speechSynthesis.cancel();
-        }catch(e){}
+        if(
+            "speechSynthesis" in window
+        ){
+            speechSynthesis.cancel();
+        }
 
     }
 );
 
+})();
 </script>
 
 <!-- =========================================================
