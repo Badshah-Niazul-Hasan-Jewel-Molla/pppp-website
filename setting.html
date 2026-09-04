@@ -8669,63 +8669,17 @@ async function(){
 
     if(bgImage){
 
-        /*
-         * CONTAIN MODE
-         * সম্পূর্ণ ছবি দেখা যাবে।
-         * ছবির কোনো অংশ কাটা যাবে না।
-         */
-
-        const scale =
-            Math.min(
-                width / bgImage.width,
-                height / bgImage.height
-            );
-
-        const w =
-            bgImage.width * scale;
-
-        const h =
-            bgImage.height * scale;
-
-        /*
-         * আগে Background Color পূরণ করা হবে।
-         * Aspect Ratio আলাদা হলে এই অংশটি
-         * পাশের/উপর-নিচের ফাঁকা জায়গায় থাকবে।
-         */
-
-        ctx.fillStyle =
-            document.getElementById(
-                "ppppMP3BgColor"
-            ).value;
-
-        ctx.fillRect(
+        ctx.drawImage(
+            bgImage,
             0,
             0,
             width,
             height
         );
 
-        /*
-         * সম্পূর্ণ Background Image
-         * মাঝখানে Fit করা হবে।
-         */
-
-        ctx.drawImage(
-            bgImage,
-            (width - w) / 2,
-            (height - h) / 2,
-            w,
-            h
-        );
-
     }else{
 
-        /*
-         * Background Image না থাকলে
-         * নির্বাচিত Background Color ব্যবহার হবে।
-         */
-
-        ctx.fillStyle =
+        ctx.fillStyle=
             document.getElementById(
                 "ppppMP3BgColor"
             ).value;
