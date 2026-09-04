@@ -8667,52 +8667,33 @@ async function(){
 
         function drawBackground(){
 
-            if(bgImage){
+    if(bgImage){
 
-                const scale=
-                    Math.max(
-                        width/
-                        bgImage.width,
+        ctx.drawImage(
+            bgImage,
+            0,
+            0,
+            width,
+            height
+        );
 
-                        height/
-                        bgImage.height
-                    );
+    }else{
 
+        ctx.fillStyle=
+            document.getElementById(
+                "ppppMP3BgColor"
+            ).value;
 
-                const w=
-                    bgImage.width*
-                    scale;
+        ctx.fillRect(
+            0,
+            0,
+            width,
+            height
+        );
 
-                const h=
-                    bgImage.height*
-                    scale;
+    }
 
-
-                ctx.drawImage(
-                    bgImage,
-                    (width-w)/2,
-                    (height-h)/2,
-                    w,
-                    h
-                );
-
-            }else{
-
-                ctx.fillStyle=
-                    document.getElementById(
-                        "ppppMP3BgColor"
-                    ).value;
-
-                ctx.fillRect(
-                    0,
-                    0,
-                    width,
-                    height
-                );
-
-            }
-
-        }
+}
 
 
         recorder.start(
