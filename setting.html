@@ -10139,448 +10139,647 @@ URL.revokeObjectURL(url);
 
 
 /* =========================================================
-   🔁 CONVERTER — FIXED
+   🔁 FLOATING SETTINGS CONVERTER
+   ISOLATED / CONFLICT-FREE VERSION
 ========================================================= */
 
-window.ppppConverterData = {
+(function(){
 
-length:{
-    "Meter (m)":1,
-    "Kilometer (km)":1000,
-    "Centimeter (cm)":0.01,
-    "Millimeter (mm)":0.001,
-    "Mile":1609.344,
-    "Yard":0.9144,
-    "Foot":0.3048,
-    "Inch":0.0254
-},
+"use strict";
 
-weight:{
-    "Kilogram (kg)":1,
-    "Gram (g)":0.001,
-    "Milligram (mg)":0.000001,
-    "Pound (lb)":0.45359237,
-    "Ounce (oz)":0.028349523125
-},
 
-volume:{
-    "Liter (L)":1,
-    "Milliliter (mL)":0.001,
-    "Cubic Meter (m³)":1000,
-    "US Gallon":3.785411784,
-    "US Quart":0.946352946,
-    "US Pint":0.473176473,
-    "Cup":0.2365882365
-},
+/* =========================================================
+   PRIVATE CONVERTER DATA
+========================================================= */
 
-area:{
-    "Square Meter (m²)":1,
-    "Square Kilometer (km²)":1000000,
-    "Square Foot":0.09290304,
-    "Square Yard":0.83612736,
-    "Acre":4046.8564224,
-    "Hectare":10000
-},
+const converterData = {
 
-time:{
-    "Second":1,
-    "Minute":60,
-    "Hour":3600,
-    "Day":86400,
-    "Week":604800
-},
+    length:{
+        "Meter (m)":1,
+        "Kilometer (km)":1000,
+        "Centimeter (cm)":0.01,
+        "Millimeter (mm)":0.001,
+        "Mile":1609.344,
+        "Yard":0.9144,
+        "Foot":0.3048,
+        "Inch":0.0254
+    },
 
-data:{
-    "Byte":1,
-    "Kilobyte (KB)":1024,
-    "Megabyte (MB)":1024**2,
-    "Gigabyte (GB)":1024**3,
-    "Terabyte (TB)":1024**4
-},
+    weight:{
+        "Kilogram (kg)":1,
+        "Gram (g)":0.001,
+        "Milligram (mg)":0.000001,
+        "Pound (lb)":0.45359237,
+        "Ounce (oz)":0.028349523125
+    },
 
-speed:{
-    "m/s":1,
-    "km/h":0.2777777778,
-    "mph":0.44704,
-    "knot":0.5144444444
-},
+    volume:{
+        "Liter (L)":1,
+        "Milliliter (mL)":0.001,
+        "Cubic Meter (m³)":1000,
+        "US Gallon":3.785411784,
+        "US Quart":0.946352946,
+        "US Pint":0.473176473,
+        "Cup":0.2365882365
+    },
 
-pressure:{
-    "Pascal (Pa)":1,
-    "Kilopascal (kPa)":1000,
-    "Bar":100000,
-    "PSI":6894.757293
-},
+    area:{
+        "Square Meter (m²)":1,
+        "Square Kilometer (km²)":1000000,
+        "Square Foot":0.09290304,
+        "Square Yard":0.83612736,
+        "Acre":4046.8564224,
+        "Hectare":10000
+    },
 
-energy:{
-    "Joule (J)":1,
-    "Kilojoule (kJ)":1000,
-    "Calorie (cal)":4.184,
-    "Kilocalorie (kcal)":4184,
-    "Watt-hour (Wh)":3600,
-    "Kilowatt-hour (kWh)":3600000
-}
+    time:{
+        "Second":1,
+        "Minute":60,
+        "Hour":3600,
+        "Day":86400,
+        "Week":604800
+    },
+
+    data:{
+        "Byte":1,
+        "Kilobyte (KB)":1024,
+        "Megabyte (MB)":1024**2,
+        "Gigabyte (GB)":1024**3,
+        "Terabyte (TB)":1024**4
+    },
+
+    speed:{
+        "m/s":1,
+        "km/h":0.2777777778,
+        "mph":0.44704,
+        "knot":0.5144444444
+    },
+
+    pressure:{
+        "Pascal (Pa)":1,
+        "Kilopascal (kPa)":1000,
+        "Bar":100000,
+        "PSI":6894.757293
+    },
+
+    energy:{
+        "Joule (J)":1,
+        "Kilojoule (kJ)":1000,
+        "Calorie (cal)":4.184,
+        "Kilocalorie (kcal)":4184,
+        "Watt-hour (Wh)":3600,
+        "Kilowatt-hour (kWh)":3600000
+    }
 
 };
 
 
-/* ---------------------------------------------------------
+/* =========================================================
+   GET ELEMENTS
+========================================================= */
+
+function getConverterElements(){
+
+    return {
+
+        category:
+        document.getElementById(
+            "ppppConvertCategory"
+        ),
+
+        value:
+        document.getElementById(
+            "ppppConvertValue"
+        ),
+
+        from:
+        document.getElementById(
+            "ppppConvertFrom"
+        ),
+
+        to:
+        document.getElementById(
+            "ppppConvertTo"
+        ),
+
+        result:
+        document.getElementById(
+            "ppppConvertResult"
+        )
+
+    };
+
+}
+
+
+/* =========================================================
    UPDATE UNITS
---------------------------------------------------------- */
+========================================================= */
 
-window.ppppUpdateConverterUnits = function(){
+function updateUnits(){
 
-const categoryElement =
-document.getElementById("ppppConvertCategory");
+    const elements =
+        getConverterElements();
 
-const from =
-document.getElementById("ppppConvertFrom");
+    const category =
+        elements.category;
 
-const to =
-document.getElementById("ppppConvertTo");
+    const from =
+        elements.from;
 
-if(!categoryElement || !from || !to){
-    return;
-}
+    const to =
+        elements.to;
 
-const category =
-categoryElement.value;
-
-from.innerHTML="";
-to.innerHTML="";
-
-
-if(category === "temperature"){
-
-[
-"Celsius (°C)",
-"Fahrenheit (°F)",
-"Kelvin (K)"
-].forEach(unit=>{
-
-    from.add(
-        new Option(unit,unit)
-    );
-
-    to.add(
-        new Option(unit,unit)
-    );
-
-});
-
-from.selectedIndex=0;
-to.selectedIndex=1;
-
-return;
-
-}
-
-
-const data =
-window.ppppConverterData[category];
-
-if(!data){
-    return;
-}
-
-
-Object.keys(data).forEach(unit=>{
-
-    from.add(
-        new Option(unit,unit)
-    );
-
-    to.add(
-        new Option(unit,unit)
-    );
-
-});
-
-
-/* KG -> Liter Water */
-
-if(category === "weight"){
-
-    to.add(
-        new Option(
-            "Liter of Water (L)",
-            "LiterWater"
-        )
-    );
-
-}
-
-
-/* Liter -> KG Water */
-
-if(category === "volume"){
-
-    to.add(
-        new Option(
-            "Kilogram of Water (kg)",
-            "KilogramWater"
-        )
-    );
-
-}
-
-
-/* Default */
-
-if(from.options.length > 1){
-
-    from.selectedIndex=0;
-    to.selectedIndex=1;
-
-}
-
-};
-
-
-/* ---------------------------------------------------------
-   TEMPERATURE
---------------------------------------------------------- */
-
-window.ppppTemperatureConvert = function(
-value,
-from,
-to
-){
-
-let c;
-
-if(from === "Celsius (°C)")
-    c=value;
-
-else if(from === "Fahrenheit (°F)")
-    c=(value-32)*5/9;
-
-else if(from === "Kelvin (K)")
-    c=value-273.15;
-
-else
-    return NaN;
-
-
-if(to === "Celsius (°C)")
-    return c;
-
-if(to === "Fahrenheit (°F)")
-    return c*9/5+32;
-
-if(to === "Kelvin (K)")
-    return c+273.15;
-
-return NaN;
-
-};
-
-
-/* ---------------------------------------------------------
-   🔁 CONVERT
---------------------------------------------------------- */
-
-window.ppppConvertNow = function(){
-
-const categoryElement =
-document.getElementById("ppppConvertCategory");
-
-const valueElement =
-document.getElementById("ppppConvertValue");
-
-const fromElement =
-document.getElementById("ppppConvertFrom");
-
-const toElement =
-document.getElementById("ppppConvertTo");
-
-const result =
-document.getElementById("ppppConvertResult");
-
-
-if(
-!categoryElement ||
-!valueElement ||
-!fromElement ||
-!toElement ||
-!result
-){
-    return;
-}
-
-
-const category =
-categoryElement.value;
-
-const value =
-parseFloat(valueElement.value);
-
-const from =
-fromElement.value;
-
-const to =
-toElement.value;
-
-
-if(!Number.isFinite(value)){
-
-    result.textContent =
-    "⚠️ Please enter a valid number.";
-
-    return;
-
-}
-
-
-/* Temperature */
-
-if(category === "temperature"){
-
-    const converted =
-    window.ppppTemperatureConvert(
-        value,
-        from,
-        to
-    );
-
-    if(!Number.isFinite(converted)){
-
-        result.textContent =
-        "⚠️ Temperature conversion failed.";
-
-        return;
-
-    }
-
-    result.textContent =
-    `${value} ${from} = ${converted.toFixed(6)} ${to}`;
-
-    return;
-
-}
-
-
-/* KG -> Litre Water */
-
-if(
-category === "weight" &&
-to === "LiterWater"
-){
-
-    if(from === "Kilogram (kg)"){
-
-        result.textContent =
-        `${value} kg পানি ≈ ${value} L পানি`;
-
-        return;
-
-    }
-
-}
-
-
-/* Litre -> KG Water */
-
-if(
-category === "volume" &&
-to === "KilogramWater"
-){
-
-    if(from === "Liter (L)"){
-
-        result.textContent =
-        `${value} L পানি ≈ ${value} kg পানি`;
-
-        return;
-
-    }
-
-}
-
-
-/* Normal Conversion */
-
-const data =
-window.ppppConverterData[category];
-
-if(!data){
-
-    result.textContent =
-    "⚠️ Converter data unavailable.";
-
-    return;
-
-}
-
-
-if(
-data[from] === undefined ||
-data[to] === undefined
-){
-
-    result.textContent =
-    "⚠️ Selected units cannot be converted.";
-
-    return;
-
-}
-
-
-const base =
-value * data[from];
-
-const converted =
-base / data[to];
-
-
-if(!Number.isFinite(converted)){
-
-    result.textContent =
-    "⚠️ Conversion failed.";
-
-    return;
-
-}
-
-
-result.textContent =
-`${value} ${from} = ${converted.toFixed(6)} ${to}`;
-
-};
-
-
-/* ---------------------------------------------------------
-   INITIALIZE
---------------------------------------------------------- */
-
-function ppppInitializeConverter(){
 
     if(
-        document.getElementById("ppppConvertCategory") &&
-        document.getElementById("ppppConvertFrom") &&
-        document.getElementById("ppppConvertTo")
+        !category ||
+        !from ||
+        !to
+    ){
+        return;
+    }
+
+
+    from.innerHTML = "";
+    to.innerHTML = "";
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        category.value === "temperature"
     ){
 
-        window.ppppUpdateConverterUnits();
+        const units = [
+
+            "Celsius (°C)",
+            "Fahrenheit (°F)",
+            "Kelvin (K)"
+
+        ];
+
+
+        units.forEach(function(unit){
+
+            from.add(
+                new Option(
+                    unit,
+                    unit
+                )
+            );
+
+            to.add(
+                new Option(
+                    unit,
+                    unit
+                )
+            );
+
+        });
+
+
+        if(from.options.length > 1){
+
+            from.selectedIndex = 0;
+            to.selectedIndex = 1;
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       NORMAL UNITS
+    ----------------------------------------------------- */
+
+    const data =
+        converterData[category.value];
+
+
+    if(!data){
+        return;
+    }
+
+
+    Object.keys(data).forEach(function(unit){
+
+        from.add(
+            new Option(
+                unit,
+                unit
+            )
+        );
+
+        to.add(
+            new Option(
+                unit,
+                unit
+            )
+        );
+
+    });
+
+
+    /* -----------------------------------------------------
+       KG → LITRE WATER
+    ----------------------------------------------------- */
+
+    if(
+        category.value === "weight"
+    ){
+
+        to.add(
+            new Option(
+                "Liter of Water (L)",
+                "LiterWater"
+            )
+        );
+
+    }
+
+
+    /* -----------------------------------------------------
+       LITRE → KG WATER
+    ----------------------------------------------------- */
+
+    if(
+        category.value === "volume"
+    ){
+
+        to.add(
+            new Option(
+                "Kilogram of Water (kg)",
+                "KilogramWater"
+            )
+        );
+
+    }
+
+
+    /* -----------------------------------------------------
+       DEFAULT SELECTION
+    ----------------------------------------------------- */
+
+    if(from.options.length > 1){
+
+        from.selectedIndex = 0;
+        to.selectedIndex = 1;
 
     }
 
 }
 
 
-if(document.readyState === "loading"){
+/* =========================================================
+   TEMPERATURE CONVERSION
+========================================================= */
+
+function convertTemperature(
+    value,
+    from,
+    to
+){
+
+    let celsius;
+
+
+    if(
+        from === "Celsius (°C)"
+    ){
+
+        celsius = value;
+
+    }
+
+    else if(
+        from === "Fahrenheit (°F)"
+    ){
+
+        celsius =
+            (value - 32) * 5 / 9;
+
+    }
+
+    else if(
+        from === "Kelvin (K)"
+    ){
+
+        celsius =
+            value - 273.15;
+
+    }
+
+    else{
+
+        return NaN;
+
+    }
+
+
+    if(
+        to === "Celsius (°C)"
+    ){
+
+        return celsius;
+
+    }
+
+
+    if(
+        to === "Fahrenheit (°F)"
+    ){
+
+        return (
+            celsius * 9 / 5
+        ) + 32;
+
+    }
+
+
+    if(
+        to === "Kelvin (K)"
+    ){
+
+        return (
+            celsius + 273.15
+        );
+
+    }
+
+
+    return NaN;
+
+}
+
+
+/* =========================================================
+   MAIN CONVERTER
+========================================================= */
+
+function convertNow(){
+
+    const elements =
+        getConverterElements();
+
+
+    if(
+        !elements.category ||
+        !elements.value ||
+        !elements.from ||
+        !elements.to ||
+        !elements.result
+    ){
+
+        return;
+
+    }
+
+
+    const category =
+        elements.category.value;
+
+    const value =
+        parseFloat(
+            elements.value.value
+        );
+
+    const from =
+        elements.from.value;
+
+    const to =
+        elements.to.value;
+
+
+    /* -----------------------------------------------------
+       VALID NUMBER
+    ----------------------------------------------------- */
+
+    if(
+        !Number.isFinite(value)
+    ){
+
+        elements.result.textContent =
+            "⚠️ Please enter a valid number.";
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        category === "temperature"
+    ){
+
+        const converted =
+            convertTemperature(
+                value,
+                from,
+                to
+            );
+
+
+        if(
+            !Number.isFinite(converted)
+        ){
+
+            elements.result.textContent =
+                "⚠️ Temperature conversion failed.";
+
+            return;
+
+        }
+
+
+        elements.result.textContent =
+            `${value} ${from} = ` +
+            `${converted.toFixed(6)} ${to}`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       KG → LITRE WATER
+    ----------------------------------------------------- */
+
+    if(
+        category === "weight" &&
+        to === "LiterWater" &&
+        from === "Kilogram (kg)"
+    ){
+
+        elements.result.textContent =
+            `${value} kg পানি ≈ ${value} L পানি`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LITRE → KG WATER
+    ----------------------------------------------------- */
+
+    if(
+        category === "volume" &&
+        to === "KilogramWater" &&
+        from === "Liter (L)"
+    ){
+
+        elements.result.textContent =
+            `${value} L পানি ≈ ${value} kg পানি`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       NORMAL CONVERSION
+    ----------------------------------------------------- */
+
+    const data =
+        converterData[category];
+
+
+    if(!data){
+
+        elements.result.textContent =
+            "⚠️ Converter data unavailable.";
+
+        return;
+
+    }
+
+
+    if(
+        data[from] === undefined ||
+        data[to] === undefined
+    ){
+
+        elements.result.textContent =
+            "⚠️ Selected units cannot be converted.";
+
+        return;
+
+    }
+
+
+    const baseValue =
+        value * data[from];
+
+
+    const converted =
+        baseValue / data[to];
+
+
+    if(
+        !Number.isFinite(converted)
+    ){
+
+        elements.result.textContent =
+            "⚠️ Conversion failed.";
+
+        return;
+
+    }
+
+
+    elements.result.textContent =
+        `${value} ${from} = ` +
+        `${converted.toFixed(6)} ${to}`;
+
+}
+
+
+/* =========================================================
+   BUTTON / SELECT EVENTS
+========================================================= */
+
+function initialize(){
+
+    const elements =
+        getConverterElements();
+
+
+    if(!elements.category){
+        return;
+    }
+
+
+    /* Category change */
+
+    elements.category.addEventListener(
+        "change",
+        updateUnits
+    );
+
+
+    /* Convert button */
+
+    const convertButton =
+        elements.category
+            .closest(".pppp-live-section")
+            ?.querySelector(
+                ".pppp-tool-btn"
+            );
+
+
+    if(convertButton){
+
+        convertButton.addEventListener(
+            "click",
+            function(event){
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                convertNow();
+
+            }
+        );
+
+    }
+
+
+    /* Initial units */
+
+    updateUnits();
+
+}
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+if(
+    document.readyState === "loading"
+){
 
     document.addEventListener(
         "DOMContentLoaded",
-        ppppInitializeConverter
+        initialize
     );
 
 }
 else{
 
-    ppppInitializeConverter();
+    initialize();
 
 }
+
+})();
 
 
 /* =========================================================
