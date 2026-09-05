@@ -9753,8 +9753,7 @@ onclick="ppppNotepadClear()">
 
 <select
 id="ppppConvertCategory"
-class="pppp-tool-select"
-onchange="ppppUpdateConverterUnits()">
+class="pppp-tool-select">
 
 <option value="length">📏 Length</option>
 <option value="weight">⚖️ Weight</option>
@@ -9789,8 +9788,9 @@ class="pppp-tool-select">
 </div>
 
 <button
+id="ppppConvertButton"
 class="pppp-tool-btn"
-onclick="ppppConvertNow()">
+type="button">
 🔁 Convert
 </button>
 
@@ -10728,11 +10728,9 @@ function initialize(){
     /* Convert button */
 
     const convertButton =
-        elements.category
-            .closest(".pppp-live-section")
-            ?.querySelector(
-                ".pppp-tool-btn"
-            );
+    document.getElementById(
+        "ppppConvertButton"
+    );
 
 
     if(convertButton){
