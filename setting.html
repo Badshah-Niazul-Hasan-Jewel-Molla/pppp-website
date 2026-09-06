@@ -9368,6 +9368,1350 @@ window.addEventListener(
 ========================================================= -->
 
 <!-- =========================================================
+     🔁 PPPP UNIT CONVERTER
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   PPPP UNIT CONVERTER
+========================================================= */
+
+.pppp-unit-converter{
+    width:100%;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+.pppp-unit-converter-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px 14px;
+    margin:0 0 10px 0;
+    border-radius:12px;
+    background:#f1f5f9;
+    font-size:16px;
+    font-weight:700;
+    text-align:left;
+    color:#111827;
+}
+
+.pppp-unit-converter-body{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-field{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-label{
+    display:block;
+    margin:0 0 5px 2px;
+    font-size:12px;
+    font-weight:600;
+    color:#374151;
+}
+
+.pppp-unit-converter-select,
+.pppp-unit-converter-input{
+    width:100%;
+    min-width:0;
+    height:42px;
+    box-sizing:border-box;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    background:#ffffff;
+    padding:0 10px;
+    font-size:13px;
+    color:#111827;
+    outline:none;
+}
+
+.pppp-unit-converter-select:focus,
+.pppp-unit-converter-input:focus{
+    border-color:#2563eb;
+}
+
+.pppp-unit-converter-button{
+    width:100%;
+    height:42px;
+    margin-top:9px;
+    border:0;
+    border-radius:10px;
+    background:#16a34a;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    touch-action:manipulation;
+}
+
+.pppp-unit-converter-button:active{
+    transform:scale(.98);
+}
+
+.pppp-unit-converter-result{
+    width:100%;
+    min-height:46px;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:12px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:13px;
+    font-weight:600;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    word-break:break-word;
+}
+
+.pppp-unit-converter-note{
+    width:100%;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:10px 12px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:11px;
+    line-height:1.55;
+    color:#475569;
+}
+
+.pppp-unit-converter-note strong{
+    color:#111827;
+}
+
+.pppp-liquid-panel{
+    display:none;
+    width:100%;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:10px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+}
+
+.pppp-liquid-panel.active{
+    display:block;
+}
+
+.pppp-liquid-title{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+    color:#111827;
+}
+
+.pppp-liquid-info{
+    font-size:11px;
+    line-height:1.5;
+    color:#475569;
+}
+
+@media (min-width:700px){
+
+    .pppp-unit-converter-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+}
+
+@media (max-width:480px){
+
+    .pppp-unit-converter-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .pppp-unit-converter-select,
+    .pppp-unit-converter-input{
+        font-size:12px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     PPPP UNIT CONVERTER HTML
+========================================================= -->
+
+<div
+class="pppp-unit-converter"
+id="ppppUnitConverter">
+
+
+    <div class="pppp-unit-converter-title">
+        🔁 Unit Converter
+    </div>
+
+
+    <div class="pppp-unit-converter-body">
+
+
+        <div class="pppp-unit-converter-grid">
+
+
+            <!-- CATEGORY -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    Category
+                </label>
+
+                <select
+                id="ppppUC_Category"
+                class="pppp-unit-converter-select">
+
+                    <option value="length">
+                        📏 Length
+                    </option>
+
+                    <option value="weight">
+                        ⚖️ Weight
+                    </option>
+
+                    <option value="volume">
+                        🧪 Volume
+                    </option>
+
+                    <option value="temperature">
+                        🌡️ Temperature
+                    </option>
+
+                    <option value="area">
+                        📐 Area
+                    </option>
+
+                    <option value="time">
+                        ⏱️ Time
+                    </option>
+
+                    <option value="data">
+                        💾 Data
+                    </option>
+
+                    <option value="speed">
+                        🚀 Speed
+                    </option>
+
+                    <option value="pressure">
+                        🔵 Pressure
+                    </option>
+
+                    <option value="energy">
+                        ⚡ Energy
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- VALUE -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    Value
+                </label>
+
+                <input
+                id="ppppUC_Value"
+                class="pppp-unit-converter-input"
+                type="number"
+                step="any"
+                value="1"
+                placeholder="Enter value">
+
+            </div>
+
+
+            <!-- FROM -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    From
+                </label>
+
+                <select
+                id="ppppUC_From"
+                class="pppp-unit-converter-select">
+                </select>
+
+            </div>
+
+
+            <!-- TO -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    To
+                </label>
+
+                <select
+                id="ppppUC_To"
+                class="pppp-unit-converter-select">
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             WEIGHT LIQUID OPTIONS
+        ================================================= -->
+
+        <div
+        id="ppppUC_LiquidPanel"
+        class="pppp-liquid-panel">
+
+            <div class="pppp-liquid-title">
+                ⚖️ Weight ↔ Litre — Liquid / Material
+            </div>
+
+            <div class="pppp-liquid-info">
+                Select a liquid/material above to convert its
+                approximate kilogram ↔ litre value.
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CONVERT BUTTON
+        ================================================= -->
+
+        <button
+        id="ppppUC_ConvertButton"
+        class="pppp-unit-converter-button"
+        type="button">
+
+            🔁 Convert
+
+        </button>
+
+
+        <!-- =================================================
+             RESULT
+        ================================================= -->
+
+        <div
+        id="ppppUC_Result"
+        class="pppp-unit-converter-result">
+
+            📊 Results Will Appear Here
+
+        </div>
+
+
+        <!-- =================================================
+             NOTE
+        ================================================= -->
+
+        <div
+        class="pppp-unit-converter-note">
+
+            <strong>
+                💡 Approximate Liquid Conversion:
+            </strong>
+
+            <br>
+
+            Litres depend on density. The liquid/material
+            conversions below are approximate values at around
+            room temperature. Actual volume may vary with
+            temperature and the exact product.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   🔁 PPPP UNIT CONVERTER
+   ISOLATED NAMESPACE
+========================================================= */
+
+(function(){
+
+"use strict";
+
+
+/* =========================================================
+   STANDARD CONVERSION DATA
+========================================================= */
+
+const standardUnits = {
+
+
+    /* -----------------------------------------------------
+       LENGTH
+    ----------------------------------------------------- */
+
+    length:{
+
+        "Meter (m)":1,
+        "Kilometer (km)":1000,
+        "Centimeter (cm)":0.01,
+        "Millimeter (mm)":0.001,
+        "Micrometer (µm)":0.000001,
+
+        "Mile":1609.344,
+        "Yard":0.9144,
+        "Foot":0.3048,
+        "Inch":0.0254,
+
+        "Nautical Mile":1852
+
+    },
+
+
+    /* -----------------------------------------------------
+       WEIGHT
+    ----------------------------------------------------- */
+
+    weight:{
+
+        "Kilogram (kg)":1,
+        "Gram (g)":0.001,
+        "Milligram (mg)":0.000001,
+        "Microgram (µg)":0.000000001,
+
+        "Metric Ton (t)":1000,
+
+        "Pound (lb)":0.45359237,
+        "Ounce (oz)":0.028349523125,
+        "Stone (st)":6.35029318
+
+    },
+
+
+    /* -----------------------------------------------------
+       VOLUME
+    ----------------------------------------------------- */
+
+    volume:{
+
+        "Liter (L)":1,
+        "Milliliter (mL)":0.001,
+
+        "Cubic Meter (m³)":1000,
+        "Cubic Centimeter (cm³)":0.001,
+
+        "US Gallon":3.785411784,
+        "US Quart":0.946352946,
+        "US Pint":0.473176473,
+        "US Cup":0.2365882365,
+        "US Fluid Ounce":0.0295735295625,
+
+        "UK Gallon":4.54609,
+        "UK Quart":1.1365225,
+        "UK Pint":0.56826125,
+
+        "Cubic Foot":28.316846592,
+        "Cubic Inch":0.016387064
+
+    },
+
+
+    /* -----------------------------------------------------
+       AREA
+    ----------------------------------------------------- */
+
+    area:{
+
+        "Square Meter (m²)":1,
+        "Square Kilometer (km²)":1000000,
+        "Square Centimeter (cm²)":0.0001,
+
+        "Square Foot":0.09290304,
+        "Square Yard":0.83612736,
+        "Square Inch":0.00064516,
+
+        "Acre":4046.8564224,
+        "Hectare":10000
+
+    },
+
+
+    /* -----------------------------------------------------
+       TIME
+    ----------------------------------------------------- */
+
+    time:{
+
+        "Second":1,
+        "Millisecond":0.001,
+
+        "Minute":60,
+        "Hour":3600,
+        "Day":86400,
+        "Week":604800,
+
+        "Month (30 days)":2592000,
+        "Year (365 days)":31536000
+
+    },
+
+
+    /* -----------------------------------------------------
+       DATA
+    ----------------------------------------------------- */
+
+    data:{
+
+        "Bit":1/8,
+        "Byte":1,
+
+        "Kilobyte (KB)":1024,
+        "Megabyte (MB)":1024**2,
+        "Gigabyte (GB)":1024**3,
+        "Terabyte (TB)":1024**4,
+
+        "Kibibyte (KiB)":1024,
+        "Mebibyte (MiB)":1024**2,
+        "Gibibyte (GiB)":1024**3,
+        "Tebibyte (TiB)":1024**4
+
+    },
+
+
+    /* -----------------------------------------------------
+       SPEED
+    ----------------------------------------------------- */
+
+    speed:{
+
+        "Meter/Second (m/s)":1,
+        "Kilometer/Hour (km/h)":0.2777777778,
+        "Mile/Hour (mph)":0.44704,
+        "Foot/Second (ft/s)":0.3048,
+        "Knot":0.5144444444
+
+    },
+
+
+    /* -----------------------------------------------------
+       PRESSURE
+    ----------------------------------------------------- */
+
+    pressure:{
+
+        "Pascal (Pa)":1,
+        "Kilopascal (kPa)":1000,
+
+        "Bar":100000,
+        "Millibar (mbar)":100,
+
+        "Atmosphere (atm)":101325,
+
+        "PSI":6894.757293,
+
+        "Torr":133.3223684
+
+    },
+
+
+    /* -----------------------------------------------------
+       ENERGY
+    ----------------------------------------------------- */
+
+    energy:{
+
+        "Joule (J)":1,
+
+        "Kilojoule (kJ)":1000,
+
+        "Calorie (cal)":4.184,
+
+        "Kilocalorie (kcal)":4184,
+
+        "Watt-hour (Wh)":3600,
+
+        "Kilowatt-hour (kWh)":3600000,
+
+        "Megajoule (MJ)":1000000
+
+    }
+
+};
+
+
+/* =========================================================
+   🌡️ TEMPERATURE
+========================================================= */
+
+const temperatureUnits = [
+
+    "Celsius (°C)",
+    "Fahrenheit (°F)",
+    "Kelvin (K)"
+
+];
+
+
+/* =========================================================
+   ⚖️ KG ↔ LITRE LIQUID DATA
+========================================================= */
+
+const liquidData = {
+
+    "Diesel":{
+        kgToLitre:1.18
+    },
+
+    "Petrol":{
+        kgToLitre:1.33
+    },
+
+    "Octane":{
+        kgToLitre:1.33
+    },
+
+    "Kerosene":{
+        kgToLitre:1.25
+    },
+
+    "Water":{
+        kgToLitre:1.00
+    },
+
+    "Mustard Oil":{
+        kgToLitre:1.09
+    },
+
+    "Soybean Oil":{
+        kgToLitre:1.10
+    },
+
+    "Palm Oil":{
+        kgToLitre:1.10
+    },
+
+    "Sunflower Oil":{
+        kgToLitre:1.09
+    },
+
+    "Rice Bran Oil":{
+        kgToLitre:1.09
+    },
+
+    "Coconut Oil":{
+        kgToLitre:1.09
+    },
+
+    "Honey":{
+        kgToLitre:0.70
+    },
+
+    "Milk":{
+        kgToLitre:0.97
+    },
+
+    "Vinegar":{
+        kgToLitre:1.00
+    },
+
+    "Liquid Soap":{
+        kgToLitre:1.00
+    },
+
+    "Shampoo":{
+        kgToLitre:1.00
+    },
+
+    "Glycerin":{
+        kgToLitre:0.79
+    },
+
+    "Molasses / Chit Sugar":{
+        kgToLitre:0.73
+    },
+
+    "Yogurt / Curd":{
+        kgToLitre:1.00
+    }
+
+};
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const category =
+document.getElementById(
+    "ppppUC_Category"
+);
+
+const valueInput =
+document.getElementById(
+    "ppppUC_Value"
+);
+
+const fromSelect =
+document.getElementById(
+    "ppppUC_From"
+);
+
+const toSelect =
+document.getElementById(
+    "ppppUC_To"
+);
+
+const convertButton =
+document.getElementById(
+    "ppppUC_ConvertButton"
+);
+
+const result =
+document.getElementById(
+    "ppppUC_Result"
+);
+
+const liquidPanel =
+document.getElementById(
+    "ppppUC_LiquidPanel"
+);
+
+
+/* =========================================================
+   CHECK ELEMENTS
+========================================================= */
+
+if(
+    !category ||
+    !valueInput ||
+    !fromSelect ||
+    !toSelect ||
+    !convertButton ||
+    !result
+){
+
+    console.error(
+        "PPPP Unit Converter: Required element missing."
+    );
+
+    return;
+
+}
+
+
+/* =========================================================
+   UPDATE UNITS
+========================================================= */
+
+function updateUnits(){
+
+    const selectedCategory =
+        category.value;
+
+
+    fromSelect.innerHTML="";
+    toSelect.innerHTML="";
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "temperature"
+    ){
+
+        temperatureUnits.forEach(
+            function(unit){
+
+                fromSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+                toSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+            }
+        );
+
+    }
+
+
+    /* -----------------------------------------------------
+       STANDARD UNITS
+    ----------------------------------------------------- */
+
+    else{
+
+        const units =
+            standardUnits[
+                selectedCategory
+            ];
+
+
+        if(!units){
+            return;
+        }
+
+
+        Object.keys(units).forEach(
+            function(unit){
+
+                fromSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+                toSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+            }
+        );
+
+
+        /* -------------------------------------------------
+           LIQUID OPTIONS
+        ------------------------------------------------- */
+
+        if(
+            selectedCategory === "weight"
+        ){
+
+            Object.keys(
+                liquidData
+            ).forEach(
+                function(name){
+
+                    toSelect.add(
+                        new Option(
+                            `${name} — Litre`,
+                            "LIQUID_L_" + name
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+
+        if(
+            selectedCategory === "volume"
+        ){
+
+            Object.keys(
+                liquidData
+            ).forEach(
+                function(name){
+
+                    toSelect.add(
+                        new Option(
+                            `${name} — Kilogram`,
+                            "LIQUID_KG_" + name
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       DEFAULT
+    ----------------------------------------------------- */
+
+    if(
+        fromSelect.options.length > 1
+    ){
+
+        fromSelect.selectedIndex=0;
+        toSelect.selectedIndex=1;
+
+    }
+
+
+    /* Liquid panel */
+
+    if(liquidPanel){
+
+        if(
+            selectedCategory === "weight" ||
+            selectedCategory === "volume"
+        ){
+
+            liquidPanel.classList.add(
+                "active"
+            );
+
+        }
+        else{
+
+            liquidPanel.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   TEMPERATURE CONVERSION
+========================================================= */
+
+function convertTemperature(
+    value,
+    from,
+    to
+){
+
+    let celsius;
+
+
+    if(
+        from === "Celsius (°C)"
+    ){
+
+        celsius=value;
+
+    }
+
+    else if(
+        from === "Fahrenheit (°F)"
+    ){
+
+        celsius =
+            (value-32) * 5 / 9;
+
+    }
+
+    else if(
+        from === "Kelvin (K)"
+    ){
+
+        celsius =
+            value-273.15;
+
+    }
+
+    else{
+
+        return NaN;
+
+    }
+
+
+    if(
+        to === "Celsius (°C)"
+    ){
+
+        return celsius;
+
+    }
+
+
+    if(
+        to === "Fahrenheit (°F)"
+    ){
+
+        return (
+            celsius * 9 / 5
+        ) + 32;
+
+    }
+
+
+    if(
+        to === "Kelvin (K)"
+    ){
+
+        return (
+            celsius + 273.15
+        );
+
+    }
+
+
+    return NaN;
+
+}
+
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatNumber(number){
+
+    if(
+        !Number.isFinite(number)
+    ){
+
+        return "Invalid";
+
+    }
+
+
+    if(
+        Math.abs(number) >= 1000000000 ||
+        (
+            Math.abs(number) > 0 &&
+            Math.abs(number) < 0.000001
+        )
+    ){
+
+        return number.toExponential(6);
+
+    }
+
+
+    return Number(
+        number.toFixed(8)
+    ).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits:8
+        }
+    );
+
+}
+
+
+/* =========================================================
+   🔁 CONVERT
+========================================================= */
+
+function convert(){
+
+    const selectedCategory =
+        category.value;
+
+    const value =
+        parseFloat(
+            valueInput.value
+        );
+
+    const from =
+        fromSelect.value;
+
+    const to =
+        toSelect.value;
+
+
+    /* -----------------------------------------------------
+       VALIDATION
+    ----------------------------------------------------- */
+
+    if(
+        !Number.isFinite(value)
+    ){
+
+        result.textContent =
+            "⚠️ Please enter a valid number.";
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "temperature"
+    ){
+
+        const converted =
+            convertTemperature(
+                value,
+                from,
+                to
+            );
+
+
+        if(
+            !Number.isFinite(converted)
+        ){
+
+            result.textContent =
+                "⚠️ Temperature conversion failed.";
+
+            return;
+
+        }
+
+
+        result.textContent =
+            `${formatNumber(value)} ${from} = ` +
+            `${formatNumber(converted)} ${to}`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LIQUID KG → LITRE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "weight" &&
+        to.startsWith("LIQUID_L_")
+    ){
+
+        const name =
+            to.replace(
+                "LIQUID_L_",
+                ""
+            );
+
+
+        const liquid =
+            liquidData[name];
+
+
+        if(
+            !liquid ||
+            from !== "Kilogram (kg)"
+        ){
+
+            result.textContent =
+                "⚠️ Select Kilogram (kg) as the From unit.";
+
+            return;
+
+        }
+
+
+        const litres =
+            value *
+            liquid.kgToLitre;
+
+
+        result.textContent =
+            `${formatNumber(value)} kg ${name} ≈ ` +
+            `${formatNumber(litres)} Litre`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LIQUID LITRE → KG
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "volume" &&
+        to.startsWith("LIQUID_KG_")
+    ){
+
+        const name =
+            to.replace(
+                "LIQUID_KG_",
+                ""
+            );
+
+
+        const liquid =
+            liquidData[name];
+
+
+        if(
+            !liquid ||
+            from !== "Liter (L)"
+        ){
+
+            result.textContent =
+                "⚠️ Select Liter (L) as the From unit.";
+
+            return;
+
+        }
+
+
+        const kilograms =
+            value /
+            liquid.kgToLitre;
+
+
+        result.textContent =
+            `${formatNumber(value)} Litre ${name} ≈ ` +
+            `${formatNumber(kilograms)} kg`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       NORMAL CONVERSION
+    ----------------------------------------------------- */
+
+    const units =
+        standardUnits[
+            selectedCategory
+        ];
+
+
+    if(!units){
+
+        result.textContent =
+            "⚠️ Conversion category unavailable.";
+
+        return;
+
+    }
+
+
+    if(
+        units[from] === undefined ||
+        units[to] === undefined
+    ){
+
+        result.textContent =
+            "⚠️ Selected units cannot be converted.";
+
+        return;
+
+    }
+
+
+    const baseValue =
+        value *
+        units[from];
+
+
+    const converted =
+        baseValue /
+        units[to];
+
+
+    if(
+        !Number.isFinite(converted)
+    ){
+
+        result.textContent =
+            "⚠️ Conversion failed.";
+
+        return;
+
+    }
+
+
+    result.textContent =
+        `${formatNumber(value)} ${from} = ` +
+        `${formatNumber(converted)} ${to}`;
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+category.addEventListener(
+    "change",
+    updateUnits
+);
+
+
+convertButton.addEventListener(
+    "click",
+    function(event){
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        convert();
+
+    },
+    false
+);
+
+
+/* =========================================================
+   ENTER KEY SUPPORT
+========================================================= */
+
+valueInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            event.preventDefault();
+
+            convert();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateUnits();
+
+
+})();
+</script>
+
+<!-- =========================================================
      PPPP TOOLS + LIVE MEDIA
 ========================================================= -->
 
@@ -9485,27 +10829,6 @@ window.addEventListener(
     min-height:230px;
     resize:vertical;
     line-height:1.6;
-}
-
-/* ---------------------------------------------------------
-   CONVERTER
---------------------------------------------------------- */
-
-.pppp-converter-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.pppp-converter-result{
-    margin-top:10px;
-    padding:13px;
-    border-radius:12px;
-    background:#eef7ff;
-    color:#145a96;
-    font-size:17px;
-    font-weight:700;
-    min-height:24px;
 }
 
 /* ---------------------------------------------------------
@@ -9732,84 +11055,6 @@ class="pppp-tool-btn"
 onclick="ppppNotepadClear()">
 🗑️ Clear
 </button>
-
-</div>
-</div>
-
-
-<!-- =========================================================
-     🔁 CONVERTER
-========================================================= -->
-
-<div class="pppp-live-section">
-
-<div class="pppp-live-title">
-🔁 Converter
-</div>
-
-<div class="pppp-tool-content">
-
-<div class="pppp-converter-grid">
-
-<select
-id="ppppConvertCategory"
-class="pppp-tool-select">
-
-<option value="length">📏 Length</option>
-<option value="weight">⚖️ Weight</option>
-<option value="volume">🧪 Volume</option>
-<option value="temperature">🌡️ Temperature</option>
-<option value="area">📐 Area</option>
-<option value="time">⏱️ Time</option>
-<option value="data">💾 Data</option>
-<option value="speed">🚀 Speed</option>
-<option value="pressure">🔵 Pressure</option>
-<option value="energy">⚡ Energy</option>
-
-</select>
-
-<input
-id="ppppConvertValue"
-class="pppp-tool-input"
-type="number"
-value="1"
-placeholder="Value">
-
-<select
-id="ppppConvertFrom"
-class="pppp-tool-select">
-</select>
-
-<select
-id="ppppConvertTo"
-class="pppp-tool-select">
-</select>
-
-</div>
-
-<button
-id="ppppConvertButton"
-class="pppp-tool-btn"
-type="button">
-🔁 Convert
-</button>
-
-<div
-id="ppppConvertResult"
-class="pppp-converter-result">
-📊 Results Will Appear Here
-</div>
-
-<div style="
-margin-top:10px;
-font-size:13px;
-color:#607d8b;
-line-height:1.5;
-">
-💡 A water-based conversion will be used for KG ↔ Litre calculations:
-<strong>1 kg of water ≈ 1 litre of water.</strong>।
-The density may vary for other liquids.
-</div>
 
 </div>
 </div>
@@ -10136,648 +11381,6 @@ a.remove();
 URL.revokeObjectURL(url);
 
 }
-
-
-/* =========================================================
-   🔁 FLOATING SETTINGS CONVERTER
-   ISOLATED / CONFLICT-FREE VERSION
-========================================================= */
-
-(function(){
-
-"use strict";
-
-
-/* =========================================================
-   PRIVATE CONVERTER DATA
-========================================================= */
-
-const converterData = {
-
-    length:{
-        "Meter (m)":1,
-        "Kilometer (km)":1000,
-        "Centimeter (cm)":0.01,
-        "Millimeter (mm)":0.001,
-        "Mile":1609.344,
-        "Yard":0.9144,
-        "Foot":0.3048,
-        "Inch":0.0254
-    },
-
-    weight:{
-        "Kilogram (kg)":1,
-        "Gram (g)":0.001,
-        "Milligram (mg)":0.000001,
-        "Pound (lb)":0.45359237,
-        "Ounce (oz)":0.028349523125
-    },
-
-    volume:{
-        "Liter (L)":1,
-        "Milliliter (mL)":0.001,
-        "Cubic Meter (m³)":1000,
-        "US Gallon":3.785411784,
-        "US Quart":0.946352946,
-        "US Pint":0.473176473,
-        "Cup":0.2365882365
-    },
-
-    area:{
-        "Square Meter (m²)":1,
-        "Square Kilometer (km²)":1000000,
-        "Square Foot":0.09290304,
-        "Square Yard":0.83612736,
-        "Acre":4046.8564224,
-        "Hectare":10000
-    },
-
-    time:{
-        "Second":1,
-        "Minute":60,
-        "Hour":3600,
-        "Day":86400,
-        "Week":604800
-    },
-
-    data:{
-        "Byte":1,
-        "Kilobyte (KB)":1024,
-        "Megabyte (MB)":1024**2,
-        "Gigabyte (GB)":1024**3,
-        "Terabyte (TB)":1024**4
-    },
-
-    speed:{
-        "m/s":1,
-        "km/h":0.2777777778,
-        "mph":0.44704,
-        "knot":0.5144444444
-    },
-
-    pressure:{
-        "Pascal (Pa)":1,
-        "Kilopascal (kPa)":1000,
-        "Bar":100000,
-        "PSI":6894.757293
-    },
-
-    energy:{
-        "Joule (J)":1,
-        "Kilojoule (kJ)":1000,
-        "Calorie (cal)":4.184,
-        "Kilocalorie (kcal)":4184,
-        "Watt-hour (Wh)":3600,
-        "Kilowatt-hour (kWh)":3600000
-    }
-
-};
-
-
-/* =========================================================
-   GET ELEMENTS
-========================================================= */
-
-function getConverterElements(){
-
-    return {
-
-        category:
-        document.getElementById(
-            "ppppConvertCategory"
-        ),
-
-        value:
-        document.getElementById(
-            "ppppConvertValue"
-        ),
-
-        from:
-        document.getElementById(
-            "ppppConvertFrom"
-        ),
-
-        to:
-        document.getElementById(
-            "ppppConvertTo"
-        ),
-
-        result:
-        document.getElementById(
-            "ppppConvertResult"
-        )
-
-    };
-
-}
-
-
-/* =========================================================
-   UPDATE UNITS
-========================================================= */
-
-function updateUnits(){
-
-    const elements =
-        getConverterElements();
-
-    const category =
-        elements.category;
-
-    const from =
-        elements.from;
-
-    const to =
-        elements.to;
-
-
-    if(
-        !category ||
-        !from ||
-        !to
-    ){
-        return;
-    }
-
-
-    from.innerHTML = "";
-    to.innerHTML = "";
-
-
-    /* -----------------------------------------------------
-       TEMPERATURE
-    ----------------------------------------------------- */
-
-    if(
-        category.value === "temperature"
-    ){
-
-        const units = [
-
-            "Celsius (°C)",
-            "Fahrenheit (°F)",
-            "Kelvin (K)"
-
-        ];
-
-
-        units.forEach(function(unit){
-
-            from.add(
-                new Option(
-                    unit,
-                    unit
-                )
-            );
-
-            to.add(
-                new Option(
-                    unit,
-                    unit
-                )
-            );
-
-        });
-
-
-        if(from.options.length > 1){
-
-            from.selectedIndex = 0;
-            to.selectedIndex = 1;
-
-        }
-
-
-        return;
-
-    }
-
-
-    /* -----------------------------------------------------
-       NORMAL UNITS
-    ----------------------------------------------------- */
-
-    const data =
-        converterData[category.value];
-
-
-    if(!data){
-        return;
-    }
-
-
-    Object.keys(data).forEach(function(unit){
-
-        from.add(
-            new Option(
-                unit,
-                unit
-            )
-        );
-
-        to.add(
-            new Option(
-                unit,
-                unit
-            )
-        );
-
-    });
-
-
-    /* -----------------------------------------------------
-       KG → LITRE WATER
-    ----------------------------------------------------- */
-
-    if(
-        category.value === "weight"
-    ){
-
-        to.add(
-            new Option(
-                "Liter of Water (L)",
-                "LiterWater"
-            )
-        );
-
-    }
-
-
-    /* -----------------------------------------------------
-       LITRE → KG WATER
-    ----------------------------------------------------- */
-
-    if(
-        category.value === "volume"
-    ){
-
-        to.add(
-            new Option(
-                "Kilogram of Water (kg)",
-                "KilogramWater"
-            )
-        );
-
-    }
-
-
-    /* -----------------------------------------------------
-       DEFAULT SELECTION
-    ----------------------------------------------------- */
-
-    if(from.options.length > 1){
-
-        from.selectedIndex = 0;
-        to.selectedIndex = 1;
-
-    }
-
-}
-
-
-/* =========================================================
-   TEMPERATURE CONVERSION
-========================================================= */
-
-function convertTemperature(
-    value,
-    from,
-    to
-){
-
-    let celsius;
-
-
-    if(
-        from === "Celsius (°C)"
-    ){
-
-        celsius = value;
-
-    }
-
-    else if(
-        from === "Fahrenheit (°F)"
-    ){
-
-        celsius =
-            (value - 32) * 5 / 9;
-
-    }
-
-    else if(
-        from === "Kelvin (K)"
-    ){
-
-        celsius =
-            value - 273.15;
-
-    }
-
-    else{
-
-        return NaN;
-
-    }
-
-
-    if(
-        to === "Celsius (°C)"
-    ){
-
-        return celsius;
-
-    }
-
-
-    if(
-        to === "Fahrenheit (°F)"
-    ){
-
-        return (
-            celsius * 9 / 5
-        ) + 32;
-
-    }
-
-
-    if(
-        to === "Kelvin (K)"
-    ){
-
-        return (
-            celsius + 273.15
-        );
-
-    }
-
-
-    return NaN;
-
-}
-
-
-/* =========================================================
-   MAIN CONVERTER
-========================================================= */
-
-function convertNow(){
-
-    const elements =
-        getConverterElements();
-
-
-    if(
-        !elements.category ||
-        !elements.value ||
-        !elements.from ||
-        !elements.to ||
-        !elements.result
-    ){
-
-        return;
-
-    }
-
-
-    const category =
-        elements.category.value;
-
-    const value =
-        parseFloat(
-            elements.value.value
-        );
-
-    const from =
-        elements.from.value;
-
-    const to =
-        elements.to.value;
-
-
-    /* -----------------------------------------------------
-       VALID NUMBER
-    ----------------------------------------------------- */
-
-    if(
-        !Number.isFinite(value)
-    ){
-
-        elements.result.textContent =
-            "⚠️ Please enter a valid number.";
-
-        return;
-
-    }
-
-
-    /* -----------------------------------------------------
-       TEMPERATURE
-    ----------------------------------------------------- */
-
-    if(
-        category === "temperature"
-    ){
-
-        const converted =
-            convertTemperature(
-                value,
-                from,
-                to
-            );
-
-
-        if(
-            !Number.isFinite(converted)
-        ){
-
-            elements.result.textContent =
-                "⚠️ Temperature conversion failed.";
-
-            return;
-
-        }
-
-
-        elements.result.textContent =
-            `${value} ${from} = ` +
-            `${converted.toFixed(6)} ${to}`;
-
-        return;
-
-    }
-
-
-    /* -----------------------------------------------------
-       KG → LITRE WATER
-    ----------------------------------------------------- */
-
-    if(
-        category === "weight" &&
-        to === "LiterWater" &&
-        from === "Kilogram (kg)"
-    ){
-
-        elements.result.textContent =
-            `${value} kg পানি ≈ ${value} L পানি`;
-
-        return;
-
-    }
-
-
-    /* -----------------------------------------------------
-       LITRE → KG WATER
-    ----------------------------------------------------- */
-
-    if(
-        category === "volume" &&
-        to === "KilogramWater" &&
-        from === "Liter (L)"
-    ){
-
-        elements.result.textContent =
-            `${value} L পানি ≈ ${value} kg পানি`;
-
-        return;
-
-    }
-
-
-    /* -----------------------------------------------------
-       NORMAL CONVERSION
-    ----------------------------------------------------- */
-
-    const data =
-        converterData[category];
-
-
-    if(!data){
-
-        elements.result.textContent =
-            "⚠️ Converter data unavailable.";
-
-        return;
-
-    }
-
-
-    if(
-        data[from] === undefined ||
-        data[to] === undefined
-    ){
-
-        elements.result.textContent =
-            "⚠️ Selected units cannot be converted.";
-
-        return;
-
-    }
-
-
-    const baseValue =
-        value * data[from];
-
-
-    const converted =
-        baseValue / data[to];
-
-
-    if(
-        !Number.isFinite(converted)
-    ){
-
-        elements.result.textContent =
-            "⚠️ Conversion failed.";
-
-        return;
-
-    }
-
-
-    elements.result.textContent =
-        `${value} ${from} = ` +
-        `${converted.toFixed(6)} ${to}`;
-
-}
-
-
-/* =========================================================
-   BUTTON / SELECT EVENTS
-========================================================= */
-
-function initialize(){
-
-    const elements =
-        getConverterElements();
-
-
-    if(!elements.category){
-        return;
-    }
-
-
-    /* Category change */
-
-    elements.category.addEventListener(
-        "change",
-        updateUnits
-    );
-
-
-    /* Convert button */
-
-    const convertButton =
-    document.getElementById(
-        "ppppConvertButton"
-    );
-
-
-    if(convertButton){
-
-        convertButton.addEventListener(
-            "click",
-            function(event){
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                convertNow();
-
-            }
-        );
-
-    }
-
-
-    /* Initial units */
-
-    updateUnits();
-
-}
-
-
-/* =========================================================
-   DOM READY
-========================================================= */
-
-if(
-    document.readyState === "loading"
-){
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        initialize
-    );
-
-}
-else{
-
-    initialize();
-
-}
-
-})();
 
 
 /* =========================================================
