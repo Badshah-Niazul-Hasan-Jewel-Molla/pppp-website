@@ -3689,6 +3689,7 @@ onclick="ppppAboutSettings()">
 
 .pppp-tool15-preview,
 .pppp-bg-preview,
+.pppp-bg-video-preview,
 .pppp-tool15-media{
     display:none;
     width:100%;
@@ -3698,6 +3699,10 @@ onclick="ppppAboutSettings()">
     margin:8px 0;
     border-radius:10px;
     background:#eee;
+}
+
+.pppp-bg-video-preview{
+    background:#000;
 }
 
 /* =========================================================
@@ -4934,6 +4939,27 @@ class="pppp-bg-preview">
 
 
 <label class="pppp-tool15-label">
+🎥 Background Video
+</label>
+
+<input
+type="file"
+id="ppppMP3BgVideo"
+class="pppp-tool15-input"
+accept="video/*">
+
+
+<video
+id="ppppMP3BgVideoPreview"
+class="pppp-bg-video-preview"
+muted
+loop
+playsinline
+controls>
+</video>
+
+
+<label class="pppp-tool15-label">
 📐 Video Size
 </label>
 
@@ -4980,14 +5006,13 @@ MP3 to Video Ready
 
 
 <div class="pppp-tool15-note">
-ℹ️ Background Image takes priority over Background Color. The fastest practical browser-supported video output is used automatically.
+ℹ️ Background Video takes priority over Background Image, and Background Image takes priority over Background Color. The fastest practical browser-supported video output is used automatically.
 </div>
 
 </div>
 
 </div>
 </div>
-
 
 <!-- =========================================================
      13 💱 BDT CONVERTER
@@ -8313,6 +8338,9 @@ async function(){
 
 let ppppMP3BgImageData=null;
 
+let ppppMP3BgVideoURL=null;
+let ppppMP3BgVideoFile=null;
+
 
 /* ---------------------------------------------------------
    BACKGROUND IMAGE
@@ -8374,6 +8402,104 @@ let ppppMP3BgImageData=null;
 
             reader.readAsDataURL(
                 file
+            );
+
+        }
+    );
+
+})();
+
+
+/* ---------------------------------------------------------
+   BACKGROUND VIDEO
+--------------------------------------------------------- */
+
+(function(){
+
+    const input=
+        document.getElementById(
+            "ppppMP3BgVideo"
+        );
+
+    const preview=
+        document.getElementById(
+            "ppppMP3BgVideoPreview"
+        );
+
+
+    if(!input || !preview) return;
+
+
+    input.addEventListener(
+        "change",
+        function(){
+
+            const file=
+                this.files[0];
+
+
+            /* Remove previous video URL */
+
+            if(ppppMP3BgVideoURL){
+
+                URL.revokeObjectURL(
+                    ppppMP3BgVideoURL
+                );
+
+                ppppMP3BgVideoURL=null;
+
+            }
+
+
+            ppppMP3BgVideoFile=null;
+
+
+            preview.pause();
+
+            preview.removeAttribute(
+                "src"
+            );
+
+            preview.load();
+
+
+            if(!file){
+
+                preview.style.display=
+                    "none";
+
+                return;
+
+            }
+
+
+            ppppMP3BgVideoFile=
+                file;
+
+
+            ppppMP3BgVideoURL=
+                URL.createObjectURL(
+                    file
+                );
+
+
+            preview.src=
+                ppppMP3BgVideoURL;
+
+            preview.style.display=
+                "block";
+
+
+            preview.muted=true;
+
+            preview.loop=true;
+
+            preview.playsInline=true;
+
+
+            preview.play()
+            .catch(
+                function(){}
             );
 
         }
@@ -8628,15 +8754,33 @@ async function(){
 
 
                 try{
+
                     audioContext.close();
+
                 }catch(e){}
+
 
                 URL.revokeObjectURL(
                     audio.src
                 );
 
+
+                if(ppppMP3BgVideoURL){
+
+                    URL.revokeObjectURL(
+                        ppppMP3BgVideoURL
+                    );
+
+                    ppppMP3BgVideoURL=null;
+
+                }
+
             };
 
+
+        /* -------------------------------------------------
+           BACKGROUND IMAGE
+        ------------------------------------------------- */
 
         let bgImage=null;
 
@@ -8665,36 +8809,144 @@ async function(){
         }
 
 
+        /* -------------------------------------------------
+           BACKGROUND VIDEO
+        ------------------------------------------------- */
+
+        let bgVideo=null;
+
+
+        if(ppppMP3BgVideoFile){
+
+            bgVideo=
+                document.createElement(
+                    "video"
+                );
+
+
+            bgVideo.src=
+                URL.createObjectURL(
+                    ppppMP3BgVideoFile
+                );
+
+
+            bgVideo.muted=true;
+
+            bgVideo.loop=true;
+
+            bgVideo.playsInline=true;
+
+            bgVideo.preload="auto";
+
+
+            await new Promise(
+                function(resolve,reject){
+
+                    bgVideo.onloadeddata=
+                        function(){
+
+                            resolve();
+
+                        };
+
+
+                    bgVideo.onerror=
+                        function(){
+
+                            reject(
+                                new Error(
+                                    "Background video could not be loaded."
+                                )
+                            );
+
+                        };
+
+                }
+            );
+
+
+            await bgVideo.play();
+
+        }
+
+
+        /* -------------------------------------------------
+           DRAW BACKGROUND
+           
+           PRIORITY:
+           1. Background Video
+           2. Background Image
+           3. Background Color
+        ------------------------------------------------- */
+
         function drawBackground(){
 
-    if(bgImage){
 
-        ctx.drawImage(
-            bgImage,
-            0,
-            0,
-            width,
-            height
-        );
+            /* ---------------------------------------------
+               1. BACKGROUND VIDEO
+            --------------------------------------------- */
 
-    }else{
+            if(
+                ppppMP3BgVideoFile &&
+                bgVideo &&
+                bgVideo.readyState>=2
+            ){
 
-        ctx.fillStyle=
-            document.getElementById(
-                "ppppMP3BgColor"
-            ).value;
+                ctx.drawImage(
+                    bgVideo,
+                    0,
+                    0,
+                    width,
+                    height
+                );
 
-        ctx.fillRect(
-            0,
-            0,
-            width,
-            height
-        );
+                return;
 
-    }
+            }
 
-}
 
+            /* ---------------------------------------------
+               2. BACKGROUND IMAGE
+            --------------------------------------------- */
+
+            if(bgImage){
+
+                ctx.drawImage(
+                    bgImage,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               3. BACKGROUND COLOR
+            --------------------------------------------- */
+
+            ctx.fillStyle=
+                document.getElementById(
+                    "ppppMP3BgColor"
+                ).value;
+
+
+            ctx.fillRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+        }
+
+
+        /* -------------------------------------------------
+           START RECORDING
+        ------------------------------------------------- */
 
         recorder.start(
             1000
@@ -8707,6 +8959,10 @@ async function(){
         result.textContent=
             "🎞️ Creating video...";
 
+
+        /* -------------------------------------------------
+           DRAW LOOP
+        ------------------------------------------------- */
 
         function draw(){
 
@@ -8731,6 +8987,10 @@ async function(){
 
         draw();
 
+
+        /* -------------------------------------------------
+           AUDIO END
+        ------------------------------------------------- */
 
         audio.onended=
             function(){
@@ -8759,7 +9019,6 @@ async function(){
     }
 
 };
-
 
 /* =========================================================
    13 💱 BDT CONVERTER
