@@ -3689,6 +3689,7 @@ onclick="ppppAboutSettings()">
 
 .pppp-tool15-preview,
 .pppp-bg-preview,
+.pppp-bg-video-preview,
 .pppp-tool15-media{
     display:none;
     width:100%;
@@ -3698,6 +3699,10 @@ onclick="ppppAboutSettings()">
     margin:8px 0;
     border-radius:10px;
     background:#eee;
+}
+
+.pppp-bg-video-preview{
+    background:#000;
 }
 
 /* =========================================================
@@ -3886,7 +3891,7 @@ onclick="ppppAboutSettings()">
 
     .pppp-world-clock{
         grid-template-columns:
-            repeat(4,minmax(0,1fr));
+            repeat(3,minmax(0,1fr));
     }
 
     .pppp-help-grid{
@@ -4934,6 +4939,27 @@ class="pppp-bg-preview">
 
 
 <label class="pppp-tool15-label">
+🎥 Background Video
+</label>
+
+<input
+type="file"
+id="ppppMP3BgVideo"
+class="pppp-tool15-input"
+accept="video/*">
+
+
+<video
+id="ppppMP3BgVideoPreview"
+class="pppp-bg-video-preview"
+muted
+loop
+playsinline
+controls>
+</video>
+
+
+<label class="pppp-tool15-label">
 📐 Video Size
 </label>
 
@@ -4980,14 +5006,13 @@ MP3 to Video Ready
 
 
 <div class="pppp-tool15-note">
-ℹ️ Background Image takes priority over Background Color. The fastest practical browser-supported video output is used automatically.
+ℹ️ Background Video takes priority over Background Image, and Background Image takes priority over Background Color. The fastest practical browser-supported video output is used automatically.
 </div>
 
 </div>
 
 </div>
 </div>
-
 
 <!-- =========================================================
      13 💱 BDT CONVERTER
@@ -8313,6 +8338,9 @@ async function(){
 
 let ppppMP3BgImageData=null;
 
+let ppppMP3BgVideoURL=null;
+let ppppMP3BgVideoFile=null;
+
 
 /* ---------------------------------------------------------
    BACKGROUND IMAGE
@@ -8374,6 +8402,104 @@ let ppppMP3BgImageData=null;
 
             reader.readAsDataURL(
                 file
+            );
+
+        }
+    );
+
+})();
+
+
+/* ---------------------------------------------------------
+   BACKGROUND VIDEO
+--------------------------------------------------------- */
+
+(function(){
+
+    const input=
+        document.getElementById(
+            "ppppMP3BgVideo"
+        );
+
+    const preview=
+        document.getElementById(
+            "ppppMP3BgVideoPreview"
+        );
+
+
+    if(!input || !preview) return;
+
+
+    input.addEventListener(
+        "change",
+        function(){
+
+            const file=
+                this.files[0];
+
+
+            /* Remove previous video URL */
+
+            if(ppppMP3BgVideoURL){
+
+                URL.revokeObjectURL(
+                    ppppMP3BgVideoURL
+                );
+
+                ppppMP3BgVideoURL=null;
+
+            }
+
+
+            ppppMP3BgVideoFile=null;
+
+
+            preview.pause();
+
+            preview.removeAttribute(
+                "src"
+            );
+
+            preview.load();
+
+
+            if(!file){
+
+                preview.style.display=
+                    "none";
+
+                return;
+
+            }
+
+
+            ppppMP3BgVideoFile=
+                file;
+
+
+            ppppMP3BgVideoURL=
+                URL.createObjectURL(
+                    file
+                );
+
+
+            preview.src=
+                ppppMP3BgVideoURL;
+
+            preview.style.display=
+                "block";
+
+
+            preview.muted=true;
+
+            preview.loop=true;
+
+            preview.playsInline=true;
+
+
+            preview.play()
+            .catch(
+                function(){}
             );
 
         }
@@ -8628,15 +8754,33 @@ async function(){
 
 
                 try{
+
                     audioContext.close();
+
                 }catch(e){}
+
 
                 URL.revokeObjectURL(
                     audio.src
                 );
 
+
+                if(ppppMP3BgVideoURL){
+
+                    URL.revokeObjectURL(
+                        ppppMP3BgVideoURL
+                    );
+
+                    ppppMP3BgVideoURL=null;
+
+                }
+
             };
 
+
+        /* -------------------------------------------------
+           BACKGROUND IMAGE
+        ------------------------------------------------- */
 
         let bgImage=null;
 
@@ -8665,36 +8809,144 @@ async function(){
         }
 
 
+        /* -------------------------------------------------
+           BACKGROUND VIDEO
+        ------------------------------------------------- */
+
+        let bgVideo=null;
+
+
+        if(ppppMP3BgVideoFile){
+
+            bgVideo=
+                document.createElement(
+                    "video"
+                );
+
+
+            bgVideo.src=
+                URL.createObjectURL(
+                    ppppMP3BgVideoFile
+                );
+
+
+            bgVideo.muted=true;
+
+            bgVideo.loop=true;
+
+            bgVideo.playsInline=true;
+
+            bgVideo.preload="auto";
+
+
+            await new Promise(
+                function(resolve,reject){
+
+                    bgVideo.onloadeddata=
+                        function(){
+
+                            resolve();
+
+                        };
+
+
+                    bgVideo.onerror=
+                        function(){
+
+                            reject(
+                                new Error(
+                                    "Background video could not be loaded."
+                                )
+                            );
+
+                        };
+
+                }
+            );
+
+
+            await bgVideo.play();
+
+        }
+
+
+        /* -------------------------------------------------
+           DRAW BACKGROUND
+           
+           PRIORITY:
+           1. Background Video
+           2. Background Image
+           3. Background Color
+        ------------------------------------------------- */
+
         function drawBackground(){
 
-    if(bgImage){
 
-        ctx.drawImage(
-            bgImage,
-            0,
-            0,
-            width,
-            height
-        );
+            /* ---------------------------------------------
+               1. BACKGROUND VIDEO
+            --------------------------------------------- */
 
-    }else{
+            if(
+                ppppMP3BgVideoFile &&
+                bgVideo &&
+                bgVideo.readyState>=2
+            ){
 
-        ctx.fillStyle=
-            document.getElementById(
-                "ppppMP3BgColor"
-            ).value;
+                ctx.drawImage(
+                    bgVideo,
+                    0,
+                    0,
+                    width,
+                    height
+                );
 
-        ctx.fillRect(
-            0,
-            0,
-            width,
-            height
-        );
+                return;
 
-    }
+            }
 
-}
 
+            /* ---------------------------------------------
+               2. BACKGROUND IMAGE
+            --------------------------------------------- */
+
+            if(bgImage){
+
+                ctx.drawImage(
+                    bgImage,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               3. BACKGROUND COLOR
+            --------------------------------------------- */
+
+            ctx.fillStyle=
+                document.getElementById(
+                    "ppppMP3BgColor"
+                ).value;
+
+
+            ctx.fillRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+        }
+
+
+        /* -------------------------------------------------
+           START RECORDING
+        ------------------------------------------------- */
 
         recorder.start(
             1000
@@ -8707,6 +8959,10 @@ async function(){
         result.textContent=
             "🎞️ Creating video...";
 
+
+        /* -------------------------------------------------
+           DRAW LOOP
+        ------------------------------------------------- */
 
         function draw(){
 
@@ -8731,6 +8987,10 @@ async function(){
 
         draw();
 
+
+        /* -------------------------------------------------
+           AUDIO END
+        ------------------------------------------------- */
 
         audio.onended=
             function(){
@@ -8759,7 +9019,6 @@ async function(){
     }
 
 };
-
 
 /* =========================================================
    13 💱 BDT CONVERTER
@@ -9368,6 +9627,1355 @@ window.addEventListener(
 ========================================================= -->
 
 <!-- =========================================================
+     🔁 PPPP UNIT CONVERTER
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   PPPP UNIT CONVERTER
+========================================================= */
+
+.pppp-unit-converter{
+    width:100%;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+.pppp-unit-converter-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 16px;
+    margin:0 0 10px 0;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #1565c0,
+        #1e88e5
+    );
+    color:#fff;
+    font-size:20px;
+    font-weight:800;
+    line-height:1.3;
+    text-align:left;
+}
+
+.pppp-unit-converter-body{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-field{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.pppp-unit-converter-label{
+    display:block;
+    margin:0 0 5px 2px;
+    font-size:12px;
+    font-weight:600;
+    color:#374151;
+}
+
+.pppp-unit-converter-select,
+.pppp-unit-converter-input{
+    width:100%;
+    min-width:0;
+    height:42px;
+    box-sizing:border-box;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    background:#ffffff;
+    padding:0 10px;
+    font-size:13px;
+    color:#111827;
+    outline:none;
+}
+
+.pppp-unit-converter-select:focus,
+.pppp-unit-converter-input:focus{
+    border-color:#2563eb;
+}
+
+.pppp-unit-converter-button{
+    width:100%;
+    height:42px;
+    margin-top:9px;
+    border:0;
+    border-radius:10px;
+    background:#16a34a;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    touch-action:manipulation;
+}
+
+.pppp-unit-converter-button:active{
+    transform:scale(.98);
+}
+
+.pppp-unit-converter-result{
+    width:100%;
+    min-height:46px;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:12px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:13px;
+    font-weight:600;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    word-break:break-word;
+}
+
+.pppp-unit-converter-note{
+    width:100%;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:10px 12px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:11px;
+    line-height:1.55;
+    color:#475569;
+}
+
+.pppp-unit-converter-note strong{
+    color:#111827;
+}
+
+.pppp-liquid-panel{
+    display:none;
+    width:100%;
+    box-sizing:border-box;
+    margin-top:9px;
+    padding:10px;
+    border-radius:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+}
+
+.pppp-liquid-panel.active{
+    display:block;
+}
+
+.pppp-liquid-title{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+    color:#111827;
+}
+
+.pppp-liquid-info{
+    font-size:11px;
+    line-height:1.5;
+    color:#475569;
+}
+
+@media (min-width:700px){
+
+    .pppp-unit-converter-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+}
+
+@media (max-width:480px){
+
+    .pppp-unit-converter-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .pppp-unit-converter-select,
+    .pppp-unit-converter-input{
+        font-size:12px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     PPPP UNIT CONVERTER HTML
+========================================================= -->
+
+<div
+class="pppp-unit-converter"
+id="ppppUnitConverter">
+
+
+    <div class="pppp-unit-converter-title">
+        🔁 Unit Converter
+    </div>
+
+
+    <div class="pppp-unit-converter-body">
+
+
+        <div class="pppp-unit-converter-grid">
+
+
+            <!-- CATEGORY -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    Category
+                </label>
+
+                <select
+                id="ppppUC_Category"
+                class="pppp-unit-converter-select">
+
+                    <option value="length">
+                        📏 Length
+                    </option>
+
+                    <option value="weight">
+                        ⚖️ Weight
+                    </option>
+
+                    <option value="volume">
+                        🧪 Volume
+                    </option>
+
+                    <option value="temperature">
+                        🌡️ Temperature
+                    </option>
+
+                    <option value="area">
+                        📐 Area
+                    </option>
+
+                    <option value="time">
+                        ⏱️ Time
+                    </option>
+
+                    <option value="data">
+                        💾 Data
+                    </option>
+
+                    <option value="speed">
+                        🚀 Speed
+                    </option>
+
+                    <option value="pressure">
+                        🔵 Pressure
+                    </option>
+
+                    <option value="energy">
+                        ⚡ Energy
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- VALUE -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    Value
+                </label>
+
+                <input
+                id="ppppUC_Value"
+                class="pppp-unit-converter-input"
+                type="number"
+                step="any"
+                value="1"
+                placeholder="Enter value">
+
+            </div>
+
+
+            <!-- FROM -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    From
+                </label>
+
+                <select
+                id="ppppUC_From"
+                class="pppp-unit-converter-select">
+                </select>
+
+            </div>
+
+
+            <!-- TO -->
+
+            <div class="pppp-unit-converter-field">
+
+                <label
+                class="pppp-unit-converter-label">
+                    To
+                </label>
+
+                <select
+                id="ppppUC_To"
+                class="pppp-unit-converter-select">
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             WEIGHT LIQUID OPTIONS
+        ================================================= -->
+
+        <div
+        id="ppppUC_LiquidPanel"
+        class="pppp-liquid-panel">
+
+            <div class="pppp-liquid-title">
+                ⚖️ Weight ↔ Litre — Liquid / Material
+            </div>
+
+            <div class="pppp-liquid-info">
+                Select a liquid/material above to convert its
+                approximate kilogram ↔ litre value.
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CONVERT BUTTON
+        ================================================= -->
+
+        <button
+        id="ppppUC_ConvertButton"
+        class="pppp-unit-converter-button"
+        type="button">
+
+            🔁 Convert
+
+        </button>
+
+
+        <!-- =================================================
+             RESULT
+        ================================================= -->
+
+        <div
+        id="ppppUC_Result"
+        class="pppp-unit-converter-result">
+
+            📊 Results Will Appear Here
+
+        </div>
+
+
+        <!-- =================================================
+             NOTE
+        ================================================= -->
+
+        <div
+        class="pppp-unit-converter-note">
+
+            <strong>
+                💡 Approximate Liquid Conversion:
+            </strong>
+
+            <br>
+
+            Litres depend on density. The liquid/material
+            conversions below are approximate values at around
+            room temperature. Actual volume may vary with
+            temperature and the exact product.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   🔁 PPPP UNIT CONVERTER
+   ISOLATED NAMESPACE
+========================================================= */
+
+(function(){
+
+"use strict";
+
+
+/* =========================================================
+   STANDARD CONVERSION DATA
+========================================================= */
+
+const standardUnits = {
+
+
+    /* -----------------------------------------------------
+       LENGTH
+    ----------------------------------------------------- */
+
+    length:{
+
+        "Meter (m)":1,
+        "Kilometer (km)":1000,
+        "Centimeter (cm)":0.01,
+        "Millimeter (mm)":0.001,
+        "Micrometer (µm)":0.000001,
+
+        "Mile":1609.344,
+        "Yard":0.9144,
+        "Foot":0.3048,
+        "Inch":0.0254,
+
+        "Nautical Mile":1852
+
+    },
+
+
+    /* -----------------------------------------------------
+       WEIGHT
+    ----------------------------------------------------- */
+
+    weight:{
+
+        "Kilogram (kg)":1,
+        "Gram (g)":0.001,
+        "Milligram (mg)":0.000001,
+        "Microgram (µg)":0.000000001,
+
+        "Metric Ton (t)":1000,
+
+        "Pound (lb)":0.45359237,
+        "Ounce (oz)":0.028349523125,
+        "Stone (st)":6.35029318
+
+    },
+
+
+    /* -----------------------------------------------------
+       VOLUME
+    ----------------------------------------------------- */
+
+    volume:{
+
+        "Liter (L)":1,
+        "Milliliter (mL)":0.001,
+
+        "Cubic Meter (m³)":1000,
+        "Cubic Centimeter (cm³)":0.001,
+
+        "US Gallon":3.785411784,
+        "US Quart":0.946352946,
+        "US Pint":0.473176473,
+        "US Cup":0.2365882365,
+        "US Fluid Ounce":0.0295735295625,
+
+        "UK Gallon":4.54609,
+        "UK Quart":1.1365225,
+        "UK Pint":0.56826125,
+
+        "Cubic Foot":28.316846592,
+        "Cubic Inch":0.016387064
+
+    },
+
+
+    /* -----------------------------------------------------
+       AREA
+    ----------------------------------------------------- */
+
+    area:{
+
+        "Square Meter (m²)":1,
+        "Square Kilometer (km²)":1000000,
+        "Square Centimeter (cm²)":0.0001,
+
+        "Square Foot":0.09290304,
+        "Square Yard":0.83612736,
+        "Square Inch":0.00064516,
+
+        "Acre":4046.8564224,
+        "Hectare":10000
+
+    },
+
+
+    /* -----------------------------------------------------
+       TIME
+    ----------------------------------------------------- */
+
+    time:{
+
+        "Second":1,
+        "Millisecond":0.001,
+
+        "Minute":60,
+        "Hour":3600,
+        "Day":86400,
+        "Week":604800,
+
+        "Month (30 days)":2592000,
+        "Year (365 days)":31536000
+
+    },
+
+
+    /* -----------------------------------------------------
+       DATA
+    ----------------------------------------------------- */
+
+    data:{
+
+        "Bit":1/8,
+        "Byte":1,
+
+        "Kilobyte (KB)":1024,
+        "Megabyte (MB)":1024**2,
+        "Gigabyte (GB)":1024**3,
+        "Terabyte (TB)":1024**4,
+
+        "Kibibyte (KiB)":1024,
+        "Mebibyte (MiB)":1024**2,
+        "Gibibyte (GiB)":1024**3,
+        "Tebibyte (TiB)":1024**4
+
+    },
+
+
+    /* -----------------------------------------------------
+       SPEED
+    ----------------------------------------------------- */
+
+    speed:{
+
+        "Meter/Second (m/s)":1,
+        "Kilometer/Hour (km/h)":0.2777777778,
+        "Mile/Hour (mph)":0.44704,
+        "Foot/Second (ft/s)":0.3048,
+        "Knot":0.5144444444
+
+    },
+
+
+    /* -----------------------------------------------------
+       PRESSURE
+    ----------------------------------------------------- */
+
+    pressure:{
+
+        "Pascal (Pa)":1,
+        "Kilopascal (kPa)":1000,
+
+        "Bar":100000,
+        "Millibar (mbar)":100,
+
+        "Atmosphere (atm)":101325,
+
+        "PSI":6894.757293,
+
+        "Torr":133.3223684
+
+    },
+
+
+    /* -----------------------------------------------------
+       ENERGY
+    ----------------------------------------------------- */
+
+    energy:{
+
+        "Joule (J)":1,
+
+        "Kilojoule (kJ)":1000,
+
+        "Calorie (cal)":4.184,
+
+        "Kilocalorie (kcal)":4184,
+
+        "Watt-hour (Wh)":3600,
+
+        "Kilowatt-hour (kWh)":3600000,
+
+        "Megajoule (MJ)":1000000
+
+    }
+
+};
+
+
+/* =========================================================
+   🌡️ TEMPERATURE
+========================================================= */
+
+const temperatureUnits = [
+
+    "Celsius (°C)",
+    "Fahrenheit (°F)",
+    "Kelvin (K)"
+
+];
+
+
+/* =========================================================
+   ⚖️ KG ↔ LITRE LIQUID DATA
+========================================================= */
+
+const liquidData = {
+
+    "Diesel":{
+        kgToLitre:1.18
+    },
+
+    "Petrol":{
+        kgToLitre:1.33
+    },
+
+    "Octane":{
+        kgToLitre:1.33
+    },
+
+    "Kerosene":{
+        kgToLitre:1.25
+    },
+
+    "Water":{
+        kgToLitre:1.00
+    },
+
+    "Mustard Oil":{
+        kgToLitre:1.09
+    },
+
+    "Soybean Oil":{
+        kgToLitre:1.10
+    },
+
+    "Palm Oil":{
+        kgToLitre:1.10
+    },
+
+    "Sunflower Oil":{
+        kgToLitre:1.09
+    },
+
+    "Rice Bran Oil":{
+        kgToLitre:1.09
+    },
+
+    "Coconut Oil":{
+        kgToLitre:1.09
+    },
+
+    "Honey":{
+        kgToLitre:0.70
+    },
+
+    "Milk":{
+        kgToLitre:0.97
+    },
+
+    "Vinegar":{
+        kgToLitre:1.00
+    },
+
+    "Liquid Soap":{
+        kgToLitre:1.00
+    },
+
+    "Shampoo":{
+        kgToLitre:1.00
+    },
+
+    "Glycerin":{
+        kgToLitre:0.79
+    },
+
+    "Molasses / Chit Sugar":{
+        kgToLitre:0.73
+    },
+
+    "Yogurt / Curd":{
+        kgToLitre:1.00
+    }
+
+};
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const category =
+document.getElementById(
+    "ppppUC_Category"
+);
+
+const valueInput =
+document.getElementById(
+    "ppppUC_Value"
+);
+
+const fromSelect =
+document.getElementById(
+    "ppppUC_From"
+);
+
+const toSelect =
+document.getElementById(
+    "ppppUC_To"
+);
+
+const convertButton =
+document.getElementById(
+    "ppppUC_ConvertButton"
+);
+
+const result =
+document.getElementById(
+    "ppppUC_Result"
+);
+
+const liquidPanel =
+document.getElementById(
+    "ppppUC_LiquidPanel"
+);
+
+
+/* =========================================================
+   CHECK ELEMENTS
+========================================================= */
+
+if(
+    !category ||
+    !valueInput ||
+    !fromSelect ||
+    !toSelect ||
+    !convertButton ||
+    !result
+){
+
+    console.error(
+        "PPPP Unit Converter: Required element missing."
+    );
+
+    return;
+
+}
+
+
+/* =========================================================
+   UPDATE UNITS
+========================================================= */
+
+function updateUnits(){
+
+    const selectedCategory =
+        category.value;
+
+
+    fromSelect.innerHTML="";
+    toSelect.innerHTML="";
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "temperature"
+    ){
+
+        temperatureUnits.forEach(
+            function(unit){
+
+                fromSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+                toSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+            }
+        );
+
+    }
+
+
+    /* -----------------------------------------------------
+       STANDARD UNITS
+    ----------------------------------------------------- */
+
+    else{
+
+        const units =
+            standardUnits[
+                selectedCategory
+            ];
+
+
+        if(!units){
+            return;
+        }
+
+
+        Object.keys(units).forEach(
+            function(unit){
+
+                fromSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+                toSelect.add(
+                    new Option(
+                        unit,
+                        unit
+                    )
+                );
+
+            }
+        );
+
+
+        /* -------------------------------------------------
+           LIQUID OPTIONS
+        ------------------------------------------------- */
+
+        if(
+            selectedCategory === "weight"
+        ){
+
+            Object.keys(
+                liquidData
+            ).forEach(
+                function(name){
+
+                    toSelect.add(
+                        new Option(
+                            `${name} — Litre`,
+                            "LIQUID_L_" + name
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+
+        if(
+            selectedCategory === "volume"
+        ){
+
+            Object.keys(
+                liquidData
+            ).forEach(
+                function(name){
+
+                    toSelect.add(
+                        new Option(
+                            `${name} — Kilogram`,
+                            "LIQUID_KG_" + name
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       DEFAULT
+    ----------------------------------------------------- */
+
+    if(
+        fromSelect.options.length > 1
+    ){
+
+        fromSelect.selectedIndex=0;
+        toSelect.selectedIndex=1;
+
+    }
+
+
+    /* Liquid panel */
+
+    if(liquidPanel){
+
+        if(
+            selectedCategory === "weight" ||
+            selectedCategory === "volume"
+        ){
+
+            liquidPanel.classList.add(
+                "active"
+            );
+
+        }
+        else{
+
+            liquidPanel.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   TEMPERATURE CONVERSION
+========================================================= */
+
+function convertTemperature(
+    value,
+    from,
+    to
+){
+
+    let celsius;
+
+
+    if(
+        from === "Celsius (°C)"
+    ){
+
+        celsius=value;
+
+    }
+
+    else if(
+        from === "Fahrenheit (°F)"
+    ){
+
+        celsius =
+            (value-32) * 5 / 9;
+
+    }
+
+    else if(
+        from === "Kelvin (K)"
+    ){
+
+        celsius =
+            value-273.15;
+
+    }
+
+    else{
+
+        return NaN;
+
+    }
+
+
+    if(
+        to === "Celsius (°C)"
+    ){
+
+        return celsius;
+
+    }
+
+
+    if(
+        to === "Fahrenheit (°F)"
+    ){
+
+        return (
+            celsius * 9 / 5
+        ) + 32;
+
+    }
+
+
+    if(
+        to === "Kelvin (K)"
+    ){
+
+        return (
+            celsius + 273.15
+        );
+
+    }
+
+
+    return NaN;
+
+}
+
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatNumber(number){
+
+    if(
+        !Number.isFinite(number)
+    ){
+
+        return "Invalid";
+
+    }
+
+
+    if(
+        Math.abs(number) >= 1000000000 ||
+        (
+            Math.abs(number) > 0 &&
+            Math.abs(number) < 0.000001
+        )
+    ){
+
+        return number.toExponential(6);
+
+    }
+
+
+    return Number(
+        number.toFixed(8)
+    ).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits:8
+        }
+    );
+
+}
+
+
+/* =========================================================
+   🔁 CONVERT
+========================================================= */
+
+function convert(){
+
+    const selectedCategory =
+        category.value;
+
+    const value =
+        parseFloat(
+            valueInput.value
+        );
+
+    const from =
+        fromSelect.value;
+
+    const to =
+        toSelect.value;
+
+
+    /* -----------------------------------------------------
+       VALIDATION
+    ----------------------------------------------------- */
+
+    if(
+        !Number.isFinite(value)
+    ){
+
+        result.textContent =
+            "⚠️ Please enter a valid number.";
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       TEMPERATURE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "temperature"
+    ){
+
+        const converted =
+            convertTemperature(
+                value,
+                from,
+                to
+            );
+
+
+        if(
+            !Number.isFinite(converted)
+        ){
+
+            result.textContent =
+                "⚠️ Temperature conversion failed.";
+
+            return;
+
+        }
+
+
+        result.textContent =
+            `${formatNumber(value)} ${from} = ` +
+            `${formatNumber(converted)} ${to}`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LIQUID KG → LITRE
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "weight" &&
+        to.startsWith("LIQUID_L_")
+    ){
+
+        const name =
+            to.replace(
+                "LIQUID_L_",
+                ""
+            );
+
+
+        const liquid =
+            liquidData[name];
+
+
+        if(
+            !liquid ||
+            from !== "Kilogram (kg)"
+        ){
+
+            result.textContent =
+                "⚠️ Select Kilogram (kg) as the From unit.";
+
+            return;
+
+        }
+
+
+        const litres =
+            value *
+            liquid.kgToLitre;
+
+
+        result.textContent =
+            `${formatNumber(value)} kg ${name} ≈ ` +
+            `${formatNumber(litres)} Litre`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LIQUID LITRE → KG
+    ----------------------------------------------------- */
+
+    if(
+        selectedCategory === "volume" &&
+        to.startsWith("LIQUID_KG_")
+    ){
+
+        const name =
+            to.replace(
+                "LIQUID_KG_",
+                ""
+            );
+
+
+        const liquid =
+            liquidData[name];
+
+
+        if(
+            !liquid ||
+            from !== "Liter (L)"
+        ){
+
+            result.textContent =
+                "⚠️ Select Liter (L) as the From unit.";
+
+            return;
+
+        }
+
+
+        const kilograms =
+            value /
+            liquid.kgToLitre;
+
+
+        result.textContent =
+            `${formatNumber(value)} Litre ${name} ≈ ` +
+            `${formatNumber(kilograms)} kg`;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       NORMAL CONVERSION
+    ----------------------------------------------------- */
+
+    const units =
+        standardUnits[
+            selectedCategory
+        ];
+
+
+    if(!units){
+
+        result.textContent =
+            "⚠️ Conversion category unavailable.";
+
+        return;
+
+    }
+
+
+    if(
+        units[from] === undefined ||
+        units[to] === undefined
+    ){
+
+        result.textContent =
+            "⚠️ Selected units cannot be converted.";
+
+        return;
+
+    }
+
+
+    const baseValue =
+        value *
+        units[from];
+
+
+    const converted =
+        baseValue /
+        units[to];
+
+
+    if(
+        !Number.isFinite(converted)
+    ){
+
+        result.textContent =
+            "⚠️ Conversion failed.";
+
+        return;
+
+    }
+
+
+    result.textContent =
+        `${formatNumber(value)} ${from} = ` +
+        `${formatNumber(converted)} ${to}`;
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+category.addEventListener(
+    "change",
+    updateUnits
+);
+
+
+convertButton.addEventListener(
+    "click",
+    function(event){
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        convert();
+
+    },
+    false
+);
+
+
+/* =========================================================
+   ENTER KEY SUPPORT
+========================================================= */
+
+valueInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            event.preventDefault();
+
+            convert();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateUnits();
+
+
+})();
+</script>
+
+<!-- =========================================================
      PPPP TOOLS + LIVE MEDIA
 ========================================================= -->
 
@@ -9485,27 +11093,6 @@ window.addEventListener(
     min-height:230px;
     resize:vertical;
     line-height:1.6;
-}
-
-/* ---------------------------------------------------------
-   CONVERTER
---------------------------------------------------------- */
-
-.pppp-converter-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.pppp-converter-result{
-    margin-top:10px;
-    padding:13px;
-    border-radius:12px;
-    background:#eef7ff;
-    color:#145a96;
-    font-size:17px;
-    font-weight:700;
-    min-height:24px;
 }
 
 /* ---------------------------------------------------------
@@ -9732,84 +11319,6 @@ class="pppp-tool-btn"
 onclick="ppppNotepadClear()">
 🗑️ Clear
 </button>
-
-</div>
-</div>
-
-
-<!-- =========================================================
-     🔁 CONVERTER
-========================================================= -->
-
-<div class="pppp-live-section">
-
-<div class="pppp-live-title">
-🔁 Converter
-</div>
-
-<div class="pppp-tool-content">
-
-<div class="pppp-converter-grid">
-
-<select
-id="ppppConvertCategory"
-class="pppp-tool-select"
-onchange="ppppUpdateConverterUnits()">
-
-<option value="length">📏 Length</option>
-<option value="weight">⚖️ Weight</option>
-<option value="volume">🧪 Volume</option>
-<option value="temperature">🌡️ Temperature</option>
-<option value="area">📐 Area</option>
-<option value="time">⏱️ Time</option>
-<option value="data">💾 Data</option>
-<option value="speed">🚀 Speed</option>
-<option value="pressure">🔵 Pressure</option>
-<option value="energy">⚡ Energy</option>
-
-</select>
-
-<input
-id="ppppConvertValue"
-class="pppp-tool-input"
-type="number"
-value="1"
-placeholder="Value">
-
-<select
-id="ppppConvertFrom"
-class="pppp-tool-select">
-</select>
-
-<select
-id="ppppConvertTo"
-class="pppp-tool-select">
-</select>
-
-</div>
-
-<button
-class="pppp-tool-btn"
-onclick="ppppConvertNow()">
-🔁 Convert
-</button>
-
-<div
-id="ppppConvertResult"
-class="pppp-converter-result">
-📊 Results Will Appear Here
-</div>
-
-<div style="
-margin-top:10px;
-font-size:13px;
-color:#607d8b;
-line-height:1.5;
-">
-💡 A water-based conversion will be used for KG ↔ Litre calculations:
-<strong>1 kg of water ≈ 1 litre of water.</strong>।
-The density may vary for other liquids.
-</div>
 
 </div>
 </div>
@@ -10136,332 +11645,6 @@ a.remove();
 URL.revokeObjectURL(url);
 
 }
-
-
-/* =========================================================
-   🔁 CONVERTER
-========================================================= */
-
-const ppppConverterData = {
-
-length:{
-    "Meter (m)":1,
-    "Kilometer (km)":1000,
-    "Centimeter (cm)":0.01,
-    "Millimeter (mm)":0.001,
-    "Mile":1609.344,
-    "Yard":0.9144,
-    "Foot":0.3048,
-    "Inch":0.0254
-},
-
-weight:{
-    "Kilogram (kg)":1,
-    "Gram (g)":0.001,
-    "Milligram (mg)":0.000001,
-    "Pound (lb)":0.45359237,
-    "Ounce (oz)":0.028349523125
-},
-
-volume:{
-    "Liter (L)":1,
-    "Milliliter (mL)":0.001,
-    "Cubic Meter (m³)":1000,
-    "US Gallon":3.785411784,
-    "US Quart":0.946352946,
-    "US Pint":0.473176473,
-    "Cup":0.2365882365
-},
-
-area:{
-    "Square Meter (m²)":1,
-    "Square Kilometer (km²)":1000000,
-    "Square Foot":0.09290304,
-    "Square Yard":0.83612736,
-    "Acre":4046.8564224,
-    "Hectare":10000
-},
-
-time:{
-    "Second":1,
-    "Minute":60,
-    "Hour":3600,
-    "Day":86400,
-    "Week":604800
-},
-
-data:{
-    "Byte":1,
-    "Kilobyte (KB)":1024,
-    "Megabyte (MB)":1024**2,
-    "Gigabyte (GB)":1024**3,
-    "Terabyte (TB)":1024**4
-},
-
-speed:{
-    "m/s":1,
-    "km/h":0.2777777778,
-    "mph":0.44704,
-    "knot":0.5144444444
-},
-
-pressure:{
-    "Pascal (Pa)":1,
-    "Kilopascal (kPa)":1000,
-    "Bar":100000,
-    "PSI":6894.757293
-},
-
-energy:{
-    "Joule (J)":1,
-    "Kilojoule (kJ)":1000,
-    "Calorie (cal)":4.184,
-    "Kilocalorie (kcal)":4184,
-    "Watt-hour (Wh)":3600,
-    "Kilowatt-hour (kWh)":3600000
-}
-
-};
-
-
-/* ---------------------------------------------------------
-   UPDATE UNITS
---------------------------------------------------------- */
-
-function ppppUpdateConverterUnits(){
-
-const category =
-document.getElementById(
-"ppppConvertCategory"
-).value;
-
-const from =
-document.getElementById(
-"ppppConvertFrom"
-);
-
-const to =
-document.getElementById(
-"ppppConvertTo"
-);
-
-from.innerHTML="";
-to.innerHTML="";
-
-
-if(category === "temperature"){
-
-[
-"Celsius (°C)",
-"Fahrenheit (°F)",
-"Kelvin (K)"
-].forEach(unit=>{
-
-    from.add(
-    new Option(unit,unit)
-    );
-
-    to.add(
-    new Option(unit,unit)
-    );
-
-});
-
-return;
-
-}
-
-
-Object.keys(
-ppppConverterData[category]
-).forEach(unit=>{
-
-    from.add(
-    new Option(unit,unit)
-    );
-
-    to.add(
-    new Option(unit,unit)
-    );
-
-});
-
-
-/*
-   Default KG -> Liter option
-   for water-related conversion.
-*/
-
-if(category === "weight"){
-
-    const literOption =
-    new Option(
-    "Liter of Water (L)",
-    "LiterWater"
-    );
-
-    to.add(literOption);
-
-}
-
-if(category === "volume"){
-
-    const kgOption =
-    new Option(
-    "Kilogram of Water (kg)",
-    "KilogramWater"
-    );
-
-    to.add(kgOption);
-
-}
-
-}
-
-
-/* ---------------------------------------------------------
-   TEMPERATURE
---------------------------------------------------------- */
-
-function ppppTemperatureConvert(
-value,
-from,
-to
-){
-
-let c;
-
-if(from === "Celsius (°C)")
-    c = value;
-
-else if(from === "Fahrenheit (°F)")
-    c = (value-32)*5/9;
-
-else
-    c = value-273.15;
-
-
-if(to === "Celsius (°C)")
-    return c;
-
-if(to === "Fahrenheit (°F)")
-    return c*9/5+32;
-
-return c+273.15;
-
-}
-
-
-/* ---------------------------------------------------------
-   CONVERT
---------------------------------------------------------- */
-
-function ppppConvertNow(){
-
-const category =
-document.getElementById(
-"ppppConvertCategory"
-).value;
-
-const value =
-parseFloat(
-document.getElementById(
-"ppppConvertValue"
-).value
-);
-
-const from =
-document.getElementById(
-"ppppConvertFrom"
-).value;
-
-const to =
-document.getElementById(
-"ppppConvertTo"
-).value;
-
-const result =
-document.getElementById(
-"ppppConvertResult"
-);
-
-if(!Number.isFinite(value)){
-
-    result.textContent =
-    "⚠️ Please enter a valid number.";
-
-    return;
-
-}
-
-
-/* Temperature */
-
-if(category === "temperature"){
-
-    const converted =
-    ppppTemperatureConvert(
-    value,
-    from,
-    to
-    );
-
-    result.textContent =
-    `${value} ${from} = ${converted.toFixed(6)} ${to}`;
-
-    return;
-
-}
-
-
-/* KG -> Litre water */
-
-if(
-category === "weight" &&
-to === "LiterWater"
-){
-
-    result.textContent =
-    `${value} kg পানি ≈ ${value} L পানি`;
-
-    return;
-
-}
-
-
-/* Litre -> KG water */
-
-if(
-category === "volume" &&
-to === "KilogramWater"
-){
-
-    result.textContent =
-    `${value} L পানি ≈ ${value} kg পানি`;
-
-    return;
-
-}
-
-
-const data =
-ppppConverterData[category];
-
-const base =
-value * data[from];
-
-const converted =
-base / data[to];
-
-result.textContent =
-`${value} ${from} = ${converted.toFixed(6)} ${to}`;
-
-}
-
-
-/* Initialize converter */
-
-ppppUpdateConverterUnits();
 
 
 /* =========================================================
@@ -15323,6 +16506,2100 @@ document
 
 <!-- =========================================================
      END PPPP FERTILITY / INFERTILITY / IVF
+========================================================= -->
+
+<!-- =========================================================
+     🌍 PPPP — 100 GREATEST MUSLIM SCHOLARS & THINKERS
+     বিশ্বের শ্রেষ্ঠ ১০০ মুসলিম মনীষী
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   🌍 MAIN WRAPPER
+========================================================= */
+
+.pppp-muslim-scholars-wrap{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =========================================================
+   🌍 MAIN SECTION
+========================================================= */
+
+.pppp-muslim-scholars-section{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   🌍 MAIN TITLE
+========================================================= */
+
+.pppp-muslim-scholars-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
+    background:linear-gradient(135deg,#00897b,#1565c0);
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.3;
+    text-align:left;
+}
+
+
+/* =========================================================
+   🔎 SEARCH
+========================================================= */
+
+.pppp-muslim-scholars-search-wrap{
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 14px 14px;
+    background:#fff;
+}
+
+.pppp-muslim-scholars-search{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 18px;
+    border:3px solid #e0e0e0;
+    border-radius:32px;
+    background:#fff;
+    color:#424242;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:18px;
+    outline:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.pppp-muslim-scholars-search:focus{
+    border-color:#90caf9;
+    box-shadow:0 3px 12px rgba(33,150,243,.12);
+}
+
+.pppp-muslim-scholars-search::placeholder{
+    color:#757575;
+}
+
+
+/* =========================================================
+   📚 CATEGORY GROUP
+========================================================= */
+
+.pppp-scholar-group{
+    margin:0 0 18px;
+}
+
+.pppp-scholar-group-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 16px;
+    background:#fff;
+    color:#263238;
+    font-size:19px;
+    font-weight:800;
+    line-height:1.3;
+    border-top:1px solid #e0e6ec;
+    border-bottom:1px solid #e0e6ec;
+}
+
+
+/* =========================================================
+   📚 SCHOLAR GRID
+========================================================= */
+
+.pppp-scholar-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:14px;
+    background:#f7f9fc;
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   📖 SCHOLAR CARD
+========================================================= */
+
+.pppp-scholar-card{
+    position:relative;
+    min-height:145px;
+
+    border:1px solid #dfe5eb;
+    border-radius:24px;
+
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #f3f7fa
+    );
+
+    box-shadow:0 5px 14px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:18px 10px 12px;
+
+    box-sizing:border-box;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+    text-decoration:none;
+    color:#263238;
+
+    -webkit-tap-highlight-color:transparent;
+
+    overflow:hidden;
+}
+
+.pppp-scholar-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.pppp-scholar-card:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   🔢 SERIAL
+========================================================= */
+
+.pppp-scholar-number{
+    position:absolute;
+    top:10px;
+    right:12px;
+
+    font-size:13px;
+    font-weight:800;
+
+    color:#64a5d6;
+}
+
+
+/* =========================================================
+   🕌 EMOJI
+========================================================= */
+
+.pppp-scholar-emoji{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:8px;
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   📝 NAME
+========================================================= */
+
+.pppp-scholar-name{
+    font-size:15px;
+    line-height:1.22;
+    font-weight:800;
+
+    word-break:break-word;
+    overflow-wrap:anywhere;
+
+    max-width:100%;
+}
+
+
+/* =========================================================
+   📜 TITLE / DESCRIPTION
+========================================================= */
+
+.pppp-scholar-description{
+    margin-top:5px;
+
+    font-size:12px;
+    line-height:1.25;
+
+    font-weight:700;
+
+    color:#607d8b;
+
+    word-break:break-word;
+}
+
+
+/* =========================================================
+   🟢 VIEW
+========================================================= */
+
+.pppp-scholar-view{
+    display:inline-block;
+
+    margin-top:7px;
+
+    padding:3px 9px;
+
+    border-radius:20px;
+
+    background:#e8f5e9;
+    color:#16843b;
+
+    font-size:11px;
+    font-weight:800;
+    line-height:1.25;
+}
+
+
+/* =========================================================
+   🚫 NO RESULT
+========================================================= */
+
+.pppp-scholar-no-result{
+    display:none;
+
+    width:100%;
+    box-sizing:border-box;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:16px;
+    font-weight:700;
+
+    background:#f7f9fc;
+}
+
+
+/* =========================================================
+   📱 MOBILE
+========================================================= */
+
+@media(max-width:520px){
+
+    .pppp-muslim-scholars-title{
+        font-size:20px;
+        padding:15px 16px;
+    }
+
+    .pppp-scholar-group-title{
+        font-size:18px;
+        padding:14px;
+    }
+
+    .pppp-scholar-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px;
+        padding:14px;
+    }
+
+    .pppp-scholar-card{
+        min-height:145px;
+        border-radius:22px;
+    }
+
+    .pppp-scholar-emoji{
+        font-size:31px;
+    }
+
+    .pppp-scholar-name{
+        font-size:14px;
+    }
+
+    .pppp-scholar-description{
+        font-size:11px;
+    }
+
+    .pppp-scholar-view{
+        font-size:11px;
+        padding:3px 8px;
+    }
+
+}
+
+
+/* =========================================================
+   💻 TABLET / DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+    .pppp-scholar-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-scholar-card{
+        min-height:140px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     🌍 PPPP 100 GREATEST MUSLIM SCHOLARS
+========================================================= -->
+
+<div
+    class="pppp-muslim-scholars-wrap"
+    id="ppppMuslimScholarsWrap"
+>
+
+<div class="pppp-muslim-scholars-section">
+
+
+<!-- =========================================================
+     🌍 MAIN TITLE
+========================================================= -->
+
+<div class="pppp-muslim-scholars-title">
+🌍 বিশ্বের শ্রেষ্ঠ ১০০ মুসলিম মনীষী — 100 Greatest Muslim Scholars & Thinkers in the World
+</div>
+
+
+<!-- =========================================================
+     🔎 SEARCH
+========================================================= -->
+
+<div class="pppp-muslim-scholars-search-wrap">
+
+<input
+    type="search"
+    id="ppppMuslimScholarSearch"
+    class="pppp-muslim-scholars-search"
+    placeholder="🔍 Search Muslim Scholars..."
+    autocomplete="off"
+>
+
+</div>
+
+
+<!-- =========================================================
+     📚 SCHOLAR CONTENT
+========================================================= -->
+
+<div id="ppppMuslimScholarContent"></div>
+
+
+<div
+    id="ppppMuslimScholarNoResult"
+    class="pppp-scholar-no-result"
+>
+🔍 No scholar found.
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+
+/* =========================================================
+   🌍 PPPP — 100 MUSLIM SCHOLARS DATA
+========================================================= */
+
+const ppppMuslimScholars = [
+
+/* =========================================================
+   🕌 QURAN — 25 PROPHETS
+========================================================= */
+
+{
+    category:"🕌 কুরআনে নাম উল্লেখিত ২৫ নবী — 25 Prophets Mentioned by Name in the Quran",
+    scholars:[
+
+        ["🕋","হযরত মুহাম্মদ ﷺ","খাতামুন নবিয়্যিন, আল-আমিন (সর্বশেষ নবী, বিশ্বস্ত)"],
+        ["🕌","হযরত ইবরাহিম (আ.)","খলিলুল্লাহ (আল্লাহর বন্ধু)"],
+        ["☪️","হযরত মূসা (আ.)","কালিমুল্লাহ (আল্লাহর সঙ্গে কথা বলার মর্যাদাপ্রাপ্ত)"],
+        ["🌙","হযরত ঈসা (আ.)","রূহুল্লাহ (আল্লাহর পক্ষ থেকে রূহ)"],
+        ["⛵","হযরত নূহ (আ.)","শাইখুল আম্বিয়া (নবীদের মধ্যে প্রবীণ)"],
+        ["📿","হযরত আদম (আ.)","সাফিউল্লাহ (আল্লাহর মনোনীত)"],
+        ["🕊️","হযরত ইসমাঈল (আ.)","জবিহুল্লাহ (আল্লাহর উদ্দেশ্যে কুরবানির জন্য মনোনীত)"],
+        ["🪻","হযরত ইসহাক (আ.)","নবীউল্লাহ (আল্লাহর নবী)"],
+        ["🤲","হযরত ইয়াকুব (আ.)","ইসরাঈল (আল্লাহর বান্দা)"],
+        ["🛐","হযরত ইউসুফ (আ.)","আস-সিদ্দিক (পরম সত্যনিষ্ঠ)"],
+        ["🪶","হযরত দাউদ (আ.)","খলিফাতুল্লাহ (আল্লাহর পক্ষ থেকে নিযুক্ত প্রতিনিধি)"],
+        ["🏜️","হযরত সুলাইমান (আ.)","নবী-বাদশাহ (নবী ও রাজা)"],
+        ["🌊","হযরত আইয়ুব (আ.)","আস-সাবির (অসীম ধৈর্যশীল)"],
+        ["⛰️","হযরত ইউনুস (আ.)","যুন-নূন (মাছের অধিকারী)"],
+        ["🌴","হযরত ইদরিস (আ.)","সিদ্দিক (সত্যনিষ্ঠ)"],
+        ["🐪","হযরত হূদ (আ.)","রাসূলুল্লাহ (আদ জাতির প্রতি প্রেরিত রাসূল)"],
+        ["🐑","হযরত সালেহ (আ.)","রাসূলুল্লাহ (সামূদ জাতির প্রতি প্রেরিত রাসূল)"],
+        ["🕯️","হযরত শুআইব (আ.)","খতিবুল আম্বিয়া (নবীদের বাগ্মী)"],
+        ["🌟","হযরত লূত (আ.)","রাসূলুল্লাহ (লূত জাতির প্রতি প্রেরিত রাসূল)"],
+        ["⭐","হযরত হারূন (আ.)","নবী ও সহকারী (হযরত মূসা আ.-এর সহযোগী)"],
+        ["✨","হযরত যাকারিয়া (আ.)","নবীউল্লাহ (আল্লাহর নবী)"],
+        ["☀️","হযরত ইয়াহইয়া (আ.)","হাসুর (পবিত্র ও সংযমী)"],
+        ["🌿","হযরত ইলিয়াস (আ.)","নবী ও রাসূল (বনী ইসরাঈলের প্রতি প্রেরিত)"],
+        ["☘️","হযরত আল-ইয়াসা (আ.)","নবীউল্লাহ (আল্লাহর নবী)"],
+        ["🪷","হযরত যুল-কিফল (আ.)","ধৈর্যশীল নবী (ধৈর্য ও ন্যায়পরায়ণতার প্রতীক)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🌙 COMPANIONS
+========================================================= */
+
+{
+    category:"🌙 সাহাবায়ে কেরাম — Companions of the Prophet ﷺ",
+    scholars:[
+
+        ["🧭","হযরত আবু বকর আস-সিদ্দিক (রা.)","আস-সিদ্দিক (পরম সত্যনিষ্ঠ)"],
+        ["⚔️","হযরত উমর ইবনুল খাত্তাব (রা.)","আল-ফারুক (সত্য-মিথ্যার পার্থক্যকারী)"],
+        ["🛡️","হযরত উসমান ইবনে আফফান (রা.)","যুন-নুরাইন (দুই নূরের অধিকারী)"],
+        ["🏹","হযরত হামজা ইবনে আবদুল মুত্তালিব (রা.)","আসাদুল্লাহ (আল্লাহর সিংহ)"],
+        ["🗡️","হযরত আব্বাস ইবনে আবদুল মুত্তালিব (রা.)","সাকিয়ুল হাজ্জ (হাজিদের পানি পান করানোর দায়িত্বশীল)"],
+        ["🐎","হযরত জাফর ইবনে আবি তালিব (রা.)","আত-তাইয়ার (উড্ডয়নকারী)"],
+        ["🦅","হযরত বিলাল ইবনে রাবাহ (রা.)","মুয়াজ্জিনে রাসূল (রাসূল ﷺ-এর মুয়াজ্জিন)"],
+        ["🏇","হযরত আবু হুরায়রা (রা.)","হাফিজুল হাদিস (হাদিসের বিশিষ্ট সংরক্ষণকারী)"],
+        ["🪖","হযরত আবদুল্লাহ ইবনে আব্বাস (রা.)","হিবরুল উম্মাহ (উম্মাহর মহাজ্ঞানী)"],
+        ["🚩","হযরত আবদুল্লাহ ইবনে মাসউদ (রা.)","ফকিহুস সাহাবা (সাহাবিদের বিশিষ্ট ফকিহ)"],
+        ["📯","হযরত সালমান আল-ফারসি (রা.)","সালমানুল খাইর (কল্যাণের সালমান)"],
+        ["🎯","হযরত খালিদ ইবনে ওয়ালিদ (রা.)","সাইফুল্লাহ (আল্লাহর তরবারি)"],
+        ["🪙","হযরত আবু উবাইদা ইবনুল জাররাহ (রা.)","আমিনুল উম্মাহ (উম্মাহর বিশ্বস্ত ব্যক্তি)"],
+        ["🧱","হযরত তালহা ইবনে উবাইদুল্লাহ (রা.)","তালহাতুল খাইর (কল্যাণের তালহা)"],
+        ["🧵","হযরত যুবাইর ইবনে আওয়াম (রা.)","হাওয়ারিয়্যু রাসূলিল্লাহ (রাসূল ﷺ-এর বিশেষ সহচর)"],
+        ["🌹","হযরত সাদ ইবনে আবি ওয়াক্কাস (রা.)","ফারিসুল ইসলাম (ইসলামের বীর)"],
+        ["🌺","হযরত আবদুর রহমান ইবনে আওফ (রা.)","আশারায়ে মুবাশশারাহ (জান্নাতের সুসংবাদপ্রাপ্ত দশ সাহাবির একজন)"],
+        ["🌸","হযরত মুসআব ইবনে উমাইর (রা.)","আওয়ালু সফিরিল ইসলাম (ইসলামের প্রথম দূত)"],
+        ["🌼","হযরত উবাই ইবনে কাব (রা.)","সাইয়্যিদুল কুররা (কুরআন পাঠকারীদের নেতা)"],
+        ["🌻","হযরত সুমাইয়া বিনতে খাইয়াত (রা.)","আওয়ালু শহীদাহ (ইসলামের প্রথম নারী শহীদ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🏡 AHL AL-BAYT
+========================================================= */
+
+{
+    category:"🏡 আহলে বাইত — Ahl Al-Bayt",
+    scholars:[
+
+        ["💐","হযরত আলী ইবনে আবি তালিব (রা.)","আসাদুল্লাহ (আল্লাহর সিংহ)"],
+        ["🍃","হযরত খাদিজাতুল কুবরা (রা.)","উম্মুল মুমিনীন (মুমিনদের জননী)"],
+        ["🍂","হযরত আয়েশা সিদ্দিকা (রা.)","উম্মুল মুমিনীন (মুমিনদের জননী)"],
+        ["🍀","হযরত ফাতিমা (রা.)","সাইয়্যিদাতুন নিসা (নারীদের নেত্রী)"],
+        ["🌱","হযরত হাসান ইবনে আলী (রা.)","সাইয়্যিদু শাবাবি আহলিল জান্নাহ (জান্নাতের যুবকদের নেতা)"],
+        ["📖","হযরত হুসাইন ইবনে আলী (রা.)","সাইয়্যিদুশ শুহাদা (শহীদদের নেতা)"]
+
+    ]
+},
+
+
+/* =========================================================
+   📚 TABIUN
+========================================================= */
+
+{
+    category:"📚 তাবেঈন — Tabiun",
+    scholars:[
+
+        ["✒️","হাসান আল-বসরী (রহ.)","ইমামুল জুহদ (যুহদ ও তাকওয়ার ইমাম)"],
+        ["📝","সাঈদ ইবনে মুসাইয়্যিব (রহ.)","সাইয়্যিদুত তাবেঈন (তাবেঈদের নেতা)"],
+        ["🖋️","মুহাম্মদ ইবনে সিরিন (রহ.)","ইমামুত তাবির (স্বপ্ন ব্যাখ্যার ইমাম)"],
+        ["🔖","উরওয়া ইবনে যুবাইর (রহ.)","ফকিহে মদিনা (মদিনার বিশিষ্ট ফকিহ)"],
+        ["📜","মুজাহিদ ইবনে জাবর (রহ.)","ইমামুত তাফসির (তাফসিরের ইমাম)"],
+        ["🗂️","আতা ইবনে আবি রাবাহ (রহ.)","মুফতি মক্কা (মক্কার বিশিষ্ট মুফতি)"],
+        ["⚖️","কাতাদা ইবনে দিআমা (রহ.)","ইমামুত তাফসির (তাফসিরের ইমাম)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🏛️ EARLY ISLAMIC SCHOLARS
+========================================================= */
+
+{
+    category:"🏛️ প্রাথমিক ইসলামী মনীষী — Early Islamic Scholars",
+    scholars:[
+
+        ["🛡️","উমর ইবনে আবদুল আজিজ (রহ.)","খলিফায়ে রাশেদ (ন্যায়পরায়ণ খলিফা)"],
+        ["📐","ইমাম জাফর আস-সাদিক (রহ.)","ইমামুল ইলম (জ্ঞানচর্চার ইমাম)"]
+
+    ]
+},
+
+
+/* =========================================================
+   ⚖️ ISLAMIC JURISTS
+========================================================= */
+
+{
+    category:"⚖️ ফকিহ — Islamic Jurists",
+    scholars:[
+
+        ["🔬","ইমাম আবু হানিফা (রহ.)","ইমামুল আজম (মহান ইমাম)"],
+        ["🧪","ইমাম মালিক ইবনে আনাস (রহ.)","ইমামু দারিল হিজরাহ (হিজরতের নগরীর ইমাম)"],
+        ["⚗️","ইমাম শাফেয়ী (রহ.)","নাসিরুস সুন্নাহ (সুন্নাহর সমর্থক)"],
+        ["🔭","ইমাম আহমদ ইবনে হাম্বল (রহ.)","ইমামু আহলিস সুন্নাহ (আহলুস সুন্নাহর ইমাম)"]
+
+    ]
+},
+
+
+/* =========================================================
+   📜 HADITH SCHOLARS
+========================================================= */
+
+{
+    category:"📜 মুহাদ্দিস — Hadith Scholars",
+    scholars:[
+
+        ["🧮","ইমাম বুখারি (রহ.)","আমিরুল মুমিনিন ফিল হাদিস (হাদিসশাস্ত্রের শীর্ষস্থানীয় ইমাম)"],
+        ["🩺","ইমাম মুসলিম (রহ.)","ইমামুল মুহাদ্দিসিন (মুহাদ্দিসদের ইমাম)"],
+        ["💉","ইমাম আবু দাউদ (রহ.)","ইমামুল হাদিস (হাদিসের ইমাম)"],
+        ["🩻","ইমাম তিরমিজি (রহ.)","হাফিজুল হাদিস (হাদিসের বিশিষ্ট সংরক্ষণকারী)"],
+        ["🧠","ইমাম নাসাঈ (রহ.)","ইমামুল হাদিস (হাদিসের ইমাম)"],
+        ["💭","ইমাম নববী (রহ.)","মুহাদ্দিস ও ফকিহ (হাদিস ও ফিকহের বিশিষ্ট আলেম)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🔍 QURANIC EXEGETES
+========================================================= */
+
+{
+    category:"🔍 মুফাসসির — Quranic Exegetes",
+    scholars:[
+
+        ["🗣️","ইমাম তাবারি (রহ.)","ইমামুল মুফাসসিরিন (মুফাসসিরদের ইমাম)"],
+        ["🏺","ইমাম ইবনে কাসির (রহ.)","মুফাসসিরে কুরআন (বিশিষ্ট কুরআন ব্যাখ্যাকার)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🌿 MUSLIM SAINTS
+========================================================= */
+
+{
+    category:"🌿 ওলি-আউলিয়া — Muslim Saints",
+    scholars:[
+
+        ["🗺️","রাবেয়া বসরী (রহ.)","শহীদায়ে ইশক (আধ্যাত্মিক প্রেমের সাধিকা)"],
+        ["🔧","শায়খ আবদুল কাদির জিলানি (রহ.)","গাউসুল আজম (মহান আধ্যাত্মিক নেতা)"],
+        ["⚙️","খাজা মঈনুদ্দিন চিশতি (রহ.)","গরিবে নেওয়াজ (দরিদ্রের আশ্রয়দাতা)"],
+        ["🛠️","নিজামুদ্দিন আউলিয়া (রহ.)","মাহবুবে ইলাহী (আল্লাহর প্রিয়জন)"],
+        ["🎓","বাহাউদ্দিন নকশবন্দ (রহ.)","খাজা-ই-বুজুর্গ (মহান আধ্যাত্মিক গুরু)"],
+        ["🏆","ইমাম আহমদ সিরহিন্দি (রহ.)","মুজাদ্দিদে আলফে সানি (দ্বিতীয় সহস্রাব্দের সংস্কারক)"],
+        ["👑","শাহ ওয়ালিউল্লাহ দেহলভি (রহ.)","মুজাদ্দিদ (সংস্কারক)"],
+        ["💎","হযরত শাহ জালাল (রহ.)","ইয়ামেনি (ইয়েমেনের সঙ্গে সম্পর্কিত)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🕊️ SUFI SCHOLARS
+========================================================= */
+
+{
+    category:"🕊️ সুফি মনীষী — Sufi Scholars & Thinkers",
+    scholars:[
+
+        ["💠","মুহিউদ্দিন ইবনে আরাবি (রহ.)","শাইখুল আকবর (মহান আধ্যাত্মিক গুরু)"],
+        ["🦋","জালালুদ্দিন রুমি (রহ.)","মাওলানা (মহান শিক্ষক)"],
+        ["💍","হযরত শাহ পরাণ (রহ.)","ইয়ামেনি (ইয়েমেনের সঙ্গে সম্পর্কিত)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🔬 MUSLIM SCIENTISTS
+========================================================= */
+
+{
+    category:"🔬 মুসলিম বিজ্ঞানী — Muslim Scientists",
+    scholars:[
+
+        ["🪩","আল-খাওয়ারিজমি","আলজেব্রার অগ্রদূত (গণিতশাস্ত্রের পথিকৃৎ)"],
+        ["🌈","আল-বিরুনি","আল্লামা (বহুমুখী জ্ঞানী)"],
+        ["🔥","ইবনে আল-হাইসাম","আলোকবিজ্ঞানের পথিকৃৎ (অপটিক্সের অগ্রদূত)"],
+        ["💧","আল-জাজারি","প্রকৌশলবিদ্যার পথিকৃৎ (যান্ত্রিক প্রকৌশলের অগ্রদূত)"],
+        ["🪨","জাবির ইবনে হাইয়ান","রসায়নশাস্ত্রের অগ্রদূত (রসায়নের প্রাথমিক পথিকৃৎ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🩺 MUSLIM PHYSICIANS
+========================================================= */
+
+{
+    category:"🩺 মুসলিম চিকিৎসক — Muslim Physicians",
+    scholars:[
+
+        ["🍎","ইবনে সিনা","শাইখুর রাইস (জ্ঞানীদের নেতা)"],
+        ["🌳","আল-রাজি","চিকিৎসাবিজ্ঞানের পথিকৃৎ (বিশিষ্ট চিকিৎসক ও রসায়নবিদ)"],
+        ["🎼","আল-জাহরাভি","শল্যচিকিৎসার অগ্রদূত (সার্জারির পথিকৃৎ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🧠 MUSLIM PHILOSOPHERS
+========================================================= */
+
+{
+    category:"🧠 মুসলিম দার্শনিক — Muslim Philosophers",
+    scholars:[
+
+        ["🎶","আল-কিন্দি","আরব দর্শনের জনক (দর্শনের বিশিষ্ট পথিকৃৎ)"],
+        ["🎨","আল-ফারাবি","আল-মু‘আল্লিম আস-সানি (দ্বিতীয় শিক্ষক)"],
+        ["🧬","ইবনে রুশদ","আল-হাফিদ (দার্শনিক ও চিকিৎসাবিদ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🏺 MUSLIM HISTORIANS
+========================================================= */
+
+{
+    category:"🏺 মুসলিম ইতিহাসবিদ — Muslim Historians",
+    scholars:[
+
+        ["🌐","ইবনে খালদুন","সমাজবিজ্ঞানের অগ্রদূত (ইতিহাস ও সমাজচিন্তার পথিকৃৎ)"],
+        ["🕰️","আবুল ফিদা","ইতিহাসবিদ ও ভূগোলবিদ (মধ্যযুগের বিশিষ্ট ইতিহাসবিদ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   ✍️ MUSLIM LITERARY SCHOLARS
+========================================================= */
+
+{
+    category:"✍️ মুসলিম সাহিত্যিক — Muslim Literary Scholars",
+    scholars:[
+
+        ["💡","ওমর খৈয়াম","হাকিম ও কবি (গণিতবিদ, জ্যোতির্বিজ্ঞানী ও কবি)"]
+
+    ]
+},
+
+
+/* =========================================================
+   💡 MODERN MUSLIM THINKERS
+========================================================= */
+
+{
+    category:"💡 আধুনিক মুসলিম চিন্তাবিদ — Modern Muslim Thinkers",
+    scholars:[
+
+        ["🪨","ইমাম গাজ্জালি (রহ.)","হুজ্জাতুল ইসলাম (ইসলামের প্রমাণস্বরূপ মহান আলেম)"],
+        ["🌱","ইবনে তাইমিয়া (রহ.)","শাইখুল ইসলাম (ইসলামী জ্ঞানের বিশিষ্ট আলেম)"],
+        ["🎙️","ডাঃ জাকির নায়েক","দাঈ ইলাল্লাহ (আল্লাহর পথে আহ্বানকারী)"]
+
+    ]
+}
+
+];
+
+
+/* =========================================================
+   🔢 TOTAL COUNT
+========================================================= */
+
+let ppppTotalMuslimScholars = 0;
+
+ppppMuslimScholars.forEach(function(group){
+
+    ppppTotalMuslimScholars +=
+        group.scholars.length;
+
+});
+
+
+/* =========================================================
+   🔎 GOOGLE SEARCH LINK
+========================================================= */
+
+function ppppMuslimScholarSearchLink(name){
+
+    const query =
+        name + " Muslim scholar biography";
+
+    return (
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(query)
+    );
+
+}
+
+
+/* =========================================================
+   📚 RENDER SCHOLARS
+========================================================= */
+
+function ppppRenderMuslimScholars(groups){
+
+    const content =
+        document.getElementById(
+            "ppppMuslimScholarContent"
+        );
+
+    const noResult =
+        document.getElementById(
+            "ppppMuslimScholarNoResult"
+        );
+
+    if(!content){
+        return;
+    }
+
+    content.innerHTML = "";
+
+    let resultCount = 0;
+
+    groups.forEach(function(group){
+
+        if(group.scholars.length === 0){
+            return;
+        }
+
+        const groupDiv =
+            document.createElement("div");
+
+        groupDiv.className =
+            "pppp-scholar-group";
+
+
+        /* CATEGORY TITLE */
+
+        const title =
+            document.createElement("div");
+
+        title.className =
+            "pppp-scholar-group-title";
+
+        title.textContent =
+            group.category;
+
+        groupDiv.appendChild(title);
+
+
+        /* GRID */
+
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "pppp-scholar-grid";
+
+
+        group.scholars.forEach(function(item){
+
+            resultCount++;
+
+
+            /* CARD */
+
+            const card =
+                document.createElement("a");
+
+            card.className =
+                "pppp-scholar-card";
+
+
+            card.href =
+                ppppMuslimScholarSearchLink(
+                    item[1]
+                );
+
+            card.target =
+                "_blank";
+
+            card.rel =
+                "noopener noreferrer";
+
+
+            /* SERIAL */
+
+            const number =
+                String(resultCount)
+                    .padStart(2,"0");
+
+
+            card.innerHTML = `
+
+                <span
+                    class="pppp-scholar-number"
+                >
+                    ${number}
+                </span>
+
+                <span
+                    class="pppp-scholar-emoji"
+                >
+                    ${item[0]}
+                </span>
+
+                <span
+                    class="pppp-scholar-name"
+                >
+                    ${item[1]}
+                </span>
+
+                <span
+                    class="pppp-scholar-description"
+                >
+                    ${item[2]}
+                </span>
+
+                <span
+                    class="pppp-scholar-view"
+                >
+                    VIEW
+                </span>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        });
+
+
+        groupDiv.appendChild(grid);
+
+        content.appendChild(groupDiv);
+
+    });
+
+
+    /* NO RESULT */
+
+    if(resultCount === 0){
+
+        noResult.style.display =
+            "block";
+
+    }else{
+
+        noResult.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   🔎 SEARCH SCHOLARS
+========================================================= */
+
+function ppppSearchMuslimScholars(){
+
+    const search =
+        document.getElementById(
+            "ppppMuslimScholarSearch"
+        );
+
+    if(!search){
+        return;
+    }
+
+
+    const keyword =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    if(keyword === ""){
+
+        ppppRenderMuslimScholars(
+            ppppMuslimScholars
+        );
+
+        return;
+    }
+
+
+    const filteredGroups = [];
+
+
+    ppppMuslimScholars.forEach(function(group){
+
+        const filteredScholars =
+            group.scholars.filter(
+                function(item){
+
+                    const text =
+                        (
+                            item[0] +
+                            " " +
+                            item[1] +
+                            " " +
+                            item[2] +
+                            " " +
+                            group.category
+                        ).toLowerCase();
+
+
+                    return text.includes(
+                        keyword
+                    );
+
+                }
+            );
+
+
+        if(filteredScholars.length > 0){
+
+            filteredGroups.push({
+
+                category:
+                    group.category,
+
+                scholars:
+                    filteredScholars
+
+            });
+
+        }
+
+    });
+
+
+    ppppRenderMuslimScholars(
+        filteredGroups
+    );
+
+}
+
+
+/* =========================================================
+   🔎 SEARCH EVENT
+========================================================= */
+
+const ppppMuslimScholarSearch =
+    document.getElementById(
+        "ppppMuslimScholarSearch"
+    );
+
+
+if(ppppMuslimScholarSearch){
+
+    ppppMuslimScholarSearch.addEventListener(
+        "input",
+        ppppSearchMuslimScholars
+    );
+
+}
+
+
+/* =========================================================
+   🚀 INITIALIZE
+========================================================= */
+
+ppppRenderMuslimScholars(
+    ppppMuslimScholars
+);
+
+
+/* =========================================================
+   🛑 PREVENT SETTINGS CONTROLS
+   FROM INTERFERING
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const card =
+            event.target.closest(
+                "#ppppMuslimScholarsWrap .pppp-scholar-card"
+            );
+
+        if(card){
+
+            event.stopPropagation();
+
+        }
+
+    },
+    true
+);
+
+
+/* =========================================================
+   ✅ 100 SCHOLARS CHECK
+========================================================= */
+
+if(ppppTotalMuslimScholars !== 100){
+
+    console.warn(
+        "PPPP Muslim Scholars: Expected 100 scholars, found " +
+        ppppTotalMuslimScholars
+    );
+
+}
+
+</script>
+
+<!-- =========================================================
+     ✅ END PPPP 100 GREATEST MUSLIM SCHOLARS
+========================================================= -->
+
+<!-- =========================================================
+     🇧🇩 PPPP — 100 GREATEST MUSLIM SCHOLARS & THINKERS OF BANGLADESH
+     বাংলাদেশের শ্রেষ্ঠ ১০০ মুসলিম মনীষী
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   🇧🇩 MAIN WRAPPER
+========================================================= */
+
+.pppp-bangladesh-scholars-wrap{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 auto 20px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =========================================================
+   🇧🇩 MAIN SECTION
+========================================================= */
+
+.pppp-bangladesh-scholars-section{
+    width:100%;
+    box-sizing:border-box;
+    margin:0 0 18px;
+    background:#f7f9fc;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e0e6ec;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   🇧🇩 MAIN TITLE
+========================================================= */
+
+.pppp-bangladesh-scholars-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:15px 18px;
+    background:linear-gradient(135deg,#00897b,#1565c0);
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.3;
+    text-align:left;
+}
+
+
+/* =========================================================
+   🔎 SEARCH
+========================================================= */
+
+.pppp-bangladesh-scholars-search-wrap{
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 14px 14px;
+    background:#fff;
+}
+
+.pppp-bangladesh-scholars-search{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 18px;
+    border:3px solid #e0e0e0;
+    border-radius:32px;
+    background:#fff;
+    color:#424242;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:18px;
+    outline:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.pppp-bangladesh-scholars-search:focus{
+    border-color:#90caf9;
+    box-shadow:0 3px 12px rgba(33,150,243,.12);
+}
+
+.pppp-bangladesh-scholars-search::placeholder{
+    color:#757575;
+}
+
+
+/* =========================================================
+   📚 CATEGORY GROUP
+========================================================= */
+
+.pppp-bd-scholar-group{
+    margin:0 0 18px;
+}
+
+.pppp-bd-scholar-group-title{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px 16px;
+    background:#fff;
+    color:#263238;
+    font-size:19px;
+    font-weight:800;
+    line-height:1.3;
+    border-top:1px solid #e0e6ec;
+    border-bottom:1px solid #e0e6ec;
+}
+
+
+/* =========================================================
+   📚 SCHOLAR GRID
+========================================================= */
+
+.pppp-bd-scholar-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:14px;
+    background:#f7f9fc;
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   📖 SCHOLAR CARD
+========================================================= */
+
+.pppp-bd-scholar-card{
+    position:relative;
+    min-height:145px;
+
+    border:1px solid #dfe5eb;
+    border-radius:24px;
+
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #f3f7fa
+    );
+
+    box-shadow:0 5px 14px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:18px 10px 12px;
+
+    box-sizing:border-box;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+    text-decoration:none;
+    color:#263238;
+
+    -webkit-tap-highlight-color:transparent;
+
+    overflow:hidden;
+}
+
+.pppp-bd-scholar-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.pppp-bd-scholar-card:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   🔢 SERIAL
+========================================================= */
+
+.pppp-bd-scholar-number{
+    position:absolute;
+    top:10px;
+    right:12px;
+
+    font-size:13px;
+    font-weight:800;
+
+    color:#64a5d6;
+}
+
+
+/* =========================================================
+   🕌 EMOJI
+========================================================= */
+
+.pppp-bd-scholar-emoji{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:8px;
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   📝 NAME
+========================================================= */
+
+.pppp-bd-scholar-name{
+    font-size:15px;
+    line-height:1.22;
+    font-weight:800;
+
+    word-break:break-word;
+    overflow-wrap:anywhere;
+
+    max-width:100%;
+}
+
+
+/* =========================================================
+   📜 TITLE / DESCRIPTION
+========================================================= */
+
+.pppp-bd-scholar-description{
+    margin-top:5px;
+
+    font-size:12px;
+    line-height:1.25;
+
+    font-weight:700;
+
+    color:#607d8b;
+
+    word-break:break-word;
+}
+
+
+/* =========================================================
+   🟢 VIEW
+========================================================= */
+
+.pppp-bd-scholar-view{
+    display:inline-block;
+
+    margin-top:7px;
+
+    padding:3px 9px;
+
+    border-radius:20px;
+
+    background:#e8f5e9;
+    color:#16843b;
+
+    font-size:11px;
+    font-weight:800;
+    line-height:1.25;
+}
+
+
+/* =========================================================
+   🚫 NO RESULT
+========================================================= */
+
+.pppp-bd-scholar-no-result{
+    display:none;
+
+    width:100%;
+    box-sizing:border-box;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:16px;
+    font-weight:700;
+
+    background:#f7f9fc;
+}
+
+
+/* =========================================================
+   📱 MOBILE
+========================================================= */
+
+@media(max-width:520px){
+
+    .pppp-bangladesh-scholars-title{
+        font-size:20px;
+        padding:15px 16px;
+    }
+
+    .pppp-bd-scholar-group-title{
+        font-size:18px;
+        padding:14px;
+    }
+
+    .pppp-bd-scholar-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px;
+        padding:14px;
+    }
+
+    .pppp-bd-scholar-card{
+        min-height:145px;
+        border-radius:22px;
+    }
+
+    .pppp-bd-scholar-emoji{
+        font-size:31px;
+    }
+
+    .pppp-bd-scholar-name{
+        font-size:14px;
+    }
+
+    .pppp-bd-scholar-description{
+        font-size:11px;
+    }
+
+    .pppp-bd-scholar-view{
+        font-size:11px;
+        padding:3px 8px;
+    }
+
+}
+
+
+/* =========================================================
+   💻 TABLET / DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+    .pppp-bd-scholar-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .pppp-bd-scholar-card{
+        min-height:140px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     🇧🇩 PPPP 100 GREATEST MUSLIM SCHOLARS OF BANGLADESH
+========================================================= -->
+
+<div
+    class="pppp-bangladesh-scholars-wrap"
+    id="ppppBangladeshScholarsWrap"
+>
+
+<div class="pppp-bangladesh-scholars-section">
+
+
+<!-- =========================================================
+     🇧🇩 MAIN TITLE
+========================================================= -->
+
+<div class="pppp-bangladesh-scholars-title">
+🇧🇩 বাংলাদেশের শ্রেষ্ঠ ১০০ মুসলিম মনীষী — 100 Greatest Muslim Scholars &amp; Thinkers of Bangladesh
+</div>
+
+
+<!-- =========================================================
+     🔎 SEARCH
+========================================================= -->
+
+<div class="pppp-bangladesh-scholars-search-wrap">
+
+<input
+    type="search"
+    id="ppppBangladeshScholarSearch"
+    class="pppp-bangladesh-scholars-search"
+    placeholder="🔍 Search Bangladeshi Muslim Scholars..."
+    autocomplete="off"
+>
+
+</div>
+
+
+<!-- =========================================================
+     📚 SCHOLAR CONTENT
+========================================================= -->
+
+<div id="ppppBangladeshScholarContent"></div>
+
+
+<div
+    id="ppppBangladeshScholarNoResult"
+    class="pppp-bd-scholar-no-result"
+>
+🔍 No scholar found.
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+
+/* =========================================================
+   🇧🇩 PPPP — 100 BANGLADESHI MUSLIM SCHOLARS DATA
+========================================================= */
+
+const ppppBangladeshScholars = [
+
+/* =========================================================
+   🕌 ISLAMIC MISSIONARIES & SUFI SCHOLARS
+========================================================= */
+
+{
+    category:"🕌 বাংলায় ইসলাম প্রচার ও সুফি মনীষী — Islamic Missionaries & Sufi Scholars",
+    scholars:[
+
+        ["🕋","হযরত শাহ জালাল (রহ.)","সুফি সাধক (সিলেটে ইসলাম প্রচারের অন্যতম প্রধান ব্যক্তিত্ব)"],
+        ["🌙","হযরত শাহ পরাণ (রহ.)","সুফি সাধক (সিলেটের বিশিষ্ট আধ্যাত্মিক ব্যক্তিত্ব)"],
+        ["🏛️","হযরত খান জাহান আলী (রহ.)","উলুঘ খান (খুলনা-বাগেরহাট অঞ্চলে ইসলাম প্রচার ও জনকল্যাণের পথিকৃৎ)"],
+        ["🪷","হযরত শাহ মখদুম রূপোশ (রহ.)","সুফি সাধক (রাজশাহী অঞ্চলের বিশিষ্ট ইসলাম প্রচারক)"],
+        ["🌿","হযরত শাহ আমানত (রহ.)","সুফি সাধক (চট্টগ্রামের বিশিষ্ট আধ্যাত্মিক ব্যক্তিত্ব)"],
+        ["🐎","হযরত শাহ সুলতান মাহমুদ বলখী (রহ.)","মাহিসওয়ার (উত্তরবঙ্গে ইসলাম প্রচারক)"],
+        ["🕊️","হযরত শাহ আলী বাগদাদী (রহ.)","সুফি সাধক (ঢাকার মিরপুর অঞ্চলের বিশিষ্ট ওলি)"],
+        ["🌹","হযরত শাহ গরীবুল্লাহ (রহ.)","সুফি সাধক (বাংলায় ইসলাম প্রচারের প্রাচীন সাধক)"],
+        ["🦋","হযরত শাহ বদর (রহ.)","সুফি সাধক (চট্টগ্রাম অঞ্চলের ইসলাম প্রচারক)"],
+        ["🌺","হযরত শাহ জামাল (রহ.)","সুফি সাধক (ময়মনসিংহ অঞ্চলের ইসলাম প্রচারক)"]
+
+    ]
+},
+
+
+/* =========================================================
+   📚 ISLAMIC REFORMERS & ULAMA
+========================================================= */
+
+{
+    category:"📚 ইসলামী সংস্কারক ও আলেম — Islamic Reformers & Ulama",
+    scholars:[
+
+        ["⚖️","হাজী শরীয়তুল্লাহ (রহ.)","ইসলামী সংস্কারক (ফরায়েজি আন্দোলনের প্রতিষ্ঠাতা)"],
+        ["🛡️","দুদু মিয়া (রহ.)","ফরায়েজি নেতা (কৃষক ও মুসলিম সমাজের অধিকার আন্দোলনের নেতা)"],
+        ["⚔️","তিতুমীর (রহ.)","ইসলামী সংস্কারক ও সংগ্রামী নেতা (ঔপনিবেশিক শোষণের বিরুদ্ধে প্রতিরোধের নেতা)"],
+        ["📖","মাওলানা কেরামত আলী জৌনপুরী (রহ.)","ইসলামী সংস্কারক ও আলেম (বাংলায় ইসলামী সংস্কার ও দাওয়াহর বিশিষ্ট ব্যক্তিত্ব)"],
+        ["🍃","মাওলানা মুহাম্মদ নঈমুদ্দীন","আলেম ও অনুবাদক (কুরআন ও ইসলামী জ্ঞান বাংলায় প্রচারের অগ্রদূত)"],
+        ["🕯️","মাওলানা মনিরুজ্জামান ইসলামাবাদী","আলেম, সাংবাদিক ও সমাজসংস্কারক"],
+        ["📜","মাওলানা শামসুল হক ফরিদপুরী (রহ.)","আলেম ও মুহাদ্দিস (ইসলামী শিক্ষা ও দাওয়াহর বিশিষ্ট ব্যক্তিত্ব)"],
+        ["☪️","মাওলানা আতহার আলী (রহ.)","আলেম ও ইসলামী ব্যক্তিত্ব"],
+        ["📿","মাওলানা সৈয়দ ফজলুল করিম (রহ.)","আলেম ও ইসলামী নেতা"],
+        ["📚","মাওলানা আজিজুল হক","মুহাদ্দিস (বাংলা ভাষায় সহিহ বুখারির অনুবাদের অন্যতম পথিকৃৎ)"],
+        ["🤲","শাহ আহমদ শফী (রহ.)","আলেম ও শিক্ষক (কওমি ইসলামী শিক্ষার বিশিষ্ট ব্যক্তিত্ব)"],
+        ["🌊","হযরত হাফেজ মাওলানা তোফাজ্জল হোসেন ভৈরবী (রহ.)","প্রখ্যাত ইসলামী বক্তা, ওয়ায়েজ ও খতিব"],
+        ["☘️","আল্লামা নুরুল ইসলাম ফারুকী (রহ.)","আলেম ও ইসলামী বক্তা"],
+        ["🪻","আল্লামা মামুনুল হক","আলেম ও ইসলামী চিন্তাবিদ"],
+        ["🗣️","মাওলানা উবায়দুল হক (রহ.)","খতিব, মুহাদ্দিস ও ইসলামী পণ্ডিত"],
+        ["⭐","মাওলানা নূরুল ইসলাম জিহাদী (রহ.)","আলেম, শিক্ষক ও ইসলামী নেতা"],
+        ["🌴","মাওলানা নূর হোসাইন কাসেমী (রহ.)","আলেম, শিক্ষক ও ইসলামী নেতা"],
+        ["🌻","মুফতী ফজলুল হক আমিনী (রহ.)","আলেম, শিক্ষক ও ইসলামী নেতা"]
+
+    ]
+},
+
+
+/* =========================================================
+   📜 QURAN & HADITH SCHOLARSHIP
+========================================================= */
+
+{
+    category:"📜 ইসলামী জ্ঞান, কুরআন ও হাদিস — Quran & Hadith Scholarship",
+    scholars:[
+
+        ["📖","মাওলানা মুহাম্মদ আবদুর রহীম","ইসলামী চিন্তাবিদ (কুরআন-হাদিস ও ইসলামী অর্থনীতি বিষয়ে লেখক ও গবেষক)"],
+        ["🖋️","মাওলানা মুহিউদ্দীন খান","ইসলামী লেখক ও গবেষক (কুরআন-হাদিস ও ইসলামী সাহিত্যের বিশিষ্ট লেখক)"],
+        ["🧠","মাওলানা আবদুল মালেক","মুহাদ্দিস ও ইসলামী শিক্ষাবিদ"],
+        ["🍂","মাওলানা আবদুল ওয়াহিদ বাঙালি (রহ.)","আলেম ও সমাজসংস্কারক"],
+        ["📝","মাওলানা আবদুল জব্বার জাহানাবাদী","আলেম ও লেখক"],
+        ["🔖","মাওলানা আবদুল আজিজ নোমানী","ইসলামী পণ্ডিত ও শিক্ষক"],
+        ["⚖️","মাওলানা আবদুর রহমান কাসেমী","ফকিহ ও ইসলামী শিক্ষাবিদ"],
+        ["📚","মাওলানা মুহাম্মদ ইসহাক","আলেম ও শিক্ষক"],
+        ["🪩","মাওলানা আবদুল হামিদ খান ভাসানী (রহ.)","মজলুম জননেতা (ধর্মীয় মূল্যবোধ, ন্যায় ও গণমানুষের অধিকারের প্রবক্তা)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🎓 MUSLIM EDUCATION & SOCIAL REFORM
+========================================================= */
+
+{
+    category:"🎓 মুসলিম শিক্ষা ও সমাজসংস্কার — Muslim Education & Social Reform",
+    scholars:[
+
+        ["🎓","নওয়াব আবদুল লতিফ","শিক্ষাবিদ ও সমাজসংস্কারক (মুসলিম শিক্ষার আধুনিকায়নে গুরুত্বপূর্ণ ভূমিকা)"],
+        ["🏫","নওয়াব ফয়জুন্নেসা চৌধুরাণী","শিক্ষাবিদ ও সমাজসংস্কারক (নারীশিক্ষার অগ্রদূত)"],
+        ["🌳","মাওলানা মুহাম্মদুল্লাহ হাফেজ্জী (রহ.)","আলেম ও ইসলামী নেতা"],
+        ["💎","খান বাহাদুর আহসানউল্লাহ (রহ.)","শিক্ষাবিদ, ইসলামী চিন্তাবিদ ও আধ্যাত্মিক সাধক"],
+        ["📚","আবদুল হক ফরিদী","শিক্ষাবিদ ও ইসলামী গবেষক (ইসলামী বিশ্বকোষ প্রণয়নে গুরুত্বপূর্ণ ভূমিকা)"],
+        ["🏛️","দেওয়ান মোহাম্মদ আজরফ","দার্শনিক, শিক্ষাবিদ ও ইসলামী চিন্তাবিদ"],
+        ["🧠","আবুল ফজল","শিক্ষাবিদ ও লেখক"],
+        ["🌱","আবুল হোসেন","চিন্তাবিদ ও সাহিত্যিক"],
+        ["🪶","কাজী আবদুল ওদুদ","সাহিত্যিক ও চিন্তাবিদ"],
+        ["📖","কাজী মোতাহার হোসেন","শিক্ষাবিদ, বিজ্ঞানী ও লেখক"]
+
+    ]
+},
+
+
+/* =========================================================
+   ✍️ MUSLIM POETS & LITERARY SCHOLARS
+========================================================= */
+
+{
+    category:"✍️ মুসলিম কবি ও সাহিত্যিক — Muslim Poets & Literary Scholars",
+    scholars:[
+
+        ["🪶","কাজী নজরুল ইসলাম","জাতীয় কবি (ইসলামী ভাবধারা, মানবতা ও বিদ্রোহের অমর কবি)"],
+        ["🌹","ফররুখ আহমদ","ইসলামী রেনেসাঁর কবি"],
+        ["📜","কায়কোবাদ","মহাকবি (বাংলা মুসলিম কাব্যধারার বিশিষ্ট কবি)"],
+        ["🌺","গোলাম মোস্তফা","কবি ও সাহিত্যিক (ইসলামী সাহিত্যচর্চার বিশিষ্ট ব্যক্তিত্ব)"],
+        ["🖋️","মীর মশাররফ হোসেন","ঔপন্যাসিক (বাংলা মুসলিম সাহিত্যের অন্যতম পথিকৃৎ)"],
+        ["🌿","শেখ ফজলল করিম","কবি ও সাহিত্যিক"],
+        ["🕊️","ইসমাইল হোসেন সিরাজী","কবি ও চিন্তাবিদ (মুসলিম জাগরণমূলক সাহিত্যের পথিকৃৎ)"],
+        ["📚","মোজাম্মেল হক","কবি ও সাহিত্যিক"],
+        ["🎨","জসীমউদ্দীন","পল্লীকবি (বাংলার পল্লিজীবন ও লোকসংস্কৃতির অমর কবি)"],
+        ["🌍","সৈয়দ মুজতবা আলী","সাহিত্যিক ও ভাষাবিদ"],
+        ["🔊","কবি মুহিব খান","কবি ও ইসলামী সাংস্কৃতিক ব্যক্তিত্ব"],
+        ["🎙️","শিল্পী আইনুদ্দীন আল আজাদ (রহ.)","ইসলামী সংগীতশিল্পী ও সাংস্কৃতিক ব্যক্তিত্ব"]
+
+    ]
+},
+
+
+/* =========================================================
+   📰 MUSLIM JOURNALISTS & INTELLECTUALS
+========================================================= */
+
+{
+    category:"📰 মুসলিম সাংবাদিক ও বুদ্ধিজীবী — Muslim Journalists & Intellectuals",
+    scholars:[
+
+        ["📰","মাওলানা মুহাম্মদ আকরম খাঁ","সাংবাদিক ও ইসলামী চিন্তাবিদ"],
+        ["✒️","আবুল কালাম শামসুদ্দীন","সাংবাদিক ও সাহিত্যিক"],
+        ["📖","মোহাম্মদ ওয়াজেদ আলী","সাংবাদিক ও সাহিত্যিক"],
+        ["📝","কাজী ইমদাদুল হক","শিক্ষাবিদ ও সাহিত্যিক"],
+        ["📖","মাওলানা আবদুল আউয়াল জৌনপুরী (রহ.)","ইসলামী পণ্ডিত ও সমাজসংস্কারক"],
+        ["💠","মাওলানা মুহম্মদ আবদুল্লাহিল বাকী (রহ.)","ইসলামী চিন্তাবিদ ও আলেম"],
+        ["💡","মোহাম্মদ বরকতুল্লাহ","দার্শনিক ও লেখক"],
+        ["🔍","আবদুল করিম সাহিত্যবিশারদ","গবেষক ও সংগ্রাহক (বাংলা মুসলিম সাহিত্য ও পুঁথি গবেষণার অগ্রদূত)"],
+        ["🖋️","সৈয়দ এমদাদ আলী","সাহিত্যিক ও চিন্তাবিদ"],
+        ["📜","আবদুল কাদির","সাহিত্য গবেষক ও লেখক"]
+
+    ]
+},
+
+
+/* =========================================================
+   🔬 MUSLIM SCIENTISTS & ACADEMICS
+========================================================= */
+
+{
+    category:"🔬 মুসলিম বিজ্ঞানী ও শিক্ষাবিদ — Muslim Scientists & Academics",
+    scholars:[
+
+        ["🔬","ড. মুহম্মদ কুদরাত-এ-খুদা","বিজ্ঞানী ও শিক্ষাবিদ"],
+        ["🌌","ড. জামাল নজরুল ইসলাম","গণিতবিদ ও পদার্থবিজ্ঞানী (কসমোলজি ও মহাকাশবিজ্ঞানে বিশ্বখ্যাত)"],
+        ["🧪","ড. এ.এন.এম. নূরুল হক","বিজ্ঞানী ও শিক্ষাবিদ"],
+        ["🧬","অধ্যাপক এ.কে.এম. নূরুল হক","সামুদ্রিক জীববিজ্ঞানী ও শিক্ষাবিদ"],
+        ["🧠","ড. মুহাম্মদ আবদুল জব্বার","বিজ্ঞানী ও শিক্ষাবিদ"],
+        ["🌊","ড. এ.এন.এম. হামিদুল্লাহ","বিজ্ঞানী ও শিক্ষাবিদ"],
+        ["💭","ড. আবুল কাসেম","বিজ্ঞানী ও শিক্ষাবিদ"]
+
+    ]
+},
+
+
+/* =========================================================
+   🩺 MUSLIM PHYSICIANS & PUBLIC HEALTH PIONEERS
+========================================================= */
+
+{
+    category:"🩺 মুসলিম চিকিৎসক ও জনস্বাস্থ্যবিদ — Muslim Physicians & Public Health Pioneers",
+    scholars:[
+
+        ["🩺","ডা. মুহাম্মদ ইব্রাহিম","চিকিৎসক ও সমাজসেবক (বাংলাদেশে ডায়াবেটিস চিকিৎসা ও জনস্বাস্থ্যের অগ্রদূত)"],
+        ["🏩","অধ্যাপক ডা. এম. আর. খান","শিশুচিকিৎসক (বাংলাদেশের শিশু চিকিৎসার অন্যতম পথিকৃৎ)"],
+        ["🧬","ডা. জোহরা বেগম কাজী","চিকিৎসক ও সমাজসেবী (মুসলিম নারী চিকিৎসা ও মাতৃস্বাস্থ্যের পথিকৃৎ)"],
+        ["🏨","ডা. নাজিমউদ্দিন আহমদ","চিকিৎসক ও শিক্ষাবিদ"],
+        ["🏥","ডা. এ.কে. খান","চিকিৎসক ও সমাজসেবক"]
+
+    ]
+},
+
+
+/* =========================================================
+   🏛️ MUSLIM POLITICAL THINKERS & LEADERS
+========================================================= */
+
+{
+    category:"🏛️ মুসলিম রাজনৈতিক চিন্তাবিদ ও জননেতা — Muslim Political Thinkers & Leaders",
+    scholars:[
+
+        ["🇧🇩","শেরে বাংলা এ. কে. ফজলুল হক","জননেতা (কৃষক ও সাধারণ মানুষের অধিকাররক্ষার প্রবক্তা)"],
+        ["🕊️","হোসেন শহীদ সোহরাওয়ার্দী","রাষ্ট্রনায়ক ও রাজনৈতিক নেতা"],
+        ["🧭","আবুল হাশিম","রাজনৈতিক চিন্তাবিদ ও মুসলিম বুদ্ধিজীবী"],
+        ["🏛️","খাজা নাজিমুদ্দিন","রাষ্ট্রনায়ক ও মুসলিম রাজনৈতিক নেতা"],
+        ["🩸","শহীদ শরীফ ওসমান বিন হাদী (রহঃ)","শহীদুল্লাহ (আল্লাহর পথে শহীদ)"]
+
+    ]
+},
+
+
+/* =========================================================
+   🗣️ LINGUISTS, HISTORIANS & RESEARCHERS
+========================================================= */
+
+{
+    category:"🗣️ ভাষাবিদ, ইতিহাসবিদ ও গবেষক — Linguists, Historians & Researchers",
+    scholars:[
+
+        ["📚","ড. মুহম্মদ শহীদুল্লাহ","ভাষাবিদ, শিক্ষাবিদ ও ইসলামী জ্ঞানচর্চার ব্যক্তিত্ব"],
+        ["🏺","ড. আবদুল করিম","ইতিহাসবিদ (বাংলার মুসলিম ইতিহাসের বিশিষ্ট গবেষক)"],
+        ["📜","ড. এনামুল হক","ভাষাবিদ ও সাহিত্য গবেষক"],
+        ["🗂️","মুহাম্মদ মনিরুজ্জামান","কবি ও গবেষক"]
+
+    ]
+},
+
+
+/* =========================================================
+   💡 MODERN MUSLIM THINKERS
+========================================================= */
+
+{
+    category:"💡 আধুনিক মুসলিম চিন্তাবিদ — Modern Muslim Thinkers",
+    scholars:[
+
+        ["🌱","সৈয়দ আবুল মকসুদ","গবেষক ও লেখক"],
+        ["🌐","বোরহানউদ্দীন খান জাহাঙ্গীর","রাষ্ট্রবিজ্ঞানী ও সমাজচিন্তক"],
+        ["📚","আবদুল্লাহ আবু সায়ীদ","শিক্ষাবিদ ও সমাজসংগঠক"],
+        ["✍️","আবুল মনসুর আহমদ","সাহিত্যিক ও রাজনৈতিক চিন্তাবিদ"]
+
+    ]
+},
+
+
+/* =========================================================
+   🌍 BANGLADESHI MUSLIM THINKERS ON THE WORLD STAGE
+========================================================= */
+
+{
+    category:"🌍 বিশ্বমঞ্চে বাংলাদেশি মুসলিম মনীষী — Bangladeshi Muslim Thinkers on the World Stage",
+    scholars:[
+
+        ["🛐","শায়খ আহমাদুল্লাহ","আলেম ও ইসলামী বক্তা"],
+        ["👑","হযরত মাওলানা মিজানুর রহমান আজহারী","ইসলামী চিন্তাবিদ ও বক্তা"],
+        ["💐","হযরত মাওলানা দেলাওয়ার হোসাইন সাঈদী (রহ.)","মুফাসসির ও ইসলামী বক্তা"],
+        ["📜","মাওলানা আবদুর রশীদ তর্কবাগীশ (রহ.)","আলেম, রাজনীতিবিদ ও ইসলামী সমাজসংস্কারক"],
+        ["🔥","মাওলানা আবদুল করিম শায়খে কৌড়িয়া","আলেম ও সমাজসংস্কারক"],
+        ["🕰️","আল্লামা মুহাম্মদ সুলতান যওক নদভী (রহ.)","মুহাদ্দিস, আরবি ভাষাবিদ ও ইসলামী শিক্ষাবিদ"]
+
+    ]
+}
+
+];
+
+
+/* =========================================================
+   🔢 TOTAL COUNT
+========================================================= */
+
+let ppppTotalBangladeshScholars = 0;
+
+ppppBangladeshScholars.forEach(function(group){
+
+    ppppTotalBangladeshScholars +=
+        group.scholars.length;
+
+});
+
+
+/* =========================================================
+   🔎 GOOGLE SEARCH LINK
+========================================================= */
+
+function ppppBangladeshScholarSearchLink(name){
+
+    const query =
+        name + " Bangladeshi Muslim scholar biography";
+
+    return (
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(query)
+    );
+
+}
+
+
+/* =========================================================
+   📚 RENDER SCHOLARS
+========================================================= */
+
+function ppppRenderBangladeshScholars(groups){
+
+    const content =
+        document.getElementById(
+            "ppppBangladeshScholarContent"
+        );
+
+    const noResult =
+        document.getElementById(
+            "ppppBangladeshScholarNoResult"
+        );
+
+    if(!content){
+        return;
+    }
+
+    content.innerHTML = "";
+
+    let resultCount = 0;
+
+
+    groups.forEach(function(group){
+
+        if(group.scholars.length === 0){
+            return;
+        }
+
+
+        const groupDiv =
+            document.createElement("div");
+
+        groupDiv.className =
+            "pppp-bd-scholar-group";
+
+
+        /* CATEGORY TITLE */
+
+        const title =
+            document.createElement("div");
+
+        title.className =
+            "pppp-bd-scholar-group-title";
+
+        title.textContent =
+            group.category;
+
+        groupDiv.appendChild(title);
+
+
+        /* GRID */
+
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "pppp-bd-scholar-grid";
+
+
+        group.scholars.forEach(function(item){
+
+            resultCount++;
+
+
+            /* CARD */
+
+            const card =
+                document.createElement("a");
+
+            card.className =
+                "pppp-bd-scholar-card";
+
+
+            card.href =
+                ppppBangladeshScholarSearchLink(
+                    item[1]
+                );
+
+            card.target =
+                "_blank";
+
+            card.rel =
+                "noopener noreferrer";
+
+
+            /* SERIAL */
+
+            const number =
+                String(resultCount)
+                    .padStart(2,"0");
+
+
+            card.innerHTML = `
+
+                <span
+                    class="pppp-bd-scholar-number"
+                >
+                    ${number}
+                </span>
+
+                <span
+                    class="pppp-bd-scholar-emoji"
+                >
+                    ${item[0]}
+                </span>
+
+                <span
+                    class="pppp-bd-scholar-name"
+                >
+                    ${item[1]}
+                </span>
+
+                <span
+                    class="pppp-bd-scholar-description"
+                >
+                    ${item[2]}
+                </span>
+
+                <span
+                    class="pppp-bd-scholar-view"
+                >
+                    VIEW
+                </span>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        });
+
+
+        groupDiv.appendChild(grid);
+
+        content.appendChild(groupDiv);
+
+    });
+
+
+    /* NO RESULT */
+
+    if(resultCount === 0){
+
+        noResult.style.display =
+            "block";
+
+    }else{
+
+        noResult.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   🔎 SEARCH SCHOLARS
+========================================================= */
+
+function ppppSearchBangladeshScholars(){
+
+    const search =
+        document.getElementById(
+            "ppppBangladeshScholarSearch"
+        );
+
+    if(!search){
+        return;
+    }
+
+
+    const keyword =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    if(keyword === ""){
+
+        ppppRenderBangladeshScholars(
+            ppppBangladeshScholars
+        );
+
+        return;
+    }
+
+
+    const filteredGroups = [];
+
+
+    ppppBangladeshScholars.forEach(function(group){
+
+        const filteredScholars =
+            group.scholars.filter(
+                function(item){
+
+                    const text =
+                        (
+                            item[0] +
+                            " " +
+                            item[1] +
+                            " " +
+                            item[2] +
+                            " " +
+                            group.category
+                        ).toLowerCase();
+
+
+                    return text.includes(
+                        keyword
+                    );
+
+                }
+            );
+
+
+        if(filteredScholars.length > 0){
+
+            filteredGroups.push({
+
+                category:
+                    group.category,
+
+                scholars:
+                    filteredScholars
+
+            });
+
+        }
+
+    });
+
+
+    ppppRenderBangladeshScholars(
+        filteredGroups
+    );
+
+}
+
+
+/* =========================================================
+   🔎 SEARCH EVENT
+========================================================= */
+
+const ppppBangladeshScholarSearch =
+    document.getElementById(
+        "ppppBangladeshScholarSearch"
+    );
+
+
+if(ppppBangladeshScholarSearch){
+
+    ppppBangladeshScholarSearch.addEventListener(
+        "input",
+        ppppSearchBangladeshScholars
+    );
+
+}
+
+
+/* =========================================================
+   🚀 INITIALIZE
+========================================================= */
+
+ppppRenderBangladeshScholars(
+    ppppBangladeshScholars
+);
+
+
+/* =========================================================
+   🛑 PREVENT SETTINGS CONTROLS
+      FROM INTERFERING
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const card =
+            event.target.closest(
+                "#ppppBangladeshScholarsWrap .pppp-bd-scholar-card"
+            );
+
+        if(card){
+
+            event.stopPropagation();
+
+        }
+
+    },
+    true
+);
+
+
+/* =========================================================
+   ✅ 100 SCHOLARS CHECK
+========================================================= */
+
+if(ppppTotalBangladeshScholars !== 100){
+
+    console.warn(
+        "PPPP Bangladesh Muslim Scholars: Expected 100 scholars, found " +
+        ppppTotalBangladeshScholars
+    );
+
+}
+
+</script>
+
+<!-- =========================================================
+     ✅ END PPPP 100 GREATEST MUSLIM SCHOLARS OF BANGLADESH
 ========================================================= -->
 
 
